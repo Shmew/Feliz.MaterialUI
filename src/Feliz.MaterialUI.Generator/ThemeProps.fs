@@ -5,8 +5,9 @@ open System.IO
 open System.Text.RegularExpressions
 open FSharp.Data
 
-let outFile = @"..\..\..\..\Feliz.MaterialUI\ThemeProps.fs"
+// TODO: remove "Mui" prefix?
 
+let outFile = @"..\..\..\..\Feliz.MaterialUI\ThemeProps.fs"
 
 let generateMembers (url: string) =
   use w = new StringWriter()

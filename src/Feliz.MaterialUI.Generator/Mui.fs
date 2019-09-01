@@ -5,6 +5,9 @@ open System.Text
 open System.IO
 open FSharp.Data
 
+// TODO: Separate core and lab? Exclude lab?
+// TODO: How to hide MuiHelpers?
+
 let outFile = @"..\..\..\..\Feliz.MaterialUI\Mui.fs"
 
 let generatePage (url: String) =

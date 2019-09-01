@@ -3,6 +3,8 @@
 open System
 open System.IO
 
+// TODO: removed checked-in HTML cache, not needed for CI since generator is not run
+
 let apiFolder = @"..\..\..\Html\Api"
 
 let refreshApiCache () =

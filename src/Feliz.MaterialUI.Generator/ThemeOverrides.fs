@@ -5,9 +5,9 @@ open System.IO
 open System.Text.RegularExpressions
 open FSharp.Data
 
+// TODO: remove "Mui" prefix?
+
 let outFile = @"..\..\..\..\Feliz.MaterialUI\ThemeOverrides.fs"
-
-
 
 let generateInterface (url: string) =
   use w = new StringWriter()
