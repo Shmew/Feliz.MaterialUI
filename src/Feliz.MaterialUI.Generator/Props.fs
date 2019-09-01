@@ -4,7 +4,7 @@ open System
 open System.IO
 open FSharp.Data
 
-let outFile = @"..\..\..\..\Feliz.MaterialUI\MuiProps.fs"
+let outFile = @"..\..\..\..\Feliz.MaterialUI\Props.fs"
 
 let paramListAndObjCreator paramData =
   let safeName = appendApostropheToReservedKeywords >> kebabCaseToCamelCase >> prefixUnderscoreToNumbers
