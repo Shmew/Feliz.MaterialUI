@@ -7,7 +7,7 @@
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <PackageProjectUrl>https://github.com/cmeeren/Feliz.MaterialUI</PackageProjectUrl>
     <Authors>Christer van der Meeren</Authors>
-    <PackageLicenseUrl>https://github.com/cmeeren/Feliz.MaterialUI/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>f# fable bindings feliz material-ui materialui</PackageTags>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <Version>0.1.0</Version>
