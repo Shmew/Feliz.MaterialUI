@@ -225,9 +225,9 @@ let generatePage (url: String) =
           | "slider", "marks", "bool | array" ->
               [
                 sprintf "  static member inline %s(value: bool) = Interop.mkAttr \"%s\" value" propNameSafe propName
-                sprintf "  static member inline %s([<ParamArray>] values: {| value: int |} []) = Interop.mkAttr \"%s\" values" propNameSafe propName
+                sprintf "  static member inline %s([<ParamArray>] values: int []) = Interop.mkAttr \"%s\" (values |> Array.map (fun x -> {| value = x |}))" propNameSafe propName
+                sprintf "  static member inline %s([<ParamArray>] values: float []) = Interop.mkAttr \"%s\" (values |> Array.map (fun x -> {| value = x |}))" propNameSafe propName
                 sprintf "  static member inline %s([<ParamArray>] values: {| value: int; label: string option |} []) = Interop.mkAttr \"%s\" values" propNameSafe propName
-                sprintf "  static member inline %s([<ParamArray>] values: {| value: float |} []) = Interop.mkAttr \"%s\" values" propNameSafe propName
                 sprintf "  static member inline %s([<ParamArray>] values: {| value: float; label: string option |} []) = Interop.mkAttr \"%s\" values" propNameSafe propName
               ]
 

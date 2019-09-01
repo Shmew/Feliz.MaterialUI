@@ -3711,11 +3711,11 @@ type slider =
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
   static member inline marks(value: bool) = Interop.mkAttr "marks" value
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
-  static member inline marks([<ParamArray>] values: {| value: int |} []) = Interop.mkAttr "marks" values
+  static member inline marks([<ParamArray>] values: int []) = Interop.mkAttr "marks" (values |> Array.map (fun x -> {| value = x |}))
+  /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
+  static member inline marks([<ParamArray>] values: float []) = Interop.mkAttr "marks" (values |> Array.map (fun x -> {| value = x |}))
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
   static member inline marks([<ParamArray>] values: {| value: int; label: string option |} []) = Interop.mkAttr "marks" values
-  /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
-  static member inline marks([<ParamArray>] values: {| value: float |} []) = Interop.mkAttr "marks" values
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
   static member inline marks([<ParamArray>] values: {| value: float; label: string option |} []) = Interop.mkAttr "marks" values
   /// The maximum allowed value of the slider. Should not be equal to min.
