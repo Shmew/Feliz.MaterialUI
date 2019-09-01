@@ -31,9 +31,9 @@ TODO
 Dev/deployment checklist
 ------------------------
 
-1. Make necessary changes to the code
+1. Make necessary changes to the code (e.g., run the generator)
 2. Update the changelog
 3. Update the version and release notes in the package info
 4. Update the supported npm dependency versions for femto in the fsproj
-5. Commit and tag the commit (this is what triggers deployment from  AppVeyor). For consistency, the tag should ideally be in the format `v1.2.3`.
+5. Commit and tag the commit (this is what triggers deployment from  AppVeyor). For consistency, the tag should be identical to the version (e.g. `1.2.3`).
 6. Push the changes and the tag to the repo. If AppVeyor build succeeds, the package is automatically published to NuGet.
