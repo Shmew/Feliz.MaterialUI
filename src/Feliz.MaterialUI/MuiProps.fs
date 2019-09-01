@@ -3124,22 +3124,22 @@ module popover =
   /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
   [<Erase>]
   type anchorOrigin =
-    static member inline topLeft = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = "left" |}
-    static member inline topCenter = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = "center" |}
-    static member inline topRight = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = "right" |}
-    static member inline centerLeft = Interop.mkAttr "anchorOrigin" {| vertical = "center"; horizontal = "left" |}
-    static member inline centerCenter = Interop.mkAttr "anchorOrigin" {| vertical = "center"; horizontal = "center" |}
-    static member inline centerRight = Interop.mkAttr "anchorOrigin" {| vertical = "center"; horizontal = "right" |}
-    static member inline bottomLeft = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = "left" |}
-    static member inline bottomCenter = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = "center" |}
-    static member inline bottomRight = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = "right" |}
-    static member inline custom(horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" {| vertical = vertical; horizontal = horizontal |}
-    static member inline topCustom(horizontal: int) = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = horizontal |}
-    static member inline centerCustom(horizontal: int) = Interop.mkAttr "anchorOrigin" {| vertical = "center"; horizontal = horizontal |}
-    static member inline bottomCustom(horizontal: int) = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = horizontal |}
-    static member inline customLeft(vertical: int) = Interop.mkAttr "anchorOrigin" {| vertical = vertical; horizontal = "left" |}
-    static member inline customCenter(vertical: int) = Interop.mkAttr "anchorOrigin" {| vertical = vertical; horizontal = "center" |}
-    static member inline customRight(vertical: int) = Interop.mkAttr "anchorOrigin" {| vertical = vertical; horizontal = "right" |}
+    static member inline topLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "left" ])
+    static member inline topCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "center" ])
+    static member inline topRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "right" ])
+    static member inline centerLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "left" ])
+    static member inline centerCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "center" ])
+    static member inline centerRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "right" ])
+    static member inline bottomLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
+    static member inline bottomCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
+    static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
+    static member inline custom(horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> horizontal ])
+    static member inline topCustom(horizontal: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> horizontal ])
+    static member inline centerCustom(horizontal: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> horizontal ])
+    static member inline bottomCustom(horizontal: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> horizontal ])
+    static member inline customLeft(vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "left" ])
+    static member inline customCenter(vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "center" ])
+    static member inline customRight(vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "right" ])
 
   [<Erase>]
   type anchorReference =
@@ -3152,22 +3152,22 @@ module popover =
   /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
   [<Erase>]
   type transformOrigin =
-    static member inline topLeft = Interop.mkAttr "transformOrigin" {| vertical = "top"; horizontal = "left" |}
-    static member inline topCenter = Interop.mkAttr "transformOrigin" {| vertical = "top"; horizontal = "center" |}
-    static member inline topRight = Interop.mkAttr "transformOrigin" {| vertical = "top"; horizontal = "right" |}
-    static member inline centerLeft = Interop.mkAttr "transformOrigin" {| vertical = "center"; horizontal = "left" |}
-    static member inline centerCenter = Interop.mkAttr "transformOrigin" {| vertical = "center"; horizontal = "center" |}
-    static member inline centerRight = Interop.mkAttr "transformOrigin" {| vertical = "center"; horizontal = "right" |}
-    static member inline bottomLeft = Interop.mkAttr "transformOrigin" {| vertical = "bottom"; horizontal = "left" |}
-    static member inline bottomCenter = Interop.mkAttr "transformOrigin" {| vertical = "bottom"; horizontal = "center" |}
-    static member inline bottomRight = Interop.mkAttr "transformOrigin" {| vertical = "bottom"; horizontal = "right" |}
-    static member inline custom(horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" {| vertical = vertical; horizontal = horizontal |}
-    static member inline topCustom(horizontal: int) = Interop.mkAttr "transformOrigin" {| vertical = "top"; horizontal = horizontal |}
-    static member inline centerCustom(horizontal: int) = Interop.mkAttr "transformOrigin" {| vertical = "center"; horizontal = horizontal |}
-    static member inline bottomCustom(horizontal: int) = Interop.mkAttr "transformOrigin" {| vertical = "bottom"; horizontal = horizontal |}
-    static member inline customLeft(vertical: int) = Interop.mkAttr "transformOrigin" {| vertical = vertical; horizontal = "left" |}
-    static member inline customCenter(vertical: int) = Interop.mkAttr "transformOrigin" {| vertical = vertical; horizontal = "center" |}
-    static member inline customRight(vertical: int) = Interop.mkAttr "transformOrigin" {| vertical = vertical; horizontal = "right" |}
+    static member inline topLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "left" ])
+    static member inline topCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "center" ])
+    static member inline topRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "right" ])
+    static member inline centerLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "left" ])
+    static member inline centerCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "center" ])
+    static member inline centerRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "right" ])
+    static member inline bottomLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
+    static member inline bottomCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
+    static member inline bottomRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
+    static member inline custom(horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> horizontal ])
+    static member inline topCustom(horizontal: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> horizontal ])
+    static member inline centerCustom(horizontal: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> horizontal ])
+    static member inline bottomCustom(horizontal: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> horizontal ])
+    static member inline customLeft(vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "left" ])
+    static member inline customCenter(vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "center" ])
+    static member inline customRight(vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "right" ])
 
   /// Set to 'auto' to automatically calculate transition time based on height.
   [<Erase>]
@@ -3957,12 +3957,12 @@ module snackbar =
   /// The anchor of the `Snackbar`.
   [<Erase>]
   type anchorOrigin =
-    static member inline topLeft = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = "left" |}
-    static member inline topCenter = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = "center" |}
-    static member inline topRight = Interop.mkAttr "anchorOrigin" {| vertical = "top"; horizontal = "right" |}
-    static member inline bottomLeft = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = "left" |}
-    static member inline bottomCenter = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = "center" |}
-    static member inline bottomRight = Interop.mkAttr "anchorOrigin" {| vertical = "bottom"; horizontal = "right" |}
+    static member inline topLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "left" ])
+    static member inline topCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "center" ])
+    static member inline topRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "right" ])
+    static member inline bottomLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
+    static member inline bottomCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
+    static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
 
 
 [<Erase>]

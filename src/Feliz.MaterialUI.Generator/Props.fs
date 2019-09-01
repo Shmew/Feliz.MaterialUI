@@ -114,30 +114,30 @@ let generatePage (url: String) =
             isNonEnumProp <- true
 
           elif value = "SNACKBAR_ANCHORORIGIN" then
-            wEnumThisProp.printfn "    static member inline topLeft = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = \"left\" |}" propName
-            wEnumThisProp.printfn "    static member inline topCenter = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = \"center\" |}" propName
-            wEnumThisProp.printfn "    static member inline topRight = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = \"right\" |}" propName
-            wEnumThisProp.printfn "    static member inline bottomLeft = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = \"left\" |}" propName
-            wEnumThisProp.printfn "    static member inline bottomCenter = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = \"center\" |}" propName
-            wEnumThisProp.printfn "    static member inline bottomRight = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = \"right\" |}" propName
+            wEnumThisProp.printfn "    static member inline topLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline topCenter = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"center\" ])" propName
+            wEnumThisProp.printfn "    static member inline topRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"right\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomCenter = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"center\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])" propName
 
           elif value = "POPOVER_ANCHORORIGIN_TRANSFORMORIGIN" then
-            wEnumThisProp.printfn "    static member inline topLeft = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = \"left\" |}" propName
-            wEnumThisProp.printfn "    static member inline topCenter = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = \"center\" |}" propName
-            wEnumThisProp.printfn "    static member inline topRight = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = \"right\" |}" propName
-            wEnumThisProp.printfn "    static member inline centerLeft = Interop.mkAttr \"%s\" {| vertical = \"center\"; horizontal = \"left\" |}" propName
-            wEnumThisProp.printfn "    static member inline centerCenter = Interop.mkAttr \"%s\" {| vertical = \"center\"; horizontal = \"center\" |}" propName
-            wEnumThisProp.printfn "    static member inline centerRight = Interop.mkAttr \"%s\" {| vertical = \"center\"; horizontal = \"right\" |}" propName
-            wEnumThisProp.printfn "    static member inline bottomLeft = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = \"left\" |}" propName
-            wEnumThisProp.printfn "    static member inline bottomCenter = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = \"center\" |}" propName
-            wEnumThisProp.printfn "    static member inline bottomRight = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = \"right\" |}" propName
-            wEnumThisProp.printfn "    static member inline custom(horizontal: int, vertical: int) = Interop.mkAttr \"%s\" {| vertical = vertical; horizontal = horizontal |}" propName
-            wEnumThisProp.printfn "    static member inline topCustom(horizontal: int) = Interop.mkAttr \"%s\" {| vertical = \"top\"; horizontal = horizontal |}" propName
-            wEnumThisProp.printfn "    static member inline centerCustom(horizontal: int) = Interop.mkAttr \"%s\" {| vertical = \"center\"; horizontal = horizontal |}" propName
-            wEnumThisProp.printfn "    static member inline bottomCustom(horizontal: int) = Interop.mkAttr \"%s\" {| vertical = \"bottom\"; horizontal = horizontal |}" propName
-            wEnumThisProp.printfn "    static member inline customLeft(vertical: int) = Interop.mkAttr \"%s\" {| vertical = vertical; horizontal = \"left\" |}" propName
-            wEnumThisProp.printfn "    static member inline customCenter(vertical: int) = Interop.mkAttr \"%s\" {| vertical = vertical; horizontal = \"center\" |}" propName
-            wEnumThisProp.printfn "    static member inline customRight(vertical: int) = Interop.mkAttr \"%s\" {| vertical = vertical; horizontal = \"right\" |}" propName
+            wEnumThisProp.printfn "    static member inline topLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline topCenter = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"center\" ])" propName
+            wEnumThisProp.printfn "    static member inline topRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"right\" ])" propName
+            wEnumThisProp.printfn "    static member inline centerLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"center\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline centerCenter = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"center\"; \"horizontal\" ==> \"center\" ])" propName
+            wEnumThisProp.printfn "    static member inline centerRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"center\"; \"horizontal\" ==> \"right\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomCenter = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"center\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])" propName
+            wEnumThisProp.printfn "    static member inline custom(horizontal: int, vertical: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> horizontal ])" propName
+            wEnumThisProp.printfn "    static member inline topCustom(horizontal: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> horizontal ])" propName
+            wEnumThisProp.printfn "    static member inline centerCustom(horizontal: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"center\"; \"horizontal\" ==> horizontal ])" propName
+            wEnumThisProp.printfn "    static member inline bottomCustom(horizontal: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> horizontal ])" propName
+            wEnumThisProp.printfn "    static member inline customLeft(vertical: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline customCenter(vertical: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"center\" ])" propName
+            wEnumThisProp.printfn "    static member inline customRight(vertical: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"right\" ])" propName
 
           else
             let fSharpValue =
