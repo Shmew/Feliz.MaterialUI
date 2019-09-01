@@ -293,7 +293,7 @@ let generatePage (url: String) =
               ]
 
           | "tablePagination", "labelDisplayedRows", "func" ->
-              [sprintf "  static member %s(getLabel: {| from: int; to': int; count: int |} -> ReactElement) = Interop.mkAttr \"%s\" getLabel" propNameSafe propName]
+              [sprintf "  static member %s(getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr \"%s\" getLabel" propNameSafe propName]
 
           | "rating", ("onChange" | "onChangeActive"), "func"
           | "slider", ("onChange" | "onChangeCommitted"), "func" ->

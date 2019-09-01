@@ -4658,7 +4658,7 @@ type tablePagination =
   /// The total number of rows.
   static member inline count(value: int) = Interop.mkAttr "count" value
   /// Customize the displayed rows label.
-  static member labelDisplayedRows(getLabel: {| from: int; to': int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
+  static member labelDisplayedRows(getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
   static member inline labelRowsPerPage(value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
