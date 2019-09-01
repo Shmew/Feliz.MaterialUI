@@ -201,7 +201,8 @@ type TransitionOptions =
 type Transitions =
   abstract easing: Easing with get, set
   abstract duration: Duration with get, set
-  abstract create: props : U2<string, string[]> * ?options: TransitionOptions -> string
+  abstract create: props: string * ?options: TransitionOptions -> string
+  abstract create: props: string [] * ?options: TransitionOptions -> string
   abstract getAutoHeightDuration: height : int -> int
 
 [<AbstractClass; Erase>]
