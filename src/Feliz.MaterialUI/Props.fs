@@ -686,7 +686,7 @@ type checkbox =
   static member inline required(value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type'(value: string) = Interop.mkAttr "type" value
-  /// The value of the component. The DOM API casts this to a string.
+  /// The value of the component.
   static member inline value(value: string) = Interop.mkAttr "value" value
 
 module checkbox =
@@ -2886,8 +2886,8 @@ type nativeSelect =
   ///
   /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
-  /// The input value. The DOM API casts this to a string.
-  static member inline value(value: 'a) = Interop.mkAttr "value" value
+  /// The input value.
+  static member inline value(value: string) = Interop.mkAttr "value" value
 
 module nativeSelect =
 
@@ -3315,8 +3315,8 @@ type radio =
   static member inline required(value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type'(value: string) = Interop.mkAttr "type" value
-  /// The value of the component. The DOM API casts this to a string.
-  static member inline value(value: 'a) = Interop.mkAttr "value" value
+  /// The value of the component.
+  static member inline value(value: string) = Interop.mkAttr "value" value
 
 module radio =
 
@@ -3362,8 +3362,8 @@ type radioGroup =
   ///
   /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
-  /// Value of the selected radio button. The DOM API casts this to a string.
-  static member inline value(value: 'a) = Interop.mkAttr "value" value
+  /// Value of the selected radio button.
+  static member inline value(value: string) = Interop.mkAttr "value" value
 
 
 [<Erase>]
@@ -4417,8 +4417,8 @@ type switch =
   static member inline required(value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type'(value: string) = Interop.mkAttr "type" value
-  /// The value of the component. The DOM API casts this to a string.
-  static member inline value(value: 'a) = Interop.mkAttr "value" value
+  /// The value of the component.
+  static member inline value(value: string) = Interop.mkAttr "value" value
 
 module switch =
 

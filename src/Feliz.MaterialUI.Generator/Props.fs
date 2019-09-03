@@ -170,10 +170,6 @@ let generatePage (url: String) =
 
       if isNonEnumProp then
 
-        // TODO: for 'any'-typed props (e.g. many 'value' props), constrain to
-        // string if docs contain "The DOM API casts this to a string"?
-        // https://github.com/mui-org/material-ui/pull/17132
-
         hasGeneralProps <- true
 
         let methods =
@@ -340,7 +336,7 @@ let generatePage (url: String) =
           | "select", "renderValue", "func" ->
               [sprintf "  static member inline %s(render: 'a -> ReactElement) = Interop.mkAttr \"%s\" render" propNameSafe propName]
 
-          | "checkbox", "value", "any" ->
+          | _, _, "any" when markdownDoc.Contains "The DOM API casts this to a string" ->
               [sprintf "  static member inline %s(value: string) = Interop.mkAttr \"%s\" value" propNameSafe propName]
 
           | "circularProgress", "size", "number | string"
@@ -546,7 +542,7 @@ let generatePage (url: String) =
 
 
         for method in methods do
-          let docString = getDocString 2 markdownDoc
+          let docString = (getDocString 2 markdownDoc).Replace(" The DOM API casts this to a string.", "")
           if docString <> "" then
             wGeneral.WriteLine docString
           wGeneral.WriteLine method
