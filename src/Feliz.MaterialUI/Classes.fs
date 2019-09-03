@@ -69,10 +69,26 @@ module classes =
     static member inline colorSecondary(value: string) : IBadgeClasses = unbox ("colorSecondary", value)
     /// Styles applied to the root element if `color="error"`.
     static member inline colorError(value: string) : IBadgeClasses = unbox ("colorError", value)
-    /// Styles applied to the badge `span` element if `invisible={true}`.
-    static member inline invisible(value: string) : IBadgeClasses = unbox ("invisible", value)
     /// Styles applied to the root element if `variant="dot"`.
     static member inline dot(value: string) : IBadgeClasses = unbox ("dot", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
+    static member inline anchorOriginTopRightRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginTopRightRectangle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
+    static member inline anchorOriginBottomRightRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomRightRectangle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
+    static member inline anchorOriginTopLeftRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginTopLeftRectangle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
+    static member inline anchorOriginBottomLeftRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomLeftRectangle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
+    static member inline anchorOriginTopRightCircle(value: string) : IBadgeClasses = unbox ("anchorOriginTopRightCircle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
+    static member inline anchorOriginBottomRightCircle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomRightCircle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
+    static member inline anchorOriginTopLeftCircle(value: string) : IBadgeClasses = unbox ("anchorOriginTopLeftCircle", value)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
+    static member inline anchorOriginBottomLeftCircle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomLeftCircle", value)
+    /// Pseudo-class to the badge `span` element if `invisible={true}`.
+    static member inline invisible(value: string) : IBadgeClasses = unbox ("invisible", value)
 
 
   type IBottomNavigationClasses = interface end
@@ -1766,6 +1782,8 @@ module classes =
   type table =
     /// Styles applied to the root element.
     static member inline root(value: string) : ITableClasses = unbox ("root", value)
+    /// Styles applied to the root element if `stickyHeader={true}`.
+    static member inline stickyHeader(value: string) : ITableClasses = unbox ("stickyHeader", value)
 
 
   type ITableBodyClasses = interface end
@@ -1802,6 +1820,8 @@ module classes =
     static member inline alignRight(value: string) : ITableCellClasses = unbox ("alignRight", value)
     /// Styles applied to the root element if `align="justify"`.
     static member inline alignJustify(value: string) : ITableCellClasses = unbox ("alignJustify", value)
+    /// Styles applied to the root element if `context.table.stickyHeader={true}`.
+    static member inline stickyHeader(value: string) : ITableCellClasses = unbox ("stickyHeader", value)
 
 
   type ITableFooterClasses = interface end
@@ -1941,6 +1961,12 @@ module classes =
   type toggleButtonGroup =
     /// Styles applied to the root element.
     static member inline root(value: string) : IToggleButtonGroupClasses = unbox ("root", value)
+    /// Styles applied to the children.
+    static member inline grouped(value: string) : IToggleButtonGroupClasses = unbox ("grouped", value)
+    /// Styles applied to the children if `size="small"`.
+    static member inline groupedSizeSmall(value: string) : IToggleButtonGroupClasses = unbox ("groupedSizeSmall", value)
+    /// Styles applied to the children if `size="large"`.
+    static member inline groupedSizeLarge(value: string) : IToggleButtonGroupClasses = unbox ("groupedSizeLarge", value)
 
 
   type IToolbarClasses = interface end
@@ -2067,7 +2093,7 @@ module classes =
     static member inline alignRight(value: string) : ITypographyClasses = unbox ("alignRight", value)
     /// Styles applied to the root element if `align="justify"`.
     static member inline alignJustify(value: string) : ITypographyClasses = unbox ("alignJustify", value)
-    /// Styles applied to the root element if `align="nowrap"`.
+    /// Styles applied to the root element if `nowrap={true}`.
     static member inline noWrap(value: string) : ITypographyClasses = unbox ("noWrap", value)
     /// Styles applied to the root element if `gutterBottom={true}`.
     static member inline gutterBottom(value: string) : ITypographyClasses = unbox ("gutterBottom", value)

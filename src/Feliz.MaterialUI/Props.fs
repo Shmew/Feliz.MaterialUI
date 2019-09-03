@@ -195,6 +195,14 @@ type badge =
 
 module badge =
 
+  /// The anchor of the badge.
+  [<Erase>]
+  type anchorOrigin =
+    static member inline topLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "left" ])
+    static member inline topRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "right" ])
+    static member inline bottomLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
+    static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
+
   /// The color of the component.
   [<Erase>]
   type color =
@@ -202,6 +210,12 @@ module badge =
     static member inline error = Interop.mkAttr "color" "error"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
+
+  /// Wrapped shape the badge should overlap.
+  [<Erase>]
+  type overlap =
+    static member inline circle = Interop.mkAttr "overlap" "circle"
+    static member inline rectangle = Interop.mkAttr "overlap" "rectangle"
 
   /// The variant to use.
   [<Erase>]
@@ -384,9 +398,9 @@ type buttonBase =
   static member inline action(ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action(handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// Use that prop to pass a ref callback to the native button component.
+  /// Use that prop to pass a ref to the native button component.
   static member inline buttonRef(ref: IRefValue<HTMLButtonElement option>) = Interop.mkAttr "buttonRef" ref
-  /// Use that prop to pass a ref callback to the native button component.
+  /// Use that prop to pass a ref to the native button component.
   static member inline buttonRef(handler: HTMLButtonElement -> unit) = Interop.mkAttr "buttonRef" handler
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple(value: bool) = Interop.mkAttr "centerRipple" value
@@ -648,29 +662,25 @@ type checkbox =
   static member inline indeterminateIcon(element: ReactElement) = Interop.mkAttr "indeterminateIcon" element
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// If `true`, the `input` element will be required.
   static member inline required(value: bool) = Interop.mkAttr "required" value
@@ -920,9 +930,9 @@ type dialog =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`
+  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose(handler: Event -> DialogCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   ///
@@ -930,9 +940,9 @@ type dialog =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`
+  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose(handler: DialogCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the dialog enters.
   static member inline onEnter(handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -1114,7 +1124,7 @@ type drawer =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onClose(handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// If `true`, the drawer is open.
   static member inline open'(value: bool) = Interop.mkAttr "open" value
@@ -1173,9 +1183,9 @@ type expansionPanel =
   ///
   /// `function(event: object, expanded: boolean) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *expanded:* The `expanded` state of the panel
+  /// *expanded:* The `expanded` state of the panel.
   static member inline onChange(handler: Event -> bool -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
   /// Callback fired when the expand/collapse state is changed.
   ///
@@ -1183,9 +1193,9 @@ type expansionPanel =
   ///
   /// `function(event: object, expanded: boolean) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *expanded:* The `expanded` state of the panel
+  /// *expanded:* The `expanded` state of the panel.
   static member inline onChange(handler: bool -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
   /// The component used for the collapse effect.
   static member inline TransitionComponent(value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
@@ -1347,9 +1357,9 @@ type filledInput =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline(value: bool) = Interop.mkAttr "multiline" value
@@ -1361,7 +1371,7 @@ type filledInput =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the value is changed.
   ///
@@ -1369,7 +1379,7 @@ type filledInput =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// The short hint displayed in the input before the user enters a value.
   static member inline placeholder(value: string) = Interop.mkAttr "placeholder" value
@@ -1447,9 +1457,9 @@ type formControlLabel =
   static member inline control(value: ReactElement) = Interop.mkAttr "control" value
   /// If `true`, the control will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// The text to be used in an enclosing label element.
   static member inline label(value: ReactElement) = Interop.mkAttr "label" value
@@ -1468,21 +1478,17 @@ type formControlLabel =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// The value of the component.
   static member inline value(value: 'a) = Interop.mkAttr "value" value
@@ -2098,9 +2104,9 @@ type input =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline(value: bool) = Interop.mkAttr "multiline" value
@@ -2112,7 +2118,7 @@ type input =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the value is changed.
   ///
@@ -2120,7 +2126,7 @@ type input =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// The short hint displayed in the input before the user enters a value.
   static member inline placeholder(value: string) = Interop.mkAttr "placeholder" value
@@ -2217,9 +2223,9 @@ type inputBase =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline(value: bool) = Interop.mkAttr "multiline" value
@@ -2231,7 +2237,7 @@ type inputBase =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the value is changed.
   ///
@@ -2239,7 +2245,7 @@ type inputBase =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// The short hint displayed in the input before the user enters a value.
   static member inline placeholder(value: string) = Interop.mkAttr "placeholder" value
@@ -2625,9 +2631,9 @@ type menu =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`
+  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
   static member inline onClose(handler: Event -> MenuCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   ///
@@ -2635,9 +2641,9 @@ type menu =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`
+  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
   static member inline onClose(handler: MenuCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the Menu enters.
   static member inline onEnter(handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -2822,9 +2828,9 @@ type modal =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`
+  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose(handler: Event -> ModalCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.
   ///
@@ -2832,9 +2838,9 @@ type modal =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`
+  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose(handler: ModalCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
   static member inline onEscapeKeyDown(handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
@@ -2870,7 +2876,7 @@ type nativeSelect =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback function fired when a menu item is selected.
   ///
@@ -2878,9 +2884,9 @@ type nativeSelect =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
-  /// The input value.
+  /// The input value. The DOM API casts this to a string.
   static member inline value(value: 'a) = Interop.mkAttr "value" value
 
 module nativeSelect =
@@ -2949,9 +2955,9 @@ type outlinedInput =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// The width of the label.
   static member inline labelWidth(value: int) = Interop.mkAttr "labelWidth" value
@@ -2967,7 +2973,7 @@ type outlinedInput =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the value is changed.
   ///
@@ -2975,7 +2981,7 @@ type outlinedInput =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// The short hint displayed in the input before the user enters a value.
   static member inline placeholder(value: string) = Interop.mkAttr "placeholder" value
@@ -3291,9 +3297,9 @@ type radio =
   static member inline id(value: string) = Interop.mkAttr "id" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// Name attribute of the `input` element.
   static member inline name(value: string) = Interop.mkAttr "name" value
@@ -3301,17 +3307,15 @@ type radio =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string). You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// If `true`, the `input` element will be required.
   static member inline required(value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type'(value: string) = Interop.mkAttr "type" value
-  /// The value of the component.
+  /// The value of the component. The DOM API casts this to a string.
   static member inline value(value: 'a) = Interop.mkAttr "value" value
 
 module radio =
@@ -3346,24 +3350,20 @@ type radioGroup =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: string) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
-  ///
-  /// *value:* The `value` of the selected radio button
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when a radio button is selected.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: string) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
-  ///
-  /// *value:* The `value` of the selected radio button
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
-  /// Value of the selected radio button.
-  static member inline value(value: string) = Interop.mkAttr "value" value
+  /// Value of the selected radio button. The DOM API casts this to a string.
+  static member inline value(value: 'a) = Interop.mkAttr "value" value
 
 
 [<Erase>]
@@ -3380,7 +3380,7 @@ type rating =
   ///
   /// `function(value: number) => string`
   ///
-  /// *value:* The rating label's value to format
+  /// *value:* The rating label's value to format.
   static member inline getLabelText(getText: int -> string) = Interop.mkAttr "getLabelText" getText
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
   ///
@@ -3388,7 +3388,7 @@ type rating =
   ///
   /// `function(value: number) => string`
   ///
-  /// *value:* The rating label's value to format
+  /// *value:* The rating label's value to format.
   static member inline getLabelText(getText: float -> string) = Interop.mkAttr "getLabelText" getText
   /// The icon to display.
   static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
@@ -3404,9 +3404,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: Event -> int -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
   /// Callback fired when the value changes.
   ///
@@ -3414,9 +3414,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: Event -> float -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
   /// Callback fired when the value changes.
   ///
@@ -3424,9 +3424,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: int -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the value changes.
   ///
@@ -3434,9 +3434,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: float -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback function that is fired when the hover state changes.
   ///
@@ -3444,9 +3444,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeActive(handler: Event -> int -> unit) = Interop.mkAttr "onChangeActive" (System.Func<_,_,_> handler)
   /// Callback function that is fired when the hover state changes.
   ///
@@ -3454,9 +3454,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeActive(handler: Event -> float -> unit) = Interop.mkAttr "onChangeActive" (System.Func<_,_,_> handler)
   /// Callback function that is fired when the hover state changes.
   ///
@@ -3464,9 +3464,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeActive(handler: int -> unit) = Interop.mkAttr "onChangeActive" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback function that is fired when the hover state changes.
   ///
@@ -3474,9 +3474,9 @@ type rating =
   ///
   /// `function(event: object, value: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeActive(handler: float -> unit) = Interop.mkAttr "onChangeActive" (System.Func<_,_,_> (fun _ v -> handler v))
   /// The minimum increment value change allowed.
   static member inline precision(value: int) = Interop.mkAttr "precision" value
@@ -3557,7 +3557,7 @@ type select =
   ///
   /// `function(event: object, child?: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (any).
   ///
   /// *child:* The react element that was selected when `native` is `false` (default).
   static member inline onChange(handler: Event -> ReactElement -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
@@ -3567,7 +3567,7 @@ type select =
   ///
   /// `function(event: object, child?: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (any).
   ///
   /// *child:* The react element that was selected when `native` is `false` (default).
   static member inline onChange(handler: 'a -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun (e: Event) _ -> handler !!e.Value))
@@ -3577,7 +3577,7 @@ type select =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onClose(handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// Callback fired when the component requests to be opened. Use in controlled mode (see open).
   ///
@@ -3585,7 +3585,7 @@ type select =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onOpen(handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// Control `select` open state. You can only use it when the `native` prop is `false` (default).
   static member inline open'(value: bool) = Interop.mkAttr "open" value
@@ -3694,9 +3694,9 @@ type slider =
   ///
   /// `function(value: number, index: number) => void`
   ///
-  /// *value:* The thumb label's value to format
+  /// *value:* The thumb label's value to format.
   ///
-  /// *index:* The thumb label's index to format
+  /// *index:* The thumb label's index to format.
   static member inline getAriaValueText(getText: int -> int -> string) = Interop.mkAttr "getAriaValueText" getText
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
   ///
@@ -3704,9 +3704,9 @@ type slider =
   ///
   /// `function(value: number, index: number) => void`
   ///
-  /// *value:* The thumb label's value to format
+  /// *value:* The thumb label's value to format.
   ///
-  /// *index:* The thumb label's index to format
+  /// *index:* The thumb label's index to format.
   static member inline getAriaValueText(getText: float -> int -> string) = Interop.mkAttr "getAriaValueText" getText
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks will be spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
   static member inline marks(value: bool) = Interop.mkAttr "marks" value
@@ -3730,9 +3730,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: Event -> int -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
   /// Callback function that is fired when the slider's value changed.
   ///
@@ -3740,9 +3740,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: Event -> float -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
   /// Callback function that is fired when the slider's value changed.
   ///
@@ -3750,9 +3750,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: int -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback function that is fired when the slider's value changed.
   ///
@@ -3760,9 +3760,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChange(handler: float -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback function that is fired when the `mouseup` is triggered.
   ///
@@ -3770,9 +3770,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeCommitted(handler: Event -> int -> unit) = Interop.mkAttr "onChangeCommitted" (System.Func<_,_,_> handler)
   /// Callback function that is fired when the `mouseup` is triggered.
   ///
@@ -3780,9 +3780,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeCommitted(handler: Event -> float -> unit) = Interop.mkAttr "onChangeCommitted" (System.Func<_,_,_> handler)
   /// Callback function that is fired when the `mouseup` is triggered.
   ///
@@ -3790,9 +3790,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeCommitted(handler: int -> unit) = Interop.mkAttr "onChangeCommitted" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback function that is fired when the `mouseup` is triggered.
   ///
@@ -3800,9 +3800,9 @@ type slider =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value
+  /// *value:* The new value.
   static member inline onChangeCommitted(handler: float -> unit) = Interop.mkAttr "onChangeCommitted" (System.Func<_,_,_> (fun _ v -> handler v))
   /// The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
   static member inline step(value: int) = Interop.mkAttr "step" value
@@ -3913,9 +3913,9 @@ type snackbar =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
+  /// *reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
   static member inline onClose(handler: Event -> SnackbarCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed. Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop. The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.
   ///
@@ -3923,9 +3923,9 @@ type snackbar =
   ///
   /// `function(event: object, reason: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
+  /// *reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
   static member inline onClose(handler: SnackbarCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the transition is entering.
   static member inline onEnter(handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -4024,9 +4024,9 @@ type speedDial =
   ///
   /// `function(event: object, key: string) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *key:* The key pressed
+  /// *key:* The key pressed.
   static member inline onClose(handler: Event -> string -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
   /// If `true`, the SpeedDial is open.
   static member inline open'(value: bool) = Interop.mkAttr "open" value
@@ -4353,7 +4353,7 @@ type swipeableDrawer =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onClose(handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// Callback fired when the component requests to be opened.
   ///
@@ -4361,7 +4361,7 @@ type swipeableDrawer =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onOpen(handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// If `true`, the drawer is open.
   static member inline open'(value: bool) = Interop.mkAttr "open" value
@@ -4393,35 +4393,31 @@ type switch =
   static member inline id(value: string) = Interop.mkAttr "id" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, checked: boolean) => void`
+  /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.target.checked`.
-  ///
-  /// *checked:* The `checked` value of the switch
+  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange(handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// If `true`, the `input` element will be required.
   static member inline required(value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type'(value: string) = Interop.mkAttr "type" value
-  /// The value of the component.
+  /// The value of the component. The DOM API casts this to a string.
   static member inline value(value: 'a) = Interop.mkAttr "value" value
 
 module switch =
@@ -4497,6 +4493,10 @@ type table =
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: ReactElementType) = Interop.mkAttr "component" value
+  /// Set the header sticky.
+  ///
+  /// ⚠️ It doesn't work with IE 11.
+  static member inline stickyHeader(value: bool) = Interop.mkAttr "stickyHeader" value
 
 module table =
 
@@ -4679,9 +4679,9 @@ type tablePagination =
   ///
   /// `function(event: object, page: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *page:* The page selected
+  /// *page:* The page selected.
   static member inline onChangePage(handler: Event -> int -> unit) = Interop.mkAttr "onChangePage" (System.Func<_,_,_> handler)
   /// Callback fired when the page is changed.
   ///
@@ -4689,9 +4689,9 @@ type tablePagination =
   ///
   /// `function(event: object, page: number) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *page:* The page selected
+  /// *page:* The page selected.
   static member inline onChangePage(handler: int -> unit) = Interop.mkAttr "onChangePage" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the number of rows per page is changed.
   ///
@@ -4699,7 +4699,7 @@ type tablePagination =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onChangeRowsPerPage(handler: Event -> unit) = Interop.mkAttr "onChangeRowsPerPage" handler
   /// The zero-based index of the current page.
   static member inline page(value: int) = Interop.mkAttr "page" value
@@ -4913,9 +4913,9 @@ type textField =
   static member inline InputProps(props: IReactProperty list) = Interop.mkAttr "InputProps" (createObj !!props)
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref callback to the `input` element.
+  /// This prop can be used to pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// The label content.
   static member inline label(value: ReactElement) = Interop.mkAttr "label" value
@@ -4939,7 +4939,7 @@ type textField =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the value is changed.
   ///
@@ -4947,7 +4947,7 @@ type textField =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value`.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange(handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// The short hint displayed in the input before the user enters a value.
   static member inline placeholder(value: string) = Interop.mkAttr "placeholder" value
@@ -5035,7 +5035,7 @@ type toggleButtonGroup =
   ///
   /// `function(event: object, value: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
   /// *value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. If no value is selected and `exclusive` is true the value is null; when false an empty array.
   static member inline onChange(handler: Event -> 'a -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
@@ -5045,7 +5045,7 @@ type toggleButtonGroup =
   ///
   /// `function(event: object, value: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
   /// *value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. If no value is selected and `exclusive` is true the value is null; when false an empty array.
   static member inline onChange(handler: 'a -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
@@ -5128,7 +5128,7 @@ type tooltip =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onClose(handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// Callback fired when the tooltip requests to be open.
   ///
@@ -5136,7 +5136,7 @@ type tooltip =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   static member inline onOpen(handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// If `true`, the tooltip is shown.
   static member inline open'(value: bool) = Interop.mkAttr "open" value
@@ -5287,7 +5287,9 @@ type typography =
   static member inline component'(value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the text will have a bottom margin.
   static member inline gutterBottom(value: bool) = Interop.mkAttr "gutterBottom" value
-  /// If `true`, the text will not wrap, but instead will truncate with an ellipsis.
+  /// If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+  ///
+  /// Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).
   static member inline noWrap(value: bool) = Interop.mkAttr "noWrap" value
   /// If `true`, the text will have a bottom margin.
   static member inline paragraph(value: bool) = Interop.mkAttr "paragraph" value

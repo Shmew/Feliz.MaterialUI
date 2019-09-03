@@ -101,6 +101,8 @@ let generatePage (url: String) =
             [|"SNACKBAR_ANCHORORIGIN"|]
           elif componentNameCamelCase = "popover" && (propName = "anchorOrigin" || propName = "transformOrigin") && propType = "{ horizontal: number | 'left' | 'center' | 'right', vertical: number | 'top' | 'center' | 'bottom' }" then
             [|"POPOVER_ANCHORORIGIN_TRANSFORMORIGIN"|]
+          elif componentNameCamelCase = "badge" && propName = "anchorOrigin" && propType = "{ horizontal: 'left' | 'right', vertical: 'bottom' | 'top' }" then
+            [|"BADGE_ANCHORORIGIN"|]
           else
             propType.Split("|")
             |> Array.map (fun s -> s.Trim())
@@ -139,6 +141,12 @@ let generatePage (url: String) =
             wEnumThisProp.printfn "    static member inline customCenter(vertical: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"center\" ])" propName
             wEnumThisProp.printfn "    static member inline customRight(vertical: int) = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"right\" ])" propName
 
+          elif value = "BADGE_ANCHORORIGIN" then
+            wEnumThisProp.printfn "    static member inline topLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline topRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"right\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomLeft = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"left\" ])" propName
+            wEnumThisProp.printfn "    static member inline bottomRight = Interop.mkAttr \"%s\" (createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])" propName
+
           else
             let fSharpValue =
               if value.StartsWith "'" && value.EndsWith "'" then
@@ -171,13 +179,13 @@ let generatePage (url: String) =
         let methods =
           match componentNameCamelCase, propName, propType with
 
-          | "buttonBase", "action", "func | object" ->
+          | "buttonBase", "action", "ref" ->
               [
                 sprintf "  static member inline %s(ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr \"%s\" ref" propNameSafe propName
                 sprintf "  static member inline %s(handler: ButtonBaseActions -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName
               ]
 
-          | "popover", "action", "func | object" ->
+          | "popover", "action", "ref" ->
               [
                 sprintf "  static member inline %s(ref: IRefValue<PopoverActions option>) = Interop.mkAttr \"%s\" ref" propNameSafe propName
                 sprintf "  static member inline %s(handler: PopoverActions -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName
@@ -447,13 +455,13 @@ let generatePage (url: String) =
           | _, pn, ("elementType" | "element type") when pn.EndsWith "Component" ->
               [sprintf "  static member inline %s(value: ReactElementType) = Interop.mkAttr \"%s\" value" propNameSafe propName]
 
-          | ("checkbox" | "filledInput" | "formControlLabel" | "input" | "inputBase" | "outlinedInput" | "radio" | "switch" | "textField"), "inputRef", "func | object" ->
+          | ("checkbox" | "filledInput" | "formControlLabel" | "input" | "inputBase" | "outlinedInput" | "radio" | "switch" | "textField"), "inputRef", "ref" ->
               [
                 sprintf "  static member inline %s(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr \"%s\" ref" propNameSafe propName
                 sprintf "  static member inline %s(handler: HTMLInputElement -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName
               ]
 
-          | "buttonBase", "buttonRef", "func | object" ->
+          | "buttonBase", "buttonRef", "ref" ->
               [
                 sprintf "  static member inline %s(ref: IRefValue<HTMLButtonElement option>) = Interop.mkAttr \"%s\" ref" propNameSafe propName
                 sprintf "  static member inline %s(handler: HTMLButtonElement -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName

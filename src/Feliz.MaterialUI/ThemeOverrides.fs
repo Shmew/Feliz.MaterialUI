@@ -271,10 +271,26 @@ module overrides =
     static member inline colorSecondary(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if `color="error"`.
     static member inline colorError(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("colorError", createObj !!styles)
-    /// Styles applied to the badge `span` element if `invisible={true}`.
-    static member inline invisible(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("invisible", createObj !!styles)
     /// Styles applied to the root element if `variant="dot"`.
     static member inline dot(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("dot", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
+    static member inline anchorOriginTopRightRectangle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginTopRightRectangle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
+    static member inline anchorOriginBottomRightRectangle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginBottomRightRectangle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
+    static member inline anchorOriginTopLeftRectangle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginTopLeftRectangle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
+    static member inline anchorOriginBottomLeftRectangle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginBottomLeftRectangle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
+    static member inline anchorOriginTopRightCircle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginTopRightCircle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
+    static member inline anchorOriginBottomRightCircle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginBottomRightCircle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
+    static member inline anchorOriginTopLeftCircle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginTopLeftCircle", createObj !!styles)
+    /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
+    static member inline anchorOriginBottomLeftCircle(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("anchorOriginBottomLeftCircle", createObj !!styles)
+    /// Pseudo-class to the badge `span` element if `invisible={true}`.
+    static member inline invisible(styles: IStyleAttribute list) : IMuiBadgeOverrideRule = unbox ("invisible", createObj !!styles)
 
   [<Erase>]
   type muiBottomNavigation =
@@ -1694,6 +1710,8 @@ module overrides =
   type muiTable =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiTableOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if `stickyHeader={true}`.
+    static member inline stickyHeader(styles: IStyleAttribute list) : IMuiTableOverrideRule = unbox ("stickyHeader", createObj !!styles)
 
   [<Erase>]
   type muiTableBody =
@@ -1724,6 +1742,8 @@ module overrides =
     static member inline alignRight(styles: IStyleAttribute list) : IMuiTableCellOverrideRule = unbox ("alignRight", createObj !!styles)
     /// Styles applied to the root element if `align="justify"`.
     static member inline alignJustify(styles: IStyleAttribute list) : IMuiTableCellOverrideRule = unbox ("alignJustify", createObj !!styles)
+    /// Styles applied to the root element if `context.table.stickyHeader={true}`.
+    static member inline stickyHeader(styles: IStyleAttribute list) : IMuiTableCellOverrideRule = unbox ("stickyHeader", createObj !!styles)
 
   [<Erase>]
   type muiTableFooter =
@@ -1834,6 +1854,12 @@ module overrides =
   type muiToggleButtonGroup =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiToggleButtonGroupOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the children.
+    static member inline grouped(styles: IStyleAttribute list) : IMuiToggleButtonGroupOverrideRule = unbox ("grouped", createObj !!styles)
+    /// Styles applied to the children if `size="small"`.
+    static member inline groupedSizeSmall(styles: IStyleAttribute list) : IMuiToggleButtonGroupOverrideRule = unbox ("groupedSizeSmall", createObj !!styles)
+    /// Styles applied to the children if `size="large"`.
+    static member inline groupedSizeLarge(styles: IStyleAttribute list) : IMuiToggleButtonGroupOverrideRule = unbox ("groupedSizeLarge", createObj !!styles)
 
   [<Erase>]
   type muiToolbar =
@@ -1942,7 +1968,7 @@ module overrides =
     static member inline alignRight(styles: IStyleAttribute list) : IMuiTypographyOverrideRule = unbox ("alignRight", createObj !!styles)
     /// Styles applied to the root element if `align="justify"`.
     static member inline alignJustify(styles: IStyleAttribute list) : IMuiTypographyOverrideRule = unbox ("alignJustify", createObj !!styles)
-    /// Styles applied to the root element if `align="nowrap"`.
+    /// Styles applied to the root element if `nowrap={true}`.
     static member inline noWrap(styles: IStyleAttribute list) : IMuiTypographyOverrideRule = unbox ("noWrap", createObj !!styles)
     /// Styles applied to the root element if `gutterBottom={true}`.
     static member inline gutterBottom(styles: IStyleAttribute list) : IMuiTypographyOverrideRule = unbox ("gutterBottom", createObj !!styles)

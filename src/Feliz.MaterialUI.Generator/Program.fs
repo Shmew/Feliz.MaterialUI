@@ -1,9 +1,9 @@
 ﻿[<EntryPoint>]
 let main argv =
   //HtmlCache.refreshApiCache()
-  Classes.generateAll ()
-  ThemeOverrides.generateAll ()
-  ThemeProps.generateAll ()
+  //Classes.generateAll ()
+  //ThemeOverrides.generateAll ()
+  //ThemeProps.generateAll ()
   Props.generateAll ()
-  Mui.generateAll ()
+  //Mui.generateAll ()
   0
