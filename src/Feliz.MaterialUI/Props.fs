@@ -662,9 +662,9 @@ type checkbox =
   static member inline indeterminateIcon(element: ReactElement) = Interop.mkAttr "indeterminateIcon" element
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// Callback fired when the state is changed.
   ///
@@ -1357,9 +1357,9 @@ type filledInput =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline(value: bool) = Interop.mkAttr "multiline" value
@@ -1457,9 +1457,9 @@ type formControlLabel =
   static member inline control(value: ReactElement) = Interop.mkAttr "control" value
   /// If `true`, the control will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// The text to be used in an enclosing label element.
   static member inline label(value: ReactElement) = Interop.mkAttr "label" value
@@ -2104,9 +2104,9 @@ type input =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline(value: bool) = Interop.mkAttr "multiline" value
@@ -2223,9 +2223,9 @@ type inputBase =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline(value: bool) = Interop.mkAttr "multiline" value
@@ -2955,9 +2955,9 @@ type outlinedInput =
   static member inline inputComponent(value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// The width of the label.
   static member inline labelWidth(value: int) = Interop.mkAttr "labelWidth" value
@@ -3036,9 +3036,9 @@ type paper =
 
 
 type popover =
-  /// This is callback prop. It's called by the component on mount. This is useful when you want to trigger an action programmatically. It currently only supports updatePosition() action.
+  /// A ref for imperative actions. It currently only supports updatePosition() action.
   static member inline action(ref: IRefValue<PopoverActions option>) = Interop.mkAttr "action" ref
-  /// This is callback prop. It's called by the component on mount. This is useful when you want to trigger an action programmatically. It currently only supports updatePosition() action.
+  /// A ref for imperative actions. It currently only supports updatePosition() action.
   static member inline action(handler: PopoverActions -> unit) = Interop.mkAttr "action" handler
   /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
   static member inline anchorEl(value: Element option) = Interop.mkAttr "anchorEl" value
@@ -3227,9 +3227,9 @@ type popper =
   static member inline open'(value: bool) = Interop.mkAttr "open" value
   /// Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
   static member inline popperOptions(value: 'a) = Interop.mkAttr "popperOptions" value
-  /// Callback fired when a new popper instance is used.
+  /// A ref that points to the used popper instance.
   static member inline popperRef(ref: IRefValue<Element option>) = Interop.mkAttr "popperRef" ref
-  /// Callback fired when a new popper instance is used.
+  /// A ref that points to the used popper instance.
   static member inline popperRef(handler: Element -> unit) = Interop.mkAttr "popperRef" handler
   /// Help supporting a react-transition-group/Transition component.
   static member inline transition(value: bool) = Interop.mkAttr "transition" value
@@ -3297,9 +3297,9 @@ type radio =
   static member inline id(value: string) = Interop.mkAttr "id" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// Name attribute of the `input` element.
   static member inline name(value: string) = Interop.mkAttr "name" value
@@ -3499,9 +3499,9 @@ module rating =
 type rootRef =
   /// The wrapped element.
   static member inline children(value: ReactElement) = Interop.mkAttr "children" value
-  /// Provide a way to access the DOM node of the wrapped element. You can provide a callback ref or a `React.createRef()` ref.
+  /// A ref that points to the first DOM node of the wrapped element.
   static member inline rootRef(ref: IRefValue<Element option>) = Interop.mkAttr "rootRef" ref
-  /// Provide a way to access the DOM node of the wrapped element. You can provide a callback ref or a `React.createRef()` ref.
+  /// A ref that points to the first DOM node of the wrapped element.
   static member inline rootRef(handler: Element -> unit) = Interop.mkAttr "rootRef" handler
 
 
@@ -3545,6 +3545,8 @@ type select =
   static member inline input(value: ReactElement) = Interop.mkAttr "input" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
+  /// The label width to be used on OutlinedInput. This prop is required when the `variant` prop is `outlined`.
+  static member inline labelWidth(value: int) = Interop.mkAttr "labelWidth" value
   /// Props applied to the [`Menu`](https://material-ui.com/api/menu/) element.
   static member inline MenuProps(props: IReactProperty list) = Interop.mkAttr "MenuProps" (createObj !!props)
   /// If true, `value` must be an array and the menu will support multiple selections.
@@ -3688,11 +3690,19 @@ type slider =
   static member inline defaultValue(min: float, max: float) = Interop.mkAttr "defaultValue" (min, max)
   /// If `true`, the slider will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
+  /// Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(index: number) => string`
+  ///
+  /// *index:* The thumb label's index to format.
+  static member inline getAriaLabel(getLabel: int -> string) = Interop.mkAttr "getAriaLabel" getLabel
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
   ///
   /// **Signature:**
   ///
-  /// `function(value: number, index: number) => void`
+  /// `function(value: number, index: number) => string`
   ///
   /// *value:* The thumb label's value to format.
   ///
@@ -3702,7 +3712,7 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(value: number, index: number) => void`
+  /// `function(value: number, index: number) => string`
   ///
   /// *value:* The thumb label's value to format.
   ///
@@ -3849,6 +3859,12 @@ module sliderExtensions =
     static member inline step(value: float option) = Interop.mkAttr "step" value
 
 module slider =
+
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
   /// The slider orientation.
   [<Erase>]
@@ -4017,7 +4033,7 @@ type speedDial =
   /// If `true`, the SpeedDial will be hidden.
   static member inline hidden(value: bool) = Interop.mkAttr "hidden" value
   /// The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation.
-  static member inline icon(value: ReactElement) = Interop.mkAttr "icon" value
+  static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
   /// Callback fired when the component requests to be closed.
   ///
   /// **Signature:**
@@ -4037,7 +4053,7 @@ type speedDial =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?appear: int, ?enter: int, ?exit: int) = [if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
   /// Props applied to the `Transition` element.
   static member inline TransitionProps(props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4046,10 +4062,10 @@ module speedDial =
   /// The direction the actions open relative to the floating action button.
   [<Erase>]
   type direction =
-    static member inline up = Interop.mkAttr "direction" "up"
     static member inline down = Interop.mkAttr "direction" "down"
     static member inline left = Interop.mkAttr "direction" "left"
     static member inline right = Interop.mkAttr "direction" "right"
+    static member inline up = Interop.mkAttr "direction" "up"
 
 
 [<Erase>]
@@ -4320,20 +4336,20 @@ module svgIcon =
   /// The color of the component. You can use the `htmlColor` prop to apply a color attribute to the SVG element.
   [<Erase>]
   type color =
+    static member inline action = Interop.mkAttr "color" "action"
+    static member inline disabled = Interop.mkAttr "color" "disabled"
+    static member inline error = Interop.mkAttr "color" "error"
     static member inline inherit' = Interop.mkAttr "color" "inherit"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline action = Interop.mkAttr "color" "action"
-    static member inline error = Interop.mkAttr "color" "error"
-    static member inline disabled = Interop.mkAttr "color" "disabled"
 
   /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
   [<Erase>]
   type fontSize =
-    static member inline inherit' = Interop.mkAttr "fontSize" "inherit"
     static member inline default' = Interop.mkAttr "fontSize" "default"
-    static member inline small = Interop.mkAttr "fontSize" "small"
+    static member inline inherit' = Interop.mkAttr "fontSize" "inherit"
     static member inline large = Interop.mkAttr "fontSize" "large"
+    static member inline small = Interop.mkAttr "fontSize" "small"
 
 
 type swipeableDrawer =
@@ -4393,9 +4409,9 @@ type switch =
   static member inline id(value: string) = Interop.mkAttr "id" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// Callback fired when the state is changed.
   ///
@@ -4764,20 +4780,8 @@ module tableSortLabel =
 [<Erase>]
 type tabs =
   /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `updateIndicator()` action.
-  ///
-  /// **Signature:**
-  ///
-  /// `function(actions: object) => void`
-  ///
-  /// *actions:* This object contains all possible actions that can be triggered programmatically.
   static member inline action(ref: IRefValue<TabsActions option>) = Interop.mkAttr "action" ref
   /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `updateIndicator()` action.
-  ///
-  /// **Signature:**
-  ///
-  /// `function(actions: object) => void`
-  ///
-  /// *actions:* This object contains all possible actions that can be triggered programmatically.
   static member inline action(handler: TabsActions -> unit) = Interop.mkAttr "action" handler
   /// If `true`, the tabs will be centered. This property is intended for large views.
   static member inline centered(value: bool) = Interop.mkAttr "centered" value
@@ -4913,9 +4917,9 @@ type textField =
   static member inline InputProps(props: IReactProperty list) = Interop.mkAttr "InputProps" (createObj !!props)
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps(props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(ref: IRefValue<HTMLInputElement option>) = Interop.mkAttr "inputRef" ref
-  /// This prop can be used to pass a ref to the `input` element.
+  /// Pass a ref to the `input` element.
   static member inline inputRef(handler: HTMLInputElement -> unit) = Interop.mkAttr "inputRef" handler
   /// The label content.
   static member inline label(value: ReactElement) = Interop.mkAttr "label" value
@@ -5033,7 +5037,7 @@ type toggleButtonGroup =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: object) => void`
+  /// `function(event: object, value: any) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5043,7 +5047,7 @@ type toggleButtonGroup =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: object) => void`
+  /// `function(event: object, value: any) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5059,9 +5063,9 @@ module toggleButtonGroup =
   /// The size of the buttons.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
 
 [<Erase>]

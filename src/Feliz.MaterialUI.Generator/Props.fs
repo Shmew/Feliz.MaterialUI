@@ -187,7 +187,7 @@ let generatePage (url: String) =
                 sprintf "  static member inline %s(handler: PopoverActions -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName
               ]
 
-          | "tabs", "action", "func" ->
+          | "tabs", "action", "ref" ->
               [
                 sprintf "  static member inline %s(ref: IRefValue<TabsActions option>) = Interop.mkAttr \"%s\" ref" propNameSafe propName
                 sprintf "  static member inline %s(handler: TabsActions -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName
@@ -246,6 +246,11 @@ let generatePage (url: String) =
               [
                 sprintf "  static member inline %s(getText: int -> string) = Interop.mkAttr \"%s\" getText" propNameSafe propName
                 sprintf "  static member inline %s(getText: float -> string) = Interop.mkAttr \"%s\" getText" propNameSafe propName
+              ]
+
+          | "slider", "getAriaLabel", "func" ->
+              [
+                sprintf "  static member inline %s(getLabel: int -> string) = Interop.mkAttr \"%s\" getLabel" propNameSafe propName
               ]
 
           | "slider", "getAriaValueText", "func" ->
@@ -463,8 +468,8 @@ let generatePage (url: String) =
                 sprintf "  static member inline %s(handler: HTMLButtonElement -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName
               ]
 
-          | "popper", "popperRef", "func | object"
-          | "rootRef", "rootRef", "func | object" ->
+          | "popper", "popperRef", "ref"
+          | "rootRef", "rootRef", "refType.isRequired" ->
               [
                 sprintf "  static member inline %s(ref: IRefValue<Element option>) = Interop.mkAttr \"%s\" ref" propNameSafe propName
                 sprintf "  static member inline %s(handler: Element -> unit) = Interop.mkAttr \"%s\" handler" propNameSafe propName

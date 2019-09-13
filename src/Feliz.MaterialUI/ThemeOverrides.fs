@@ -1274,8 +1274,12 @@ module overrides =
     static member inline selectMenu(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("selectMenu", createObj !!styles)
     /// Pseudo-class applied to the select component `disabled` class.
     static member inline disabled(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("disabled", createObj !!styles)
-    /// Styles applied to the select component `icon` class.
+    /// Styles applied to the icon component.
     static member inline icon(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("icon", createObj !!styles)
+    /// Styles applied to the icon component if `variant="filled"`.
+    static member inline iconFilled(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("iconFilled", createObj !!styles)
+    /// Styles applied to the icon component if `variant="outlined"`.
+    static member inline iconOutlined(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("iconOutlined", createObj !!styles)
 
 
   [<Erase>]
@@ -1414,8 +1418,12 @@ module overrides =
     static member inline selectMenu(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("selectMenu", createObj !!styles)
     /// Pseudo-class applied to the select component `disabled` class.
     static member inline disabled(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("disabled", createObj !!styles)
-    /// Styles applied to the select component `icon` class.
+    /// Styles applied to the icon component.
     static member inline icon(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("icon", createObj !!styles)
+    /// Styles applied to the icon component if `variant="filled"`.
+    static member inline iconFilled(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("iconFilled", createObj !!styles)
+    /// Styles applied to the icon component if `variant="outlined"`.
+    static member inline iconOutlined(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("iconOutlined", createObj !!styles)
 
   [<Erase>]
   type muiSkeleton =
@@ -1435,6 +1443,10 @@ module overrides =
   type muiSlider =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if `color="primary"`.
+    static member inline colorPrimary(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("colorPrimary", createObj !!styles)
+    /// Styles applied to the root element if `color="secondary"`.
+    static member inline colorSecondary(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if `marks` is provided with at least one label.
     static member inline marked(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("marked", createObj !!styles)
     /// Pseudo-class applied to the root element if `orientation="vertical"`.
@@ -1447,6 +1459,10 @@ module overrides =
     static member inline track(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("track", createObj !!styles)
     /// Styles applied to the thumb element.
     static member inline thumb(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("thumb", createObj !!styles)
+    /// Styles applied to the thumb element if `color="primary"`.
+    static member inline thumbColorPrimary(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("thumbColorPrimary", createObj !!styles)
+    /// Styles applied to the thumb element if `color="secondary"`.
+    static member inline thumbColorSecondary(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("thumbColorSecondary", createObj !!styles)
     /// Pseudo-class applied to the thumb element if it's active.
     static member inline active(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("active", createObj !!styles)
     /// Pseudo-class applied to the thumb element if keyboard focused.

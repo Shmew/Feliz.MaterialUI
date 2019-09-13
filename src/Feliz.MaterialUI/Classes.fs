@@ -1260,8 +1260,12 @@ module classes =
     static member inline selectMenu(value: string) : INativeSelectClasses = unbox ("selectMenu", value)
     /// Pseudo-class applied to the select component `disabled` class.
     static member inline disabled(value: string) : INativeSelectClasses = unbox ("disabled", value)
-    /// Styles applied to the select component `icon` class.
+    /// Styles applied to the icon component.
     static member inline icon(value: string) : INativeSelectClasses = unbox ("icon", value)
+    /// Styles applied to the icon component if `variant="filled"`.
+    static member inline iconFilled(value: string) : INativeSelectClasses = unbox ("iconFilled", value)
+    /// Styles applied to the icon component if `variant="outlined"`.
+    static member inline iconOutlined(value: string) : INativeSelectClasses = unbox ("iconOutlined", value)
 
 
   type INoSsrClasses = interface end
@@ -1428,8 +1432,12 @@ module classes =
     static member inline selectMenu(value: string) : ISelectClasses = unbox ("selectMenu", value)
     /// Pseudo-class applied to the select component `disabled` class.
     static member inline disabled(value: string) : ISelectClasses = unbox ("disabled", value)
-    /// Styles applied to the select component `icon` class.
+    /// Styles applied to the icon component.
     static member inline icon(value: string) : ISelectClasses = unbox ("icon", value)
+    /// Styles applied to the icon component if `variant="filled"`.
+    static member inline iconFilled(value: string) : ISelectClasses = unbox ("iconFilled", value)
+    /// Styles applied to the icon component if `variant="outlined"`.
+    static member inline iconOutlined(value: string) : ISelectClasses = unbox ("iconOutlined", value)
 
 
   type ISkeletonClasses = interface end
@@ -1457,6 +1465,10 @@ module classes =
   type slider =
     /// Styles applied to the root element.
     static member inline root(value: string) : ISliderClasses = unbox ("root", value)
+    /// Styles applied to the root element if `color="primary"`.
+    static member inline colorPrimary(value: string) : ISliderClasses = unbox ("colorPrimary", value)
+    /// Styles applied to the root element if `color="secondary"`.
+    static member inline colorSecondary(value: string) : ISliderClasses = unbox ("colorSecondary", value)
     /// Styles applied to the root element if `marks` is provided with at least one label.
     static member inline marked(value: string) : ISliderClasses = unbox ("marked", value)
     /// Pseudo-class applied to the root element if `orientation="vertical"`.
@@ -1469,6 +1481,10 @@ module classes =
     static member inline track(value: string) : ISliderClasses = unbox ("track", value)
     /// Styles applied to the thumb element.
     static member inline thumb(value: string) : ISliderClasses = unbox ("thumb", value)
+    /// Styles applied to the thumb element if `color="primary"`.
+    static member inline thumbColorPrimary(value: string) : ISliderClasses = unbox ("thumbColorPrimary", value)
+    /// Styles applied to the thumb element if `color="secondary"`.
+    static member inline thumbColorSecondary(value: string) : ISliderClasses = unbox ("thumbColorSecondary", value)
     /// Pseudo-class applied to the thumb element if it's active.
     static member inline active(value: string) : ISliderClasses = unbox ("active", value)
     /// Pseudo-class applied to the thumb element if keyboard focused.
