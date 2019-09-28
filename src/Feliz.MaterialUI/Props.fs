@@ -318,7 +318,7 @@ type breadcrumbs =
   static member inline itemsAfterCollapse(value: int) = Interop.mkAttr "itemsAfterCollapse" value
   /// If max items is exceeded, the number of items to show before the ellipsis.
   static member inline itemsBeforeCollapse(value: int) = Interop.mkAttr "itemsBeforeCollapse" value
-  /// Specifies the maximum number of breadcrumbs to display. When there are more than the maximum number, only the first and last will be shown, with an ellipsis in between.
+  /// Specifies the maximum number of breadcrumbs to display. When there are more than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse` will be shown, with an ellipsis in between.
   static member inline maxItems(value: int) = Interop.mkAttr "maxItems" value
   /// Custom separator node.
   static member inline separator(value: ReactElement) = Interop.mkAttr "separator" value
@@ -628,6 +628,18 @@ type cardHeader =
 
 [<Erase>]
 type cardMedia =
+  /// The content of the component.
+  static member inline children(element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children(elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children(value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children(values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children(value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.cardMedia` to specify class names.
   static member inline classes(classNames: classes.ICardMediaClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
   /// Component for rendering image. Either a string to use a DOM element or a component.
@@ -2433,7 +2445,7 @@ type list =
 type listItem =
   /// If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
-  /// If `true`, the list item will be a button (using `ButtonBase`).
+  /// If `true`, the list item will be a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`.
   static member inline button(value: bool) = Interop.mkAttr "button" value
   /// The content of the component. If a `ListItemSecondaryAction` is used it must be the last child.
   static member inline children(element: ReactElement) = prop.children element
@@ -4012,10 +4024,8 @@ type snackbarContent =
 
 
 type speedDial =
-  /// The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children.
+  /// The aria-label of the button element. Also used to provide the `id` for the `SpeedDial` element and its children.
   static member inline ariaLabel(value: string) = Interop.mkAttr "ariaLabel" value
-  /// Props applied to the [`Button`](https://material-ui.com/api/button/) element.
-  static member inline ButtonProps(props: IReactProperty list) = Interop.mkAttr "ButtonProps" (createObj !!props)
   /// SpeedDialActions to display when the SpeedDial is `open`.
   static member inline children(element: ReactElement) = prop.children element
   /// SpeedDialActions to display when the SpeedDial is `open`.
@@ -4030,9 +4040,11 @@ type speedDial =
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.speedDial` to specify class names.
   static member inline classes(classNames: classes.ISpeedDialClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  /// Props applied to the [`Fab`](https://material-ui.com/api/fab/) element.
+  static member inline FabProps(props: IReactProperty list) = Interop.mkAttr "FabProps" (createObj !!props)
   /// If `true`, the SpeedDial will be hidden.
   static member inline hidden(value: bool) = Interop.mkAttr "hidden" value
-  /// The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation.
+  /// The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component provides a default Icon with animation.
   static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
   /// Callback fired when the component requests to be closed.
   ///
@@ -4044,9 +4056,17 @@ type speedDial =
   ///
   /// *key:* The key pressed.
   static member inline onClose(handler: Event -> string -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
+  /// Callback fired when the component requests to be open.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object) => void`
+  ///
+  /// *event:* The event source of the callback.
+  static member inline onOpen(handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// If `true`, the SpeedDial is open.
   static member inline open'(value: bool) = Interop.mkAttr "open" value
-  /// The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
+  /// The icon to display in the SpeedDial Fab when the SpeedDial is open.
   static member inline openIcon(element: ReactElement) = Interop.mkAttr "openIcon" element
   /// The component used for the transition.
   static member inline TransitionComponent(value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
@@ -4070,13 +4090,13 @@ module speedDial =
 
 [<Erase>]
 type speedDialAction =
-  /// Props applied to the [`Button`](https://material-ui.com/api/button/) component.
-  static member inline ButtonProps(props: IReactProperty list) = Interop.mkAttr "ButtonProps" (createObj !!props)
   /// Override or extend the styles applied to the component. Use `classes.speedDialAction` to specify class names.
   static member inline classes(classNames: classes.ISpeedDialActionClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
   /// Adds a transition delay, to allow a series of SpeedDialActions to be animated.
   static member inline delay(value: int) = Interop.mkAttr "delay" value
-  /// The Icon to display in the SpeedDial Floating Action Button.
+  /// Props applied to the [`Fab`](https://material-ui.com/api/fab/) component.
+  static member inline FabProps(props: IReactProperty list) = Interop.mkAttr "FabProps" (createObj !!props)
+  /// The Icon to display in the SpeedDial Fab.
   static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
   /// Classes applied to the [`Tooltip`](https://material-ui.com/api/tooltip/) element.
   static member inline TooltipClasses(classNames: classes.ITooltipClasses list) = Interop.mkAttr "TooltipClasses" (createObj !!classNames)
@@ -5126,7 +5146,7 @@ type tooltip =
   static member inline leaveDelay(value: int) = Interop.mkAttr "leaveDelay" value
   /// The number of milliseconds after the user stops touching an element before hiding the tooltip.
   static member inline leaveTouchDelay(value: int) = Interop.mkAttr "leaveTouchDelay" value
-  /// Callback fired when the tooltip requests to be closed.
+  /// Callback fired when the component requests to be closed.
   ///
   /// **Signature:**
   ///
@@ -5134,7 +5154,7 @@ type tooltip =
   ///
   /// *event:* The event source of the callback.
   static member inline onClose(handler: Event -> unit) = Interop.mkAttr "onClose" handler
-  /// Callback fired when the tooltip requests to be open.
+  /// Callback fired when the component requests to be open.
   ///
   /// **Signature:**
   ///

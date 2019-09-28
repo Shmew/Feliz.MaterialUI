@@ -1508,15 +1508,15 @@ module overrides =
   type muiSpeedDial =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("root", createObj !!styles)
-    /// Styles applied to the Button component.
+    /// Styles applied to the Fab component.
     static member inline fab(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("fab", createObj !!styles)
-    /// Styles applied to the root and action container elements when direction="up"
+    /// Styles applied to the root if direction="up"
     static member inline directionUp(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("directionUp", createObj !!styles)
-    /// Styles applied to the root and action container elements when direction="down"
+    /// Styles applied to the root if direction="down"
     static member inline directionDown(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("directionDown", createObj !!styles)
-    /// Styles applied to the root and action container elements when direction="left"
+    /// Styles applied to the root if direction="left"
     static member inline directionLeft(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("directionLeft", createObj !!styles)
-    /// Styles applied to the root and action container elements when direction="right"
+    /// Styles applied to the root if direction="right"
     static member inline directionRight(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("directionRight", createObj !!styles)
     /// Styles applied to the actions (`children` wrapper) element.
     static member inline actions(styles: IStyleAttribute list) : IMuiSpeedDialOverrideRule = unbox ("actions", createObj !!styles)
@@ -1525,10 +1525,20 @@ module overrides =
 
   [<Erase>]
   type muiSpeedDialAction =
-    /// Styles applied to the `Button` component.
-    static member inline button(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("button", createObj !!styles)
-    /// Styles applied to the `Button` component if `open={false}`.
-    static member inline buttonClosed(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("buttonClosed", createObj !!styles)
+    /// Styles applied to the Fab component.
+    static member inline fab(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("fab", createObj !!styles)
+    /// Styles applied to the Fab component if `open={false}`.
+    static member inline fabClosed(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("fabClosed", createObj !!styles)
+    /// Styles applied to the root element if `tooltipOpen={true}`.
+    static member inline staticTooltip(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("staticTooltip", createObj !!styles)
+    /// Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.
+    static member inline staticTooltipClosed(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("staticTooltipClosed", createObj !!styles)
+    /// Styles applied to the static tooltip label if `tooltipOpen={true}`.
+    static member inline staticTooltipLabel(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("staticTooltipLabel", createObj !!styles)
+    /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"``
+    static member inline tooltipPlacementLeft(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("tooltipPlacementLeft", createObj !!styles)
+    /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
+    static member inline tooltipPlacementRight(styles: IStyleAttribute list) : IMuiSpeedDialActionOverrideRule = unbox ("tooltipPlacementRight", createObj !!styles)
 
   [<Erase>]
   type muiSpeedDialIcon =

@@ -1539,15 +1539,15 @@ module classes =
   type speedDial =
     /// Styles applied to the root element.
     static member inline root(value: string) : ISpeedDialClasses = unbox ("root", value)
-    /// Styles applied to the Button component.
+    /// Styles applied to the Fab component.
     static member inline fab(value: string) : ISpeedDialClasses = unbox ("fab", value)
-    /// Styles applied to the root and action container elements when direction="up"
+    /// Styles applied to the root if direction="up"
     static member inline directionUp(value: string) : ISpeedDialClasses = unbox ("directionUp", value)
-    /// Styles applied to the root and action container elements when direction="down"
+    /// Styles applied to the root if direction="down"
     static member inline directionDown(value: string) : ISpeedDialClasses = unbox ("directionDown", value)
-    /// Styles applied to the root and action container elements when direction="left"
+    /// Styles applied to the root if direction="left"
     static member inline directionLeft(value: string) : ISpeedDialClasses = unbox ("directionLeft", value)
-    /// Styles applied to the root and action container elements when direction="right"
+    /// Styles applied to the root if direction="right"
     static member inline directionRight(value: string) : ISpeedDialClasses = unbox ("directionRight", value)
     /// Styles applied to the actions (`children` wrapper) element.
     static member inline actions(value: string) : ISpeedDialClasses = unbox ("actions", value)
@@ -1559,10 +1559,20 @@ module classes =
 
   [<Erase>]
   type speedDialAction =
-    /// Styles applied to the `Button` component.
-    static member inline button(value: string) : ISpeedDialActionClasses = unbox ("button", value)
-    /// Styles applied to the `Button` component if `open={false}`.
-    static member inline buttonClosed(value: string) : ISpeedDialActionClasses = unbox ("buttonClosed", value)
+    /// Styles applied to the Fab component.
+    static member inline fab(value: string) : ISpeedDialActionClasses = unbox ("fab", value)
+    /// Styles applied to the Fab component if `open={false}`.
+    static member inline fabClosed(value: string) : ISpeedDialActionClasses = unbox ("fabClosed", value)
+    /// Styles applied to the root element if `tooltipOpen={true}`.
+    static member inline staticTooltip(value: string) : ISpeedDialActionClasses = unbox ("staticTooltip", value)
+    /// Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.
+    static member inline staticTooltipClosed(value: string) : ISpeedDialActionClasses = unbox ("staticTooltipClosed", value)
+    /// Styles applied to the static tooltip label if `tooltipOpen={true}`.
+    static member inline staticTooltipLabel(value: string) : ISpeedDialActionClasses = unbox ("staticTooltipLabel", value)
+    /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"``
+    static member inline tooltipPlacementLeft(value: string) : ISpeedDialActionClasses = unbox ("tooltipPlacementLeft", value)
+    /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
+    static member inline tooltipPlacementRight(value: string) : ISpeedDialActionClasses = unbox ("tooltipPlacementRight", value)
 
 
   type ISpeedDialIconClasses = interface end

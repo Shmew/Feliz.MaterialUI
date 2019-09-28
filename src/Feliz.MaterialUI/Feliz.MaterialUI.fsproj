@@ -9,8 +9,8 @@
     <Authors>Christer van der Meeren</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>f# fable bindings feliz material-ui materialui</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
-    <Version>0.1.0-alpha</Version>
+    <Version>0.2.0-alpha</Version>
+    <PackageReleaseNotes>Regenerated bindings based on updated MUI docs</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -30,7 +30,7 @@
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.4 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.26" />
+      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.27" />
     </NpmDependencies>
   </PropertyGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

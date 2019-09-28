@@ -480,17 +480,17 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
   static member inline snackbarContent props = createElement (importDefault "@material-ui/core/SnackbarContent") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline speedDial props = createElement (importDefault "@material-ui/lab/SpeedDial") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Tooltip](https://material-ui.com/api/tooltip/)).
   static member inline speedDialAction props = createElement (importDefault "@material-ui/lab/SpeedDialAction") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline speedDialIcon props = createElement (importDefault "@material-ui/lab/SpeedDialIcon") props
@@ -630,7 +630,7 @@ type Mui =
   /// Any other props supplied will be provided to the root element (native element).
   static member inline toolbar props = createElement (importDefault "@material-ui/core/Toolbar") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline tooltip props = createElement (importDefault "@material-ui/core/Tooltip") props
