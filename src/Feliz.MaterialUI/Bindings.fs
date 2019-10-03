@@ -305,3 +305,4 @@ type PopoverActions =
 
 type TabsActions =
   abstract updateIndicator: unit -> unit
+  abstract updateScrollButtons: unit -> unit

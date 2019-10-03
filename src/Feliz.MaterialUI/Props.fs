@@ -362,10 +362,14 @@ type button =
   ///
   /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
   static member inline disableRipple(value: bool) = Interop.mkAttr "disableRipple" value
+  /// Element placed after the children.
+  static member inline endIcon(element: ReactElement) = Interop.mkAttr "endIcon" element
   /// If `true`, the button will take up the full width of its container.
   static member inline fullWidth(value: bool) = Interop.mkAttr "fullWidth" value
   /// The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node.
   static member inline href(value: string) = Interop.mkAttr "href" value
+  /// Element placed before the children.
+  static member inline startIcon(element: ReactElement) = Interop.mkAttr "startIcon" element
 
 module button =
 
@@ -502,6 +506,7 @@ module buttonGroup =
   /// The variant to use.
   [<Erase>]
   type variant =
+    static member inline text = Interop.mkAttr "variant" "text"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline contained = Interop.mkAttr "variant" "contained"
 
@@ -725,6 +730,8 @@ type chip =
   static member inline component'(value: ReactElementType) = Interop.mkAttr "component" value
   /// Override the default delete icon element. Shown only if `onDelete` is set.
   static member inline deleteIcon(value: ReactElement) = Interop.mkAttr "deleteIcon" value
+  /// If `true`, the chip should be displayed in a disabled state.
+  static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// Icon element.
   static member inline icon(value: ReactElement) = Interop.mkAttr "icon" value
   /// The content of the label.
@@ -2617,7 +2624,7 @@ type menu =
   static member inline anchorEl(handler: unit -> Element option) = Interop.mkAttr "anchorEl" handler
   /// The DOM element used to set the position of the menu.
   static member inline anchorEl(ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
-  /// If `true` (default), the menu list (possibly a particular item depending on the menu variant) will receive focus on open.
+  /// If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled children are not focusable. If you set this prop to `false` focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
   /// Menu contents, normally `MenuItem`s.
   static member inline children(element: ReactElement) = prop.children element
@@ -2633,7 +2640,7 @@ type menu =
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.menu` to specify class names.
   static member inline classes(classNames: classes.IMenuClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
-  /// Same as `autoFocus=false`.
+  /// When opening the menu will not focus the active item but the `[role="menu"]` unless `autoFocus` is also set to `false`. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications.
   static member inline disableAutoFocusItem(value: bool) = Interop.mkAttr "disableAutoFocusItem" value
   /// Props applied to the [`MenuList`](https://material-ui.com/api/menu-list/) element.
   static member inline MenuListProps(props: IReactProperty list) = Interop.mkAttr "MenuListProps" (createObj !!props)
@@ -2720,8 +2727,10 @@ type menuItem =
 
 [<Erase>]
 type menuList =
-  /// If `true`, the list will be focused during the first mount. Focus will also be triggered if the value changes from false to true.
+  /// If `true`, will focus the `[role="menu"]` container and move into tab order
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
+  /// If `true`, will focus the first menuitem if `variant="menu"` or selected item if `variant="selectedMenu"`
+  static member inline autoFocusItem(value: bool) = Interop.mkAttr "autoFocusItem" value
   /// MenuList contents, normally `MenuItem`s.
   static member inline children(element: ReactElement) = prop.children element
   /// MenuList contents, normally `MenuItem`s.
@@ -2736,6 +2745,14 @@ type menuList =
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// If `true`, the menu items will not wrap focus.
   static member inline disableListWrap(value: bool) = Interop.mkAttr "disableListWrap" value
+
+module menuList =
+
+  /// The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element.
+  [<Erase>]
+  type variant =
+    static member inline menu = Interop.mkAttr "variant" "menu"
+    static member inline selectedMenu = Interop.mkAttr "variant" "selectedMenu"
 
 
 [<Erase>]
@@ -4799,9 +4816,9 @@ module tableSortLabel =
 
 [<Erase>]
 type tabs =
-  /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `updateIndicator()` action.
+  /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
   static member inline action(ref: IRefValue<TabsActions option>) = Interop.mkAttr "action" ref
-  /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It currently only supports `updateIndicator()` action.
+  /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
   static member inline action(handler: TabsActions -> unit) = Interop.mkAttr "action" handler
   /// If `true`, the tabs will be centered. This property is intended for large views.
   static member inline centered(value: bool) = Interop.mkAttr "centered" value

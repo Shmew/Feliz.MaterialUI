@@ -2,6 +2,11 @@
 
 [Feliz](https://github.com/Zaid-Ajaj/Feliz)-style Fable bindings for [Material-UI](https://material-ui.com/).
 
+Current status
+--------------
+
+Highly usable, but since we’re at `0.x` breaking changes (minor or major) may happen at any time.
+
 ## Installation
 
 Install the bindings:
@@ -21,6 +26,14 @@ TODO
 
 Changelog
 ---------
+
+### 0.3.0
+
+* Support for Material-UI 4.5
+
+### 0.2.0-alpha
+
+* Regenerated bindings based on updated MUI docs
 
 ### 0.1.0-alpha
 

@@ -161,12 +161,34 @@ module classes =
     static member inline disabled(value: string) : IButtonClasses = unbox ("disabled", value)
     /// Styles applied to the root element if `color="inherit"`.
     static member inline colorInherit(value: string) : IButtonClasses = unbox ("colorInherit", value)
+    /// Styles applied to the root element if `size="small"` and `variant="text"`.
+    static member inline textSizeSmall(value: string) : IButtonClasses = unbox ("textSizeSmall", value)
+    /// Styles applied to the root element if `size="large"` and `variant="text"`.
+    static member inline textSizeLarge(value: string) : IButtonClasses = unbox ("textSizeLarge", value)
+    /// Styles applied to the root element if `size="small"` and `variant="outlined"`.
+    static member inline outlinedSizeSmall(value: string) : IButtonClasses = unbox ("outlinedSizeSmall", value)
+    /// Styles applied to the root element if `size="large"&& variant="outlined"`.
+    static member inline outlinedSizeLarge(value: string) : IButtonClasses = unbox ("outlinedSizeLarge", value)
+    /// Styles applied to the root element if `size="small"&& variant="contained"`.
+    static member inline containedSizeSmall(value: string) : IButtonClasses = unbox ("containedSizeSmall", value)
+    /// Styles applied to the root element if `size="large"&&&& variant="contained"`.
+    static member inline containedSizeLarge(value: string) : IButtonClasses = unbox ("containedSizeLarge", value)
     /// Styles applied to the root element if `size="small"`.
     static member inline sizeSmall(value: string) : IButtonClasses = unbox ("sizeSmall", value)
     /// Styles applied to the root element if `size="large"`.
     static member inline sizeLarge(value: string) : IButtonClasses = unbox ("sizeLarge", value)
     /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(value: string) : IButtonClasses = unbox ("fullWidth", value)
+    /// Styles applied to the startIcon element if supplied.
+    static member inline startIcon(value: string) : IButtonClasses = unbox ("startIcon", value)
+    /// Styles applied to the endIcon element if supplied.
+    static member inline endIcon(value: string) : IButtonClasses = unbox ("endIcon", value)
+    /// Styles applied to the icon element if supplied and `size="small"`.
+    static member inline iconSizeSmall(value: string) : IButtonClasses = unbox ("iconSizeSmall", value)
+    /// Styles applied to the icon element if supplied and `size="medium"`.
+    static member inline iconSizeMedium(value: string) : IButtonClasses = unbox ("iconSizeMedium", value)
+    /// Styles applied to the icon element if supplied and `size="large"`.
+    static member inline iconSizeLarge(value: string) : IButtonClasses = unbox ("iconSizeLarge", value)
 
 
   type IButtonBaseClasses = interface end
@@ -193,6 +215,12 @@ module classes =
     static member inline fullWidth(value: string) : IButtonGroupClasses = unbox ("fullWidth", value)
     /// Styles applied to the children.
     static member inline grouped(value: string) : IButtonGroupClasses = unbox ("grouped", value)
+    /// Styles applied to the children if variant="text".
+    static member inline groupedText(value: string) : IButtonGroupClasses = unbox ("groupedText", value)
+    /// Styles applied to the children if variant="outlined"& color="primary".
+    static member inline groupedTextPrimary(value: string) : IButtonGroupClasses = unbox ("groupedTextPrimary", value)
+    /// Styles applied to the children if variant="outlined"& color="secondary".
+    static member inline groupedTextSecondary(value: string) : IButtonGroupClasses = unbox ("groupedTextSecondary", value)
     /// Styles applied to the children if variant="outlined".
     static member inline groupedOutlined(value: string) : IButtonGroupClasses = unbox ("groupedOutlined", value)
     /// Styles applied to the children if variant="outlined"& color="primary".
@@ -273,6 +301,8 @@ module classes =
     static member inline root(value: string) : ICardMediaClasses = unbox ("root", value)
     /// Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
     static member inline media(value: string) : ICardMediaClasses = unbox ("media", value)
+    /// Styles applied to the root element if `component="picture or img"`.
+    static member inline img(value: string) : ICardMediaClasses = unbox ("img", value)
 
 
   type ICheckboxClasses = interface end
@@ -305,6 +335,8 @@ module classes =
     static member inline colorPrimary(value: string) : IChipClasses = unbox ("colorPrimary", value)
     /// Styles applied to the root element if `color="secondary"`.
     static member inline colorSecondary(value: string) : IChipClasses = unbox ("colorSecondary", value)
+    /// Pseudo-class applied to the root element if `disabled={true}`.
+    static member inline disabled(value: string) : IChipClasses = unbox ("disabled", value)
     /// Styles applied to the root element if `onClick` is defined or `clickable={true}`.
     static member inline clickable(value: string) : IChipClasses = unbox ("clickable", value)
     /// Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
@@ -330,10 +362,9 @@ module classes =
     static member inline avatarColorPrimary(value: string) : IChipClasses = unbox ("avatarColorPrimary", value)
     /// Styles applied to the `avatar` element if `color="secondary"`.
     static member inline avatarColorSecondary(value: string) : IChipClasses = unbox ("avatarColorSecondary", value)
-    /// Styles applied to the `avatar` elements children.
-    static member inline avatarChildren(value: string) : IChipClasses = unbox ("avatarChildren", value)
     /// Styles applied to the `icon` element.
     static member inline icon(value: string) : IChipClasses = unbox ("icon", value)
+    /// Styles applied to the `icon` element if `size="small"`.
     static member inline iconSmall(value: string) : IChipClasses = unbox ("iconSmall", value)
     /// Styles applied to the `icon` element if `color="primary"`.
     static member inline iconColorPrimary(value: string) : IChipClasses = unbox ("iconColorPrimary", value)
@@ -344,6 +375,7 @@ module classes =
     static member inline labelSmall(value: string) : IChipClasses = unbox ("labelSmall", value)
     /// Styles applied to the `deleteIcon` element.
     static member inline deleteIcon(value: string) : IChipClasses = unbox ("deleteIcon", value)
+    /// Styles applied to the `deleteIcon` element if `size="small"`.
     static member inline deleteIconSmall(value: string) : IChipClasses = unbox ("deleteIconSmall", value)
     /// Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
     static member inline deleteIconColorPrimary(value: string) : IChipClasses = unbox ("deleteIconColorPrimary", value)

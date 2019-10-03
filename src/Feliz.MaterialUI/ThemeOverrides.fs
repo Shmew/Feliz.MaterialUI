@@ -351,12 +351,34 @@ module overrides =
     static member inline disabled(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the root element if `color="inherit"`.
     static member inline colorInherit(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("colorInherit", createObj !!styles)
+    /// Styles applied to the root element if `size="small"` and `variant="text"`.
+    static member inline textSizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("textSizeSmall", createObj !!styles)
+    /// Styles applied to the root element if `size="large"` and `variant="text"`.
+    static member inline textSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("textSizeLarge", createObj !!styles)
+    /// Styles applied to the root element if `size="small"` and `variant="outlined"`.
+    static member inline outlinedSizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("outlinedSizeSmall", createObj !!styles)
+    /// Styles applied to the root element if `size="large"&& variant="outlined"`.
+    static member inline outlinedSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("outlinedSizeLarge", createObj !!styles)
+    /// Styles applied to the root element if `size="small"&& variant="contained"`.
+    static member inline containedSizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("containedSizeSmall", createObj !!styles)
+    /// Styles applied to the root element if `size="large"&&&& variant="contained"`.
+    static member inline containedSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("containedSizeLarge", createObj !!styles)
     /// Styles applied to the root element if `size="small"`.
     static member inline sizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("sizeSmall", createObj !!styles)
     /// Styles applied to the root element if `size="large"`.
     static member inline sizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("sizeLarge", createObj !!styles)
     /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("fullWidth", createObj !!styles)
+    /// Styles applied to the startIcon element if supplied.
+    static member inline startIcon(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("startIcon", createObj !!styles)
+    /// Styles applied to the endIcon element if supplied.
+    static member inline endIcon(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("endIcon", createObj !!styles)
+    /// Styles applied to the icon element if supplied and `size="small"`.
+    static member inline iconSizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("iconSizeSmall", createObj !!styles)
+    /// Styles applied to the icon element if supplied and `size="medium"`.
+    static member inline iconSizeMedium(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("iconSizeMedium", createObj !!styles)
+    /// Styles applied to the icon element if supplied and `size="large"`.
+    static member inline iconSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("iconSizeLarge", createObj !!styles)
 
   [<Erase>]
   type muiButtonBase =
@@ -377,6 +399,12 @@ module overrides =
     static member inline fullWidth(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("fullWidth", createObj !!styles)
     /// Styles applied to the children.
     static member inline grouped(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("grouped", createObj !!styles)
+    /// Styles applied to the children if variant="text".
+    static member inline groupedText(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedText", createObj !!styles)
+    /// Styles applied to the children if variant="outlined"& color="primary".
+    static member inline groupedTextPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextPrimary", createObj !!styles)
+    /// Styles applied to the children if variant="outlined"& color="secondary".
+    static member inline groupedTextSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextSecondary", createObj !!styles)
     /// Styles applied to the children if variant="outlined".
     static member inline groupedOutlined(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlined", createObj !!styles)
     /// Styles applied to the children if variant="outlined"& color="primary".
@@ -439,6 +467,8 @@ module overrides =
     static member inline root(styles: IStyleAttribute list) : IMuiCardMediaOverrideRule = unbox ("root", createObj !!styles)
     /// Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
     static member inline media(styles: IStyleAttribute list) : IMuiCardMediaOverrideRule = unbox ("media", createObj !!styles)
+    /// Styles applied to the root element if `component="picture or img"`.
+    static member inline img(styles: IStyleAttribute list) : IMuiCardMediaOverrideRule = unbox ("img", createObj !!styles)
 
   [<Erase>]
   type muiCheckbox =
@@ -465,6 +495,8 @@ module overrides =
     static member inline colorPrimary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("colorPrimary", createObj !!styles)
     /// Styles applied to the root element if `color="secondary"`.
     static member inline colorSecondary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("colorSecondary", createObj !!styles)
+    /// Pseudo-class applied to the root element if `disabled={true}`.
+    static member inline disabled(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the root element if `onClick` is defined or `clickable={true}`.
     static member inline clickable(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("clickable", createObj !!styles)
     /// Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
@@ -490,10 +522,9 @@ module overrides =
     static member inline avatarColorPrimary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("avatarColorPrimary", createObj !!styles)
     /// Styles applied to the `avatar` element if `color="secondary"`.
     static member inline avatarColorSecondary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("avatarColorSecondary", createObj !!styles)
-    /// Styles applied to the `avatar` elements children.
-    static member inline avatarChildren(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("avatarChildren", createObj !!styles)
     /// Styles applied to the `icon` element.
     static member inline icon(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("icon", createObj !!styles)
+    /// Styles applied to the `icon` element if `size="small"`.
     static member inline iconSmall(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("iconSmall", createObj !!styles)
     /// Styles applied to the `icon` element if `color="primary"`.
     static member inline iconColorPrimary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("iconColorPrimary", createObj !!styles)
@@ -504,6 +535,7 @@ module overrides =
     static member inline labelSmall(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("labelSmall", createObj !!styles)
     /// Styles applied to the `deleteIcon` element.
     static member inline deleteIcon(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("deleteIcon", createObj !!styles)
+    /// Styles applied to the `deleteIcon` element if `size="small"`.
     static member inline deleteIconSmall(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("deleteIconSmall", createObj !!styles)
     /// Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
     static member inline deleteIconColorPrimary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("deleteIconColorPrimary", createObj !!styles)
