@@ -1,24 +1,12 @@
 ﻿[<AutoOpen>]
 module Common
 
-open System.Text.RegularExpressions
 open FSharp.Data
 open ReverseMarkdown
 
 
 type ComponentApiPage = HtmlProvider<"Html/Api/app-bar.html">
 
-
-let appendApostropheToReservedKeywords (s: string) =
-  let reserved =
-    ["checked"; "static"; "fixed"; "inline"; "default"; "component"; "inherit"; "open"; "type"; "true"; "false"; "in"; "end"]
-    |> Set.ofList
-  if reserved.Contains s then s + "'" else s
-
-let prefixUnderscoreToNumbers (s: string) =
-  if s = "" then s
-  elif s |> Seq.head |> System.Char.IsNumber then "_" + s
-  else s
 
 let kebabCaseToCamelCase (s: string) =
   let pieces = s.Split("-")
@@ -31,8 +19,20 @@ let kebabCaseToCamelCase (s: string) =
   else s
 
 
-let hasNonInlineMembers s =
-  Regex.IsMatch(s, "static member (?!inline )")
+let prefixUnderscoreToNumbers (s: string) =
+  if s.Length > 0 && s |> Seq.head |> System.Char.IsNumber
+  then "_" + s
+  else s
+
+
+let appendApostropheToReservedKeywords =
+  let reserved =
+    [
+      "checked"; "static"; "fixed"; "inline"; "default"; "component";
+      "inherit"; "open"; "type"; "true"; "false"; "in"; "end"
+    ]
+    |> Set.ofList
+  fun s -> if reserved.Contains s then s + "'" else s
 
 
 let private markdownConverter =
@@ -44,6 +44,7 @@ let private markdownConverter =
       UnknownTags=Config.UnknownTagsOption.PassThrough
     )
   )
+
 
 // TODO: simplify if possible
 let docElementsToMarkdownLines (nodes: HtmlNode list) =
@@ -58,12 +59,3 @@ let docElementsToMarkdownLines (nodes: HtmlNode list) =
   |> String.trim
   |> String.split "\r\n"
   |> List.trimEmptyLines
-
-
-let getDocString indentSpaces (markdown: string) =
-  if markdown = "" then ""
-  else
-    (markdown.Trim('\r', '\n').Split("\r\n")
-    |> Array.map (fun s -> String.replicate indentSpaces " " + "/// " + s)
-    |> Array.map (fun s -> s.TrimEnd())
-    |> String.concat ("\r\n"))
