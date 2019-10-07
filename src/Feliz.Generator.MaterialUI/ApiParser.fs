@@ -361,14 +361,14 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | ("checkbox" | "filledInput" | "formControlLabel" | "input" | "inputBase" | "outlinedInput" | "radio" | "switch" | "textField"), "inputRef", "ref" ->
         [
-          RegularPropOverload.create "(ref: IRefValue<HTMLInputElement option>)" "ref"
-          RegularPropOverload.create "(handler: HTMLInputElement -> unit)" "handler"
+          RegularPropOverload.create "(ref: IRefValue<Element option>)" "ref"
+          RegularPropOverload.create "(handler: Element -> unit)" "handler"
         ]
 
     | "buttonBase", "buttonRef", "ref" ->
         [
-          RegularPropOverload.create "(ref: IRefValue<HTMLButtonElement option>)" "ref"
-          RegularPropOverload.create "(handler: HTMLButtonElement -> unit)" "handler"
+          RegularPropOverload.create "(ref: IRefValue<Element option>)" "ref"
+          RegularPropOverload.create "(handler: Element -> unit)" "handler"
         ]
 
     | "popper", "popperRef", "ref"
