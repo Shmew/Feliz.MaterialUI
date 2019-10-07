@@ -1,24 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-  
+
   <ItemGroup>
+    <Compile Include="Utils.fs" />
+    <Compile Include="Domain.fs" />
+    <Compile Include="Render.fs" />
     <Compile Include="Common.fs" />
     <Compile Include="HtmlCache.fs" />
-    <Compile Include="Classes.fs" />
-    <Compile Include="ThemeOverrides.fs" />
-    <Compile Include="ThemeProps.fs" />
-    <Compile Include="Props.fs" />
-    <Compile Include="Mui.fs" />
+    <Compile Include="ApiParser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="FSharp.Data" Version="3.1.1" />
     <PackageReference Include="ReverseMarkdown" Version="3.8.0" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <ProjectReference Include="..\Feliz.Generator\Feliz.Generator.fsproj" />
+  </ItemGroup>
+
 </Project>

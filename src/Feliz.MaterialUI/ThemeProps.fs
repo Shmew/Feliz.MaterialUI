@@ -1,5 +1,5 @@
 namespace Feliz.MaterialUI
-  
+
 (*////////////////////////////////
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
@@ -7,7 +7,7 @@ namespace Feliz.MaterialUI
 open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
-  
+
 type IThemeProps = interface end
 
 

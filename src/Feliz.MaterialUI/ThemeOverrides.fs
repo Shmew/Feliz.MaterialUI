@@ -1,5 +1,5 @@
 namespace Feliz.MaterialUI
-  
+
 (*////////////////////////////////
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
@@ -7,7 +7,7 @@ namespace Feliz.MaterialUI
 open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
-  
+
 type IOverrideStyleSheet = interface end
 
 type IMuiAppBarOverrideRule = interface end
@@ -569,7 +569,6 @@ module overrides =
     /// Styles applied to the `circle` svg path if `disableShrink={true}`.
     static member inline circleDisableShrink(styles: IStyleAttribute list) : IMuiCircularProgressOverrideRule = unbox ("circleDisableShrink", createObj !!styles)
 
-
   [<Erase>]
   type muiCollapse =
     /// Styles applied to the container element.
@@ -599,7 +598,6 @@ module overrides =
     static member inline maxWidthLg(styles: IStyleAttribute list) : IMuiContainerOverrideRule = unbox ("maxWidthLg", createObj !!styles)
     /// Styles applied to the root element if `maxWidth="xl"`.
     static member inline maxWidthXl(styles: IStyleAttribute list) : IMuiContainerOverrideRule = unbox ("maxWidthXl", createObj !!styles)
-
 
   [<Erase>]
   type muiDialog =
@@ -760,7 +758,6 @@ module overrides =
     static member inline sizeSmall(styles: IStyleAttribute list) : IMuiFabOverrideRule = unbox ("sizeSmall", createObj !!styles)
     /// Styles applied to the root element if `size="medium"``.
     static member inline sizeMedium(styles: IStyleAttribute list) : IMuiFabOverrideRule = unbox ("sizeMedium", createObj !!styles)
-
 
   [<Erase>]
   type muiFilledInput =
@@ -960,8 +957,6 @@ module overrides =
     static member inline actionIcon(styles: IStyleAttribute list) : IMuiGridListTileBarOverrideRule = unbox ("actionIcon", createObj !!styles)
     /// Styles applied to the actionIcon if `actionPosition="left"`.
     static member inline actionIconActionPosLeft(styles: IStyleAttribute list) : IMuiGridListTileBarOverrideRule = unbox ("actionIconActionPosLeft", createObj !!styles)
-
-
 
   [<Erase>]
   type muiIcon =
@@ -1271,7 +1266,6 @@ module overrides =
     /// Styles applied to the root element if dense.
     static member inline dense(styles: IStyleAttribute list) : IMuiMenuItemOverrideRule = unbox ("dense", createObj !!styles)
 
-
   [<Erase>]
   type muiMobileStepper =
     /// Styles applied to the root element.
@@ -1290,7 +1284,6 @@ module overrides =
     static member inline dotActive(styles: IStyleAttribute list) : IMuiMobileStepperOverrideRule = unbox ("dotActive", createObj !!styles)
     /// Styles applied to the Linear Progress component if `variant="progress"`.
     static member inline progress(styles: IStyleAttribute list) : IMuiMobileStepperOverrideRule = unbox ("progress", createObj !!styles)
-
 
   [<Erase>]
   type muiNativeSelect =
@@ -1312,7 +1305,6 @@ module overrides =
     static member inline iconFilled(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("iconFilled", createObj !!styles)
     /// Styles applied to the icon component if `variant="outlined"`.
     static member inline iconOutlined(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("iconOutlined", createObj !!styles)
-
 
   [<Erase>]
   type muiOutlinedInput =
@@ -1384,8 +1376,6 @@ module overrides =
     /// Styles applied to the `Paper` component.
     static member inline paper(styles: IStyleAttribute list) : IMuiPopoverOverrideRule = unbox ("paper", createObj !!styles)
 
-
-
   [<Erase>]
   type muiRadio =
     /// Styles applied to the root element.
@@ -1398,7 +1388,6 @@ module overrides =
     static member inline colorPrimary(styles: IStyleAttribute list) : IMuiRadioOverrideRule = unbox ("colorPrimary", createObj !!styles)
     /// Styles applied to the root element if `color="secondary"`.
     static member inline colorSecondary(styles: IStyleAttribute list) : IMuiRadioOverrideRule = unbox ("colorSecondary", createObj !!styles)
-
 
   [<Erase>]
   type muiRating =
@@ -1435,7 +1424,6 @@ module overrides =
     /// Styles applied to the icon wrapping elements when decimals are necessary.
     static member inline decimal(styles: IStyleAttribute list) : IMuiRatingOverrideRule = unbox ("decimal", createObj !!styles)
 
-
   [<Erase>]
   type muiSelect =
     /// Styles applied to the select component `root` class.
@@ -1469,7 +1457,6 @@ module overrides =
     static member inline circle(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("circle", createObj !!styles)
     /// Styles applied to the root element if `disabledAnimate={false}`.
     static member inline animate(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("animate", createObj !!styles)
-
 
   [<Erase>]
   type muiSlider =
@@ -1713,7 +1700,6 @@ module overrides =
     /// Styles applied to the root element if `fontSize="large"`.
     static member inline fontSizeLarge(styles: IStyleAttribute list) : IMuiSvgIconOverrideRule = unbox ("fontSizeLarge", createObj !!styles)
 
-
   [<Erase>]
   type muiSwitch =
     /// Styles applied to the root element.
@@ -1887,7 +1873,6 @@ module overrides =
     /// Styles applied to the `TabIndicator` component.
     static member inline indicator(styles: IStyleAttribute list) : IMuiTabsOverrideRule = unbox ("indicator", createObj !!styles)
 
-
   [<Erase>]
   type muiTextField =
     /// Styles applied to the root element.
@@ -2048,5 +2033,3 @@ module overrides =
     static member inline displayInline(styles: IStyleAttribute list) : IMuiTypographyOverrideRule = unbox ("displayInline", createObj !!styles)
     /// Styles applied to the root element if `display="block"`.
     static member inline displayBlock(styles: IStyleAttribute list) : IMuiTypographyOverrideRule = unbox ("displayBlock", createObj !!styles)
-
-

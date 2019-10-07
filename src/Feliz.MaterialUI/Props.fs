@@ -11,33 +11,6 @@ open Fable.Core.JsInterop
 open Fable.React
 open Feliz
 
-[<StringEnum; RequireQualifiedAccess>]
-type DialogCloseReason =
-  | EscapeKeyDown
-  | BackdropClick
-
-[<StringEnum; RequireQualifiedAccess>]
-type MenuCloseReason =
-  | EscapeKeyDown
-  | BackdropClick
-  | TabKeyDown
-
-[<StringEnum; RequireQualifiedAccess>]
-type ModalCloseReason =
-  | EscapeKeyDown
-  | BackdropClick
-
-[<StringEnum; RequireQualifiedAccess>]
-type PopoverCloseReason =
-  | EscapeKeyDown
-  | BackdropClick
-
-[<StringEnum; RequireQualifiedAccess>]
-type SnackbarCloseReason =
-  | Timeout
-  | Clickaway
-
-
 [<Erase>]
 type muiThemeProvider =
   /// Your component tree.
@@ -151,7 +124,7 @@ type backdrop =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?appear: int, ?enter: int, ?exit: int) = [if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 
 [<Erase>]
@@ -860,7 +833,7 @@ type collapse =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member timeout(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "timeout"
+  static member timeout(?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 module collapse =
 
@@ -988,7 +961,7 @@ type dialog =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps(props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -1154,7 +1127,7 @@ type drawer =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 module drawer =
 
@@ -1343,7 +1316,7 @@ type fade =
   /// The duration for the transition, in milliseconds.
   static member inline timeout(value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "timeout"
+  static member timeout(?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 
 [<Erase>]
@@ -1924,7 +1897,7 @@ type grow =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member timeout(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "timeout"
+  static member timeout(?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 module grow =
 
@@ -2683,7 +2656,7 @@ type menu =
   /// The length of the transition in `ms`, or 'auto'
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The length of the transition in `ms`, or 'auto'
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 module menu =
 
@@ -3076,7 +3049,7 @@ type popover =
   /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
   static member inline anchorEl(ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
-  static member anchorPosition(left: int, top: int) = [yield "left" ==> left; yield "top" ==> top] |> createObj |> Interop.mkAttr "anchorPosition"
+  static member anchorPosition(left: int, top: int) = Interop.mkAttr "anchorPosition" ([yield "left" ==> left; yield "top" ==> top] |> createObj)
   /// The content of the component.
   static member inline children(element: ReactElement) = prop.children element
   /// The content of the component.
@@ -3148,7 +3121,7 @@ type popover =
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps(props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -3682,7 +3655,7 @@ type slide =
   /// The duration for the transition, in milliseconds.
   static member inline timeout(value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "timeout"
+  static member timeout(?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 module slide =
 
@@ -3993,7 +3966,7 @@ type snackbar =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps(props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4090,7 +4063,7 @@ type speedDial =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?appear: int, ?enter: int, ?exit: int) = [if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps(props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4247,7 +4220,7 @@ type stepContent =
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps(props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4425,7 +4398,7 @@ type swipeableDrawer =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration(value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "transitionDuration"
+  static member transitionDuration(?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 
 
 [<Erase>]
@@ -4697,6 +4670,7 @@ type tableHead =
   static member inline component'(value: ReactElementType) = Interop.mkAttr "component" value
 
 
+[<Erase>]
 type tablePagination =
   /// The component used for displaying the actions. Either a string to use a DOM element or a component.
   static member inline ActionsComponent(value: ReactElementType) = Interop.mkAttr "ActionsComponent" value
@@ -4711,7 +4685,7 @@ type tablePagination =
   /// The total number of rows.
   static member inline count(value: int) = Interop.mkAttr "count" value
   /// Customize the displayed rows label.
-  static member labelDisplayedRows(getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
+  static member inline labelDisplayedRows(getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
   static member inline labelRowsPerPage(value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
@@ -5335,7 +5309,7 @@ type typography =
   /// If `true`, the text will have a bottom margin.
   static member inline paragraph(value: bool) = Interop.mkAttr "paragraph" value
   /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
-  static member variantMapping(?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = [if h1.IsSome then yield "h1" ==> h1.Value; if h2.IsSome then yield "h2" ==> h2.Value; if h3.IsSome then yield "h3" ==> h3.Value; if h4.IsSome then yield "h4" ==> h4.Value; if h5.IsSome then yield "h5" ==> h5.Value; if h6.IsSome then yield "h6" ==> h6.Value; if subtitle1.IsSome then yield "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then yield "subtitle2" ==> subtitle2.Value; if body1.IsSome then yield "body1" ==> body1.Value; if body2.IsSome then yield "body2" ==> body2.Value] |> createObj |> Interop.mkAttr "variantMapping"
+  static member variantMapping(?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then yield "h1" ==> h1.Value; if h2.IsSome then yield "h2" ==> h2.Value; if h3.IsSome then yield "h3" ==> h3.Value; if h4.IsSome then yield "h4" ==> h4.Value; if h5.IsSome then yield "h5" ==> h5.Value; if h6.IsSome then yield "h6" ==> h6.Value; if subtitle1.IsSome then yield "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then yield "subtitle2" ==> subtitle2.Value; if body1.IsSome then yield "body1" ==> body1.Value; if body2.IsSome then yield "body2" ==> body2.Value] |> createObj)
 
 module typography =
 
@@ -5394,6 +5368,5 @@ type zoom =
   /// The duration for the transition, in milliseconds.
   static member inline timeout(value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout(?enter: int, ?exit: int) = [if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj |> Interop.mkAttr "timeout"
-
+  static member timeout(?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
 

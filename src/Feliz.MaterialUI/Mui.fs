@@ -664,4 +664,3 @@ type Mui =
   ///
   /// Any other props supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
   static member inline zoom props = createElement (importDefault "@material-ui/core/Zoom") props
-

@@ -1,16 +1,16 @@
 namespace Feliz.MaterialUI
-  
+
 (*////////////////////////////////
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
 open Fable.Core
-  
+
 /// Override or extend the styles applied to components.
 module classes =
 
   type IAppBarClasses = interface end
-
+  
   [<Erase>]
   type appBar =
     /// Styles applied to the root element.
@@ -34,7 +34,7 @@ module classes =
 
 
   type IAvatarClasses = interface end
-
+  
   [<Erase>]
   type avatar =
     /// Styles applied to the root element.
@@ -46,7 +46,7 @@ module classes =
 
 
   type IBackdropClasses = interface end
-
+  
   [<Erase>]
   type backdrop =
     /// Styles applied to the root element.
@@ -56,7 +56,7 @@ module classes =
 
 
   type IBadgeClasses = interface end
-
+  
   [<Erase>]
   type badge =
     /// Styles applied to the root element.
@@ -92,7 +92,7 @@ module classes =
 
 
   type IBottomNavigationClasses = interface end
-
+  
   [<Erase>]
   type bottomNavigation =
     /// Styles applied to the root element.
@@ -100,7 +100,7 @@ module classes =
 
 
   type IBottomNavigationActionClasses = interface end
-
+  
   [<Erase>]
   type bottomNavigationAction =
     /// Styles applied to the root element.
@@ -116,7 +116,7 @@ module classes =
 
 
   type IBreadcrumbsClasses = interface end
-
+  
   [<Erase>]
   type breadcrumbs =
     /// Styles applied to the root element.
@@ -130,7 +130,7 @@ module classes =
 
 
   type IButtonClasses = interface end
-
+  
   [<Erase>]
   type button =
     /// Styles applied to the root element.
@@ -192,7 +192,7 @@ module classes =
 
 
   type IButtonBaseClasses = interface end
-
+  
   [<Erase>]
   type buttonBase =
     /// Styles applied to the root element.
@@ -204,7 +204,7 @@ module classes =
 
 
   type IButtonGroupClasses = interface end
-
+  
   [<Erase>]
   type buttonGroup =
     /// Styles applied to the root element.
@@ -238,7 +238,7 @@ module classes =
 
 
   type ICardClasses = interface end
-
+  
   [<Erase>]
   type card =
     /// Styles applied to the root element.
@@ -246,7 +246,7 @@ module classes =
 
 
   type ICardActionAreaClasses = interface end
-
+  
   [<Erase>]
   type cardActionArea =
     /// Styles applied to the root element.
@@ -258,7 +258,7 @@ module classes =
 
 
   type ICardActionsClasses = interface end
-
+  
   [<Erase>]
   type cardActions =
     /// Styles applied to the root element.
@@ -268,7 +268,7 @@ module classes =
 
 
   type ICardContentClasses = interface end
-
+  
   [<Erase>]
   type cardContent =
     /// Styles applied to the root element.
@@ -276,7 +276,7 @@ module classes =
 
 
   type ICardHeaderClasses = interface end
-
+  
   [<Erase>]
   type cardHeader =
     /// Styles applied to the root element.
@@ -294,7 +294,7 @@ module classes =
 
 
   type ICardMediaClasses = interface end
-
+  
   [<Erase>]
   type cardMedia =
     /// Styles applied to the root element.
@@ -306,7 +306,7 @@ module classes =
 
 
   type ICheckboxClasses = interface end
-
+  
   [<Erase>]
   type checkbox =
     /// Styles applied to the root element.
@@ -324,7 +324,7 @@ module classes =
 
 
   type IChipClasses = interface end
-
+  
   [<Erase>]
   type chip =
     /// Styles applied to the root element.
@@ -388,7 +388,7 @@ module classes =
 
 
   type ICircularProgressClasses = interface end
-
+  
   [<Erase>]
   type circularProgress =
     /// Styles applied to the root element.
@@ -417,7 +417,7 @@ module classes =
 
 
   type ICollapseClasses = interface end
-
+  
   [<Erase>]
   type collapse =
     /// Styles applied to the container element.
@@ -433,7 +433,7 @@ module classes =
 
 
   type IContainerClasses = interface end
-
+  
   [<Erase>]
   type container =
     /// Styles applied to the root element.
@@ -456,7 +456,7 @@ module classes =
 
 
   type IDialogClasses = interface end
-
+  
   [<Erase>]
   type dialog =
     /// Styles applied to the root element.
@@ -492,7 +492,7 @@ module classes =
 
 
   type IDialogActionsClasses = interface end
-
+  
   [<Erase>]
   type dialogActions =
     /// Styles applied to the root element.
@@ -502,7 +502,7 @@ module classes =
 
 
   type IDialogContentClasses = interface end
-
+  
   [<Erase>]
   type dialogContent =
     /// Styles applied to the root element.
@@ -512,7 +512,7 @@ module classes =
 
 
   type IDialogContentTextClasses = interface end
-
+  
   [<Erase>]
   type dialogContentText =
     /// Styles applied to the root element.
@@ -520,7 +520,7 @@ module classes =
 
 
   type IDialogTitleClasses = interface end
-
+  
   [<Erase>]
   type dialogTitle =
     /// Styles applied to the root element.
@@ -528,7 +528,7 @@ module classes =
 
 
   type IDividerClasses = interface end
-
+  
   [<Erase>]
   type divider =
     /// Styles applied to the root element.
@@ -546,7 +546,7 @@ module classes =
 
 
   type IDrawerClasses = interface end
-
+  
   [<Erase>]
   type drawer =
     /// Styles applied to the root element.
@@ -576,7 +576,7 @@ module classes =
 
 
   type IExpansionPanelClasses = interface end
-
+  
   [<Erase>]
   type expansionPanel =
     /// Styles applied to the root element.
@@ -590,7 +590,7 @@ module classes =
 
 
   type IExpansionPanelActionsClasses = interface end
-
+  
   [<Erase>]
   type expansionPanelActions =
     /// Styles applied to the root element.
@@ -600,7 +600,7 @@ module classes =
 
 
   type IExpansionPanelDetailsClasses = interface end
-
+  
   [<Erase>]
   type expansionPanelDetails =
     /// Styles applied to the root element.
@@ -608,7 +608,7 @@ module classes =
 
 
   type IExpansionPanelSummaryClasses = interface end
-
+  
   [<Erase>]
   type expansionPanelSummary =
     /// Styles applied to the root element.
@@ -626,7 +626,7 @@ module classes =
 
 
   type IFabClasses = interface end
-
+  
   [<Erase>]
   type fab =
     /// Styles applied to the root element.
@@ -655,7 +655,7 @@ module classes =
 
 
   type IFilledInputClasses = interface end
-
+  
   [<Erase>]
   type filledInput =
     /// Styles applied to the root element.
@@ -693,7 +693,7 @@ module classes =
 
 
   type IFormControlClasses = interface end
-
+  
   [<Erase>]
   type formControl =
     /// Styles applied to the root element.
@@ -707,7 +707,7 @@ module classes =
 
 
   type IFormControlLabelClasses = interface end
-
+  
   [<Erase>]
   type formControlLabel =
     /// Styles applied to the root element.
@@ -725,7 +725,7 @@ module classes =
 
 
   type IFormGroupClasses = interface end
-
+  
   [<Erase>]
   type formGroup =
     /// Styles applied to the root element.
@@ -735,7 +735,7 @@ module classes =
 
 
   type IFormHelperTextClasses = interface end
-
+  
   [<Erase>]
   type formHelperText =
     /// Styles applied to the root element.
@@ -757,7 +757,7 @@ module classes =
 
 
   type IFormLabelClasses = interface end
-
+  
   [<Erase>]
   type formLabel =
     /// Styles applied to the root element.
@@ -777,7 +777,7 @@ module classes =
 
 
   type IGridClasses = interface end
-
+  
   [<Erase>]
   type grid =
     /// Styles applied to the root element
@@ -834,7 +834,7 @@ module classes =
 
 
   type IGridListClasses = interface end
-
+  
   [<Erase>]
   type gridList =
     /// Styles applied to the root element.
@@ -842,7 +842,7 @@ module classes =
 
 
   type IGridListTileClasses = interface end
-
+  
   [<Erase>]
   type gridListTile =
     /// Styles applied to the root element.
@@ -856,7 +856,7 @@ module classes =
 
 
   type IGridListTileBarClasses = interface end
-
+  
   [<Erase>]
   type gridListTileBar =
     /// Styles applied to the root element.
@@ -890,7 +890,7 @@ module classes =
 
 
   type IIconClasses = interface end
-
+  
   [<Erase>]
   type icon =
     /// Styles applied to the root element.
@@ -913,7 +913,7 @@ module classes =
 
 
   type IIconButtonClasses = interface end
-
+  
   [<Erase>]
   type iconButton =
     /// Styles applied to the root element.
@@ -937,7 +937,7 @@ module classes =
 
 
   type IInputClasses = interface end
-
+  
   [<Erase>]
   type input =
     /// Styles applied to the root element.
@@ -967,7 +967,7 @@ module classes =
 
 
   type IInputAdornmentClasses = interface end
-
+  
   [<Erase>]
   type inputAdornment =
     /// Styles applied to the root element.
@@ -987,7 +987,7 @@ module classes =
 
 
   type IInputBaseClasses = interface end
-
+  
   [<Erase>]
   type inputBase =
     /// Styles applied to the root element.
@@ -1029,7 +1029,7 @@ module classes =
 
 
   type IInputLabelClasses = interface end
-
+  
   [<Erase>]
   type inputLabel =
     /// Styles applied to the root element.
@@ -1059,7 +1059,7 @@ module classes =
 
 
   type ILinearProgressClasses = interface end
-
+  
   [<Erase>]
   type linearProgress =
     /// Styles applied to the root element.
@@ -1101,7 +1101,7 @@ module classes =
 
 
   type ILinkClasses = interface end
-
+  
   [<Erase>]
   type link =
     /// Styles applied to the root element.
@@ -1119,7 +1119,7 @@ module classes =
 
 
   type IListClasses = interface end
-
+  
   [<Erase>]
   type list =
     /// Styles applied to the root element.
@@ -1133,7 +1133,7 @@ module classes =
 
 
   type IListItemClasses = interface end
-
+  
   [<Erase>]
   type listItem =
     /// Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
@@ -1161,7 +1161,7 @@ module classes =
 
 
   type IListItemAvatarClasses = interface end
-
+  
   [<Erase>]
   type listItemAvatar =
     /// Styles applied to the root element.
@@ -1171,7 +1171,7 @@ module classes =
 
 
   type IListItemIconClasses = interface end
-
+  
   [<Erase>]
   type listItemIcon =
     /// Styles applied to the root element.
@@ -1181,7 +1181,7 @@ module classes =
 
 
   type IListItemSecondaryActionClasses = interface end
-
+  
   [<Erase>]
   type listItemSecondaryAction =
     /// Styles applied to the root element.
@@ -1189,7 +1189,7 @@ module classes =
 
 
   type IListItemTextClasses = interface end
-
+  
   [<Erase>]
   type listItemText =
     /// Styles applied to the root element.
@@ -1207,7 +1207,7 @@ module classes =
 
 
   type IListSubheaderClasses = interface end
-
+  
   [<Erase>]
   type listSubheader =
     /// Styles applied to the root element.
@@ -1225,7 +1225,7 @@ module classes =
 
 
   type IMenuClasses = interface end
-
+  
   [<Erase>]
   type menu =
     /// Styles applied to the `Paper` component.
@@ -1235,7 +1235,7 @@ module classes =
 
 
   type IMenuItemClasses = interface end
-
+  
   [<Erase>]
   type menuItem =
     /// Styles applied to the root element.
@@ -1252,7 +1252,7 @@ module classes =
 
 
   type IMobileStepperClasses = interface end
-
+  
   [<Erase>]
   type mobileStepper =
     /// Styles applied to the root element.
@@ -1277,7 +1277,7 @@ module classes =
 
 
   type INativeSelectClasses = interface end
-
+  
   [<Erase>]
   type nativeSelect =
     /// Styles applied to the select component `root` class.
@@ -1304,7 +1304,7 @@ module classes =
 
 
   type IOutlinedInputClasses = interface end
-
+  
   [<Erase>]
   type outlinedInput =
     /// Styles applied to the root element.
@@ -1340,7 +1340,7 @@ module classes =
 
 
   type IPaperClasses = interface end
-
+  
   [<Erase>]
   type paper =
     /// Styles applied to the root element.
@@ -1375,7 +1375,7 @@ module classes =
 
 
   type IPopoverClasses = interface end
-
+  
   [<Erase>]
   type popover =
     /// Styles applied to the `Paper` component.
@@ -1389,7 +1389,7 @@ module classes =
 
 
   type IRadioClasses = interface end
-
+  
   [<Erase>]
   type radio =
     /// Styles applied to the root element.
@@ -1408,7 +1408,7 @@ module classes =
 
 
   type IRatingClasses = interface end
-
+  
   [<Erase>]
   type rating =
     /// Styles applied to the root element.
@@ -1449,7 +1449,7 @@ module classes =
 
 
   type ISelectClasses = interface end
-
+  
   [<Erase>]
   type select =
     /// Styles applied to the select component `root` class.
@@ -1473,7 +1473,7 @@ module classes =
 
 
   type ISkeletonClasses = interface end
-
+  
   [<Erase>]
   type skeleton =
     /// Styles applied to the root element.
@@ -1492,7 +1492,7 @@ module classes =
 
 
   type ISliderClasses = interface end
-
+  
   [<Erase>]
   type slider =
     /// Styles applied to the root element.
@@ -1534,7 +1534,7 @@ module classes =
 
 
   type ISnackbarClasses = interface end
-
+  
   [<Erase>]
   type snackbar =
     /// Styles applied to the root element.
@@ -1554,7 +1554,7 @@ module classes =
 
 
   type ISnackbarContentClasses = interface end
-
+  
   [<Erase>]
   type snackbarContent =
     /// Styles applied to the root element.
@@ -1566,7 +1566,7 @@ module classes =
 
 
   type ISpeedDialClasses = interface end
-
+  
   [<Erase>]
   type speedDial =
     /// Styles applied to the root element.
@@ -1588,7 +1588,7 @@ module classes =
 
 
   type ISpeedDialActionClasses = interface end
-
+  
   [<Erase>]
   type speedDialAction =
     /// Styles applied to the Fab component.
@@ -1608,7 +1608,7 @@ module classes =
 
 
   type ISpeedDialIconClasses = interface end
-
+  
   [<Erase>]
   type speedDialIcon =
     /// Styles applied to the root element.
@@ -1626,7 +1626,7 @@ module classes =
 
 
   type IStepClasses = interface end
-
+  
   [<Erase>]
   type step =
     /// Styles applied to the root element.
@@ -1642,7 +1642,7 @@ module classes =
 
 
   type IStepButtonClasses = interface end
-
+  
   [<Erase>]
   type stepButton =
     /// Styles applied to the root element.
@@ -1656,7 +1656,7 @@ module classes =
 
 
   type IStepConnectorClasses = interface end
-
+  
   [<Erase>]
   type stepConnector =
     /// Styles applied to the root element.
@@ -1682,7 +1682,7 @@ module classes =
 
 
   type IStepContentClasses = interface end
-
+  
   [<Erase>]
   type stepContent =
     /// Styles applied to the root element.
@@ -1694,7 +1694,7 @@ module classes =
 
 
   type IStepIconClasses = interface end
-
+  
   [<Erase>]
   type stepIcon =
     /// Styles applied to the root element.
@@ -1710,7 +1710,7 @@ module classes =
 
 
   type IStepLabelClasses = interface end
-
+  
   [<Erase>]
   type stepLabel =
     /// Styles applied to the root element.
@@ -1738,7 +1738,7 @@ module classes =
 
 
   type IStepperClasses = interface end
-
+  
   [<Erase>]
   type stepper =
     /// Styles applied to the root element.
@@ -1752,7 +1752,7 @@ module classes =
 
 
   type ISvgIconClasses = interface end
-
+  
   [<Erase>]
   type svgIcon =
     /// Styles applied to the root element.
@@ -1779,7 +1779,7 @@ module classes =
 
 
   type ISwitchClasses = interface end
-
+  
   [<Erase>]
   type switch =
     /// Styles applied to the root element.
@@ -1809,7 +1809,7 @@ module classes =
 
 
   type ITabClasses = interface end
-
+  
   [<Erase>]
   type tab =
     /// Styles applied to the root element.
@@ -1835,7 +1835,7 @@ module classes =
 
 
   type ITableClasses = interface end
-
+  
   [<Erase>]
   type table =
     /// Styles applied to the root element.
@@ -1845,7 +1845,7 @@ module classes =
 
 
   type ITableBodyClasses = interface end
-
+  
   [<Erase>]
   type tableBody =
     /// Styles applied to the root element.
@@ -1853,7 +1853,7 @@ module classes =
 
 
   type ITableCellClasses = interface end
-
+  
   [<Erase>]
   type tableCell =
     /// Styles applied to the root element.
@@ -1883,7 +1883,7 @@ module classes =
 
 
   type ITableFooterClasses = interface end
-
+  
   [<Erase>]
   type tableFooter =
     /// Styles applied to the root element.
@@ -1891,7 +1891,7 @@ module classes =
 
 
   type ITableHeadClasses = interface end
-
+  
   [<Erase>]
   type tableHead =
     /// Styles applied to the root element.
@@ -1899,7 +1899,7 @@ module classes =
 
 
   type ITablePaginationClasses = interface end
-
+  
   [<Erase>]
   type tablePagination =
     /// Styles applied to the root element.
@@ -1925,7 +1925,7 @@ module classes =
 
 
   type ITableRowClasses = interface end
-
+  
   [<Erase>]
   type tableRow =
     /// Styles applied to the root element.
@@ -1941,7 +1941,7 @@ module classes =
 
 
   type ITableSortLabelClasses = interface end
-
+  
   [<Erase>]
   type tableSortLabel =
     /// Styles applied to the root element.
@@ -1957,7 +1957,7 @@ module classes =
 
 
   type ITabsClasses = interface end
-
+  
   [<Erase>]
   type tabs =
     /// Styles applied to the root element.
@@ -1988,7 +1988,7 @@ module classes =
 
 
   type ITextFieldClasses = interface end
-
+  
   [<Erase>]
   type textField =
     /// Styles applied to the root element.
@@ -1996,7 +1996,7 @@ module classes =
 
 
   type IToggleButtonClasses = interface end
-
+  
   [<Erase>]
   type toggleButton =
     /// Styles applied to the root element.
@@ -2014,7 +2014,7 @@ module classes =
 
 
   type IToggleButtonGroupClasses = interface end
-
+  
   [<Erase>]
   type toggleButtonGroup =
     /// Styles applied to the root element.
@@ -2028,7 +2028,7 @@ module classes =
 
 
   type IToolbarClasses = interface end
-
+  
   [<Erase>]
   type toolbar =
     /// Styles applied to the root element.
@@ -2042,7 +2042,7 @@ module classes =
 
 
   type ITooltipClasses = interface end
-
+  
   [<Erase>]
   type tooltip =
     /// Styles applied to the Popper component.
@@ -2064,7 +2064,7 @@ module classes =
 
 
   type ITouchRippleClasses = interface end
-
+  
   [<Erase>]
   type touchRipple =
     /// Styles applied to the root element.
@@ -2084,7 +2084,7 @@ module classes =
 
 
   type ITreeItemClasses = interface end
-
+  
   [<Erase>]
   type treeItem =
     /// Styles applied to the root element.
@@ -2102,7 +2102,7 @@ module classes =
 
 
   type ITreeViewClasses = interface end
-
+  
   [<Erase>]
   type treeView =
     /// Styles applied to the root element.
@@ -2110,7 +2110,7 @@ module classes =
 
 
   type ITypographyClasses = interface end
-
+  
   [<Erase>]
   type typography =
     /// Styles applied to the root element.

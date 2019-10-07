@@ -306,3 +306,30 @@ type PopoverActions =
 type TabsActions =
   abstract updateIndicator: unit -> unit
   abstract updateScrollButtons: unit -> unit
+
+
+[<StringEnum; RequireQualifiedAccess>]
+type DialogCloseReason =
+  | EscapeKeyDown
+  | BackdropClick
+
+[<StringEnum; RequireQualifiedAccess>]
+type MenuCloseReason =
+  | EscapeKeyDown
+  | BackdropClick
+  | TabKeyDown
+
+[<StringEnum; RequireQualifiedAccess>]
+type ModalCloseReason =
+  | EscapeKeyDown
+  | BackdropClick
+
+[<StringEnum; RequireQualifiedAccess>]
+type PopoverCloseReason =
+  | EscapeKeyDown
+  | BackdropClick
+
+[<StringEnum; RequireQualifiedAccess>]
+type SnackbarCloseReason =
+  | Timeout
+  | Clickaway

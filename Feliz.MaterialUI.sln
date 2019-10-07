@@ -5,14 +5,16 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.MaterialUI", "src\Feliz.MaterialUI\Feliz.MaterialUI.fsproj", "{339444DE-137A-4962-A713-1AAF4CC6441A}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.MaterialUI.Generator", "src\Feliz.MaterialUI.Generator\Feliz.MaterialUI.Generator.fsproj", "{787D216C-59C6-4203-B149-0B0B57DB4C43}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67DBBEA5-56DD-4279-A7C4-11C2A8A4E66B}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		paket.dependencies = paket.dependencies
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.Generator", "src\Feliz.Generator\Feliz.Generator.fsproj", "{0B5B4FA9-7E54-439F-B3E1-F4A7D9EB0BCA}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.Generator.MaterialUI", "src\Feliz.Generator.MaterialUI\Feliz.Generator.MaterialUI.fsproj", "{DA908485-4464-4710-8E98-5A40F34B7743}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,10 +26,14 @@ Global
 		{339444DE-137A-4962-A713-1AAF4CC6441A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{339444DE-137A-4962-A713-1AAF4CC6441A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{339444DE-137A-4962-A713-1AAF4CC6441A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{787D216C-59C6-4203-B149-0B0B57DB4C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{787D216C-59C6-4203-B149-0B0B57DB4C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{787D216C-59C6-4203-B149-0B0B57DB4C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{787D216C-59C6-4203-B149-0B0B57DB4C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B5B4FA9-7E54-439F-B3E1-F4A7D9EB0BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B5B4FA9-7E54-439F-B3E1-F4A7D9EB0BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B5B4FA9-7E54-439F-B3E1-F4A7D9EB0BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B5B4FA9-7E54-439F-B3E1-F4A7D9EB0BCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA908485-4464-4710-8E98-5A40F34B7743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA908485-4464-4710-8E98-5A40F34B7743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA908485-4464-4710-8E98-5A40F34B7743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA908485-4464-4710-8E98-5A40F34B7743}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

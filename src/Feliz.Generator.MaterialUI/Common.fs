@@ -1,14 +1,10 @@
 ﻿[<AutoOpen>]
 module Common
 
-open System.IO
 open System.Text.RegularExpressions
 open FSharp.Data
 open ReverseMarkdown
 
-type TextWriter with
-  member this.printf fmt = fprintf this fmt
-  member this.printfn fmt = fprintfn this fmt
 
 type ComponentApiPage = HtmlProvider<"Html/Api/app-bar.html">
 
@@ -56,7 +52,8 @@ let private markdownConverter =
     )
   )
 
-let docElementsToMarkdown (nodes: HtmlNode list) =
+// TODO: simplify if possible
+let docElementsToMarkdownLines (nodes: HtmlNode list) =
   (nodes
   |> Seq.map (fun x -> x.ToString().Replace("\r\n", "<br><br>"))
   |> String.concat ""
@@ -65,6 +62,9 @@ let docElementsToMarkdown (nodes: HtmlNode list) =
   |> markdownConverter.Convert)
    .Replace("<br>", "\r\n")
   |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, "\r\n\r\n(\r\n)+", "\r\n\r\n")
+  |> String.trim
+  |> String.split "\r\n"
+  |> List.trimEmptyLines
 
 
 let getDocString indentSpaces (markdown: string) =

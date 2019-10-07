@@ -2,15 +2,14 @@
 
 open System
 open System.IO
-
-// TODO: removed checked-in HTML cache, not needed for CI since generator is not run
+open System.Net.Http
 
 let apiFolder = @"..\..\..\Html\Api"
 
 let refreshApiCache () =
   apiPageUrls |> List.toArray |> Array.Parallel.iteri (fun i url -> 
     Console.WriteLine(sprintf "Processing #%i: %s" i url)
-    use client = new System.Net.Http.HttpClient()
+    use client = new HttpClient()
     let html = client.GetStringAsync(url).Result
     let name =
       url.Split("/", StringSplitOptions.RemoveEmptyEntries)
