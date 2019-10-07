@@ -446,8 +446,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | _, "classes", _ ->
         [
           RegularPropOverload.create
-            // TODO: remove " : IReactProperty"
-            (sprintf "(classNames: classes.I%sClasses list) : IReactProperty" (String.upperFirst componentMethodName))
+            (sprintf "(classNames: classes.I%sClasses list)" (String.upperFirst componentMethodName))
             "(createObj !!classNames)"
         ]
 

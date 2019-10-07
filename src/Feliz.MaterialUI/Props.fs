@@ -36,7 +36,7 @@ type appBar =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.appBar` to specify class names.
-  static member inline classes(classNames: classes.IAppBarClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IAppBarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 module appBar =
 
@@ -87,7 +87,7 @@ type avatar =
   /// This can be an element, or just a string.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.avatar` to specify class names.
-  static member inline classes(classNames: classes.IAvatarClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IAvatarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -116,7 +116,7 @@ type backdrop =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.backdrop` to specify class names.
-  static member inline classes(classNames: classes.IBackdropClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IBackdropClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component.
   static member inline invisible(value: bool) = Interop.mkAttr "invisible" value
   /// If `true`, the backdrop is open.
@@ -154,7 +154,7 @@ type badge =
   /// The badge will be added relative to this node.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.badge` to specify class names.
-  static member inline classes(classNames: classes.IBadgeClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IBadgeClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -212,7 +212,7 @@ type bottomNavigation =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.bottomNavigation` to specify class names.
-  static member inline classes(classNames: classes.IBottomNavigationClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IBottomNavigationClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -246,7 +246,7 @@ type bottomNavigation =
 [<Erase>]
 type bottomNavigationAction =
   /// Override or extend the styles applied to the component. Use `classes.bottomNavigationAction` to specify class names.
-  static member inline classes(classNames: classes.IBottomNavigationActionClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IBottomNavigationActionClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon element.
   static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
   /// The label element.
@@ -282,7 +282,7 @@ type breadcrumbs =
   /// The breadcrumb children.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.breadcrumbs` to specify class names.
-  static member inline classes(classNames: classes.IBreadcrumbsClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IBreadcrumbsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
@@ -322,7 +322,7 @@ type button =
   /// The content of the button.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.button` to specify class names.
-  static member inline classes(classNames: classes.IButtonClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IButtonClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -394,7 +394,7 @@ type buttonBase =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.buttonBase` to specify class names.
-  static member inline classes(classNames: classes.IButtonBaseClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IButtonBaseClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
@@ -445,7 +445,7 @@ type buttonGroup =
   /// The content of the button group.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.buttonGroup` to specify class names.
-  static member inline classes(classNames: classes.IButtonGroupClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IButtonGroupClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -487,7 +487,7 @@ module buttonGroup =
 [<Erase>]
 type card =
   /// Override or extend the styles applied to the component. Use `classes.card` to specify class names.
-  static member inline classes(classNames: classes.ICardClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICardClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the card will use raised styling.
   static member inline raised(value: bool) = Interop.mkAttr "raised" value
 
@@ -507,7 +507,7 @@ type cardActionArea =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.cardActionArea` to specify class names.
-  static member inline classes(classNames: classes.ICardActionAreaClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICardActionAreaClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -525,7 +525,7 @@ type cardActions =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.cardActions` to specify class names.
-  static member inline classes(classNames: classes.ICardActionsClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICardActionsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the actions do not have additional margin.
   static member inline disableSpacing(value: bool) = Interop.mkAttr "disableSpacing" value
 
@@ -533,7 +533,7 @@ type cardActions =
 [<Erase>]
 type cardContent =
   /// Override or extend the styles applied to the component. Use `classes.cardContent` to specify class names.
-  static member inline classes(classNames: classes.ICardContentClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICardContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -567,7 +567,7 @@ type cardHeader =
   /// The Avatar for the Card Header.
   static member inline avatar(value: float) = Interop.mkAttr "avatar" value
   /// Override or extend the styles applied to the component. Use `classes.cardHeader` to specify class names.
-  static member inline classes(classNames: classes.ICardHeaderClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICardHeaderClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -619,7 +619,7 @@ type cardMedia =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.cardMedia` to specify class names.
-  static member inline classes(classNames: classes.ICardMediaClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICardMediaClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Component for rendering image. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// Component for rendering image. Either a string to use a DOM element or a component.
@@ -637,7 +637,7 @@ type checkbox =
   /// The icon to display when the component is checked.
   static member inline checkedIcon(element: ReactElement) = Interop.mkAttr "checkedIcon" element
   /// Override or extend the styles applied to the component. Use `classes.checkbox` to specify class names.
-  static member inline classes(classNames: classes.ICheckboxClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICheckboxClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the switch will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the ripple effect will be disabled.
@@ -694,7 +694,7 @@ type chip =
   /// Avatar element.
   static member inline avatar(value: ReactElement) = Interop.mkAttr "avatar" value
   /// Override or extend the styles applied to the component. Use `classes.chip` to specify class names.
-  static member inline classes(classNames: classes.IChipClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IChipClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If true, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If false, the chip will not be clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable.
   static member inline clickable(value: bool) = Interop.mkAttr "clickable" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -747,7 +747,7 @@ module chip =
 [<Erase>]
 type circularProgress =
   /// Override or extend the styles applied to the component. Use `classes.circularProgress` to specify class names.
-  static member inline classes(classNames: classes.ICircularProgressClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICircularProgressClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`.
   static member inline disableShrink(value: bool) = Interop.mkAttr "disableShrink" value
   /// The size of the circle. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g '3rem'.
@@ -817,7 +817,7 @@ type collapse =
   /// The content node to be collapsed.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.collapse` to specify class names.
-  static member inline classes(classNames: classes.ICollapseClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ICollapseClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The height of the container when collapsed.
   static member inline collapsedHeight(value: Styles.ICssUnit) = Interop.mkAttr "collapsedHeight" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -854,7 +854,7 @@ type container =
   static member inline children(value: int) = Interop.mkAttr "children" value
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.container` to specify class names.
-  static member inline classes(classNames: classes.IContainerClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IContainerClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -905,7 +905,7 @@ type dialog =
   /// Dialog children, usually the included sub-components.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.dialog` to specify class names.
-  static member inline classes(classNames: classes.IDialogClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDialogClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, clicking the backdrop will not fire the `onClose` callback.
   static member inline disableBackdropClick(value: bool) = Interop.mkAttr "disableBackdropClick" value
   /// If `true`, hitting escape will not fire the `onClose` callback.
@@ -999,7 +999,7 @@ type dialogActions =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.dialogActions` to specify class names.
-  static member inline classes(classNames: classes.IDialogActionsClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDialogActionsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the actions do not have additional margin.
   static member inline disableSpacing(value: bool) = Interop.mkAttr "disableSpacing" value
 
@@ -1019,7 +1019,7 @@ type dialogContent =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.dialogContent` to specify class names.
-  static member inline classes(classNames: classes.IDialogContentClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDialogContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Display the top and bottom dividers.
   static member inline dividers(value: bool) = Interop.mkAttr "dividers" value
 
@@ -1039,7 +1039,7 @@ type dialogContentText =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.dialogContentText` to specify class names.
-  static member inline classes(classNames: classes.IDialogContentTextClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDialogContentTextClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -1057,7 +1057,7 @@ type dialogTitle =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.dialogTitle` to specify class names.
-  static member inline classes(classNames: classes.IDialogTitleClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDialogTitleClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the children won't be wrapped by a typography component. For instance, this can be useful to render an h4 instead of the default h2.
   static member inline disableTypography(value: bool) = Interop.mkAttr "disableTypography" value
 
@@ -1067,7 +1067,7 @@ type divider =
   /// Absolutely position the element.
   static member inline absolute(value: bool) = Interop.mkAttr "absolute" value
   /// Override or extend the styles applied to the component. Use `classes.divider` to specify class names.
-  static member inline classes(classNames: classes.IDividerClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDividerClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1105,7 +1105,7 @@ type drawer =
   /// The contents of the drawer.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.drawer` to specify class names.
-  static member inline classes(classNames: classes.IDrawerClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IDrawerClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The elevation of the drawer.
   static member inline elevation(value: int) = Interop.mkAttr "elevation" value
   /// Props applied to the [`Modal`](https://material-ui.com/api/modal/) element.
@@ -1162,7 +1162,7 @@ type expansionPanel =
   /// The content of the expansion panel.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.expansionPanel` to specify class names.
-  static member inline classes(classNames: classes.IExpansionPanelClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IExpansionPanelClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, expands the panel by default.
   static member inline defaultExpanded(value: bool) = Interop.mkAttr "defaultExpanded" value
   /// If `true`, the panel will be displayed in a disabled state.
@@ -1210,7 +1210,7 @@ type expansionPanelActions =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.expansionPanelActions` to specify class names.
-  static member inline classes(classNames: classes.IExpansionPanelActionsClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IExpansionPanelActionsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the actions do not have additional margin.
   static member inline disableSpacing(value: bool) = Interop.mkAttr "disableSpacing" value
 
@@ -1230,7 +1230,7 @@ type expansionPanelDetails =
   /// The content of the expansion panel details.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.expansionPanelDetails` to specify class names.
-  static member inline classes(classNames: classes.IExpansionPanelDetailsClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IExpansionPanelDetailsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -1248,7 +1248,7 @@ type expansionPanelSummary =
   /// The content of the expansion panel summary.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.expansionPanelSummary` to specify class names.
-  static member inline classes(classNames: classes.IExpansionPanelSummaryClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IExpansionPanelSummaryClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon to display as the expand indicator.
   static member inline expandIcon(element: ReactElement) = Interop.mkAttr "expandIcon" element
   /// Props applied to the `IconButton` element wrapping the expand icon.
@@ -1270,7 +1270,7 @@ type fab =
   /// The content of the button.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.fab` to specify class names.
-  static member inline classes(classNames: classes.IFabClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFabClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1326,7 +1326,7 @@ type filledInput =
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
   /// Override or extend the styles applied to the component. Use `classes.filledInput` to specify class names.
-  static member inline classes(classNames: classes.IFilledInputClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFilledInputClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The CSS class name of the wrapper element.
   static member inline className(value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
@@ -1406,7 +1406,7 @@ type formControl =
   /// The contents of the form control.
   static member inline children(elements: ReactElement seq) = prop.children elements
   /// Override or extend the styles applied to the component. Use `classes.formControl` to specify class names.
-  static member inline classes(classNames: classes.IFormControlClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFormControlClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1444,7 +1444,7 @@ type formControlLabel =
   /// If `true`, the component appears selected.
   static member inline checked'(value: bool) = Interop.mkAttr "checked" value
   /// Override or extend the styles applied to the component. Use `classes.formControlLabel` to specify class names.
-  static member inline classes(classNames: classes.IFormControlLabelClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFormControlLabelClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`.
   static member inline control(value: ReactElement) = Interop.mkAttr "control" value
   /// If `true`, the control will be disabled.
@@ -1511,7 +1511,7 @@ type formGroup =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.formGroup` to specify class names.
-  static member inline classes(classNames: classes.IFormGroupClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFormGroupClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Display group of elements in a compact row.
   static member inline row(value: bool) = Interop.mkAttr "row" value
 
@@ -1531,7 +1531,7 @@ type formHelperText =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.formHelperText` to specify class names.
-  static member inline classes(classNames: classes.IFormHelperTextClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFormHelperTextClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1577,7 +1577,7 @@ type formLabel =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.formLabel` to specify class names.
-  static member inline classes(classNames: classes.IFormLabelClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IFormLabelClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1609,7 +1609,7 @@ type grid =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.grid` to specify class names.
-  static member inline classes(classNames: classes.IGridClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IGridClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1795,7 +1795,7 @@ type gridList =
   /// Grid Tiles that will be in Grid List.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.gridList` to specify class names.
-  static member inline classes(classNames: classes.IGridListClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IGridListClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Number of columns.
   static member inline cols(value: int) = Interop.mkAttr "cols" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1828,7 +1828,7 @@ type gridListTile =
   /// Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`).
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.gridListTile` to specify class names.
-  static member inline classes(classNames: classes.IGridListTileClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IGridListTileClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Width of the tile in number of grid cells.
   static member inline cols(value: int) = Interop.mkAttr "cols" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -1844,7 +1844,7 @@ type gridListTileBar =
   /// An IconButton element to be used as secondary action target (primary action target is the tile itself).
   static member inline actionIcon(element: ReactElement) = Interop.mkAttr "actionIcon" element
   /// Override or extend the styles applied to the component. Use `classes.gridListTileBar` to specify class names.
-  static member inline classes(classNames: classes.IGridListTileBarClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IGridListTileBarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// String or element serving as subtitle (support text).
   static member inline subtitle(value: ReactElement) = Interop.mkAttr "subtitle" value
   /// String or element serving as subtitle (support text).
@@ -1992,7 +1992,7 @@ type icon =
   /// The name of the icon font ligature.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.icon` to specify class names.
-  static member inline classes(classNames: classes.IIconClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -2034,7 +2034,7 @@ type iconButton =
   /// The icon element.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.iconButton` to specify class names.
-  static member inline classes(classNames: classes.IIconButtonClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IIconButtonClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the button will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
@@ -2073,7 +2073,7 @@ type input =
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
   /// Override or extend the styles applied to the component. Use `classes.input` to specify class names.
-  static member inline classes(classNames: classes.IInputClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IInputClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The CSS class name of the wrapper element.
   static member inline className(value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
@@ -2161,7 +2161,7 @@ type inputAdornment =
   /// The content of the component, normally an `IconButton` or string.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.inputAdornment` to specify class names.
-  static member inline classes(classNames: classes.IInputAdornmentClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IInputAdornmentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -2194,7 +2194,7 @@ type inputBase =
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
   /// Override or extend the styles applied to the component. Use `classes.inputBase` to specify class names.
-  static member inline classes(classNames: classes.IInputBaseClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IInputBaseClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The CSS class name of the wrapper element.
   static member inline className(value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
@@ -2282,7 +2282,7 @@ type inputLabel =
   /// The contents of the `InputLabel`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.inputLabel` to specify class names.
-  static member inline classes(classNames: classes.IInputLabelClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IInputLabelClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the transition animation is disabled.
   static member inline disableAnimation(value: bool) = Interop.mkAttr "disableAnimation" value
   /// If `true`, apply disabled class.
@@ -2314,7 +2314,7 @@ module inputLabel =
 [<Erase>]
 type linearProgress =
   /// Override or extend the styles applied to the component. Use `classes.linearProgress` to specify class names.
-  static member inline classes(classNames: classes.ILinearProgressClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ILinearProgressClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
   static member inline value(value: int) = Interop.mkAttr "value" value
   /// The value for the buffer variant. Value between 0 and 100.
@@ -2352,7 +2352,7 @@ type link =
   /// The content of the link.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.link` to specify class names.
-  static member inline classes(classNames: classes.ILinkClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ILinkClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -2398,7 +2398,7 @@ type list =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.list` to specify class names.
-  static member inline classes(classNames: classes.IListClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -2440,7 +2440,7 @@ type listItem =
   /// The content of the component. If a `ListItemSecondaryAction` is used it must be the last child.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItem` to specify class names.
-  static member inline classes(classNames: classes.IListItemClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListItemClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
@@ -2474,7 +2474,7 @@ type listItemAvatar =
   /// The content of the component – normally `Avatar`.
   static member inline children(value: ReactElement) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItemAvatar` to specify class names.
-  static member inline classes(classNames: classes.IListItemAvatarClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListItemAvatarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -2482,7 +2482,7 @@ type listItemIcon =
   /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
   static member inline children(value: ReactElement) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItemIcon` to specify class names.
-  static member inline classes(classNames: classes.IListItemIconClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListItemIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -2500,7 +2500,7 @@ type listItemSecondaryAction =
   /// The content of the component, normally an `IconButton` or selection control.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItemSecondaryAction` to specify class names.
-  static member inline classes(classNames: classes.IListItemSecondaryActionClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListItemSecondaryActionClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -2518,7 +2518,7 @@ type listItemText =
   /// Alias for the `primary` property.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItemText` to specify class names.
-  static member inline classes(classNames: classes.IListItemTextClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListItemTextClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `children` (or `primary`) text, and optional `secondary` text with the Typography component.
   static member inline disableTypography(value: bool) = Interop.mkAttr "disableTypography" value
   /// If `true`, the children will be indented. This should be used if there is no left avatar or left icon.
@@ -2568,7 +2568,7 @@ type listSubheader =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listSubheader` to specify class names.
-  static member inline classes(classNames: classes.IListSubheaderClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IListSubheaderClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -2612,7 +2612,7 @@ type menu =
   /// Menu contents, normally `MenuItem`s.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.menu` to specify class names.
-  static member inline classes(classNames: classes.IMenuClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IMenuClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// When opening the menu will not focus the active item but the `[role="menu"]` unless `autoFocus` is also set to `false`. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications.
   static member inline disableAutoFocusItem(value: bool) = Interop.mkAttr "disableAutoFocusItem" value
   /// Props applied to the [`MenuList`](https://material-ui.com/api/menu-list/) element.
@@ -2687,7 +2687,7 @@ type menuItem =
   /// Menu item contents.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.menuItem` to specify class names.
-  static member inline classes(classNames: classes.IMenuItemClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IMenuItemClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -2745,7 +2745,7 @@ type mobileStepper =
   /// A back button element. For instance, it can be a `Button` or an `IconButton`.
   static member inline backButton(value: float) = Interop.mkAttr "backButton" value
   /// Override or extend the styles applied to the component. Use `classes.mobileStepper` to specify class names.
-  static member inline classes(classNames: classes.IMobileStepperClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IMobileStepperClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Props applied to the `LinearProgress` element.
   static member inline LinearProgressProps(props: IReactProperty list) = Interop.mkAttr "LinearProgressProps" (createObj !!props)
   /// A next button element. For instance, it can be a `Button` or an `IconButton`.
@@ -2865,7 +2865,7 @@ type nativeSelect =
   /// The option elements to populate the select with. Can be some `<option>` elements.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.nativeSelect` to specify class names.
-  static member inline classes(classNames: classes.INativeSelectClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.INativeSelectClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon that displays the arrow.
   static member inline IconComponent(value: ReactElementType) = Interop.mkAttr "IconComponent" value
   /// An `Input` element; does not have to be a material-ui specific `Input`.
@@ -2938,7 +2938,7 @@ type outlinedInput =
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
   /// Override or extend the styles applied to the component. Use `classes.outlinedInput` to specify class names.
-  static member inline classes(classNames: classes.IOutlinedInputClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IOutlinedInputClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The CSS class name of the wrapper element.
   static member inline className(value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
@@ -3026,7 +3026,7 @@ type paper =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.paper` to specify class names.
-  static member inline classes(classNames: classes.IPaperClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IPaperClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -3063,7 +3063,7 @@ type popover =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.popover` to specify class names.
-  static member inline classes(classNames: classes.IPopoverClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IPopoverClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container(element: Element option) = Interop.mkAttr "container" element
   /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
@@ -3288,7 +3288,7 @@ type radio =
   /// The icon to display when the component is checked.
   static member inline checkedIcon(element: ReactElement) = Interop.mkAttr "checkedIcon" element
   /// Override or extend the styles applied to the component. Use `classes.radio` to specify class names.
-  static member inline classes(classNames: classes.IRadioClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IRadioClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the switch will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the ripple effect will be disabled.
@@ -3371,7 +3371,7 @@ type radioGroup =
 [<Erase>]
 type rating =
   /// Override or extend the styles applied to the component. Use `classes.rating` to specify class names.
-  static member inline classes(classNames: classes.IRatingClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IRatingClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the rating will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// The icon to display when empty.
@@ -3536,7 +3536,7 @@ type select =
   /// ⚠️The `MenuItem` elements **must** be direct descendants when `native` is false.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.select` to specify class names.
-  static member inline classes(classNames: classes.ISelectClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISelectClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, a value is displayed even if no items are selected.
   ///
   /// In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected. You can only use it when the `native` prop is `false` (default).
@@ -3619,7 +3619,7 @@ module select =
 [<Erase>]
 type skeleton =
   /// Override or extend the styles applied to the component. Use `classes.skeleton` to specify class names.
-  static member inline classes(classNames: classes.ISkeletonClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISkeletonClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -3677,7 +3677,7 @@ type slider =
   /// A string value that provides a user-friendly name for the current value of the slider.
   static member inline ariaValuetext(value: string) = Interop.mkAttr "aria-valuetext" value
   /// Override or extend the styles applied to the component. Use `classes.slider` to specify class names.
-  static member inline classes(classNames: classes.ISliderClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISliderClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -3904,7 +3904,7 @@ type snackbar =
   /// Replace the `SnackbarContent` component.
   static member inline children(value: ReactElement) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.snackbar` to specify class names.
-  static member inline classes(classNames: classes.ISnackbarClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISnackbarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Props applied to the `ClickAwayListener` element.
   static member inline ClickAwayListenerProps(props: IReactProperty list) = Interop.mkAttr "ClickAwayListenerProps" (createObj !!props)
   /// Props applied to the [`SnackbarContent`](https://material-ui.com/api/snackbar-content/) element.
@@ -3998,7 +3998,7 @@ type snackbarContent =
   /// The action to display.
   static member inline action(value: float) = Interop.mkAttr "action" value
   /// Override or extend the styles applied to the component. Use `classes.snackbarContent` to specify class names.
-  static member inline classes(classNames: classes.ISnackbarContentClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISnackbarContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The message to display.
   static member inline message(value: ReactElement) = Interop.mkAttr "message" value
   /// The message to display.
@@ -4029,7 +4029,7 @@ type speedDial =
   /// SpeedDialActions to display when the SpeedDial is `open`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.speedDial` to specify class names.
-  static member inline classes(classNames: classes.ISpeedDialClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISpeedDialClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Props applied to the [`Fab`](https://material-ui.com/api/fab/) element.
   static member inline FabProps(props: IReactProperty list) = Interop.mkAttr "FabProps" (createObj !!props)
   /// If `true`, the SpeedDial will be hidden.
@@ -4081,7 +4081,7 @@ module speedDial =
 [<Erase>]
 type speedDialAction =
   /// Override or extend the styles applied to the component. Use `classes.speedDialAction` to specify class names.
-  static member inline classes(classNames: classes.ISpeedDialActionClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISpeedDialActionClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Adds a transition delay, to allow a series of SpeedDialActions to be animated.
   static member inline delay(value: int) = Interop.mkAttr "delay" value
   /// Props applied to the [`Fab`](https://material-ui.com/api/fab/) component.
@@ -4127,7 +4127,7 @@ module speedDialAction =
 [<Erase>]
 type speedDialIcon =
   /// Override or extend the styles applied to the component. Use `classes.speedDialIcon` to specify class names.
-  static member inline classes(classNames: classes.ISpeedDialIconClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISpeedDialIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon to display in the SpeedDial Floating Action Button.
   static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
   /// The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
@@ -4151,7 +4151,7 @@ type step =
   /// Should be `Step` sub-components such as `StepLabel`, `StepContent`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.step` to specify class names.
-  static member inline classes(classNames: classes.IStepClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Mark the step as completed. Is passed to child components.
   static member inline completed(value: bool) = Interop.mkAttr "completed" value
   /// Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components.
@@ -4173,7 +4173,7 @@ type stepButton =
   /// Can be a `StepLabel` or a node to place inside `StepLabel` as children.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.stepButton` to specify class names.
-  static member inline classes(classNames: classes.IStepButtonClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepButtonClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon displayed by the step label.
   static member inline icon(element: ReactElement) = Interop.mkAttr "icon" element
   /// The optional node to display.
@@ -4193,7 +4193,7 @@ type stepButton =
 [<Erase>]
 type stepConnector =
   /// Override or extend the styles applied to the component. Use `classes.stepConnector` to specify class names.
-  static member inline classes(classNames: classes.IStepConnectorClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepConnectorClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 type stepContent =
@@ -4210,7 +4210,7 @@ type stepContent =
   /// Step content.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.stepContent` to specify class names.
-  static member inline classes(classNames: classes.IStepContentClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the transition.
   static member inline TransitionComponent(value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
@@ -4239,7 +4239,7 @@ type stepIcon =
   /// Whether this step is active.
   static member inline active(value: bool) = Interop.mkAttr "active" value
   /// Override or extend the styles applied to the component. Use `classes.stepIcon` to specify class names.
-  static member inline classes(classNames: classes.IStepIconClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Mark the step as completed. Is passed to child components.
   static member inline completed(value: bool) = Interop.mkAttr "completed" value
   /// Mark the step as failed.
@@ -4263,7 +4263,7 @@ type stepLabel =
   /// In most cases will simply be a string containing a title for the label.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.stepLabel` to specify class names.
-  static member inline classes(classNames: classes.IStepLabelClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepLabelClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// Mark the step as failed.
@@ -4297,7 +4297,7 @@ type stepper =
   /// Two or more `<Step />` components.
   static member inline children(elements: ReactElement seq) = prop.children elements
   /// Override or extend the styles applied to the component. Use `classes.stepper` to specify class names.
-  static member inline classes(classNames: classes.IStepperClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IStepperClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// An element to be placed between each step.
   static member inline connector(value: ReactElement) = Interop.mkAttr "connector" value
   /// If set the `Stepper` will not assist in controlling steps for linear flow.
@@ -4327,7 +4327,7 @@ type svgIcon =
   /// Node passed into the SVG element.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.svgIcon` to specify class names.
-  static member inline classes(classNames: classes.ISvgIconClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISvgIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4408,7 +4408,7 @@ type switch =
   /// The icon to display when the component is checked.
   static member inline checkedIcon(element: ReactElement) = Interop.mkAttr "checkedIcon" element
   /// Override or extend the styles applied to the component. Use `classes.switch` to specify class names.
-  static member inline classes(classNames: classes.ISwitchClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ISwitchClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the switch will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the ripple effect will be disabled.
@@ -4472,7 +4472,7 @@ module switch =
 [<Erase>]
 type tab =
   /// Override or extend the styles applied to the component. Use `classes.tab` to specify class names.
-  static member inline classes(classNames: classes.ITabClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITabClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the tab will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
@@ -4514,7 +4514,7 @@ type table =
   /// The content of the table, normally `TableHead` and `TableBody`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.table` to specify class names.
-  static member inline classes(classNames: classes.ITableClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4555,7 +4555,7 @@ type tableBody =
   /// The content of the component, normally `TableRow`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tableBody` to specify class names.
-  static member inline classes(classNames: classes.ITableBodyClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableBodyClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4577,7 +4577,7 @@ type tableCell =
   /// The table cell contents.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tableCell` to specify class names.
-  static member inline classes(classNames: classes.ITableCellClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableCellClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4641,7 +4641,7 @@ type tableFooter =
   /// The content of the component, normally `TableRow`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tableFooter` to specify class names.
-  static member inline classes(classNames: classes.ITableFooterClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableFooterClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4663,7 +4663,7 @@ type tableHead =
   /// The content of the component, normally `TableRow`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tableHead` to specify class names.
-  static member inline classes(classNames: classes.ITableHeadClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableHeadClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4677,7 +4677,7 @@ type tablePagination =
   /// Props applied to the back arrow [`IconButton`](https://material-ui.com/api/icon-button/) component.
   static member inline backIconButtonProps(props: IReactProperty list) = Interop.mkAttr "backIconButtonProps" (createObj !!props)
   /// Override or extend the styles applied to the component. Use `classes.tablePagination` to specify class names.
-  static member inline classes(classNames: classes.ITablePaginationClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITablePaginationClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4745,7 +4745,7 @@ type tableRow =
   /// Should be valid `<tr>` children such as `TableCell`.
   static member inline children(elements: ReactElement seq) = prop.children elements
   /// Override or extend the styles applied to the component. Use `classes.tableRow` to specify class names.
-  static member inline classes(classNames: classes.ITableRowClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableRowClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4773,7 +4773,7 @@ type tableSortLabel =
   /// Label contents, the arrow will be appended automatically.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tableSortLabel` to specify class names.
-  static member inline classes(classNames: classes.ITableSortLabelClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITableSortLabelClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Hide sort icon when active is false.
   static member inline hideSortIcon(value: bool) = Interop.mkAttr "hideSortIcon" value
   /// Sort icon to use.
@@ -4809,7 +4809,7 @@ type tabs =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tabs` to specify class names.
-  static member inline classes(classNames: classes.ITabsClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITabsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -4897,7 +4897,7 @@ type textField =
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus(value: bool) = Interop.mkAttr "autoFocus" value
   /// Override or extend the styles applied to the component. Use `classes.textField` to specify class names.
-  static member inline classes(classNames: classes.ITextFieldClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITextFieldClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The default value of the `input` element.
   static member inline defaultValue(value: 'a) = Interop.mkAttr "defaultValue" value
   /// If `true`, the `input` element will be disabled.
@@ -5013,7 +5013,7 @@ type toggleButton =
   /// The content of the button.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.toggleButton` to specify class names.
-  static member inline classes(classNames: classes.IToggleButtonClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IToggleButtonClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the button will be disabled.
   static member inline disabled(value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
@@ -5041,7 +5041,7 @@ type toggleButtonGroup =
   /// The content of the button.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.toggleButtonGroup` to specify class names.
-  static member inline classes(classNames: classes.IToggleButtonGroupClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IToggleButtonGroupClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, only allow one of the child ToggleButton values to be selected.
   static member inline exclusive(value: bool) = Interop.mkAttr "exclusive" value
   /// Callback fired when the value changes.
@@ -5094,7 +5094,7 @@ type toolbar =
   /// Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.toolbar` to specify class names.
-  static member inline classes(classNames: classes.IToolbarClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.IToolbarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -5118,7 +5118,7 @@ type tooltip =
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline children(value: ReactElement) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.tooltip` to specify class names.
-  static member inline classes(classNames: classes.ITooltipClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITooltipClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Do not respond to focus events.
   static member inline disableFocusListener(value: bool) = Interop.mkAttr "disableFocusListener" value
   /// Do not respond to hover events.
@@ -5198,7 +5198,7 @@ type touchRipple =
   /// If `true`, the ripple starts at the center of the component rather than at the point of interaction.
   static member inline center(value: bool) = Interop.mkAttr "center" value
   /// Override or extend the styles applied to the component. Use `classes.touchRipple` to specify class names.
-  static member inline classes(classNames: classes.ITouchRippleClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITouchRippleClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -5216,7 +5216,7 @@ type treeItem =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.treeItem` to specify class names.
-  static member inline classes(classNames: classes.ITreeItemClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITreeItemClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon used to collapse the node.
   static member inline collapseIcon(element: ReactElement) = Interop.mkAttr "collapseIcon" element
   /// The icon displayed next to a end node.
@@ -5258,7 +5258,7 @@ type treeView =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.treeView` to specify class names.
-  static member inline classes(classNames: classes.ITreeViewClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITreeViewClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The default icon used to collapse the node.
   static member inline defaultCollapseIcon(element: ReactElement) = Interop.mkAttr "defaultCollapseIcon" element
   /// The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop.
@@ -5295,7 +5295,7 @@ type typography =
   /// The content of the component.
   static member inline children(value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.typography` to specify class names.
-  static member inline classes(classNames: classes.ITypographyClasses list) : IReactProperty = Interop.mkAttr "classes" (createObj !!classNames)
+  static member inline classes(classNames: classes.ITypographyClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
   static member inline component'(value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
