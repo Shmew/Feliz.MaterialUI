@@ -8,13 +8,6 @@ open ReverseMarkdown
 
 type ComponentApiPage = HtmlProvider<"Html/Api/app-bar.html">
 
-let baseUrl = "https://material-ui.com"
-let apiPageUrls =
-  ComponentApiPage.GetSample().Html.CssSelect("nav ul li").[2].CssSelect("ul li")
-  |> List.map (fun x ->
-    let relUrl = x.CssSelect("a").[0].AttributeValue("href")
-    baseUrl + relUrl
-  )
 
 let appendApostropheToReservedKeywords (s: string) =
   let reserved =

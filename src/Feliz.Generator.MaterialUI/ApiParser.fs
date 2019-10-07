@@ -670,12 +670,13 @@ let parseComponent (htmlPathOrUrl: string) =
 let parseApi () =
 
   let components =
-    HtmlCache.getCachedPages ()
-    |> Array.map parseComponent
+    HtmlCache.getFiles ()
+    |> Array.Parallel.map parseComponent
+    |> Array.toList
 
   let addAllComponents api =
-    (api, (components |> Array.map (fun c -> c.GeneratorComponent)))
-    ||> Array.fold (flip ComponentApi.addComponent)
+    (api, (components |> List.map (fun c -> c.GeneratorComponent)))
+    ||> List.fold (flip ComponentApi.addComponent)
 
   let muiThemeProvider =
     Component.create "muiThemeProvider" "@material-ui/core/styles/MuiThemeProvider"
@@ -701,5 +702,5 @@ let parseApi () =
 
   {
     GeneratorComponentApi = api
-    MuiComponents = components |> Array.toList
+    MuiComponents = components
   }
