@@ -32,7 +32,7 @@ module GetLines =
       match propOverload.BodyCode with
       | ValueExprOnly expr -> sprintf "Interop.mkAttr \"%s\" %s" prop.RealPropName expr
       | CustomBody code -> code
-    sprintf "static member %s%s%s = %s"  // TODO: space before params?
+    sprintf "static member %s%s %s = %s"
       (if propOverload.IsInline then "inline " else "")
       prop.MethodName
       propOverload.ParamsCode
@@ -43,10 +43,10 @@ module GetLines =
   /// Gets the code lines for the implementation of a single regular (non-enum)
   /// prop overload. Does not include docs.
   let singlePropEnumOverload (prop: Prop) (propOverload: EnumPropOverload) =
-    sprintf "static member %s%s%s = Interop.mkAttr \"%s\" %s"  // TODO: Add space before params code
+    sprintf "static member %s%s %s= Interop.mkAttr \"%s\" %s"
       (if propOverload.IsInline then "inline " else "")
       propOverload.MethodName
-      (propOverload.ParamsCode |> Option.defaultValue "")
+      (match propOverload.ParamsCode with Some s -> s + " " | None -> "")
       prop.RealPropName
       propOverload.ValueCode
     |> List.singleton
