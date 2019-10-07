@@ -27,6 +27,10 @@ TODO
 Changelog
 ---------
 
+### 0.3.1
+
+- Updated Feliz dependency and pinned the version to avoid breaking 0.x changes
+
 ### 0.3.0
 
 * Support for Material-UI 4.5
@@ -47,6 +51,7 @@ Dev/deployment checklist
 ------------------------
 
 1. Make necessary changes to the code (e.g., run the generator)
+   * Remember to always update the Feliz dependency as long as it’s at 0.x
 2. Update the changelog
 3. Update the version and release notes in the package info
 4. Update the supported npm dependency versions for femto in the fsproj

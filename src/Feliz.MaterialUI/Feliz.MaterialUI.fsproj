@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -9,11 +9,11 @@
     <Authors>Christer van der Meeren</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>f# fable bindings feliz react material-ui materialui</PackageTags>
-    <Version>0.3.0</Version>
-    <PackageReleaseNotes>Support for Material-UI 4.5</PackageReleaseNotes>
+    <Version>0.3.1</Version>
+    <PackageReleaseNotes>Updated Feliz dependency and pinned the version to avoid breaking 0.x changes</PackageReleaseNotes>
   </PropertyGroup>
+  
   <ItemGroup>
-    <None Include="paket.references" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />
     <Compile Include="Bindings.fs" />
@@ -24,14 +24,20 @@
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
   </ItemGroup>
+  
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <Content Include="*.fsproj; *.fs" PackagePath="fable\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Feliz" Version="[0.56, 0.57)" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.5 lt 5" ResolutionStrategy="max" />
       <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.28" />
     </NpmDependencies>
   </PropertyGroup>
-  <Import Project="..\..\.paket\Paket.Restore.targets" />
+  
 </Project>

@@ -1,6 +1,0 @@
-version 5.216.0
-
-source https://api.nuget.org/v3/index.json
-framework: netstandard2.0
-
-nuget Feliz ~> 0.47.0 lowest_matching: true
