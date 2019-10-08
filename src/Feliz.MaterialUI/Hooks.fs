@@ -1,10 +1,11 @@
 ﻿namespace Feliz.MaterialUI
 
+open System.ComponentModel
 open Fable.Core
 open Fable.Core.JsInterop
 
 
-// TODO: how to hide?
+[<EditorBrowsable(EditorBrowsableState.Never)>]
 module HookImports =
 
   let useMediaQuery (query: string) : bool =

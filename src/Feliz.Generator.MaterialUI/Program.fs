@@ -5,7 +5,6 @@ open Feliz.Generator
 
 
 // TODO: Separate core and lab? Exclude lab?
-// TODO: How to hide MuiHelpers?
 // TODO: remove "Mui" prefix for ThemeProps and/or ThemeOverrides?
 
 

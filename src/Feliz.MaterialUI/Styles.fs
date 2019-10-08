@@ -1,11 +1,12 @@
 ﻿namespace Feliz.MaterialUI
 
+open System.ComponentModel
 open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
 
 
-// TODO: how to hide?
+[<EditorBrowsable(EditorBrowsableState.Never)>]
 module StyleImports =
 
   let makeStyles_get (getStyles: Theme -> obj) : ('props -> 'a) =

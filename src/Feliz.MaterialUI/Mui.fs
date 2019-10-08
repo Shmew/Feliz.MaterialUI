@@ -4,19 +4,18 @@ namespace Feliz.MaterialUI
 /// THIS FILE IS AUTO-GENERATED //
 ////////////////////////////////*)
 
+open System.ComponentModel
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.React
 open Feliz
 
-[<AutoOpen>]
+[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
 module MuiHelpers =
 
-  [<System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)>]
   let reactElement (el: ReactElementType) (props: 'a) : ReactElement =
     import "createElement" "react"
 
-  [<System.Diagnostics.DebuggerBrowsable(System.Diagnostics.DebuggerBrowsableState.Never)>]
   let createElement (el: ReactElementType) (properties: IReactProperty list) : ReactElement =
     reactElement el (createObj !!properties)
 
