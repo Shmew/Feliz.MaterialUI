@@ -12,8 +12,9 @@ open Fable.Core.JsInterop
 open Fable.React
 open Feliz
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type muiThemeProviderProps =
+
+[<Erase>]
+type muiThemeProvider =
   /// Your component tree.
   static member inline children (elements: ReactElement seq) = prop.children elements
   /// A theme object. You can provide a function to extend the outer theme.
@@ -22,8 +23,8 @@ type muiThemeProviderProps =
   static member inline theme (extendTheme: Theme -> Theme) = Interop.mkAttr "theme" extendTheme
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type appBarProps =
+[<Erase>]
+type appBar =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -38,9 +39,24 @@ type appBarProps =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.appBar` to specify class names.
   static member inline classes (classNames: classes.IAppBarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module appBarProps =
+module appBar =
 
   /// The color of the component.
   [<Erase>]
@@ -60,8 +76,8 @@ module appBarProps =
     static member inline sticky = Interop.mkAttr "position" "sticky"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type avatarProps =
+[<Erase>]
+type avatar =
   /// Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element.
   static member inline alt (value: string) = Interop.mkAttr "alt" value
   /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
@@ -104,8 +120,7 @@ type avatarProps =
   static member inline srcSet (value: string) = Interop.mkAttr "srcSet" value
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type backdropProps =
+type backdrop =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -130,8 +145,8 @@ type backdropProps =
   static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then "appear" ==> appear.Value; if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type badgeProps =
+[<Erase>]
+type badge =
   /// The content rendered within the badge.
   static member inline badgeContent (value: ReactElement) = Interop.mkAttr "badgeContent" value
   /// The content rendered within the badge.
@@ -169,8 +184,7 @@ type badgeProps =
   /// Controls whether the badge is hidden when `badgeContent` is zero.
   static member inline showZero (value: bool) = Interop.mkAttr "showZero" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module badgeProps =
+module badge =
 
   /// The anchor of the badge.
   [<Erase>]
@@ -201,8 +215,8 @@ module badgeProps =
     static member inline standard = Interop.mkAttr "variant" "standard"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type bottomNavigationProps =
+[<Erase>]
+type bottomNavigation =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -247,8 +261,8 @@ type bottomNavigationProps =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type bottomNavigationActionProps =
+[<Erase>]
+type bottomNavigationAction =
   /// This prop isn't supported. Use the `component` prop if you need to change the children structure.
   static member inline children  = UnsupportedProp ()
   /// Override or extend the styles applied to the component. Use `classes.bottomNavigationAction` to specify class names.
@@ -271,10 +285,83 @@ type bottomNavigationActionProps =
   static member inline showLabel (value: bool) = Interop.mkAttr "showLabel" value
   /// You can provide your own value. Otherwise, we fallback to the child position index.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripple effect will be disabled.
+  ///
+  /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
+  static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+module bottomNavigationAction =
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type breadcrumbsProps =
+[<Erase>]
+type breadcrumbs =
   /// The breadcrumb children.
   static member inline children (element: ReactElement) = prop.children element
   /// The breadcrumb children.
@@ -313,8 +400,8 @@ type breadcrumbsProps =
   static member inline separator (value: float) = Interop.mkAttr "separator" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type buttonProps =
+[<Erase>]
+type button =
   /// The content of the button.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the button.
@@ -349,9 +436,48 @@ type buttonProps =
   static member inline href (value: string) = Interop.mkAttr "href" value
   /// Element placed before the children.
   static member inline startIcon (element: ReactElement) = Interop.mkAttr "startIcon" element
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module buttonProps =
+module button =
 
   /// The color of the component.
   [<Erase>]
@@ -375,9 +501,18 @@ module buttonProps =
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline contained = Interop.mkAttr "variant" "contained"
 
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type buttonBaseProps =
+
+[<Erase>]
+type buttonBase =
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -427,8 +562,7 @@ type buttonBaseProps =
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module buttonBaseProps =
+module buttonBase =
 
   /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
   [<Erase>]
@@ -438,8 +572,8 @@ module buttonBaseProps =
     static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type buttonGroupProps =
+[<Erase>]
+type buttonGroup =
   /// The content of the button group.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the button group.
@@ -467,8 +601,7 @@ type buttonGroupProps =
   /// If `true`, the buttons will take up the full width of its container.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module buttonGroupProps =
+module buttonGroup =
 
   /// The color of the component.
   [<Erase>]
@@ -493,8 +626,8 @@ module buttonGroupProps =
     static member inline contained = Interop.mkAttr "variant" "contained"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cardProps =
+[<Erase>]
+type card =
   /// Override or extend the styles applied to the component. Use `classes.card` to specify class names.
   static member inline classes (classNames: classes.ICardClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the card will use raised styling.
@@ -511,10 +644,26 @@ type cardProps =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cardActionAreaProps =
+[<Erase>]
+type cardActionArea =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -529,10 +678,83 @@ type cardActionAreaProps =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.cardActionArea` to specify class names.
   static member inline classes (classNames: classes.ICardActionAreaClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripple effect will be disabled.
+  ///
+  /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
+  static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+module cardActionArea =
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cardActionsProps =
+[<Erase>]
+type cardActions =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -551,8 +773,8 @@ type cardActionsProps =
   static member inline disableSpacing (value: bool) = Interop.mkAttr "disableSpacing" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cardContentProps =
+[<Erase>]
+type cardContent =
   /// Override or extend the styles applied to the component. Use `classes.cardContent` to specify class names.
   static member inline classes (classNames: classes.ICardContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -573,8 +795,8 @@ type cardContentProps =
   static member inline children (value: float) = Interop.mkAttr "children" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cardHeaderProps =
+[<Erase>]
+type cardHeader =
   /// The action to display in the card header.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
   /// The action to display in the card header.
@@ -639,8 +861,8 @@ type cardHeaderProps =
   static member inline children  = UnsupportedProp ()
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cardMediaProps =
+[<Erase>]
+type cardMedia =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -665,8 +887,8 @@ type cardMediaProps =
   static member inline src (value: string) = Interop.mkAttr "src" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type checkboxProps =
+[<Erase>]
+type checkbox =
   /// If `true`, the component is checked.
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The icon to display when the component is checked.
@@ -715,9 +937,64 @@ type checkboxProps =
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `iconButton`*
+  ///
+  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module checkboxProps =
+module checkbox =
 
   /// The color of the component.
   [<Erase>]
@@ -726,9 +1003,26 @@ module checkboxProps =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline default' = Interop.mkAttr "color" "default"
 
+  /// *Inherited from `iconButton`*
+  ///
+  /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
+  [<Erase>]
+  type edge =
+    static member inline start = Interop.mkAttr "edge" "start"
+    static member inline end' = Interop.mkAttr "edge" "end"
+    static member inline false' = Interop.mkAttr "edge" false
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type chipProps =
+  /// *Inherited from `iconButton`*
+  ///
+  /// The size of the button. `small` is equivalent to the dense button styling.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
+
+
+[<Erase>]
+type chip =
   /// Avatar element.
   static member inline avatar (value: ReactElement) = Interop.mkAttr "avatar" value
   /// This prop isn't supported. Use the `component` prop if you need to change the children structure.
@@ -762,8 +1056,7 @@ type chipProps =
   /// Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.
   static member inline onDelete (handler: Event -> unit) = Interop.mkAttr "onDelete" handler
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module chipProps =
+module chip =
 
   /// The color of the component.
   [<Erase>]
@@ -785,8 +1078,8 @@ module chipProps =
     static member inline outlined = Interop.mkAttr "variant" "outlined"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type circularProgressProps =
+[<Erase>]
+type circularProgress =
   /// Override or extend the styles applied to the component. Use `classes.circularProgress` to specify class names.
   static member inline classes (classNames: classes.ICircularProgressClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`.
@@ -802,8 +1095,7 @@ type circularProgressProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module circularProgressProps =
+module circularProgress =
 
   /// The color of the component.
   [<Erase>]
@@ -820,8 +1112,8 @@ module circularProgressProps =
     static member inline static' = Interop.mkAttr "variant" "static"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type clickAwayListenerProps =
+[<Erase>]
+type clickAwayListener =
   /// The wrapped element.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
@@ -829,8 +1121,7 @@ type clickAwayListenerProps =
   /// Callback fired when a "click away" event is detected.
   static member inline onClickAway (handler: Event -> unit) = Interop.mkAttr "onClickAway" handler
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module clickAwayListenerProps =
+module clickAwayListener =
 
   /// The mouse event to listen to. You can disable the listener by providing `false`.
   [<Erase>]
@@ -848,8 +1139,7 @@ module clickAwayListenerProps =
     static member inline false' = Interop.mkAttr "touchEvent" false
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type collapseProps =
+type collapse =
   /// The content node to be collapsed.
   static member inline children (element: ReactElement) = prop.children element
   /// The content node to be collapsed.
@@ -881,8 +1171,7 @@ type collapseProps =
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module collapseProps =
+module collapse =
 
   /// The duration for the transition, in milliseconds.
   ///
@@ -892,8 +1181,8 @@ module collapseProps =
     static member inline auto = Interop.mkAttr "timeout" "auto"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type containerProps =
+[<Erase>]
+type container =
   static member inline children (element: ReactElement) = prop.children element
   static member inline children (elements: ReactElement seq) = prop.children elements
   static member inline children (value: string) = Interop.mkAttr "children" value
@@ -909,8 +1198,7 @@ type containerProps =
   /// Set the max-width to match the min-width of the current breakpoint. This is useful if you'd prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport. It's fluid by default.
   static member inline fixed' (value: bool) = Interop.mkAttr "fixed" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module containerProps =
+module container =
 
   /// Determine the max-width of the container. The container width grows with the size of the screen. Set to `false` to disable `maxWidth`.
   [<Erase>]
@@ -923,8 +1211,8 @@ module containerProps =
     static member inline false' = Interop.mkAttr "maxWidth" false
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type cssBaselineProps =
+[<Erase>]
+type cssBaseline =
   /// You can wrap a node.
   static member inline children (element: ReactElement) = prop.children element
   /// You can wrap a node.
@@ -939,8 +1227,7 @@ type cssBaselineProps =
   static member inline children (value: float) = Interop.mkAttr "children" value
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type dialogProps =
+type dialog =
   /// Dialog children, usually the included sub-components.
   static member inline children (element: ReactElement) = prop.children element
   /// Dialog children, usually the included sub-components.
@@ -1013,9 +1300,68 @@ type dialogProps =
   static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
+  /// *Inherited from `modal`*
+  ///
+  /// A backdrop component. This prop enables custom backdrop rendering.
+  static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
+  /// *Inherited from `modal`*
+  ///
+  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
+  /// *Inherited from `modal`*
+  ///
+  /// When set to true the Modal waits until a nested Transition is completed before closing.
+  static member inline closeAfterTransition (value: bool) = Interop.mkAttr "closeAfterTransition" value
+  /// *Inherited from `modal`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  /// *Inherited from `modal`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
+  /// *Inherited from `modal`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  /// *Inherited from `modal`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
+  ///
+  /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
+  static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not prevent focus from leaving the modal while open.
+  ///
+  /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
+  static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
+  static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not restore focus to previously focused element once modal is hidden.
+  static member inline disableRestoreFocus (value: bool) = Interop.mkAttr "disableRestoreFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// Disable the scroll lock behavior.
+  static member inline disableScrollLock (value: bool) = Interop.mkAttr "disableScrollLock" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the backdrop is not rendered.
+  static member inline hideBackdrop (value: bool) = Interop.mkAttr "hideBackdrop" value
+  /// *Inherited from `modal`*
+  ///
+  /// Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal.
+  static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module dialogProps =
+module dialog =
 
   /// Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`.
   [<Erase>]
@@ -1034,8 +1380,8 @@ module dialogProps =
     static member inline paper = Interop.mkAttr "scroll" "paper"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type dialogActionsProps =
+[<Erase>]
+type dialogActions =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1054,8 +1400,8 @@ type dialogActionsProps =
   static member inline disableSpacing (value: bool) = Interop.mkAttr "disableSpacing" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type dialogContentProps =
+[<Erase>]
+type dialogContent =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1074,8 +1420,7 @@ type dialogContentProps =
   static member inline dividers (value: bool) = Interop.mkAttr "dividers" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type dialogContentTextProps =
+type dialogContentText =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1090,10 +1435,92 @@ type dialogContentTextProps =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.dialogContentText` to specify class names.
   static member inline classes (classNames: classes.IDialogContentTextClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// *Inherited from `typography`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `typography`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `typography`*
+  ///
+  /// If `true`, the text will have a bottom margin.
+  static member inline gutterBottom (value: bool) = Interop.mkAttr "gutterBottom" value
+  /// *Inherited from `typography`*
+  ///
+  /// If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+  ///
+  /// Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).
+  static member inline noWrap (value: bool) = Interop.mkAttr "noWrap" value
+  /// *Inherited from `typography`*
+  ///
+  /// If `true`, the text will have a bottom margin.
+  static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
+  /// *Inherited from `typography`*
+  ///
+  /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
+
+module dialogContentText =
+
+  /// *Inherited from `typography`*
+  ///
+  /// Set the text-align on the component.
+  [<Erase>]
+  type align =
+    static member inline inherit' = Interop.mkAttr "align" "inherit"
+    static member inline left = Interop.mkAttr "align" "left"
+    static member inline center = Interop.mkAttr "align" "center"
+    static member inline right = Interop.mkAttr "align" "right"
+    static member inline justify = Interop.mkAttr "align" "justify"
+
+  /// *Inherited from `typography`*
+  ///
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline initial = Interop.mkAttr "color" "initial"
+    static member inline inherit' = Interop.mkAttr "color" "inherit"
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+    static member inline textPrimary = Interop.mkAttr "color" "textPrimary"
+    static member inline textSecondary = Interop.mkAttr "color" "textSecondary"
+    static member inline error = Interop.mkAttr "color" "error"
+
+  /// *Inherited from `typography`*
+  ///
+  /// Controls the display type
+  [<Erase>]
+  type display =
+    static member inline initial = Interop.mkAttr "display" "initial"
+    static member inline block = Interop.mkAttr "display" "block"
+    static member inline inline' = Interop.mkAttr "display" "inline"
+
+  /// *Inherited from `typography`*
+  ///
+  /// Applies the theme typography styles.
+  [<Erase>]
+  type variant =
+    static member inline h1 = Interop.mkAttr "variant" "h1"
+    static member inline h2 = Interop.mkAttr "variant" "h2"
+    static member inline h3 = Interop.mkAttr "variant" "h3"
+    static member inline h4 = Interop.mkAttr "variant" "h4"
+    static member inline h5 = Interop.mkAttr "variant" "h5"
+    static member inline h6 = Interop.mkAttr "variant" "h6"
+    static member inline subtitle1 = Interop.mkAttr "variant" "subtitle1"
+    static member inline subtitle2 = Interop.mkAttr "variant" "subtitle2"
+    static member inline body1 = Interop.mkAttr "variant" "body1"
+    static member inline body2 = Interop.mkAttr "variant" "body2"
+    static member inline caption = Interop.mkAttr "variant" "caption"
+    static member inline button = Interop.mkAttr "variant" "button"
+    static member inline overline = Interop.mkAttr "variant" "overline"
+    static member inline srOnly = Interop.mkAttr "variant" "srOnly"
+    static member inline inherit' = Interop.mkAttr "variant" "inherit"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type dialogTitleProps =
+[<Erase>]
+type dialogTitle =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1112,8 +1539,8 @@ type dialogTitleProps =
   static member inline disableTypography (value: bool) = Interop.mkAttr "disableTypography" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type dividerProps =
+[<Erase>]
+type divider =
   /// Absolutely position the element.
   static member inline absolute (value: bool) = Interop.mkAttr "absolute" value
   /// Override or extend the styles applied to the component. Use `classes.divider` to specify class names.
@@ -1127,8 +1554,7 @@ type dividerProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module dividerProps =
+module divider =
 
   /// The divider orientation.
   [<Erase>]
@@ -1144,8 +1570,7 @@ module dividerProps =
     static member inline middle = Interop.mkAttr "variant" "middle"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type drawerProps =
+type drawer =
   /// The contents of the drawer.
   static member inline children (element: ReactElement) = prop.children element
   /// The contents of the drawer.
@@ -1183,8 +1608,7 @@ type drawerProps =
   /// The duration for the transition, in milliseconds.
   static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module drawerProps =
+module drawer =
 
   /// Side from which the drawer will appear.
   [<Erase>]
@@ -1202,8 +1626,8 @@ module drawerProps =
     static member inline temporary = Interop.mkAttr "variant" "temporary"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type expansionPanelProps =
+[<Erase>]
+type expansionPanel =
   /// The content of the expansion panel.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the expansion panel.
@@ -1248,10 +1672,26 @@ type expansionPanelProps =
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type expansionPanelActionsProps =
+[<Erase>]
+type expansionPanelActions =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1270,8 +1710,8 @@ type expansionPanelActionsProps =
   static member inline disableSpacing (value: bool) = Interop.mkAttr "disableSpacing" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type expansionPanelDetailsProps =
+[<Erase>]
+type expansionPanelDetails =
   /// The content of the expansion panel details.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the expansion panel details.
@@ -1288,8 +1728,8 @@ type expansionPanelDetailsProps =
   static member inline classes (classNames: classes.IExpansionPanelDetailsClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type expansionPanelSummaryProps =
+[<Erase>]
+type expansionPanelSummary =
   /// The content of the expansion panel summary.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the expansion panel summary.
@@ -1308,10 +1748,83 @@ type expansionPanelSummaryProps =
   static member inline expandIcon (element: ReactElement) = Interop.mkAttr "expandIcon" element
   /// Props applied to the `IconButton` element wrapping the expand icon.
   static member inline IconButtonProps (props: IReactProperty list) = Interop.mkAttr "IconButtonProps" (createObj !!props)
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripple effect will be disabled.
+  ///
+  /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
+  static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+module expansionPanelSummary =
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type fabProps =
+[<Erase>]
+type fab =
   /// The content of the button.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the button.
@@ -1338,9 +1851,48 @@ type fabProps =
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
   /// The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node.
   static member inline href (value: string) = Interop.mkAttr "href" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module fabProps =
+module fab =
 
   /// The color of the component.
   [<Erase>]
@@ -1363,9 +1915,17 @@ module fabProps =
     static member inline round = Interop.mkAttr "variant" "round"
     static member inline extended = Interop.mkAttr "variant" "extended"
 
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type fadeProps =
+
+type fade =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// If `true`, the component will transition in.
@@ -1376,8 +1936,8 @@ type fadeProps =
   static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type filledInputProps =
+[<Erase>]
+type filledInput =
   /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
@@ -1448,9 +2008,12 @@ type filledInputProps =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `inputBase`*
+  ///
+  /// Should be `true` when the component hosts a select.
+  static member inline select (value: bool) = Interop.mkAttr "select" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module filledInputProps =
+module filledInput =
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -1459,8 +2022,8 @@ module filledInputProps =
     static member inline none = Interop.mkAttr "margin" "none"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type formControlProps =
+[<Erase>]
+type formControl =
   /// The contents of the form control.
   static member inline children (element: ReactElement) = prop.children element
   /// The contents of the form control.
@@ -1482,8 +2045,7 @@ type formControlProps =
   /// If `true`, the label will indicate that the input is required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module formControlProps =
+module formControl =
 
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
@@ -1500,8 +2062,8 @@ module formControlProps =
     static member inline filled = Interop.mkAttr "variant" "filled"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type formControlLabelProps =
+[<Erase>]
+type formControlLabel =
   /// If `true`, the component appears selected.
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// Override or extend the styles applied to the component. Use `classes.formControlLabel` to specify class names.
@@ -1548,8 +2110,7 @@ type formControlLabelProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module formControlLabelProps =
+module formControlLabel =
 
   /// The position of the label.
   [<Erase>]
@@ -1560,8 +2121,8 @@ module formControlLabelProps =
     static member inline bottom = Interop.mkAttr "labelPlacement" "bottom"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type formGroupProps =
+[<Erase>]
+type formGroup =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1580,8 +2141,8 @@ type formGroupProps =
   static member inline row (value: bool) = Interop.mkAttr "row" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type formHelperTextProps =
+[<Erase>]
+type formHelperText =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1611,8 +2172,7 @@ type formHelperTextProps =
   /// If `true`, the helper text should use required classes key.
   static member inline required (value: bool) = Interop.mkAttr "required" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module formHelperTextProps =
+module formHelperText =
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -1627,8 +2187,8 @@ module formHelperTextProps =
     static member inline filled = Interop.mkAttr "variant" "filled"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type formLabelProps =
+[<Erase>]
+type formLabel =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1659,8 +2219,8 @@ type formLabelProps =
   static member inline required (value: bool) = Interop.mkAttr "required" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type gridProps =
+[<Erase>]
+type grid =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -1686,8 +2246,7 @@ type gridProps =
   /// If `true`, it sets `min-width: 0` on the item. Refer to the limitations section of the documentation to better understand the use case.
   static member inline zeroMinWidth (value: bool) = Interop.mkAttr "zeroMinWidth" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module gridProps =
+module grid =
 
   /// Defines the `align-content` style property. It's applied for all screen sizes.
   [<Erase>]
@@ -1844,8 +2403,8 @@ module gridProps =
     static member inline _12 = Interop.mkAttr "xs" 12
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type gridListProps =
+[<Erase>]
+type gridList =
   /// Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height.
   static member inline cellHeight (value: int) = Interop.mkAttr "cellHeight" value
   /// Grid Tiles that will be in Grid List.
@@ -1871,8 +2430,7 @@ type gridListProps =
   /// Number of px for the spacing between tiles.
   static member inline spacing (value: int) = Interop.mkAttr "spacing" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module gridListProps =
+module gridList =
 
   /// Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height.
   [<Erase>]
@@ -1880,8 +2438,8 @@ module gridListProps =
     static member inline auto = Interop.mkAttr "cellHeight" "auto"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type gridListTileProps =
+[<Erase>]
+type gridListTile =
   /// Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`).
   static member inline children (element: ReactElement) = prop.children element
   /// Theoretically you can pass any node as children, but the main use case is to pass an img, in which case GridListTile takes care of making the image "cover" available space (similar to `background-size: cover` or to `object-fit: cover`).
@@ -1906,8 +2464,8 @@ type gridListTileProps =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type gridListTileBarProps =
+[<Erase>]
+type gridListTileBar =
   /// An IconButton element to be used as secondary action target (primary action target is the tile itself).
   static member inline actionIcon (element: ReactElement) = Interop.mkAttr "actionIcon" element
   /// Override or extend the styles applied to the component. Use `classes.gridListTileBar` to specify class names.
@@ -1939,8 +2497,7 @@ type gridListTileBarProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module gridListTileBarProps =
+module gridListTileBar =
 
   /// Position of secondary action IconButton.
   [<Erase>]
@@ -1955,8 +2512,7 @@ module gridListTileBarProps =
     static member inline bottom = Interop.mkAttr "titlePosition" "bottom"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type growProps =
+type grow =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// If `true`, show the component; triggers the enter or exit animation.
@@ -1970,8 +2526,7 @@ type growProps =
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module growProps =
+module grow =
 
   /// The duration for the transition, in milliseconds.
   ///
@@ -1981,8 +2536,8 @@ module growProps =
     static member inline auto = Interop.mkAttr "timeout" "auto"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type hiddenProps =
+[<Erase>]
+type hidden =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -2018,8 +2573,7 @@ type hiddenProps =
   /// If true, screens this size and up will be hidden.
   static member inline xsUp (value: bool) = Interop.mkAttr "xsUp" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module hiddenProps =
+module hidden =
 
   /// Specify which implementation to use. 'js' is the default, 'css' works better for server-side rendering.
   [<Erase>]
@@ -2050,8 +2604,8 @@ module hiddenProps =
     static member inline xl = Interop.mkAttr "only" "xl"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type iconProps =
+[<Erase>]
+type icon =
   /// The name of the icon font ligature.
   static member inline children (element: ReactElement) = prop.children element
   /// The name of the icon font ligature.
@@ -2071,8 +2625,7 @@ type iconProps =
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module iconProps =
+module icon =
 
   /// The color of the component.
   [<Erase>]
@@ -2093,8 +2646,8 @@ module iconProps =
     static member inline large = Interop.mkAttr "fontSize" "large"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type iconButtonProps =
+[<Erase>]
+type iconButton =
   /// The icon element.
   static member inline children (element: ReactElement) = prop.children element
   /// The icon element.
@@ -2115,9 +2668,60 @@ type iconButtonProps =
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module iconButtonProps =
+module iconButton =
 
   /// The color of the component.
   [<Erase>]
@@ -2140,9 +2744,18 @@ module iconButtonProps =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
 
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type inputProps =
+
+[<Erase>]
+type input =
   /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
@@ -2213,9 +2826,12 @@ type inputProps =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `inputBase`*
+  ///
+  /// Should be `true` when the component hosts a select.
+  static member inline select (value: bool) = Interop.mkAttr "select" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module inputProps =
+module input =
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -2224,8 +2840,8 @@ module inputProps =
     static member inline none = Interop.mkAttr "margin" "none"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type inputAdornmentProps =
+[<Erase>]
+type inputAdornment =
   /// The content of the component, normally an `IconButton` or string.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component, normally an `IconButton` or string.
@@ -2249,8 +2865,7 @@ type inputAdornmentProps =
   /// If children is a string then disable wrapping in a Typography component.
   static member inline disableTypography (value: bool) = Interop.mkAttr "disableTypography" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module inputAdornmentProps =
+module inputAdornment =
 
   /// The position this adornment should appear relative to the `Input`.
   [<Erase>]
@@ -2266,8 +2881,8 @@ module inputAdornmentProps =
     static member inline filled = Interop.mkAttr "variant" "filled"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type inputBaseProps =
+[<Erase>]
+type inputBase =
   /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
@@ -2339,8 +2954,7 @@ type inputBaseProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module inputBaseProps =
+module inputBase =
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -2349,8 +2963,8 @@ module inputBaseProps =
     static member inline none = Interop.mkAttr "margin" "none"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type inputLabelProps =
+[<Erase>]
+type inputLabel =
   /// The contents of the `InputLabel`.
   static member inline children (element: ReactElement) = prop.children element
   /// The contents of the `InputLabel`.
@@ -2377,9 +2991,20 @@ type inputLabelProps =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// If `true`, the label is shrunk.
   static member inline shrink (value: bool) = Interop.mkAttr "shrink" value
+  /// *Inherited from `formLabel`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `formLabel`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `formLabel`*
+  ///
+  /// If `true`, the label should use filled classes key.
+  static member inline filled (value: bool) = Interop.mkAttr "filled" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module inputLabelProps =
+module inputLabel =
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -2394,8 +3019,8 @@ module inputLabelProps =
     static member inline filled = Interop.mkAttr "variant" "filled"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type linearProgressProps =
+[<Erase>]
+type linearProgress =
   /// Override or extend the styles applied to the component. Use `classes.linearProgress` to specify class names.
   static member inline classes (classNames: classes.ILinearProgressClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
@@ -2405,8 +3030,7 @@ type linearProgressProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module linearProgressProps =
+module linearProgress =
 
   /// The color of the component.
   [<Erase>]
@@ -2423,8 +3047,7 @@ module linearProgressProps =
     static member inline query = Interop.mkAttr "variant" "query"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type linkProps =
+type link =
   /// The content of the link.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the link.
@@ -2447,9 +3070,26 @@ type linkProps =
   static member inline TypographyClasses (classNames: classes.ITypographyClasses list) = Interop.mkAttr "TypographyClasses" (createObj !!classNames)
   /// Applies the theme typography styles.
   static member inline variant (value: string) = Interop.mkAttr "variant" value
+  /// *Inherited from `typography`*
+  ///
+  /// If `true`, the text will have a bottom margin.
+  static member inline gutterBottom (value: bool) = Interop.mkAttr "gutterBottom" value
+  /// *Inherited from `typography`*
+  ///
+  /// If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+  ///
+  /// Note that text overflow can only happen with block or inline-block level elements (the element needs to have a width in order to overflow).
+  static member inline noWrap (value: bool) = Interop.mkAttr "noWrap" value
+  /// *Inherited from `typography`*
+  ///
+  /// If `true`, the text will have a bottom margin.
+  static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
+  /// *Inherited from `typography`*
+  ///
+  /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module linkProps =
+module link =
 
   /// The color of the link.
   [<Erase>]
@@ -2469,9 +3109,29 @@ module linkProps =
     static member inline hover = Interop.mkAttr "underline" "hover"
     static member inline always = Interop.mkAttr "underline" "always"
 
+  /// *Inherited from `typography`*
+  ///
+  /// Set the text-align on the component.
+  [<Erase>]
+  type align =
+    static member inline inherit' = Interop.mkAttr "align" "inherit"
+    static member inline left = Interop.mkAttr "align" "left"
+    static member inline center = Interop.mkAttr "align" "center"
+    static member inline right = Interop.mkAttr "align" "right"
+    static member inline justify = Interop.mkAttr "align" "justify"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listProps =
+  /// *Inherited from `typography`*
+  ///
+  /// Controls the display type
+  [<Erase>]
+  type display =
+    static member inline initial = Interop.mkAttr "display" "initial"
+    static member inline block = Interop.mkAttr "display" "block"
+    static member inline inline' = Interop.mkAttr "display" "inline"
+
+
+[<Erase>]
+type list =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -2508,8 +3168,8 @@ type listProps =
   static member inline subheader (value: float) = Interop.mkAttr "subheader" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listItemProps =
+[<Erase>]
+type listItem =
   /// If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// If `true`, the list item will be a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`.
@@ -2547,8 +3207,7 @@ type listItemProps =
   /// Use to apply selected styling.
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module listItemProps =
+module listItem =
 
   /// Defines the `align-items` style property.
   [<Erase>]
@@ -2557,24 +3216,24 @@ module listItemProps =
     static member inline center = Interop.mkAttr "alignItems" "center"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listItemAvatarProps =
+[<Erase>]
+type listItemAvatar =
   /// The content of the component – normally `Avatar`.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItemAvatar` to specify class names.
   static member inline classes (classNames: classes.IListItemAvatarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listItemIconProps =
+[<Erase>]
+type listItemIcon =
   /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.listItemIcon` to specify class names.
   static member inline classes (classNames: classes.IListItemIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listItemSecondaryActionProps =
+[<Erase>]
+type listItemSecondaryAction =
   /// The content of the component, normally an `IconButton` or selection control.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component, normally an `IconButton` or selection control.
@@ -2591,8 +3250,8 @@ type listItemSecondaryActionProps =
   static member inline classes (classNames: classes.IListItemSecondaryActionClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listItemTextProps =
+[<Erase>]
+type listItemText =
   /// Alias for the `primary` property.
   static member inline children (element: ReactElement) = prop.children element
   /// Alias for the `primary` property.
@@ -2641,8 +3300,8 @@ type listItemTextProps =
   static member inline secondaryTypographyProps (props: IReactProperty list) = Interop.mkAttr "secondaryTypographyProps" (createObj !!props)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type listSubheaderProps =
+[<Erase>]
+type listSubheader =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -2668,8 +3327,7 @@ type listSubheaderProps =
   /// If `true`, the List Subheader will be indented.
   static member inline inset (value: bool) = Interop.mkAttr "inset" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module listSubheaderProps =
+module listSubheader =
 
   /// The color of the component.
   [<Erase>]
@@ -2679,8 +3337,7 @@ module listSubheaderProps =
     static member inline inherit' = Interop.mkAttr "color" "inherit"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type menuProps =
+type menu =
   /// The DOM element used to set the position of the menu.
   static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
   /// The DOM element used to set the position of the menu.
@@ -2747,9 +3404,172 @@ type menuProps =
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The length of the transition in `ms`, or 'auto'
   static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  /// *Inherited from `popover`*
+  ///
+  /// A ref for imperative actions. It currently only supports updatePosition() action.
+  static member inline action (ref: IRefValue<PopoverActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `popover`*
+  ///
+  /// A ref for imperative actions. It currently only supports updatePosition() action.
+  static member inline action (handler: PopoverActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: int, vertical: PopoverOriginVertical) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: PopoverOriginHorizontal, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
+  static member anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (["left" ==> left; "top" ==> top] |> createObj)
+  /// *Inherited from `popover`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  /// *Inherited from `popover`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
+  /// *Inherited from `popover`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  /// *Inherited from `popover`*
+  ///
+  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
+  /// *Inherited from `popover`*
+  ///
+  /// The elevation of the popover.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `popover`*
+  ///
+  /// This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` prop. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element.
+  static member inline getContentAnchorEl (handler: Element option -> unit) = Interop.mkAttr "getContentAnchorEl" handler
+  /// *Inherited from `popover`*
+  ///
+  /// Specifies how close to the edge of the window the popover can appear.
+  static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
+  /// *Inherited from `popover`*
+  ///
+  /// `classes` prop applied to the [`Modal`](https://material-ui.com/api/modal/) element.
+  static member inline ModalClasses (classNames: classes.IModalClasses list) = Interop.mkAttr "ModalClasses" (createObj !!classNames)
+  /// *Inherited from `popover`*
+  ///
+  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: int, vertical: PopoverOriginVertical) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: PopoverOriginHorizontal, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// *Inherited from `popover`*
+  ///
+  /// The component used for the transition.
+  static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
+  /// *Inherited from `popover`*
+  ///
+  /// Props applied to the `Transition` element.
+  static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
+  /// *Inherited from `modal`*
+  ///
+  /// A backdrop component. This prop enables custom backdrop rendering.
+  static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
+  /// *Inherited from `modal`*
+  ///
+  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
+  /// *Inherited from `modal`*
+  ///
+  /// When set to true the Modal waits until a nested Transition is completed before closing.
+  static member inline closeAfterTransition (value: bool) = Interop.mkAttr "closeAfterTransition" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
+  ///
+  /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
+  static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, clicking the backdrop will not fire any callback.
+  static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not prevent focus from leaving the modal while open.
+  ///
+  /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
+  static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, hitting escape will not fire any callback.
+  static member inline disableEscapeKeyDown (value: bool) = Interop.mkAttr "disableEscapeKeyDown" value
+  /// *Inherited from `modal`*
+  ///
+  /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
+  static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not restore focus to previously focused element once modal is hidden.
+  static member inline disableRestoreFocus (value: bool) = Interop.mkAttr "disableRestoreFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// Disable the scroll lock behavior.
+  static member inline disableScrollLock (value: bool) = Interop.mkAttr "disableScrollLock" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the backdrop is not rendered.
+  static member inline hideBackdrop (value: bool) = Interop.mkAttr "hideBackdrop" value
+  /// *Inherited from `modal`*
+  ///
+  /// Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal.
+  static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
+  /// *Inherited from `modal`*
+  ///
+  /// Callback fired when the backdrop is clicked.
+  static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
+  /// *Inherited from `modal`*
+  ///
+  /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
+  static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module menuProps =
+module menu =
 
   /// The length of the transition in `ms`, or 'auto'
   [<Erase>]
@@ -2762,9 +3582,51 @@ module menuProps =
     static member inline menu = Interop.mkAttr "variant" "menu"
     static member inline selectedMenu = Interop.mkAttr "variant" "selectedMenu"
 
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  [<Erase>]
+  type anchorOrigin =
+    static member inline topLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "left" ])
+    static member inline topCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "center" ])
+    static member inline topRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "right" ])
+    static member inline centerLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "left" ])
+    static member inline centerCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "center" ])
+    static member inline centerRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "right" ])
+    static member inline bottomLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
+    static member inline bottomCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
+    static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type menuItemProps =
+  /// *Inherited from `popover`*
+  ///
+  [<Erase>]
+  type anchorReference =
+    static member inline anchorEl = Interop.mkAttr "anchorReference" "anchorEl"
+    static member inline anchorPosition = Interop.mkAttr "anchorReference" "anchorPosition"
+    static member inline none = Interop.mkAttr "anchorReference" "none"
+
+  /// *Inherited from `popover`*
+  ///
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  [<Erase>]
+  type transformOrigin =
+    static member inline topLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "left" ])
+    static member inline topCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "center" ])
+    static member inline topRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> "right" ])
+    static member inline centerLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "left" ])
+    static member inline centerCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "center" ])
+    static member inline centerRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> "right" ])
+    static member inline bottomLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
+    static member inline bottomCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
+    static member inline bottomRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
+
+
+[<Erase>]
+type menuItem =
   /// Menu item contents.
   static member inline children (element: ReactElement) = prop.children element
   /// Menu item contents.
@@ -2787,10 +3649,48 @@ type menuItemProps =
   static member inline dense (value: bool) = Interop.mkAttr "dense" value
   /// If `true`, the left and right padding is removed.
   static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
+  /// *Inherited from `listItem`*
+  ///
+  /// If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true.
+  static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// *Inherited from `listItem`*
+  ///
+  /// If `true`, the list item will be a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`.
+  static member inline button (value: bool) = Interop.mkAttr "button" value
+  /// *Inherited from `listItem`*
+  ///
+  /// The container component used when a `ListItemSecondaryAction` is the last child.
+  static member inline ContainerComponent (value: ReactElementType) = Interop.mkAttr "ContainerComponent" value
+  /// *Inherited from `listItem`*
+  ///
+  /// Props applied to the container component if used.
+  static member inline ContainerProps (props: IReactProperty list) = Interop.mkAttr "ContainerProps" (createObj !!props)
+  /// *Inherited from `listItem`*
+  ///
+  /// If `true`, the list item will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `listItem`*
+  ///
+  /// If `true`, a 1px light border is added to the bottom of the list item.
+  static member inline divider (value: bool) = Interop.mkAttr "divider" value
+  /// *Inherited from `listItem`*
+  ///
+  /// Use to apply selected styling.
+  static member inline selected (value: bool) = Interop.mkAttr "selected" value
+
+module menuItem =
+
+  /// *Inherited from `listItem`*
+  ///
+  /// Defines the `align-items` style property.
+  [<Erase>]
+  type alignItems =
+    static member inline flexStart = Interop.mkAttr "alignItems" "flex-start"
+    static member inline center = Interop.mkAttr "alignItems" "center"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type menuListProps =
+[<Erase>]
+type menuList =
   /// If `true`, will focus the `[role="menu"]` container and move into tab order
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// If `true`, will focus the first menuitem if `variant="menu"` or selected item if `variant="selectedMenu"`
@@ -2809,9 +3709,52 @@ type menuListProps =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// If `true`, the menu items will not wrap focus.
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
+  /// *Inherited from `list`*
+  ///
+  /// Override or extend the styles applied to the component. Use `classes.list` to specify class names.
+  static member inline classes (classNames: classes.IListClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// *Inherited from `list`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `list`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `list`*
+  ///
+  /// If `true`, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The prop is available to descendant components as the `dense` context.
+  static member inline dense (value: bool) = Interop.mkAttr "dense" value
+  /// *Inherited from `list`*
+  ///
+  /// If `true`, vertical padding will be removed from the list.
+  static member inline disablePadding (value: bool) = Interop.mkAttr "disablePadding" value
+  /// *Inherited from `list`*
+  ///
+  /// The content of the subheader, normally `ListSubheader`.
+  static member inline subheader (value: ReactElement) = Interop.mkAttr "subheader" value
+  /// *Inherited from `list`*
+  ///
+  /// The content of the subheader, normally `ListSubheader`.
+  static member inline subheader (values: ReactElement seq) = Interop.mkAttr "subheader" values
+  /// *Inherited from `list`*
+  ///
+  /// The content of the subheader, normally `ListSubheader`.
+  static member inline subheader (value: string) = Interop.mkAttr "subheader" value
+  /// *Inherited from `list`*
+  ///
+  /// The content of the subheader, normally `ListSubheader`.
+  static member inline subheader (values: string seq) = Interop.mkAttr "subheader" values
+  /// *Inherited from `list`*
+  ///
+  /// The content of the subheader, normally `ListSubheader`.
+  static member inline subheader (value: int) = Interop.mkAttr "subheader" value
+  /// *Inherited from `list`*
+  ///
+  /// The content of the subheader, normally `ListSubheader`.
+  static member inline subheader (value: float) = Interop.mkAttr "subheader" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module menuListProps =
+module menuList =
 
   /// The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element.
   [<Erase>]
@@ -2820,8 +3763,8 @@ module menuListProps =
     static member inline selectedMenu = Interop.mkAttr "variant" "selectedMenu"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type mobileStepperProps =
+[<Erase>]
+type mobileStepper =
   /// Set the active step (zero based index). Defines which dot is highlighted when the variant is 'dots'.
   static member inline activeStep (value: int) = Interop.mkAttr "activeStep" value
   /// A back button element. For instance, it can be a `Button` or an `IconButton`.
@@ -2856,9 +3799,24 @@ type mobileStepperProps =
   static member inline steps (value: int) = Interop.mkAttr "steps" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module mobileStepperProps =
+module mobileStepper =
 
   /// Set the positioning type.
   [<Erase>]
@@ -2875,8 +3833,8 @@ module mobileStepperProps =
     static member inline progress = Interop.mkAttr "variant" "progress"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type modalProps =
+[<Erase>]
+type modal =
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
   /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
@@ -2945,8 +3903,8 @@ type modalProps =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type nativeSelectProps =
+[<Erase>]
+type nativeSelect =
   /// The option elements to populate the select with. Can be some `<option>` elements.
   static member inline children (element: ReactElement) = prop.children element
   /// The option elements to populate the select with. Can be some `<option>` elements.
@@ -2985,9 +3943,104 @@ type nativeSelectProps =
   static member inline onChange (handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// The input value.
   static member inline value (value: string) = Interop.mkAttr "value" value
+  /// *Inherited from `input`*
+  ///
+  /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+  static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the `input` element will be focused during the first mount.
+  static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// *Inherited from `input`*
+  ///
+  /// The CSS class name of the wrapper element.
+  static member inline className (value: string) = Interop.mkAttr "className" value
+  /// *Inherited from `input`*
+  ///
+  /// The default `input` element value. Use when the component is not controlled.
+  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the `input` element will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the input will not have an underline.
+  static member inline disableUnderline (value: bool) = Interop.mkAttr "disableUnderline" value
+  /// *Inherited from `input`*
+  ///
+  /// End `InputAdornment` for this component.
+  static member inline endAdornment (element: ReactElement) = Interop.mkAttr "endAdornment" element
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the input will indicate an error. This is normally obtained via context from FormControl.
+  static member inline error (value: bool) = Interop.mkAttr "error" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the input will take up the full width of its container.
+  static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
+  /// *Inherited from `input`*
+  ///
+  /// The id of the `input` element.
+  static member inline id (value: string) = Interop.mkAttr "id" value
+  /// *Inherited from `input`*
+  ///
+  /// The component used for the native input. Either a string to use a DOM element or a component.
+  static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
+  /// *Inherited from `input`*
+  ///
+  /// The component used for the native input. Either a string to use a DOM element or a component.
+  static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
+  /// *Inherited from `input`*
+  ///
+  /// Pass a ref to the `input` element.
+  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  /// *Inherited from `input`*
+  ///
+  /// Pass a ref to the `input` element.
+  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, a textarea element will be rendered.
+  static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
+  /// *Inherited from `input`*
+  ///
+  /// Name attribute of the `input` element.
+  static member inline name (value: string) = Interop.mkAttr "name" value
+  /// *Inherited from `input`*
+  ///
+  /// The short hint displayed in the input before the user enters a value.
+  static member inline placeholder (value: string) = Interop.mkAttr "placeholder" value
+  /// *Inherited from `input`*
+  ///
+  /// It prevents the user from changing the value of the field (not from interacting with the field).
+  static member inline readOnly (value: bool) = Interop.mkAttr "readOnly" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the `input` element will be required.
+  static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// *Inherited from `input`*
+  ///
+  /// Number of rows to display when multiline option is set to true.
+  static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// *Inherited from `input`*
+  ///
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `input`*
+  ///
+  /// Start `InputAdornment` for this component.
+  static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
+  /// *Inherited from `input`*
+  ///
+  /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+  static member inline type' (value: string) = Interop.mkAttr "type" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Should be `true` when the component hosts a select.
+  static member inline select (value: bool) = Interop.mkAttr "select" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module nativeSelectProps =
+module nativeSelect =
 
   /// The variant to use.
   [<Erase>]
@@ -2996,9 +4049,17 @@ module nativeSelectProps =
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
 
+  /// *Inherited from `input`*
+  ///
+  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
+  [<Erase>]
+  type margin =
+    static member inline dense = Interop.mkAttr "margin" "dense"
+    static member inline none = Interop.mkAttr "margin" "none"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type noSsrProps =
+
+[<Erase>]
+type noSsr =
   /// You can wrap a node.
   static member inline children (element: ReactElement) = prop.children element
   /// You can wrap a node.
@@ -3027,8 +4088,8 @@ type noSsrProps =
   static member inline fallback (value: float) = Interop.mkAttr "fallback" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type outlinedInputProps =
+[<Erase>]
+type outlinedInput =
   /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
@@ -3099,9 +4160,12 @@ type outlinedInputProps =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `inputBase`*
+  ///
+  /// Should be `true` when the component hosts a select.
+  static member inline select (value: bool) = Interop.mkAttr "select" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module outlinedInputProps =
+module outlinedInput =
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -3110,8 +4174,8 @@ module outlinedInputProps =
     static member inline none = Interop.mkAttr "margin" "none"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type paperProps =
+[<Erase>]
+type paper =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -3136,8 +4200,7 @@ type paperProps =
   static member inline square (value: bool) = Interop.mkAttr "square" value
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type popoverProps =
+type popover =
   /// A ref for imperative actions. It currently only supports updatePosition() action.
   static member inline action (ref: IRefValue<PopoverActions option>) = Interop.mkAttr "action" ref
   /// A ref for imperative actions. It currently only supports updatePosition() action.
@@ -3256,9 +4319,68 @@ type popoverProps =
   static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
+  /// *Inherited from `modal`*
+  ///
+  /// A backdrop component. This prop enables custom backdrop rendering.
+  static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
+  /// *Inherited from `modal`*
+  ///
+  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
+  /// *Inherited from `modal`*
+  ///
+  /// When set to true the Modal waits until a nested Transition is completed before closing.
+  static member inline closeAfterTransition (value: bool) = Interop.mkAttr "closeAfterTransition" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
+  ///
+  /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
+  static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, clicking the backdrop will not fire any callback.
+  static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not prevent focus from leaving the modal while open.
+  ///
+  /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
+  static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, hitting escape will not fire any callback.
+  static member inline disableEscapeKeyDown (value: bool) = Interop.mkAttr "disableEscapeKeyDown" value
+  /// *Inherited from `modal`*
+  ///
+  /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
+  static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the modal will not restore focus to previously focused element once modal is hidden.
+  static member inline disableRestoreFocus (value: bool) = Interop.mkAttr "disableRestoreFocus" value
+  /// *Inherited from `modal`*
+  ///
+  /// Disable the scroll lock behavior.
+  static member inline disableScrollLock (value: bool) = Interop.mkAttr "disableScrollLock" value
+  /// *Inherited from `modal`*
+  ///
+  /// If `true`, the backdrop is not rendered.
+  static member inline hideBackdrop (value: bool) = Interop.mkAttr "hideBackdrop" value
+  /// *Inherited from `modal`*
+  ///
+  /// Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal.
+  static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
+  /// *Inherited from `modal`*
+  ///
+  /// Callback fired when the backdrop is clicked.
+  static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
+  /// *Inherited from `modal`*
+  ///
+  /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
+  static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module popoverProps =
+module popover =
 
   /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
   ///
@@ -3302,8 +4424,8 @@ module popoverProps =
     static member inline auto = Interop.mkAttr "transitionDuration" "auto"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type popperProps =
+[<Erase>]
+type popper =
   /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
   ///
   /// The reference element should be an HTML Element instance or a referenceObject: https://popper.js.org/popper-documentation.html#referenceObject.
@@ -3355,8 +4477,7 @@ type popperProps =
   /// Help supporting a react-transition-group/Transition component.
   static member inline transition (value: bool) = Interop.mkAttr "transition" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module popperProps =
+module popper =
 
   /// Popper placement.
   [<Erase>]
@@ -3375,8 +4496,8 @@ module popperProps =
     static member inline top = Interop.mkAttr "placement" "top"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type portalProps =
+[<Erase>]
+type portal =
   /// The children to render into the `container`.
   static member inline children (element: ReactElement) = prop.children element
   /// The children to render into the `container`.
@@ -3401,8 +4522,8 @@ type portalProps =
   static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type radioProps =
+[<Erase>]
+type radio =
   /// If `true`, the component is checked.
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The icon to display when the component is checked.
@@ -3441,9 +4562,64 @@ type radioProps =
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `iconButton`*
+  ///
+  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module radioProps =
+module radio =
 
   /// The color of the component.
   [<Erase>]
@@ -3452,9 +4628,26 @@ module radioProps =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline default' = Interop.mkAttr "color" "default"
 
+  /// *Inherited from `iconButton`*
+  ///
+  /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
+  [<Erase>]
+  type edge =
+    static member inline start = Interop.mkAttr "edge" "start"
+    static member inline end' = Interop.mkAttr "edge" "end"
+    static member inline false' = Interop.mkAttr "edge" false
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type radioGroupProps =
+  /// *Inherited from `iconButton`*
+  ///
+  /// The size of the button. `small` is equivalent to the dense button styling.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
+
+
+[<Erase>]
+type radioGroup =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -3489,10 +4682,18 @@ type radioGroupProps =
   static member inline onChange (handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
   /// Value of the selected radio button.
   static member inline value (value: string) = Interop.mkAttr "value" value
+  /// *Inherited from `formGroup`*
+  ///
+  /// Override or extend the styles applied to the component. Use `classes.formGroup` to specify class names.
+  static member inline classes (classNames: classes.IFormGroupClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// *Inherited from `formGroup`*
+  ///
+  /// Display group of elements in a compact row.
+  static member inline row (value: bool) = Interop.mkAttr "row" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type ratingProps =
+[<Erase>]
+type rating =
   /// Override or extend the styles applied to the component. Use `classes.rating` to specify class names.
   static member inline classes (classNames: classes.IRatingClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the rating will be disabled.
@@ -3612,8 +4813,7 @@ type ratingProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module ratingProps =
+module rating =
 
   /// The size of the rating.
   [<Erase>]
@@ -3623,8 +4823,8 @@ module ratingProps =
     static member inline large = Interop.mkAttr "size" "large"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type rootRefProps =
+[<Erase>]
+type rootRef =
   /// The wrapped element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// A ref that points to the first DOM node of the wrapped element.
@@ -3633,8 +4833,8 @@ type rootRefProps =
   static member inline rootRef (handler: Element -> unit) = Interop.mkAttr "rootRef" handler
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type selectProps =
+[<Erase>]
+type select =
   /// If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.
   static member inline autoWidth (value: bool) = Interop.mkAttr "autoWidth" value
   /// The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true.
@@ -3731,9 +4931,104 @@ type selectProps =
   static member inline SelectDisplayProps (props: IReactProperty list) = Interop.mkAttr "SelectDisplayProps" (createObj !!props)
   /// The input value. This prop is required when the `native` prop is `false` (default).
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// *Inherited from `input`*
+  ///
+  /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+  static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the `input` element will be focused during the first mount.
+  static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// *Inherited from `input`*
+  ///
+  /// The CSS class name of the wrapper element.
+  static member inline className (value: string) = Interop.mkAttr "className" value
+  /// *Inherited from `input`*
+  ///
+  /// The default `input` element value. Use when the component is not controlled.
+  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the `input` element will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the input will not have an underline.
+  static member inline disableUnderline (value: bool) = Interop.mkAttr "disableUnderline" value
+  /// *Inherited from `input`*
+  ///
+  /// End `InputAdornment` for this component.
+  static member inline endAdornment (element: ReactElement) = Interop.mkAttr "endAdornment" element
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the input will indicate an error. This is normally obtained via context from FormControl.
+  static member inline error (value: bool) = Interop.mkAttr "error" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the input will take up the full width of its container.
+  static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
+  /// *Inherited from `input`*
+  ///
+  /// The id of the `input` element.
+  static member inline id (value: string) = Interop.mkAttr "id" value
+  /// *Inherited from `input`*
+  ///
+  /// The component used for the native input. Either a string to use a DOM element or a component.
+  static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
+  /// *Inherited from `input`*
+  ///
+  /// The component used for the native input. Either a string to use a DOM element or a component.
+  static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
+  /// *Inherited from `input`*
+  ///
+  /// Pass a ref to the `input` element.
+  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  /// *Inherited from `input`*
+  ///
+  /// Pass a ref to the `input` element.
+  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, a textarea element will be rendered.
+  static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
+  /// *Inherited from `input`*
+  ///
+  /// Name attribute of the `input` element.
+  static member inline name (value: string) = Interop.mkAttr "name" value
+  /// *Inherited from `input`*
+  ///
+  /// The short hint displayed in the input before the user enters a value.
+  static member inline placeholder (value: string) = Interop.mkAttr "placeholder" value
+  /// *Inherited from `input`*
+  ///
+  /// It prevents the user from changing the value of the field (not from interacting with the field).
+  static member inline readOnly (value: bool) = Interop.mkAttr "readOnly" value
+  /// *Inherited from `input`*
+  ///
+  /// If `true`, the `input` element will be required.
+  static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// *Inherited from `input`*
+  ///
+  /// Number of rows to display when multiline option is set to true.
+  static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// *Inherited from `input`*
+  ///
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `input`*
+  ///
+  /// Start `InputAdornment` for this component.
+  static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
+  /// *Inherited from `input`*
+  ///
+  /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+  static member inline type' (value: string) = Interop.mkAttr "type" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Should be `true` when the component hosts a select.
+  static member inline select (value: bool) = Interop.mkAttr "select" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module selectProps =
+module select =
 
   /// The variant to use.
   [<Erase>]
@@ -3742,9 +5037,17 @@ module selectProps =
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
 
+  /// *Inherited from `input`*
+  ///
+  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
+  [<Erase>]
+  type margin =
+    static member inline dense = Interop.mkAttr "margin" "dense"
+    static member inline none = Interop.mkAttr "margin" "none"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type skeletonProps =
+
+[<Erase>]
+type skeleton =
   /// Override or extend the styles applied to the component. Use `classes.skeleton` to specify class names.
   static member inline classes (classNames: classes.ISkeletonClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -3764,8 +5067,7 @@ type skeletonProps =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module skeletonProps =
+module skeleton =
 
   /// The type of content that will be rendered.
   [<Erase>]
@@ -3775,8 +5077,7 @@ module skeletonProps =
     static member inline circle = Interop.mkAttr "variant" "circle"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type slideProps =
+type slide =
   /// A single child content element.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
@@ -3788,8 +5089,7 @@ type slideProps =
   /// The duration for the transition, in milliseconds.
   static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module slideProps =
+module slide =
 
   /// Direction the child node will enter from.
   [<Erase>]
@@ -3800,8 +5100,8 @@ module slideProps =
     static member inline down = Interop.mkAttr "direction" "down"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type sliderProps =
+[<Erase>]
+type slider =
   /// The label of the slider.
   static member inline ariaLabel (value: string) = Interop.mkAttr "aria-label" value
   /// The id of the element containing a label for the slider.
@@ -3990,13 +5290,11 @@ type sliderProps =
 [<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
 module sliderExtensions =
 
-  [<EditorBrowsable(EditorBrowsableState.Never)>]
-  type sliderProps with
+  type slider with
     /// The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
     static member inline step (value: float option) = Interop.mkAttr "step" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module sliderProps =
+module slider =
 
   /// The color of the component.
   [<Erase>]
@@ -4020,8 +5318,7 @@ module sliderProps =
     static member inline off = Interop.mkAttr "valueLabelDisplay" "off"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type snackbarProps =
+type snackbar =
   /// The action to display.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
   /// The action to display.
@@ -4107,8 +5404,7 @@ type snackbarProps =
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module snackbarProps =
+module snackbar =
 
   /// The anchor of the `Snackbar`.
   [<Erase>]
@@ -4121,8 +5417,8 @@ module snackbarProps =
     static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type snackbarContentProps =
+[<Erase>]
+type snackbarContent =
   /// The action to display.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
   /// The action to display.
@@ -4151,10 +5447,25 @@ type snackbarContentProps =
   static member inline message (value: float) = Interop.mkAttr "message" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type speedDialProps =
+type speedDial =
   /// The aria-label of the button element. Also used to provide the `id` for the `SpeedDial` element and its children.
   static member inline ariaLabel (value: string) = Interop.mkAttr "ariaLabel" value
   /// SpeedDialActions to display when the SpeedDial is `open`.
@@ -4208,8 +5519,7 @@ type speedDialProps =
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module speedDialProps =
+module speedDial =
 
   /// The direction the actions open relative to the floating action button.
   [<Erase>]
@@ -4220,8 +5530,8 @@ module speedDialProps =
     static member inline up = Interop.mkAttr "direction" "up"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type speedDialActionProps =
+[<Erase>]
+type speedDialAction =
   /// Override or extend the styles applied to the component. Use `classes.speedDialAction` to specify class names.
   static member inline classes (classNames: classes.ISpeedDialActionClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// Adds a transition delay, to allow a series of SpeedDialActions to be animated.
@@ -4248,9 +5558,104 @@ type speedDialActionProps =
   static member inline tooltipTitle (value: float) = Interop.mkAttr "tooltipTitle" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `tooltip`*
+  ///
+  /// Do not respond to focus events.
+  static member inline disableFocusListener (value: bool) = Interop.mkAttr "disableFocusListener" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Do not respond to hover events.
+  static member inline disableHoverListener (value: bool) = Interop.mkAttr "disableHoverListener" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Do not respond to long press touch events.
+  static member inline disableTouchListener (value: bool) = Interop.mkAttr "disableTouchListener" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`).
+  static member inline enterDelay (value: int) = Interop.mkAttr "enterDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds a user must touch the element before showing the tooltip.
+  static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The relationship between the tooltip and the wrapper component is not clear from the DOM. This prop is used with aria-describedby to solve the accessibility issue. If you don't provide this prop. It falls back to a randomly generated id.
+  static member inline id (value: string) = Interop.mkAttr "id" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Makes a tooltip interactive, i.e. will not close when the user hovers over the tooltip before the `leaveDelay` is expired.
+  static member inline interactive (value: bool) = Interop.mkAttr "interactive" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds to wait before hiding the tooltip. This prop won't impact the leave touch delay (`leaveTouchDelay`).
+  static member inline leaveDelay (value: int) = Interop.mkAttr "leaveDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds after the user stops touching an element before hiding the tooltip.
+  static member inline leaveTouchDelay (value: int) = Interop.mkAttr "leaveTouchDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Callback fired when the component requests to be closed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object) => void`
+  ///
+  /// *event:* The event source of the callback.
+  static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
+  /// *Inherited from `tooltip`*
+  ///
+  /// Callback fired when the component requests to be open.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object) => void`
+  ///
+  /// *event:* The event source of the callback.
+  static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
+  /// *Inherited from `tooltip`*
+  ///
+  /// If `true`, the tooltip is shown.
+  static member inline open' (value: bool) = Interop.mkAttr "open" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Props applied to the [`Popper`](https://material-ui.com/api/popper/) element.
+  static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string are never displayed.
+  static member inline title (value: ReactElement) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string are never displayed.
+  static member inline title (values: ReactElement seq) = Interop.mkAttr "title" values
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string are never displayed.
+  static member inline title (value: string) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string are never displayed.
+  static member inline title (values: string seq) = Interop.mkAttr "title" values
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string are never displayed.
+  static member inline title (value: int) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string are never displayed.
+  static member inline title (value: float) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The component used for the transition.
+  static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Props applied to the `Transition` element.
+  static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module speedDialActionProps =
+module speedDialAction =
 
   /// Placement of the tooltip.
   [<Erase>]
@@ -4268,9 +5673,27 @@ module speedDialActionProps =
     static member inline topStart = Interop.mkAttr "tooltipPlacement" "top-start"
     static member inline top = Interop.mkAttr "tooltipPlacement" "top"
 
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip placement.
+  [<Erase>]
+  type placement =
+    static member inline bottomEnd = Interop.mkAttr "placement" "bottom-end"
+    static member inline bottomStart = Interop.mkAttr "placement" "bottom-start"
+    static member inline bottom = Interop.mkAttr "placement" "bottom"
+    static member inline leftEnd = Interop.mkAttr "placement" "left-end"
+    static member inline leftStart = Interop.mkAttr "placement" "left-start"
+    static member inline left = Interop.mkAttr "placement" "left"
+    static member inline rightEnd = Interop.mkAttr "placement" "right-end"
+    static member inline rightStart = Interop.mkAttr "placement" "right-start"
+    static member inline right = Interop.mkAttr "placement" "right"
+    static member inline topEnd = Interop.mkAttr "placement" "top-end"
+    static member inline topStart = Interop.mkAttr "placement" "top-start"
+    static member inline top = Interop.mkAttr "placement" "top"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type speedDialIconProps =
+
+[<Erase>]
+type speedDialIcon =
   /// Override or extend the styles applied to the component. Use `classes.speedDialIcon` to specify class names.
   static member inline classes (classNames: classes.ISpeedDialIconClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon to display in the SpeedDial Floating Action Button.
@@ -4281,8 +5704,8 @@ type speedDialIconProps =
   static member inline children  = UnsupportedProp ()
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type stepProps =
+[<Erase>]
+type step =
   /// Sets the step as active. Is passed to child components.
   static member inline active (value: bool) = Interop.mkAttr "active" value
   /// Should be `Step` sub-components such as `StepLabel`, `StepContent`.
@@ -4305,8 +5728,8 @@ type stepProps =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type stepButtonProps =
+[<Erase>]
+type stepButton =
   /// Can be a `StepLabel` or a node to place inside `StepLabel` as children.
   static member inline children (element: ReactElement) = prop.children element
   /// Can be a `StepLabel` or a node to place inside `StepLabel` as children.
@@ -4335,18 +5758,90 @@ type stepButtonProps =
   static member inline optional (value: int) = Interop.mkAttr "optional" value
   /// The optional node to display.
   static member inline optional (value: float) = Interop.mkAttr "optional" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripple effect will be disabled.
+  ///
+  /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
+  static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+module stepButton =
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type stepConnectorProps =
+[<Erase>]
+type stepConnector =
   /// Override or extend the styles applied to the component. Use `classes.stepConnector` to specify class names.
   static member inline classes (classNames: classes.IStepConnectorClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type stepContentProps =
+type stepContent =
   /// Step content.
   static member inline children (element: ReactElement) = prop.children element
   /// Step content.
@@ -4374,8 +5869,7 @@ type stepContentProps =
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module stepContentProps =
+module stepContent =
 
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
@@ -4385,8 +5879,8 @@ module stepContentProps =
     static member inline auto = Interop.mkAttr "transitionDuration" "auto"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type stepIconProps =
+[<Erase>]
+type stepIcon =
   /// Whether this step is active.
   static member inline active (value: bool) = Interop.mkAttr "active" value
   /// Override or extend the styles applied to the component. Use `classes.stepIcon` to specify class names.
@@ -4401,8 +5895,8 @@ type stepIconProps =
   static member inline children  = UnsupportedProp ()
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type stepLabelProps =
+[<Erase>]
+type stepLabel =
   /// In most cases will simply be a string containing a title for the label.
   static member inline children (element: ReactElement) = prop.children element
   /// In most cases will simply be a string containing a title for the label.
@@ -4441,8 +5935,8 @@ type stepLabelProps =
   static member inline StepIconProps (props: IReactProperty list) = Interop.mkAttr "StepIconProps" (createObj !!props)
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type stepperProps =
+[<Erase>]
+type stepper =
   /// Set the active step (zero based index).
   static member inline activeStep (value: int) = Interop.mkAttr "activeStep" value
   /// If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon.
@@ -4455,9 +5949,24 @@ type stepperProps =
   static member inline connector (value: ReactElement) = Interop.mkAttr "connector" value
   /// If set the `Stepper` will not assist in controlling steps for linear flow.
   static member inline nonLinear (value: bool) = Interop.mkAttr "nonLinear" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module stepperProps =
+module stepper =
 
   /// The stepper orientation (layout flow direction).
   [<Erase>]
@@ -4466,8 +5975,8 @@ module stepperProps =
     static member inline vertical = Interop.mkAttr "orientation" "vertical"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type svgIconProps =
+[<Erase>]
+type svgIcon =
   /// Node passed into the SVG element.
   static member inline children (element: ReactElement) = prop.children element
   /// Node passed into the SVG element.
@@ -4495,8 +6004,7 @@ type svgIconProps =
   /// Allows you to redefine what the coordinates without units mean inside an SVG element. For example, if the SVG element is 500 (width) by 200 (height), and you pass viewBox="0 0 50 20", this means that the coordinates inside the SVG will go from the top left corner (0,0) to bottom right (50,20) and each unit will be worth 10px.
   static member inline viewBox (value: string) = Interop.mkAttr "viewBox" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module svgIconProps =
+module svgIcon =
 
   /// The color of the component. You can use the `htmlColor` prop to apply a color attribute to the SVG element.
   [<Erase>]
@@ -4517,8 +6025,7 @@ module svgIconProps =
     static member inline small = Interop.mkAttr "fontSize" "small"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type swipeableDrawerProps =
+type swipeableDrawer =
   /// Disable the backdrop transition. This can improve the FPS on low-end devices.
   static member inline disableBackdropTransition (value: bool) = Interop.mkAttr "disableBackdropTransition" value
   /// If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture.
@@ -4567,10 +6074,51 @@ type swipeableDrawerProps =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// *Inherited from `drawer`*
+  ///
+  /// Override or extend the styles applied to the component. Use `classes.drawer` to specify class names.
+  static member inline classes (classNames: classes.IDrawerClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// *Inherited from `drawer`*
+  ///
+  /// The elevation of the drawer.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `drawer`*
+  ///
+  /// Props applied to the [`Modal`](https://material-ui.com/api/modal/) element.
+  static member inline ModalProps (props: IReactProperty list) = Interop.mkAttr "ModalProps" (createObj !!props)
+  /// *Inherited from `drawer`*
+  ///
+  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
+  /// *Inherited from `drawer`*
+  ///
+  /// Props applied to the [`Slide`](https://material-ui.com/api/slide/) element.
+  static member inline SlideProps (props: IReactProperty list) = Interop.mkAttr "SlideProps" (createObj !!props)
+
+module swipeableDrawer =
+
+  /// *Inherited from `drawer`*
+  ///
+  /// Side from which the drawer will appear.
+  [<Erase>]
+  type anchor =
+    static member inline left = Interop.mkAttr "anchor" "left"
+    static member inline top = Interop.mkAttr "anchor" "top"
+    static member inline right = Interop.mkAttr "anchor" "right"
+    static member inline bottom = Interop.mkAttr "anchor" "bottom"
+
+  /// *Inherited from `drawer`*
+  ///
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline permanent = Interop.mkAttr "variant" "permanent"
+    static member inline persistent = Interop.mkAttr "variant" "persistent"
+    static member inline temporary = Interop.mkAttr "variant" "temporary"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type switchProps =
+[<Erase>]
+type switch =
   /// If `true`, the component is checked.
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The icon to display when the component is checked.
@@ -4615,9 +6163,64 @@ type switchProps =
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `iconButton`*
+  ///
+  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module switchProps =
+module switch =
 
   /// The color of the component.
   [<Erase>]
@@ -4640,8 +6243,8 @@ module switchProps =
     static member inline medium = Interop.mkAttr "size" "medium"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tabProps =
+[<Erase>]
+type tab =
   /// This prop isn't supported. Use the `component` prop if you need to change the children structure.
   static member inline children  = UnsupportedProp ()
   /// Override or extend the styles applied to the component. Use `classes.tab` to specify class names.
@@ -4670,10 +6273,73 @@ type tabProps =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// Tab labels appear in a single row. They can use a second line if needed.
   static member inline wrapped (value: bool) = Interop.mkAttr "wrapped" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+module tab =
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableProps =
+[<Erase>]
+type table =
   /// The content of the table, normally `TableHead` and `TableBody`.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the table, normally `TableHead` and `TableBody`.
@@ -4697,8 +6363,7 @@ type tableProps =
   /// ⚠️ It doesn't work with IE 11.
   static member inline stickyHeader (value: bool) = Interop.mkAttr "stickyHeader" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module tableProps =
+module table =
 
   /// Allows TableCells to inherit padding of the Table.
   [<Erase>]
@@ -4714,8 +6379,8 @@ module tableProps =
     static member inline medium = Interop.mkAttr "size" "medium"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableBodyProps =
+[<Erase>]
+type tableBody =
   /// The content of the component, normally `TableRow`.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component, normally `TableRow`.
@@ -4736,8 +6401,8 @@ type tableBodyProps =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableCellProps =
+[<Erase>]
+type tableCell =
   /// The table cell contents.
   static member inline children (element: ReactElement) = prop.children element
   /// The table cell contents.
@@ -4759,8 +6424,7 @@ type tableCellProps =
   /// Set scope attribute.
   static member inline scope (value: string) = Interop.mkAttr "scope" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module tableCellProps =
+module tableCell =
 
   /// Set the text-align on the table cell content.
   ///
@@ -4801,8 +6465,8 @@ module tableCellProps =
     static member inline footer = Interop.mkAttr "variant" "footer"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableFooterProps =
+[<Erase>]
+type tableFooter =
   /// The content of the component, normally `TableRow`.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component, normally `TableRow`.
@@ -4823,8 +6487,8 @@ type tableFooterProps =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableHeadProps =
+[<Erase>]
+type tableHead =
   /// The content of the component, normally `TableRow`.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component, normally `TableRow`.
@@ -4845,8 +6509,8 @@ type tableHeadProps =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tablePaginationProps =
+[<Erase>]
+type tablePagination =
   /// The component used for displaying the actions. Either a string to use a DOM element or a component.
   static member inline ActionsComponent (value: ReactElementType) = Interop.mkAttr "ActionsComponent" value
   /// Props applied to the back arrow [`IconButton`](https://material-ui.com/api/icon-button/) component.
@@ -4913,10 +6577,64 @@ type tablePaginationProps =
   static member inline SelectProps (props: IReactProperty list) = Interop.mkAttr "SelectProps" (createObj !!props)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `tableCell`*
+  ///
+  /// Set scope attribute.
+  static member inline scope (value: string) = Interop.mkAttr "scope" value
+
+module tablePagination =
+
+  /// *Inherited from `tableCell`*
+  ///
+  /// Set the text-align on the table cell content.
+  ///
+  /// Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals.
+  [<Erase>]
+  type align =
+    static member inline inherit' = Interop.mkAttr "align" "inherit"
+    static member inline left = Interop.mkAttr "align" "left"
+    static member inline center = Interop.mkAttr "align" "center"
+    static member inline right = Interop.mkAttr "align" "right"
+    static member inline justify = Interop.mkAttr "align" "justify"
+
+  /// *Inherited from `tableCell`*
+  ///
+  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
+  [<Erase>]
+  type padding =
+    static member inline default' = Interop.mkAttr "padding" "default"
+    static member inline checkbox = Interop.mkAttr "padding" "checkbox"
+    static member inline none = Interop.mkAttr "padding" "none"
+
+  /// *Inherited from `tableCell`*
+  ///
+  /// Specify the size of the cell. By default, the Table parent component set the value (`medium`).
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
+
+  /// *Inherited from `tableCell`*
+  ///
+  /// Set aria-sort direction.
+  [<Erase>]
+  type sortDirection =
+    static member inline asc = Interop.mkAttr "sortDirection" "asc"
+    static member inline desc = Interop.mkAttr "sortDirection" "desc"
+    static member inline false' = Interop.mkAttr "sortDirection" false
+
+  /// *Inherited from `tableCell`*
+  ///
+  /// Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value.
+  [<Erase>]
+  type variant =
+    static member inline head = Interop.mkAttr "variant" "head"
+    static member inline body = Interop.mkAttr "variant" "body"
+    static member inline footer = Interop.mkAttr "variant" "footer"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableRowProps =
+[<Erase>]
+type tableRow =
   /// Should be valid `<tr>` children such as `TableCell`.
   static member inline children (element: ReactElement) = prop.children element
   /// Should be valid `<tr>` children such as `TableCell`.
@@ -4933,8 +6651,8 @@ type tableRowProps =
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tableSortLabelProps =
+[<Erase>]
+type tableSortLabel =
   /// If `true`, the label will have the active styling (should be true for the sorted column).
   static member inline active (value: bool) = Interop.mkAttr "active" value
   /// Label contents, the arrow will be appended automatically.
@@ -4955,9 +6673,70 @@ type tableSortLabelProps =
   static member inline hideSortIcon (value: bool) = Interop.mkAttr "hideSortIcon" value
   /// Sort icon to use.
   static member inline IconComponent (value: ReactElementType) = Interop.mkAttr "IconComponent" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripple effect will be disabled.
+  ///
+  /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
+  static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module tableSortLabelProps =
+module tableSortLabel =
 
   /// The current sort direction.
   [<Erase>]
@@ -4965,9 +6744,18 @@ module tableSortLabelProps =
     static member inline asc = Interop.mkAttr "direction" "asc"
     static member inline desc = Interop.mkAttr "direction" "desc"
 
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tabsProps =
+
+[<Erase>]
+type tabs =
   /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
   static member inline action (ref: IRefValue<TabsActions option>) = Interop.mkAttr "action" ref
   /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
@@ -5019,8 +6807,7 @@ type tabsProps =
   /// The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module tabsProps =
+module tabs =
 
   /// Determines the color of the indicator.
   [<Erase>]
@@ -5061,8 +6848,8 @@ module tabsProps =
     static member inline fullWidth = Interop.mkAttr "variant" "fullWidth"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type textareaAutosizeProps =
+[<Erase>]
+type textareaAutosize =
   /// Minimum number of rows to display.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// Maximum number of rows to display.
@@ -5071,8 +6858,8 @@ type textareaAutosizeProps =
   static member inline children  = UnsupportedProp ()
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type textFieldProps =
+[<Erase>]
+type textField =
   /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
@@ -5163,9 +6950,20 @@ type textFieldProps =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `formControl`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `formControl`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `formControl`*
+  ///
+  /// If `true`, the label will be hidden. This is used to increase density for a `FilledInput`. Be sure to add `aria-label` to the `input` element.
+  static member inline hiddenLabel (value: bool) = Interop.mkAttr "hiddenLabel" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module textFieldProps =
+module textField =
 
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
@@ -5182,8 +6980,8 @@ module textFieldProps =
     static member inline filled = Interop.mkAttr "variant" "filled"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type toggleButtonProps =
+[<Erase>]
+type toggleButton =
   /// The content of the button.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the button.
@@ -5208,10 +7006,73 @@ type toggleButtonProps =
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
   /// The value to associate with the button when selected in a ToggleButtonGroup.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Use that prop to pass a ref to the native button component.
+  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+module toggleButton =
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type toggleButtonGroupProps =
+[<Erase>]
+type toggleButtonGroup =
   /// The content of the button.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the button.
@@ -5253,8 +7114,7 @@ type toggleButtonGroupProps =
   /// The currently selected value within the group or an array of selected values when `exclusive` is false.
   static member inline value (values: 'toggleButtonValue []) = Interop.mkAttr "value" values
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module toggleButtonGroupProps =
+module toggleButtonGroup =
 
   /// The size of the buttons.
   [<Erase>]
@@ -5264,8 +7124,8 @@ module toggleButtonGroupProps =
     static member inline small = Interop.mkAttr "size" "small"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type toolbarProps =
+[<Erase>]
+type toolbar =
   /// Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
   static member inline children (element: ReactElement) = prop.children element
   /// Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
@@ -5287,8 +7147,7 @@ type toolbarProps =
   /// If `true`, disables gutter padding.
   static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module toolbarProps =
+module toolbar =
 
   /// The variant to use.
   [<Erase>]
@@ -5297,8 +7156,8 @@ module toolbarProps =
     static member inline dense = Interop.mkAttr "variant" "dense"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type tooltipProps =
+[<Erase>]
+type tooltip =
   /// Tooltip reference element.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
@@ -5360,8 +7219,7 @@ type tooltipProps =
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module tooltipProps =
+module tooltip =
 
   /// Tooltip placement.
   [<Erase>]
@@ -5380,8 +7238,8 @@ module tooltipProps =
     static member inline top = Interop.mkAttr "placement" "top"
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type touchRippleProps =
+[<Erase>]
+type touchRipple =
   /// If `true`, the ripple starts at the center of the component rather than at the point of interaction.
   static member inline center (value: bool) = Interop.mkAttr "center" value
   /// Override or extend the styles applied to the component. Use `classes.touchRipple` to specify class names.
@@ -5390,8 +7248,8 @@ type touchRippleProps =
   static member inline children  = UnsupportedProp ()
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type treeItemProps =
+[<Erase>]
+type treeItem =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -5432,8 +7290,8 @@ type treeItemProps =
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
 
 
-[<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
-type treeViewProps =
+[<Erase>]
+type treeView =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -5470,8 +7328,7 @@ type treeViewProps =
   static member inline onNodeToggle (handler: string -> bool -> unit) = Interop.mkAttr "onNodeToggle" handler
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type typographyProps =
+type typography =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -5501,8 +7358,7 @@ type typographyProps =
   /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-module typographyProps =
+module typography =
 
   /// Set the text-align on the component.
   [<Erase>]
@@ -5551,8 +7407,7 @@ module typographyProps =
     static member inline inherit' = Interop.mkAttr "variant" "inherit"
 
 
-[<EditorBrowsable(EditorBrowsableState.Never)>]
-type zoomProps =
+type zoom =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// If `true`, the component will transition in.
@@ -5561,5880 +7416,3 @@ type zoomProps =
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
   static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
-
-
-
-[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
-module InheritanceLevel3 =
-
-  type checkbox = prop
-  type menu = prop
-  type nativeSelect = prop
-  type radio = prop
-  type select = prop
-  type switch = prop
-
-[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
-module InheritanceLevel2 =
-
-  type appBar = prop
-  type bottomNavigationAction = prop
-  type button = prop
-  type card = prop
-  type cardActionArea = prop
-  type checkbox = buttonBaseProps
-  type dialog = prop
-  type dialogContentText = prop
-  type expansionPanel = prop
-  type expansionPanelSummary = prop
-  type fab = prop
-  type filledInput = prop
-  type iconButton = prop
-  type input = prop
-  type inputLabel = prop
-  type link = prop
-  type menu = modalProps
-  type menuItem = prop
-  type menuList = prop
-  type mobileStepper = prop
-  type nativeSelect = inputBaseProps
-  type outlinedInput = prop
-  type popover = prop
-  type radio = buttonBaseProps
-  type radioGroup = prop
-  type select = inputBaseProps
-  type snackbarContent = prop
-  type speedDialAction = prop
-  type stepButton = prop
-  type stepper = prop
-  type swipeableDrawer = prop
-  type switch = buttonBaseProps
-  type tab = prop
-  type tablePagination = prop
-  type tableSortLabel = prop
-  type textField = prop
-  type toggleButton = prop
-
-[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
-module InheritanceLevel1 =
-
-  type appBar = paperProps
-  type avatar = prop
-  type backdrop = prop
-  type badge = prop
-  type bottomNavigation = prop
-  type bottomNavigationAction = buttonBaseProps
-  type breadcrumbs = prop
-  type button = buttonBaseProps
-  type buttonBase = prop
-  type buttonGroup = prop
-  type card = paperProps
-  type cardActionArea = buttonBaseProps
-  type cardActions = prop
-  type cardContent = prop
-  type cardHeader = prop
-  type cardMedia = prop
-  type checkbox = iconButtonProps
-  type chip = prop
-  type circularProgress = prop
-  type container = prop
-  type dialog = modalProps
-  type dialogActions = prop
-  type dialogContent = prop
-  type dialogContentText = typographyProps
-  type dialogTitle = prop
-  type divider = prop
-  type drawer = prop
-  type expansionPanel = paperProps
-  type expansionPanelActions = prop
-  type expansionPanelDetails = prop
-  type expansionPanelSummary = buttonBaseProps
-  type fab = buttonBaseProps
-  type filledInput = inputBaseProps
-  type formControl = prop
-  type formControlLabel = prop
-  type formGroup = prop
-  type formHelperText = prop
-  type formLabel = prop
-  type grid = prop
-  type gridList = prop
-  type gridListTile = prop
-  type gridListTileBar = prop
-  type hidden = prop
-  type icon = prop
-  type iconButton = buttonBaseProps
-  type input = inputBaseProps
-  type inputAdornment = prop
-  type inputBase = prop
-  type inputLabel = formLabelProps
-  type linearProgress = prop
-  type link = typographyProps
-  type list = prop
-  type listItem = prop
-  type listItemAvatar = prop
-  type listItemIcon = prop
-  type listItemSecondaryAction = prop
-  type listItemText = prop
-  type listSubheader = prop
-  type menu = popoverProps
-  type menuItem = listItemProps
-  type menuList = listProps
-  type mobileStepper = paperProps
-  type modal = prop
-  type nativeSelect = inputProps
-  type outlinedInput = inputBaseProps
-  type paper = prop
-  type popover = modalProps
-  type popper = prop
-  type radio = iconButtonProps
-  type radioGroup = formGroupProps
-  type rating = prop
-  type select = inputProps
-  type skeleton = prop
-  type slider = prop
-  type snackbar = prop
-  type snackbarContent = paperProps
-  type speedDial = prop
-  type speedDialAction = tooltipProps
-  type speedDialIcon = prop
-  type step = prop
-  type stepButton = buttonBaseProps
-  type stepConnector = prop
-  type stepContent = prop
-  type stepIcon = prop
-  type stepLabel = prop
-  type stepper = paperProps
-  type svgIcon = prop
-  type swipeableDrawer = drawerProps
-  type switch = iconButtonProps
-  type tab = buttonBaseProps
-  type table = prop
-  type tableBody = prop
-  type tableCell = prop
-  type tableFooter = prop
-  type tableHead = prop
-  type tablePagination = tableCellProps
-  type tableRow = prop
-  type tableSortLabel = buttonBaseProps
-  type tabs = prop
-  type textareaAutosize = prop
-  type textField = formControlProps
-  type toggleButton = buttonBaseProps
-  type toggleButtonGroup = prop
-  type toolbar = prop
-  type tooltip = prop
-  type touchRipple = prop
-  type treeItem = prop
-  type treeView = prop
-  type typography = prop
-
-[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
-module InheritanceLevel0 =
-
-  type muiThemeProvider = muiThemeProviderProps
-  type appBar = appBarProps
-  type avatar = avatarProps
-  type backdrop = backdropProps
-  type badge = badgeProps
-  type bottomNavigation = bottomNavigationProps
-  type bottomNavigationAction = bottomNavigationActionProps
-  type breadcrumbs = breadcrumbsProps
-  type button = buttonProps
-  type buttonBase = buttonBaseProps
-  type buttonGroup = buttonGroupProps
-  type card = cardProps
-  type cardActionArea = cardActionAreaProps
-  type cardActions = cardActionsProps
-  type cardContent = cardContentProps
-  type cardHeader = cardHeaderProps
-  type cardMedia = cardMediaProps
-  type checkbox = checkboxProps
-  type chip = chipProps
-  type circularProgress = circularProgressProps
-  type clickAwayListener = clickAwayListenerProps
-  type collapse = collapseProps
-  type container = containerProps
-  type cssBaseline = cssBaselineProps
-  type dialog = dialogProps
-  type dialogActions = dialogActionsProps
-  type dialogContent = dialogContentProps
-  type dialogContentText = dialogContentTextProps
-  type dialogTitle = dialogTitleProps
-  type divider = dividerProps
-  type drawer = drawerProps
-  type expansionPanel = expansionPanelProps
-  type expansionPanelActions = expansionPanelActionsProps
-  type expansionPanelDetails = expansionPanelDetailsProps
-  type expansionPanelSummary = expansionPanelSummaryProps
-  type fab = fabProps
-  type fade = fadeProps
-  type filledInput = filledInputProps
-  type formControl = formControlProps
-  type formControlLabel = formControlLabelProps
-  type formGroup = formGroupProps
-  type formHelperText = formHelperTextProps
-  type formLabel = formLabelProps
-  type grid = gridProps
-  type gridList = gridListProps
-  type gridListTile = gridListTileProps
-  type gridListTileBar = gridListTileBarProps
-  type grow = growProps
-  type hidden = hiddenProps
-  type icon = iconProps
-  type iconButton = iconButtonProps
-  type input = inputProps
-  type inputAdornment = inputAdornmentProps
-  type inputBase = inputBaseProps
-  type inputLabel = inputLabelProps
-  type linearProgress = linearProgressProps
-  type link = linkProps
-  type list = listProps
-  type listItem = listItemProps
-  type listItemAvatar = listItemAvatarProps
-  type listItemIcon = listItemIconProps
-  type listItemSecondaryAction = listItemSecondaryActionProps
-  type listItemText = listItemTextProps
-  type listSubheader = listSubheaderProps
-  type menu = menuProps
-  type menuItem = menuItemProps
-  type menuList = menuListProps
-  type mobileStepper = mobileStepperProps
-  type modal = modalProps
-  type nativeSelect = nativeSelectProps
-  type noSsr = noSsrProps
-  type outlinedInput = outlinedInputProps
-  type paper = paperProps
-  type popover = popoverProps
-  type popper = popperProps
-  type portal = portalProps
-  type radio = radioProps
-  type radioGroup = radioGroupProps
-  type rating = ratingProps
-  type rootRef = rootRefProps
-  type select = selectProps
-  type skeleton = skeletonProps
-  type slide = slideProps
-  type slider = sliderProps
-  type snackbar = snackbarProps
-  type snackbarContent = snackbarContentProps
-  type speedDial = speedDialProps
-  type speedDialAction = speedDialActionProps
-  type speedDialIcon = speedDialIconProps
-  type step = stepProps
-  type stepButton = stepButtonProps
-  type stepConnector = stepConnectorProps
-  type stepContent = stepContentProps
-  type stepIcon = stepIconProps
-  type stepLabel = stepLabelProps
-  type stepper = stepperProps
-  type svgIcon = svgIconProps
-  type swipeableDrawer = swipeableDrawerProps
-  type switch = switchProps
-  type tab = tabProps
-  type table = tableProps
-  type tableBody = tableBodyProps
-  type tableCell = tableCellProps
-  type tableFooter = tableFooterProps
-  type tableHead = tableHeadProps
-  type tablePagination = tablePaginationProps
-  type tableRow = tableRowProps
-  type tableSortLabel = tableSortLabelProps
-  type tabs = tabsProps
-  type textareaAutosize = textareaAutosizeProps
-  type textField = textFieldProps
-  type toggleButton = toggleButtonProps
-  type toggleButtonGroup = toggleButtonGroupProps
-  type toolbar = toolbarProps
-  type tooltip = tooltipProps
-  type touchRipple = touchRippleProps
-  type treeItem = treeItemProps
-  type treeView = treeViewProps
-  type typography = typographyProps
-  type zoom = zoomProps
-
-
-
-module appBar =
-
-  /// The color of the component.
-  type color = appBarProps.color
-  /// The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
-  type position = appBarProps.position
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module avatar =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module backdrop =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module badge =
-
-  /// The anchor of the badge.
-  type anchorOrigin = badgeProps.anchorOrigin
-  /// The color of the component.
-  type color = badgeProps.color
-  /// Wrapped shape the badge should overlap.
-  type overlap = badgeProps.overlap
-  /// The variant to use.
-  type variant = badgeProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module bottomNavigation =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module bottomNavigationAction =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module breadcrumbs =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module button =
-
-  /// The color of the component.
-  type color = buttonProps.color
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  type size = buttonProps.size
-  /// The variant to use.
-  type variant = buttonProps.variant
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module buttonBase =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module buttonGroup =
-
-  /// The color of the component.
-  type color = buttonGroupProps.color
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  type size = buttonGroupProps.size
-  /// The variant to use.
-  type variant = buttonGroupProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module card =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module cardActionArea =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module cardActions =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module cardContent =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module cardHeader =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module cardMedia =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module checkbox =
-
-  /// The color of the component.
-  type color = checkboxProps.color
-  /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
-  type edge = iconButtonProps.edge
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  type size = iconButtonProps.size
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module chip =
-
-  /// The color of the component.
-  type color = chipProps.color
-  /// The size of the chip.
-  type size = chipProps.size
-  /// The variant to use.
-  type variant = chipProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module circularProgress =
-
-  /// The color of the component.
-  type color = circularProgressProps.color
-  /// The variant to use. Use indeterminate when there is no progress value.
-  type variant = circularProgressProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module clickAwayListener =
-
-  /// The mouse event to listen to. You can disable the listener by providing `false`.
-  type mouseEvent = clickAwayListenerProps.mouseEvent
-  /// The touch event to listen to. You can disable the listener by providing `false`.
-  type touchEvent = clickAwayListenerProps.touchEvent
-
-
-module collapse =
-
-  /// The duration for the transition, in milliseconds.
-  ///
-  /// Set to 'auto' to automatically calculate transition time based on height.
-  type timeout = collapseProps.timeout
-
-
-module container =
-
-  /// Determine the max-width of the container. The container width grows with the size of the screen. Set to `false` to disable `maxWidth`.
-  type maxWidth = containerProps.maxWidth
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module dialog =
-
-  /// Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`.
-  type maxWidth = dialogProps.maxWidth
-  /// Determine the container for scrolling the dialog.
-  type scroll = dialogProps.scroll
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module dialogActions =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module dialogContent =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module dialogContentText =
-
-  /// Set the text-align on the component.
-  type align = typographyProps.align
-  /// The color of the component.
-  type color = typographyProps.color
-  /// Controls the display type
-  type display = typographyProps.display
-  /// Applies the theme typography styles.
-  type variant = typographyProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module dialogTitle =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module divider =
-
-  /// The divider orientation.
-  type orientation = dividerProps.orientation
-  /// The variant to use.
-  type variant = dividerProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module drawer =
-
-  /// Side from which the drawer will appear.
-  type anchor = drawerProps.anchor
-  /// The variant to use.
-  type variant = drawerProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module expansionPanel =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module expansionPanelActions =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module expansionPanelDetails =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module expansionPanelSummary =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module fab =
-
-  /// The color of the component.
-  type color = fabProps.color
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  type size = fabProps.size
-  /// The variant to use.
-  type variant = fabProps.variant
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module filledInput =
-
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = filledInputProps.margin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module formControl =
-
-  /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-  type margin = formControlProps.margin
-  /// The variant to use.
-  type variant = formControlProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module formControlLabel =
-
-  /// The position of the label.
-  type labelPlacement = formControlLabelProps.labelPlacement
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module formGroup =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module formHelperText =
-
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = formHelperTextProps.margin
-  /// The variant to use.
-  type variant = formHelperTextProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module formLabel =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module grid =
-
-  /// Defines the `align-content` style property. It's applied for all screen sizes.
-  type alignContent = gridProps.alignContent
-  /// Defines the `align-items` style property. It's applied for all screen sizes.
-  type alignItems = gridProps.alignItems
-  /// Defines the `flex-direction` style property. It is applied for all screen sizes.
-  type direction = gridProps.direction
-  /// Defines the `justify-content` style property. It is applied for all screen sizes.
-  type justify = gridProps.justify
-  /// Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden.
-  type lg = gridProps.lg
-  /// Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden.
-  type md = gridProps.md
-  /// Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden.
-  type sm = gridProps.sm
-  /// Defines the space between the type `item` component. It can only be used on a type `container` component.
-  type spacing = gridProps.spacing
-  /// Defines the `flex-wrap` style property. It's applied for all screen sizes.
-  type wrap = gridProps.wrap
-  /// Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens.
-  type xl = gridProps.xl
-  /// Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority.
-  type xs = gridProps.xs
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module gridList =
-
-  /// Number of px for one cell height. You can set `'auto'` if you want to let the children determine the height.
-  type cellHeight = gridListProps.cellHeight
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module gridListTile =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module gridListTileBar =
-
-  /// Position of secondary action IconButton.
-  type actionPosition = gridListTileBarProps.actionPosition
-  /// Position of the title bar.
-  type titlePosition = gridListTileBarProps.titlePosition
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module grow =
-
-  /// The duration for the transition, in milliseconds.
-  ///
-  /// Set to 'auto' to automatically calculate transition time based on height.
-  type timeout = growProps.timeout
-
-
-module hidden =
-
-  /// Specify which implementation to use. 'js' is the default, 'css' works better for server-side rendering.
-  type implementation = hiddenProps.implementation
-  /// You can use this prop when choosing the `js` implementation with server-side rendering.
-  ///
-  /// As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width.
-  ///
-  /// For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint
-  type initialWidth = hiddenProps.initialWidth
-  /// Hide the given breakpoint(s).
-  type only = hiddenProps.only
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module icon =
-
-  /// The color of the component.
-  type color = iconProps.color
-  /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-  type fontSize = iconProps.fontSize
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module iconButton =
-
-  /// The color of the component.
-  type color = iconButtonProps.color
-  /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
-  type edge = iconButtonProps.edge
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  type size = iconButtonProps.size
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module input =
-
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = inputProps.margin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module inputAdornment =
-
-  /// The position this adornment should appear relative to the `Input`.
-  type position = inputAdornmentProps.position
-  /// The variant to use. Note: If you are using the `TextField` component or the `FormControl` component you do not have to set this manually.
-  type variant = inputAdornmentProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module inputBase =
-
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = inputBaseProps.margin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module inputLabel =
-
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = inputLabelProps.margin
-  /// The variant to use.
-  type variant = inputLabelProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module linearProgress =
-
-  /// The color of the component.
-  type color = linearProgressProps.color
-  /// The variant to use. Use indeterminate or query when there is no progress value.
-  type variant = linearProgressProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module link =
-
-  /// The color of the link.
-  type color = linkProps.color
-  /// Controls when the link should have an underline.
-  type underline = linkProps.underline
-  /// Set the text-align on the component.
-  type align = typographyProps.align
-  /// Controls the display type
-  type display = typographyProps.display
-  /// Applies the theme typography styles.
-  type variant = typographyProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module list =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module listItem =
-
-  /// Defines the `align-items` style property.
-  type alignItems = listItemProps.alignItems
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module listItemAvatar =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module listItemIcon =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module listItemSecondaryAction =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module listItemText =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module listSubheader =
-
-  /// The color of the component.
-  type color = listSubheaderProps.color
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module menu =
-
-  /// The length of the transition in `ms`, or 'auto'
-  type transitionDuration = menuProps.transitionDuration
-  /// The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element.
-  type variant = menuProps.variant
-  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
-  ///
-  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
-  type anchorOrigin = popoverProps.anchorOrigin
-  type anchorReference = popoverProps.anchorReference
-  /// This is the point on the popover which will attach to the anchor's origin.
-  ///
-  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
-  type transformOrigin = popoverProps.transformOrigin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module menuItem =
-
-  /// Defines the `align-items` style property.
-  type alignItems = listItemProps.alignItems
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module menuList =
-
-  /// The variant to use. Use `menu` to prevent selected items from impacting the initial focus and the vertical alignment relative to the anchor element.
-  type variant = menuListProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module mobileStepper =
-
-  /// Set the positioning type.
-  type position = mobileStepperProps.position
-  /// The variant to use.
-  type variant = mobileStepperProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module modal =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module nativeSelect =
-
-  /// The variant to use.
-  type variant = nativeSelectProps.variant
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = inputProps.margin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module outlinedInput =
-
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = outlinedInputProps.margin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module paper =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module popover =
-
-  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
-  ///
-  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
-  type anchorOrigin = popoverProps.anchorOrigin
-  type anchorReference = popoverProps.anchorReference
-  /// This is the point on the popover which will attach to the anchor's origin.
-  ///
-  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
-  type transformOrigin = popoverProps.transformOrigin
-  /// Set to 'auto' to automatically calculate transition time based on height.
-  type transitionDuration = popoverProps.transitionDuration
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module popper =
-
-  /// Popper placement.
-  type placement = popperProps.placement
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module radio =
-
-  /// The color of the component.
-  type color = radioProps.color
-  /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
-  type edge = iconButtonProps.edge
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  type size = iconButtonProps.size
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module radioGroup =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module rating =
-
-  /// The size of the rating.
-  type size = ratingProps.size
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module select =
-
-  /// The variant to use.
-  type variant = selectProps.variant
-  /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
-  type margin = inputProps.margin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module skeleton =
-
-  /// The type of content that will be rendered.
-  type variant = skeletonProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module slide =
-
-  /// Direction the child node will enter from.
-  type direction = slideProps.direction
-
-
-module slider =
-
-  /// The color of the component.
-  type color = sliderProps.color
-  /// The slider orientation.
-  type orientation = sliderProps.orientation
-  /// Controls when the value label is displayed:
-  ///
-  /// - `auto` the value label will display when the thumb is hovered or focused. - `on` will display persistently. - `off` will never display.
-  type valueLabelDisplay = sliderProps.valueLabelDisplay
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module snackbar =
-
-  /// The anchor of the `Snackbar`.
-  type anchorOrigin = snackbarProps.anchorOrigin
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module snackbarContent =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module speedDial =
-
-  /// The direction the actions open relative to the floating action button.
-  type direction = speedDialProps.direction
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module speedDialAction =
-
-  /// Placement of the tooltip.
-  type tooltipPlacement = speedDialActionProps.tooltipPlacement
-  /// Tooltip placement.
-  type placement = tooltipProps.placement
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module speedDialIcon =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module step =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module stepButton =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module stepConnector =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module stepContent =
-
-  /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
-  ///
-  /// Set to 'auto' to automatically calculate transition time based on height.
-  type transitionDuration = stepContentProps.transitionDuration
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module stepIcon =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module stepLabel =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module stepper =
-
-  /// The stepper orientation (layout flow direction).
-  type orientation = stepperProps.orientation
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module svgIcon =
-
-  /// The color of the component. You can use the `htmlColor` prop to apply a color attribute to the SVG element.
-  type color = svgIconProps.color
-  /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
-  type fontSize = svgIconProps.fontSize
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module swipeableDrawer =
-
-  /// Side from which the drawer will appear.
-  type anchor = drawerProps.anchor
-  /// The variant to use.
-  type variant = drawerProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module switch =
-
-  /// The color of the component.
-  type color = switchProps.color
-  /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
-  type edge = switchProps.edge
-  /// The size of the switch. `small` is equivalent to the dense switch styling.
-  type size = switchProps.size
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module tab =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module table =
-
-  /// Allows TableCells to inherit padding of the Table.
-  type padding = tableProps.padding
-  /// Allows TableCells to inherit size of the Table.
-  type size = tableProps.size
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tableBody =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tableCell =
-
-  /// Set the text-align on the table cell content.
-  ///
-  /// Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals.
-  type align = tableCellProps.align
-  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
-  type padding = tableCellProps.padding
-  /// Specify the size of the cell. By default, the Table parent component set the value (`medium`).
-  type size = tableCellProps.size
-  /// Set aria-sort direction.
-  type sortDirection = tableCellProps.sortDirection
-  /// Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value.
-  type variant = tableCellProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tableFooter =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tableHead =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tablePagination =
-
-  /// Set the text-align on the table cell content.
-  ///
-  /// Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals.
-  type align = tableCellProps.align
-  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
-  type padding = tableCellProps.padding
-  /// Specify the size of the cell. By default, the Table parent component set the value (`medium`).
-  type size = tableCellProps.size
-  /// Set aria-sort direction.
-  type sortDirection = tableCellProps.sortDirection
-  /// Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value.
-  type variant = tableCellProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tableRow =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tableSortLabel =
-
-  /// The current sort direction.
-  type direction = tableSortLabelProps.direction
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module tabs =
-
-  /// Determines the color of the indicator.
-  type indicatorColor = tabsProps.indicatorColor
-  /// The tabs orientation (layout flow direction).
-  type orientation = tabsProps.orientation
-  /// Determine behavior of scroll buttons when tabs are set to scroll:
-  ///
-  /// - `auto` will only present them when not all the items are visible. - `desktop` will only present them on medium and larger viewports. - `on` will always present them. - `off` will never present them.
-  type scrollButtons = tabsProps.scrollButtons
-  /// Determines the color of the `Tab`.
-  type textColor = tabsProps.textColor
-  /// Determines additional display behavior of the tabs:
-  ///
-  ///  - `scrollable` will invoke scrolling properties and allow for horizontally scrolling (or swiping) of the tab bar. -`fullWidth` will make the tabs grow to use all the available space, which should be used for small views, like on mobile. - `standard` will render the default state.
-  type variant = tabsProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module textareaAutosize =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module textField =
-
-  /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-  type margin = textFieldProps.margin
-  /// The variant to use.
-  type variant = textFieldProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module toggleButton =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  type type' = buttonBaseProps.type'
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-
-
-module toggleButtonGroup =
-
-  /// The size of the buttons.
-  type size = toggleButtonGroupProps.size
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module toolbar =
-
-  /// The variant to use.
-  type variant = toolbarProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module tooltip =
-
-  /// Tooltip placement.
-  type placement = tooltipProps.placement
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module touchRipple =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module treeItem =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module treeView =
-
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType
-
-
-module typography =
-
-  /// Set the text-align on the component.
-  type align = typographyProps.align
-  /// The color of the component.
-  type color = typographyProps.color
-  /// Controls the display type
-  type display = typographyProps.display
-  /// Applies the theme typography styles.
-  type variant = typographyProps.variant
-  /// The `text-anchor` attribute is used to align (start-, middle- or end-alignment) a string of pre-formatted text or auto-wrapped text where the wrapping area is determined from the `inline-size` property relative to a given point. It is not applicable to other types of auto-wrapped text. For those cases you should use `text-align`. For multi-line text, the alignment takes place for each line.
-  ///
-  /// The `text-anchor` attribute is applied to each individual text chunk within a given `<text>` element. Each text chunk has an initial current text position, which represents the point in the user coordinate system resulting from (depending on context) application of the `x` and `y` attributes on the `<text>` element, any `x` or `y` attribute values on a `<tspan>`, `<tref>` or `<altGlyph>` element assigned explicitly to the first rendered character in a text chunk, or determination of the initial current text position for a `<textPath>` element.
-  type textAnchor = prop.textAnchor
-  /// https://www.w3.org/WAI/PF/aria-1.1/roles
-  type role = prop.role
-  type transform = prop.transform
-  /// Indicates what functions can be performed when the dragged object is released on the drop target. This allows assistive technologies to convey the possible drag options available to users, including whether a pop-up menu of choices is provided by the application. Typically, drop effect functions can only be provided once an object has been grabbed for a drag operation as the drop effect functions available are dependent on the object being dragged.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-dropeffect
-  type ariaDropEffect = prop.ariaDropEffect
-  /// Indicates the entered value does not conform to the format expected by the application.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-invalid
-  type ariaInvalid = prop.ariaInvalid
-  /// Indicates what user agent change notifications (additions, removals, etc.) assistive technologies will receive within a live region. See related `aria-atomic`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-relevant
-  type ariaRelevant = prop.ariaRelevant
-  /// Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-live
-  type ariaLive = prop.ariaLive
-  /// Indicates whether user input completion suggestions are provided.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-autocomplete
-  type ariaAutocomplete = prop.ariaAutocomplete
-  /// Indicates the current "checked" state of checkboxes, radio buttons, and other widgets. See related `aria-pressed` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-checked
-  type ariaChecked = prop.ariaChecked
-  /// Indicates whether the element and orientation is horizontal or vertical.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-orientation
-  type ariaOrientation = prop.ariaOrientation
-  /// Indicates the current "pressed" state of toggle buttons. See related `aria-checked` and `aria-selected`.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-pressed
-  type ariaPressed = prop.ariaPressed
-  /// Indicates if items in a table or grid are sorted in ascending or descending order.
-  ///
-  /// https://www.w3.org/WAI/PF/aria-1.1/states_and_properties#aria-sort
-  type ariaSort = prop.ariaSort
-  type type' = prop.withType

@@ -32,7 +32,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
-  static member inline appBar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/AppBar") [ appBarProps.children (children :> ReactElement seq) ]
+  static member inline appBar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/AppBar") [ Feliz.MaterialUI.appBar.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -42,7 +42,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline avatar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Avatar") [ avatarProps.children (children :> ReactElement seq) ]
+  static member inline avatar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Avatar") [ Feliz.MaterialUI.avatar.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -52,7 +52,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline backdrop (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Backdrop") [ backdropProps.children (children :> ReactElement seq) ]
+  static member inline backdrop (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Backdrop") [ Feliz.MaterialUI.backdrop.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -62,7 +62,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline badge (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Badge") [ badgeProps.children (children :> ReactElement seq) ]
+  static member inline badge (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Badge") [ Feliz.MaterialUI.badge.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -72,7 +72,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline bottomNavigation (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/BottomNavigation") [ bottomNavigationProps.children (children :> ReactElement seq) ]
+  static member inline bottomNavigation (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/BottomNavigation") [ Feliz.MaterialUI.bottomNavigation.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -87,7 +87,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline breadcrumbs (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Breadcrumbs") [ breadcrumbsProps.children (children :> ReactElement seq) ]
+  static member inline breadcrumbs (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Breadcrumbs") [ Feliz.MaterialUI.breadcrumbs.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -97,7 +97,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline button (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Button") [ buttonProps.children (children :> ReactElement seq) ]
+  static member inline button (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Button") [ Feliz.MaterialUI.button.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -107,7 +107,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline buttonBase (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ButtonBase") [ buttonBaseProps.children (children :> ReactElement seq) ]
+  static member inline buttonBase (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ButtonBase") [ Feliz.MaterialUI.buttonBase.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -117,7 +117,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline buttonGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ButtonGroup") [ buttonGroupProps.children (children :> ReactElement seq) ]
+  static member inline buttonGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ButtonGroup") [ Feliz.MaterialUI.buttonGroup.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -127,7 +127,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
-  static member inline card (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Card") [ cardProps.children (children :> ReactElement seq) ]
+  static member inline card (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Card") [ Feliz.MaterialUI.card.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -137,7 +137,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline cardActionArea (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardActionArea") [ cardActionAreaProps.children (children :> ReactElement seq) ]
+  static member inline cardActionArea (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardActionArea") [ Feliz.MaterialUI.cardActionArea.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -147,7 +147,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline cardActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardActions") [ cardActionsProps.children (children :> ReactElement seq) ]
+  static member inline cardActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardActions") [ Feliz.MaterialUI.cardActions.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -157,7 +157,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline cardContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardContent") [ cardContentProps.children (children :> ReactElement seq) ]
+  static member inline cardContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardContent") [ Feliz.MaterialUI.cardContent.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -172,7 +172,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline cardMedia (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardMedia") [ cardMediaProps.children (children :> ReactElement seq) ]
+  static member inline cardMedia (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CardMedia") [ Feliz.MaterialUI.cardMedia.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -200,7 +200,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
-  static member inline collapse (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Collapse") [ collapseProps.children (children :> ReactElement seq) ]
+  static member inline collapse (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Collapse") [ Feliz.MaterialUI.collapse.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -210,13 +210,13 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline container (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Container") [ containerProps.children (children :> ReactElement seq) ]
+  static member inline container (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Container") [ Feliz.MaterialUI.container.children (children :> ReactElement seq) ]
 
   /// The component cannot hold a ref.
   static member inline cssBaseline props = createElement (importDefault "@material-ui/core/CssBaseline") props
 
   /// The component cannot hold a ref.
-  static member inline cssBaseline (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CssBaseline") [ cssBaselineProps.children (children :> ReactElement seq) ]
+  static member inline cssBaseline (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/CssBaseline") [ Feliz.MaterialUI.cssBaseline.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -226,7 +226,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Modal](https://material-ui.com/api/modal/)).
-  static member inline dialog (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Dialog") [ dialogProps.children (children :> ReactElement seq) ]
+  static member inline dialog (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Dialog") [ Feliz.MaterialUI.dialog.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -236,7 +236,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline dialogActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogActions") [ dialogActionsProps.children (children :> ReactElement seq) ]
+  static member inline dialogActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogActions") [ Feliz.MaterialUI.dialogActions.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -246,7 +246,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline dialogContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogContent") [ dialogContentProps.children (children :> ReactElement seq) ]
+  static member inline dialogContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogContent") [ Feliz.MaterialUI.dialogContent.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -261,7 +261,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Typography](https://material-ui.com/api/typography/)).
-  static member inline dialogContentText (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogContentText") [ dialogContentTextProps.children (children :> ReactElement seq) ]
+  static member inline dialogContentText (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogContentText") [ Feliz.MaterialUI.dialogContentText.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -276,7 +276,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline dialogTitle (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogTitle") [ dialogTitleProps.children (children :> ReactElement seq) ]
+  static member inline dialogTitle (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/DialogTitle") [ Feliz.MaterialUI.dialogTitle.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -291,7 +291,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline drawer (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Drawer") [ drawerProps.children (children :> ReactElement seq) ]
+  static member inline drawer (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Drawer") [ Feliz.MaterialUI.drawer.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -301,7 +301,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
-  static member inline expansionPanel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanel") [ expansionPanelProps.children (children :> ReactElement seq) ]
+  static member inline expansionPanel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanel") [ Feliz.MaterialUI.expansionPanel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -311,7 +311,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline expansionPanelActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanelActions") [ expansionPanelActionsProps.children (children :> ReactElement seq) ]
+  static member inline expansionPanelActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanelActions") [ Feliz.MaterialUI.expansionPanelActions.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -321,7 +321,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline expansionPanelDetails (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanelDetails") [ expansionPanelDetailsProps.children (children :> ReactElement seq) ]
+  static member inline expansionPanelDetails (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanelDetails") [ Feliz.MaterialUI.expansionPanelDetails.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -331,7 +331,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline expansionPanelSummary (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanelSummary") [ expansionPanelSummaryProps.children (children :> ReactElement seq) ]
+  static member inline expansionPanelSummary (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanelSummary") [ Feliz.MaterialUI.expansionPanelSummary.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -341,7 +341,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline fab (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Fab") [ fabProps.children (children :> ReactElement seq) ]
+  static member inline fab (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Fab") [ Feliz.MaterialUI.fab.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -361,7 +361,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline formControl (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormControl") [ formControlProps.children (children :> ReactElement seq) ]
+  static member inline formControl (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormControl") [ Feliz.MaterialUI.formControl.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -376,7 +376,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline formGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormGroup") [ formGroupProps.children (children :> ReactElement seq) ]
+  static member inline formGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormGroup") [ Feliz.MaterialUI.formGroup.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -391,7 +391,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline formHelperText (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormHelperText") [ formHelperTextProps.children (children :> ReactElement seq) ]
+  static member inline formHelperText (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormHelperText") [ Feliz.MaterialUI.formHelperText.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -406,7 +406,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline formLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormLabel") [ formLabelProps.children (children :> ReactElement seq) ]
+  static member inline formLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/FormLabel") [ Feliz.MaterialUI.formLabel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -416,7 +416,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline grid (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Grid") [ gridProps.children (children :> ReactElement seq) ]
+  static member inline grid (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Grid") [ Feliz.MaterialUI.grid.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -426,7 +426,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline gridList (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/GridList") [ gridListProps.children (children :> ReactElement seq) ]
+  static member inline gridList (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/GridList") [ Feliz.MaterialUI.gridList.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -436,7 +436,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline gridListTile (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/GridListTile") [ gridListTileProps.children (children :> ReactElement seq) ]
+  static member inline gridListTile (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/GridListTile") [ Feliz.MaterialUI.gridListTile.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -456,7 +456,7 @@ type Mui =
   /// The component cannot hold a ref.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline hidden (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Hidden") [ hiddenProps.children (children :> ReactElement seq) ]
+  static member inline hidden (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Hidden") [ Feliz.MaterialUI.hidden.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -471,7 +471,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline icon (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Icon") [ iconProps.children (children :> ReactElement seq) ]
+  static member inline icon (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Icon") [ Feliz.MaterialUI.icon.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -481,7 +481,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline iconButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/IconButton") [ iconButtonProps.children (children :> ReactElement seq) ]
+  static member inline iconButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/IconButton") [ Feliz.MaterialUI.iconButton.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -496,7 +496,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline inputAdornment (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/InputAdornment") [ inputAdornmentProps.children (children :> ReactElement seq) ]
+  static member inline inputAdornment (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/InputAdornment") [ Feliz.MaterialUI.inputAdornment.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -516,7 +516,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([FormLabel](https://material-ui.com/api/form-label/)).
-  static member inline inputLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/InputLabel") [ inputLabelProps.children (children :> ReactElement seq) ]
+  static member inline inputLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/InputLabel") [ Feliz.MaterialUI.inputLabel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -531,7 +531,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Typography](https://material-ui.com/api/typography/)).
-  static member inline link (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Link") [ linkProps.children (children :> ReactElement seq) ]
+  static member inline link (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Link") [ Feliz.MaterialUI.link.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -541,7 +541,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline list (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/List") [ listProps.children (children :> ReactElement seq) ]
+  static member inline list (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/List") [ Feliz.MaterialUI.list.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -551,7 +551,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline listItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItem") [ listItemProps.children (children :> ReactElement seq) ]
+  static member inline listItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItem") [ Feliz.MaterialUI.listItem.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -571,7 +571,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline listItemSecondaryAction (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItemSecondaryAction") [ listItemSecondaryActionProps.children (children :> ReactElement seq) ]
+  static member inline listItemSecondaryAction (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItemSecondaryAction") [ Feliz.MaterialUI.listItemSecondaryAction.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -586,7 +586,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline listItemText (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItemText") [ listItemTextProps.children (children :> ReactElement seq) ]
+  static member inline listItemText (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItemText") [ Feliz.MaterialUI.listItemText.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -601,7 +601,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline listSubheader (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListSubheader") [ listSubheaderProps.children (children :> ReactElement seq) ]
+  static member inline listSubheader (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListSubheader") [ Feliz.MaterialUI.listSubheader.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -611,7 +611,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Popover](https://material-ui.com/api/popover/)).
-  static member inline menu (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Menu") [ menuProps.children (children :> ReactElement seq) ]
+  static member inline menu (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Menu") [ Feliz.MaterialUI.menu.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -621,7 +621,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ListItem](https://material-ui.com/api/list-item/)).
-  static member inline menuItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/MenuItem") [ menuItemProps.children (children :> ReactElement seq) ]
+  static member inline menuItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/MenuItem") [ Feliz.MaterialUI.menuItem.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -631,7 +631,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([List](https://material-ui.com/api/list/)).
-  static member inline menuList (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/MenuList") [ menuListProps.children (children :> ReactElement seq) ]
+  static member inline menuList (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/MenuList") [ Feliz.MaterialUI.menuList.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -651,13 +651,13 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Input](https://material-ui.com/api/input/)).
-  static member inline nativeSelect (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/NativeSelect") [ nativeSelectProps.children (children :> ReactElement seq) ]
+  static member inline nativeSelect (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/NativeSelect") [ Feliz.MaterialUI.nativeSelect.children (children :> ReactElement seq) ]
 
   /// The component cannot hold a ref.
   static member inline noSsr props = createElement (importDefault "@material-ui/core/NoSsr") props
 
   /// The component cannot hold a ref.
-  static member inline noSsr (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/NoSsr") [ noSsrProps.children (children :> ReactElement seq) ]
+  static member inline noSsr (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/NoSsr") [ Feliz.MaterialUI.noSsr.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -672,7 +672,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline paper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Paper") [ paperProps.children (children :> ReactElement seq) ]
+  static member inline paper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Paper") [ Feliz.MaterialUI.paper.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -682,7 +682,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Modal](https://material-ui.com/api/modal/)).
-  static member inline popover (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Popover") [ popoverProps.children (children :> ReactElement seq) ]
+  static member inline popover (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Popover") [ Feliz.MaterialUI.popover.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -692,13 +692,13 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline popper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Popper") [ popperProps.children (children :> ReactElement seq) ]
+  static member inline popper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Popper") [ Feliz.MaterialUI.popper.children (children :> ReactElement seq) ]
 
   /// The component cannot hold a ref.
   static member inline portal props = createElement (importDefault "@material-ui/core/Portal") props
 
   /// The component cannot hold a ref.
-  static member inline portal (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Portal") [ portalProps.children (children :> ReactElement seq) ]
+  static member inline portal (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Portal") [ Feliz.MaterialUI.portal.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -713,7 +713,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([FormGroup](https://material-ui.com/api/form-group/)).
-  static member inline radioGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/RadioGroup") [ radioGroupProps.children (children :> ReactElement seq) ]
+  static member inline radioGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/RadioGroup") [ Feliz.MaterialUI.radioGroup.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -731,7 +731,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Input](https://material-ui.com/api/input/)).
-  static member inline select (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Select") [ selectProps.children (children :> ReactElement seq) ]
+  static member inline select (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Select") [ Feliz.MaterialUI.select.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -766,7 +766,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline speedDial (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/SpeedDial") [ speedDialProps.children (children :> ReactElement seq) ]
+  static member inline speedDial (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/SpeedDial") [ Feliz.MaterialUI.speedDial.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -786,7 +786,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline step (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Step") [ stepProps.children (children :> ReactElement seq) ]
+  static member inline step (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Step") [ Feliz.MaterialUI.step.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -796,7 +796,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline stepButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/StepButton") [ stepButtonProps.children (children :> ReactElement seq) ]
+  static member inline stepButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/StepButton") [ Feliz.MaterialUI.stepButton.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -811,7 +811,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline stepContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/StepContent") [ stepContentProps.children (children :> ReactElement seq) ]
+  static member inline stepContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/StepContent") [ Feliz.MaterialUI.stepContent.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -831,7 +831,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline stepLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/StepLabel") [ stepLabelProps.children (children :> ReactElement seq) ]
+  static member inline stepLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/StepLabel") [ Feliz.MaterialUI.stepLabel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -841,7 +841,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
-  static member inline stepper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Stepper") [ stepperProps.children (children :> ReactElement seq) ]
+  static member inline stepper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Stepper") [ Feliz.MaterialUI.stepper.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -851,7 +851,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline svgIcon (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/SvgIcon") [ svgIconProps.children (children :> ReactElement seq) ]
+  static member inline svgIcon (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/SvgIcon") [ Feliz.MaterialUI.svgIcon.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -861,7 +861,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Drawer](https://material-ui.com/api/drawer/)).
-  static member inline swipeableDrawer (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/SwipeableDrawer") [ swipeableDrawerProps.children (children :> ReactElement seq) ]
+  static member inline swipeableDrawer (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/SwipeableDrawer") [ Feliz.MaterialUI.swipeableDrawer.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -881,7 +881,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline table (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Table") [ tableProps.children (children :> ReactElement seq) ]
+  static member inline table (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Table") [ Feliz.MaterialUI.table.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -891,7 +891,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline tableBody (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableBody") [ tableBodyProps.children (children :> ReactElement seq) ]
+  static member inline tableBody (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableBody") [ Feliz.MaterialUI.tableBody.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -906,7 +906,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline tableCell (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableCell") [ tableCellProps.children (children :> ReactElement seq) ]
+  static member inline tableCell (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableCell") [ Feliz.MaterialUI.tableCell.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -916,7 +916,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline tableFooter (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableFooter") [ tableFooterProps.children (children :> ReactElement seq) ]
+  static member inline tableFooter (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableFooter") [ Feliz.MaterialUI.tableFooter.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -926,7 +926,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline tableHead (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableHead") [ tableHeadProps.children (children :> ReactElement seq) ]
+  static member inline tableHead (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableHead") [ Feliz.MaterialUI.tableHead.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -941,7 +941,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline tableRow (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableRow") [ tableRowProps.children (children :> ReactElement seq) ]
+  static member inline tableRow (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableRow") [ Feliz.MaterialUI.tableRow.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -951,7 +951,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline tableSortLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableSortLabel") [ tableSortLabelProps.children (children :> ReactElement seq) ]
+  static member inline tableSortLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableSortLabel") [ Feliz.MaterialUI.tableSortLabel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -961,7 +961,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline tabs (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Tabs") [ tabsProps.children (children :> ReactElement seq) ]
+  static member inline tabs (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Tabs") [ Feliz.MaterialUI.tabs.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -981,7 +981,7 @@ type Mui =
   /// The component cannot hold a ref.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
-  static member inline toggleButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButton") [ toggleButtonProps.children (children :> ReactElement seq) ]
+  static member inline toggleButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButton") [ Feliz.MaterialUI.toggleButton.children (children :> ReactElement seq) ]
 
   /// The component cannot hold a ref.
   ///
@@ -991,7 +991,7 @@ type Mui =
   /// The component cannot hold a ref.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline toggleButtonGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButtonGroup") [ toggleButtonGroupProps.children (children :> ReactElement seq) ]
+  static member inline toggleButtonGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButtonGroup") [ Feliz.MaterialUI.toggleButtonGroup.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -1001,7 +1001,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline toolbar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Toolbar") [ toolbarProps.children (children :> ReactElement seq) ]
+  static member inline toolbar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Toolbar") [ Feliz.MaterialUI.toolbar.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -1021,7 +1021,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline treeItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TreeItem") [ treeItemProps.children (children :> ReactElement seq) ]
+  static member inline treeItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TreeItem") [ Feliz.MaterialUI.treeItem.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -1031,7 +1031,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline treeView (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TreeView") [ treeViewProps.children (children :> ReactElement seq) ]
+  static member inline treeView (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TreeView") [ Feliz.MaterialUI.treeView.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
@@ -1046,7 +1046,7 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
-  static member inline typography (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Typography") [ typographyProps.children (children :> ReactElement seq) ]
+  static member inline typography (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Typography") [ Feliz.MaterialUI.typography.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///

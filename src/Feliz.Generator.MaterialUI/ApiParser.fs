@@ -656,7 +656,7 @@ let parseComponent (htmlPathOrUrl: string) =
       if not hasReactElementSeqChildren then comp
       else
         // Use #seq<ReactElement> to help overload resolution when using empty lists
-        let overload = ComponentOverload.create "(children: #seq<ReactElement>)" (sprintf "[ %sProps.children (children :> ReactElement seq) ]" comp.MethodName)
+        let overload = ComponentOverload.create "(children: #seq<ReactElement>)" (sprintf "[ Feliz.MaterialUI.%s.children (children :> ReactElement seq) ]" comp.MethodName)
         comp |> Component.addOverload overload
 
 
@@ -685,8 +685,9 @@ let parseComponent (htmlPathOrUrl: string) =
       | _, (null | "") -> id
       | ("collapse" | "fade" | "grow" | "slide" | "zoom"), "Transition" -> 
           id  // The Transition component is from an external library
-      | _, ("native component" | "native element") -> Component.inheritsPropsFromNativeDom
-      | _, baseComp -> baseComp |> String.lowerFirst |> Component.inheritsPropsFromComponent
+      | _, ("native component" | "native element") ->
+          id  // Native DOM inheritance not currently supported
+      | _, baseComp -> baseComp |> String.lowerFirst |> Component.inheritsPropsFrom
 
     {
       GeneratorComponent =

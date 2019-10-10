@@ -6,22 +6,6 @@ type RegularPropOverloadBody =
   | CustomBody of string
 
 
-type InheritedEnumProp = {
-  /// The doc lines for this prop.
-  DocLines: string list
-  /// The name of the prop.
-  PropName: string
-  /// A sufficiently qualified prop type to inherit.
-  TypeName: string
-}
-
-
-type PropInheritance =
-  | InheritsComponent of componentMethodName: string
-  | InheritsNativeDom
-  | InheritsCustom of baseRegularPropType: string option * baseEnumProps: InheritedEnumProp list
-
-
 type RegularPropOverload = {
   /// The code for the method parameters, e.g. `(value: string)`.
   ParamsCode: string
@@ -91,8 +75,8 @@ type Component = {
   Overloads: ComponentOverload list
   /// The component's props.
   Props: Prop list
-  /// Specifies the component's prop inheritance.
-  PropInheritance: PropInheritance option
+  /// The MethodName of the component this component inherits props from.
+  BaseComponentMethodName: string option
 }
 
 
@@ -108,21 +92,6 @@ type ComponentApi = {
   /// All components in the API.
   Components: Component list
 }
-
-
-module InheritedEnumProp =
-
-  /// Creates an inherited enum prop with the specified prop name and type name
-  /// and no docs.
-  let create propName typeName = {
-    DocLines = []
-    PropName = propName
-    TypeName = typeName
-  }
-
-  /// Sets the doc lines of the inherited enum prop.
-  let setDocs docLines (prop: InheritedEnumProp) =
-    { prop with DocLines = docLines }
 
 
 module RegularPropOverload =
@@ -243,7 +212,7 @@ module Component =
     ImportSelector = None
     Overloads = [ComponentOverload.default']
     Props = []
-    PropInheritance = None
+    BaseComponentMethodName = None
   }
 
   /// Sets the import selector of the component.
@@ -268,17 +237,8 @@ module Component =
 
   /// Set this component to inherit the props of another component with the
   /// specified MethodName.
-  let inheritsPropsFromComponent baseComponentMethodName comp =
-    { comp with PropInheritance = InheritsComponent baseComponentMethodName |> Some }
-
-  /// Set this component to inherit the props of the Feliz native DOM props.
-  let inheritsPropsFromNativeDom comp =
-    { comp with PropInheritance = Some InheritsNativeDom }
-
-  /// Set this component to inherit props using the specified sufficiently
-  /// qualified regular (non-enum) prop type and the specified overload props.
-  let inheritsPropsFromCustom baseRegularPropType baseEnumProps comp =
-    { comp with PropInheritance = InheritsCustom (baseRegularPropType, baseEnumProps) |> Some }
+  let inheritsPropsFrom baseComponentMethodName comp =
+    { comp with BaseComponentMethodName = Some baseComponentMethodName }
 
   /// Indicates whether all props have only inline overloads.
   let hasOnlyInlineOverloads comp =
