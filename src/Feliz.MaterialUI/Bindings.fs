@@ -333,3 +333,15 @@ type PopoverCloseReason =
 type SnackbarCloseReason =
   | Timeout
   | Clickaway
+
+[<StringEnum; RequireQualifiedAccess>]
+type PopoverOriginHorizontal =
+  | Left
+  | Center
+  | Right
+
+[<StringEnum; RequireQualifiedAccess>]
+type PopoverOriginVertical =
+  | Top
+  | Center
+  | Bottom

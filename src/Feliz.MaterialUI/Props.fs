@@ -3148,6 +3148,22 @@ type popoverProps =
   static member inline anchorEl (handler: unit -> Element option) = Interop.mkAttr "anchorEl" handler
   /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
   static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: int, vertical: PopoverOriginVertical) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: PopoverOriginHorizontal, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
+  ///
+  /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+  static member inline anchorOrigin (horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
   /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
   static member anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (["left" ==> left; "top" ==> top] |> createObj)
   /// The content of the component.
@@ -3216,6 +3232,22 @@ type popoverProps =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: int, vertical: PopoverOriginVertical) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: PopoverOriginHorizontal, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
+  /// This is the point on the popover which will attach to the anchor's origin.
+  ///
+  /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+  static member inline transformOrigin (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
   /// The component used for the transition.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Set to 'auto' to automatically calculate transition time based on height.
@@ -3242,13 +3274,6 @@ module popoverProps =
     static member inline bottomLeft = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
     static member inline bottomCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
     static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
-    static member inline custom (horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> horizontal ])
-    static member inline topCustom (horizontal: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> horizontal ])
-    static member inline centerCustom (horizontal: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> horizontal ])
-    static member inline bottomCustom (horizontal: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> horizontal ])
-    static member inline customLeft (vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "left" ])
-    static member inline customCenter (vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "center" ])
-    static member inline customRight (vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "right" ])
 
   [<Erase>]
   type anchorReference =
@@ -3270,13 +3295,6 @@ module popoverProps =
     static member inline bottomLeft = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "left" ])
     static member inline bottomCenter = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
     static member inline bottomRight = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
-    static member inline custom (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> horizontal ])
-    static member inline topCustom (horizontal: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "top"; "horizontal" ==> horizontal ])
-    static member inline centerCustom (horizontal: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "center"; "horizontal" ==> horizontal ])
-    static member inline bottomCustom (horizontal: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> horizontal ])
-    static member inline customLeft (vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "left" ])
-    static member inline customCenter (vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "center" ])
-    static member inline customRight (vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "vertical" ==> vertical; "horizontal" ==> "right" ])
 
   /// Set to 'auto' to automatically calculate transition time based on height.
   [<Erase>]

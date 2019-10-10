@@ -84,6 +84,14 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(handler: PopoverActions -> unit)" "handler"
         ]
 
+    | "popover", ("anchorOrigin" | "transformOrigin"), "{ horizontal: number | 'left' | 'center' | 'right', vertical: number | 'top' | 'center' | 'bottom' }" ->
+        [
+          RegularPropOverload.create "(horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical)" "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+          RegularPropOverload.create "(horizontal: int, vertical: PopoverOriginVertical)" "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+          RegularPropOverload.create "(horizontal: PopoverOriginHorizontal, vertical: int)" "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+          RegularPropOverload.create "(horizontal: int, vertical: int)" "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+        ]
+
     | "tabs", "action", "ref" ->
         [
           RegularPropOverload.create "(ref: IRefValue<TabsActions option>)" "ref"
@@ -491,27 +499,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create "bottomLeft" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"left\" ])"
             EnumPropOverload.create "bottomCenter" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"center\" ])"
             EnumPropOverload.create "bottomRight" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])"
-
-            EnumPropOverload.create "custom" "(createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> horizontal ])"
-            |> EnumPropOverload.setParamsCode "(horizontal: int, vertical: int)"
-
-            EnumPropOverload.create "topCustom" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> horizontal ])"
-            |> EnumPropOverload.setParamsCode "(horizontal: int)"
-
-            EnumPropOverload.create "centerCustom" "(createObj [ \"vertical\" ==> \"center\"; \"horizontal\" ==> horizontal ])"
-            |> EnumPropOverload.setParamsCode "(horizontal: int)"
-
-            EnumPropOverload.create "bottomCustom" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> horizontal ])"
-            |> EnumPropOverload.setParamsCode "(horizontal: int)"
-
-            EnumPropOverload.create "customLeft" "(createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"left\" ])"
-            |> EnumPropOverload.setParamsCode "(vertical: int)"
-
-            EnumPropOverload.create "customCenter" "(createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"center\" ])"
-            |> EnumPropOverload.setParamsCode "(vertical: int)"
-
-            EnumPropOverload.create "customRight" "(createObj [ \"vertical\" ==> vertical; \"horizontal\" ==> \"right\" ])"
-            |> EnumPropOverload.setParamsCode "(vertical: int)"
           ]
 
       | "badge", "anchorOrigin", "{ horizontal: 'left' | 'right', vertical: 'bottom' | 'top' }" ->

@@ -27,9 +27,14 @@ TODO
 Changelog
 ---------
 
+### vNext (0.5.0)
+
+* Improved `popover.anchorOrigin` and `popover.transformOrigin`
+
 ### 0.4.0
 
-* Added prop inheritance and updated Feliz dependency
+* Added prop inheritance
+* Updated Feliz dependency to 0.57
 
 ### 0.3.1
 
