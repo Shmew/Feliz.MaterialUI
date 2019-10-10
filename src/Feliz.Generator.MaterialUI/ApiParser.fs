@@ -671,7 +671,7 @@ let parseComponent (htmlPathOrUrl: string) =
 
 
     let stylesheetName =
-      Regex.Match(page.Html.Body().ToString(), "Style sheet name:\s*\<code\>(.+?)\<\/code\>")  // TODO: simplify using InnerText as below
+      Regex.Match(page.Html.Body().ToString(), "Style sheet name:\s*\<code\>(.+?)\<\/code\>")
         .Groups.[1].Value
       |> Some
       |> Option.filter (not << String.IsNullOrEmpty)
