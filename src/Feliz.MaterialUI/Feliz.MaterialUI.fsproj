@@ -9,8 +9,8 @@
     <Authors>Christer van der Meeren</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>f# fable bindings feliz react material-ui materialui</PackageTags>
-    <Version>0.3.1</Version>
-    <PackageReleaseNotes>Updated Feliz dependency and pinned the version to avoid breaking 0.x changes</PackageReleaseNotes>
+    <Version>0.4.0</Version>
+    <PackageReleaseNotes>Added prop inheritance and updated Feliz dependency</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>

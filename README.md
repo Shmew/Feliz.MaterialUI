@@ -27,6 +27,10 @@ TODO
 Changelog
 ---------
 
+### 0.4.0
+
+* Added prop inheritance and updated Feliz dependency
+
 ### 0.3.1
 
 - Updated Feliz dependency and pinned the version to avoid breaking 0.x changes
