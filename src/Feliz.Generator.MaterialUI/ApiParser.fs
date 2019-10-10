@@ -72,7 +72,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
   let regularOverloads =
     match componentMethodName, propMethodName, propDocType with
     | _, _, "unsupportedProp" ->
-        []
+        [RegularPropOverload.createCustom "" "UnsupportedProp ()"]
     | "buttonBase", "action", "ref" ->
         [
           RegularPropOverload.create "(ref: IRefValue<ButtonBaseActions option>)" "ref"
@@ -637,9 +637,39 @@ let parseComponent (htmlPathOrUrl: string) =
           let rowHtml = page.Tables.Props.Html.CssSelect("tbody > tr").[i]
           parseProp compMethodName r rowHtml
       )
+      |> Array.filter (fun p -> not (p.RegularOverloads.IsEmpty && p.EnumOverloads.IsEmpty))
 
     let addProps comp =
       (comp, props) ||> Array.fold (flip Component.addProp)
+
+    // Some components are currently missing children from the props listing
+    // https://github.com/mui-org/material-ui/issues/17674#issuecomment-537880347
+    let addMissingChildrenProp (comp: Component) =
+      let hasChildren = comp.Props |> List.exists (fun p -> p.MethodName = "children")
+      match comp.MethodName with
+      | "card" | "cardContent" | "swipeableDrawer" when not hasChildren ->
+          let prop =
+            Prop.create "children" "children"
+            |> Prop.setDocs ["The content of the component."]
+            |> Prop.addRegularOverload (RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element")
+            |> Prop.addRegularOverload (RegularPropOverload.createCustom "(elements: ReactElement seq)" "prop.children elements")
+            |> Prop.addRegularOverload (RegularPropOverload.create "(value: string)" "value")
+            |> Prop.addRegularOverload (RegularPropOverload.create "(values: string seq)" "values")
+            |> Prop.addRegularOverload (RegularPropOverload.create "(value: int)" "value")
+            |> Prop.addRegularOverload (RegularPropOverload.create "(value: float)" "value")
+          comp |> Component.addProp prop
+      | _ -> comp
+
+    let addUnsupportedChildrenProp (comp: Component) =
+      let hasChildren = comp.Props |> List.exists (fun p -> p.MethodName = "children")
+      if hasChildren then comp
+      else
+        let prop =
+          Prop.create "children" "children"
+          |> Prop.setDocs ["This component does not support children."]
+          |> Prop.addRegularOverload (RegularPropOverload.createCustom "" "UnsupportedProp ()")
+        comp |> Component.addProp prop
+
 
     let stylesheetName =
       Regex.Match(page.Html.Body().ToString(), "Style sheet name:\s*\<code\>(.+?)\<\/code\>")  // TODO: simplify using InnerText as below
@@ -664,6 +694,8 @@ let parseComponent (htmlPathOrUrl: string) =
         |> Component.setDocs markdownDocLines
         |> addAdditionalOverloads
         |> addProps
+        |> addMissingChildrenProp
+        |> addUnsupportedChildrenProp
         |> setInheritance
       ClassRules =
         let rowsAndHtml =

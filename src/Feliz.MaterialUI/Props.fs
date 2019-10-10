@@ -249,6 +249,8 @@ type bottomNavigationProps =
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
 type bottomNavigationActionProps =
+  /// This prop isn't supported. Use the `component` prop if you need to change the children structure.
+  static member inline children  = UnsupportedProp ()
   /// Override or extend the styles applied to the component. Use `classes.bottomNavigationAction` to specify class names.
   static member inline classes (classNames: classes.IBottomNavigationActionClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The icon element.
@@ -497,6 +499,18 @@ type cardProps =
   static member inline classes (classNames: classes.ICardClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the card will use raised styling.
   static member inline raised (value: bool) = Interop.mkAttr "raised" value
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -545,6 +559,18 @@ type cardContentProps =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -609,6 +635,8 @@ type cardHeaderProps =
   static member inline title (value: float) = Interop.mkAttr "title" value
   /// These props will be forwarded to the title (as long as disableTypography is not `true`).
   static member inline titleTypographyProps (props: IReactProperty list) = Interop.mkAttr "titleTypographyProps" (createObj !!props)
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -685,6 +713,8 @@ type checkboxProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the component.
   static member inline value (value: string) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module checkboxProps =
@@ -701,6 +731,8 @@ module checkboxProps =
 type chipProps =
   /// Avatar element.
   static member inline avatar (value: ReactElement) = Interop.mkAttr "avatar" value
+  /// This prop isn't supported. Use the `component` prop if you need to change the children structure.
+  static member inline children  = UnsupportedProp ()
   /// Override or extend the styles applied to the component. Use `classes.chip` to specify class names.
   static member inline classes (classNames: classes.IChipClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If true, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If false, the chip will not be clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable.
@@ -767,6 +799,8 @@ type circularProgressProps =
   static member inline thickness (value: int) = Interop.mkAttr "thickness" value
   /// The value of the progress indicator for the determinate and static variants. Value between 0 and 100.
   static member inline value (value: int) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module circularProgressProps =
@@ -1090,6 +1124,8 @@ type dividerProps =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the divider will have a lighter color.
   static member inline light (value: bool) = Interop.mkAttr "light" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module dividerProps =
@@ -1410,6 +1446,8 @@ type filledInputProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module filledInputProps =
@@ -1507,6 +1545,8 @@ type formControlLabelProps =
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// The value of the component.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module formControlLabelProps =
@@ -1896,6 +1936,8 @@ type gridListTileBarProps =
   static member inline title (value: int) = Interop.mkAttr "title" value
   /// Title to be displayed on tile.
   static member inline title (value: float) = Interop.mkAttr "title" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module gridListTileBarProps =
@@ -2169,6 +2211,8 @@ type inputProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module inputProps =
@@ -2292,6 +2336,8 @@ type inputBaseProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module inputBaseProps =
@@ -2356,6 +2402,8 @@ type linearProgressProps =
   static member inline value (value: int) = Interop.mkAttr "value" value
   /// The value for the buffer variant. Value between 0 and 100.
   static member inline valueBuffer (value: int) = Interop.mkAttr "valueBuffer" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module linearProgressProps =
@@ -2806,6 +2854,8 @@ type mobileStepperProps =
   static member inline nextButton (value: float) = Interop.mkAttr "nextButton" value
   /// The total steps.
   static member inline steps (value: int) = Interop.mkAttr "steps" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module mobileStepperProps =
@@ -3047,6 +3097,8 @@ type outlinedInputProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module outlinedInputProps =
@@ -3369,6 +3421,8 @@ type radioProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the component.
   static member inline value (value: string) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module radioProps =
@@ -3537,6 +3591,8 @@ type ratingProps =
   static member inline readOnly (value: bool) = Interop.mkAttr "readOnly" value
   /// The rating value.
   static member inline value (value: int) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module ratingProps =
@@ -3687,6 +3743,8 @@ type skeletonProps =
   static member inline width (value: int) = Interop.mkAttr "width" value
   /// Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.
   static member inline width (value: Styles.ICssUnit) = Interop.mkAttr "width" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module skeletonProps =
@@ -3908,6 +3966,8 @@ type sliderProps =
   ///
   /// - {number} value The value label's value to format - {number} index The value label's index to format
   static member inline valueLabelFormat (format: float -> int -> string) = Interop.mkAttr "valueLabelFormat" format
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
 module sliderExtensions =
@@ -4071,6 +4131,8 @@ type snackbarContentProps =
   static member inline message (value: int) = Interop.mkAttr "message" value
   /// The message to display.
   static member inline message (value: float) = Interop.mkAttr "message" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
@@ -4166,6 +4228,8 @@ type speedDialActionProps =
   static member inline tooltipTitle (value: int) = Interop.mkAttr "tooltipTitle" value
   /// Label to display in the tooltip.
   static member inline tooltipTitle (value: float) = Interop.mkAttr "tooltipTitle" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module speedDialActionProps =
@@ -4195,6 +4259,8 @@ type speedDialIconProps =
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
   /// The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
   static member inline openIcon (element: ReactElement) = Interop.mkAttr "openIcon" element
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -4257,6 +4323,8 @@ type stepButtonProps =
 type stepConnectorProps =
   /// Override or extend the styles applied to the component. Use `classes.stepConnector` to specify class names.
   static member inline classes (classNames: classes.IStepConnectorClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
@@ -4311,6 +4379,8 @@ type stepIconProps =
   static member inline error (value: bool) = Interop.mkAttr "error" value
   /// The label displayed in the step icon.
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -4467,6 +4537,18 @@ type swipeableDrawerProps =
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
   static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -4513,6 +4595,8 @@ type switchProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the component.
   static member inline value (value: string) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module switchProps =
@@ -4540,6 +4624,8 @@ module switchProps =
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
 type tabProps =
+  /// This prop isn't supported. Use the `component` prop if you need to change the children structure.
+  static member inline children  = UnsupportedProp ()
   /// Override or extend the styles applied to the component. Use `classes.tab` to specify class names.
   static member inline classes (classNames: classes.ITabClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, the tab will be disabled.
@@ -4807,6 +4893,8 @@ type tablePaginationProps =
   static member inline rowsPerPageOptions ([<ParamArray>] values: int []) = Interop.mkAttr "rowsPerPageOptions" values
   /// Props applied to the rows per page [`Select`](https://material-ui.com/api/select/) element.
   static member inline SelectProps (props: IReactProperty list) = Interop.mkAttr "SelectProps" (createObj !!props)
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -4961,6 +5049,8 @@ type textareaAutosizeProps =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// Maximum number of rows to display.
   static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -5053,6 +5143,8 @@ type textFieldProps =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module textFieldProps =
@@ -5276,6 +5368,8 @@ type touchRippleProps =
   static member inline center (value: bool) = Interop.mkAttr "center" value
   /// Override or extend the styles applied to the component. Use `classes.touchRipple` to specify class names.
   static member inline classes (classNames: classes.ITouchRippleClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
