@@ -646,6 +646,20 @@ let parseComponent (htmlPathOrUrl: string) =
           comp |> Component.addProp prop
       | _ -> comp
 
+    let addChildrenOverloadIfSupported (comp: Component) =
+      let hasReactElementSeqChildren = 
+        comp.Props
+        |> List.exists (fun p -> 
+            p.MethodName = "children"
+            && p.RegularOverloads |> List.exists (fun o -> o.ParamsCode = "(elements: ReactElement seq)")
+        )
+      if not hasReactElementSeqChildren then comp
+      else
+        // Use #seq<ReactElement> to help overload resolution when using empty lists
+        let overload = ComponentOverload.create "(children: #seq<ReactElement>)" (sprintf "[ %sProps.children (children :> ReactElement seq) ]" comp.MethodName)
+        comp |> Component.addOverload overload
+
+
     let addUnsupportedChildrenProp (comp: Component) =
       let hasChildren = comp.Props |> List.exists (fun p -> p.MethodName = "children")
       if hasChildren then comp
@@ -681,6 +695,7 @@ let parseComponent (htmlPathOrUrl: string) =
         |> addAdditionalOverloads
         |> addProps
         |> addMissingChildrenProp
+        |> addChildrenOverloadIfSupported
         |> addUnsupportedChildrenProp
         |> setInheritance
       ClassRules =

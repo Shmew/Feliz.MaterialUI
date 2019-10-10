@@ -30,6 +30,7 @@ Changelog
 ### vNext (0.5.0)
 
 * Improved `popover.anchorOrigin` and `popover.transformOrigin`
+* Added `seq<ReactElement>` overload to all components that support it
 
 ### 0.4.0
 
