@@ -127,7 +127,7 @@ type backdropProps =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then "appear" ==> appear.Value; if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -879,7 +879,7 @@ type collapseProps =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module collapseProps =
@@ -1010,7 +1010,7 @@ type dialogProps =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -1181,7 +1181,7 @@ type drawerProps =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module drawerProps =
@@ -1373,7 +1373,7 @@ type fadeProps =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
@@ -1968,7 +1968,7 @@ type growProps =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module growProps =
@@ -2746,7 +2746,7 @@ type menuProps =
   /// The length of the transition in `ms`, or 'auto'
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The length of the transition in `ms`, or 'auto'
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module menuProps =
@@ -3149,7 +3149,7 @@ type popoverProps =
   /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
   static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
-  static member anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" ([yield "left" ==> left; yield "top" ==> top] |> createObj)
+  static member anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (["left" ==> left; "top" ==> top] |> createObj)
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -3221,7 +3221,7 @@ type popoverProps =
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -3768,7 +3768,7 @@ type slideProps =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module slideProps =
@@ -4085,7 +4085,7 @@ type snackbarProps =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4186,7 +4186,7 @@ type speedDialProps =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then yield "appear" ==> appear.Value; if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then "appear" ==> appear.Value; if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4352,7 +4352,7 @@ type stepContentProps =
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -4536,7 +4536,7 @@ type swipeableDrawerProps =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -5481,7 +5481,7 @@ type typographyProps =
   /// If `true`, the text will have a bottom margin.
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
-  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then yield "h1" ==> h1.Value; if h2.IsSome then yield "h2" ==> h2.Value; if h3.IsSome then yield "h3" ==> h3.Value; if h4.IsSome then yield "h4" ==> h4.Value; if h5.IsSome then yield "h5" ==> h5.Value; if h6.IsSome then yield "h6" ==> h6.Value; if subtitle1.IsSome then yield "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then yield "subtitle2" ==> subtitle2.Value; if body1.IsSome then yield "body1" ==> body1.Value; if body2.IsSome then yield "body2" ==> body2.Value] |> createObj)
+  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module typographyProps =
@@ -5542,7 +5542,7 @@ type zoomProps =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then yield "enter" ==> enter.Value; if exit.IsSome then yield "exit" ==> exit.Value] |> createObj)
+  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
 
 
 

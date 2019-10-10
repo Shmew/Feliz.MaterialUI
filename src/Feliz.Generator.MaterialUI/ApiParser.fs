@@ -9,7 +9,6 @@ open Domain
 
 
 // TODO: Clean up / refactor / rewrite
-// TODO: remove "yield"
 let paramListAndObjCreator paramData =
   let toSafeName = kebabCaseToCamelCase >> prefixUnderscoreToNumbers >> appendApostropheToReservedKeywords
   let paramList =
@@ -23,9 +22,9 @@ let paramListAndObjCreator paramData =
     paramData
     |> List.map (fun (name, _, isOptional) ->
         if isOptional then
-          sprintf "if %s.IsSome then yield \"%s\" ==> %s.Value" (toSafeName name) name (toSafeName name)
+          sprintf "if %s.IsSome then \"%s\" ==> %s.Value" (toSafeName name) name (toSafeName name)
         else
-          sprintf "yield \"%s\" ==> %s" name (toSafeName name)
+          sprintf "\"%s\" ==> %s" name (toSafeName name)
     )
     |> String.concat "; "
     |> sprintf "([%s] |> createObj)"
