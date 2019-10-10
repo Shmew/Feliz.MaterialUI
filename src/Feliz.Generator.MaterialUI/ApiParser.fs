@@ -642,10 +642,21 @@ let parseComponent (htmlPathOrUrl: string) =
       (comp, props) ||> Array.fold (flip Component.addProp)
 
     let stylesheetName =
-      Regex.Match(page.Html.Body().ToString(), "Style sheet name:\s*\<code\>(.+?)\<\/code\>")
+      Regex.Match(page.Html.Body().ToString(), "Style sheet name:\s*\<code\>(.+?)\<\/code\>")  // TODO: simplify using InnerText as below
         .Groups.[1].Value
       |> Some
       |> Option.filter (not << String.IsNullOrEmpty)
+
+    let setInheritance =
+      let inheritFrom =
+        Regex.Match(page.Html.Body().InnerText(), "Any other props supplied will be provided to the root element \((.+?)\)")
+          .Groups.[1].Value
+      match compMethodName, inheritFrom with
+      | _, (null | "") -> id
+      | ("collapse" | "fade" | "grow" | "slide" | "zoom"), "Transition" -> 
+          id  // The Transition component is from an external library
+      | _, ("native component" | "native element") -> Component.inheritsPropsFromNativeDom
+      | _, baseComp -> baseComp |> String.lowerFirst |> Component.inheritsPropsFromComponent
 
     {
       GeneratorComponent =
@@ -653,6 +664,7 @@ let parseComponent (htmlPathOrUrl: string) =
         |> Component.setDocs markdownDocLines
         |> addAdditionalOverloads
         |> addProps
+        |> setInheritance
       ClassRules =
         let rowsAndHtml =
           try 

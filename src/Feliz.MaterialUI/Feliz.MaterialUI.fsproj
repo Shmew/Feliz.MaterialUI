@@ -30,7 +30,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Feliz" Version="[0.56, 0.57)" />
+    <PackageReference Include="Feliz" Version="[0.57, 0.58)" />
   </ItemGroup>
   
   <PropertyGroup>
