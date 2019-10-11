@@ -16,7 +16,7 @@ module MuiHelpers =
   let reactElement (el: ReactElementType) (props: 'a) : ReactElement =
     import "createElement" "react"
 
-  let createElement (el: ReactElementType) (properties: IReactProperty list) : ReactElement =
+  let createElement (el: ReactElementType) (properties: IReactProperty seq) : ReactElement =
     reactElement el (createObj !!properties)
 
 [<Erase>]
