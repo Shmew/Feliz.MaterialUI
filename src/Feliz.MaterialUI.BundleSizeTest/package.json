@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "compile-split": "fable-splitter . -o ./dist"
+  },
+  "devDependencies": {
+    "fable-compiler": "^2.4",
+    "fable-splitter": "^2.1"
+  }
+}
