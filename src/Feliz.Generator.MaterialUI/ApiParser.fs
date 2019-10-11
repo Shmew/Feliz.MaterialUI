@@ -135,10 +135,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "slider", "marks", "bool | array" ->
         [
           RegularPropOverload.create "(value: bool)" "value"
-          RegularPropOverload.create "([<ParamArray>] values: int [])" "(values |> Array.map (fun x -> {| value = x |}))"
-          RegularPropOverload.create "([<ParamArray>] values: float [])" "(values |> Array.map (fun x -> {| value = x |}))"
-          RegularPropOverload.create "([<ParamArray>] values: {| value: int; label: string option |} [])" "values"
-          RegularPropOverload.create "([<ParamArray>] values: {| value: float; label: string option |} [])" "values"
+          RegularPropOverload.create "([<ParamArray>] values: int [])" "(values |> Array.map (fun x -> createObj [ \"value\" ==> x ]))"
+          RegularPropOverload.create "([<ParamArray>] values: float [])" "(values |> Array.map (fun x -> createObj [ \"value\" ==> x ]))"
+          RegularPropOverload.create "([<ParamArray>] valuesAndLabels: (int * string option) [])" "(valuesAndLabels |> Array.map (fun (v, lb) -> createObj [ \"value\" ==> v; \"label\" ==> lb ]))"
+          RegularPropOverload.create "([<ParamArray>] valuesAndLabels: (float * string option) [])" "(valuesAndLabels |> Array.map (fun (v, lb) -> createObj [ \"value\" ==> v; \"label\" ==> lb ]))"
         ]
 
     | "slider", "valueLabelFormat", _ ->
