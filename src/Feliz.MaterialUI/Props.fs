@@ -120,6 +120,7 @@ type avatar =
   static member inline srcSet (value: string) = Interop.mkAttr "srcSet" value
 
 
+[<Erase>]
 type backdrop =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
@@ -142,7 +143,7 @@ type backdrop =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then "appear" ==> appear.Value; if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 
 [<Erase>]
@@ -1139,6 +1140,7 @@ module clickAwayListener =
     static member inline false' = Interop.mkAttr "touchEvent" false
 
 
+[<Erase>]
 type collapse =
   /// The content node to be collapsed.
   static member inline children (element: ReactElement) = prop.children element
@@ -1169,7 +1171,7 @@ type collapse =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module collapse =
 
@@ -1227,6 +1229,7 @@ type cssBaseline =
   static member inline children (value: float) = Interop.mkAttr "children" value
 
 
+[<Erase>]
 type dialog =
   /// Dialog children, usually the included sub-components.
   static member inline children (element: ReactElement) = prop.children element
@@ -1297,7 +1300,7 @@ type dialog =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
@@ -1420,6 +1423,7 @@ type dialogContent =
   static member inline dividers (value: bool) = Interop.mkAttr "dividers" value
 
 
+[<Erase>]
 type dialogContentText =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
@@ -1460,7 +1464,7 @@ type dialogContentText =
   /// *Inherited from `typography`*
   ///
   /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
-  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
+  static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module dialogContentText =
 
@@ -1570,6 +1574,7 @@ module divider =
     static member inline middle = Interop.mkAttr "variant" "middle"
 
 
+[<Erase>]
 type drawer =
   /// The contents of the drawer.
   static member inline children (element: ReactElement) = prop.children element
@@ -1606,7 +1611,7 @@ type drawer =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module drawer =
 
@@ -1925,6 +1930,7 @@ module fab =
     static member inline button = Interop.mkAttr "type" "button"
 
 
+[<Erase>]
 type fade =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
@@ -1933,7 +1939,7 @@ type fade =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 
 [<Erase>]
@@ -2512,6 +2518,7 @@ module gridListTileBar =
     static member inline bottom = Interop.mkAttr "titlePosition" "bottom"
 
 
+[<Erase>]
 type grow =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
@@ -2524,7 +2531,7 @@ type grow =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module grow =
 
@@ -3047,6 +3054,7 @@ module linearProgress =
     static member inline query = Interop.mkAttr "variant" "query"
 
 
+[<Erase>]
 type link =
   /// The content of the link.
   static member inline children (element: ReactElement) = prop.children element
@@ -3087,7 +3095,7 @@ type link =
   /// *Inherited from `typography`*
   ///
   /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
-  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
+  static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module link =
 
@@ -3337,6 +3345,7 @@ module listSubheader =
     static member inline inherit' = Interop.mkAttr "color" "inherit"
 
 
+[<Erase>]
 type menu =
   /// The DOM element used to set the position of the menu.
   static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
@@ -3403,7 +3412,7 @@ type menu =
   /// The length of the transition in `ms`, or 'auto'
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The length of the transition in `ms`, or 'auto'
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// *Inherited from `popover`*
   ///
   /// A ref for imperative actions. It currently only supports updatePosition() action.
@@ -3439,7 +3448,7 @@ type menu =
   /// *Inherited from `popover`*
   ///
   /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
-  static member anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (["left" ==> left; "top" ==> top] |> createObj)
+  static member inline anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
   /// *Inherited from `popover`*
   ///
   /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
@@ -4200,6 +4209,7 @@ type paper =
   static member inline square (value: bool) = Interop.mkAttr "square" value
 
 
+[<Erase>]
 type popover =
   /// A ref for imperative actions. It currently only supports updatePosition() action.
   static member inline action (ref: IRefValue<PopoverActions option>) = Interop.mkAttr "action" ref
@@ -4228,7 +4238,7 @@ type popover =
   /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
   static member inline anchorOrigin (horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
   /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
-  static member anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (["left" ==> left; "top" ==> top] |> createObj)
+  static member inline anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -4316,7 +4326,7 @@ type popover =
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
@@ -5077,6 +5087,7 @@ module skeleton =
     static member inline circle = Interop.mkAttr "variant" "circle"
 
 
+[<Erase>]
 type slide =
   /// A single child content element.
   ///
@@ -5087,7 +5098,7 @@ type slide =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module slide =
 
@@ -5318,6 +5329,7 @@ module slider =
     static member inline off = Interop.mkAttr "valueLabelDisplay" "off"
 
 
+[<Erase>]
 type snackbar =
   /// The action to display.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
@@ -5400,7 +5412,7 @@ type snackbar =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -5465,6 +5477,7 @@ type snackbarContent =
   static member inline square (value: bool) = Interop.mkAttr "square" value
 
 
+[<Erase>]
 type speedDial =
   /// The aria-label of the button element. Also used to provide the `id` for the `SpeedDial` element and its children.
   static member inline ariaLabel (value: string) = Interop.mkAttr "ariaLabel" value
@@ -5515,7 +5528,7 @@ type speedDial =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if appear.IsSome then "appear" ==> appear.Value; if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -5841,6 +5854,7 @@ type stepConnector =
   static member inline children  = UnsupportedProp ()
 
 
+[<Erase>]
 type stepContent =
   /// Step content.
   static member inline children (element: ReactElement) = prop.children element
@@ -5865,7 +5879,7 @@ type stepContent =
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the `Transition` element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -6025,6 +6039,7 @@ module svgIcon =
     static member inline small = Interop.mkAttr "fontSize" "small"
 
 
+[<Erase>]
 type swipeableDrawer =
   /// Disable the backdrop transition. This can improve the FPS on low-end devices.
   static member inline disableBackdropTransition (value: bool) = Interop.mkAttr "disableBackdropTransition" value
@@ -6061,7 +6076,7 @@ type swipeableDrawer =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -7328,6 +7343,7 @@ type treeView =
   static member inline onNodeToggle (handler: string -> bool -> unit) = Interop.mkAttr "onNodeToggle" handler
 
 
+[<Erase>]
 type typography =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
@@ -7356,7 +7372,7 @@ type typography =
   /// If `true`, the text will have a bottom margin.
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
-  static member variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" ([if h1.IsSome then "h1" ==> h1.Value; if h2.IsSome then "h2" ==> h2.Value; if h3.IsSome then "h3" ==> h3.Value; if h4.IsSome then "h4" ==> h4.Value; if h5.IsSome then "h5" ==> h5.Value; if h6.IsSome then "h6" ==> h6.Value; if subtitle1.IsSome then "subtitle1" ==> subtitle1.Value; if subtitle2.IsSome then "subtitle2" ==> subtitle2.Value; if body1.IsSome then "body1" ==> body1.Value; if body2.IsSome then "body2" ==> body2.Value] |> createObj)
+  static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module typography =
 
@@ -7407,6 +7423,7 @@ module typography =
     static member inline inherit' = Interop.mkAttr "variant" "inherit"
 
 
+[<Erase>]
 type zoom =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
@@ -7415,4 +7432,4 @@ type zoom =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" ([if enter.IsSome then "enter" ==> enter.Value; if exit.IsSome then "exit" ==> exit.Value] |> createObj)
+  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)

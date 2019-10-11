@@ -22,12 +22,12 @@ let paramListAndObjCreator paramData =
     paramData
     |> List.map (fun (name, _, isOptional) ->
         if isOptional then
-          sprintf "if %s.IsSome then \"%s\" ==> %s.Value" (toSafeName name) name (toSafeName name)
+          sprintf "(if %s.IsSome then x?``%s`` <- %s)" (toSafeName name) name (toSafeName name)
         else
-          sprintf "\"%s\" ==> %s" name (toSafeName name)
+          sprintf "x?``%s`` <- %s" name (toSafeName name)
     )
     |> String.concat "; "
-    |> sprintf "([%s] |> createObj)"
+    |> sprintf "(let x = createEmpty<obj> in %s; x)"
   paramList, objCreator
 
 
@@ -107,7 +107,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             "top", "int", false ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
-          |> RegularPropOverload.setInline false
         ]
 
     | "treeView", "defaultExpanded", _ ->
@@ -180,7 +179,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             "body2", "string", true ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
-          |> RegularPropOverload.setInline false
         ]
 
     | ("bottomNavigation" | "tabs"), "onChange", "func" ->
@@ -320,7 +318,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             "exit", "int", true ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
-          |> RegularPropOverload.setInline false
         ]
 
     | _, ("transitionDuration" | "timeout"), ("number | { enter?: number, exit?: number }" | "number | { enter?: number, exit?: number } | 'auto'") ->
@@ -330,7 +327,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             "exit", "int", true ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
-          |> RegularPropOverload.setInline false
         ]
 
     | _, "anchorEl", "object | func" ->
