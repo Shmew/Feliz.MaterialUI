@@ -27,7 +27,7 @@ TODO
 Changelog
 ---------
 
-### vNext (0.5.0)
+### 0.5.0
 
 * Disabled Feliz native DOM prop inheritance (seemingly broken due to F# compiler limitations, see [#20 (comment)](https://github.com/cmeeren/Feliz.MaterialUI/issues/20#issuecomment-540747363)). Inheritance within MUI props are now based on simply duplicating inherited props for child components, and Feliz’s `prop` must be used for non-MUI props.
 * Improved `popover.anchorOrigin` and `popover.transformOrigin`
