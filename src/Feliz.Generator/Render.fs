@@ -35,7 +35,7 @@ module GetLines =
       match comp.Source with
       | ImportPath (path, None) -> sprintf "(importDefault \"%s\")" path
       | ImportPath (path, Some selector) -> sprintf "(import \"%s\" \"%s\")" selector path
-      | Tag tag -> tag
+      | Tag tag -> sprintf "\"%s\"" tag
     sprintf "static member %s%s %s = createElement %s %s"
       (if compOverload.IsInline then "inline " else "")
       comp.MethodName
