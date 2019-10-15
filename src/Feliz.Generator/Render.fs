@@ -31,12 +31,16 @@ module GetLines =
   /// Gets the code lines for the implementation of a single component overload.
   /// Does not include docs.
   let singleComponentOverload (comp: Component) (compOverload: ComponentOverload) =
-    sprintf "static member %s%s %s = createElement (%s \"%s\") %s"
+    let createElementFirstArg =
+      match comp.Source with
+      | ImportPath (path, None) -> sprintf "(importDefault \"%s\")" path
+      | ImportPath (path, Some selector) -> sprintf "(import \"%s\" \"%s\")" selector path
+      | Tag tag -> tag
+    sprintf "static member %s%s %s = createElement %s %s"
       (if compOverload.IsInline then "inline " else "")
       comp.MethodName
       compOverload.ParamsCode
-      (match comp.ImportSelector with None -> "importDefault" | Some sel -> "import " + sel)
-      comp.ImportPath
+      createElementFirstArg
       compOverload.PropsCode
     |> List.singleton
 
@@ -187,8 +191,14 @@ module Render =
       "let reactElement (el: ReactElementType) (props: 'a) : ReactElement =" |> indent 1
       "import \"createElement\" \"react\"" |> indent 2
       ""
-      "let createElement (el: ReactElementType) (properties: IReactProperty list) : ReactElement =" |> indent 1
+      "let reactElementTag (tag: string) (props: 'a) : ReactElement =" |> indent 1
+      "import \"createElement\" \"react\"" |> indent 2
+      ""
+      "let createElement (el: ReactElementType) (properties: IReactProperty seq) : ReactElement =" |> indent 1
       "reactElement el (createObj !!properties)" |> indent 2
+      ""
+      "let createElementTag (tag: string) (properties: IReactProperty seq) : ReactElement =" |> indent 1
+      "reactElementTag tag (createObj !!properties)" |> indent 2
       ""
       if not api.ComponentsPrelude.IsEmpty then
         yield! api.ComponentsPrelude

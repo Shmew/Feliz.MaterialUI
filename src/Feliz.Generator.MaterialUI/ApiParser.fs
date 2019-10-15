@@ -687,7 +687,7 @@ let parseComponent (htmlPathOrUrl: string) =
 
     {
       GeneratorComponent =
-        Component.create compMethodName importPath
+        Component.createImportDefault compMethodName importPath
         |> Component.setDocs markdownDocLines
         |> addAdditionalOverloads
         |> addProps
@@ -721,7 +721,7 @@ let parseApi () =
     ||> List.fold (flip ComponentApi.addComponent)
 
   let muiThemeProvider =
-    Component.create "muiThemeProvider" "@material-ui/core/styles/MuiThemeProvider"
+    Component.createImportDefault "muiThemeProvider" "@material-ui/core/styles/MuiThemeProvider"
     |> Component.addProp (
         Prop.create "children" "children"
         |> Prop.setDocs ["Your component tree."]

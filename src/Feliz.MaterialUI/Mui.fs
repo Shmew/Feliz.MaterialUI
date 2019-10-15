@@ -16,8 +16,14 @@ module MuiHelpers =
   let reactElement (el: ReactElementType) (props: 'a) : ReactElement =
     import "createElement" "react"
 
+  let reactElementTag (tag: string) (props: 'a) : ReactElement =
+    import "createElement" "react"
+
   let createElement (el: ReactElementType) (properties: IReactProperty seq) : ReactElement =
     reactElement el (createObj !!properties)
+
+  let createElementTag (tag: string) (properties: IReactProperty seq) : ReactElement =
+    reactElementTag tag (createObj !!properties)
 
 [<Erase>]
 type Mui =

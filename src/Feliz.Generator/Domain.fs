@@ -6,6 +6,14 @@ type RegularPropOverloadBody =
   | CustomBody of string
 
 
+type ComponentSource =
+  /// The component is created from a string tag
+  | Tag of string
+  /// The component is imported using the specified path and selector. If
+  /// `selector` is `None`, will use `importDefault`.
+  | ImportPath of path: string * selector: string option
+
+
 type RegularPropOverload = {
   /// The code for the method parameters, e.g. `(value: string)`.
   ParamsCode: string
@@ -66,11 +74,8 @@ type Component = {
   DocLines: string list
   /// The name used for the component overloads.
   MethodName: string
-  /// The path the component will be imported from.
-  ImportPath: string
-  /// The selector that will be imported from `ImportPath`. If `None`, will use
-  /// `importDefault`.
-  ImportSelector: string option
+  /// The source of the component (string tag or import path/selector).
+  Source: ComponentSource
   /// The overloads used to create the component.
   Overloads: ComponentOverload list
   /// The component's props.
@@ -205,19 +210,38 @@ module Component =
   /// Creates a component with the specified method name and import path, no
   /// documentation, import selector, props, or prop inheritance, and the
   /// default component overload.
-  let create functionName importPath = {
+  let createImportDefault methodName importPath = {
     DocLines = []
-    MethodName = functionName
-    ImportPath = importPath
-    ImportSelector = None
+    MethodName = methodName
+    Source = ImportPath (importPath, None)
     Overloads = [ComponentOverload.default']
     Props = []
     BaseComponentMethodName = None
   }
 
-  /// Sets the import selector of the component.
-  let setImportSelector selector comp =
-    { comp with ImportSelector = Some selector }
+  /// Creates a component with the specified method name and import
+  /// path/selector, no documentation, props, or prop inheritance, and the
+  /// default component overload.
+  let createImportSelector methodName importPath importSelector = {
+    DocLines = []
+    MethodName = methodName
+    Source = ImportPath (importPath, Some importSelector)
+    Overloads = [ComponentOverload.default']
+    Props = []
+    BaseComponentMethodName = None
+  }
+
+  /// Creates a component with the specified method name and tag, no
+  /// documentation, props, or prop inheritance, and the default component
+  /// overload.
+  let createTag methodName tag = {
+    DocLines = []
+    MethodName = methodName
+    Source = Tag tag
+    Overloads = [ComponentOverload.default']
+    Props = []
+    BaseComponentMethodName = None
+  }
 
   /// Sets the component's doc lines.
   let setDocs docLines (comp: Component) =
