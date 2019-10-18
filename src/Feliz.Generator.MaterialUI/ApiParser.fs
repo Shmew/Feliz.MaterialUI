@@ -193,9 +193,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(values: 'toggleButtonValue [])" "values"
         ]
 
-    | "speedDial", "onClose", "func" ->
-        [RegularPropOverload.create "(handler: Event -> string -> unit)" "(System.Func<_,_,_> handler)"]
-
     | ("checkbox" | "formControlLabel" | "switch"), "onChange", "func" ->
         [
           RegularPropOverload.create "(handler: Event -> unit)" "handler"
@@ -290,6 +287,18 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         [
           RegularPropOverload.create "(handler: Event -> SnackbarCloseReason -> unit)" "(System.Func<_,_,_> handler)"
           RegularPropOverload.create "(handler: SnackbarCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+        ]
+
+    | "speedDial", "onClose", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> SpeedDialCloseReason -> unit)" "(System.Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: SpeedDialCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+        ]
+
+    | "speedDial", "onOpen", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> SpeedDialOpenReason -> unit)" "(System.Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: SpeedDialOpenReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | ("modal" | "portal"), "onRendered", "func" ->
@@ -624,24 +633,6 @@ let parseComponent (htmlPathOrUrl: string) =
     let addProps comp =
       (comp, props) ||> Array.fold (flip Component.addProp)
 
-    // Some components are currently missing children from the props listing
-    // https://github.com/mui-org/material-ui/issues/17674#issuecomment-537880347
-    let addMissingChildrenProp (comp: Component) =
-      let hasChildren = comp.Props |> List.exists (fun p -> p.MethodName = "children")
-      match comp.MethodName with
-      | "card" | "cardContent" | "swipeableDrawer" when not hasChildren ->
-          let prop =
-            Prop.create "children" "children"
-            |> Prop.setDocs ["The content of the component."]
-            |> Prop.addRegularOverload (RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element")
-            |> Prop.addRegularOverload (RegularPropOverload.createCustom "(elements: ReactElement seq)" "prop.children elements")
-            |> Prop.addRegularOverload (RegularPropOverload.create "(value: string)" "value")
-            |> Prop.addRegularOverload (RegularPropOverload.create "(values: string seq)" "values")
-            |> Prop.addRegularOverload (RegularPropOverload.create "(value: int)" "value")
-            |> Prop.addRegularOverload (RegularPropOverload.create "(value: float)" "value")
-          comp |> Component.addProp prop
-      | _ -> comp
-
     let addChildrenOverloadIfSupported (comp: Component) =
       let hasReactElementSeqChildren = 
         comp.Props
@@ -691,7 +682,6 @@ let parseComponent (htmlPathOrUrl: string) =
         |> Component.setDocs markdownDocLines
         |> addAdditionalOverloads
         |> addProps
-        |> addMissingChildrenProp
         |> addChildrenOverloadIfSupported
         |> addUnsupportedChildrenProp
         |> setInheritance

@@ -629,10 +629,6 @@ module buttonGroup =
 
 [<Erase>]
 type card =
-  /// Override or extend the styles applied to the component. Use `classes.card` to specify class names.
-  static member inline classes (classNames: classes.ICardClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// If `true`, the card will use raised styling.
-  static member inline raised (value: bool) = Interop.mkAttr "raised" value
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -645,6 +641,10 @@ type card =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Override or extend the styles applied to the component. Use `classes.card` to specify class names.
+  static member inline classes (classNames: classes.ICardClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// If `true`, the card will use raised styling.
+  static member inline raised (value: bool) = Interop.mkAttr "raised" value
   /// *Inherited from `paper`*
   ///
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -776,12 +776,6 @@ type cardActions =
 
 [<Erase>]
 type cardContent =
-  /// Override or extend the styles applied to the component. Use `classes.cardContent` to specify class names.
-  static member inline classes (classNames: classes.ICardContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// The component used for the root node. Either a string to use a DOM element or a component.
-  static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
-  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -794,6 +788,12 @@ type cardContent =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Override or extend the styles applied to the component. Use `classes.cardContent` to specify class names.
+  static member inline classes (classNames: classes.ICardContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
 [<Erase>]
@@ -1252,6 +1252,8 @@ type dialog =
   /// If `true`, the dialog will be full-screen
   static member inline fullScreen (value: bool) = Interop.mkAttr "fullScreen" value
   /// If `true`, the dialog stretches to `maxWidth`.
+  ///
+  /// Notice that the dialog width grow is limited by the default margin.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
@@ -3071,8 +3073,12 @@ type link =
   /// Override or extend the styles applied to the component. Use `classes.link` to specify class names.
   static member inline classes (classNames: classes.ILinkClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// `classes` prop applied to the [`Typography`](https://material-ui.com/api/typography/) element.
   static member inline TypographyClasses (classNames: classes.ITypographyClasses list) = Interop.mkAttr "TypographyClasses" (createObj !!classNames)
@@ -3477,10 +3483,6 @@ type menu =
   ///
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
-  /// *Inherited from `popover`*
-  ///
-  /// `classes` prop applied to the [`Modal`](https://material-ui.com/api/modal/) element.
-  static member inline ModalClasses (classNames: classes.IModalClasses list) = Interop.mkAttr "ModalClasses" (createObj !!classNames)
   /// *Inherited from `popover`*
   ///
   /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
@@ -4267,8 +4269,6 @@ type popover =
   static member inline getContentAnchorEl (handler: Element option -> unit) = Interop.mkAttr "getContentAnchorEl" handler
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
-  /// `classes` prop applied to the [`Modal`](https://material-ui.com/api/modal/) element.
-  static member inline ModalClasses (classNames: classes.IModalClasses list) = Interop.mkAttr "ModalClasses" (createObj !!classNames)
   /// Callback fired when the component requests to be closed.
   ///
   /// **Signature:**
@@ -4939,7 +4939,7 @@ type select =
   static member inline renderValue (render: 'a -> ReactElement) = Interop.mkAttr "renderValue" render
   /// Props applied to the clickable div element.
   static member inline SelectDisplayProps (props: IReactProperty list) = Interop.mkAttr "SelectDisplayProps" (createObj !!props)
-  /// The input value. This prop is required when the `native` prop is `false` (default).
+  /// The input value. Providing an empty string will select no options. This prop is required when the `native` prop is `false` (default). Set to an empty string `''` if you don't want any of the available options to be selected.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// *Inherited from `input`*
   ///
@@ -5319,6 +5319,15 @@ module slider =
     static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
     static member inline vertical = Interop.mkAttr "orientation" "vertical"
 
+  /// The track presentation:
+  ///
+  /// - `normal` the track will render a bar representing the slider value. - `inverted` the track will render a bar representing the remaining slider value. - `false` the track will render without a bar.
+  [<Erase>]
+  type track =
+    static member inline normal = Interop.mkAttr "track" "normal"
+    static member inline false' = Interop.mkAttr "track" false
+    static member inline inverted = Interop.mkAttr "track" "inverted"
+
   /// Controls when the value label is displayed:
   ///
   /// - `auto` the value label will display when the thumb is hovered or focused. - `on` will display persistently. - `off` will never display.
@@ -5476,6 +5485,14 @@ type snackbarContent =
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
 
+module snackbarContent =
+
+  /// The role of the SnackbarContent. If the Snackbar requires focus to be closed, the `alertdialog` role should be used instead.
+  [<Erase>]
+  type role =
+    static member inline alert = Interop.mkAttr "role" "alert"
+    static member inline alertdialog = Interop.mkAttr "role" "alertdialog"
+
 
 [<Erase>]
 type speedDial =
@@ -5505,20 +5522,42 @@ type speedDial =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, key: string) => void`
+  /// `function(event: object, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *key:* The key pressed.
-  static member inline onClose (handler: Event -> string -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
+  /// *reason:* Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
+  static member inline onClose (handler: Event -> SpeedDialCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> handler)
+  /// Callback fired when the component requests to be closed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *reason:* Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
+  static member inline onClose (handler: SpeedDialCloseReason -> unit) = Interop.mkAttr "onClose" (System.Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the component requests to be open.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object) => void`
+  /// `function(event: object, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
-  static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
+  ///
+  /// *reason:* Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
+  static member inline onOpen (handler: Event -> SpeedDialOpenReason -> unit) = Interop.mkAttr "onOpen" (System.Func<_,_,_> handler)
+  /// Callback fired when the component requests to be open.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *reason:* Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
+  static member inline onOpen (handler: SpeedDialOpenReason -> unit) = Interop.mkAttr "onOpen" (System.Func<_,_,_> (fun _ v -> handler v))
   /// If `true`, the SpeedDial is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The icon to display in the SpeedDial Fab when the SpeedDial is open.
@@ -6041,6 +6080,18 @@ module svgIcon =
 
 [<Erase>]
 type swipeableDrawer =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
   /// Disable the backdrop transition. This can improve the FPS on low-end devices.
   static member inline disableBackdropTransition (value: bool) = Interop.mkAttr "disableBackdropTransition" value
   /// If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit to promote accidental discovery of the swipe gesture.
@@ -6077,18 +6128,6 @@ type swipeableDrawer =
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
-  /// The content of the component.
-  static member inline children (element: ReactElement) = prop.children element
-  /// The content of the component.
-  static member inline children (elements: ReactElement seq) = prop.children elements
-  /// The content of the component.
-  static member inline children (value: string) = Interop.mkAttr "children" value
-  /// The content of the component.
-  static member inline children (values: string seq) = Interop.mkAttr "children" values
-  /// The content of the component.
-  static member inline children (value: int) = Interop.mkAttr "children" value
-  /// The content of the component.
-  static member inline children (value: float) = Interop.mkAttr "children" value
   /// *Inherited from `drawer`*
   ///
   /// Override or extend the styles applied to the component. Use `classes.drawer` to specify class names.

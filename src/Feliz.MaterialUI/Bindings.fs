@@ -335,6 +335,19 @@ type SnackbarCloseReason =
   | Clickaway
 
 [<StringEnum; RequireQualifiedAccess>]
+type SpeedDialCloseReason =
+  | Toggle
+  | Blur
+  | MouseLeave
+  | EscapeKeyDown
+
+[<StringEnum; RequireQualifiedAccess>]
+type SpeedDialOpenReason =
+  | Toggle
+  | Focus
+  | MouseEnter
+
+[<StringEnum; RequireQualifiedAccess>]
 type PopoverOriginHorizontal =
   | Left
   | Center

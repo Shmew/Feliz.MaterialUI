@@ -357,11 +357,11 @@ module overrides =
     static member inline textSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("textSizeLarge", createObj !!styles)
     /// Styles applied to the root element if `size="small"` and `variant="outlined"`.
     static member inline outlinedSizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("outlinedSizeSmall", createObj !!styles)
-    /// Styles applied to the root element if `size="large"&& variant="outlined"`.
+    /// Styles applied to the root element if `size="large"` and `variant="outlined"`.
     static member inline outlinedSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("outlinedSizeLarge", createObj !!styles)
-    /// Styles applied to the root element if `size="small"&& variant="contained"`.
+    /// Styles applied to the root element if `size="small"` and `variant="contained"`.
     static member inline containedSizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("containedSizeSmall", createObj !!styles)
-    /// Styles applied to the root element if `size="large"&&&& variant="contained"`.
+    /// Styles applied to the root element if `size="large"` and `variant="contained"`.
     static member inline containedSizeLarge(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("containedSizeLarge", createObj !!styles)
     /// Styles applied to the root element if `size="small"`.
     static member inline sizeSmall(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("sizeSmall", createObj !!styles)
@@ -393,29 +393,29 @@ module overrides =
   type muiButtonGroup =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("root", createObj !!styles)
-    /// Styles applied to the root element if variant="contained".
+    /// Styles applied to the root element if `variant="contained"`.
     static member inline contained(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("contained", createObj !!styles)
-    /// Styles applied to the root element if fullWidth={true}.
+    /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("fullWidth", createObj !!styles)
     /// Styles applied to the children.
     static member inline grouped(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("grouped", createObj !!styles)
-    /// Styles applied to the children if variant="text".
+    /// Styles applied to the children if `variant="text"`.
     static member inline groupedText(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedText", createObj !!styles)
-    /// Styles applied to the children if variant="outlined"& color="primary".
+    /// Styles applied to the children if `variant="text"` and `color="primary"`.
     static member inline groupedTextPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextPrimary", createObj !!styles)
-    /// Styles applied to the children if variant="outlined"& color="secondary".
+    /// Styles applied to the children if `variant="text"` and `color="secondary"`.
     static member inline groupedTextSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextSecondary", createObj !!styles)
-    /// Styles applied to the children if variant="outlined".
+    /// Styles applied to the children if `variant="outlined"`.
     static member inline groupedOutlined(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlined", createObj !!styles)
-    /// Styles applied to the children if variant="outlined"& color="primary".
+    /// Styles applied to the children if `variant="outlined"` and `color="primary"`.
     static member inline groupedOutlinedPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlinedPrimary", createObj !!styles)
-    /// Styles applied to the children if variant="outlined"& color="secondary".
+    /// Styles applied to the children if `variant="outlined"` and `color="secondary"`.
     static member inline groupedOutlinedSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlinedSecondary", createObj !!styles)
-    /// Styles applied to the children if variant="contained".
+    /// Styles applied to the children if `variant="contained"`.
     static member inline groupedContained(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContained", createObj !!styles)
-    /// Styles applied to the children if variant="contained"& color="primary".
+    /// Styles applied to the children if `variant="contained"` and `color="primary"`.
     static member inline groupedContainedPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContainedPrimary", createObj !!styles)
-    /// Styles applied to the children if variant="contained"& color="secondary".
+    /// Styles applied to the children if `variant="contained"` and `color="secondary"`.
     static member inline groupedContainedSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContainedSecondary", createObj !!styles)
     /// Pseudo-class applied to child elements if `disabled={true}`.
     static member inline disabled(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("disabled", createObj !!styles)
@@ -687,13 +687,13 @@ module overrides =
     static member inline paperAnchorTop(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("paperAnchorTop", createObj !!styles)
     /// Styles applied to the `Paper` component if `anchor="bottom"`.
     static member inline paperAnchorBottom(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("paperAnchorBottom", createObj !!styles)
-    /// Styles applied to the `Paper` component if `anchor="left"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
     static member inline paperAnchorDockedLeft(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("paperAnchorDockedLeft", createObj !!styles)
-    /// Styles applied to the `Paper` component if `anchor="top"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
     static member inline paperAnchorDockedTop(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("paperAnchorDockedTop", createObj !!styles)
-    /// Styles applied to the `Paper` component if `anchor="right"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
     static member inline paperAnchorDockedRight(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("paperAnchorDockedRight", createObj !!styles)
-    /// Styles applied to the `Paper` component if `anchor="bottom"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
     static member inline paperAnchorDockedBottom(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("paperAnchorDockedBottom", createObj !!styles)
     /// Styles applied to the `Modal` component.
     static member inline modal(styles: IStyleAttribute list) : IMuiDrawerOverrideRule = unbox ("modal", createObj !!styles)
@@ -1113,9 +1113,9 @@ module overrides =
   type muiLinearProgress =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("root", createObj !!styles)
-    /// Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+    /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
     static member inline colorPrimary(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("colorPrimary", createObj !!styles)
-    /// Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
+    /// Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
     static member inline colorSecondary(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if `variant="determinate"`.
     static member inline determinate(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("determinate", createObj !!styles)
@@ -1127,11 +1127,11 @@ module overrides =
     static member inline query(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("query", createObj !!styles)
     /// Styles applied to the additional bar element if `variant="buffer"`.
     static member inline dashed(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("dashed", createObj !!styles)
-    /// Styles applied to the additional bar element if `variant="buffer"`&`color="primary"`.
+    /// Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`.
     static member inline dashedColorPrimary(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("dashedColorPrimary", createObj !!styles)
-    /// Styles applied to the additional bar element if `variant="buffer"`&`color="secondary"`.
+    /// Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`.
     static member inline dashedColorSecondary(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("dashedColorSecondary", createObj !!styles)
-    /// Styles applied to the layered bar1 & bar2 elements.
+    /// Styles applied to the layered bar1 and bar2 elements.
     static member inline bar(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("bar", createObj !!styles)
     /// Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
     static member inline barColorPrimary(styles: IStyleAttribute list) : IMuiLinearProgressOverrideRule = unbox ("barColorPrimary", createObj !!styles)
@@ -1373,6 +1373,8 @@ module overrides =
 
   [<Erase>]
   type muiPopover =
+    /// Styles applied to the root element
+    static member inline root(styles: IStyleAttribute list) : IMuiPopoverOverrideRule = unbox ("root", createObj !!styles)
     /// Styles applied to the `Paper` component.
     static member inline paper(styles: IStyleAttribute list) : IMuiPopoverOverrideRule = unbox ("paper", createObj !!styles)
 
@@ -1476,6 +1478,10 @@ module overrides =
     static member inline rail(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("rail", createObj !!styles)
     /// Styles applied to the track element.
     static member inline track(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("track", createObj !!styles)
+    /// Styles applied to the track element if `track={false}`.
+    static member inline trackFalse(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("trackFalse", createObj !!styles)
+    /// Styles applied to the track element if `track="inverted"`.
+    static member inline trackInverted(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("trackInverted", createObj !!styles)
     /// Styles applied to the thumb element.
     static member inline thumb(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("thumb", createObj !!styles)
     /// Styles applied to the thumb element if `color="primary"`.
@@ -1567,11 +1573,11 @@ module overrides =
     static member inline icon(styles: IStyleAttribute list) : IMuiSpeedDialIconOverrideRule = unbox ("icon", createObj !!styles)
     /// Styles applied to the icon component if `open={true}`.
     static member inline iconOpen(styles: IStyleAttribute list) : IMuiSpeedDialIconOverrideRule = unbox ("iconOpen", createObj !!styles)
-    /// Styles applied to the icon when and `openIcon` is provided & if `open={true}`.
+    /// Styles applied to the icon when and `openIcon` is provided and if `open={true}`.
     static member inline iconWithOpenIconOpen(styles: IStyleAttribute list) : IMuiSpeedDialIconOverrideRule = unbox ("iconWithOpenIconOpen", createObj !!styles)
     /// Styles applied to the `openIcon` if provided.
     static member inline openIcon(styles: IStyleAttribute list) : IMuiSpeedDialIconOverrideRule = unbox ("openIcon", createObj !!styles)
-    /// Styles applied to the `openIcon` if provided & if `open={true}`.
+    /// Styles applied to the `openIcon` if provided and if `open={true}`.
     static member inline openIconOpen(styles: IStyleAttribute list) : IMuiSpeedDialIconOverrideRule = unbox ("openIconOpen", createObj !!styles)
 
   [<Erase>]
@@ -1663,7 +1669,7 @@ module overrides =
     static member inline disabled(styles: IStyleAttribute list) : IMuiStepLabelOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the `icon` container element.
     static member inline iconContainer(styles: IStyleAttribute list) : IMuiStepLabelOverrideRule = unbox ("iconContainer", createObj !!styles)
-    /// Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
+    /// Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.
     static member inline alternativeLabel(styles: IStyleAttribute list) : IMuiStepLabelOverrideRule = unbox ("alternativeLabel", createObj !!styles)
     /// Styles applied to the container element which wraps `Typography` and `optional`.
     static member inline labelContainer(styles: IStyleAttribute list) : IMuiStepLabelOverrideRule = unbox ("labelContainer", createObj !!styles)

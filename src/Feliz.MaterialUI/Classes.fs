@@ -167,11 +167,11 @@ module classes =
     static member inline textSizeLarge(value: string) : IButtonClasses = unbox ("textSizeLarge", value)
     /// Styles applied to the root element if `size="small"` and `variant="outlined"`.
     static member inline outlinedSizeSmall(value: string) : IButtonClasses = unbox ("outlinedSizeSmall", value)
-    /// Styles applied to the root element if `size="large"&& variant="outlined"`.
+    /// Styles applied to the root element if `size="large"` and `variant="outlined"`.
     static member inline outlinedSizeLarge(value: string) : IButtonClasses = unbox ("outlinedSizeLarge", value)
-    /// Styles applied to the root element if `size="small"&& variant="contained"`.
+    /// Styles applied to the root element if `size="small"` and `variant="contained"`.
     static member inline containedSizeSmall(value: string) : IButtonClasses = unbox ("containedSizeSmall", value)
-    /// Styles applied to the root element if `size="large"&&&& variant="contained"`.
+    /// Styles applied to the root element if `size="large"` and `variant="contained"`.
     static member inline containedSizeLarge(value: string) : IButtonClasses = unbox ("containedSizeLarge", value)
     /// Styles applied to the root element if `size="small"`.
     static member inline sizeSmall(value: string) : IButtonClasses = unbox ("sizeSmall", value)
@@ -209,29 +209,29 @@ module classes =
   type buttonGroup =
     /// Styles applied to the root element.
     static member inline root(value: string) : IButtonGroupClasses = unbox ("root", value)
-    /// Styles applied to the root element if variant="contained".
+    /// Styles applied to the root element if `variant="contained"`.
     static member inline contained(value: string) : IButtonGroupClasses = unbox ("contained", value)
-    /// Styles applied to the root element if fullWidth={true}.
+    /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(value: string) : IButtonGroupClasses = unbox ("fullWidth", value)
     /// Styles applied to the children.
     static member inline grouped(value: string) : IButtonGroupClasses = unbox ("grouped", value)
-    /// Styles applied to the children if variant="text".
+    /// Styles applied to the children if `variant="text"`.
     static member inline groupedText(value: string) : IButtonGroupClasses = unbox ("groupedText", value)
-    /// Styles applied to the children if variant="outlined"& color="primary".
+    /// Styles applied to the children if `variant="text"` and `color="primary"`.
     static member inline groupedTextPrimary(value: string) : IButtonGroupClasses = unbox ("groupedTextPrimary", value)
-    /// Styles applied to the children if variant="outlined"& color="secondary".
+    /// Styles applied to the children if `variant="text"` and `color="secondary"`.
     static member inline groupedTextSecondary(value: string) : IButtonGroupClasses = unbox ("groupedTextSecondary", value)
-    /// Styles applied to the children if variant="outlined".
+    /// Styles applied to the children if `variant="outlined"`.
     static member inline groupedOutlined(value: string) : IButtonGroupClasses = unbox ("groupedOutlined", value)
-    /// Styles applied to the children if variant="outlined"& color="primary".
+    /// Styles applied to the children if `variant="outlined"` and `color="primary"`.
     static member inline groupedOutlinedPrimary(value: string) : IButtonGroupClasses = unbox ("groupedOutlinedPrimary", value)
-    /// Styles applied to the children if variant="outlined"& color="secondary".
+    /// Styles applied to the children if `variant="outlined"` and `color="secondary"`.
     static member inline groupedOutlinedSecondary(value: string) : IButtonGroupClasses = unbox ("groupedOutlinedSecondary", value)
-    /// Styles applied to the children if variant="contained".
+    /// Styles applied to the children if `variant="contained"`.
     static member inline groupedContained(value: string) : IButtonGroupClasses = unbox ("groupedContained", value)
-    /// Styles applied to the children if variant="contained"& color="primary".
+    /// Styles applied to the children if `variant="contained"` and `color="primary"`.
     static member inline groupedContainedPrimary(value: string) : IButtonGroupClasses = unbox ("groupedContainedPrimary", value)
-    /// Styles applied to the children if variant="contained"& color="secondary".
+    /// Styles applied to the children if `variant="contained"` and `color="secondary"`.
     static member inline groupedContainedSecondary(value: string) : IButtonGroupClasses = unbox ("groupedContainedSecondary", value)
     /// Pseudo-class applied to child elements if `disabled={true}`.
     static member inline disabled(value: string) : IButtonGroupClasses = unbox ("disabled", value)
@@ -563,13 +563,13 @@ module classes =
     static member inline paperAnchorTop(value: string) : IDrawerClasses = unbox ("paperAnchorTop", value)
     /// Styles applied to the `Paper` component if `anchor="bottom"`.
     static member inline paperAnchorBottom(value: string) : IDrawerClasses = unbox ("paperAnchorBottom", value)
-    /// Styles applied to the `Paper` component if `anchor="left"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
     static member inline paperAnchorDockedLeft(value: string) : IDrawerClasses = unbox ("paperAnchorDockedLeft", value)
-    /// Styles applied to the `Paper` component if `anchor="top"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
     static member inline paperAnchorDockedTop(value: string) : IDrawerClasses = unbox ("paperAnchorDockedTop", value)
-    /// Styles applied to the `Paper` component if `anchor="right"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
     static member inline paperAnchorDockedRight(value: string) : IDrawerClasses = unbox ("paperAnchorDockedRight", value)
-    /// Styles applied to the `Paper` component if `anchor="bottom"`&`variant` is not "temporary".
+    /// Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
     static member inline paperAnchorDockedBottom(value: string) : IDrawerClasses = unbox ("paperAnchorDockedBottom", value)
     /// Styles applied to the `Modal` component.
     static member inline modal(value: string) : IDrawerClasses = unbox ("modal", value)
@@ -1064,9 +1064,9 @@ module classes =
   type linearProgress =
     /// Styles applied to the root element.
     static member inline root(value: string) : ILinearProgressClasses = unbox ("root", value)
-    /// Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+    /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
     static member inline colorPrimary(value: string) : ILinearProgressClasses = unbox ("colorPrimary", value)
-    /// Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
+    /// Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
     static member inline colorSecondary(value: string) : ILinearProgressClasses = unbox ("colorSecondary", value)
     /// Styles applied to the root element if `variant="determinate"`.
     static member inline determinate(value: string) : ILinearProgressClasses = unbox ("determinate", value)
@@ -1078,11 +1078,11 @@ module classes =
     static member inline query(value: string) : ILinearProgressClasses = unbox ("query", value)
     /// Styles applied to the additional bar element if `variant="buffer"`.
     static member inline dashed(value: string) : ILinearProgressClasses = unbox ("dashed", value)
-    /// Styles applied to the additional bar element if `variant="buffer"`&`color="primary"`.
+    /// Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`.
     static member inline dashedColorPrimary(value: string) : ILinearProgressClasses = unbox ("dashedColorPrimary", value)
-    /// Styles applied to the additional bar element if `variant="buffer"`&`color="secondary"`.
+    /// Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`.
     static member inline dashedColorSecondary(value: string) : ILinearProgressClasses = unbox ("dashedColorSecondary", value)
-    /// Styles applied to the layered bar1 & bar2 elements.
+    /// Styles applied to the layered bar1 and bar2 elements.
     static member inline bar(value: string) : ILinearProgressClasses = unbox ("bar", value)
     /// Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
     static member inline barColorPrimary(value: string) : ILinearProgressClasses = unbox ("barColorPrimary", value)
@@ -1378,6 +1378,8 @@ module classes =
   
   [<Erase>]
   type popover =
+    /// Styles applied to the root element
+    static member inline root(value: string) : IPopoverClasses = unbox ("root", value)
     /// Styles applied to the `Paper` component.
     static member inline paper(value: string) : IPopoverClasses = unbox ("paper", value)
 
@@ -1511,6 +1513,10 @@ module classes =
     static member inline rail(value: string) : ISliderClasses = unbox ("rail", value)
     /// Styles applied to the track element.
     static member inline track(value: string) : ISliderClasses = unbox ("track", value)
+    /// Styles applied to the track element if `track={false}`.
+    static member inline trackFalse(value: string) : ISliderClasses = unbox ("trackFalse", value)
+    /// Styles applied to the track element if `track="inverted"`.
+    static member inline trackInverted(value: string) : ISliderClasses = unbox ("trackInverted", value)
     /// Styles applied to the thumb element.
     static member inline thumb(value: string) : ISliderClasses = unbox ("thumb", value)
     /// Styles applied to the thumb element if `color="primary"`.
@@ -1617,11 +1623,11 @@ module classes =
     static member inline icon(value: string) : ISpeedDialIconClasses = unbox ("icon", value)
     /// Styles applied to the icon component if `open={true}`.
     static member inline iconOpen(value: string) : ISpeedDialIconClasses = unbox ("iconOpen", value)
-    /// Styles applied to the icon when and `openIcon` is provided & if `open={true}`.
+    /// Styles applied to the icon when and `openIcon` is provided and if `open={true}`.
     static member inline iconWithOpenIconOpen(value: string) : ISpeedDialIconClasses = unbox ("iconWithOpenIconOpen", value)
     /// Styles applied to the `openIcon` if provided.
     static member inline openIcon(value: string) : ISpeedDialIconClasses = unbox ("openIcon", value)
-    /// Styles applied to the `openIcon` if provided & if `open={true}`.
+    /// Styles applied to the `openIcon` if provided and if `open={true}`.
     static member inline openIconOpen(value: string) : ISpeedDialIconClasses = unbox ("openIconOpen", value)
 
 
@@ -1731,7 +1737,7 @@ module classes =
     static member inline disabled(value: string) : IStepLabelClasses = unbox ("disabled", value)
     /// Styles applied to the `icon` container element.
     static member inline iconContainer(value: string) : IStepLabelClasses = unbox ("iconContainer", value)
-    /// Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
+    /// Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.
     static member inline alternativeLabel(value: string) : IStepLabelClasses = unbox ("alternativeLabel", value)
     /// Styles applied to the container element which wraps `Typography` and `optional`.
     static member inline labelContainer(value: string) : IStepLabelClasses = unbox ("labelContainer", value)

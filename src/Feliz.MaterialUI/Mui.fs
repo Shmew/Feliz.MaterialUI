@@ -979,22 +979,22 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([FormControl](https://material-ui.com/api/form-control/)).
   static member inline textField props = createElement (importDefault "@material-ui/core/TextField") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline toggleButton props = createElement (importDefault "@material-ui/lab/ToggleButton") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline toggleButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButton") [ Feliz.MaterialUI.toggleButton.children (children :> ReactElement seq) ]
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline toggleButtonGroup props = createElement (importDefault "@material-ui/lab/ToggleButtonGroup") props
 
-  /// The component cannot hold a ref.
+  /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline toggleButtonGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButtonGroup") [ Feliz.MaterialUI.toggleButtonGroup.children (children :> ReactElement seq) ]
