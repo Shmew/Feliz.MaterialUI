@@ -539,13 +539,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create methodName v
         )
 
-
-  let addRegularOverloads prop =
-    (prop, regularOverloads) ||> Seq.fold (flip Prop.addRegularOverload)
-
-  let addEnumOverloads prop =
-    (prop, enumOverloads) ||> Seq.fold (flip Prop.addEnumOverload)
-
   let globalDocTransform (s: string) =
     s.Replace(" It supports those theme colors that make sense for this component.", "")
      .Replace(" You may specify a single timeout for all transitions, or individually with an object.", "")
@@ -571,8 +564,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
   Prop.create realPropName propMethodName
   |> Prop.setDocs transformedMarkdownDocLines
-  |> addRegularOverloads
-  |> addEnumOverloads
+  |> Prop.addRegularOverloads regularOverloads
+  |> Prop.addEnumOverloads enumOverloads
 
 
 let parseComponent (htmlPathOrUrl: string) =
@@ -619,9 +612,6 @@ let parseComponent (htmlPathOrUrl: string) =
       | _ ->
           []
 
-    let addAdditionalOverloads comp =
-      (comp, additionalOverloads) ||> List.fold (flip Component.addOverload)
-
     let props =
       page.Tables.Props.Rows
       |> Array.mapi (fun i r ->
@@ -629,9 +619,6 @@ let parseComponent (htmlPathOrUrl: string) =
           parseProp compMethodName r rowHtml
       )
       |> Array.filter (fun p -> not (p.RegularOverloads.IsEmpty && p.EnumOverloads.IsEmpty))
-
-    let addProps comp =
-      (comp, props) ||> Array.fold (flip Component.addProp)
 
     let addChildrenOverloadIfSupported (comp: Component) =
       let hasReactElementSeqChildren = 
@@ -680,8 +667,8 @@ let parseComponent (htmlPathOrUrl: string) =
       GeneratorComponent =
         Component.createImportDefault compMethodName importPath
         |> Component.setDocs markdownDocLines
-        |> addAdditionalOverloads
-        |> addProps
+        |> Component.addOverloads additionalOverloads
+        |> Component.addProps props
         |> addChildrenOverloadIfSupported
         |> addUnsupportedChildrenProp
         |> setInheritance
@@ -706,10 +693,6 @@ let parseApi () =
     |> Array.Parallel.map parseComponent
     |> Array.toList
 
-  let addAllComponents api =
-    (api, (components |> List.map (fun c -> c.GeneratorComponent)))
-    ||> List.fold (flip ComponentApi.addComponent)
-
   let muiThemeProvider =
     Component.createImportDefault "muiThemeProvider" "@material-ui/core/styles/MuiThemeProvider"
     |> Component.addProp (
@@ -730,7 +713,7 @@ let parseApi () =
   let api =
     ComponentApi.create "Feliz.MaterialUI" "Mui"
     |> ComponentApi.addComponent muiThemeProvider
-    |> addAllComponents
+    |> ComponentApi.addComponents (components |> List.map (fun c -> c.GeneratorComponent))
 
   {
     GeneratorComponentApi = api

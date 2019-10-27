@@ -2,6 +2,10 @@
 module Feliz.Generator.Utils
 
 
+let flip f x y =
+  f y x
+
+
 module String =
 
   let prefix (prefix: string) s =

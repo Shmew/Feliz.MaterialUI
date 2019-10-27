@@ -173,9 +173,17 @@ module Prop =
   let addRegularOverload overload prop =
     { prop with RegularOverloads = prop.RegularOverloads @ [overload] }
 
+  /// Adds the specified regular (non-enum) overloads to the prop.
+  let addRegularOverloads (overloads: #seq<_>) prop =
+    (prop, overloads) ||> Seq.fold (flip addRegularOverload)
+
   /// Adds the specified enum value/overload to the prop.
   let addEnumOverload overload prop =
     { prop with EnumOverloads = prop.EnumOverloads @ [overload] }
+
+  /// Adds the specified enum values/overloads to the prop.
+  let addEnumOverloads (overloads: #seq<_>) prop =
+    (prop, overloads) ||> Seq.fold (flip addEnumOverload)
 
   /// Indicates whether all regular prop overloads are inline.
   let allRegularOverloadsAreInline prop =
@@ -251,6 +259,10 @@ module Component =
   let addOverload overload comp =
     { comp with Overloads = comp.Overloads @ [overload] }
 
+  /// Adds the specified overloads to the component.
+  let addOverloads (overloads: #seq<_>) comp =
+    (comp, overloads) ||> Seq.fold (flip addOverload)
+
   /// Removes the default overload that accepts a list of props.
   let removeDefaultOverload comp =
     { comp with Overloads = comp.Overloads |> List.except [ComponentOverload.default'] }
@@ -258,6 +270,10 @@ module Component =
   /// Adds the specified prop to the component.
   let addProp prop comp =
     { comp with Props = comp.Props @ [prop] }
+
+  /// Adds the specified props to the component.
+  let addProps (props: #seq<_>) comp =
+    (comp, props) ||> Seq.fold (flip addProp)
 
   /// Set this component to inherit the props of another component with the
   /// specified MethodName.
@@ -293,10 +309,22 @@ module ComponentApi =
   let addComponent component' api =
     { api with Components = api.Components @ [component'] }
 
-  /// Adds the specified components prelude to the API.
+  /// Adds the specified components to the API.
+  let addComponents (components: #seq<_>) api =
+    (api, components) ||> Seq.fold (flip addComponent)
+
+  /// Sets the specified components prelude.
   let setComponentsPrelude lines api =
     { api with ComponentsPrelude = lines }
 
-  /// Adds the specified props prelude to the API.
+  /// Sets the specified props prelude.
   let setPropsPrelude lines api =
     { api with PropsPrelude = lines }
+
+  /// Sets the specified namespace.
+  let withNamespace namespace' api =
+    { api with Namespace = namespace' }
+
+  /// Sets the specified container type name.
+  let withTypeName typeName api =
+    { api with ComponentContainerTypeName = typeName }
