@@ -14,7 +14,7 @@ module GetLines =
   /// Gets the code lines for the implementation of a single class rule. Does not
   /// include docs.
   let singleClassRule (comp: MuiComponent) (rule: ClassRule) =
-    sprintf "static member inline %s(value: string) : I%sClasses = unbox (\"%s\", value)"
+    sprintf "static member inline %s(className: string) : I%sClasses = unbox (\"%s\", className)"
       rule.MethodName
       (comp.GeneratorComponent.MethodName |> String.upperFirst)
       rule.RealRuleName

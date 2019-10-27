@@ -14,23 +14,23 @@ module classes =
   [<Erase>]
   type appBar =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IAppBarClasses = unbox ("root", value)
+    static member inline root(className: string) : IAppBarClasses = unbox ("root", className)
     /// Styles applied to the root element if `position="fixed"`.
-    static member inline positionFixed(value: string) : IAppBarClasses = unbox ("positionFixed", value)
+    static member inline positionFixed(className: string) : IAppBarClasses = unbox ("positionFixed", className)
     /// Styles applied to the root element if `position="absolute"`.
-    static member inline positionAbsolute(value: string) : IAppBarClasses = unbox ("positionAbsolute", value)
+    static member inline positionAbsolute(className: string) : IAppBarClasses = unbox ("positionAbsolute", className)
     /// Styles applied to the root element if `position="sticky"`.
-    static member inline positionSticky(value: string) : IAppBarClasses = unbox ("positionSticky", value)
+    static member inline positionSticky(className: string) : IAppBarClasses = unbox ("positionSticky", className)
     /// Styles applied to the root element if `position="static"`.
-    static member inline positionStatic(value: string) : IAppBarClasses = unbox ("positionStatic", value)
+    static member inline positionStatic(className: string) : IAppBarClasses = unbox ("positionStatic", className)
     /// Styles applied to the root element if `position="relative"`.
-    static member inline positionRelative(value: string) : IAppBarClasses = unbox ("positionRelative", value)
+    static member inline positionRelative(className: string) : IAppBarClasses = unbox ("positionRelative", className)
     /// Styles applied to the root element if `color="default"`.
-    static member inline colorDefault(value: string) : IAppBarClasses = unbox ("colorDefault", value)
+    static member inline colorDefault(className: string) : IAppBarClasses = unbox ("colorDefault", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IAppBarClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IAppBarClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : IAppBarClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : IAppBarClasses = unbox ("colorSecondary", className)
 
 
   type IAvatarClasses = interface end
@@ -38,11 +38,11 @@ module classes =
   [<Erase>]
   type avatar =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IAvatarClasses = unbox ("root", value)
+    static member inline root(className: string) : IAvatarClasses = unbox ("root", className)
     /// Styles applied to the root element if there are children and not `src` or `srcSet`.
-    static member inline colorDefault(value: string) : IAvatarClasses = unbox ("colorDefault", value)
+    static member inline colorDefault(className: string) : IAvatarClasses = unbox ("colorDefault", className)
     /// Styles applied to the img element if either `src` or `srcSet` is defined.
-    static member inline img(value: string) : IAvatarClasses = unbox ("img", value)
+    static member inline img(className: string) : IAvatarClasses = unbox ("img", className)
 
 
   type IBackdropClasses = interface end
@@ -50,9 +50,9 @@ module classes =
   [<Erase>]
   type backdrop =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IBackdropClasses = unbox ("root", value)
+    static member inline root(className: string) : IBackdropClasses = unbox ("root", className)
     /// Styles applied to the root element if `invisible={true}`.
-    static member inline invisible(value: string) : IBackdropClasses = unbox ("invisible", value)
+    static member inline invisible(className: string) : IBackdropClasses = unbox ("invisible", className)
 
 
   type IBadgeClasses = interface end
@@ -60,35 +60,35 @@ module classes =
   [<Erase>]
   type badge =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IBadgeClasses = unbox ("root", value)
+    static member inline root(className: string) : IBadgeClasses = unbox ("root", className)
     /// Styles applied to the badge `span` element.
-    static member inline badge(value: string) : IBadgeClasses = unbox ("badge", value)
+    static member inline badge(className: string) : IBadgeClasses = unbox ("badge", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IBadgeClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IBadgeClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : IBadgeClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : IBadgeClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `color="error"`.
-    static member inline colorError(value: string) : IBadgeClasses = unbox ("colorError", value)
+    static member inline colorError(className: string) : IBadgeClasses = unbox ("colorError", className)
     /// Styles applied to the root element if `variant="dot"`.
-    static member inline dot(value: string) : IBadgeClasses = unbox ("dot", value)
+    static member inline dot(className: string) : IBadgeClasses = unbox ("dot", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
-    static member inline anchorOriginTopRightRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginTopRightRectangle", value)
+    static member inline anchorOriginTopRightRectangle(className: string) : IBadgeClasses = unbox ("anchorOriginTopRightRectangle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
-    static member inline anchorOriginBottomRightRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomRightRectangle", value)
+    static member inline anchorOriginBottomRightRectangle(className: string) : IBadgeClasses = unbox ("anchorOriginBottomRightRectangle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
-    static member inline anchorOriginTopLeftRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginTopLeftRectangle", value)
+    static member inline anchorOriginTopLeftRectangle(className: string) : IBadgeClasses = unbox ("anchorOriginTopLeftRectangle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
-    static member inline anchorOriginBottomLeftRectangle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomLeftRectangle", value)
+    static member inline anchorOriginBottomLeftRectangle(className: string) : IBadgeClasses = unbox ("anchorOriginBottomLeftRectangle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
-    static member inline anchorOriginTopRightCircle(value: string) : IBadgeClasses = unbox ("anchorOriginTopRightCircle", value)
+    static member inline anchorOriginTopRightCircle(className: string) : IBadgeClasses = unbox ("anchorOriginTopRightCircle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
-    static member inline anchorOriginBottomRightCircle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomRightCircle", value)
+    static member inline anchorOriginBottomRightCircle(className: string) : IBadgeClasses = unbox ("anchorOriginBottomRightCircle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
-    static member inline anchorOriginTopLeftCircle(value: string) : IBadgeClasses = unbox ("anchorOriginTopLeftCircle", value)
+    static member inline anchorOriginTopLeftCircle(className: string) : IBadgeClasses = unbox ("anchorOriginTopLeftCircle", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
-    static member inline anchorOriginBottomLeftCircle(value: string) : IBadgeClasses = unbox ("anchorOriginBottomLeftCircle", value)
+    static member inline anchorOriginBottomLeftCircle(className: string) : IBadgeClasses = unbox ("anchorOriginBottomLeftCircle", className)
     /// Pseudo-class to the badge `span` element if `invisible={true}`.
-    static member inline invisible(value: string) : IBadgeClasses = unbox ("invisible", value)
+    static member inline invisible(className: string) : IBadgeClasses = unbox ("invisible", className)
 
 
   type IBottomNavigationClasses = interface end
@@ -96,7 +96,7 @@ module classes =
   [<Erase>]
   type bottomNavigation =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IBottomNavigationClasses = unbox ("root", value)
+    static member inline root(className: string) : IBottomNavigationClasses = unbox ("root", className)
 
 
   type IBottomNavigationActionClasses = interface end
@@ -104,15 +104,15 @@ module classes =
   [<Erase>]
   type bottomNavigationAction =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IBottomNavigationActionClasses = unbox ("root", value)
+    static member inline root(className: string) : IBottomNavigationActionClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if selected.
-    static member inline selected(value: string) : IBottomNavigationActionClasses = unbox ("selected", value)
+    static member inline selected(className: string) : IBottomNavigationActionClasses = unbox ("selected", className)
     /// Pseudo-class applied to the root element if `showLabel={false}` and not selected.
-    static member inline iconOnly(value: string) : IBottomNavigationActionClasses = unbox ("iconOnly", value)
+    static member inline iconOnly(className: string) : IBottomNavigationActionClasses = unbox ("iconOnly", className)
     /// Styles applied to the span element that wraps the icon and label.
-    static member inline wrapper(value: string) : IBottomNavigationActionClasses = unbox ("wrapper", value)
+    static member inline wrapper(className: string) : IBottomNavigationActionClasses = unbox ("wrapper", className)
     /// Styles applied to the label's span element.
-    static member inline label(value: string) : IBottomNavigationActionClasses = unbox ("label", value)
+    static member inline label(className: string) : IBottomNavigationActionClasses = unbox ("label", className)
 
 
   type IBreadcrumbsClasses = interface end
@@ -120,13 +120,13 @@ module classes =
   [<Erase>]
   type breadcrumbs =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IBreadcrumbsClasses = unbox ("root", value)
+    static member inline root(className: string) : IBreadcrumbsClasses = unbox ("root", className)
     /// Styles applied to the ol element.
-    static member inline ol(value: string) : IBreadcrumbsClasses = unbox ("ol", value)
+    static member inline ol(className: string) : IBreadcrumbsClasses = unbox ("ol", className)
     /// Styles applied to the li element.
-    static member inline li(value: string) : IBreadcrumbsClasses = unbox ("li", value)
+    static member inline li(className: string) : IBreadcrumbsClasses = unbox ("li", className)
     /// Styles applied to the separator element.
-    static member inline separator(value: string) : IBreadcrumbsClasses = unbox ("separator", value)
+    static member inline separator(className: string) : IBreadcrumbsClasses = unbox ("separator", className)
 
 
   type IButtonClasses = interface end
@@ -134,61 +134,61 @@ module classes =
   [<Erase>]
   type button =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IButtonClasses = unbox ("root", value)
+    static member inline root(className: string) : IButtonClasses = unbox ("root", className)
     /// Styles applied to the span element that wraps the children.
-    static member inline label(value: string) : IButtonClasses = unbox ("label", value)
+    static member inline label(className: string) : IButtonClasses = unbox ("label", className)
     /// Styles applied to the root element if `variant="text"`.
-    static member inline text(value: string) : IButtonClasses = unbox ("text", value)
+    static member inline text(className: string) : IButtonClasses = unbox ("text", className)
     /// Styles applied to the root element if `variant="text"` and `color="primary"`.
-    static member inline textPrimary(value: string) : IButtonClasses = unbox ("textPrimary", value)
+    static member inline textPrimary(className: string) : IButtonClasses = unbox ("textPrimary", className)
     /// Styles applied to the root element if `variant="text"` and `color="secondary"`.
-    static member inline textSecondary(value: string) : IButtonClasses = unbox ("textSecondary", value)
+    static member inline textSecondary(className: string) : IButtonClasses = unbox ("textSecondary", className)
     /// Styles applied to the root element if `variant="outlined"`.
-    static member inline outlined(value: string) : IButtonClasses = unbox ("outlined", value)
+    static member inline outlined(className: string) : IButtonClasses = unbox ("outlined", className)
     /// Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-    static member inline outlinedPrimary(value: string) : IButtonClasses = unbox ("outlinedPrimary", value)
+    static member inline outlinedPrimary(className: string) : IButtonClasses = unbox ("outlinedPrimary", className)
     /// Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-    static member inline outlinedSecondary(value: string) : IButtonClasses = unbox ("outlinedSecondary", value)
+    static member inline outlinedSecondary(className: string) : IButtonClasses = unbox ("outlinedSecondary", className)
     /// Styles applied to the root element if `variant="contained"`.
-    static member inline contained(value: string) : IButtonClasses = unbox ("contained", value)
+    static member inline contained(className: string) : IButtonClasses = unbox ("contained", className)
     /// Styles applied to the root element if `variant="contained"` and `color="primary"`.
-    static member inline containedPrimary(value: string) : IButtonClasses = unbox ("containedPrimary", value)
+    static member inline containedPrimary(className: string) : IButtonClasses = unbox ("containedPrimary", className)
     /// Styles applied to the root element if `variant="contained"` and `color="secondary"`.
-    static member inline containedSecondary(value: string) : IButtonClasses = unbox ("containedSecondary", value)
+    static member inline containedSecondary(className: string) : IButtonClasses = unbox ("containedSecondary", className)
     /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
-    static member inline focusVisible(value: string) : IButtonClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : IButtonClasses = unbox ("focusVisible", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IButtonClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IButtonClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `color="inherit"`.
-    static member inline colorInherit(value: string) : IButtonClasses = unbox ("colorInherit", value)
+    static member inline colorInherit(className: string) : IButtonClasses = unbox ("colorInherit", className)
     /// Styles applied to the root element if `size="small"` and `variant="text"`.
-    static member inline textSizeSmall(value: string) : IButtonClasses = unbox ("textSizeSmall", value)
+    static member inline textSizeSmall(className: string) : IButtonClasses = unbox ("textSizeSmall", className)
     /// Styles applied to the root element if `size="large"` and `variant="text"`.
-    static member inline textSizeLarge(value: string) : IButtonClasses = unbox ("textSizeLarge", value)
+    static member inline textSizeLarge(className: string) : IButtonClasses = unbox ("textSizeLarge", className)
     /// Styles applied to the root element if `size="small"` and `variant="outlined"`.
-    static member inline outlinedSizeSmall(value: string) : IButtonClasses = unbox ("outlinedSizeSmall", value)
+    static member inline outlinedSizeSmall(className: string) : IButtonClasses = unbox ("outlinedSizeSmall", className)
     /// Styles applied to the root element if `size="large"` and `variant="outlined"`.
-    static member inline outlinedSizeLarge(value: string) : IButtonClasses = unbox ("outlinedSizeLarge", value)
+    static member inline outlinedSizeLarge(className: string) : IButtonClasses = unbox ("outlinedSizeLarge", className)
     /// Styles applied to the root element if `size="small"` and `variant="contained"`.
-    static member inline containedSizeSmall(value: string) : IButtonClasses = unbox ("containedSizeSmall", value)
+    static member inline containedSizeSmall(className: string) : IButtonClasses = unbox ("containedSizeSmall", className)
     /// Styles applied to the root element if `size="large"` and `variant="contained"`.
-    static member inline containedSizeLarge(value: string) : IButtonClasses = unbox ("containedSizeLarge", value)
+    static member inline containedSizeLarge(className: string) : IButtonClasses = unbox ("containedSizeLarge", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : IButtonClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : IButtonClasses = unbox ("sizeSmall", className)
     /// Styles applied to the root element if `size="large"`.
-    static member inline sizeLarge(value: string) : IButtonClasses = unbox ("sizeLarge", value)
+    static member inline sizeLarge(className: string) : IButtonClasses = unbox ("sizeLarge", className)
     /// Styles applied to the root element if `fullWidth={true}`.
-    static member inline fullWidth(value: string) : IButtonClasses = unbox ("fullWidth", value)
+    static member inline fullWidth(className: string) : IButtonClasses = unbox ("fullWidth", className)
     /// Styles applied to the startIcon element if supplied.
-    static member inline startIcon(value: string) : IButtonClasses = unbox ("startIcon", value)
+    static member inline startIcon(className: string) : IButtonClasses = unbox ("startIcon", className)
     /// Styles applied to the endIcon element if supplied.
-    static member inline endIcon(value: string) : IButtonClasses = unbox ("endIcon", value)
+    static member inline endIcon(className: string) : IButtonClasses = unbox ("endIcon", className)
     /// Styles applied to the icon element if supplied and `size="small"`.
-    static member inline iconSizeSmall(value: string) : IButtonClasses = unbox ("iconSizeSmall", value)
+    static member inline iconSizeSmall(className: string) : IButtonClasses = unbox ("iconSizeSmall", className)
     /// Styles applied to the icon element if supplied and `size="medium"`.
-    static member inline iconSizeMedium(value: string) : IButtonClasses = unbox ("iconSizeMedium", value)
+    static member inline iconSizeMedium(className: string) : IButtonClasses = unbox ("iconSizeMedium", className)
     /// Styles applied to the icon element if supplied and `size="large"`.
-    static member inline iconSizeLarge(value: string) : IButtonClasses = unbox ("iconSizeLarge", value)
+    static member inline iconSizeLarge(className: string) : IButtonClasses = unbox ("iconSizeLarge", className)
 
 
   type IButtonBaseClasses = interface end
@@ -196,11 +196,11 @@ module classes =
   [<Erase>]
   type buttonBase =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IButtonBaseClasses = unbox ("root", value)
+    static member inline root(className: string) : IButtonBaseClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IButtonBaseClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IButtonBaseClasses = unbox ("disabled", className)
     /// Pseudo-class applied to the root element if keyboard focused.
-    static member inline focusVisible(value: string) : IButtonBaseClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : IButtonBaseClasses = unbox ("focusVisible", className)
 
 
   type IButtonGroupClasses = interface end
@@ -208,33 +208,33 @@ module classes =
   [<Erase>]
   type buttonGroup =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IButtonGroupClasses = unbox ("root", value)
+    static member inline root(className: string) : IButtonGroupClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="contained"`.
-    static member inline contained(value: string) : IButtonGroupClasses = unbox ("contained", value)
+    static member inline contained(className: string) : IButtonGroupClasses = unbox ("contained", className)
     /// Styles applied to the root element if `fullWidth={true}`.
-    static member inline fullWidth(value: string) : IButtonGroupClasses = unbox ("fullWidth", value)
+    static member inline fullWidth(className: string) : IButtonGroupClasses = unbox ("fullWidth", className)
     /// Styles applied to the children.
-    static member inline grouped(value: string) : IButtonGroupClasses = unbox ("grouped", value)
+    static member inline grouped(className: string) : IButtonGroupClasses = unbox ("grouped", className)
     /// Styles applied to the children if `variant="text"`.
-    static member inline groupedText(value: string) : IButtonGroupClasses = unbox ("groupedText", value)
+    static member inline groupedText(className: string) : IButtonGroupClasses = unbox ("groupedText", className)
     /// Styles applied to the children if `variant="text"` and `color="primary"`.
-    static member inline groupedTextPrimary(value: string) : IButtonGroupClasses = unbox ("groupedTextPrimary", value)
+    static member inline groupedTextPrimary(className: string) : IButtonGroupClasses = unbox ("groupedTextPrimary", className)
     /// Styles applied to the children if `variant="text"` and `color="secondary"`.
-    static member inline groupedTextSecondary(value: string) : IButtonGroupClasses = unbox ("groupedTextSecondary", value)
+    static member inline groupedTextSecondary(className: string) : IButtonGroupClasses = unbox ("groupedTextSecondary", className)
     /// Styles applied to the children if `variant="outlined"`.
-    static member inline groupedOutlined(value: string) : IButtonGroupClasses = unbox ("groupedOutlined", value)
+    static member inline groupedOutlined(className: string) : IButtonGroupClasses = unbox ("groupedOutlined", className)
     /// Styles applied to the children if `variant="outlined"` and `color="primary"`.
-    static member inline groupedOutlinedPrimary(value: string) : IButtonGroupClasses = unbox ("groupedOutlinedPrimary", value)
+    static member inline groupedOutlinedPrimary(className: string) : IButtonGroupClasses = unbox ("groupedOutlinedPrimary", className)
     /// Styles applied to the children if `variant="outlined"` and `color="secondary"`.
-    static member inline groupedOutlinedSecondary(value: string) : IButtonGroupClasses = unbox ("groupedOutlinedSecondary", value)
+    static member inline groupedOutlinedSecondary(className: string) : IButtonGroupClasses = unbox ("groupedOutlinedSecondary", className)
     /// Styles applied to the children if `variant="contained"`.
-    static member inline groupedContained(value: string) : IButtonGroupClasses = unbox ("groupedContained", value)
+    static member inline groupedContained(className: string) : IButtonGroupClasses = unbox ("groupedContained", className)
     /// Styles applied to the children if `variant="contained"` and `color="primary"`.
-    static member inline groupedContainedPrimary(value: string) : IButtonGroupClasses = unbox ("groupedContainedPrimary", value)
+    static member inline groupedContainedPrimary(className: string) : IButtonGroupClasses = unbox ("groupedContainedPrimary", className)
     /// Styles applied to the children if `variant="contained"` and `color="secondary"`.
-    static member inline groupedContainedSecondary(value: string) : IButtonGroupClasses = unbox ("groupedContainedSecondary", value)
+    static member inline groupedContainedSecondary(className: string) : IButtonGroupClasses = unbox ("groupedContainedSecondary", className)
     /// Pseudo-class applied to child elements if `disabled={true}`.
-    static member inline disabled(value: string) : IButtonGroupClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IButtonGroupClasses = unbox ("disabled", className)
 
 
   type ICardClasses = interface end
@@ -242,7 +242,7 @@ module classes =
   [<Erase>]
   type card =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICardClasses = unbox ("root", value)
+    static member inline root(className: string) : ICardClasses = unbox ("root", className)
 
 
   type ICardActionAreaClasses = interface end
@@ -250,11 +250,11 @@ module classes =
   [<Erase>]
   type cardActionArea =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICardActionAreaClasses = unbox ("root", value)
+    static member inline root(className: string) : ICardActionAreaClasses = unbox ("root", className)
     /// Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused.
-    static member inline focusVisible(value: string) : ICardActionAreaClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : ICardActionAreaClasses = unbox ("focusVisible", className)
     /// Styles applied to the overlay that covers the action area when it is keyboard focused.
-    static member inline focusHighlight(value: string) : ICardActionAreaClasses = unbox ("focusHighlight", value)
+    static member inline focusHighlight(className: string) : ICardActionAreaClasses = unbox ("focusHighlight", className)
 
 
   type ICardActionsClasses = interface end
@@ -262,9 +262,9 @@ module classes =
   [<Erase>]
   type cardActions =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICardActionsClasses = unbox ("root", value)
+    static member inline root(className: string) : ICardActionsClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableSpacing={false}`.
-    static member inline spacing(value: string) : ICardActionsClasses = unbox ("spacing", value)
+    static member inline spacing(className: string) : ICardActionsClasses = unbox ("spacing", className)
 
 
   type ICardContentClasses = interface end
@@ -272,7 +272,7 @@ module classes =
   [<Erase>]
   type cardContent =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICardContentClasses = unbox ("root", value)
+    static member inline root(className: string) : ICardContentClasses = unbox ("root", className)
 
 
   type ICardHeaderClasses = interface end
@@ -280,17 +280,17 @@ module classes =
   [<Erase>]
   type cardHeader =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICardHeaderClasses = unbox ("root", value)
+    static member inline root(className: string) : ICardHeaderClasses = unbox ("root", className)
     /// Styles applied to the avatar element.
-    static member inline avatar(value: string) : ICardHeaderClasses = unbox ("avatar", value)
+    static member inline avatar(className: string) : ICardHeaderClasses = unbox ("avatar", className)
     /// Styles applied to the action element.
-    static member inline action(value: string) : ICardHeaderClasses = unbox ("action", value)
+    static member inline action(className: string) : ICardHeaderClasses = unbox ("action", className)
     /// Styles applied to the content wrapper element.
-    static member inline content(value: string) : ICardHeaderClasses = unbox ("content", value)
+    static member inline content(className: string) : ICardHeaderClasses = unbox ("content", className)
     /// Styles applied to the title Typography element.
-    static member inline title(value: string) : ICardHeaderClasses = unbox ("title", value)
+    static member inline title(className: string) : ICardHeaderClasses = unbox ("title", className)
     /// Styles applied to the subheader Typography element.
-    static member inline subheader(value: string) : ICardHeaderClasses = unbox ("subheader", value)
+    static member inline subheader(className: string) : ICardHeaderClasses = unbox ("subheader", className)
 
 
   type ICardMediaClasses = interface end
@@ -298,11 +298,11 @@ module classes =
   [<Erase>]
   type cardMedia =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICardMediaClasses = unbox ("root", value)
+    static member inline root(className: string) : ICardMediaClasses = unbox ("root", className)
     /// Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
-    static member inline media(value: string) : ICardMediaClasses = unbox ("media", value)
+    static member inline media(className: string) : ICardMediaClasses = unbox ("media", className)
     /// Styles applied to the root element if `component="picture or img"`.
-    static member inline img(value: string) : ICardMediaClasses = unbox ("img", value)
+    static member inline img(className: string) : ICardMediaClasses = unbox ("img", className)
 
 
   type ICheckboxClasses = interface end
@@ -310,17 +310,17 @@ module classes =
   [<Erase>]
   type checkbox =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICheckboxClasses = unbox ("root", value)
+    static member inline root(className: string) : ICheckboxClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `checked={true}`.
-    static member inline checked'(value: string) : ICheckboxClasses = unbox ("checked", value)
+    static member inline checked'(className: string) : ICheckboxClasses = unbox ("checked", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : ICheckboxClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : ICheckboxClasses = unbox ("disabled", className)
     /// Pseudo-class applied to the root element if `indeterminate={true}`.
-    static member inline indeterminate(value: string) : ICheckboxClasses = unbox ("indeterminate", value)
+    static member inline indeterminate(className: string) : ICheckboxClasses = unbox ("indeterminate", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : ICheckboxClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ICheckboxClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : ICheckboxClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ICheckboxClasses = unbox ("colorSecondary", className)
 
 
   type IChipClasses = interface end
@@ -328,63 +328,63 @@ module classes =
   [<Erase>]
   type chip =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IChipClasses = unbox ("root", value)
+    static member inline root(className: string) : IChipClasses = unbox ("root", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : IChipClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : IChipClasses = unbox ("sizeSmall", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IChipClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IChipClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : IChipClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : IChipClasses = unbox ("colorSecondary", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IChipClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IChipClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `onClick` is defined or `clickable={true}`.
-    static member inline clickable(value: string) : IChipClasses = unbox ("clickable", value)
+    static member inline clickable(className: string) : IChipClasses = unbox ("clickable", className)
     /// Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
-    static member inline clickableColorPrimary(value: string) : IChipClasses = unbox ("clickableColorPrimary", value)
+    static member inline clickableColorPrimary(className: string) : IChipClasses = unbox ("clickableColorPrimary", className)
     /// Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`.
-    static member inline clickableColorSecondary(value: string) : IChipClasses = unbox ("clickableColorSecondary", value)
+    static member inline clickableColorSecondary(className: string) : IChipClasses = unbox ("clickableColorSecondary", className)
     /// Styles applied to the root element if `onDelete` is defined.
-    static member inline deletable(value: string) : IChipClasses = unbox ("deletable", value)
+    static member inline deletable(className: string) : IChipClasses = unbox ("deletable", className)
     /// Styles applied to the root element if `onDelete` and `color="primary"` is defined.
-    static member inline deletableColorPrimary(value: string) : IChipClasses = unbox ("deletableColorPrimary", value)
+    static member inline deletableColorPrimary(className: string) : IChipClasses = unbox ("deletableColorPrimary", className)
     /// Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
-    static member inline deletableColorSecondary(value: string) : IChipClasses = unbox ("deletableColorSecondary", value)
+    static member inline deletableColorSecondary(className: string) : IChipClasses = unbox ("deletableColorSecondary", className)
     /// Styles applied to the root element if `variant="outlined"`.
-    static member inline outlined(value: string) : IChipClasses = unbox ("outlined", value)
+    static member inline outlined(className: string) : IChipClasses = unbox ("outlined", className)
     /// Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-    static member inline outlinedPrimary(value: string) : IChipClasses = unbox ("outlinedPrimary", value)
+    static member inline outlinedPrimary(className: string) : IChipClasses = unbox ("outlinedPrimary", className)
     /// Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-    static member inline outlinedSecondary(value: string) : IChipClasses = unbox ("outlinedSecondary", value)
+    static member inline outlinedSecondary(className: string) : IChipClasses = unbox ("outlinedSecondary", className)
     /// Styles applied to the `avatar` element.
-    static member inline avatar(value: string) : IChipClasses = unbox ("avatar", value)
-    static member inline avatarSmall(value: string) : IChipClasses = unbox ("avatarSmall", value)
+    static member inline avatar(className: string) : IChipClasses = unbox ("avatar", className)
+    static member inline avatarSmall(className: string) : IChipClasses = unbox ("avatarSmall", className)
     /// Styles applied to the `avatar` element if `color="primary"`.
-    static member inline avatarColorPrimary(value: string) : IChipClasses = unbox ("avatarColorPrimary", value)
+    static member inline avatarColorPrimary(className: string) : IChipClasses = unbox ("avatarColorPrimary", className)
     /// Styles applied to the `avatar` element if `color="secondary"`.
-    static member inline avatarColorSecondary(value: string) : IChipClasses = unbox ("avatarColorSecondary", value)
+    static member inline avatarColorSecondary(className: string) : IChipClasses = unbox ("avatarColorSecondary", className)
     /// Styles applied to the `icon` element.
-    static member inline icon(value: string) : IChipClasses = unbox ("icon", value)
+    static member inline icon(className: string) : IChipClasses = unbox ("icon", className)
     /// Styles applied to the `icon` element if `size="small"`.
-    static member inline iconSmall(value: string) : IChipClasses = unbox ("iconSmall", value)
+    static member inline iconSmall(className: string) : IChipClasses = unbox ("iconSmall", className)
     /// Styles applied to the `icon` element if `color="primary"`.
-    static member inline iconColorPrimary(value: string) : IChipClasses = unbox ("iconColorPrimary", value)
+    static member inline iconColorPrimary(className: string) : IChipClasses = unbox ("iconColorPrimary", className)
     /// Styles applied to the `icon` element if `color="secondary"`.
-    static member inline iconColorSecondary(value: string) : IChipClasses = unbox ("iconColorSecondary", value)
+    static member inline iconColorSecondary(className: string) : IChipClasses = unbox ("iconColorSecondary", className)
     /// Styles applied to the label `span` element`.
-    static member inline label(value: string) : IChipClasses = unbox ("label", value)
-    static member inline labelSmall(value: string) : IChipClasses = unbox ("labelSmall", value)
+    static member inline label(className: string) : IChipClasses = unbox ("label", className)
+    static member inline labelSmall(className: string) : IChipClasses = unbox ("labelSmall", className)
     /// Styles applied to the `deleteIcon` element.
-    static member inline deleteIcon(value: string) : IChipClasses = unbox ("deleteIcon", value)
+    static member inline deleteIcon(className: string) : IChipClasses = unbox ("deleteIcon", className)
     /// Styles applied to the `deleteIcon` element if `size="small"`.
-    static member inline deleteIconSmall(value: string) : IChipClasses = unbox ("deleteIconSmall", value)
+    static member inline deleteIconSmall(className: string) : IChipClasses = unbox ("deleteIconSmall", className)
     /// Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
-    static member inline deleteIconColorPrimary(value: string) : IChipClasses = unbox ("deleteIconColorPrimary", value)
+    static member inline deleteIconColorPrimary(className: string) : IChipClasses = unbox ("deleteIconColorPrimary", className)
     /// Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`.
-    static member inline deleteIconColorSecondary(value: string) : IChipClasses = unbox ("deleteIconColorSecondary", value)
+    static member inline deleteIconColorSecondary(className: string) : IChipClasses = unbox ("deleteIconColorSecondary", className)
     /// Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
-    static member inline deleteIconOutlinedColorPrimary(value: string) : IChipClasses = unbox ("deleteIconOutlinedColorPrimary", value)
+    static member inline deleteIconOutlinedColorPrimary(className: string) : IChipClasses = unbox ("deleteIconOutlinedColorPrimary", className)
     /// Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
-    static member inline deleteIconOutlinedColorSecondary(value: string) : IChipClasses = unbox ("deleteIconOutlinedColorSecondary", value)
+    static member inline deleteIconOutlinedColorSecondary(className: string) : IChipClasses = unbox ("deleteIconOutlinedColorSecondary", className)
 
 
   type ICircularProgressClasses = interface end
@@ -392,25 +392,25 @@ module classes =
   [<Erase>]
   type circularProgress =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ICircularProgressClasses = unbox ("root", value)
+    static member inline root(className: string) : ICircularProgressClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="static"`.
-    static member inline static'(value: string) : ICircularProgressClasses = unbox ("static", value)
+    static member inline static'(className: string) : ICircularProgressClasses = unbox ("static", className)
     /// Styles applied to the root element if `variant="indeterminate"`.
-    static member inline indeterminate(value: string) : ICircularProgressClasses = unbox ("indeterminate", value)
+    static member inline indeterminate(className: string) : ICircularProgressClasses = unbox ("indeterminate", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : ICircularProgressClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ICircularProgressClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : ICircularProgressClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ICircularProgressClasses = unbox ("colorSecondary", className)
     /// Styles applied to the `svg` element.
-    static member inline svg(value: string) : ICircularProgressClasses = unbox ("svg", value)
+    static member inline svg(className: string) : ICircularProgressClasses = unbox ("svg", className)
     /// Styles applied to the `circle` svg path.
-    static member inline circle(value: string) : ICircularProgressClasses = unbox ("circle", value)
+    static member inline circle(className: string) : ICircularProgressClasses = unbox ("circle", className)
     /// Styles applied to the `circle` svg path if `variant="static"`.
-    static member inline circleStatic(value: string) : ICircularProgressClasses = unbox ("circleStatic", value)
+    static member inline circleStatic(className: string) : ICircularProgressClasses = unbox ("circleStatic", className)
     /// Styles applied to the `circle` svg path if `variant="indeterminate"`.
-    static member inline circleIndeterminate(value: string) : ICircularProgressClasses = unbox ("circleIndeterminate", value)
+    static member inline circleIndeterminate(className: string) : ICircularProgressClasses = unbox ("circleIndeterminate", className)
     /// Styles applied to the `circle` svg path if `disableShrink={true}`.
-    static member inline circleDisableShrink(value: string) : ICircularProgressClasses = unbox ("circleDisableShrink", value)
+    static member inline circleDisableShrink(className: string) : ICircularProgressClasses = unbox ("circleDisableShrink", className)
 
 
   type IClickAwayListenerClasses = interface end
@@ -421,15 +421,15 @@ module classes =
   [<Erase>]
   type collapse =
     /// Styles applied to the container element.
-    static member inline container(value: string) : ICollapseClasses = unbox ("container", value)
+    static member inline container(className: string) : ICollapseClasses = unbox ("container", className)
     /// Styles applied to the container element when the transition has entered.
-    static member inline entered(value: string) : ICollapseClasses = unbox ("entered", value)
+    static member inline entered(className: string) : ICollapseClasses = unbox ("entered", className)
     /// Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
-    static member inline hidden(value: string) : ICollapseClasses = unbox ("hidden", value)
+    static member inline hidden(className: string) : ICollapseClasses = unbox ("hidden", className)
     /// Styles applied to the outer wrapper element.
-    static member inline wrapper(value: string) : ICollapseClasses = unbox ("wrapper", value)
+    static member inline wrapper(className: string) : ICollapseClasses = unbox ("wrapper", className)
     /// Styles applied to the inner wrapper element.
-    static member inline wrapperInner(value: string) : ICollapseClasses = unbox ("wrapperInner", value)
+    static member inline wrapperInner(className: string) : ICollapseClasses = unbox ("wrapperInner", className)
 
 
   type IContainerClasses = interface end
@@ -437,19 +437,19 @@ module classes =
   [<Erase>]
   type container =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IContainerClasses = unbox ("root", value)
+    static member inline root(className: string) : IContainerClasses = unbox ("root", className)
     /// Styles applied to the root element if `fixed={true}`.
-    static member inline fixed'(value: string) : IContainerClasses = unbox ("fixed", value)
+    static member inline fixed'(className: string) : IContainerClasses = unbox ("fixed", className)
     /// Styles applied to the root element if `maxWidth="xs"`.
-    static member inline maxWidthXs(value: string) : IContainerClasses = unbox ("maxWidthXs", value)
+    static member inline maxWidthXs(className: string) : IContainerClasses = unbox ("maxWidthXs", className)
     /// Styles applied to the root element if `maxWidth="sm"`.
-    static member inline maxWidthSm(value: string) : IContainerClasses = unbox ("maxWidthSm", value)
+    static member inline maxWidthSm(className: string) : IContainerClasses = unbox ("maxWidthSm", className)
     /// Styles applied to the root element if `maxWidth="md"`.
-    static member inline maxWidthMd(value: string) : IContainerClasses = unbox ("maxWidthMd", value)
+    static member inline maxWidthMd(className: string) : IContainerClasses = unbox ("maxWidthMd", className)
     /// Styles applied to the root element if `maxWidth="lg"`.
-    static member inline maxWidthLg(value: string) : IContainerClasses = unbox ("maxWidthLg", value)
+    static member inline maxWidthLg(className: string) : IContainerClasses = unbox ("maxWidthLg", className)
     /// Styles applied to the root element if `maxWidth="xl"`.
-    static member inline maxWidthXl(value: string) : IContainerClasses = unbox ("maxWidthXl", value)
+    static member inline maxWidthXl(className: string) : IContainerClasses = unbox ("maxWidthXl", className)
 
 
   type ICssBaselineClasses = interface end
@@ -460,35 +460,35 @@ module classes =
   [<Erase>]
   type dialog =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDialogClasses = unbox ("root", value)
+    static member inline root(className: string) : IDialogClasses = unbox ("root", className)
     /// Styles applied to the container element if `scroll="paper"`.
-    static member inline scrollPaper(value: string) : IDialogClasses = unbox ("scrollPaper", value)
+    static member inline scrollPaper(className: string) : IDialogClasses = unbox ("scrollPaper", className)
     /// Styles applied to the container element if `scroll="body"`.
-    static member inline scrollBody(value: string) : IDialogClasses = unbox ("scrollBody", value)
+    static member inline scrollBody(className: string) : IDialogClasses = unbox ("scrollBody", className)
     /// Styles applied to the container element.
-    static member inline container(value: string) : IDialogClasses = unbox ("container", value)
+    static member inline container(className: string) : IDialogClasses = unbox ("container", className)
     /// Styles applied to the `Paper` component.
-    static member inline paper(value: string) : IDialogClasses = unbox ("paper", value)
+    static member inline paper(className: string) : IDialogClasses = unbox ("paper", className)
     /// Styles applied to the `Paper` component if `scroll="paper"`.
-    static member inline paperScrollPaper(value: string) : IDialogClasses = unbox ("paperScrollPaper", value)
+    static member inline paperScrollPaper(className: string) : IDialogClasses = unbox ("paperScrollPaper", className)
     /// Styles applied to the `Paper` component if `scroll="body"`.
-    static member inline paperScrollBody(value: string) : IDialogClasses = unbox ("paperScrollBody", value)
+    static member inline paperScrollBody(className: string) : IDialogClasses = unbox ("paperScrollBody", className)
     /// Styles applied to the `Paper` component if `maxWidth=false`.
-    static member inline paperWidthFalse(value: string) : IDialogClasses = unbox ("paperWidthFalse", value)
+    static member inline paperWidthFalse(className: string) : IDialogClasses = unbox ("paperWidthFalse", className)
     /// Styles applied to the `Paper` component if `maxWidth="xs"`.
-    static member inline paperWidthXs(value: string) : IDialogClasses = unbox ("paperWidthXs", value)
+    static member inline paperWidthXs(className: string) : IDialogClasses = unbox ("paperWidthXs", className)
     /// Styles applied to the `Paper` component if `maxWidth="sm"`.
-    static member inline paperWidthSm(value: string) : IDialogClasses = unbox ("paperWidthSm", value)
+    static member inline paperWidthSm(className: string) : IDialogClasses = unbox ("paperWidthSm", className)
     /// Styles applied to the `Paper` component if `maxWidth="md"`.
-    static member inline paperWidthMd(value: string) : IDialogClasses = unbox ("paperWidthMd", value)
+    static member inline paperWidthMd(className: string) : IDialogClasses = unbox ("paperWidthMd", className)
     /// Styles applied to the `Paper` component if `maxWidth="lg"`.
-    static member inline paperWidthLg(value: string) : IDialogClasses = unbox ("paperWidthLg", value)
+    static member inline paperWidthLg(className: string) : IDialogClasses = unbox ("paperWidthLg", className)
     /// Styles applied to the `Paper` component if `maxWidth="xl"`.
-    static member inline paperWidthXl(value: string) : IDialogClasses = unbox ("paperWidthXl", value)
+    static member inline paperWidthXl(className: string) : IDialogClasses = unbox ("paperWidthXl", className)
     /// Styles applied to the `Paper` component if `fullWidth={true}`.
-    static member inline paperFullWidth(value: string) : IDialogClasses = unbox ("paperFullWidth", value)
+    static member inline paperFullWidth(className: string) : IDialogClasses = unbox ("paperFullWidth", className)
     /// Styles applied to the `Paper` component if `fullScreen={true}`.
-    static member inline paperFullScreen(value: string) : IDialogClasses = unbox ("paperFullScreen", value)
+    static member inline paperFullScreen(className: string) : IDialogClasses = unbox ("paperFullScreen", className)
 
 
   type IDialogActionsClasses = interface end
@@ -496,9 +496,9 @@ module classes =
   [<Erase>]
   type dialogActions =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDialogActionsClasses = unbox ("root", value)
+    static member inline root(className: string) : IDialogActionsClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableSpacing={false}`.
-    static member inline spacing(value: string) : IDialogActionsClasses = unbox ("spacing", value)
+    static member inline spacing(className: string) : IDialogActionsClasses = unbox ("spacing", className)
 
 
   type IDialogContentClasses = interface end
@@ -506,9 +506,9 @@ module classes =
   [<Erase>]
   type dialogContent =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDialogContentClasses = unbox ("root", value)
+    static member inline root(className: string) : IDialogContentClasses = unbox ("root", className)
     /// Styles applied to the root element if `dividers={true}`.
-    static member inline dividers(value: string) : IDialogContentClasses = unbox ("dividers", value)
+    static member inline dividers(className: string) : IDialogContentClasses = unbox ("dividers", className)
 
 
   type IDialogContentTextClasses = interface end
@@ -516,7 +516,7 @@ module classes =
   [<Erase>]
   type dialogContentText =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDialogContentTextClasses = unbox ("root", value)
+    static member inline root(className: string) : IDialogContentTextClasses = unbox ("root", className)
 
 
   type IDialogTitleClasses = interface end
@@ -524,7 +524,7 @@ module classes =
   [<Erase>]
   type dialogTitle =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDialogTitleClasses = unbox ("root", value)
+    static member inline root(className: string) : IDialogTitleClasses = unbox ("root", className)
 
 
   type IDividerClasses = interface end
@@ -532,17 +532,17 @@ module classes =
   [<Erase>]
   type divider =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDividerClasses = unbox ("root", value)
+    static member inline root(className: string) : IDividerClasses = unbox ("root", className)
     /// Styles applied to the root element if `absolute={true}`.
-    static member inline absolute(value: string) : IDividerClasses = unbox ("absolute", value)
+    static member inline absolute(className: string) : IDividerClasses = unbox ("absolute", className)
     /// Styles applied to the root element if `variant="inset"`.
-    static member inline inset(value: string) : IDividerClasses = unbox ("inset", value)
+    static member inline inset(className: string) : IDividerClasses = unbox ("inset", className)
     /// Styles applied to the root element if `light={true}`.
-    static member inline light(value: string) : IDividerClasses = unbox ("light", value)
+    static member inline light(className: string) : IDividerClasses = unbox ("light", className)
     /// Styles applied to the root element if `variant="middle"`.
-    static member inline middle(value: string) : IDividerClasses = unbox ("middle", value)
+    static member inline middle(className: string) : IDividerClasses = unbox ("middle", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : IDividerClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : IDividerClasses = unbox ("vertical", className)
 
 
   type IDrawerClasses = interface end
@@ -550,29 +550,29 @@ module classes =
   [<Erase>]
   type drawer =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IDrawerClasses = unbox ("root", value)
+    static member inline root(className: string) : IDrawerClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="permanent or persistent"`.
-    static member inline docked(value: string) : IDrawerClasses = unbox ("docked", value)
+    static member inline docked(className: string) : IDrawerClasses = unbox ("docked", className)
     /// Styles applied to the `Paper` component.
-    static member inline paper(value: string) : IDrawerClasses = unbox ("paper", value)
+    static member inline paper(className: string) : IDrawerClasses = unbox ("paper", className)
     /// Styles applied to the `Paper` component if `anchor="left"`.
-    static member inline paperAnchorLeft(value: string) : IDrawerClasses = unbox ("paperAnchorLeft", value)
+    static member inline paperAnchorLeft(className: string) : IDrawerClasses = unbox ("paperAnchorLeft", className)
     /// Styles applied to the `Paper` component if `anchor="right"`.
-    static member inline paperAnchorRight(value: string) : IDrawerClasses = unbox ("paperAnchorRight", value)
+    static member inline paperAnchorRight(className: string) : IDrawerClasses = unbox ("paperAnchorRight", className)
     /// Styles applied to the `Paper` component if `anchor="top"`.
-    static member inline paperAnchorTop(value: string) : IDrawerClasses = unbox ("paperAnchorTop", value)
+    static member inline paperAnchorTop(className: string) : IDrawerClasses = unbox ("paperAnchorTop", className)
     /// Styles applied to the `Paper` component if `anchor="bottom"`.
-    static member inline paperAnchorBottom(value: string) : IDrawerClasses = unbox ("paperAnchorBottom", value)
+    static member inline paperAnchorBottom(className: string) : IDrawerClasses = unbox ("paperAnchorBottom", className)
     /// Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
-    static member inline paperAnchorDockedLeft(value: string) : IDrawerClasses = unbox ("paperAnchorDockedLeft", value)
+    static member inline paperAnchorDockedLeft(className: string) : IDrawerClasses = unbox ("paperAnchorDockedLeft", className)
     /// Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
-    static member inline paperAnchorDockedTop(value: string) : IDrawerClasses = unbox ("paperAnchorDockedTop", value)
+    static member inline paperAnchorDockedTop(className: string) : IDrawerClasses = unbox ("paperAnchorDockedTop", className)
     /// Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
-    static member inline paperAnchorDockedRight(value: string) : IDrawerClasses = unbox ("paperAnchorDockedRight", value)
+    static member inline paperAnchorDockedRight(className: string) : IDrawerClasses = unbox ("paperAnchorDockedRight", className)
     /// Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
-    static member inline paperAnchorDockedBottom(value: string) : IDrawerClasses = unbox ("paperAnchorDockedBottom", value)
+    static member inline paperAnchorDockedBottom(className: string) : IDrawerClasses = unbox ("paperAnchorDockedBottom", className)
     /// Styles applied to the `Modal` component.
-    static member inline modal(value: string) : IDrawerClasses = unbox ("modal", value)
+    static member inline modal(className: string) : IDrawerClasses = unbox ("modal", className)
 
 
   type IExpansionPanelClasses = interface end
@@ -580,13 +580,13 @@ module classes =
   [<Erase>]
   type expansionPanel =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IExpansionPanelClasses = unbox ("root", value)
+    static member inline root(className: string) : IExpansionPanelClasses = unbox ("root", className)
     /// Styles applied to the root element if `square={false}`.
-    static member inline rounded(value: string) : IExpansionPanelClasses = unbox ("rounded", value)
+    static member inline rounded(className: string) : IExpansionPanelClasses = unbox ("rounded", className)
     /// Styles applied to the root element if `expanded={true}`.
-    static member inline expanded(value: string) : IExpansionPanelClasses = unbox ("expanded", value)
+    static member inline expanded(className: string) : IExpansionPanelClasses = unbox ("expanded", className)
     /// Styles applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IExpansionPanelClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IExpansionPanelClasses = unbox ("disabled", className)
 
 
   type IExpansionPanelActionsClasses = interface end
@@ -594,9 +594,9 @@ module classes =
   [<Erase>]
   type expansionPanelActions =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IExpansionPanelActionsClasses = unbox ("root", value)
+    static member inline root(className: string) : IExpansionPanelActionsClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableSpacing={false}`.
-    static member inline spacing(value: string) : IExpansionPanelActionsClasses = unbox ("spacing", value)
+    static member inline spacing(className: string) : IExpansionPanelActionsClasses = unbox ("spacing", className)
 
 
   type IExpansionPanelDetailsClasses = interface end
@@ -604,7 +604,7 @@ module classes =
   [<Erase>]
   type expansionPanelDetails =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IExpansionPanelDetailsClasses = unbox ("root", value)
+    static member inline root(className: string) : IExpansionPanelDetailsClasses = unbox ("root", className)
 
 
   type IExpansionPanelSummaryClasses = interface end
@@ -612,17 +612,17 @@ module classes =
   [<Erase>]
   type expansionPanelSummary =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IExpansionPanelSummaryClasses = unbox ("root", value)
+    static member inline root(className: string) : IExpansionPanelSummaryClasses = unbox ("root", className)
     /// Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
-    static member inline expanded(value: string) : IExpansionPanelSummaryClasses = unbox ("expanded", value)
+    static member inline expanded(className: string) : IExpansionPanelSummaryClasses = unbox ("expanded", className)
     /// Styles applied to the root and children wrapper elements when focused.
-    static member inline focused(value: string) : IExpansionPanelSummaryClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IExpansionPanelSummaryClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IExpansionPanelSummaryClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IExpansionPanelSummaryClasses = unbox ("disabled", className)
     /// Styles applied to the children wrapper element.
-    static member inline content(value: string) : IExpansionPanelSummaryClasses = unbox ("content", value)
+    static member inline content(className: string) : IExpansionPanelSummaryClasses = unbox ("content", className)
     /// Styles applied to the `IconButton` component when `expandIcon` is supplied.
-    static member inline expandIcon(value: string) : IExpansionPanelSummaryClasses = unbox ("expandIcon", value)
+    static member inline expandIcon(className: string) : IExpansionPanelSummaryClasses = unbox ("expandIcon", className)
 
 
   type IFabClasses = interface end
@@ -630,25 +630,25 @@ module classes =
   [<Erase>]
   type fab =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFabClasses = unbox ("root", value)
+    static member inline root(className: string) : IFabClasses = unbox ("root", className)
     /// Styles applied to the span element that wraps the children.
-    static member inline label(value: string) : IFabClasses = unbox ("label", value)
+    static member inline label(className: string) : IFabClasses = unbox ("label", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline primary(value: string) : IFabClasses = unbox ("primary", value)
+    static member inline primary(className: string) : IFabClasses = unbox ("primary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline secondary(value: string) : IFabClasses = unbox ("secondary", value)
+    static member inline secondary(className: string) : IFabClasses = unbox ("secondary", className)
     /// Styles applied to the root element if `variant="extended"`.
-    static member inline extended(value: string) : IFabClasses = unbox ("extended", value)
+    static member inline extended(className: string) : IFabClasses = unbox ("extended", className)
     /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
-    static member inline focusVisible(value: string) : IFabClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : IFabClasses = unbox ("focusVisible", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IFabClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IFabClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `color="inherit"`.
-    static member inline colorInherit(value: string) : IFabClasses = unbox ("colorInherit", value)
+    static member inline colorInherit(className: string) : IFabClasses = unbox ("colorInherit", className)
     /// Styles applied to the root element if `size="small"``.
-    static member inline sizeSmall(value: string) : IFabClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : IFabClasses = unbox ("sizeSmall", className)
     /// Styles applied to the root element if `size="medium"``.
-    static member inline sizeMedium(value: string) : IFabClasses = unbox ("sizeMedium", value)
+    static member inline sizeMedium(className: string) : IFabClasses = unbox ("sizeMedium", className)
 
 
   type IFadeClasses = interface end
@@ -659,37 +659,37 @@ module classes =
   [<Erase>]
   type filledInput =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFilledInputClasses = unbox ("root", value)
+    static member inline root(className: string) : IFilledInputClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableUnderline={false}`.
-    static member inline underline(value: string) : IFilledInputClasses = unbox ("underline", value)
+    static member inline underline(className: string) : IFilledInputClasses = unbox ("underline", className)
     /// Styles applied to the root element if the component is focused.
-    static member inline focused(value: string) : IFilledInputClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IFilledInputClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IFilledInputClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IFilledInputClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `startAdornment` is provided.
-    static member inline adornedStart(value: string) : IFilledInputClasses = unbox ("adornedStart", value)
+    static member inline adornedStart(className: string) : IFilledInputClasses = unbox ("adornedStart", className)
     /// Styles applied to the root element if `endAdornment` is provided.
-    static member inline adornedEnd(value: string) : IFilledInputClasses = unbox ("adornedEnd", value)
+    static member inline adornedEnd(className: string) : IFilledInputClasses = unbox ("adornedEnd", className)
     /// Styles applied to the root element if `error={true}`.
-    static member inline error(value: string) : IFilledInputClasses = unbox ("error", value)
+    static member inline error(className: string) : IFilledInputClasses = unbox ("error", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline marginDense(value: string) : IFilledInputClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IFilledInputClasses = unbox ("marginDense", className)
     /// Styles applied to the root element if `multiline={true}`.
-    static member inline multiline(value: string) : IFilledInputClasses = unbox ("multiline", value)
+    static member inline multiline(className: string) : IFilledInputClasses = unbox ("multiline", className)
     /// Styles applied to the `input` element.
-    static member inline input(value: string) : IFilledInputClasses = unbox ("input", value)
+    static member inline input(className: string) : IFilledInputClasses = unbox ("input", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline inputMarginDense(value: string) : IFilledInputClasses = unbox ("inputMarginDense", value)
+    static member inline inputMarginDense(className: string) : IFilledInputClasses = unbox ("inputMarginDense", className)
     /// Styles applied to the `input` if in ``.
-    static member inline inputHiddenLabel(value: string) : IFilledInputClasses = unbox ("inputHiddenLabel", value)
+    static member inline inputHiddenLabel(className: string) : IFilledInputClasses = unbox ("inputHiddenLabel", className)
     /// Styles applied to the `input` element if `select={true}`.
-    static member inline inputSelect(value: string) : IFilledInputClasses = unbox ("inputSelect", value)
+    static member inline inputSelect(className: string) : IFilledInputClasses = unbox ("inputSelect", className)
     /// Styles applied to the `input` element if `multiline={true}`.
-    static member inline inputMultiline(value: string) : IFilledInputClasses = unbox ("inputMultiline", value)
+    static member inline inputMultiline(className: string) : IFilledInputClasses = unbox ("inputMultiline", className)
     /// Styles applied to the `input` element if `startAdornment` is provided.
-    static member inline inputAdornedStart(value: string) : IFilledInputClasses = unbox ("inputAdornedStart", value)
+    static member inline inputAdornedStart(className: string) : IFilledInputClasses = unbox ("inputAdornedStart", className)
     /// Styles applied to the `input` element if `endAdornment` is provided.
-    static member inline inputAdornedEnd(value: string) : IFilledInputClasses = unbox ("inputAdornedEnd", value)
+    static member inline inputAdornedEnd(className: string) : IFilledInputClasses = unbox ("inputAdornedEnd", className)
 
 
   type IFormControlClasses = interface end
@@ -697,13 +697,13 @@ module classes =
   [<Erase>]
   type formControl =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFormControlClasses = unbox ("root", value)
+    static member inline root(className: string) : IFormControlClasses = unbox ("root", className)
     /// Styles applied to the root element if `margin="normal"`.
-    static member inline marginNormal(value: string) : IFormControlClasses = unbox ("marginNormal", value)
+    static member inline marginNormal(className: string) : IFormControlClasses = unbox ("marginNormal", className)
     /// Styles applied to the root element if `margin="dense"`.
-    static member inline marginDense(value: string) : IFormControlClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IFormControlClasses = unbox ("marginDense", className)
     /// Styles applied to the root element if `fullWidth={true}`.
-    static member inline fullWidth(value: string) : IFormControlClasses = unbox ("fullWidth", value)
+    static member inline fullWidth(className: string) : IFormControlClasses = unbox ("fullWidth", className)
 
 
   type IFormControlLabelClasses = interface end
@@ -711,17 +711,17 @@ module classes =
   [<Erase>]
   type formControlLabel =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFormControlLabelClasses = unbox ("root", value)
+    static member inline root(className: string) : IFormControlLabelClasses = unbox ("root", className)
     /// Styles applied to the root element if `labelPlacement="start"`.
-    static member inline labelPlacementStart(value: string) : IFormControlLabelClasses = unbox ("labelPlacementStart", value)
+    static member inline labelPlacementStart(className: string) : IFormControlLabelClasses = unbox ("labelPlacementStart", className)
     /// Styles applied to the root element if `labelPlacement="top"`.
-    static member inline labelPlacementTop(value: string) : IFormControlLabelClasses = unbox ("labelPlacementTop", value)
+    static member inline labelPlacementTop(className: string) : IFormControlLabelClasses = unbox ("labelPlacementTop", className)
     /// Styles applied to the root element if `labelPlacement="bottom"`.
-    static member inline labelPlacementBottom(value: string) : IFormControlLabelClasses = unbox ("labelPlacementBottom", value)
+    static member inline labelPlacementBottom(className: string) : IFormControlLabelClasses = unbox ("labelPlacementBottom", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IFormControlLabelClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IFormControlLabelClasses = unbox ("disabled", className)
     /// Styles applied to the label's Typography component.
-    static member inline label(value: string) : IFormControlLabelClasses = unbox ("label", value)
+    static member inline label(className: string) : IFormControlLabelClasses = unbox ("label", className)
 
 
   type IFormGroupClasses = interface end
@@ -729,9 +729,9 @@ module classes =
   [<Erase>]
   type formGroup =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFormGroupClasses = unbox ("root", value)
+    static member inline root(className: string) : IFormGroupClasses = unbox ("root", className)
     /// Styles applied to the root element if `row={true}`.
-    static member inline row(value: string) : IFormGroupClasses = unbox ("row", value)
+    static member inline row(className: string) : IFormGroupClasses = unbox ("row", className)
 
 
   type IFormHelperTextClasses = interface end
@@ -739,21 +739,21 @@ module classes =
   [<Erase>]
   type formHelperText =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFormHelperTextClasses = unbox ("root", value)
+    static member inline root(className: string) : IFormHelperTextClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `error={true}`.
-    static member inline error(value: string) : IFormHelperTextClasses = unbox ("error", value)
+    static member inline error(className: string) : IFormHelperTextClasses = unbox ("error", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IFormHelperTextClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IFormHelperTextClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `margin="dense"`.
-    static member inline marginDense(value: string) : IFormHelperTextClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IFormHelperTextClasses = unbox ("marginDense", className)
     /// Styles applied to the root element if `variant="filled"` or `variant="outlined"`.
-    static member inline contained(value: string) : IFormHelperTextClasses = unbox ("contained", value)
+    static member inline contained(className: string) : IFormHelperTextClasses = unbox ("contained", className)
     /// Pseudo-class applied to the root element if `focused={true}`.
-    static member inline focused(value: string) : IFormHelperTextClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IFormHelperTextClasses = unbox ("focused", className)
     /// Pseudo-class applied to the root element if `filled={true}`.
-    static member inline filled(value: string) : IFormHelperTextClasses = unbox ("filled", value)
+    static member inline filled(className: string) : IFormHelperTextClasses = unbox ("filled", className)
     /// Pseudo-class applied to the root element if `required={true}`.
-    static member inline required(value: string) : IFormHelperTextClasses = unbox ("required", value)
+    static member inline required(className: string) : IFormHelperTextClasses = unbox ("required", className)
 
 
   type IFormLabelClasses = interface end
@@ -761,19 +761,19 @@ module classes =
   [<Erase>]
   type formLabel =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IFormLabelClasses = unbox ("root", value)
+    static member inline root(className: string) : IFormLabelClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `focused={true}`.
-    static member inline focused(value: string) : IFormLabelClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IFormLabelClasses = unbox ("focused", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IFormLabelClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IFormLabelClasses = unbox ("disabled", className)
     /// Pseudo-class applied to the root element if `error={true}`.
-    static member inline error(value: string) : IFormLabelClasses = unbox ("error", value)
+    static member inline error(className: string) : IFormLabelClasses = unbox ("error", className)
     /// Pseudo-class applied to the root element if `filled={true}`.
-    static member inline filled(value: string) : IFormLabelClasses = unbox ("filled", value)
+    static member inline filled(className: string) : IFormLabelClasses = unbox ("filled", className)
     /// Pseudo-class applied to the root element if `required={true}`.
-    static member inline required(value: string) : IFormLabelClasses = unbox ("required", value)
+    static member inline required(className: string) : IFormLabelClasses = unbox ("required", className)
     /// Styles applied to the asterisk element.
-    static member inline asterisk(value: string) : IFormLabelClasses = unbox ("asterisk", value)
+    static member inline asterisk(className: string) : IFormLabelClasses = unbox ("asterisk", className)
 
 
   type IGridClasses = interface end
@@ -781,56 +781,56 @@ module classes =
   [<Erase>]
   type grid =
     /// Styles applied to the root element
-    static member inline root(value: string) : IGridClasses = unbox ("root", value)
+    static member inline root(className: string) : IGridClasses = unbox ("root", className)
     /// Styles applied to the root element if `container={true}`.
-    static member inline container(value: string) : IGridClasses = unbox ("container", value)
+    static member inline container(className: string) : IGridClasses = unbox ("container", className)
     /// Styles applied to the root element if `item={true}`.
-    static member inline item(value: string) : IGridClasses = unbox ("item", value)
+    static member inline item(className: string) : IGridClasses = unbox ("item", className)
     /// Styles applied to the root element if `zeroMinWidth={true}`.
-    static member inline zeroMinWidth(value: string) : IGridClasses = unbox ("zeroMinWidth", value)
-    static member inline directionXsColumn(value: string) : IGridClasses = unbox ("direction-xs-column", value)
-    static member inline directionXsColumnReverse(value: string) : IGridClasses = unbox ("direction-xs-column-reverse", value)
-    static member inline directionXsRowReverse(value: string) : IGridClasses = unbox ("direction-xs-row-reverse", value)
-    static member inline wrapXsNowrap(value: string) : IGridClasses = unbox ("wrap-xs-nowrap", value)
-    static member inline wrapXsWrapReverse(value: string) : IGridClasses = unbox ("wrap-xs-wrap-reverse", value)
-    static member inline alignItemsXsCenter(value: string) : IGridClasses = unbox ("align-items-xs-center", value)
-    static member inline alignItemsXsFlexStart(value: string) : IGridClasses = unbox ("align-items-xs-flex-start", value)
-    static member inline alignItemsXsFlexEnd(value: string) : IGridClasses = unbox ("align-items-xs-flex-end", value)
-    static member inline alignItemsXsBaseline(value: string) : IGridClasses = unbox ("align-items-xs-baseline", value)
-    static member inline alignContentXsCenter(value: string) : IGridClasses = unbox ("align-content-xs-center", value)
-    static member inline alignContentXsFlexStart(value: string) : IGridClasses = unbox ("align-content-xs-flex-start", value)
-    static member inline alignContentXsFlexEnd(value: string) : IGridClasses = unbox ("align-content-xs-flex-end", value)
-    static member inline alignContentXsSpaceBetween(value: string) : IGridClasses = unbox ("align-content-xs-space-between", value)
-    static member inline alignContentXsSpaceAround(value: string) : IGridClasses = unbox ("align-content-xs-space-around", value)
-    static member inline justifyXsCenter(value: string) : IGridClasses = unbox ("justify-xs-center", value)
-    static member inline justifyXsFlexEnd(value: string) : IGridClasses = unbox ("justify-xs-flex-end", value)
-    static member inline justifyXsSpaceBetween(value: string) : IGridClasses = unbox ("justify-xs-space-between", value)
-    static member inline justifyXsSpaceAround(value: string) : IGridClasses = unbox ("justify-xs-space-around", value)
-    static member inline justifyXsSpaceEvenly(value: string) : IGridClasses = unbox ("justify-xs-space-evenly", value)
-    static member inline spacingXs1(value: string) : IGridClasses = unbox ("spacing-xs-1", value)
-    static member inline spacingXs2(value: string) : IGridClasses = unbox ("spacing-xs-2", value)
-    static member inline spacingXs3(value: string) : IGridClasses = unbox ("spacing-xs-3", value)
-    static member inline spacingXs4(value: string) : IGridClasses = unbox ("spacing-xs-4", value)
-    static member inline spacingXs5(value: string) : IGridClasses = unbox ("spacing-xs-5", value)
-    static member inline spacingXs6(value: string) : IGridClasses = unbox ("spacing-xs-6", value)
-    static member inline spacingXs7(value: string) : IGridClasses = unbox ("spacing-xs-7", value)
-    static member inline spacingXs8(value: string) : IGridClasses = unbox ("spacing-xs-8", value)
-    static member inline spacingXs9(value: string) : IGridClasses = unbox ("spacing-xs-9", value)
-    static member inline spacingXs10(value: string) : IGridClasses = unbox ("spacing-xs-10", value)
-    static member inline gridXsAuto(value: string) : IGridClasses = unbox ("grid-xs-auto", value)
-    static member inline gridXsTrue(value: string) : IGridClasses = unbox ("grid-xs-true", value)
-    static member inline gridXs1(value: string) : IGridClasses = unbox ("grid-xs-1", value)
-    static member inline gridXs2(value: string) : IGridClasses = unbox ("grid-xs-2", value)
-    static member inline gridXs3(value: string) : IGridClasses = unbox ("grid-xs-3", value)
-    static member inline gridXs4(value: string) : IGridClasses = unbox ("grid-xs-4", value)
-    static member inline gridXs5(value: string) : IGridClasses = unbox ("grid-xs-5", value)
-    static member inline gridXs6(value: string) : IGridClasses = unbox ("grid-xs-6", value)
-    static member inline gridXs7(value: string) : IGridClasses = unbox ("grid-xs-7", value)
-    static member inline gridXs8(value: string) : IGridClasses = unbox ("grid-xs-8", value)
-    static member inline gridXs9(value: string) : IGridClasses = unbox ("grid-xs-9", value)
-    static member inline gridXs10(value: string) : IGridClasses = unbox ("grid-xs-10", value)
-    static member inline gridXs11(value: string) : IGridClasses = unbox ("grid-xs-11", value)
-    static member inline gridXs12(value: string) : IGridClasses = unbox ("grid-xs-12", value)
+    static member inline zeroMinWidth(className: string) : IGridClasses = unbox ("zeroMinWidth", className)
+    static member inline directionXsColumn(className: string) : IGridClasses = unbox ("direction-xs-column", className)
+    static member inline directionXsColumnReverse(className: string) : IGridClasses = unbox ("direction-xs-column-reverse", className)
+    static member inline directionXsRowReverse(className: string) : IGridClasses = unbox ("direction-xs-row-reverse", className)
+    static member inline wrapXsNowrap(className: string) : IGridClasses = unbox ("wrap-xs-nowrap", className)
+    static member inline wrapXsWrapReverse(className: string) : IGridClasses = unbox ("wrap-xs-wrap-reverse", className)
+    static member inline alignItemsXsCenter(className: string) : IGridClasses = unbox ("align-items-xs-center", className)
+    static member inline alignItemsXsFlexStart(className: string) : IGridClasses = unbox ("align-items-xs-flex-start", className)
+    static member inline alignItemsXsFlexEnd(className: string) : IGridClasses = unbox ("align-items-xs-flex-end", className)
+    static member inline alignItemsXsBaseline(className: string) : IGridClasses = unbox ("align-items-xs-baseline", className)
+    static member inline alignContentXsCenter(className: string) : IGridClasses = unbox ("align-content-xs-center", className)
+    static member inline alignContentXsFlexStart(className: string) : IGridClasses = unbox ("align-content-xs-flex-start", className)
+    static member inline alignContentXsFlexEnd(className: string) : IGridClasses = unbox ("align-content-xs-flex-end", className)
+    static member inline alignContentXsSpaceBetween(className: string) : IGridClasses = unbox ("align-content-xs-space-between", className)
+    static member inline alignContentXsSpaceAround(className: string) : IGridClasses = unbox ("align-content-xs-space-around", className)
+    static member inline justifyXsCenter(className: string) : IGridClasses = unbox ("justify-xs-center", className)
+    static member inline justifyXsFlexEnd(className: string) : IGridClasses = unbox ("justify-xs-flex-end", className)
+    static member inline justifyXsSpaceBetween(className: string) : IGridClasses = unbox ("justify-xs-space-between", className)
+    static member inline justifyXsSpaceAround(className: string) : IGridClasses = unbox ("justify-xs-space-around", className)
+    static member inline justifyXsSpaceEvenly(className: string) : IGridClasses = unbox ("justify-xs-space-evenly", className)
+    static member inline spacingXs1(className: string) : IGridClasses = unbox ("spacing-xs-1", className)
+    static member inline spacingXs2(className: string) : IGridClasses = unbox ("spacing-xs-2", className)
+    static member inline spacingXs3(className: string) : IGridClasses = unbox ("spacing-xs-3", className)
+    static member inline spacingXs4(className: string) : IGridClasses = unbox ("spacing-xs-4", className)
+    static member inline spacingXs5(className: string) : IGridClasses = unbox ("spacing-xs-5", className)
+    static member inline spacingXs6(className: string) : IGridClasses = unbox ("spacing-xs-6", className)
+    static member inline spacingXs7(className: string) : IGridClasses = unbox ("spacing-xs-7", className)
+    static member inline spacingXs8(className: string) : IGridClasses = unbox ("spacing-xs-8", className)
+    static member inline spacingXs9(className: string) : IGridClasses = unbox ("spacing-xs-9", className)
+    static member inline spacingXs10(className: string) : IGridClasses = unbox ("spacing-xs-10", className)
+    static member inline gridXsAuto(className: string) : IGridClasses = unbox ("grid-xs-auto", className)
+    static member inline gridXsTrue(className: string) : IGridClasses = unbox ("grid-xs-true", className)
+    static member inline gridXs1(className: string) : IGridClasses = unbox ("grid-xs-1", className)
+    static member inline gridXs2(className: string) : IGridClasses = unbox ("grid-xs-2", className)
+    static member inline gridXs3(className: string) : IGridClasses = unbox ("grid-xs-3", className)
+    static member inline gridXs4(className: string) : IGridClasses = unbox ("grid-xs-4", className)
+    static member inline gridXs5(className: string) : IGridClasses = unbox ("grid-xs-5", className)
+    static member inline gridXs6(className: string) : IGridClasses = unbox ("grid-xs-6", className)
+    static member inline gridXs7(className: string) : IGridClasses = unbox ("grid-xs-7", className)
+    static member inline gridXs8(className: string) : IGridClasses = unbox ("grid-xs-8", className)
+    static member inline gridXs9(className: string) : IGridClasses = unbox ("grid-xs-9", className)
+    static member inline gridXs10(className: string) : IGridClasses = unbox ("grid-xs-10", className)
+    static member inline gridXs11(className: string) : IGridClasses = unbox ("grid-xs-11", className)
+    static member inline gridXs12(className: string) : IGridClasses = unbox ("grid-xs-12", className)
 
 
   type IGridListClasses = interface end
@@ -838,7 +838,7 @@ module classes =
   [<Erase>]
   type gridList =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IGridListClasses = unbox ("root", value)
+    static member inline root(className: string) : IGridListClasses = unbox ("root", className)
 
 
   type IGridListTileClasses = interface end
@@ -846,13 +846,13 @@ module classes =
   [<Erase>]
   type gridListTile =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IGridListTileClasses = unbox ("root", value)
+    static member inline root(className: string) : IGridListTileClasses = unbox ("root", className)
     /// Styles applied to the `div` element that wraps the children.
-    static member inline tile(value: string) : IGridListTileClasses = unbox ("tile", value)
+    static member inline tile(className: string) : IGridListTileClasses = unbox ("tile", className)
     /// Styles applied to an `img` element child, if needed to ensure it covers the tile.
-    static member inline imgFullHeight(value: string) : IGridListTileClasses = unbox ("imgFullHeight", value)
+    static member inline imgFullHeight(className: string) : IGridListTileClasses = unbox ("imgFullHeight", className)
     /// Styles applied to an `img` element child, if needed to ensure it covers the tile.
-    static member inline imgFullWidth(value: string) : IGridListTileClasses = unbox ("imgFullWidth", value)
+    static member inline imgFullWidth(className: string) : IGridListTileClasses = unbox ("imgFullWidth", className)
 
 
   type IGridListTileBarClasses = interface end
@@ -860,27 +860,27 @@ module classes =
   [<Erase>]
   type gridListTileBar =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IGridListTileBarClasses = unbox ("root", value)
+    static member inline root(className: string) : IGridListTileBarClasses = unbox ("root", className)
     /// Styles applied to the root element if `titlePosition="bottom"`.
-    static member inline titlePositionBottom(value: string) : IGridListTileBarClasses = unbox ("titlePositionBottom", value)
+    static member inline titlePositionBottom(className: string) : IGridListTileBarClasses = unbox ("titlePositionBottom", className)
     /// Styles applied to the root element if `titlePosition="top"`.
-    static member inline titlePositionTop(value: string) : IGridListTileBarClasses = unbox ("titlePositionTop", value)
+    static member inline titlePositionTop(className: string) : IGridListTileBarClasses = unbox ("titlePositionTop", className)
     /// Styles applied to the root element if a `subtitle` is provided.
-    static member inline rootSubtitle(value: string) : IGridListTileBarClasses = unbox ("rootSubtitle", value)
+    static member inline rootSubtitle(className: string) : IGridListTileBarClasses = unbox ("rootSubtitle", className)
     /// Styles applied to the title and subtitle container element.
-    static member inline titleWrap(value: string) : IGridListTileBarClasses = unbox ("titleWrap", value)
+    static member inline titleWrap(className: string) : IGridListTileBarClasses = unbox ("titleWrap", className)
     /// Styles applied to the container element if `actionPosition="left"`.
-    static member inline titleWrapActionPosLeft(value: string) : IGridListTileBarClasses = unbox ("titleWrapActionPosLeft", value)
+    static member inline titleWrapActionPosLeft(className: string) : IGridListTileBarClasses = unbox ("titleWrapActionPosLeft", className)
     /// Styles applied to the container element if `actionPosition="right"`.
-    static member inline titleWrapActionPosRight(value: string) : IGridListTileBarClasses = unbox ("titleWrapActionPosRight", value)
+    static member inline titleWrapActionPosRight(className: string) : IGridListTileBarClasses = unbox ("titleWrapActionPosRight", className)
     /// Styles applied to the title container element.
-    static member inline title(value: string) : IGridListTileBarClasses = unbox ("title", value)
+    static member inline title(className: string) : IGridListTileBarClasses = unbox ("title", className)
     /// Styles applied to the subtitle container element.
-    static member inline subtitle(value: string) : IGridListTileBarClasses = unbox ("subtitle", value)
+    static member inline subtitle(className: string) : IGridListTileBarClasses = unbox ("subtitle", className)
     /// Styles applied to the actionIcon if supplied.
-    static member inline actionIcon(value: string) : IGridListTileBarClasses = unbox ("actionIcon", value)
+    static member inline actionIcon(className: string) : IGridListTileBarClasses = unbox ("actionIcon", className)
     /// Styles applied to the actionIcon if `actionPosition="left"`.
-    static member inline actionIconActionPosLeft(value: string) : IGridListTileBarClasses = unbox ("actionIconActionPosLeft", value)
+    static member inline actionIconActionPosLeft(className: string) : IGridListTileBarClasses = unbox ("actionIconActionPosLeft", className)
 
 
   type IGrowClasses = interface end
@@ -894,22 +894,22 @@ module classes =
   [<Erase>]
   type icon =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IIconClasses = unbox ("root", value)
+    static member inline root(className: string) : IIconClasses = unbox ("root", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IIconClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IIconClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : IIconClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : IIconClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `color="action"`.
-    static member inline colorAction(value: string) : IIconClasses = unbox ("colorAction", value)
+    static member inline colorAction(className: string) : IIconClasses = unbox ("colorAction", className)
     /// Styles applied to the root element if `color="error"`.
-    static member inline colorError(value: string) : IIconClasses = unbox ("colorError", value)
+    static member inline colorError(className: string) : IIconClasses = unbox ("colorError", className)
     /// Styles applied to the root element if `color="disabled"`.
-    static member inline colorDisabled(value: string) : IIconClasses = unbox ("colorDisabled", value)
-    static member inline fontSizeInherit(value: string) : IIconClasses = unbox ("fontSizeInherit", value)
+    static member inline colorDisabled(className: string) : IIconClasses = unbox ("colorDisabled", className)
+    static member inline fontSizeInherit(className: string) : IIconClasses = unbox ("fontSizeInherit", className)
     /// Styles applied to the root element if `fontSize="small"`.
-    static member inline fontSizeSmall(value: string) : IIconClasses = unbox ("fontSizeSmall", value)
+    static member inline fontSizeSmall(className: string) : IIconClasses = unbox ("fontSizeSmall", className)
     /// Styles applied to the root element if `fontSize="large"`.
-    static member inline fontSizeLarge(value: string) : IIconClasses = unbox ("fontSizeLarge", value)
+    static member inline fontSizeLarge(className: string) : IIconClasses = unbox ("fontSizeLarge", className)
 
 
   type IIconButtonClasses = interface end
@@ -917,23 +917,23 @@ module classes =
   [<Erase>]
   type iconButton =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IIconButtonClasses = unbox ("root", value)
+    static member inline root(className: string) : IIconButtonClasses = unbox ("root", className)
     /// Styles applied to the root element if `edge="start"`.
-    static member inline edgeStart(value: string) : IIconButtonClasses = unbox ("edgeStart", value)
+    static member inline edgeStart(className: string) : IIconButtonClasses = unbox ("edgeStart", className)
     /// Styles applied to the root element if `edge="end"`.
-    static member inline edgeEnd(value: string) : IIconButtonClasses = unbox ("edgeEnd", value)
+    static member inline edgeEnd(className: string) : IIconButtonClasses = unbox ("edgeEnd", className)
     /// Styles applied to the root element if `color="inherit"`.
-    static member inline colorInherit(value: string) : IIconButtonClasses = unbox ("colorInherit", value)
+    static member inline colorInherit(className: string) : IIconButtonClasses = unbox ("colorInherit", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IIconButtonClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IIconButtonClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : IIconButtonClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : IIconButtonClasses = unbox ("colorSecondary", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IIconButtonClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IIconButtonClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : IIconButtonClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : IIconButtonClasses = unbox ("sizeSmall", className)
     /// Styles applied to the children container element.
-    static member inline label(value: string) : IIconButtonClasses = unbox ("label", value)
+    static member inline label(className: string) : IIconButtonClasses = unbox ("label", className)
 
 
   type IInputClasses = interface end
@@ -941,29 +941,29 @@ module classes =
   [<Erase>]
   type input =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IInputClasses = unbox ("root", value)
+    static member inline root(className: string) : IInputClasses = unbox ("root", className)
     /// Styles applied to the root element if the component is a descendant of `FormControl`.
-    static member inline formControl(value: string) : IInputClasses = unbox ("formControl", value)
+    static member inline formControl(className: string) : IInputClasses = unbox ("formControl", className)
     /// Styles applied to the root element if the component is focused.
-    static member inline focused(value: string) : IInputClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IInputClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IInputClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IInputClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `disableUnderline={false}`.
-    static member inline underline(value: string) : IInputClasses = unbox ("underline", value)
+    static member inline underline(className: string) : IInputClasses = unbox ("underline", className)
     /// Styles applied to the root element if `error={true}`.
-    static member inline error(value: string) : IInputClasses = unbox ("error", value)
+    static member inline error(className: string) : IInputClasses = unbox ("error", className)
     /// Styles applied to the root element if `multiline={true}`.
-    static member inline multiline(value: string) : IInputClasses = unbox ("multiline", value)
+    static member inline multiline(className: string) : IInputClasses = unbox ("multiline", className)
     /// Styles applied to the root element if `fullWidth={true}`.
-    static member inline fullWidth(value: string) : IInputClasses = unbox ("fullWidth", value)
+    static member inline fullWidth(className: string) : IInputClasses = unbox ("fullWidth", className)
     /// Styles applied to the `input` element.
-    static member inline input(value: string) : IInputClasses = unbox ("input", value)
+    static member inline input(className: string) : IInputClasses = unbox ("input", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline inputMarginDense(value: string) : IInputClasses = unbox ("inputMarginDense", value)
+    static member inline inputMarginDense(className: string) : IInputClasses = unbox ("inputMarginDense", className)
     /// Styles applied to the `input` element if `multiline={true}`.
-    static member inline inputMultiline(value: string) : IInputClasses = unbox ("inputMultiline", value)
+    static member inline inputMultiline(className: string) : IInputClasses = unbox ("inputMultiline", className)
     /// Styles applied to the `input` element if `type="search"`.
-    static member inline inputTypeSearch(value: string) : IInputClasses = unbox ("inputTypeSearch", value)
+    static member inline inputTypeSearch(className: string) : IInputClasses = unbox ("inputTypeSearch", className)
 
 
   type IInputAdornmentClasses = interface end
@@ -971,19 +971,19 @@ module classes =
   [<Erase>]
   type inputAdornment =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IInputAdornmentClasses = unbox ("root", value)
+    static member inline root(className: string) : IInputAdornmentClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="filled"`.
-    static member inline filled(value: string) : IInputAdornmentClasses = unbox ("filled", value)
+    static member inline filled(className: string) : IInputAdornmentClasses = unbox ("filled", className)
     /// Styles applied to the root element if `position="start"`.
-    static member inline positionStart(value: string) : IInputAdornmentClasses = unbox ("positionStart", value)
+    static member inline positionStart(className: string) : IInputAdornmentClasses = unbox ("positionStart", className)
     /// Styles applied to the root element if `position="end"`.
-    static member inline positionEnd(value: string) : IInputAdornmentClasses = unbox ("positionEnd", value)
+    static member inline positionEnd(className: string) : IInputAdornmentClasses = unbox ("positionEnd", className)
     /// Styles applied to the root element if `disablePointerEvents=true`.
-    static member inline disablePointerEvents(value: string) : IInputAdornmentClasses = unbox ("disablePointerEvents", value)
+    static member inline disablePointerEvents(className: string) : IInputAdornmentClasses = unbox ("disablePointerEvents", className)
     /// Styles applied if the adornment is used inside <formcontrol hiddenlabel=""></formcontrol>.
-    static member inline hiddenLabel(value: string) : IInputAdornmentClasses = unbox ("hiddenLabel", value)
+    static member inline hiddenLabel(className: string) : IInputAdornmentClasses = unbox ("hiddenLabel", className)
     /// Styles applied if the adornment is used inside <formcontrol margin="dense"></formcontrol>.
-    static member inline marginDense(value: string) : IInputAdornmentClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IInputAdornmentClasses = unbox ("marginDense", className)
 
 
   type IInputBaseClasses = interface end
@@ -991,41 +991,41 @@ module classes =
   [<Erase>]
   type inputBase =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IInputBaseClasses = unbox ("root", value)
+    static member inline root(className: string) : IInputBaseClasses = unbox ("root", className)
     /// Styles applied to the root element if the component is a descendant of `FormControl`.
-    static member inline formControl(value: string) : IInputBaseClasses = unbox ("formControl", value)
+    static member inline formControl(className: string) : IInputBaseClasses = unbox ("formControl", className)
     /// Styles applied to the root element if the component is focused.
-    static member inline focused(value: string) : IInputBaseClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IInputBaseClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IInputBaseClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IInputBaseClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `startAdornment` is provided.
-    static member inline adornedStart(value: string) : IInputBaseClasses = unbox ("adornedStart", value)
+    static member inline adornedStart(className: string) : IInputBaseClasses = unbox ("adornedStart", className)
     /// Styles applied to the root element if `endAdornment` is provided.
-    static member inline adornedEnd(value: string) : IInputBaseClasses = unbox ("adornedEnd", value)
+    static member inline adornedEnd(className: string) : IInputBaseClasses = unbox ("adornedEnd", className)
     /// Styles applied to the root element if `error={true}`.
-    static member inline error(value: string) : IInputBaseClasses = unbox ("error", value)
+    static member inline error(className: string) : IInputBaseClasses = unbox ("error", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline marginDense(value: string) : IInputBaseClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IInputBaseClasses = unbox ("marginDense", className)
     /// Styles applied to the root element if `multiline={true}`.
-    static member inline multiline(value: string) : IInputBaseClasses = unbox ("multiline", value)
+    static member inline multiline(className: string) : IInputBaseClasses = unbox ("multiline", className)
     /// Styles applied to the root element if `fullWidth={true}`.
-    static member inline fullWidth(value: string) : IInputBaseClasses = unbox ("fullWidth", value)
+    static member inline fullWidth(className: string) : IInputBaseClasses = unbox ("fullWidth", className)
     /// Styles applied to the `input` element.
-    static member inline input(value: string) : IInputBaseClasses = unbox ("input", value)
+    static member inline input(className: string) : IInputBaseClasses = unbox ("input", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline inputMarginDense(value: string) : IInputBaseClasses = unbox ("inputMarginDense", value)
+    static member inline inputMarginDense(className: string) : IInputBaseClasses = unbox ("inputMarginDense", className)
     /// Styles applied to the `input` element if `select={true}`.
-    static member inline inputSelect(value: string) : IInputBaseClasses = unbox ("inputSelect", value)
+    static member inline inputSelect(className: string) : IInputBaseClasses = unbox ("inputSelect", className)
     /// Styles applied to the `input` element if `multiline={true}`.
-    static member inline inputMultiline(value: string) : IInputBaseClasses = unbox ("inputMultiline", value)
+    static member inline inputMultiline(className: string) : IInputBaseClasses = unbox ("inputMultiline", className)
     /// Styles applied to the `input` element if `type="search"`.
-    static member inline inputTypeSearch(value: string) : IInputBaseClasses = unbox ("inputTypeSearch", value)
+    static member inline inputTypeSearch(className: string) : IInputBaseClasses = unbox ("inputTypeSearch", className)
     /// Styles applied to the `input` element if `startAdornment` is provided.
-    static member inline inputAdornedStart(value: string) : IInputBaseClasses = unbox ("inputAdornedStart", value)
+    static member inline inputAdornedStart(className: string) : IInputBaseClasses = unbox ("inputAdornedStart", className)
     /// Styles applied to the `input` element if `endAdornment` is provided.
-    static member inline inputAdornedEnd(value: string) : IInputBaseClasses = unbox ("inputAdornedEnd", value)
+    static member inline inputAdornedEnd(className: string) : IInputBaseClasses = unbox ("inputAdornedEnd", className)
     /// Styles applied to the `input` element if `hiddenLabel={true}`.
-    static member inline inputHiddenLabel(value: string) : IInputBaseClasses = unbox ("inputHiddenLabel", value)
+    static member inline inputHiddenLabel(className: string) : IInputBaseClasses = unbox ("inputHiddenLabel", className)
 
 
   type IInputLabelClasses = interface end
@@ -1033,29 +1033,29 @@ module classes =
   [<Erase>]
   type inputLabel =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IInputLabelClasses = unbox ("root", value)
+    static member inline root(className: string) : IInputLabelClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `focused={true}`.
-    static member inline focused(value: string) : IInputLabelClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IInputLabelClasses = unbox ("focused", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IInputLabelClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IInputLabelClasses = unbox ("disabled", className)
     /// Pseudo-class applied to the root element if `error={true}`.
-    static member inline error(value: string) : IInputLabelClasses = unbox ("error", value)
+    static member inline error(className: string) : IInputLabelClasses = unbox ("error", className)
     /// Pseudo-class applied to the root element if `required={true}`.
-    static member inline required(value: string) : IInputLabelClasses = unbox ("required", value)
+    static member inline required(className: string) : IInputLabelClasses = unbox ("required", className)
     /// Pseudo-class applied to the asterisk element.
-    static member inline asterisk(value: string) : IInputLabelClasses = unbox ("asterisk", value)
+    static member inline asterisk(className: string) : IInputLabelClasses = unbox ("asterisk", className)
     /// Styles applied to the root element if the component is a descendant of `FormControl`.
-    static member inline formControl(value: string) : IInputLabelClasses = unbox ("formControl", value)
+    static member inline formControl(className: string) : IInputLabelClasses = unbox ("formControl", className)
     /// Styles applied to the root element if `margin="dense"`.
-    static member inline marginDense(value: string) : IInputLabelClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IInputLabelClasses = unbox ("marginDense", className)
     /// Styles applied to the `input` element if `shrink={true}`.
-    static member inline shrink(value: string) : IInputLabelClasses = unbox ("shrink", value)
+    static member inline shrink(className: string) : IInputLabelClasses = unbox ("shrink", className)
     /// Styles applied to the `input` element if `disableAnimation={false}`.
-    static member inline animated(value: string) : IInputLabelClasses = unbox ("animated", value)
+    static member inline animated(className: string) : IInputLabelClasses = unbox ("animated", className)
     /// Styles applied to the root element if `variant="filled"`.
-    static member inline filled(value: string) : IInputLabelClasses = unbox ("filled", value)
+    static member inline filled(className: string) : IInputLabelClasses = unbox ("filled", className)
     /// Styles applied to the root element if `variant="outlined"`.
-    static member inline outlined(value: string) : IInputLabelClasses = unbox ("outlined", value)
+    static member inline outlined(className: string) : IInputLabelClasses = unbox ("outlined", className)
 
 
   type ILinearProgressClasses = interface end
@@ -1063,41 +1063,41 @@ module classes =
   [<Erase>]
   type linearProgress =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ILinearProgressClasses = unbox ("root", value)
+    static member inline root(className: string) : ILinearProgressClasses = unbox ("root", className)
     /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
-    static member inline colorPrimary(value: string) : ILinearProgressClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ILinearProgressClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
-    static member inline colorSecondary(value: string) : ILinearProgressClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ILinearProgressClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `variant="determinate"`.
-    static member inline determinate(value: string) : ILinearProgressClasses = unbox ("determinate", value)
+    static member inline determinate(className: string) : ILinearProgressClasses = unbox ("determinate", className)
     /// Styles applied to the root element if `variant="indeterminate"`.
-    static member inline indeterminate(value: string) : ILinearProgressClasses = unbox ("indeterminate", value)
+    static member inline indeterminate(className: string) : ILinearProgressClasses = unbox ("indeterminate", className)
     /// Styles applied to the root element if `variant="buffer"`.
-    static member inline buffer(value: string) : ILinearProgressClasses = unbox ("buffer", value)
+    static member inline buffer(className: string) : ILinearProgressClasses = unbox ("buffer", className)
     /// Styles applied to the root element if `variant="query"`.
-    static member inline query(value: string) : ILinearProgressClasses = unbox ("query", value)
+    static member inline query(className: string) : ILinearProgressClasses = unbox ("query", className)
     /// Styles applied to the additional bar element if `variant="buffer"`.
-    static member inline dashed(value: string) : ILinearProgressClasses = unbox ("dashed", value)
+    static member inline dashed(className: string) : ILinearProgressClasses = unbox ("dashed", className)
     /// Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`.
-    static member inline dashedColorPrimary(value: string) : ILinearProgressClasses = unbox ("dashedColorPrimary", value)
+    static member inline dashedColorPrimary(className: string) : ILinearProgressClasses = unbox ("dashedColorPrimary", className)
     /// Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`.
-    static member inline dashedColorSecondary(value: string) : ILinearProgressClasses = unbox ("dashedColorSecondary", value)
+    static member inline dashedColorSecondary(className: string) : ILinearProgressClasses = unbox ("dashedColorSecondary", className)
     /// Styles applied to the layered bar1 and bar2 elements.
-    static member inline bar(value: string) : ILinearProgressClasses = unbox ("bar", value)
+    static member inline bar(className: string) : ILinearProgressClasses = unbox ("bar", className)
     /// Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
-    static member inline barColorPrimary(value: string) : ILinearProgressClasses = unbox ("barColorPrimary", value)
+    static member inline barColorPrimary(className: string) : ILinearProgressClasses = unbox ("barColorPrimary", className)
     /// Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer".
-    static member inline barColorSecondary(value: string) : ILinearProgressClasses = unbox ("barColorSecondary", value)
+    static member inline barColorSecondary(className: string) : ILinearProgressClasses = unbox ("barColorSecondary", className)
     /// Styles applied to the bar1 element if `variant="indeterminate or query"`.
-    static member inline bar1Indeterminate(value: string) : ILinearProgressClasses = unbox ("bar1Indeterminate", value)
+    static member inline bar1Indeterminate(className: string) : ILinearProgressClasses = unbox ("bar1Indeterminate", className)
     /// Styles applied to the bar1 element if `variant="determinate"`.
-    static member inline bar1Determinate(value: string) : ILinearProgressClasses = unbox ("bar1Determinate", value)
+    static member inline bar1Determinate(className: string) : ILinearProgressClasses = unbox ("bar1Determinate", className)
     /// Styles applied to the bar1 element if `variant="buffer"`.
-    static member inline bar1Buffer(value: string) : ILinearProgressClasses = unbox ("bar1Buffer", value)
+    static member inline bar1Buffer(className: string) : ILinearProgressClasses = unbox ("bar1Buffer", className)
     /// Styles applied to the bar2 element if `variant="indeterminate or query"`.
-    static member inline bar2Indeterminate(value: string) : ILinearProgressClasses = unbox ("bar2Indeterminate", value)
+    static member inline bar2Indeterminate(className: string) : ILinearProgressClasses = unbox ("bar2Indeterminate", className)
     /// Styles applied to the bar2 element if `variant="buffer"`.
-    static member inline bar2Buffer(value: string) : ILinearProgressClasses = unbox ("bar2Buffer", value)
+    static member inline bar2Buffer(className: string) : ILinearProgressClasses = unbox ("bar2Buffer", className)
 
 
   type ILinkClasses = interface end
@@ -1105,17 +1105,17 @@ module classes =
   [<Erase>]
   type link =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ILinkClasses = unbox ("root", value)
+    static member inline root(className: string) : ILinkClasses = unbox ("root", className)
     /// Styles applied to the root element if `underline="none"`.
-    static member inline underlineNone(value: string) : ILinkClasses = unbox ("underlineNone", value)
+    static member inline underlineNone(className: string) : ILinkClasses = unbox ("underlineNone", className)
     /// Styles applied to the root element if `underline="hover"`.
-    static member inline underlineHover(value: string) : ILinkClasses = unbox ("underlineHover", value)
+    static member inline underlineHover(className: string) : ILinkClasses = unbox ("underlineHover", className)
     /// Styles applied to the root element if `underline="always"`.
-    static member inline underlineAlways(value: string) : ILinkClasses = unbox ("underlineAlways", value)
+    static member inline underlineAlways(className: string) : ILinkClasses = unbox ("underlineAlways", className)
     /// Styles applied to the root element if `component="button"`.
-    static member inline button(value: string) : ILinkClasses = unbox ("button", value)
+    static member inline button(className: string) : ILinkClasses = unbox ("button", className)
     /// Pseudo-class applied to the root element if the link is keyboard focused.
-    static member inline focusVisible(value: string) : ILinkClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : ILinkClasses = unbox ("focusVisible", className)
 
 
   type IListClasses = interface end
@@ -1123,13 +1123,13 @@ module classes =
   [<Erase>]
   type list =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IListClasses = unbox ("root", value)
+    static member inline root(className: string) : IListClasses = unbox ("root", className)
     /// Styles applied to the root element if `disablePadding={false}`.
-    static member inline padding(value: string) : IListClasses = unbox ("padding", value)
+    static member inline padding(className: string) : IListClasses = unbox ("padding", className)
     /// Styles applied to the root element if dense.
-    static member inline dense(value: string) : IListClasses = unbox ("dense", value)
+    static member inline dense(className: string) : IListClasses = unbox ("dense", className)
     /// Styles applied to the root element if a `subheader` is provided.
-    static member inline subheader(value: string) : IListClasses = unbox ("subheader", value)
+    static member inline subheader(className: string) : IListClasses = unbox ("subheader", className)
 
 
   type IListItemClasses = interface end
@@ -1137,27 +1137,27 @@ module classes =
   [<Erase>]
   type listItem =
     /// Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
-    static member inline root(value: string) : IListItemClasses = unbox ("root", value)
+    static member inline root(className: string) : IListItemClasses = unbox ("root", className)
     /// Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
-    static member inline container(value: string) : IListItemClasses = unbox ("container", value)
+    static member inline container(className: string) : IListItemClasses = unbox ("container", className)
     /// Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
-    static member inline focusVisible(value: string) : IListItemClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : IListItemClasses = unbox ("focusVisible", className)
     /// Styles applied to the `component` element if dense.
-    static member inline dense(value: string) : IListItemClasses = unbox ("dense", value)
+    static member inline dense(className: string) : IListItemClasses = unbox ("dense", className)
     /// Styles applied to the `component` element if `alignItems="flex-start"`.
-    static member inline alignItemsFlexStart(value: string) : IListItemClasses = unbox ("alignItemsFlexStart", value)
+    static member inline alignItemsFlexStart(className: string) : IListItemClasses = unbox ("alignItemsFlexStart", className)
     /// Pseudo-class applied to the inner `component` element if `disabled={true}`.
-    static member inline disabled(value: string) : IListItemClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IListItemClasses = unbox ("disabled", className)
     /// Styles applied to the inner `component` element if `divider={true}`.
-    static member inline divider(value: string) : IListItemClasses = unbox ("divider", value)
+    static member inline divider(className: string) : IListItemClasses = unbox ("divider", className)
     /// Styles applied to the inner `component` element if `disableGutters={false}`.
-    static member inline gutters(value: string) : IListItemClasses = unbox ("gutters", value)
+    static member inline gutters(className: string) : IListItemClasses = unbox ("gutters", className)
     /// Styles applied to the inner `component` element if `button={true}`.
-    static member inline button(value: string) : IListItemClasses = unbox ("button", value)
+    static member inline button(className: string) : IListItemClasses = unbox ("button", className)
     /// Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
-    static member inline secondaryAction(value: string) : IListItemClasses = unbox ("secondaryAction", value)
+    static member inline secondaryAction(className: string) : IListItemClasses = unbox ("secondaryAction", className)
     /// Pseudo-class applied to the root element if `selected={true}`.
-    static member inline selected(value: string) : IListItemClasses = unbox ("selected", value)
+    static member inline selected(className: string) : IListItemClasses = unbox ("selected", className)
 
 
   type IListItemAvatarClasses = interface end
@@ -1165,9 +1165,9 @@ module classes =
   [<Erase>]
   type listItemAvatar =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IListItemAvatarClasses = unbox ("root", value)
+    static member inline root(className: string) : IListItemAvatarClasses = unbox ("root", className)
     /// Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
-    static member inline alignItemsFlexStart(value: string) : IListItemAvatarClasses = unbox ("alignItemsFlexStart", value)
+    static member inline alignItemsFlexStart(className: string) : IListItemAvatarClasses = unbox ("alignItemsFlexStart", className)
 
 
   type IListItemIconClasses = interface end
@@ -1175,9 +1175,9 @@ module classes =
   [<Erase>]
   type listItemIcon =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IListItemIconClasses = unbox ("root", value)
+    static member inline root(className: string) : IListItemIconClasses = unbox ("root", className)
     /// Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
-    static member inline alignItemsFlexStart(value: string) : IListItemIconClasses = unbox ("alignItemsFlexStart", value)
+    static member inline alignItemsFlexStart(className: string) : IListItemIconClasses = unbox ("alignItemsFlexStart", className)
 
 
   type IListItemSecondaryActionClasses = interface end
@@ -1185,7 +1185,7 @@ module classes =
   [<Erase>]
   type listItemSecondaryAction =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IListItemSecondaryActionClasses = unbox ("root", value)
+    static member inline root(className: string) : IListItemSecondaryActionClasses = unbox ("root", className)
 
 
   type IListItemTextClasses = interface end
@@ -1193,17 +1193,17 @@ module classes =
   [<Erase>]
   type listItemText =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IListItemTextClasses = unbox ("root", value)
+    static member inline root(className: string) : IListItemTextClasses = unbox ("root", className)
     /// Styles applied to the `Typography` components if primary and secondary are set.
-    static member inline multiline(value: string) : IListItemTextClasses = unbox ("multiline", value)
+    static member inline multiline(className: string) : IListItemTextClasses = unbox ("multiline", className)
     /// Styles applied to the `Typography` components if dense.
-    static member inline dense(value: string) : IListItemTextClasses = unbox ("dense", value)
+    static member inline dense(className: string) : IListItemTextClasses = unbox ("dense", className)
     /// Styles applied to the root element if `inset={true}`.
-    static member inline inset(value: string) : IListItemTextClasses = unbox ("inset", value)
+    static member inline inset(className: string) : IListItemTextClasses = unbox ("inset", className)
     /// Styles applied to the primary `Typography` component.
-    static member inline primary(value: string) : IListItemTextClasses = unbox ("primary", value)
+    static member inline primary(className: string) : IListItemTextClasses = unbox ("primary", className)
     /// Styles applied to the secondary `Typography` component.
-    static member inline secondary(value: string) : IListItemTextClasses = unbox ("secondary", value)
+    static member inline secondary(className: string) : IListItemTextClasses = unbox ("secondary", className)
 
 
   type IListSubheaderClasses = interface end
@@ -1211,17 +1211,17 @@ module classes =
   [<Erase>]
   type listSubheader =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IListSubheaderClasses = unbox ("root", value)
+    static member inline root(className: string) : IListSubheaderClasses = unbox ("root", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IListSubheaderClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IListSubheaderClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="inherit"`.
-    static member inline colorInherit(value: string) : IListSubheaderClasses = unbox ("colorInherit", value)
+    static member inline colorInherit(className: string) : IListSubheaderClasses = unbox ("colorInherit", className)
     /// Styles applied to the inner `component` element if `disableGutters={false}`.
-    static member inline gutters(value: string) : IListSubheaderClasses = unbox ("gutters", value)
+    static member inline gutters(className: string) : IListSubheaderClasses = unbox ("gutters", className)
     /// Styles applied to the root element if `inset={true}`.
-    static member inline inset(value: string) : IListSubheaderClasses = unbox ("inset", value)
+    static member inline inset(className: string) : IListSubheaderClasses = unbox ("inset", className)
     /// Styles applied to the root element if `disableSticky={false}`.
-    static member inline sticky(value: string) : IListSubheaderClasses = unbox ("sticky", value)
+    static member inline sticky(className: string) : IListSubheaderClasses = unbox ("sticky", className)
 
 
   type IMenuClasses = interface end
@@ -1229,9 +1229,9 @@ module classes =
   [<Erase>]
   type menu =
     /// Styles applied to the `Paper` component.
-    static member inline paper(value: string) : IMenuClasses = unbox ("paper", value)
+    static member inline paper(className: string) : IMenuClasses = unbox ("paper", className)
     /// Styles applied to the `List` component via `MenuList`.
-    static member inline list(value: string) : IMenuClasses = unbox ("list", value)
+    static member inline list(className: string) : IMenuClasses = unbox ("list", className)
 
 
   type IMenuItemClasses = interface end
@@ -1239,13 +1239,13 @@ module classes =
   [<Erase>]
   type menuItem =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IMenuItemClasses = unbox ("root", value)
+    static member inline root(className: string) : IMenuItemClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableGutters={false}`.
-    static member inline gutters(value: string) : IMenuItemClasses = unbox ("gutters", value)
+    static member inline gutters(className: string) : IMenuItemClasses = unbox ("gutters", className)
     /// Styles applied to the root element if `selected={true}`.
-    static member inline selected(value: string) : IMenuItemClasses = unbox ("selected", value)
+    static member inline selected(className: string) : IMenuItemClasses = unbox ("selected", className)
     /// Styles applied to the root element if dense.
-    static member inline dense(value: string) : IMenuItemClasses = unbox ("dense", value)
+    static member inline dense(className: string) : IMenuItemClasses = unbox ("dense", className)
 
 
   type IMenuListClasses = interface end
@@ -1256,21 +1256,21 @@ module classes =
   [<Erase>]
   type mobileStepper =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IMobileStepperClasses = unbox ("root", value)
+    static member inline root(className: string) : IMobileStepperClasses = unbox ("root", className)
     /// Styles applied to the root element if `position="bottom"`.
-    static member inline positionBottom(value: string) : IMobileStepperClasses = unbox ("positionBottom", value)
+    static member inline positionBottom(className: string) : IMobileStepperClasses = unbox ("positionBottom", className)
     /// Styles applied to the root element if `position="top"`.
-    static member inline positionTop(value: string) : IMobileStepperClasses = unbox ("positionTop", value)
+    static member inline positionTop(className: string) : IMobileStepperClasses = unbox ("positionTop", className)
     /// Styles applied to the root element if `position="static"`.
-    static member inline positionStatic(value: string) : IMobileStepperClasses = unbox ("positionStatic", value)
+    static member inline positionStatic(className: string) : IMobileStepperClasses = unbox ("positionStatic", className)
     /// Styles applied to the dots container if `variant="dots"`.
-    static member inline dots(value: string) : IMobileStepperClasses = unbox ("dots", value)
+    static member inline dots(className: string) : IMobileStepperClasses = unbox ("dots", className)
     /// Styles applied to each dot if `variant="dots"`.
-    static member inline dot(value: string) : IMobileStepperClasses = unbox ("dot", value)
+    static member inline dot(className: string) : IMobileStepperClasses = unbox ("dot", className)
     /// Styles applied to a dot if `variant="dots"` and this is the active step.
-    static member inline dotActive(value: string) : IMobileStepperClasses = unbox ("dotActive", value)
+    static member inline dotActive(className: string) : IMobileStepperClasses = unbox ("dotActive", className)
     /// Styles applied to the Linear Progress component if `variant="progress"`.
-    static member inline progress(value: string) : IMobileStepperClasses = unbox ("progress", value)
+    static member inline progress(className: string) : IMobileStepperClasses = unbox ("progress", className)
 
 
   type IModalClasses = interface end
@@ -1281,23 +1281,23 @@ module classes =
   [<Erase>]
   type nativeSelect =
     /// Styles applied to the select component `root` class.
-    static member inline root(value: string) : INativeSelectClasses = unbox ("root", value)
+    static member inline root(className: string) : INativeSelectClasses = unbox ("root", className)
     /// Styles applied to the select component `select` class.
-    static member inline select(value: string) : INativeSelectClasses = unbox ("select", value)
+    static member inline select(className: string) : INativeSelectClasses = unbox ("select", className)
     /// Styles applied to the select component if `variant="filled"`.
-    static member inline filled(value: string) : INativeSelectClasses = unbox ("filled", value)
+    static member inline filled(className: string) : INativeSelectClasses = unbox ("filled", className)
     /// Styles applied to the select component if `variant="outlined"`.
-    static member inline outlined(value: string) : INativeSelectClasses = unbox ("outlined", value)
+    static member inline outlined(className: string) : INativeSelectClasses = unbox ("outlined", className)
     /// Styles applied to the select component `selectMenu` class.
-    static member inline selectMenu(value: string) : INativeSelectClasses = unbox ("selectMenu", value)
+    static member inline selectMenu(className: string) : INativeSelectClasses = unbox ("selectMenu", className)
     /// Pseudo-class applied to the select component `disabled` class.
-    static member inline disabled(value: string) : INativeSelectClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : INativeSelectClasses = unbox ("disabled", className)
     /// Styles applied to the icon component.
-    static member inline icon(value: string) : INativeSelectClasses = unbox ("icon", value)
+    static member inline icon(className: string) : INativeSelectClasses = unbox ("icon", className)
     /// Styles applied to the icon component if `variant="filled"`.
-    static member inline iconFilled(value: string) : INativeSelectClasses = unbox ("iconFilled", value)
+    static member inline iconFilled(className: string) : INativeSelectClasses = unbox ("iconFilled", className)
     /// Styles applied to the icon component if `variant="outlined"`.
-    static member inline iconOutlined(value: string) : INativeSelectClasses = unbox ("iconOutlined", value)
+    static member inline iconOutlined(className: string) : INativeSelectClasses = unbox ("iconOutlined", className)
 
 
   type INoSsrClasses = interface end
@@ -1308,35 +1308,35 @@ module classes =
   [<Erase>]
   type outlinedInput =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IOutlinedInputClasses = unbox ("root", value)
+    static member inline root(className: string) : IOutlinedInputClasses = unbox ("root", className)
     /// Styles applied to the root element if the component is focused.
-    static member inline focused(value: string) : IOutlinedInputClasses = unbox ("focused", value)
+    static member inline focused(className: string) : IOutlinedInputClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IOutlinedInputClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IOutlinedInputClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `startAdornment` is provided.
-    static member inline adornedStart(value: string) : IOutlinedInputClasses = unbox ("adornedStart", value)
+    static member inline adornedStart(className: string) : IOutlinedInputClasses = unbox ("adornedStart", className)
     /// Styles applied to the root element if `endAdornment` is provided.
-    static member inline adornedEnd(value: string) : IOutlinedInputClasses = unbox ("adornedEnd", value)
+    static member inline adornedEnd(className: string) : IOutlinedInputClasses = unbox ("adornedEnd", className)
     /// Styles applied to the root element if `error={true}`.
-    static member inline error(value: string) : IOutlinedInputClasses = unbox ("error", value)
+    static member inline error(className: string) : IOutlinedInputClasses = unbox ("error", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline marginDense(value: string) : IOutlinedInputClasses = unbox ("marginDense", value)
+    static member inline marginDense(className: string) : IOutlinedInputClasses = unbox ("marginDense", className)
     /// Styles applied to the root element if `multiline={true}`.
-    static member inline multiline(value: string) : IOutlinedInputClasses = unbox ("multiline", value)
+    static member inline multiline(className: string) : IOutlinedInputClasses = unbox ("multiline", className)
     /// Styles applied to the `NotchedOutline` element.
-    static member inline notchedOutline(value: string) : IOutlinedInputClasses = unbox ("notchedOutline", value)
+    static member inline notchedOutline(className: string) : IOutlinedInputClasses = unbox ("notchedOutline", className)
     /// Styles applied to the `input` element.
-    static member inline input(value: string) : IOutlinedInputClasses = unbox ("input", value)
+    static member inline input(className: string) : IOutlinedInputClasses = unbox ("input", className)
     /// Styles applied to the `input` element if `margin="dense"`.
-    static member inline inputMarginDense(value: string) : IOutlinedInputClasses = unbox ("inputMarginDense", value)
+    static member inline inputMarginDense(className: string) : IOutlinedInputClasses = unbox ("inputMarginDense", className)
     /// Styles applied to the `input` element if `select={true}`.
-    static member inline inputSelect(value: string) : IOutlinedInputClasses = unbox ("inputSelect", value)
+    static member inline inputSelect(className: string) : IOutlinedInputClasses = unbox ("inputSelect", className)
     /// Styles applied to the `input` element if `multiline={true}`.
-    static member inline inputMultiline(value: string) : IOutlinedInputClasses = unbox ("inputMultiline", value)
+    static member inline inputMultiline(className: string) : IOutlinedInputClasses = unbox ("inputMultiline", className)
     /// Styles applied to the `input` element if `startAdornment` is provided.
-    static member inline inputAdornedStart(value: string) : IOutlinedInputClasses = unbox ("inputAdornedStart", value)
+    static member inline inputAdornedStart(className: string) : IOutlinedInputClasses = unbox ("inputAdornedStart", className)
     /// Styles applied to the `input` element if `endAdornment` is provided.
-    static member inline inputAdornedEnd(value: string) : IOutlinedInputClasses = unbox ("inputAdornedEnd", value)
+    static member inline inputAdornedEnd(className: string) : IOutlinedInputClasses = unbox ("inputAdornedEnd", className)
 
 
   type IPaperClasses = interface end
@@ -1344,34 +1344,34 @@ module classes =
   [<Erase>]
   type paper =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IPaperClasses = unbox ("root", value)
+    static member inline root(className: string) : IPaperClasses = unbox ("root", className)
     /// Styles applied to the root element if `square={false}`.
-    static member inline rounded(value: string) : IPaperClasses = unbox ("rounded", value)
-    static member inline elevation0(value: string) : IPaperClasses = unbox ("elevation0", value)
-    static member inline elevation1(value: string) : IPaperClasses = unbox ("elevation1", value)
-    static member inline elevation2(value: string) : IPaperClasses = unbox ("elevation2", value)
-    static member inline elevation3(value: string) : IPaperClasses = unbox ("elevation3", value)
-    static member inline elevation4(value: string) : IPaperClasses = unbox ("elevation4", value)
-    static member inline elevation5(value: string) : IPaperClasses = unbox ("elevation5", value)
-    static member inline elevation6(value: string) : IPaperClasses = unbox ("elevation6", value)
-    static member inline elevation7(value: string) : IPaperClasses = unbox ("elevation7", value)
-    static member inline elevation8(value: string) : IPaperClasses = unbox ("elevation8", value)
-    static member inline elevation9(value: string) : IPaperClasses = unbox ("elevation9", value)
-    static member inline elevation10(value: string) : IPaperClasses = unbox ("elevation10", value)
-    static member inline elevation11(value: string) : IPaperClasses = unbox ("elevation11", value)
-    static member inline elevation12(value: string) : IPaperClasses = unbox ("elevation12", value)
-    static member inline elevation13(value: string) : IPaperClasses = unbox ("elevation13", value)
-    static member inline elevation14(value: string) : IPaperClasses = unbox ("elevation14", value)
-    static member inline elevation15(value: string) : IPaperClasses = unbox ("elevation15", value)
-    static member inline elevation16(value: string) : IPaperClasses = unbox ("elevation16", value)
-    static member inline elevation17(value: string) : IPaperClasses = unbox ("elevation17", value)
-    static member inline elevation18(value: string) : IPaperClasses = unbox ("elevation18", value)
-    static member inline elevation19(value: string) : IPaperClasses = unbox ("elevation19", value)
-    static member inline elevation20(value: string) : IPaperClasses = unbox ("elevation20", value)
-    static member inline elevation21(value: string) : IPaperClasses = unbox ("elevation21", value)
-    static member inline elevation22(value: string) : IPaperClasses = unbox ("elevation22", value)
-    static member inline elevation23(value: string) : IPaperClasses = unbox ("elevation23", value)
-    static member inline elevation24(value: string) : IPaperClasses = unbox ("elevation24", value)
+    static member inline rounded(className: string) : IPaperClasses = unbox ("rounded", className)
+    static member inline elevation0(className: string) : IPaperClasses = unbox ("elevation0", className)
+    static member inline elevation1(className: string) : IPaperClasses = unbox ("elevation1", className)
+    static member inline elevation2(className: string) : IPaperClasses = unbox ("elevation2", className)
+    static member inline elevation3(className: string) : IPaperClasses = unbox ("elevation3", className)
+    static member inline elevation4(className: string) : IPaperClasses = unbox ("elevation4", className)
+    static member inline elevation5(className: string) : IPaperClasses = unbox ("elevation5", className)
+    static member inline elevation6(className: string) : IPaperClasses = unbox ("elevation6", className)
+    static member inline elevation7(className: string) : IPaperClasses = unbox ("elevation7", className)
+    static member inline elevation8(className: string) : IPaperClasses = unbox ("elevation8", className)
+    static member inline elevation9(className: string) : IPaperClasses = unbox ("elevation9", className)
+    static member inline elevation10(className: string) : IPaperClasses = unbox ("elevation10", className)
+    static member inline elevation11(className: string) : IPaperClasses = unbox ("elevation11", className)
+    static member inline elevation12(className: string) : IPaperClasses = unbox ("elevation12", className)
+    static member inline elevation13(className: string) : IPaperClasses = unbox ("elevation13", className)
+    static member inline elevation14(className: string) : IPaperClasses = unbox ("elevation14", className)
+    static member inline elevation15(className: string) : IPaperClasses = unbox ("elevation15", className)
+    static member inline elevation16(className: string) : IPaperClasses = unbox ("elevation16", className)
+    static member inline elevation17(className: string) : IPaperClasses = unbox ("elevation17", className)
+    static member inline elevation18(className: string) : IPaperClasses = unbox ("elevation18", className)
+    static member inline elevation19(className: string) : IPaperClasses = unbox ("elevation19", className)
+    static member inline elevation20(className: string) : IPaperClasses = unbox ("elevation20", className)
+    static member inline elevation21(className: string) : IPaperClasses = unbox ("elevation21", className)
+    static member inline elevation22(className: string) : IPaperClasses = unbox ("elevation22", className)
+    static member inline elevation23(className: string) : IPaperClasses = unbox ("elevation23", className)
+    static member inline elevation24(className: string) : IPaperClasses = unbox ("elevation24", className)
 
 
   type IPopoverClasses = interface end
@@ -1379,9 +1379,9 @@ module classes =
   [<Erase>]
   type popover =
     /// Styles applied to the root element
-    static member inline root(value: string) : IPopoverClasses = unbox ("root", value)
+    static member inline root(className: string) : IPopoverClasses = unbox ("root", className)
     /// Styles applied to the `Paper` component.
-    static member inline paper(value: string) : IPopoverClasses = unbox ("paper", value)
+    static member inline paper(className: string) : IPopoverClasses = unbox ("paper", className)
 
 
   type IPopperClasses = interface end
@@ -1395,15 +1395,15 @@ module classes =
   [<Erase>]
   type radio =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IRadioClasses = unbox ("root", value)
+    static member inline root(className: string) : IRadioClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `checked={true}`.
-    static member inline checked'(value: string) : IRadioClasses = unbox ("checked", value)
+    static member inline checked'(className: string) : IRadioClasses = unbox ("checked", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IRadioClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IRadioClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : IRadioClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : IRadioClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : IRadioClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : IRadioClasses = unbox ("colorSecondary", className)
 
 
   type IRadioGroupClasses = interface end
@@ -1414,37 +1414,37 @@ module classes =
   [<Erase>]
   type rating =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IRatingClasses = unbox ("root", value)
+    static member inline root(className: string) : IRatingClasses = unbox ("root", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : IRatingClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : IRatingClasses = unbox ("sizeSmall", className)
     /// Styles applied to the root element if `size="large"`.
-    static member inline sizeLarge(value: string) : IRatingClasses = unbox ("sizeLarge", value)
+    static member inline sizeLarge(className: string) : IRatingClasses = unbox ("sizeLarge", className)
     /// Styles applied to the root element if `readOnly={true}`.
-    static member inline readOnly(value: string) : IRatingClasses = unbox ("readOnly", value)
+    static member inline readOnly(className: string) : IRatingClasses = unbox ("readOnly", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IRatingClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IRatingClasses = unbox ("disabled", className)
     /// Pseudo-class applied to the root element if keyboard focused.
-    static member inline focusVisible(value: string) : IRatingClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : IRatingClasses = unbox ("focusVisible", className)
     /// Visually hide an element.
-    static member inline visuallyhidden(value: string) : IRatingClasses = unbox ("visuallyhidden", value)
+    static member inline visuallyhidden(className: string) : IRatingClasses = unbox ("visuallyhidden", className)
     /// Styles applied to the pristine label.
-    static member inline pristine(value: string) : IRatingClasses = unbox ("pristine", value)
+    static member inline pristine(className: string) : IRatingClasses = unbox ("pristine", className)
     /// Styles applied to the label elements.
-    static member inline label(value: string) : IRatingClasses = unbox ("label", value)
+    static member inline label(className: string) : IRatingClasses = unbox ("label", className)
     /// Styles applied to the icon wrapping elements.
-    static member inline icon(value: string) : IRatingClasses = unbox ("icon", value)
+    static member inline icon(className: string) : IRatingClasses = unbox ("icon", className)
     /// Styles applied to the icon wrapping elements when empty.
-    static member inline iconEmpty(value: string) : IRatingClasses = unbox ("iconEmpty", value)
+    static member inline iconEmpty(className: string) : IRatingClasses = unbox ("iconEmpty", className)
     /// Styles applied to the icon wrapping elements when filled.
-    static member inline iconFilled(value: string) : IRatingClasses = unbox ("iconFilled", value)
+    static member inline iconFilled(className: string) : IRatingClasses = unbox ("iconFilled", className)
     /// Styles applied to the icon wrapping elements when hover.
-    static member inline iconHover(value: string) : IRatingClasses = unbox ("iconHover", value)
+    static member inline iconHover(className: string) : IRatingClasses = unbox ("iconHover", className)
     /// Styles applied to the icon wrapping elements when focus.
-    static member inline iconFocus(value: string) : IRatingClasses = unbox ("iconFocus", value)
+    static member inline iconFocus(className: string) : IRatingClasses = unbox ("iconFocus", className)
     /// Styles applied to the icon wrapping elements when active.
-    static member inline iconActive(value: string) : IRatingClasses = unbox ("iconActive", value)
+    static member inline iconActive(className: string) : IRatingClasses = unbox ("iconActive", className)
     /// Styles applied to the icon wrapping elements when decimals are necessary.
-    static member inline decimal(value: string) : IRatingClasses = unbox ("decimal", value)
+    static member inline decimal(className: string) : IRatingClasses = unbox ("decimal", className)
 
 
   type IRootRefClasses = interface end
@@ -1455,23 +1455,23 @@ module classes =
   [<Erase>]
   type select =
     /// Styles applied to the select component `root` class.
-    static member inline root(value: string) : ISelectClasses = unbox ("root", value)
+    static member inline root(className: string) : ISelectClasses = unbox ("root", className)
     /// Styles applied to the select component `select` class.
-    static member inline select(value: string) : ISelectClasses = unbox ("select", value)
+    static member inline select(className: string) : ISelectClasses = unbox ("select", className)
     /// Styles applied to the select component if `variant="filled"`.
-    static member inline filled(value: string) : ISelectClasses = unbox ("filled", value)
+    static member inline filled(className: string) : ISelectClasses = unbox ("filled", className)
     /// Styles applied to the select component if `variant="outlined"`.
-    static member inline outlined(value: string) : ISelectClasses = unbox ("outlined", value)
+    static member inline outlined(className: string) : ISelectClasses = unbox ("outlined", className)
     /// Styles applied to the select component `selectMenu` class.
-    static member inline selectMenu(value: string) : ISelectClasses = unbox ("selectMenu", value)
+    static member inline selectMenu(className: string) : ISelectClasses = unbox ("selectMenu", className)
     /// Pseudo-class applied to the select component `disabled` class.
-    static member inline disabled(value: string) : ISelectClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : ISelectClasses = unbox ("disabled", className)
     /// Styles applied to the icon component.
-    static member inline icon(value: string) : ISelectClasses = unbox ("icon", value)
+    static member inline icon(className: string) : ISelectClasses = unbox ("icon", className)
     /// Styles applied to the icon component if `variant="filled"`.
-    static member inline iconFilled(value: string) : ISelectClasses = unbox ("iconFilled", value)
+    static member inline iconFilled(className: string) : ISelectClasses = unbox ("iconFilled", className)
     /// Styles applied to the icon component if `variant="outlined"`.
-    static member inline iconOutlined(value: string) : ISelectClasses = unbox ("iconOutlined", value)
+    static member inline iconOutlined(className: string) : ISelectClasses = unbox ("iconOutlined", className)
 
 
   type ISkeletonClasses = interface end
@@ -1479,15 +1479,15 @@ module classes =
   [<Erase>]
   type skeleton =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISkeletonClasses = unbox ("root", value)
+    static member inline root(className: string) : ISkeletonClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="text"`.
-    static member inline text(value: string) : ISkeletonClasses = unbox ("text", value)
+    static member inline text(className: string) : ISkeletonClasses = unbox ("text", className)
     /// Styles applied to the root element if `variant="rect"`.
-    static member inline rect(value: string) : ISkeletonClasses = unbox ("rect", value)
+    static member inline rect(className: string) : ISkeletonClasses = unbox ("rect", className)
     /// Styles applied to the root element if `variant="circle"`.
-    static member inline circle(value: string) : ISkeletonClasses = unbox ("circle", value)
+    static member inline circle(className: string) : ISkeletonClasses = unbox ("circle", className)
     /// Styles applied to the root element if `disabledAnimate={false}`.
-    static member inline animate(value: string) : ISkeletonClasses = unbox ("animate", value)
+    static member inline animate(className: string) : ISkeletonClasses = unbox ("animate", className)
 
 
   type ISlideClasses = interface end
@@ -1498,45 +1498,45 @@ module classes =
   [<Erase>]
   type slider =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISliderClasses = unbox ("root", value)
+    static member inline root(className: string) : ISliderClasses = unbox ("root", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : ISliderClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ISliderClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : ISliderClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ISliderClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `marks` is provided with at least one label.
-    static member inline marked(value: string) : ISliderClasses = unbox ("marked", value)
+    static member inline marked(className: string) : ISliderClasses = unbox ("marked", className)
     /// Pseudo-class applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : ISliderClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : ISliderClasses = unbox ("vertical", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : ISliderClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : ISliderClasses = unbox ("disabled", className)
     /// Styles applied to the rail element.
-    static member inline rail(value: string) : ISliderClasses = unbox ("rail", value)
+    static member inline rail(className: string) : ISliderClasses = unbox ("rail", className)
     /// Styles applied to the track element.
-    static member inline track(value: string) : ISliderClasses = unbox ("track", value)
+    static member inline track(className: string) : ISliderClasses = unbox ("track", className)
     /// Styles applied to the track element if `track={false}`.
-    static member inline trackFalse(value: string) : ISliderClasses = unbox ("trackFalse", value)
+    static member inline trackFalse(className: string) : ISliderClasses = unbox ("trackFalse", className)
     /// Styles applied to the track element if `track="inverted"`.
-    static member inline trackInverted(value: string) : ISliderClasses = unbox ("trackInverted", value)
+    static member inline trackInverted(className: string) : ISliderClasses = unbox ("trackInverted", className)
     /// Styles applied to the thumb element.
-    static member inline thumb(value: string) : ISliderClasses = unbox ("thumb", value)
+    static member inline thumb(className: string) : ISliderClasses = unbox ("thumb", className)
     /// Styles applied to the thumb element if `color="primary"`.
-    static member inline thumbColorPrimary(value: string) : ISliderClasses = unbox ("thumbColorPrimary", value)
+    static member inline thumbColorPrimary(className: string) : ISliderClasses = unbox ("thumbColorPrimary", className)
     /// Styles applied to the thumb element if `color="secondary"`.
-    static member inline thumbColorSecondary(value: string) : ISliderClasses = unbox ("thumbColorSecondary", value)
+    static member inline thumbColorSecondary(className: string) : ISliderClasses = unbox ("thumbColorSecondary", className)
     /// Pseudo-class applied to the thumb element if it's active.
-    static member inline active(value: string) : ISliderClasses = unbox ("active", value)
+    static member inline active(className: string) : ISliderClasses = unbox ("active", className)
     /// Pseudo-class applied to the thumb element if keyboard focused.
-    static member inline focusVisible(value: string) : ISliderClasses = unbox ("focusVisible", value)
+    static member inline focusVisible(className: string) : ISliderClasses = unbox ("focusVisible", className)
     /// Styles applied to the thumb label element.
-    static member inline valueLabel(value: string) : ISliderClasses = unbox ("valueLabel", value)
+    static member inline valueLabel(className: string) : ISliderClasses = unbox ("valueLabel", className)
     /// Styles applied to the mark element.
-    static member inline mark(value: string) : ISliderClasses = unbox ("mark", value)
+    static member inline mark(className: string) : ISliderClasses = unbox ("mark", className)
     /// Styles applied to the mark element if active (depending on the value).
-    static member inline markActive(value: string) : ISliderClasses = unbox ("markActive", value)
+    static member inline markActive(className: string) : ISliderClasses = unbox ("markActive", className)
     /// Styles applied to the mark label element.
-    static member inline markLabel(value: string) : ISliderClasses = unbox ("markLabel", value)
+    static member inline markLabel(className: string) : ISliderClasses = unbox ("markLabel", className)
     /// Styles applied to the mark label element if active (depending on the value).
-    static member inline markLabelActive(value: string) : ISliderClasses = unbox ("markLabelActive", value)
+    static member inline markLabelActive(className: string) : ISliderClasses = unbox ("markLabelActive", className)
 
 
   type ISnackbarClasses = interface end
@@ -1544,19 +1544,19 @@ module classes =
   [<Erase>]
   type snackbar =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISnackbarClasses = unbox ("root", value)
+    static member inline root(className: string) : ISnackbarClasses = unbox ("root", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.
-    static member inline anchorOriginTopCenter(value: string) : ISnackbarClasses = unbox ("anchorOriginTopCenter", value)
+    static member inline anchorOriginTopCenter(className: string) : ISnackbarClasses = unbox ("anchorOriginTopCenter", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.
-    static member inline anchorOriginBottomCenter(value: string) : ISnackbarClasses = unbox ("anchorOriginBottomCenter", value)
+    static member inline anchorOriginBottomCenter(className: string) : ISnackbarClasses = unbox ("anchorOriginBottomCenter", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.
-    static member inline anchorOriginTopRight(value: string) : ISnackbarClasses = unbox ("anchorOriginTopRight", value)
+    static member inline anchorOriginTopRight(className: string) : ISnackbarClasses = unbox ("anchorOriginTopRight", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.
-    static member inline anchorOriginBottomRight(value: string) : ISnackbarClasses = unbox ("anchorOriginBottomRight", value)
+    static member inline anchorOriginBottomRight(className: string) : ISnackbarClasses = unbox ("anchorOriginBottomRight", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
-    static member inline anchorOriginTopLeft(value: string) : ISnackbarClasses = unbox ("anchorOriginTopLeft", value)
+    static member inline anchorOriginTopLeft(className: string) : ISnackbarClasses = unbox ("anchorOriginTopLeft", className)
     /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
-    static member inline anchorOriginBottomLeft(value: string) : ISnackbarClasses = unbox ("anchorOriginBottomLeft", value)
+    static member inline anchorOriginBottomLeft(className: string) : ISnackbarClasses = unbox ("anchorOriginBottomLeft", className)
 
 
   type ISnackbarContentClasses = interface end
@@ -1564,11 +1564,11 @@ module classes =
   [<Erase>]
   type snackbarContent =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISnackbarContentClasses = unbox ("root", value)
+    static member inline root(className: string) : ISnackbarContentClasses = unbox ("root", className)
     /// Styles applied to the message wrapper element.
-    static member inline message(value: string) : ISnackbarContentClasses = unbox ("message", value)
+    static member inline message(className: string) : ISnackbarContentClasses = unbox ("message", className)
     /// Styles applied to the action wrapper element if `action` is provided.
-    static member inline action(value: string) : ISnackbarContentClasses = unbox ("action", value)
+    static member inline action(className: string) : ISnackbarContentClasses = unbox ("action", className)
 
 
   type ISpeedDialClasses = interface end
@@ -1576,21 +1576,21 @@ module classes =
   [<Erase>]
   type speedDial =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISpeedDialClasses = unbox ("root", value)
+    static member inline root(className: string) : ISpeedDialClasses = unbox ("root", className)
     /// Styles applied to the Fab component.
-    static member inline fab(value: string) : ISpeedDialClasses = unbox ("fab", value)
+    static member inline fab(className: string) : ISpeedDialClasses = unbox ("fab", className)
     /// Styles applied to the root if direction="up"
-    static member inline directionUp(value: string) : ISpeedDialClasses = unbox ("directionUp", value)
+    static member inline directionUp(className: string) : ISpeedDialClasses = unbox ("directionUp", className)
     /// Styles applied to the root if direction="down"
-    static member inline directionDown(value: string) : ISpeedDialClasses = unbox ("directionDown", value)
+    static member inline directionDown(className: string) : ISpeedDialClasses = unbox ("directionDown", className)
     /// Styles applied to the root if direction="left"
-    static member inline directionLeft(value: string) : ISpeedDialClasses = unbox ("directionLeft", value)
+    static member inline directionLeft(className: string) : ISpeedDialClasses = unbox ("directionLeft", className)
     /// Styles applied to the root if direction="right"
-    static member inline directionRight(value: string) : ISpeedDialClasses = unbox ("directionRight", value)
+    static member inline directionRight(className: string) : ISpeedDialClasses = unbox ("directionRight", className)
     /// Styles applied to the actions (`children` wrapper) element.
-    static member inline actions(value: string) : ISpeedDialClasses = unbox ("actions", value)
+    static member inline actions(className: string) : ISpeedDialClasses = unbox ("actions", className)
     /// Styles applied to the actions (`children` wrapper) element if `open={false}`.
-    static member inline actionsClosed(value: string) : ISpeedDialClasses = unbox ("actionsClosed", value)
+    static member inline actionsClosed(className: string) : ISpeedDialClasses = unbox ("actionsClosed", className)
 
 
   type ISpeedDialActionClasses = interface end
@@ -1598,19 +1598,19 @@ module classes =
   [<Erase>]
   type speedDialAction =
     /// Styles applied to the Fab component.
-    static member inline fab(value: string) : ISpeedDialActionClasses = unbox ("fab", value)
+    static member inline fab(className: string) : ISpeedDialActionClasses = unbox ("fab", className)
     /// Styles applied to the Fab component if `open={false}`.
-    static member inline fabClosed(value: string) : ISpeedDialActionClasses = unbox ("fabClosed", value)
+    static member inline fabClosed(className: string) : ISpeedDialActionClasses = unbox ("fabClosed", className)
     /// Styles applied to the root element if `tooltipOpen={true}`.
-    static member inline staticTooltip(value: string) : ISpeedDialActionClasses = unbox ("staticTooltip", value)
+    static member inline staticTooltip(className: string) : ISpeedDialActionClasses = unbox ("staticTooltip", className)
     /// Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.
-    static member inline staticTooltipClosed(value: string) : ISpeedDialActionClasses = unbox ("staticTooltipClosed", value)
+    static member inline staticTooltipClosed(className: string) : ISpeedDialActionClasses = unbox ("staticTooltipClosed", className)
     /// Styles applied to the static tooltip label if `tooltipOpen={true}`.
-    static member inline staticTooltipLabel(value: string) : ISpeedDialActionClasses = unbox ("staticTooltipLabel", value)
+    static member inline staticTooltipLabel(className: string) : ISpeedDialActionClasses = unbox ("staticTooltipLabel", className)
     /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"``
-    static member inline tooltipPlacementLeft(value: string) : ISpeedDialActionClasses = unbox ("tooltipPlacementLeft", value)
+    static member inline tooltipPlacementLeft(className: string) : ISpeedDialActionClasses = unbox ("tooltipPlacementLeft", className)
     /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
-    static member inline tooltipPlacementRight(value: string) : ISpeedDialActionClasses = unbox ("tooltipPlacementRight", value)
+    static member inline tooltipPlacementRight(className: string) : ISpeedDialActionClasses = unbox ("tooltipPlacementRight", className)
 
 
   type ISpeedDialIconClasses = interface end
@@ -1618,17 +1618,17 @@ module classes =
   [<Erase>]
   type speedDialIcon =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISpeedDialIconClasses = unbox ("root", value)
+    static member inline root(className: string) : ISpeedDialIconClasses = unbox ("root", className)
     /// Styles applied to the icon component.
-    static member inline icon(value: string) : ISpeedDialIconClasses = unbox ("icon", value)
+    static member inline icon(className: string) : ISpeedDialIconClasses = unbox ("icon", className)
     /// Styles applied to the icon component if `open={true}`.
-    static member inline iconOpen(value: string) : ISpeedDialIconClasses = unbox ("iconOpen", value)
+    static member inline iconOpen(className: string) : ISpeedDialIconClasses = unbox ("iconOpen", className)
     /// Styles applied to the icon when and `openIcon` is provided and if `open={true}`.
-    static member inline iconWithOpenIconOpen(value: string) : ISpeedDialIconClasses = unbox ("iconWithOpenIconOpen", value)
+    static member inline iconWithOpenIconOpen(className: string) : ISpeedDialIconClasses = unbox ("iconWithOpenIconOpen", className)
     /// Styles applied to the `openIcon` if provided.
-    static member inline openIcon(value: string) : ISpeedDialIconClasses = unbox ("openIcon", value)
+    static member inline openIcon(className: string) : ISpeedDialIconClasses = unbox ("openIcon", className)
     /// Styles applied to the `openIcon` if provided and if `open={true}`.
-    static member inline openIconOpen(value: string) : ISpeedDialIconClasses = unbox ("openIconOpen", value)
+    static member inline openIconOpen(className: string) : ISpeedDialIconClasses = unbox ("openIconOpen", className)
 
 
   type IStepClasses = interface end
@@ -1636,15 +1636,15 @@ module classes =
   [<Erase>]
   type step =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepClasses = unbox ("root", className)
     /// Styles applied to the root element if `orientation="horizontal"`.
-    static member inline horizontal(value: string) : IStepClasses = unbox ("horizontal", value)
+    static member inline horizontal(className: string) : IStepClasses = unbox ("horizontal", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : IStepClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : IStepClasses = unbox ("vertical", className)
     /// Styles applied to the root element if `alternativeLabel={true}`.
-    static member inline alternativeLabel(value: string) : IStepClasses = unbox ("alternativeLabel", value)
+    static member inline alternativeLabel(className: string) : IStepClasses = unbox ("alternativeLabel", className)
     /// Pseudo-class applied to the root element if `completed={true}`.
-    static member inline completed(value: string) : IStepClasses = unbox ("completed", value)
+    static member inline completed(className: string) : IStepClasses = unbox ("completed", className)
 
 
   type IStepButtonClasses = interface end
@@ -1652,13 +1652,13 @@ module classes =
   [<Erase>]
   type stepButton =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepButtonClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepButtonClasses = unbox ("root", className)
     /// Styles applied to the root element if `orientation="horizontal"`.
-    static member inline horizontal(value: string) : IStepButtonClasses = unbox ("horizontal", value)
+    static member inline horizontal(className: string) : IStepButtonClasses = unbox ("horizontal", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : IStepButtonClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : IStepButtonClasses = unbox ("vertical", className)
     /// Styles applied to the `ButtonBase` touch-ripple.
-    static member inline touchRipple(value: string) : IStepButtonClasses = unbox ("touchRipple", value)
+    static member inline touchRipple(className: string) : IStepButtonClasses = unbox ("touchRipple", className)
 
 
   type IStepConnectorClasses = interface end
@@ -1666,25 +1666,25 @@ module classes =
   [<Erase>]
   type stepConnector =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepConnectorClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepConnectorClasses = unbox ("root", className)
     /// Styles applied to the root element if `orientation="horizontal"`.
-    static member inline horizontal(value: string) : IStepConnectorClasses = unbox ("horizontal", value)
+    static member inline horizontal(className: string) : IStepConnectorClasses = unbox ("horizontal", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : IStepConnectorClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : IStepConnectorClasses = unbox ("vertical", className)
     /// Styles applied to the root element if `alternativeLabel={true}`.
-    static member inline alternativeLabel(value: string) : IStepConnectorClasses = unbox ("alternativeLabel", value)
+    static member inline alternativeLabel(className: string) : IStepConnectorClasses = unbox ("alternativeLabel", className)
     /// Pseudo-class applied to the root element if `active={true}`.
-    static member inline active(value: string) : IStepConnectorClasses = unbox ("active", value)
+    static member inline active(className: string) : IStepConnectorClasses = unbox ("active", className)
     /// Pseudo-class applied to the root element if `completed={true}`.
-    static member inline completed(value: string) : IStepConnectorClasses = unbox ("completed", value)
+    static member inline completed(className: string) : IStepConnectorClasses = unbox ("completed", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IStepConnectorClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IStepConnectorClasses = unbox ("disabled", className)
     /// Styles applied to the line element.
-    static member inline line(value: string) : IStepConnectorClasses = unbox ("line", value)
+    static member inline line(className: string) : IStepConnectorClasses = unbox ("line", className)
     /// Styles applied to the root element if `orientation="horizontal"`.
-    static member inline lineHorizontal(value: string) : IStepConnectorClasses = unbox ("lineHorizontal", value)
+    static member inline lineHorizontal(className: string) : IStepConnectorClasses = unbox ("lineHorizontal", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline lineVertical(value: string) : IStepConnectorClasses = unbox ("lineVertical", value)
+    static member inline lineVertical(className: string) : IStepConnectorClasses = unbox ("lineVertical", className)
 
 
   type IStepContentClasses = interface end
@@ -1692,11 +1692,11 @@ module classes =
   [<Erase>]
   type stepContent =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepContentClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepContentClasses = unbox ("root", className)
     /// Styles applied to the root element if `last={true}` (controlled by `Step`).
-    static member inline last(value: string) : IStepContentClasses = unbox ("last", value)
+    static member inline last(className: string) : IStepContentClasses = unbox ("last", className)
     /// Styles applied to the Transition component.
-    static member inline transition(value: string) : IStepContentClasses = unbox ("transition", value)
+    static member inline transition(className: string) : IStepContentClasses = unbox ("transition", className)
 
 
   type IStepIconClasses = interface end
@@ -1704,15 +1704,15 @@ module classes =
   [<Erase>]
   type stepIcon =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepIconClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepIconClasses = unbox ("root", className)
     /// Styles applied to the SVG text element.
-    static member inline text(value: string) : IStepIconClasses = unbox ("text", value)
+    static member inline text(className: string) : IStepIconClasses = unbox ("text", className)
     /// Pseudo-class applied to the root element if `active={true}`.
-    static member inline active(value: string) : IStepIconClasses = unbox ("active", value)
+    static member inline active(className: string) : IStepIconClasses = unbox ("active", className)
     /// Pseudo-class applied to the root element if `completed={true}`.
-    static member inline completed(value: string) : IStepIconClasses = unbox ("completed", value)
+    static member inline completed(className: string) : IStepIconClasses = unbox ("completed", className)
     /// Pseudo-class applied to the root element if `error={true}`.
-    static member inline error(value: string) : IStepIconClasses = unbox ("error", value)
+    static member inline error(className: string) : IStepIconClasses = unbox ("error", className)
 
 
   type IStepLabelClasses = interface end
@@ -1720,27 +1720,27 @@ module classes =
   [<Erase>]
   type stepLabel =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepLabelClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepLabelClasses = unbox ("root", className)
     /// Styles applied to the root element if `orientation="horizontal".
-    static member inline horizontal(value: string) : IStepLabelClasses = unbox ("horizontal", value)
+    static member inline horizontal(className: string) : IStepLabelClasses = unbox ("horizontal", className)
     /// Styles applied to the root element if `orientation="vertical".
-    static member inline vertical(value: string) : IStepLabelClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : IStepLabelClasses = unbox ("vertical", className)
     /// Styles applied to the `Typography` component which wraps `children`.
-    static member inline label(value: string) : IStepLabelClasses = unbox ("label", value)
+    static member inline label(className: string) : IStepLabelClasses = unbox ("label", className)
     /// Pseudo-class applied to the `Typography` component if `active={true}`.
-    static member inline active(value: string) : IStepLabelClasses = unbox ("active", value)
+    static member inline active(className: string) : IStepLabelClasses = unbox ("active", className)
     /// Pseudo-class applied to the `Typography` component if `completed={true}`.
-    static member inline completed(value: string) : IStepLabelClasses = unbox ("completed", value)
+    static member inline completed(className: string) : IStepLabelClasses = unbox ("completed", className)
     /// Pseudo-class applied to the root element and `Typography` component if `error={true}`.
-    static member inline error(value: string) : IStepLabelClasses = unbox ("error", value)
+    static member inline error(className: string) : IStepLabelClasses = unbox ("error", className)
     /// Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
-    static member inline disabled(value: string) : IStepLabelClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IStepLabelClasses = unbox ("disabled", className)
     /// Styles applied to the `icon` container element.
-    static member inline iconContainer(value: string) : IStepLabelClasses = unbox ("iconContainer", value)
+    static member inline iconContainer(className: string) : IStepLabelClasses = unbox ("iconContainer", className)
     /// Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.
-    static member inline alternativeLabel(value: string) : IStepLabelClasses = unbox ("alternativeLabel", value)
+    static member inline alternativeLabel(className: string) : IStepLabelClasses = unbox ("alternativeLabel", className)
     /// Styles applied to the container element which wraps `Typography` and `optional`.
-    static member inline labelContainer(value: string) : IStepLabelClasses = unbox ("labelContainer", value)
+    static member inline labelContainer(className: string) : IStepLabelClasses = unbox ("labelContainer", className)
 
 
   type IStepperClasses = interface end
@@ -1748,13 +1748,13 @@ module classes =
   [<Erase>]
   type stepper =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IStepperClasses = unbox ("root", value)
+    static member inline root(className: string) : IStepperClasses = unbox ("root", className)
     /// Styles applied to the root element if `orientation="horizontal"`.
-    static member inline horizontal(value: string) : IStepperClasses = unbox ("horizontal", value)
+    static member inline horizontal(className: string) : IStepperClasses = unbox ("horizontal", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : IStepperClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : IStepperClasses = unbox ("vertical", className)
     /// Styles applied to the root element if `alternativeLabel={true}`.
-    static member inline alternativeLabel(value: string) : IStepperClasses = unbox ("alternativeLabel", value)
+    static member inline alternativeLabel(className: string) : IStepperClasses = unbox ("alternativeLabel", className)
 
 
   type ISvgIconClasses = interface end
@@ -1762,23 +1762,23 @@ module classes =
   [<Erase>]
   type svgIcon =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISvgIconClasses = unbox ("root", value)
+    static member inline root(className: string) : ISvgIconClasses = unbox ("root", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : ISvgIconClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ISvgIconClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : ISvgIconClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ISvgIconClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `color="action"`.
-    static member inline colorAction(value: string) : ISvgIconClasses = unbox ("colorAction", value)
+    static member inline colorAction(className: string) : ISvgIconClasses = unbox ("colorAction", className)
     /// Styles applied to the root element if `color="error"`.
-    static member inline colorError(value: string) : ISvgIconClasses = unbox ("colorError", value)
+    static member inline colorError(className: string) : ISvgIconClasses = unbox ("colorError", className)
     /// Styles applied to the root element if `color="disabled"`.
-    static member inline colorDisabled(value: string) : ISvgIconClasses = unbox ("colorDisabled", value)
+    static member inline colorDisabled(className: string) : ISvgIconClasses = unbox ("colorDisabled", className)
     /// Styles applied to the root element if `fontSize="inherit"`.
-    static member inline fontSizeInherit(value: string) : ISvgIconClasses = unbox ("fontSizeInherit", value)
+    static member inline fontSizeInherit(className: string) : ISvgIconClasses = unbox ("fontSizeInherit", className)
     /// Styles applied to the root element if `fontSize="small"`.
-    static member inline fontSizeSmall(value: string) : ISvgIconClasses = unbox ("fontSizeSmall", value)
+    static member inline fontSizeSmall(className: string) : ISvgIconClasses = unbox ("fontSizeSmall", className)
     /// Styles applied to the root element if `fontSize="large"`.
-    static member inline fontSizeLarge(value: string) : ISvgIconClasses = unbox ("fontSizeLarge", value)
+    static member inline fontSizeLarge(className: string) : ISvgIconClasses = unbox ("fontSizeLarge", className)
 
 
   type ISwipeableDrawerClasses = interface end
@@ -1789,29 +1789,29 @@ module classes =
   [<Erase>]
   type switch =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ISwitchClasses = unbox ("root", value)
+    static member inline root(className: string) : ISwitchClasses = unbox ("root", className)
     /// Styles applied to the root element if `edge="start"`.
-    static member inline edgeStart(value: string) : ISwitchClasses = unbox ("edgeStart", value)
+    static member inline edgeStart(className: string) : ISwitchClasses = unbox ("edgeStart", className)
     /// Styles applied to the root element if `edge="end"`.
-    static member inline edgeEnd(value: string) : ISwitchClasses = unbox ("edgeEnd", value)
+    static member inline edgeEnd(className: string) : ISwitchClasses = unbox ("edgeEnd", className)
     /// Styles applied to the internal `SwitchBase` component's `root` class.
-    static member inline switchBase(value: string) : ISwitchClasses = unbox ("switchBase", value)
+    static member inline switchBase(className: string) : ISwitchClasses = unbox ("switchBase", className)
     /// Styles applied to the internal SwitchBase component's root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : ISwitchClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ISwitchClasses = unbox ("colorPrimary", className)
     /// Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : ISwitchClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ISwitchClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : ISwitchClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : ISwitchClasses = unbox ("sizeSmall", className)
     /// Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
-    static member inline checked'(value: string) : ISwitchClasses = unbox ("checked", value)
+    static member inline checked'(className: string) : ISwitchClasses = unbox ("checked", className)
     /// Pseudo-class applied to the internal SwitchBase component's disabled class.
-    static member inline disabled(value: string) : ISwitchClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : ISwitchClasses = unbox ("disabled", className)
     /// Styles applied to the internal SwitchBase component's input element.
-    static member inline input(value: string) : ISwitchClasses = unbox ("input", value)
+    static member inline input(className: string) : ISwitchClasses = unbox ("input", className)
     /// Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
-    static member inline thumb(value: string) : ISwitchClasses = unbox ("thumb", value)
+    static member inline thumb(className: string) : ISwitchClasses = unbox ("thumb", className)
     /// Styles applied to the track element.
-    static member inline track(value: string) : ISwitchClasses = unbox ("track", value)
+    static member inline track(className: string) : ISwitchClasses = unbox ("track", className)
 
 
   type ITabClasses = interface end
@@ -1819,25 +1819,25 @@ module classes =
   [<Erase>]
   type tab =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITabClasses = unbox ("root", value)
+    static member inline root(className: string) : ITabClasses = unbox ("root", className)
     /// Styles applied to the root element if both `icon` and `label` are provided.
-    static member inline labelIcon(value: string) : ITabClasses = unbox ("labelIcon", value)
+    static member inline labelIcon(className: string) : ITabClasses = unbox ("labelIcon", className)
     /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="inherit"`.
-    static member inline textColorInherit(value: string) : ITabClasses = unbox ("textColorInherit", value)
+    static member inline textColorInherit(className: string) : ITabClasses = unbox ("textColorInherit", className)
     /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="primary"`.
-    static member inline textColorPrimary(value: string) : ITabClasses = unbox ("textColorPrimary", value)
+    static member inline textColorPrimary(className: string) : ITabClasses = unbox ("textColorPrimary", className)
     /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="secondary"`.
-    static member inline textColorSecondary(value: string) : ITabClasses = unbox ("textColorSecondary", value)
+    static member inline textColorSecondary(className: string) : ITabClasses = unbox ("textColorSecondary", className)
     /// Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
-    static member inline selected(value: string) : ITabClasses = unbox ("selected", value)
+    static member inline selected(className: string) : ITabClasses = unbox ("selected", className)
     /// Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component).
-    static member inline disabled(value: string) : ITabClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : ITabClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
-    static member inline fullWidth(value: string) : ITabClasses = unbox ("fullWidth", value)
+    static member inline fullWidth(className: string) : ITabClasses = unbox ("fullWidth", className)
     /// Styles applied to the root element if `wrapped={true}`.
-    static member inline wrapped(value: string) : ITabClasses = unbox ("wrapped", value)
+    static member inline wrapped(className: string) : ITabClasses = unbox ("wrapped", className)
     /// Styles applied to the `icon` and `label`'s wrapper element.
-    static member inline wrapper(value: string) : ITabClasses = unbox ("wrapper", value)
+    static member inline wrapper(className: string) : ITabClasses = unbox ("wrapper", className)
 
 
   type ITableClasses = interface end
@@ -1845,9 +1845,9 @@ module classes =
   [<Erase>]
   type table =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableClasses = unbox ("root", className)
     /// Styles applied to the root element if `stickyHeader={true}`.
-    static member inline stickyHeader(value: string) : ITableClasses = unbox ("stickyHeader", value)
+    static member inline stickyHeader(className: string) : ITableClasses = unbox ("stickyHeader", className)
 
 
   type ITableBodyClasses = interface end
@@ -1855,7 +1855,7 @@ module classes =
   [<Erase>]
   type tableBody =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableBodyClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableBodyClasses = unbox ("root", className)
 
 
   type ITableCellClasses = interface end
@@ -1863,29 +1863,29 @@ module classes =
   [<Erase>]
   type tableCell =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableCellClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableCellClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="head"` or `context.table.head`.
-    static member inline head(value: string) : ITableCellClasses = unbox ("head", value)
+    static member inline head(className: string) : ITableCellClasses = unbox ("head", className)
     /// Styles applied to the root element if `variant="body"` or `context.table.body`.
-    static member inline body(value: string) : ITableCellClasses = unbox ("body", value)
+    static member inline body(className: string) : ITableCellClasses = unbox ("body", className)
     /// Styles applied to the root element if `variant="footer"` or `context.table.footer`.
-    static member inline footer(value: string) : ITableCellClasses = unbox ("footer", value)
+    static member inline footer(className: string) : ITableCellClasses = unbox ("footer", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : ITableCellClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : ITableCellClasses = unbox ("sizeSmall", className)
     /// Styles applied to the root element if `padding="checkbox"`.
-    static member inline paddingCheckbox(value: string) : ITableCellClasses = unbox ("paddingCheckbox", value)
+    static member inline paddingCheckbox(className: string) : ITableCellClasses = unbox ("paddingCheckbox", className)
     /// Styles applied to the root element if `padding="none"`.
-    static member inline paddingNone(value: string) : ITableCellClasses = unbox ("paddingNone", value)
+    static member inline paddingNone(className: string) : ITableCellClasses = unbox ("paddingNone", className)
     /// Styles applied to the root element if `align="left"`.
-    static member inline alignLeft(value: string) : ITableCellClasses = unbox ("alignLeft", value)
+    static member inline alignLeft(className: string) : ITableCellClasses = unbox ("alignLeft", className)
     /// Styles applied to the root element if `align="center"`.
-    static member inline alignCenter(value: string) : ITableCellClasses = unbox ("alignCenter", value)
+    static member inline alignCenter(className: string) : ITableCellClasses = unbox ("alignCenter", className)
     /// Styles applied to the root element if `align="right"`.
-    static member inline alignRight(value: string) : ITableCellClasses = unbox ("alignRight", value)
+    static member inline alignRight(className: string) : ITableCellClasses = unbox ("alignRight", className)
     /// Styles applied to the root element if `align="justify"`.
-    static member inline alignJustify(value: string) : ITableCellClasses = unbox ("alignJustify", value)
+    static member inline alignJustify(className: string) : ITableCellClasses = unbox ("alignJustify", className)
     /// Styles applied to the root element if `context.table.stickyHeader={true}`.
-    static member inline stickyHeader(value: string) : ITableCellClasses = unbox ("stickyHeader", value)
+    static member inline stickyHeader(className: string) : ITableCellClasses = unbox ("stickyHeader", className)
 
 
   type ITableFooterClasses = interface end
@@ -1893,7 +1893,7 @@ module classes =
   [<Erase>]
   type tableFooter =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableFooterClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableFooterClasses = unbox ("root", className)
 
 
   type ITableHeadClasses = interface end
@@ -1901,7 +1901,7 @@ module classes =
   [<Erase>]
   type tableHead =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableHeadClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableHeadClasses = unbox ("root", className)
 
 
   type ITablePaginationClasses = interface end
@@ -1909,25 +1909,25 @@ module classes =
   [<Erase>]
   type tablePagination =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITablePaginationClasses = unbox ("root", value)
+    static member inline root(className: string) : ITablePaginationClasses = unbox ("root", className)
     /// Styles applied to the Toolbar component.
-    static member inline toolbar(value: string) : ITablePaginationClasses = unbox ("toolbar", value)
+    static member inline toolbar(className: string) : ITablePaginationClasses = unbox ("toolbar", className)
     /// Styles applied to the spacer element.
-    static member inline spacer(value: string) : ITablePaginationClasses = unbox ("spacer", value)
+    static member inline spacer(className: string) : ITablePaginationClasses = unbox ("spacer", className)
     /// Styles applied to the caption Typography components if `variant="caption"`.
-    static member inline caption(value: string) : ITablePaginationClasses = unbox ("caption", value)
+    static member inline caption(className: string) : ITablePaginationClasses = unbox ("caption", className)
     /// Styles applied to the Select component root element.
-    static member inline selectRoot(value: string) : ITablePaginationClasses = unbox ("selectRoot", value)
+    static member inline selectRoot(className: string) : ITablePaginationClasses = unbox ("selectRoot", className)
     /// Styles applied to the Select component `select` class.
-    static member inline select(value: string) : ITablePaginationClasses = unbox ("select", value)
+    static member inline select(className: string) : ITablePaginationClasses = unbox ("select", className)
     /// Styles applied to the Select component `icon` class.
-    static member inline selectIcon(value: string) : ITablePaginationClasses = unbox ("selectIcon", value)
+    static member inline selectIcon(className: string) : ITablePaginationClasses = unbox ("selectIcon", className)
     /// Styles applied to the `InputBase` component.
-    static member inline input(value: string) : ITablePaginationClasses = unbox ("input", value)
+    static member inline input(className: string) : ITablePaginationClasses = unbox ("input", className)
     /// Styles applied to the MenuItem component.
-    static member inline menuItem(value: string) : ITablePaginationClasses = unbox ("menuItem", value)
+    static member inline menuItem(className: string) : ITablePaginationClasses = unbox ("menuItem", className)
     /// Styles applied to the internal `TablePaginationActions` component.
-    static member inline actions(value: string) : ITablePaginationClasses = unbox ("actions", value)
+    static member inline actions(className: string) : ITablePaginationClasses = unbox ("actions", className)
 
 
   type ITableRowClasses = interface end
@@ -1935,15 +1935,15 @@ module classes =
   [<Erase>]
   type tableRow =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableRowClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableRowClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `selected={true}`.
-    static member inline selected(value: string) : ITableRowClasses = unbox ("selected", value)
+    static member inline selected(className: string) : ITableRowClasses = unbox ("selected", className)
     /// Pseudo-class applied to the root element if `hover={true}`.
-    static member inline hover(value: string) : ITableRowClasses = unbox ("hover", value)
+    static member inline hover(className: string) : ITableRowClasses = unbox ("hover", className)
     /// Styles applied to the root element if table variant="head".
-    static member inline head(value: string) : ITableRowClasses = unbox ("head", value)
+    static member inline head(className: string) : ITableRowClasses = unbox ("head", className)
     /// Styles applied to the root element if table variant="footer".
-    static member inline footer(value: string) : ITableRowClasses = unbox ("footer", value)
+    static member inline footer(className: string) : ITableRowClasses = unbox ("footer", className)
 
 
   type ITableSortLabelClasses = interface end
@@ -1951,15 +1951,15 @@ module classes =
   [<Erase>]
   type tableSortLabel =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITableSortLabelClasses = unbox ("root", value)
+    static member inline root(className: string) : ITableSortLabelClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `active={true}`.
-    static member inline active(value: string) : ITableSortLabelClasses = unbox ("active", value)
+    static member inline active(className: string) : ITableSortLabelClasses = unbox ("active", className)
     /// Styles applied to the icon component.
-    static member inline icon(value: string) : ITableSortLabelClasses = unbox ("icon", value)
+    static member inline icon(className: string) : ITableSortLabelClasses = unbox ("icon", className)
     /// Styles applied to the icon component if `direction="desc"`.
-    static member inline iconDirectionDesc(value: string) : ITableSortLabelClasses = unbox ("iconDirectionDesc", value)
+    static member inline iconDirectionDesc(className: string) : ITableSortLabelClasses = unbox ("iconDirectionDesc", className)
     /// Styles applied to the icon component if `direction="asc"`.
-    static member inline iconDirectionAsc(value: string) : ITableSortLabelClasses = unbox ("iconDirectionAsc", value)
+    static member inline iconDirectionAsc(className: string) : ITableSortLabelClasses = unbox ("iconDirectionAsc", className)
 
 
   type ITabsClasses = interface end
@@ -1967,27 +1967,27 @@ module classes =
   [<Erase>]
   type tabs =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITabsClasses = unbox ("root", value)
+    static member inline root(className: string) : ITabsClasses = unbox ("root", className)
     /// Styles applied to the root element if `orientation="vertical"`.
-    static member inline vertical(value: string) : ITabsClasses = unbox ("vertical", value)
+    static member inline vertical(className: string) : ITabsClasses = unbox ("vertical", className)
     /// Styles applied to the flex container element.
-    static member inline flexContainer(value: string) : ITabsClasses = unbox ("flexContainer", value)
+    static member inline flexContainer(className: string) : ITabsClasses = unbox ("flexContainer", className)
     /// Styles applied to the flex container element if `orientation="vertical"`.
-    static member inline flexContainerVertical(value: string) : ITabsClasses = unbox ("flexContainerVertical", value)
+    static member inline flexContainerVertical(className: string) : ITabsClasses = unbox ("flexContainerVertical", className)
     /// Styles applied to the flex container element if `centered={true}`&`!variant="scrollable"`.
-    static member inline centered(value: string) : ITabsClasses = unbox ("centered", value)
+    static member inline centered(className: string) : ITabsClasses = unbox ("centered", className)
     /// Styles applied to the tablist element.
-    static member inline scroller(value: string) : ITabsClasses = unbox ("scroller", value)
+    static member inline scroller(className: string) : ITabsClasses = unbox ("scroller", className)
     /// Styles applied to the tablist element if `!variant="scrollable"`.
-    static member inline fixed'(value: string) : ITabsClasses = unbox ("fixed", value)
+    static member inline fixed'(className: string) : ITabsClasses = unbox ("fixed", className)
     /// Styles applied to the tablist element if `variant="scrollable"`.
-    static member inline scrollable(value: string) : ITabsClasses = unbox ("scrollable", value)
+    static member inline scrollable(className: string) : ITabsClasses = unbox ("scrollable", className)
     /// Styles applied to the `ScrollButtonComponent` component.
-    static member inline scrollButtons(value: string) : ITabsClasses = unbox ("scrollButtons", value)
+    static member inline scrollButtons(className: string) : ITabsClasses = unbox ("scrollButtons", className)
     /// Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
-    static member inline scrollButtonsDesktop(value: string) : ITabsClasses = unbox ("scrollButtonsDesktop", value)
+    static member inline scrollButtonsDesktop(className: string) : ITabsClasses = unbox ("scrollButtonsDesktop", className)
     /// Styles applied to the `TabIndicator` component.
-    static member inline indicator(value: string) : ITabsClasses = unbox ("indicator", value)
+    static member inline indicator(className: string) : ITabsClasses = unbox ("indicator", className)
 
 
   type ITextareaAutosizeClasses = interface end
@@ -1998,7 +1998,7 @@ module classes =
   [<Erase>]
   type textField =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITextFieldClasses = unbox ("root", value)
+    static member inline root(className: string) : ITextFieldClasses = unbox ("root", className)
 
 
   type IToggleButtonClasses = interface end
@@ -2006,17 +2006,17 @@ module classes =
   [<Erase>]
   type toggleButton =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IToggleButtonClasses = unbox ("root", value)
+    static member inline root(className: string) : IToggleButtonClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
-    static member inline disabled(value: string) : IToggleButtonClasses = unbox ("disabled", value)
+    static member inline disabled(className: string) : IToggleButtonClasses = unbox ("disabled", className)
     /// Pseudo-class applied to the root element if `selected={true}`.
-    static member inline selected(value: string) : IToggleButtonClasses = unbox ("selected", value)
+    static member inline selected(className: string) : IToggleButtonClasses = unbox ("selected", className)
     /// Styles applied to the `label` wrapper element.
-    static member inline label(value: string) : IToggleButtonClasses = unbox ("label", value)
+    static member inline label(className: string) : IToggleButtonClasses = unbox ("label", className)
     /// Styles applied to the root element if `size="small"`.
-    static member inline sizeSmall(value: string) : IToggleButtonClasses = unbox ("sizeSmall", value)
+    static member inline sizeSmall(className: string) : IToggleButtonClasses = unbox ("sizeSmall", className)
     /// Styles applied to the root element if `size="large"`.
-    static member inline sizeLarge(value: string) : IToggleButtonClasses = unbox ("sizeLarge", value)
+    static member inline sizeLarge(className: string) : IToggleButtonClasses = unbox ("sizeLarge", className)
 
 
   type IToggleButtonGroupClasses = interface end
@@ -2024,13 +2024,13 @@ module classes =
   [<Erase>]
   type toggleButtonGroup =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IToggleButtonGroupClasses = unbox ("root", value)
+    static member inline root(className: string) : IToggleButtonGroupClasses = unbox ("root", className)
     /// Styles applied to the children.
-    static member inline grouped(value: string) : IToggleButtonGroupClasses = unbox ("grouped", value)
+    static member inline grouped(className: string) : IToggleButtonGroupClasses = unbox ("grouped", className)
     /// Styles applied to the children if `size="small"`.
-    static member inline groupedSizeSmall(value: string) : IToggleButtonGroupClasses = unbox ("groupedSizeSmall", value)
+    static member inline groupedSizeSmall(className: string) : IToggleButtonGroupClasses = unbox ("groupedSizeSmall", className)
     /// Styles applied to the children if `size="large"`.
-    static member inline groupedSizeLarge(value: string) : IToggleButtonGroupClasses = unbox ("groupedSizeLarge", value)
+    static member inline groupedSizeLarge(className: string) : IToggleButtonGroupClasses = unbox ("groupedSizeLarge", className)
 
 
   type IToolbarClasses = interface end
@@ -2038,13 +2038,13 @@ module classes =
   [<Erase>]
   type toolbar =
     /// Styles applied to the root element.
-    static member inline root(value: string) : IToolbarClasses = unbox ("root", value)
+    static member inline root(className: string) : IToolbarClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableGutters={false}`.
-    static member inline gutters(value: string) : IToolbarClasses = unbox ("gutters", value)
+    static member inline gutters(className: string) : IToolbarClasses = unbox ("gutters", className)
     /// Styles applied to the root element if `variant="regular"`.
-    static member inline regular(value: string) : IToolbarClasses = unbox ("regular", value)
+    static member inline regular(className: string) : IToolbarClasses = unbox ("regular", className)
     /// Styles applied to the root element if `variant="dense"`.
-    static member inline dense(value: string) : IToolbarClasses = unbox ("dense", value)
+    static member inline dense(className: string) : IToolbarClasses = unbox ("dense", className)
 
 
   type ITooltipClasses = interface end
@@ -2052,21 +2052,21 @@ module classes =
   [<Erase>]
   type tooltip =
     /// Styles applied to the Popper component.
-    static member inline popper(value: string) : ITooltipClasses = unbox ("popper", value)
+    static member inline popper(className: string) : ITooltipClasses = unbox ("popper", className)
     /// Styles applied to the Popper component if `interactive={true}`.
-    static member inline popperInteractive(value: string) : ITooltipClasses = unbox ("popperInteractive", value)
+    static member inline popperInteractive(className: string) : ITooltipClasses = unbox ("popperInteractive", className)
     /// Styles applied to the tooltip (label wrapper) element.
-    static member inline tooltip(value: string) : ITooltipClasses = unbox ("tooltip", value)
+    static member inline tooltip(className: string) : ITooltipClasses = unbox ("tooltip", className)
     /// Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
-    static member inline touch(value: string) : ITooltipClasses = unbox ("touch", value)
+    static member inline touch(className: string) : ITooltipClasses = unbox ("touch", className)
     /// Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
-    static member inline tooltipPlacementLeft(value: string) : ITooltipClasses = unbox ("tooltipPlacementLeft", value)
+    static member inline tooltipPlacementLeft(className: string) : ITooltipClasses = unbox ("tooltipPlacementLeft", className)
     /// Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
-    static member inline tooltipPlacementRight(value: string) : ITooltipClasses = unbox ("tooltipPlacementRight", value)
+    static member inline tooltipPlacementRight(className: string) : ITooltipClasses = unbox ("tooltipPlacementRight", className)
     /// Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
-    static member inline tooltipPlacementTop(value: string) : ITooltipClasses = unbox ("tooltipPlacementTop", value)
+    static member inline tooltipPlacementTop(className: string) : ITooltipClasses = unbox ("tooltipPlacementTop", className)
     /// Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
-    static member inline tooltipPlacementBottom(value: string) : ITooltipClasses = unbox ("tooltipPlacementBottom", value)
+    static member inline tooltipPlacementBottom(className: string) : ITooltipClasses = unbox ("tooltipPlacementBottom", className)
 
 
   type ITouchRippleClasses = interface end
@@ -2074,19 +2074,19 @@ module classes =
   [<Erase>]
   type touchRipple =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITouchRippleClasses = unbox ("root", value)
+    static member inline root(className: string) : ITouchRippleClasses = unbox ("root", className)
     /// Styles applied to the internal `Ripple` components `ripple` class.
-    static member inline ripple(value: string) : ITouchRippleClasses = unbox ("ripple", value)
+    static member inline ripple(className: string) : ITouchRippleClasses = unbox ("ripple", className)
     /// Styles applied to the internal `Ripple` components `rippleVisible` class.
-    static member inline rippleVisible(value: string) : ITouchRippleClasses = unbox ("rippleVisible", value)
+    static member inline rippleVisible(className: string) : ITouchRippleClasses = unbox ("rippleVisible", className)
     /// Styles applied to the internal `Ripple` components `ripplePulsate` class.
-    static member inline ripplePulsate(value: string) : ITouchRippleClasses = unbox ("ripplePulsate", value)
+    static member inline ripplePulsate(className: string) : ITouchRippleClasses = unbox ("ripplePulsate", className)
     /// Styles applied to the internal `Ripple` components `child` class.
-    static member inline child(value: string) : ITouchRippleClasses = unbox ("child", value)
+    static member inline child(className: string) : ITouchRippleClasses = unbox ("child", className)
     /// Styles applied to the internal `Ripple` components `childLeaving` class.
-    static member inline childLeaving(value: string) : ITouchRippleClasses = unbox ("childLeaving", value)
+    static member inline childLeaving(className: string) : ITouchRippleClasses = unbox ("childLeaving", className)
     /// Styles applied to the internal `Ripple` components `childPulsate` class.
-    static member inline childPulsate(value: string) : ITouchRippleClasses = unbox ("childPulsate", value)
+    static member inline childPulsate(className: string) : ITouchRippleClasses = unbox ("childPulsate", className)
 
 
   type ITreeItemClasses = interface end
@@ -2094,17 +2094,17 @@ module classes =
   [<Erase>]
   type treeItem =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITreeItemClasses = unbox ("root", value)
+    static member inline root(className: string) : ITreeItemClasses = unbox ("root", className)
     /// Pseudo-class applied to the root element when expanded.
-    static member inline expanded(value: string) : ITreeItemClasses = unbox ("expanded", value)
+    static member inline expanded(className: string) : ITreeItemClasses = unbox ("expanded", className)
     /// Styles applied to the `role="group"` element.
-    static member inline group(value: string) : ITreeItemClasses = unbox ("group", value)
+    static member inline group(className: string) : ITreeItemClasses = unbox ("group", className)
     /// Styles applied to the tree node content.
-    static member inline content(value: string) : ITreeItemClasses = unbox ("content", value)
+    static member inline content(className: string) : ITreeItemClasses = unbox ("content", className)
     /// Styles applied to the tree node icon and collapse/expand icon.
-    static member inline iconContainer(value: string) : ITreeItemClasses = unbox ("iconContainer", value)
+    static member inline iconContainer(className: string) : ITreeItemClasses = unbox ("iconContainer", className)
     /// Styles applied to the label element.
-    static member inline label(value: string) : ITreeItemClasses = unbox ("label", value)
+    static member inline label(className: string) : ITreeItemClasses = unbox ("label", className)
 
 
   type ITreeViewClasses = interface end
@@ -2112,7 +2112,7 @@ module classes =
   [<Erase>]
   type treeView =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITreeViewClasses = unbox ("root", value)
+    static member inline root(className: string) : ITreeViewClasses = unbox ("root", className)
 
 
   type ITypographyClasses = interface end
@@ -2120,65 +2120,65 @@ module classes =
   [<Erase>]
   type typography =
     /// Styles applied to the root element.
-    static member inline root(value: string) : ITypographyClasses = unbox ("root", value)
+    static member inline root(className: string) : ITypographyClasses = unbox ("root", className)
     /// Styles applied to the root element if `variant="body2"`.
-    static member inline body2(value: string) : ITypographyClasses = unbox ("body2", value)
+    static member inline body2(className: string) : ITypographyClasses = unbox ("body2", className)
     /// Styles applied to the root element if `variant="body1"`.
-    static member inline body1(value: string) : ITypographyClasses = unbox ("body1", value)
+    static member inline body1(className: string) : ITypographyClasses = unbox ("body1", className)
     /// Styles applied to the root element if `variant="caption"`.
-    static member inline caption(value: string) : ITypographyClasses = unbox ("caption", value)
+    static member inline caption(className: string) : ITypographyClasses = unbox ("caption", className)
     /// Styles applied to the root element if `variant="button"`.
-    static member inline button(value: string) : ITypographyClasses = unbox ("button", value)
+    static member inline button(className: string) : ITypographyClasses = unbox ("button", className)
     /// Styles applied to the root element if `variant="h1"`.
-    static member inline h1(value: string) : ITypographyClasses = unbox ("h1", value)
+    static member inline h1(className: string) : ITypographyClasses = unbox ("h1", className)
     /// Styles applied to the root element if `variant="h2"`.
-    static member inline h2(value: string) : ITypographyClasses = unbox ("h2", value)
+    static member inline h2(className: string) : ITypographyClasses = unbox ("h2", className)
     /// Styles applied to the root element if `variant="h3"`.
-    static member inline h3(value: string) : ITypographyClasses = unbox ("h3", value)
+    static member inline h3(className: string) : ITypographyClasses = unbox ("h3", className)
     /// Styles applied to the root element if `variant="h4"`.
-    static member inline h4(value: string) : ITypographyClasses = unbox ("h4", value)
+    static member inline h4(className: string) : ITypographyClasses = unbox ("h4", className)
     /// Styles applied to the root element if `variant="h5"`.
-    static member inline h5(value: string) : ITypographyClasses = unbox ("h5", value)
+    static member inline h5(className: string) : ITypographyClasses = unbox ("h5", className)
     /// Styles applied to the root element if `variant="h6"`.
-    static member inline h6(value: string) : ITypographyClasses = unbox ("h6", value)
+    static member inline h6(className: string) : ITypographyClasses = unbox ("h6", className)
     /// Styles applied to the root element if `variant="subtitle1"`.
-    static member inline subtitle1(value: string) : ITypographyClasses = unbox ("subtitle1", value)
+    static member inline subtitle1(className: string) : ITypographyClasses = unbox ("subtitle1", className)
     /// Styles applied to the root element if `variant="subtitle2"`.
-    static member inline subtitle2(value: string) : ITypographyClasses = unbox ("subtitle2", value)
+    static member inline subtitle2(className: string) : ITypographyClasses = unbox ("subtitle2", className)
     /// Styles applied to the root element if `variant="overline"`.
-    static member inline overline(value: string) : ITypographyClasses = unbox ("overline", value)
+    static member inline overline(className: string) : ITypographyClasses = unbox ("overline", className)
     /// Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
-    static member inline srOnly(value: string) : ITypographyClasses = unbox ("srOnly", value)
+    static member inline srOnly(className: string) : ITypographyClasses = unbox ("srOnly", className)
     /// Styles applied to the root element if `align="left"`.
-    static member inline alignLeft(value: string) : ITypographyClasses = unbox ("alignLeft", value)
+    static member inline alignLeft(className: string) : ITypographyClasses = unbox ("alignLeft", className)
     /// Styles applied to the root element if `align="center"`.
-    static member inline alignCenter(value: string) : ITypographyClasses = unbox ("alignCenter", value)
+    static member inline alignCenter(className: string) : ITypographyClasses = unbox ("alignCenter", className)
     /// Styles applied to the root element if `align="right"`.
-    static member inline alignRight(value: string) : ITypographyClasses = unbox ("alignRight", value)
+    static member inline alignRight(className: string) : ITypographyClasses = unbox ("alignRight", className)
     /// Styles applied to the root element if `align="justify"`.
-    static member inline alignJustify(value: string) : ITypographyClasses = unbox ("alignJustify", value)
+    static member inline alignJustify(className: string) : ITypographyClasses = unbox ("alignJustify", className)
     /// Styles applied to the root element if `nowrap={true}`.
-    static member inline noWrap(value: string) : ITypographyClasses = unbox ("noWrap", value)
+    static member inline noWrap(className: string) : ITypographyClasses = unbox ("noWrap", className)
     /// Styles applied to the root element if `gutterBottom={true}`.
-    static member inline gutterBottom(value: string) : ITypographyClasses = unbox ("gutterBottom", value)
+    static member inline gutterBottom(className: string) : ITypographyClasses = unbox ("gutterBottom", className)
     /// Styles applied to the root element if `paragraph={true}`.
-    static member inline paragraph(value: string) : ITypographyClasses = unbox ("paragraph", value)
+    static member inline paragraph(className: string) : ITypographyClasses = unbox ("paragraph", className)
     /// Styles applied to the root element if `color="inherit"`.
-    static member inline colorInherit(value: string) : ITypographyClasses = unbox ("colorInherit", value)
+    static member inline colorInherit(className: string) : ITypographyClasses = unbox ("colorInherit", className)
     /// Styles applied to the root element if `color="primary"`.
-    static member inline colorPrimary(value: string) : ITypographyClasses = unbox ("colorPrimary", value)
+    static member inline colorPrimary(className: string) : ITypographyClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root element if `color="secondary"`.
-    static member inline colorSecondary(value: string) : ITypographyClasses = unbox ("colorSecondary", value)
+    static member inline colorSecondary(className: string) : ITypographyClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `color="textPrimary"`.
-    static member inline colorTextPrimary(value: string) : ITypographyClasses = unbox ("colorTextPrimary", value)
+    static member inline colorTextPrimary(className: string) : ITypographyClasses = unbox ("colorTextPrimary", className)
     /// Styles applied to the root element if `color="textSecondary"`.
-    static member inline colorTextSecondary(value: string) : ITypographyClasses = unbox ("colorTextSecondary", value)
+    static member inline colorTextSecondary(className: string) : ITypographyClasses = unbox ("colorTextSecondary", className)
     /// Styles applied to the root element if `color="error"`.
-    static member inline colorError(value: string) : ITypographyClasses = unbox ("colorError", value)
+    static member inline colorError(className: string) : ITypographyClasses = unbox ("colorError", className)
     /// Styles applied to the root element if `display="inline"`.
-    static member inline displayInline(value: string) : ITypographyClasses = unbox ("displayInline", value)
+    static member inline displayInline(className: string) : ITypographyClasses = unbox ("displayInline", className)
     /// Styles applied to the root element if `display="block"`.
-    static member inline displayBlock(value: string) : ITypographyClasses = unbox ("displayBlock", value)
+    static member inline displayBlock(className: string) : ITypographyClasses = unbox ("displayBlock", className)
 
 
   type IZoomClasses = interface end
