@@ -5,7 +5,7 @@
 Current status
 --------------
 
-Highly usable, but since we’re at `0.x` breaking changes (minor or major) may happen at any time.
+Feliz.MaterialUI is highly usable, but since we’re at `0.x` breaking changes (small or large) may happen at any time. While at `0.x` I will try to increment the minor version for breaking changes and the patch version for anything else. Note that in this context, changes to components from `@material-ui/lab` will never be considered breaking.
 
 ## Installation
 
@@ -26,6 +26,10 @@ TODO
 
 Changelog
 ---------
+
+### 0.7.2
+
+* Added warning to `@material-ui/lab` component docs
 
 ### 0.7.1
 
