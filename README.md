@@ -27,6 +27,14 @@ TODO
 Changelog
 ---------
 
+### 0.7.1
+
+* Updated Feliz dependency
+
+### 0.7.0
+
+* Regenerated based on updated MUI docs
+
 ### 0.6.0
 
 * Changed some `slider.marks` signatures
