@@ -91,8 +91,6 @@ let themePropsDocument (api: MuiComponentApi) =
     "open Fable.Core.JsInterop"
     "open Feliz"
     ""
-    "type IThemeProps = interface end"
-    ""
     ""
     "[<Erase>]"
     "type themeProps ="
@@ -119,8 +117,6 @@ let themeOverridesDocument (api: MuiComponentApi) =
     "open Fable.Core"
     "open Fable.Core.JsInterop"
     "open Feliz"
-    ""
-    "type IOverrideStyleSheet = interface end"
     ""
     for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
       sprintf "type I%sOverrideRule = interface end" stylesheetName

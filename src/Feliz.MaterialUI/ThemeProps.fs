@@ -8,8 +8,6 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
 
-type IThemeProps = interface end
-
 
 [<Erase>]
 type themeProps =

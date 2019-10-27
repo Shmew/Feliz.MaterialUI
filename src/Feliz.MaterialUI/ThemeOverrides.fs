@@ -8,8 +8,6 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
 
-type IOverrideStyleSheet = interface end
-
 type IMuiAppBarOverrideRule = interface end
 type IMuiAvatarOverrideRule = interface end
 type IMuiBackdropOverrideRule = interface end
