@@ -591,7 +591,13 @@ let parseComponent (htmlPathOrUrl: string) =
       |> List.trySkip 1
       |> List.takeWhile (fun n -> n.Name() = "p")
     
-    let markdownDocLines = noteNodes1 @ noteNodes2 |> docElementsToMarkdownLines
+    let markdownDocLines =
+      noteNodes1 @ noteNodes2
+      |> docElementsToMarkdownLines
+      |> fun ls ->
+          if importPath.StartsWith "@material-ui/lab" then
+            "**This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**" :: "" :: ls
+          else ls
 
     let additionalOverloads =
       match compMethodName with

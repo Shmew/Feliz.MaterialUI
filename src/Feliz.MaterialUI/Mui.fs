@@ -721,6 +721,8 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([FormGroup](https://material-ui.com/api/form-group/)).
   static member inline radioGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/RadioGroup") [ Feliz.MaterialUI.radioGroup.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -739,6 +741,8 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([Input](https://material-ui.com/api/input/)).
   static member inline select (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Select") [ Feliz.MaterialUI.select.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -764,21 +768,29 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
   static member inline snackbarContent props = createElement (importDefault "@material-ui/core/SnackbarContent") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline speedDial props = createElement (importDefault "@material-ui/lab/SpeedDial") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline speedDial (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/SpeedDial") [ Feliz.MaterialUI.speedDial.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Tooltip](https://material-ui.com/api/tooltip/)).
   static member inline speedDialAction props = createElement (importDefault "@material-ui/lab/SpeedDialAction") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -979,21 +991,29 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([FormControl](https://material-ui.com/api/form-control/)).
   static member inline textField props = createElement (importDefault "@material-ui/core/TextField") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline toggleButton props = createElement (importDefault "@material-ui/lab/ToggleButton") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline toggleButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButton") [ Feliz.MaterialUI.toggleButton.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline toggleButtonGroup props = createElement (importDefault "@material-ui/lab/ToggleButtonGroup") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -1019,21 +1039,29 @@ type Mui =
   /// Any other props supplied will be provided to the root element (native element).
   static member inline touchRipple props = createElement (importDefault "@material-ui/core/ButtonBase/TouchRipple.js/TouchRipple") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline treeItem props = createElement (importDefault "@material-ui/lab/TreeItem") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline treeItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TreeItem") [ Feliz.MaterialUI.treeItem.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline treeView props = createElement (importDefault "@material-ui/lab/TreeView") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
