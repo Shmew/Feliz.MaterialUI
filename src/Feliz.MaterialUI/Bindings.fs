@@ -3,6 +3,7 @@
 open Fable.Core
 open Fable.Core.JS
 open Fable.Core.JsInterop
+open Browser.Types
 open Feliz
 open Feliz.Styles
 
@@ -358,3 +359,65 @@ type PopoverOriginVertical =
   | Top
   | Center
   | Bottom
+
+[<StringEnum; RequireQualifiedAccess>]
+type AutoCompleteMatchFrom =
+  | Any
+  | Start
+
+
+type CreateFilterOptionsOptions =
+  abstract ignoreAccents: bool with get, set
+  abstract ignoreCase: bool with get, set
+  abstract matchFrom: AutoCompleteMatchFrom with get, set
+  abstract stringify: ('option -> string) with get, set
+  abstract trim: bool with get, set
+
+
+type AutocompleteFilterOptionsState =
+  abstract inputValue: string
+
+type AutocompleteRenderOptionState =
+  abstract inputValue: string
+  abstract selected: bool
+
+type AutocompleteRenderValueState =
+  abstract className: string
+  abstract onDelete: Event -> unit
+
+[<Erase>]
+type PropsObject =
+  /// Gets all properties on this object as Feliz properties you can `yield!`.
+  [<Emit("Object.entries($0)")>]
+  member inline _.felizProps : IReactProperty [] = jsNative
+
+[<AbstractClass; Erase>]
+type AutocompleteRenderInputParams_InputLabelProps =
+  inherit PropsObject
+
+[<AbstractClass; Erase>]
+type AutocompleteRenderInputParams_InputProps =
+  inherit PropsObject
+  [<Emit("[\"className\", $0.className]")>]
+  member inline _.className : IReactProperty = jsNative
+  [<Emit("[\"startAdornment\", $0.startAdornment]")>]
+  member inline _.startAdornment : IReactProperty = jsNative
+  [<Emit("[\"endAdornment\", $0.endAdornment]")>]
+  member inline _.endAdornment : IReactProperty = jsNative
+
+[<AbstractClass; Erase>]
+type AutocompleteRenderInputParams_inputProps =
+  inherit PropsObject
+
+[<AbstractClass; Erase>]
+type AutocompleteRenderInputParams =
+  inherit PropsObject
+  abstract InputLabelProps: AutocompleteRenderInputParams_InputLabelProps
+  abstract InputProps: AutocompleteRenderInputParams_InputProps
+  abstract inputProps: AutocompleteRenderInputParams_inputProps
+  [<Emit("[\"ref\", $0.ref]")>]
+  member inline _.ref : IReactProperty = jsNative
+
+[<AbstractClass; Erase>]
+type AutocompleteRenderGroupParams =
+  inherit PropsObject

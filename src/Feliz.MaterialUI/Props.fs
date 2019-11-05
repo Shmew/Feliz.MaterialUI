@@ -77,32 +77,198 @@ module appBar =
 
 
 [<Erase>]
+type autocomplete =
+  /// If `true`, the portion of the selected suggestion that has not been typed by the user, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state.
+  static member inline autoComplete (value: bool) = Interop.mkAttr "autoComplete" value
+  /// If `true`, the first option is automatically highlighted.
+  static member inline autoHightlight (value: bool) = Interop.mkAttr "autoHightlight" value
+  /// If `true`, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.
+  static member inline autoSelect (value: bool) = Interop.mkAttr "autoSelect" value
+  /// Override or extend the styles applied to the component. Use `classes.autocomplete` to specify class names.
+  static member inline classes (classNames: classes.IAutocompleteClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// If `true`, clear all values when the user presses escape and the popup is closed.
+  static member inline clearOnEscape (value: bool) = Interop.mkAttr "clearOnEscape" value
+  /// If `true`, the popup will ignore the blur event if the input if filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
+  static member inline debug (value: bool) = Interop.mkAttr "debug" value
+  /// The default input value. Use when the component is not controlled.
+  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  /// If `true`, the input can't be cleared.
+  static member inline disableClearable (value: bool) = Interop.mkAttr "disableClearable" value
+  /// If `true`, the popup won't close when a value is selected.
+  static member inline disableCloseOnSelect (value: bool) = Interop.mkAttr "disableCloseOnSelect" value
+  /// If `true`, the list box in the popup will not wrap focus.
+  static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
+  /// If `true`, the popup won't open on input focus.
+  static member inline disableOpenOnFocus (value: bool) = Interop.mkAttr "disableOpenOnFocus" value
+  /// A filter function that determines the options that are eligible.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(options: undefined, state: object) => undefined`
+  ///
+  /// *options:* The options to render.
+  ///
+  /// *state:* The state of the component.
+  static member inline filterOptions (filterOptions: 'option [] -> string -> 'option []) = Interop.mkAttr "filterOptions" (System.Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> filterOptions opts s.inputValue))
+  /// A filter function that determines the options that are eligible.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(options: undefined, state: object) => undefined`
+  ///
+  /// *options:* The options to render.
+  ///
+  /// *state:* The state of the component.
+  static member inline filterOptions (filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option []) = Interop.mkAttr "filterOptions" (System.Func<_,_,_> filterOptions)
+  /// If `true`, hide the selected options from the list box.
+  static member inline filterSelectedOptions (value: bool) = Interop.mkAttr "filterSelectedOptions" value
+  /// If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
+  static member inline freeSolo (value: bool) = Interop.mkAttr "freeSolo" value
+  /// Used to determine the disabled state for a given option.
+  static member inline getOptionDisabled (isDisabled: 'option -> bool) = Interop.mkAttr "getOptionDisabled" isDisabled
+  /// Used to determine the string value for a given option. It's used to fill the input (and the list box options if `renderOption` is not provided).
+  static member inline getOptionLabel (getLabel: 'option -> string) = Interop.mkAttr "getOptionLabel" getLabel
+  /// If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(options: any) => string`
+  ///
+  /// *options:* The option to group.
+  static member inline groupBy (getGroup: 'option -> string) = Interop.mkAttr "groupBy" getGroup
+  /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
+  static member inline id (value: string) = Interop.mkAttr "id" value
+  /// If `true`, the highlight can move to the input.
+  static member inline includeInputInList (value: bool) = Interop.mkAttr "includeInputInList" value
+  /// The component used to render the listbox.
+  static member inline ListboxComponent (value: ReactElementType) = Interop.mkAttr "ListboxComponent" value
+  /// If `true`, the component is in a loading state.
+  static member inline loading (value: bool) = Interop.mkAttr "loading" value
+  /// Text to display when in a loading state.
+  static member inline loadingText (value: ReactElement) = Interop.mkAttr "loadingText" value
+  /// Text to display when in a loading state.
+  static member inline loadingText (values: ReactElement seq) = Interop.mkAttr "loadingText" values
+  /// Text to display when in a loading state.
+  static member inline loadingText (value: string) = Interop.mkAttr "loadingText" value
+  /// Text to display when in a loading state.
+  static member inline loadingText (values: string seq) = Interop.mkAttr "loadingText" values
+  /// Text to display when in a loading state.
+  static member inline loadingText (value: int) = Interop.mkAttr "loadingText" value
+  /// Text to display when in a loading state.
+  static member inline loadingText (value: float) = Interop.mkAttr "loadingText" value
+  /// If true, `value` must be an array and the menu will support multiple selections.
+  static member inline multiple (value: bool) = Interop.mkAttr "multiple" value
+  /// Text to display when there are no options.
+  static member inline noOptionsText (value: ReactElement) = Interop.mkAttr "noOptionsText" value
+  /// Text to display when there are no options.
+  static member inline noOptionsText (values: ReactElement seq) = Interop.mkAttr "noOptionsText" values
+  /// Text to display when there are no options.
+  static member inline noOptionsText (value: string) = Interop.mkAttr "noOptionsText" value
+  /// Text to display when there are no options.
+  static member inline noOptionsText (values: string seq) = Interop.mkAttr "noOptionsText" values
+  /// Text to display when there are no options.
+  static member inline noOptionsText (value: int) = Interop.mkAttr "noOptionsText" value
+  /// Text to display when there are no options.
+  static member inline noOptionsText (value: float) = Interop.mkAttr "noOptionsText" value
+  /// Callback fired when the value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: any) => void`
+  ///
+  /// *event:* The event source of the callback
+  ///
+  /// *value:* null
+  static member inline onChange (handler: Event -> 'option -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> handler)
+  /// Callback fired when the value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: any) => void`
+  ///
+  /// *event:* The event source of the callback
+  ///
+  /// *value:* null
+  static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (System.Func<_,_,_> (fun _ v -> handler v))
+  /// Callback fired when the popup requests to be closed. Use in controlled mode (see open).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object) => void`
+  ///
+  /// *event:* The event source of the callback.
+  static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
+  /// Callback fired when the popup requests to be opened. Use in controlled mode (see open).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object) => void`
+  ///
+  /// *event:* The event source of the callback.
+  static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
+  /// Control the popup` open state.
+  static member inline open' (value: bool) = Interop.mkAttr "open" value
+  /// Array of options.
+  static member inline options (options: 'option []) = Interop.mkAttr "options" options
+  /// The component used to render the body of the popup.
+  static member inline PaperComponent (value: ReactElementType) = Interop.mkAttr "PaperComponent" value
+  /// The component used to render the popup.
+  static member inline PopupComponent (value: ReactElementType) = Interop.mkAttr "PopupComponent" value
+  /// Render the group.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(option: any) => ReactNode`
+  ///
+  /// *option:* The group to render.
+  static member inline renderGroup (render: AutocompleteRenderGroupParams -> ReactElement) = Interop.mkAttr "renderGroup" render
+  /// Render the input.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(params: object) => ReactNode`
+  ///
+  /// *params:* null
+  static member inline renderInput (render: AutocompleteRenderInputParams -> ReactElement) = Interop.mkAttr "renderInput" render
+  /// Render the option, use `getOptionLabel` by default.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(option: any, state: object) => ReactNode`
+  ///
+  /// *option:* The option to render.
+  ///
+  /// *state:* The state of the component.
+  static member inline renderOption (render: 'option -> AutocompleteRenderOptionState -> ReactElement) = Interop.mkAttr "renderOption" (System.Func<_,_,_> render)
+  /// Render the selected value.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(value: any) => ReactNode`
+  ///
+  /// *value:* The `value` provided to the component.
+  static member inline renderTags (render: 'option [] -> AutocompleteRenderValueState -> ReactElement) = Interop.mkAttr "renderTags" (System.Func<_,_,_> render)
+  /// The input value.
+  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
+
+
+[<Erase>]
 type avatar =
   /// Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element.
   static member inline alt (value: string) = Interop.mkAttr "alt" value
-  /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
-  ///
-  /// This can be an element, or just a string.
+  /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (element: ReactElement) = prop.children element
-  /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
-  ///
-  /// This can be an element, or just a string.
+  /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (elements: ReactElement seq) = prop.children elements
-  /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
-  ///
-  /// This can be an element, or just a string.
+  /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (value: string) = Interop.mkAttr "children" value
-  /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
-  ///
-  /// This can be an element, or just a string.
+  /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (values: string seq) = Interop.mkAttr "children" values
-  /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
-  ///
-  /// This can be an element, or just a string.
+  /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (value: int) = Interop.mkAttr "children" value
-  /// Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.
-  ///
-  /// This can be an element, or just a string.
+  /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.avatar` to specify class names.
   static member inline classes (classNames: classes.IAvatarClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
@@ -296,14 +462,6 @@ type bottomNavigationAction =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -447,14 +605,6 @@ type button =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -518,10 +668,6 @@ type buttonBase =
   static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// The content of the component.
@@ -687,14 +833,6 @@ type cardActionArea =
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// *Inherited from `buttonBase`*
   ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
@@ -950,14 +1088,6 @@ type checkbox =
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// *Inherited from `buttonBase`*
   ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
@@ -1231,6 +1361,10 @@ type cssBaseline =
 
 [<Erase>]
 type dialog =
+  /// The id(s) of the element(s) that describe the dialog.
+  static member inline ariaDescribedby (value: string) = Interop.mkAttr "aria-describedby" value
+  /// The id(s) of the element(s) that label the dialog.
+  static member inline ariaLabelledby (value: string) = Interop.mkAttr "aria-labelledby" value
   /// Dialog children, usually the included sub-components.
   static member inline children (element: ReactElement) = prop.children element
   /// Dialog children, usually the included sub-components.
@@ -1765,14 +1899,6 @@ type expansionPanelSummary =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -1866,14 +1992,6 @@ type fab =
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// *Inherited from `buttonBase`*
   ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
@@ -2685,14 +2803,6 @@ type iconButton =
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// *Inherited from `buttonBase`*
   ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
@@ -4586,14 +4696,6 @@ type radio =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -4873,6 +4975,8 @@ type select =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.select` to specify class names.
   static member inline classes (classNames: classes.ISelectClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// The default element value. Use when the component is not controlled.
+  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// If `true`, a value is displayed even if no items are selected.
   ///
   /// In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected. You can only use it when the `native` prop is `false` (default).
@@ -4883,6 +4987,8 @@ type select =
   static member inline input (value: ReactElement) = Interop.mkAttr "input" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
+  /// The idea of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value.
+  static member inline labelId (value: string) = Interop.mkAttr "labelId" value
   /// The label width to be used on OutlinedInput. This prop is required when the `variant` prop is `outlined`.
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
   /// Props applied to the [`Menu`](https://material-ui.com/api/menu/) element.
@@ -4933,13 +5039,55 @@ type select =
   ///
   /// **Signature:**
   ///
-  /// `function(value: any) => ReactElement`
+  /// `function(value: any) => ReactNode`
   ///
   /// *value:* The `value` provided to the component.
   static member inline renderValue (render: 'a -> ReactElement) = Interop.mkAttr "renderValue" render
+  /// Render the selected value. You can only use it when the `native` prop is `false` (default).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(value: any) => ReactNode`
+  ///
+  /// *value:* The `value` provided to the component.
+  static member inline renderValue (render: 'a -> ReactElement seq) = Interop.mkAttr "renderValue" render
+  /// Render the selected value. You can only use it when the `native` prop is `false` (default).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(value: any) => ReactNode`
+  ///
+  /// *value:* The `value` provided to the component.
+  static member inline renderValue (render: 'a -> string) = Interop.mkAttr "renderValue" render
+  /// Render the selected value. You can only use it when the `native` prop is `false` (default).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(value: any) => ReactNode`
+  ///
+  /// *value:* The `value` provided to the component.
+  static member inline renderValue (render: 'a -> string seq) = Interop.mkAttr "renderValue" render
+  /// Render the selected value. You can only use it when the `native` prop is `false` (default).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(value: any) => ReactNode`
+  ///
+  /// *value:* The `value` provided to the component.
+  static member inline renderValue (render: 'a -> int) = Interop.mkAttr "renderValue" render
+  /// Render the selected value. You can only use it when the `native` prop is `false` (default).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(value: any) => ReactNode`
+  ///
+  /// *value:* The `value` provided to the component.
+  static member inline renderValue (render: 'a -> float) = Interop.mkAttr "renderValue" render
   /// Props applied to the clickable div element.
   static member inline SelectDisplayProps (props: IReactProperty list) = Interop.mkAttr "SelectDisplayProps" (createObj !!props)
   /// The input value. Providing an empty string will select no options. This prop is required when the `native` prop is `false` (default). Set to an empty string `''` if you don't want any of the available options to be selected.
+  ///
+  /// If the value is an object it must have reference equality with the option in order to be selected. If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// *Inherited from `input`*
   ///
@@ -4953,10 +5101,6 @@ type select =
   ///
   /// The CSS class name of the wrapper element.
   static member inline className (value: string) = Interop.mkAttr "className" value
-  /// *Inherited from `input`*
-  ///
-  /// The default `input` element value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// *Inherited from `input`*
   ///
   /// If `true`, the `input` element will be disabled.
@@ -5632,7 +5776,7 @@ type speedDialAction =
   static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
   /// *Inherited from `tooltip`*
   ///
-  /// The relationship between the tooltip and the wrapper component is not clear from the DOM. This prop is used with aria-describedby to solve the accessibility issue. If you don't provide this prop. It falls back to a randomly generated id.
+  /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// *Inherited from `tooltip`*
   ///
@@ -5818,14 +5962,6 @@ type stepButton =
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// *Inherited from `buttonBase`*
   ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
@@ -6231,14 +6367,6 @@ type switch =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -6335,14 +6463,6 @@ type tab =
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
   /// *Inherited from `buttonBase`*
   ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
@@ -6737,14 +6857,6 @@ type tableSortLabel =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -7070,14 +7182,6 @@ type toggleButton =
   static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
   /// *Inherited from `buttonBase`*
   ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (ref: IRefValue<Element option>) = Interop.mkAttr "buttonRef" ref
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Use that prop to pass a ref to the native button component.
-  static member inline buttonRef (handler: Element -> unit) = Interop.mkAttr "buttonRef" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
@@ -7228,7 +7332,7 @@ type tooltip =
   static member inline enterDelay (value: int) = Interop.mkAttr "enterDelay" value
   /// The number of milliseconds a user must touch the element before showing the tooltip.
   static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
-  /// The relationship between the tooltip and the wrapper component is not clear from the DOM. This prop is used with aria-describedby to solve the accessibility issue. If you don't provide this prop. It falls back to a randomly generated id.
+  /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// Makes a tooltip interactive, i.e. will not close when the user hovers over the tooltip before the `leaveDelay` is expired.
   static member inline interactive (value: bool) = Interop.mkAttr "interactive" value

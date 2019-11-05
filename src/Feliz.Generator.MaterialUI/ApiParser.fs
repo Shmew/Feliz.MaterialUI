@@ -101,6 +101,42 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "tablePagination", "rowsPerPageOptions", "array" ->
         [RegularPropOverload.create "([<ParamArray>] values: int [])" "values"]
 
+    | "autocomplete", "filterOptions", "func" ->
+        [
+          RegularPropOverload.create "(filterOptions: 'option [] -> string -> 'option [])" "(System.Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> filterOptions opts s.inputValue))"
+          RegularPropOverload.create "(filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option [])" "(System.Func<_,_,_> filterOptions)"
+        ]
+
+    | "autocomplete", "getOptionDisabled", "func" ->
+        [RegularPropOverload.create "(isDisabled: 'option -> bool)" "isDisabled"]
+
+    | "autocomplete", "getOptionLabel", "func" ->
+        [RegularPropOverload.create "(getLabel: 'option -> string)" "getLabel"]
+
+    | "autocomplete", "groupBy", "func" ->
+        [RegularPropOverload.create "(getGroup: 'option -> string)" "getGroup"]
+
+    | "autocomplete", "onChange", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> 'option -> unit)" "(System.Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'option -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+        ]
+
+    | "autocomplete", "options", "array" ->
+        [RegularPropOverload.create "(options: 'option [])" "options"]
+
+    | "autocomplete", "renderGroup", "func" ->
+        [RegularPropOverload.create "(render: AutocompleteRenderGroupParams -> ReactElement)" "render"]
+
+    | "autocomplete", "renderInput", "func" ->
+        [RegularPropOverload.create "(render: AutocompleteRenderInputParams -> ReactElement)" "render"]
+
+    | "autocomplete", "renderOption", "func" ->
+        [RegularPropOverload.create "(render: 'option -> AutocompleteRenderOptionState -> ReactElement)" "(System.Func<_,_,_> render)"]
+
+    | "autocomplete", "renderTags", "func" ->
+        [RegularPropOverload.create "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)" "(System.Func<_,_,_> render)"]
+
     | "popover", "anchorPosition",  "{ left: number, top: number }" ->
         [
           [ "left", "int", false
@@ -244,7 +280,14 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "select", "renderValue", "func" ->
-        [RegularPropOverload.create "(render: 'a -> ReactElement)" "render"]
+        [
+          RegularPropOverload.create "(render: 'a -> ReactElement)" "render"
+          RegularPropOverload.create "(render: 'a -> ReactElement seq)" "render"
+          RegularPropOverload.create "(render: 'a -> string)" "render"
+          RegularPropOverload.create "(render: 'a -> string seq)" "render"
+          RegularPropOverload.create "(render: 'a -> int)" "render"
+          RegularPropOverload.create "(render: 'a -> float)" "render"
+        ]
 
     | _, _, "any" when markdownDocLines |> List.exists (fun s -> s.Contains "The DOM API casts this to a string") ->
         [RegularPropOverload.create "(value: string)" "value"]

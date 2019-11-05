@@ -40,6 +40,13 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
   static member inline appBar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/AppBar") [ Feliz.MaterialUI.appBar.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline autocomplete props = createElement (importDefault "@material-ui/lab/Autocomplete") props
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).

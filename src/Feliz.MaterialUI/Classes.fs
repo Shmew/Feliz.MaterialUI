@@ -33,6 +33,48 @@ module classes =
     static member inline colorSecondary(className: string) : IAppBarClasses = unbox ("colorSecondary", className)
 
 
+  type IAutocompleteClasses = interface end
+  
+  [<Erase>]
+  type autocomplete =
+    /// Styles applied to the root element.
+    static member inline root(className: string) : IAutocompleteClasses = unbox ("root", className)
+    /// Pseudo-class applied to the root element if focused.
+    static member inline focused(className: string) : IAutocompleteClasses = unbox ("focused", className)
+    /// Styles applied to the tag elements, e.g. the chips.
+    static member inline tag(className: string) : IAutocompleteClasses = unbox ("tag", className)
+    /// Styles applied to the Input element.
+    static member inline inputRoot(className: string) : IAutocompleteClasses = unbox ("inputRoot", className)
+    /// Styles applied to the input element.
+    static member inline input(className: string) : IAutocompleteClasses = unbox ("input", className)
+    /// Styles applied to the input element if tag focused.
+    static member inline inputFocused(className: string) : IAutocompleteClasses = unbox ("inputFocused", className)
+    /// Styles applied to the clear indictator.
+    static member inline clearIndicator(className: string) : IAutocompleteClasses = unbox ("clearIndicator", className)
+    /// Styles applied to the clear indictator if the input is dirty.
+    static member inline clearIndicatorDirty(className: string) : IAutocompleteClasses = unbox ("clearIndicatorDirty", className)
+    /// Styles applied to the popup indictator.
+    static member inline popupIndicator(className: string) : IAutocompleteClasses = unbox ("popupIndicator", className)
+    /// Styles applied to the popup indictator if the popup is open.
+    static member inline popupIndicatorOpen(className: string) : IAutocompleteClasses = unbox ("popupIndicatorOpen", className)
+    /// Styles applied to the popup element.
+    static member inline popup(className: string) : IAutocompleteClasses = unbox ("popup", className)
+    /// Styles applied to the `Paper` component.
+    static member inline paper(className: string) : IAutocompleteClasses = unbox ("paper", className)
+    /// Styles applied to the `listbox` component.
+    static member inline listbox(className: string) : IAutocompleteClasses = unbox ("listbox", className)
+    /// Styles applied to the loading wrapper.
+    static member inline loading(className: string) : IAutocompleteClasses = unbox ("loading", className)
+    /// Styles applied to the no option wrapper.
+    static member inline noOptions(className: string) : IAutocompleteClasses = unbox ("noOptions", className)
+    /// Styles applied to the option elements.
+    static member inline option(className: string) : IAutocompleteClasses = unbox ("option", className)
+    /// Styles applied to the group's label elements.
+    static member inline groupLabel(className: string) : IAutocompleteClasses = unbox ("groupLabel", className)
+    /// Styles applied to the group's ul elements.
+    static member inline groupUl(className: string) : IAutocompleteClasses = unbox ("groupUl", className)
+
+
   type IAvatarClasses = interface end
   
   [<Erase>]
@@ -613,11 +655,11 @@ module classes =
   type expansionPanelSummary =
     /// Styles applied to the root element.
     static member inline root(className: string) : IExpansionPanelSummaryClasses = unbox ("root", className)
-    /// Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
+    /// Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
     static member inline expanded(className: string) : IExpansionPanelSummaryClasses = unbox ("expanded", className)
-    /// Styles applied to the root and children wrapper elements when focused.
+    /// Pseudo-class applied to the root element if `focused={true}`.
     static member inline focused(className: string) : IExpansionPanelSummaryClasses = unbox ("focused", className)
-    /// Styles applied to the root element if `disabled={true}`.
+    /// Pseudo-class applied to the root element if `disabled={true}`.
     static member inline disabled(className: string) : IExpansionPanelSummaryClasses = unbox ("disabled", className)
     /// Styles applied to the children wrapper element.
     static member inline content(className: string) : IExpansionPanelSummaryClasses = unbox ("content", className)
@@ -662,9 +704,9 @@ module classes =
     static member inline root(className: string) : IFilledInputClasses = unbox ("root", className)
     /// Styles applied to the root element if `disableUnderline={false}`.
     static member inline underline(className: string) : IFilledInputClasses = unbox ("underline", className)
-    /// Styles applied to the root element if the component is focused.
+    /// Pseudo-class applied to the root element if the component is focused.
     static member inline focused(className: string) : IFilledInputClasses = unbox ("focused", className)
-    /// Styles applied to the root element if `disabled={true}`.
+    /// Pseudo-class applied to the root element if `disabled={true}`.
     static member inline disabled(className: string) : IFilledInputClasses = unbox ("disabled", className)
     /// Styles applied to the root element if `startAdornment` is provided.
     static member inline adornedStart(className: string) : IFilledInputClasses = unbox ("adornedStart", className)
@@ -1294,6 +1336,8 @@ module classes =
     static member inline disabled(className: string) : INativeSelectClasses = unbox ("disabled", className)
     /// Styles applied to the icon component.
     static member inline icon(className: string) : INativeSelectClasses = unbox ("icon", className)
+    /// Styles applied to the icon component if the popup is open.
+    static member inline iconOpen(className: string) : INativeSelectClasses = unbox ("iconOpen", className)
     /// Styles applied to the icon component if `variant="filled"`.
     static member inline iconFilled(className: string) : INativeSelectClasses = unbox ("iconFilled", className)
     /// Styles applied to the icon component if `variant="outlined"`.
@@ -1468,6 +1512,8 @@ module classes =
     static member inline disabled(className: string) : ISelectClasses = unbox ("disabled", className)
     /// Styles applied to the icon component.
     static member inline icon(className: string) : ISelectClasses = unbox ("icon", className)
+    /// Styles applied to the icon component if the popup is open.
+    static member inline iconOpen(className: string) : ISelectClasses = unbox ("iconOpen", className)
     /// Styles applied to the icon component if `variant="filled"`.
     static member inline iconFilled(className: string) : ISelectClasses = unbox ("iconFilled", className)
     /// Styles applied to the icon component if `variant="outlined"`.
@@ -1507,7 +1553,7 @@ module classes =
     static member inline marked(className: string) : ISliderClasses = unbox ("marked", className)
     /// Pseudo-class applied to the root element if `orientation="vertical"`.
     static member inline vertical(className: string) : ISliderClasses = unbox ("vertical", className)
-    /// Pseudo-class applied to the root element if `disabled={true}`.
+    /// Pseudo-class applied to the root and thumb element if `disabled={true}`.
     static member inline disabled(className: string) : ISliderClasses = unbox ("disabled", className)
     /// Styles applied to the rail element.
     static member inline rail(className: string) : ISliderClasses = unbox ("rail", className)

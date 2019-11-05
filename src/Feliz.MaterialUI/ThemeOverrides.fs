@@ -9,6 +9,7 @@ open Fable.Core.JsInterop
 open Feliz
 
 type IMuiAppBarOverrideRule = interface end
+type IMuiAutocompleteOverrideRule = interface end
 type IMuiAvatarOverrideRule = interface end
 type IMuiBackdropOverrideRule = interface end
 type IMuiBadgeOverrideRule = interface end
@@ -115,6 +116,7 @@ type IMuiTypographyOverrideRule = interface end
 [<Erase>]
 type overrides =
   static member inline muiAppBar (rules: IMuiAppBarOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAppBar", createObj !!rules)
+  static member inline muiAutocomplete (rules: IMuiAutocompleteOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAutocomplete", createObj !!rules)
   static member inline muiAvatar (rules: IMuiAvatarOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAvatar", createObj !!rules)
   static member inline muiBackdrop (rules: IMuiBackdropOverrideRule list) : IOverrideStyleSheet = unbox ("MuiBackdrop", createObj !!rules)
   static member inline muiBadge (rules: IMuiBadgeOverrideRule list) : IOverrideStyleSheet = unbox ("MuiBadge", createObj !!rules)
@@ -240,6 +242,45 @@ module overrides =
     static member inline colorPrimary(styles: IStyleAttribute list) : IMuiAppBarOverrideRule = unbox ("colorPrimary", createObj !!styles)
     /// Styles applied to the root element if `color="secondary"`.
     static member inline colorSecondary(styles: IStyleAttribute list) : IMuiAppBarOverrideRule = unbox ("colorSecondary", createObj !!styles)
+
+  [<Erase>]
+  type muiAutocomplete =
+    /// Styles applied to the root element.
+    static member inline root(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("root", createObj !!styles)
+    /// Pseudo-class applied to the root element if focused.
+    static member inline focused(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("focused", createObj !!styles)
+    /// Styles applied to the tag elements, e.g. the chips.
+    static member inline tag(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("tag", createObj !!styles)
+    /// Styles applied to the Input element.
+    static member inline inputRoot(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("inputRoot", createObj !!styles)
+    /// Styles applied to the input element.
+    static member inline input(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("input", createObj !!styles)
+    /// Styles applied to the input element if tag focused.
+    static member inline inputFocused(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("inputFocused", createObj !!styles)
+    /// Styles applied to the clear indictator.
+    static member inline clearIndicator(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("clearIndicator", createObj !!styles)
+    /// Styles applied to the clear indictator if the input is dirty.
+    static member inline clearIndicatorDirty(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("clearIndicatorDirty", createObj !!styles)
+    /// Styles applied to the popup indictator.
+    static member inline popupIndicator(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popupIndicator", createObj !!styles)
+    /// Styles applied to the popup indictator if the popup is open.
+    static member inline popupIndicatorOpen(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popupIndicatorOpen", createObj !!styles)
+    /// Styles applied to the popup element.
+    static member inline popup(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popup", createObj !!styles)
+    /// Styles applied to the `Paper` component.
+    static member inline paper(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("paper", createObj !!styles)
+    /// Styles applied to the `listbox` component.
+    static member inline listbox(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("listbox", createObj !!styles)
+    /// Styles applied to the loading wrapper.
+    static member inline loading(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("loading", createObj !!styles)
+    /// Styles applied to the no option wrapper.
+    static member inline noOptions(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("noOptions", createObj !!styles)
+    /// Styles applied to the option elements.
+    static member inline option(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("option", createObj !!styles)
+    /// Styles applied to the group's label elements.
+    static member inline groupLabel(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("groupLabel", createObj !!styles)
+    /// Styles applied to the group's ul elements.
+    static member inline groupUl(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("groupUl", createObj !!styles)
 
   [<Erase>]
   type muiAvatar =
@@ -723,11 +764,11 @@ module overrides =
   type muiExpansionPanelSummary =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiExpansionPanelSummaryOverrideRule = unbox ("root", createObj !!styles)
-    /// Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
+    /// Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
     static member inline expanded(styles: IStyleAttribute list) : IMuiExpansionPanelSummaryOverrideRule = unbox ("expanded", createObj !!styles)
-    /// Styles applied to the root and children wrapper elements when focused.
+    /// Pseudo-class applied to the root element if `focused={true}`.
     static member inline focused(styles: IStyleAttribute list) : IMuiExpansionPanelSummaryOverrideRule = unbox ("focused", createObj !!styles)
-    /// Styles applied to the root element if `disabled={true}`.
+    /// Pseudo-class applied to the root element if `disabled={true}`.
     static member inline disabled(styles: IStyleAttribute list) : IMuiExpansionPanelSummaryOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the children wrapper element.
     static member inline content(styles: IStyleAttribute list) : IMuiExpansionPanelSummaryOverrideRule = unbox ("content", createObj !!styles)
@@ -763,9 +804,9 @@ module overrides =
     static member inline root(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("root", createObj !!styles)
     /// Styles applied to the root element if `disableUnderline={false}`.
     static member inline underline(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("underline", createObj !!styles)
-    /// Styles applied to the root element if the component is focused.
+    /// Pseudo-class applied to the root element if the component is focused.
     static member inline focused(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("focused", createObj !!styles)
-    /// Styles applied to the root element if `disabled={true}`.
+    /// Pseudo-class applied to the root element if `disabled={true}`.
     static member inline disabled(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the root element if `startAdornment` is provided.
     static member inline adornedStart(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("adornedStart", createObj !!styles)
@@ -1299,6 +1340,8 @@ module overrides =
     static member inline disabled(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the icon component.
     static member inline icon(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("icon", createObj !!styles)
+    /// Styles applied to the icon component if the popup is open.
+    static member inline iconOpen(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("iconOpen", createObj !!styles)
     /// Styles applied to the icon component if `variant="filled"`.
     static member inline iconFilled(styles: IStyleAttribute list) : IMuiNativeSelectOverrideRule = unbox ("iconFilled", createObj !!styles)
     /// Styles applied to the icon component if `variant="outlined"`.
@@ -1440,6 +1483,8 @@ module overrides =
     static member inline disabled(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the icon component.
     static member inline icon(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("icon", createObj !!styles)
+    /// Styles applied to the icon component if the popup is open.
+    static member inline iconOpen(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("iconOpen", createObj !!styles)
     /// Styles applied to the icon component if `variant="filled"`.
     static member inline iconFilled(styles: IStyleAttribute list) : IMuiSelectOverrideRule = unbox ("iconFilled", createObj !!styles)
     /// Styles applied to the icon component if `variant="outlined"`.
@@ -1470,7 +1515,7 @@ module overrides =
     static member inline marked(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("marked", createObj !!styles)
     /// Pseudo-class applied to the root element if `orientation="vertical"`.
     static member inline vertical(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("vertical", createObj !!styles)
-    /// Pseudo-class applied to the root element if `disabled={true}`.
+    /// Pseudo-class applied to the root and thumb element if `disabled={true}`.
     static member inline disabled(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the rail element.
     static member inline rail(styles: IStyleAttribute list) : IMuiSliderOverrideRule = unbox ("rail", createObj !!styles)

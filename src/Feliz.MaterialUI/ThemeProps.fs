@@ -12,6 +12,7 @@ open Feliz
 [<Erase>]
 type themeProps =
   static member inline muiAppBar(props: IReactProperty list) : IThemeProps = unbox ("MuiAppBar", createObj !!props)
+  static member inline muiAutocomplete(props: IReactProperty list) : IThemeProps = unbox ("MuiAutocomplete", createObj !!props)
   static member inline muiAvatar(props: IReactProperty list) : IThemeProps = unbox ("MuiAvatar", createObj !!props)
   static member inline muiBackdrop(props: IReactProperty list) : IThemeProps = unbox ("MuiBackdrop", createObj !!props)
   static member inline muiBadge(props: IReactProperty list) : IThemeProps = unbox ("MuiBadge", createObj !!props)

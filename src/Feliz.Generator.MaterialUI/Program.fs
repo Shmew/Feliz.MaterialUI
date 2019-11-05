@@ -4,10 +4,6 @@ open System.IO
 open Feliz.Generator
 
 
-// TODO: Separate core and lab? Exclude lab?
-// TODO: remove "Mui" prefix for ThemeProps and/or ThemeOverrides?
-
-
 [<EntryPoint>]
 let main argv =
   async {

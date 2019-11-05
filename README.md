@@ -203,6 +203,12 @@ The [`useMediaQuery` hook](https://material-ui.com/components/use-media-query/) 
 Changelog
 ---------
 
+### 0.8.0
+
+* Updated for @material-ui/lab 4.0.0-alpha.30 (new autocomplete component)
+* Regenerated based on MUI API docs
+* Breaking: `buttonRef` props removed (no longer exist in docs)
+
 ### 0.7.2
 
 * Added warning to `@material-ui/lab` component docs
