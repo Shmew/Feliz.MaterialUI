@@ -103,8 +103,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", "filterOptions", "func" ->
         [
-          RegularPropOverload.create "(filterOptions: 'option [] -> string -> 'option [])" "(System.Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> filterOptions opts s.inputValue))"
-          RegularPropOverload.create "(filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option [])" "(System.Func<_,_,_> filterOptions)"
+          RegularPropOverload.create "(filterOptions: 'option [] -> string -> 'option [])" "(Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> filterOptions opts s.inputValue))"
+          RegularPropOverload.create "(filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option [])" "(Func<_,_,_> filterOptions)"
         ]
 
     | "autocomplete", "getOptionDisabled", "func" ->
@@ -118,8 +118,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", "onChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> 'option -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: 'option -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> 'option -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "autocomplete", "options", "array" ->
@@ -132,10 +132,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         [RegularPropOverload.create "(render: AutocompleteRenderInputParams -> ReactElement)" "render"]
 
     | "autocomplete", "renderOption", "func" ->
-        [RegularPropOverload.create "(render: 'option -> AutocompleteRenderOptionState -> ReactElement)" "(System.Func<_,_,_> render)"]
+        [RegularPropOverload.create "(render: 'option -> AutocompleteRenderOptionState -> ReactElement)" "(Func<_,_,_> render)"]
 
     | "autocomplete", "renderTags", "func" ->
-        [RegularPropOverload.create "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)" "(System.Func<_,_,_> render)"]
+        [RegularPropOverload.create "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)" "(Func<_,_,_> render)"]
 
     | "popover", "anchorPosition",  "{ left: number, top: number }" ->
         [
@@ -219,8 +219,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | ("bottomNavigation" | "tabs"), "onChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> 'a -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: 'a -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> 'a -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'a -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "toggleButtonGroup", "value", "any" ->
@@ -237,8 +237,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "expansionPanel", "onChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> bool -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: bool -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> bool -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: bool -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "tablePagination", "labelDisplayedRows", "func" ->
@@ -247,28 +247,28 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "rating", ("onChange" | "onChangeActive"), "func"
     | "slider", ("onChange" | "onChangeCommitted"), "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> int -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: Event -> float -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: int -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
-          RegularPropOverload.create "(handler: float -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: Event -> float -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: float -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "select", "onChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> ReactElement -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: 'a -> unit)" "(System.Func<_,_,_> (fun (e: Event) _ -> handler !!e.Value))"
+          RegularPropOverload.create "(handler: Event -> ReactElement -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'a -> unit)" "(Func<_,_,_> (fun (e: Event) _ -> handler !!e.Value))"
         ]
 
     | "tablePagination", "onChangePage", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> int -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: int -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "toggleButtonGroup", "onChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> 'a -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: 'a -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> 'a -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'a -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "slider", "step", "number" ->
@@ -304,44 +304,44 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "dialog", "onClose", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> DialogCloseReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: DialogCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> DialogCloseReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: DialogCloseReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "menu", "onClose", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> MenuCloseReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: MenuCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> MenuCloseReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: MenuCloseReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "modal", "onClose", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> ModalCloseReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: ModalCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> ModalCloseReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: ModalCloseReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "popover", "onClose", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> PopoverCloseReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: PopoverCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> PopoverCloseReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: PopoverCloseReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "snackbar", "onClose", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> SnackbarCloseReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: SnackbarCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> SnackbarCloseReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: SnackbarCloseReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "speedDial", "onClose", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> SpeedDialCloseReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: SpeedDialCloseReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> SpeedDialCloseReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: SpeedDialCloseReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | "speedDial", "onOpen", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> SpeedDialOpenReason -> unit)" "(System.Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: SpeedDialOpenReason -> unit)" "(System.Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> SpeedDialOpenReason -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: SpeedDialOpenReason -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
     | ("modal" | "portal"), "onRendered", "func" ->
