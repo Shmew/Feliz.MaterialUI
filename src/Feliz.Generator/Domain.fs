@@ -230,7 +230,7 @@ module Component =
   /// Creates a component with the specified method name and import
   /// path/selector, no documentation, props, or prop inheritance, and the
   /// default component overload.
-  let createImportSelector methodName importPath importSelector = {
+  let createImportSelector methodName importSelector importPath = {
     DocLines = []
     MethodName = methodName
     Source = ImportPath (importPath, Some importSelector)
