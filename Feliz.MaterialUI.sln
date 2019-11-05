@@ -22,6 +22,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{B2C7FAE4-D267-4914-8385-5BA5A99B75DF}"
 	ProjectSection(SolutionItems) = preProject
 		docs-app\sass\main.sass = docs-app\sass\main.sass
+		docs-app\README.md = docs-app\README.md
 	EndProjectSection
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Tests", "docs-app\tests\Tests.fsproj", "{F78149D0-4474-4BA7-A83F-AB1064549585}"

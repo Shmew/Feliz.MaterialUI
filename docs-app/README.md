@@ -29,3 +29,13 @@ To run the tests using the command line and of course in your CI server, you hav
 ```
 npm test
 ```
+
+Publishing
+----------
+
+To publish, run this command:
+
+```
+npm run build && node publish.js
+```
+
