@@ -206,8 +206,9 @@ Changelog
 ### 0.8.0
 
 * Regenerated based on MUI API docs
-* Breaking: `buttonRef` props removed (no longer exist in docs)
+* Breaking: `buttonRef` props removed (no longer exist in MUI API docs)
 * Breaking: `muiThemeProvider` is now `themeProvider` ([#27](https://github.com/cmeeren/Feliz.MaterialUI/issues/27))
+* Updated for @material-ui/core 4.6
 * Updated for @material-ui/lab 4.0.0-alpha.30 (new autocomplete component)
 
 ### 0.7.2

@@ -83,6 +83,12 @@ module classes =
     static member inline root(className: string) : IAvatarClasses = unbox ("root", className)
     /// Styles applied to the root element if there are children and not `src` or `srcSet`.
     static member inline colorDefault(className: string) : IAvatarClasses = unbox ("colorDefault", className)
+    /// Styles applied to the root element if `variant="circle"`.
+    static member inline circle(className: string) : IAvatarClasses = unbox ("circle", className)
+    /// Styles applied to the root element if `variant="rounded"`.
+    static member inline rounded(className: string) : IAvatarClasses = unbox ("rounded", className)
+    /// Styles applied to the root element if `variant="square"`.
+    static member inline square(className: string) : IAvatarClasses = unbox ("square", className)
     /// Styles applied to the img element if either `src` or `srcSet` is defined.
     static member inline img(className: string) : IAvatarClasses = unbox ("img", className)
 
@@ -399,6 +405,7 @@ module classes =
     static member inline outlinedSecondary(className: string) : IChipClasses = unbox ("outlinedSecondary", className)
     /// Styles applied to the `avatar` element.
     static member inline avatar(className: string) : IChipClasses = unbox ("avatar", className)
+    /// Styles applied to the `avatar` element if `size="small"`.
     static member inline avatarSmall(className: string) : IChipClasses = unbox ("avatarSmall", className)
     /// Styles applied to the `avatar` element if `color="primary"`.
     static member inline avatarColorPrimary(className: string) : IChipClasses = unbox ("avatarColorPrimary", className)
@@ -702,6 +709,8 @@ module classes =
   type filledInput =
     /// Styles applied to the root element.
     static member inline root(className: string) : IFilledInputClasses = unbox ("root", className)
+    /// Styles applied to the root element if color secondary.
+    static member inline colorSecondary(className: string) : IFilledInputClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `disableUnderline={false}`.
     static member inline underline(className: string) : IFilledInputClasses = unbox ("underline", className)
     /// Pseudo-class applied to the root element if the component is focused.
@@ -804,6 +813,8 @@ module classes =
   type formLabel =
     /// Styles applied to the root element.
     static member inline root(className: string) : IFormLabelClasses = unbox ("root", className)
+    /// Styles applied to the root element if the color is secondary.
+    static member inline colorSecondary(className: string) : IFormLabelClasses = unbox ("colorSecondary", className)
     /// Pseudo-class applied to the root element if `focused={true}`.
     static member inline focused(className: string) : IFormLabelClasses = unbox ("focused", className)
     /// Pseudo-class applied to the root element if `disabled={true}`.
@@ -990,6 +1001,8 @@ module classes =
     static member inline focused(className: string) : IInputClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.
     static member inline disabled(className: string) : IInputClasses = unbox ("disabled", className)
+    /// Styles applied to the root element if color secondary.
+    static member inline colorSecondary(className: string) : IInputClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `disableUnderline={false}`.
     static member inline underline(className: string) : IInputClasses = unbox ("underline", className)
     /// Styles applied to the root element if `error={true}`.
@@ -1050,6 +1063,8 @@ module classes =
     static member inline marginDense(className: string) : IInputBaseClasses = unbox ("marginDense", className)
     /// Styles applied to the root element if `multiline={true}`.
     static member inline multiline(className: string) : IInputBaseClasses = unbox ("multiline", className)
+    /// Styles applied to the root element if the color is secondary.
+    static member inline colorSecondary(className: string) : IInputBaseClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(className: string) : IInputBaseClasses = unbox ("fullWidth", className)
     /// Styles applied to the `input` element.
@@ -1353,6 +1368,8 @@ module classes =
   type outlinedInput =
     /// Styles applied to the root element.
     static member inline root(className: string) : IOutlinedInputClasses = unbox ("root", className)
+    /// Styles applied to the root element if the color is secondary.
+    static member inline colorSecondary(className: string) : IOutlinedInputClasses = unbox ("colorSecondary", className)
     /// Styles applied to the root element if the component is focused.
     static member inline focused(className: string) : IOutlinedInputClasses = unbox ("focused", className)
     /// Styles applied to the root element if `disabled={true}`.

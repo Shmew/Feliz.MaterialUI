@@ -288,6 +288,12 @@ module overrides =
     static member inline root(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("root", createObj !!styles)
     /// Styles applied to the root element if there are children and not `src` or `srcSet`.
     static member inline colorDefault(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("colorDefault", createObj !!styles)
+    /// Styles applied to the root element if `variant="circle"`.
+    static member inline circle(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("circle", createObj !!styles)
+    /// Styles applied to the root element if `variant="rounded"`.
+    static member inline rounded(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("rounded", createObj !!styles)
+    /// Styles applied to the root element if `variant="square"`.
+    static member inline square(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("square", createObj !!styles)
     /// Styles applied to the img element if either `src` or `srcSet` is defined.
     static member inline img(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("img", createObj !!styles)
 
@@ -556,6 +562,7 @@ module overrides =
     static member inline outlinedSecondary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("outlinedSecondary", createObj !!styles)
     /// Styles applied to the `avatar` element.
     static member inline avatar(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("avatar", createObj !!styles)
+    /// Styles applied to the `avatar` element if `size="small"`.
     static member inline avatarSmall(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("avatarSmall", createObj !!styles)
     /// Styles applied to the `avatar` element if `color="primary"`.
     static member inline avatarColorPrimary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("avatarColorPrimary", createObj !!styles)
@@ -802,6 +809,8 @@ module overrides =
   type muiFilledInput =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if color secondary.
+    static member inline colorSecondary(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if `disableUnderline={false}`.
     static member inline underline(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("underline", createObj !!styles)
     /// Pseudo-class applied to the root element if the component is focused.
@@ -889,6 +898,8 @@ module overrides =
   type muiFormLabel =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiFormLabelOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if the color is secondary.
+    static member inline colorSecondary(styles: IStyleAttribute list) : IMuiFormLabelOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Pseudo-class applied to the root element if `focused={true}`.
     static member inline focused(styles: IStyleAttribute list) : IMuiFormLabelOverrideRule = unbox ("focused", createObj !!styles)
     /// Pseudo-class applied to the root element if `disabled={true}`.
@@ -1048,6 +1059,8 @@ module overrides =
     static member inline focused(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("focused", createObj !!styles)
     /// Styles applied to the root element if `disabled={true}`.
     static member inline disabled(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("disabled", createObj !!styles)
+    /// Styles applied to the root element if color secondary.
+    static member inline colorSecondary(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if `disableUnderline={false}`.
     static member inline underline(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("underline", createObj !!styles)
     /// Styles applied to the root element if `error={true}`.
@@ -1102,6 +1115,8 @@ module overrides =
     static member inline marginDense(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("marginDense", createObj !!styles)
     /// Styles applied to the root element if `multiline={true}`.
     static member inline multiline(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("multiline", createObj !!styles)
+    /// Styles applied to the root element if the color is secondary.
+    static member inline colorSecondary(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("fullWidth", createObj !!styles)
     /// Styles applied to the `input` element.
@@ -1351,6 +1366,8 @@ module overrides =
   type muiOutlinedInput =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if the color is secondary.
+    static member inline colorSecondary(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("colorSecondary", createObj !!styles)
     /// Styles applied to the root element if the component is focused.
     static member inline focused(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("focused", createObj !!styles)
     /// Styles applied to the root element if `disabled={true}`.

@@ -81,7 +81,7 @@ type autocomplete =
   /// If `true`, the portion of the selected suggestion that has not been typed by the user, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state.
   static member inline autoComplete (value: bool) = Interop.mkAttr "autoComplete" value
   /// If `true`, the first option is automatically highlighted.
-  static member inline autoHightlight (value: bool) = Interop.mkAttr "autoHightlight" value
+  static member inline autoHighlight (value: bool) = Interop.mkAttr "autoHighlight" value
   /// If `true`, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.
   static member inline autoSelect (value: bool) = Interop.mkAttr "autoSelect" value
   /// Override or extend the styles applied to the component. Use `classes.autocomplete` to specify class names.
@@ -96,6 +96,8 @@ type autocomplete =
   static member inline disableClearable (value: bool) = Interop.mkAttr "disableClearable" value
   /// If `true`, the popup won't close when a value is selected.
   static member inline disableCloseOnSelect (value: bool) = Interop.mkAttr "disableCloseOnSelect" value
+  /// If `true`, the input will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the list box in the popup will not wrap focus.
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
   /// If `true`, the popup won't open on input focus.
@@ -284,6 +286,15 @@ type avatar =
   static member inline src (value: string) = Interop.mkAttr "src" value
   /// The `srcSet` attribute for the `img` element.
   static member inline srcSet (value: string) = Interop.mkAttr "srcSet" value
+
+module avatar =
+
+  /// The shape of the avatar.
+  [<Erase>]
+  type variant =
+    static member inline circle = Interop.mkAttr "variant" "circle"
+    static member inline rounded = Interop.mkAttr "variant" "rounded"
+    static member inline square = Interop.mkAttr "variant" "square"
 
 
 [<Erase>]
@@ -2141,6 +2152,12 @@ type filledInput =
 
 module filledInput =
 
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
   type margin =
@@ -2172,6 +2189,12 @@ type formControl =
   static member inline required (value: bool) = Interop.mkAttr "required" value
 
 module formControl =
+
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
@@ -2343,6 +2366,14 @@ type formLabel =
   static member inline focused (value: bool) = Interop.mkAttr "focused" value
   /// If `true`, the label will indicate that the input is required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
+
+module formLabel =
+
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
 
 [<Erase>]
@@ -2952,6 +2983,12 @@ type input =
 
 module input =
 
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
   type margin =
@@ -3075,6 +3112,12 @@ type inputBase =
 
 module inputBase =
 
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
   type margin =
@@ -3124,6 +3167,12 @@ type inputLabel =
   static member inline filled (value: bool) = Interop.mkAttr "filled" value
 
 module inputLabel =
+
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -4172,6 +4221,14 @@ module nativeSelect =
 
   /// *Inherited from `input`*
   ///
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
+  /// *Inherited from `input`*
+  ///
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
   type margin =
@@ -4287,6 +4344,12 @@ type outlinedInput =
   static member inline select (value: bool) = Interop.mkAttr "select" value
 
 module outlinedInput =
+
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -5190,6 +5253,14 @@ module select =
     static member inline standard = Interop.mkAttr "variant" "standard"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+
+  /// *Inherited from `input`*
+  ///
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
   /// *Inherited from `input`*
   ///
@@ -7130,6 +7201,12 @@ type textField =
   static member inline hiddenLabel (value: bool) = Interop.mkAttr "hiddenLabel" value
 
 module textField =
+
+  /// The color of the component.
+  [<Erase>]
+  type color =
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
 
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
