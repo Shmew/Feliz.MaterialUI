@@ -14,7 +14,7 @@ open Feliz
 
 
 [<Erase>]
-type muiThemeProvider =
+type themeProvider =
   /// Your component tree.
   static member inline children (elements: ReactElement seq) = prop.children elements
   /// A theme object. You can provide a function to extend the outer theme.

@@ -10,7 +10,10 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>f# fable bindings feliz react material-ui materialui</PackageTags>
     <Version>0.8.0</Version>
-    <PackageReleaseNotes>Updated for @material-ui/lab 4.0.0-alpha.30 (new autocomplete component)</PackageReleaseNotes>
+    <PackageReleaseNotes>- Regenerated based on MUI API docs
+- Breaking: buttonRef props removed (no longer exist in docs)
+- Breaking: muiThemeProvider is now themeProvider (see issue #27)
+- Updated for @material-ui/lab 4.0.0-alpha.30 (new autocomplete component)</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>

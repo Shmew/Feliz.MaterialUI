@@ -28,7 +28,7 @@ module MuiHelpers =
 [<Erase>]
 type Mui =
 
-  static member inline muiThemeProvider props = createElement (importDefault "@material-ui/core/styles/MuiThemeProvider") props
+  static member inline themeProvider props = createElement (import "ThemeProvider" "@material-ui/core") props
 
   /// The `ref` is forwarded to the root element.
   ///

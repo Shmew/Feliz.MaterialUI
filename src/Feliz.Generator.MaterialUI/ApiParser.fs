@@ -742,8 +742,8 @@ let parseApi () =
     |> Array.Parallel.map parseComponent
     |> Array.toList
 
-  let muiThemeProvider =
-    Component.createImportDefault "muiThemeProvider" "@material-ui/core/styles/MuiThemeProvider"
+  let themeProvider =
+    Component.createImportSelector "themeProvider" "ThemeProvider" "@material-ui/core"
     |> Component.addProp (
         Prop.create "children" "children"
         |> Prop.setDocs ["Your component tree."]
@@ -761,7 +761,7 @@ let parseApi () =
 
   let api =
     ComponentApi.create "Feliz.MaterialUI" "Mui"
-    |> ComponentApi.addComponent muiThemeProvider
+    |> ComponentApi.addComponent themeProvider
     |> ComponentApi.addComponents (components |> List.map (fun c -> c.GeneratorComponent))
 
   {
