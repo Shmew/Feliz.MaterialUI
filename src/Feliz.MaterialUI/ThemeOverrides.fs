@@ -265,8 +265,10 @@ module overrides =
     static member inline popupIndicator(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popupIndicator", createObj !!styles)
     /// Styles applied to the popup indictator if the popup is open.
     static member inline popupIndicatorOpen(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popupIndicatorOpen", createObj !!styles)
-    /// Styles applied to the popup element.
-    static member inline popup(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popup", createObj !!styles)
+    /// Styles applied to the popper element.
+    static member inline popper(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popper", createObj !!styles)
+    /// Styles applied to the popper element if `disablePortal={true}`.
+    static member inline popperDisablePortal(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("popperDisablePortal", createObj !!styles)
     /// Styles applied to the `Paper` component.
     static member inline paper(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("paper", createObj !!styles)
     /// Styles applied to the `listbox` component.

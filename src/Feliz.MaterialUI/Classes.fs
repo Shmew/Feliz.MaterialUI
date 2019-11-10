@@ -57,8 +57,10 @@ module classes =
     static member inline popupIndicator(className: string) : IAutocompleteClasses = unbox ("popupIndicator", className)
     /// Styles applied to the popup indictator if the popup is open.
     static member inline popupIndicatorOpen(className: string) : IAutocompleteClasses = unbox ("popupIndicatorOpen", className)
-    /// Styles applied to the popup element.
-    static member inline popup(className: string) : IAutocompleteClasses = unbox ("popup", className)
+    /// Styles applied to the popper element.
+    static member inline popper(className: string) : IAutocompleteClasses = unbox ("popper", className)
+    /// Styles applied to the popper element if `disablePortal={true}`.
+    static member inline popperDisablePortal(className: string) : IAutocompleteClasses = unbox ("popperDisablePortal", className)
     /// Styles applied to the `Paper` component.
     static member inline paper(className: string) : IAutocompleteClasses = unbox ("paper", className)
     /// Styles applied to the `listbox` component.

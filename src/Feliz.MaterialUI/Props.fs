@@ -102,6 +102,8 @@ type autocomplete =
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
   /// If `true`, the popup won't open on input focus.
   static member inline disableOpenOnFocus (value: bool) = Interop.mkAttr "disableOpenOnFocus" value
+  /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
+  static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
   /// A filter function that determines the options that are eligible.
   ///
   /// **Signature:**
@@ -214,8 +216,8 @@ type autocomplete =
   static member inline options (options: 'option []) = Interop.mkAttr "options" options
   /// The component used to render the body of the popup.
   static member inline PaperComponent (value: ReactElementType) = Interop.mkAttr "PaperComponent" value
-  /// The component used to render the popup.
-  static member inline PopupComponent (value: ReactElementType) = Interop.mkAttr "PopupComponent" value
+  /// The component used to position the popup.
+  static member inline PopperComponent (value: ReactElementType) = Interop.mkAttr "PopperComponent" value
   /// Render the group.
   ///
   /// **Signature:**
@@ -246,11 +248,13 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(value: any) => ReactNode`
+  /// `function(value: any, getTagProps: function) => ReactNode`
   ///
   /// *value:* The `value` provided to the component.
+  ///
+  /// *getTagProps:* A tag props getter.
   static member inline renderTags (render: 'option [] -> AutocompleteRenderValueState -> ReactElement) = Interop.mkAttr "renderTags" (Func<_,_,_> render)
-  /// The input value.
+  /// The value of the autocomplete.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()

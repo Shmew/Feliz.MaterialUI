@@ -203,6 +203,10 @@ The [`useMediaQuery` hook](https://material-ui.com/components/use-media-query/) 
 Changelog
 ---------
 
+### 0.8.1
+
+* Regenerated based on MUI API docs
+
 ### 0.8.0
 
 * Regenerated based on MUI API docs
