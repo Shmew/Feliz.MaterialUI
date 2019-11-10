@@ -203,7 +203,7 @@ The [`useMediaQuery` hook](https://material-ui.com/components/use-media-query/) 
 Changelog
 ---------
 
-### 0.8.1
+### 0.8.2
 
 * Regenerated based on MUI API docs
 * Fixed `themeProvider` import
