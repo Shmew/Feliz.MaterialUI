@@ -206,6 +206,7 @@ Changelog
 ### 0.8.1
 
 * Regenerated based on MUI API docs
+* Fixed `themeProvider` import
 
 ### 0.8.0
 

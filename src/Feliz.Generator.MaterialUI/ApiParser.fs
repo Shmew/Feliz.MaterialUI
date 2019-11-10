@@ -743,7 +743,7 @@ let parseApi () =
     |> Array.toList
 
   let themeProvider =
-    Component.createImportSelector "themeProvider" "ThemeProvider" "@material-ui/core"
+    Component.createImportSelector "themeProvider" "ThemeProvider" "@material-ui/core/styles"
     |> Component.addProp (
         Prop.create "children" "children"
         |> Prop.setDocs ["Your component tree."]
