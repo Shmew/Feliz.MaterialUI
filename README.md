@@ -7,6 +7,23 @@ Documentation
 
 https://cmeeren.github.io/Feliz.MaterialUI/
 
+Contributing
+------------
+
+This project uses `fake`, `paket`, and `femto` as .NET Core 3 local tools. Therefore, run `dotnet tool restore` to restore the necessary CLI tools before doing anything else. 
+
+### Regular maintenance
+
+1. Check for the latest versions of `@material-ui/core` and `@material-ui/lab`, and update the Femto versions in `Feliz.MaterialUI.fsproj` correspondingly
+2. Run the `RegularMaintenance` target, which will update all packages and regenerate the bindings based on the live MUI docs
+3. Check all changes to Feliz.MaterialUI and adjust the generator’s API parser as needed. Remember to check all doc comment updates too, since changes there may indicate that something must be changed elsewhere. Run the `RegenerateFromCache` (or run the generator project in VS) target to re-generate based on the recently downloaded HTML pages.
+4. Update `Feliz.MaterialUI.fsproj` with a new version number and release notes
+5. Update the changelog
+6. Update relevant docs (typically in `docs-app/public/pages`, potentially also by adding menu items in `App.fs`)
+7. Commit and tag the commit (this is what triggers deployment from  AppVeyor). For consistency, the tag should be identical to the version (e.g. `1.2.3`).
+8. Push the changes and the tag to the repo. If AppVeyor build succeeds, the package is automatically published to NuGet.
+9. Publish the docs by running the `Docs:Publish` target
+
 Changelog
 ---------
 
@@ -67,18 +84,3 @@ Changelog
 ### 0.1.0-alpha
 
 - Initial alpha release
-
-## Contributing
-
-TODO
-
-Dev/deployment checklist
-------------------------
-
-1. Make necessary changes to the code (e.g., run the generator)
-   * Remember to always update the Feliz dependency as long as it’s at 0.x
-2. Update the changelog
-3. Update the version and release notes in the package info
-4. Update the supported npm dependency versions for femto in the fsproj
-5. Commit and tag the commit (this is what triggers deployment from  AppVeyor). For consistency, the tag should be identical to the version (e.g. `1.2.3`).
-6. Push the changes and the tag to the repo. If AppVeyor build succeeds, the package is automatically published to NuGet.

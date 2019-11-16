@@ -1,20 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
-    <PackageProjectUrl>https://github.com/cmeeren/Feliz.MaterialUI</PackageProjectUrl>
     <Authors>Christer van der Meeren</Authors>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>f# fable bindings feliz react material-ui materialui</PackageTags>
     <Version>0.8.2</Version>
     <PackageReleaseNotes>- Regenerated based on MUI API docs
 - Fixed themeProvider import</PackageReleaseNotes>
   </PropertyGroup>
-  
   <ItemGroup>
+    <None Include="paket.template" />
     <Compile Include="Misc.fs" />
     <Compile Include="Bindings.fs" />
     <Compile Include="Autocomplete.fs" />
@@ -27,20 +23,11 @@
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
   </ItemGroup>
-  
-  <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <Content Include="*.fsproj; *.fs" PackagePath="fable\" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Feliz" Version="[0.67, 0.68)" />
-  </ItemGroup>
-  
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.6 lt 5" ResolutionStrategy="max" />
       <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.31" />
     </NpmDependencies>
   </PropertyGroup>
-  
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

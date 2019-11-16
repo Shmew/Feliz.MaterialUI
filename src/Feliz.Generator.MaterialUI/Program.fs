@@ -7,7 +7,8 @@ open Feliz.Generator
 [<EntryPoint>]
 let main argv =
   async {
-    //do! HtmlCache.refresh
+    if argv |> Array.contains "--refresh" then
+      do! HtmlCache.refresh
     let api = ApiParser.parseApi ()
     File.WriteAllText(@"..\..\..\..\Feliz.MaterialUI\Mui.fs", Render.componentDocument api.GeneratorComponentApi)
     File.WriteAllText(@"..\..\..\..\Feliz.MaterialUI\Props.fs", Render.propsDocument api.GeneratorComponentApi)

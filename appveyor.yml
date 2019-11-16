@@ -3,11 +3,17 @@ image: Visual Studio 2019
 build:
   verbosity: detailed
 
-artifacts:
-  - path: '**\Release\*.nupkg'
+cache:
+  - '%USERPROFILE%\.nuget\packages -> paket.lock'
+
+install:
+  - dotnet tool restore
 
 build_script:
-  - cmd: dotnet build -c Release
+  - cmd: dotnet fake build -t CiBuild
+
+artifacts:
+  - path: 'dist\*.nupkg'
 
 deploy:
   - provider: NuGet
