@@ -9,10 +9,14 @@
     },
     "dependencies": {
         "@material-ui/core": "^4.6.0",
+        "@material-ui/icons": "^4.5.1",
         "@material-ui/lab": "^4.0.0-alpha.31",
         "gh-pages": "^2.1.1",
+        "mdi-material-ui": "^6.8.0",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
+        "react-highlight": "^0.12.0",
+        "react-markdown": "^4.2.2",
         "remotedev": "^0.2.9"
     },
     "devDependencies": {

@@ -3,6 +3,7 @@ module Main
 open Fable.Core.JsInterop
 
 importAll "../sass/main.sass"
+importAll "../react-highlight-vs2019-custom.css"
 
 open Elmish
 open Elmish.React

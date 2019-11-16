@@ -1,9 +1,10 @@
-﻿module Autocomplete
+﻿module Samples.Components.Autocomplete.Autocomplete
 
 open System
-open Fable.React
 open Feliz
+open Feliz.ElmishComponents
 open Feliz.MaterialUI
+
 
 type Country =
   { Id: Guid
@@ -16,11 +17,13 @@ type Model =
     MyText: string
     LastSelected: Guid option }
 
+
 type Msg =
   | SetText of string
   | Select of Guid option
 
-let init () =
+
+let init =
   { Countries =
       ["Afghanistan"; "Aland Islands"; "Albania"; "Algeria"; "American Samoa"; "Andorra"; "Angola"; "Anguilla"; "Antarctica"; "Antigua and Barbuda"; "Argentina"; "Armenia"; "Aruba"; "Australia"; "Austria"; "Azerbaijan"]
       |> List.map (fun s ->
@@ -29,13 +32,14 @@ let init () =
     MyText = ""
     LastSelected = None }
 
+
 let update msg m =
   match msg with
   | SetText s -> { m with MyText = s }
   | Select id -> { m with LastSelected = id }
 
 
-let AutocompletePage = FunctionComponent.Of((fun (model: Model, dispatch: Msg -> unit) ->
+let render model dispatch =
   Html.div [
     Mui.autocomplete [
       autocomplete.options (model.Countries |> List.toArray)
@@ -70,4 +74,7 @@ let AutocompletePage = FunctionComponent.Of((fun (model: Model, dispatch: Msg ->
       )
     ]
   ]
-), "AutocompletePage", memoEqualsButFunctions)
+
+
+let getSample (key: string) =
+  React.elmishComponent("Autocomplete", init, update, render, key)

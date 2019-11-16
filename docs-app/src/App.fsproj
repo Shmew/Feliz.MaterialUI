@@ -1,20 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="Autocomplete.fs" />
-        <Compile Include="App.fs" />
-        <Compile Include="Main.fs" />
-    </ItemGroup>
-    <ItemGroup />
-    <ItemGroup>
-        <PackageReference Include="Fable.Elmish.Debugger" Version="3.0.3" />
-        <PackageReference Include="Fable.Elmish.HMR" Version="4.0.1" />
-        <PackageReference Include="Fable.Elmish.React" Version="3.0.1" />
-        <PackageReference Include="Zanaptak.TypedCssClasses" Version="0.2.0" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\..\src\Feliz.MaterialUI\Feliz.MaterialUI.fsproj" />
-    </ItemGroup>
+  
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\public\**\*.fs" />
+    <None Include="..\public\**\*.md" />
+    <Compile Include="Bindings.fs" />
+    <Compile Include="CommonViews.fs" />
+    <Compile Include="SampleViewer.fs" />
+    <Compile Include="MarkdownViewer.fs" />
+    <Compile Include="App.fs" />
+    <Compile Include="Main.fs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Fable.Elmish.Debugger" Version="3.0.3" />
+    <PackageReference Include="Fable.Elmish.HMR" Version="4.0.1" />
+    <PackageReference Include="Fable.Elmish.React" Version="3.0.1" />
+    <PackageReference Include="Fable.MaterialUI.Icons" Version="1.2.0" />
+    <PackageReference Include="Fable.MaterialUI.MaterialDesignIcons" Version="2.0.0" />
+    <PackageReference Include="Fable.SimpleHttp" Version="2.6.0" />
+    <PackageReference Include="Feliz.ElmishComponents" Version="0.2.10" />
+    <PackageReference Include="Feliz.Markdown" Version="0.1.0" />
+    <PackageReference Include="Feliz.Router" Version="1.5.2" />
+    <PackageReference Include="Zanaptak.TypedCssClasses" Version="0.2.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Feliz.MaterialUI\Feliz.MaterialUI.fsproj" />
+  </ItemGroup>
+  
 </Project>
