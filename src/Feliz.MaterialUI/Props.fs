@@ -88,6 +88,8 @@ type autocomplete =
   static member inline classes (classNames: classes.IAutocompleteClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, clear all values when the user presses escape and the popup is closed.
   static member inline clearOnEscape (value: bool) = Interop.mkAttr "clearOnEscape" value
+  /// The icon to display in place of the default close icon.
+  static member inline closeIcon (element: ReactElement) = Interop.mkAttr "closeIcon" element
   /// If `true`, the popup will ignore the blur event if the input if filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
   /// The default input value. Use when the component is not controlled.
@@ -144,6 +146,8 @@ type autocomplete =
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// If `true`, the highlight can move to the input.
   static member inline includeInputInList (value: bool) = Interop.mkAttr "includeInputInList" value
+  /// The input value.
+  static member inline inputValue (value: string) = Interop.mkAttr "inputValue" value
   /// The component used to render the listbox.
   static member inline ListboxComponent (value: ReactElementType) = Interop.mkAttr "ListboxComponent" value
   /// If `true`, the component is in a loading state.
@@ -202,6 +206,26 @@ type autocomplete =
   ///
   /// *event:* The event source of the callback.
   static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
+  /// Callback fired when the input value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* null
+  static member inline onInputChange (handler: Event -> string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_> handler)
+  /// Callback fired when the input value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* null
+  static member inline onInputChange (handler: string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the popup requests to be opened. Use in controlled mode (see open).
   ///
   /// **Signature:**
@@ -218,6 +242,8 @@ type autocomplete =
   static member inline PaperComponent (value: ReactElementType) = Interop.mkAttr "PaperComponent" value
   /// The component used to position the popup.
   static member inline PopperComponent (value: ReactElementType) = Interop.mkAttr "PopperComponent" value
+  /// The icon to display in place of the default popup icon.
+  static member inline popupIcon (element: ReactElement) = Interop.mkAttr "popupIcon" element
   /// Render the group.
   ///
   /// **Signature:**
@@ -7549,22 +7575,24 @@ type treeView =
   static member inline defaultCollapseIcon (element: ReactElement) = Interop.mkAttr "defaultCollapseIcon" element
   /// The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop.
   static member inline defaultEndIcon (element: ReactElement) = Interop.mkAttr "defaultEndIcon" element
-  /// Expanded node ids.
+  /// Expanded node ids. (Uncontrolled)
   static member inline defaultExpanded ([<ParamArray>] nodeIds: string []) = Interop.mkAttr "defaultExpanded" nodeIds
   /// The default icon used to expand the node.
   static member inline defaultExpandIcon (element: ReactElement) = Interop.mkAttr "defaultExpandIcon" element
   /// The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop.
   static member inline defaultParentIcon (element: ReactElement) = Interop.mkAttr "defaultParentIcon" element
-  /// Callback fired when a `TreeItem` is expanded/collapsed.
+  /// Expanded node ids. (Controlled)
+  static member inline expanded ([<ParamArray>] nodeIds: string []) = Interop.mkAttr "expanded" nodeIds
+  /// Callback fired when tree items are expanded/collapsed.
   ///
   /// **Signature:**
   ///
-  /// `function(nodeId: string, expanded: boolean) => void`
+  /// `function(event: object, nodeIds: array) => void`
   ///
-  /// *nodeId:* The id of the toggled node.
+  /// *event:* The event source of the callback
   ///
-  /// *expanded:* The node status - If `true` the node was expanded. If `false` the node was collapsed.
-  static member inline onNodeToggle (handler: string -> bool -> unit) = Interop.mkAttr "onNodeToggle" handler
+  /// *nodeIds:* The ids of the expanded nodes.
+  static member inline onNodeToggle (handler: Event -> string [] -> unit) = Interop.mkAttr "onNodeToggle" handler
 
 
 [<Erase>]

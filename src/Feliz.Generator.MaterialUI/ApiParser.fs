@@ -122,6 +122,12 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
 
+    | "autocomplete", "onInputChange", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> string -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: string -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+        ]
+
     | "autocomplete", "options", "array" ->
         [RegularPropOverload.create "(options: 'option [])" "options"]
 
@@ -145,7 +151,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           ||> RegularPropOverload.create
         ]
 
-    | "treeView", "defaultExpanded", _ ->
+    | "treeView", ("expanded" | "defaultExpanded"), "Array" ->
         [RegularPropOverload.create "([<ParamArray>] nodeIds: string [])" "nodeIds"]
 
     | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax"), "string | number" ->
@@ -360,7 +366,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "treeView", "onNodeToggle", "func" ->
-        [RegularPropOverload.create "(handler: string -> bool -> unit)" "handler"]
+        [RegularPropOverload.create "(handler: Event -> string [] -> unit)" "handler"]
 
     | _, "transitionDuration", "number | { appear?: number, enter?: number, exit?: number }" ->
         [

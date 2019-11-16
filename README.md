@@ -19,13 +19,18 @@ This project uses `fake`, `paket`, and `femto` as .NET Core 3 local tools. There
 3. Check all changes to Feliz.MaterialUI and adjust the generator’s API parser as needed. Remember to check all doc comment updates too, since changes there may indicate that something must be changed elsewhere. Run the `RegenerateFromCache` (or run the generator project in VS) target to re-generate based on the recently downloaded HTML pages.
 4. Update `Feliz.MaterialUI.fsproj` with a new version number and release notes
 5. Update the changelog
-6. Update relevant docs (typically in `docs-app/public/pages`, potentially also by adding menu items in `App.fs`)
-7. Commit and tag the commit (this is what triggers deployment from  AppVeyor). For consistency, the tag should be identical to the version (e.g. `1.2.3`).
-8. Push the changes and the tag to the repo. If AppVeyor build succeeds, the package is automatically published to NuGet.
-9. Publish the docs by running the `Docs:Publish` target
+6. Update relevant docs/samples (typically in `docs-app/public/pages`, potentially also by adding menu items in `App.fs`)
+7. Run the `CiBuild` target to check that everything compiles
+8. Commit and tag the commit (this is what triggers deployment from  AppVeyor). For consistency, the tag should be identical to the version (e.g. `1.2.3`).
+9. Push the changes and the tag to the repo. If AppVeyor build succeeds, the package is automatically published to NuGet.
+10. Publish the docs by running the `Docs:Publish` target
 
 Changelog
 ---------
+
+### 0.8.3
+
+* Update for @material-ui/lab 4.0.0-alpha.32
 
 ### 0.8.2
 
