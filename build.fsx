@@ -7,8 +7,10 @@
 #endif
 
 open System
+open System.Text.Json
 open Fake.Core
 open Fake.Core.TargetOperators
+open Fake.Core.Xml
 open Fake.DotNet
 open Fake.IO
 open Fake.IO.Globbing.Operators
@@ -88,6 +90,41 @@ Target.create "UpdatePackages" (fun _ ->
   DotNet.exec id "femto" "--resolve docs-app/src" |> getExitCode |> failIfNonZero
 )
 
+Target.create "UpdateFemtoVersionMetadata" (fun _ ->
+  let npm = ProcessUtils.findFilesOnPath "npm" |> Seq.head
+  let latestCoreStableVersion =
+    CreateProcess.fromRawCommand npm ["show"; "@material-ui/core"; "versions"; "--json"]
+    |> CreateProcess.withWorkingDirectory "docs-app"
+    |> CreateProcess.redirectOutput
+    |> Proc.run
+    |> fun r -> r.Result.Output
+    |> fun s -> printfn "%s" s; s
+    |> JsonSerializer.Deserialize<seq<string>>
+    |> Seq.map SemVer.parse
+    |> Seq.filter (fun v -> v.PreRelease.IsNone)
+    |> Seq.last
+
+  let latestLabVersion =
+    CreateProcess.fromRawCommand npm ["show"; "@material-ui/lab"; "version"]
+    |> CreateProcess.withWorkingDirectory "docs-app"
+    |> CreateProcess.redirectOutput
+    |> Proc.run
+    |> fun r -> r.Result.Output
+    |> SemVer.parse
+
+  let v = latestCoreStableVersion
+  poke
+    "src/Feliz.MaterialUI/Feliz.MaterialUI.fsproj"
+    "//NpmPackage[@Name='@material-ui/core']/@Version"
+    (sprintf "gte %i.%i lt %i" v.Major v.Minor (v.Major + 1u))
+
+  let v = latestCoreStableVersion
+  poke
+    "src/Feliz.MaterialUI/Feliz.MaterialUI.fsproj"
+    "//NpmPackage[@Name='@material-ui/lab']/@Version"
+    latestLabVersion.AsString
+)
+
 Target.create "RegularMaintenance" ignore
 
 Target.create "CiBuild" ignore
@@ -106,7 +143,8 @@ Target.create "CiBuild" ignore
 "Build"
   ==> "Pack"
 
-"UpdatePackages"
+"UpdateFemtoVersionMetadata"
+  ==> "UpdatePackages"
   ==> "RegenerateFromLive"
   ==> "RegularMaintenance"
 

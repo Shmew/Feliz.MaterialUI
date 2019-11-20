@@ -27,3 +27,4 @@ group FakeBuild
   nuget Fake.DotNet.Cli
   nuget Fake.DotNet.Paket
   nuget Fake.JavaScript.Npm
+  nuget System.Text.Json
