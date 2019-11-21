@@ -6,7 +6,7 @@ open System.Net.Http
 open FSharp.Data
 
 let baseUrl = "https://material-ui.com"
-let apiFolder = @"..\..\..\Html\Api"
+let apiFolder = @"..\..\..\cache\Api"
 
 let private downloadUrl (url: string) =
   async {

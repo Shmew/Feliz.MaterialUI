@@ -5,7 +5,7 @@ open FSharp.Data
 open ReverseMarkdown
 
 
-type ComponentApiPage = HtmlProvider<"Html/Api/app-bar.html">
+type ComponentApiPage = HtmlProvider<"cache/Api/app-bar.html">
 
 
 let kebabCaseToCamelCase (s: string) =
