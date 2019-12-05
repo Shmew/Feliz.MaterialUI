@@ -15,6 +15,7 @@ module Url =
 
   let [<Literal>] pages = "pages"
   let [<Literal>] usage = "usage"
+  let [<Literal>] ecosystem = "ecosystem"
   let [<Literal>] components = "components"
   let [<Literal>] installation = "installation"
   let [<Literal>] components_props = "components-props"
@@ -283,6 +284,7 @@ let drawer model dispatch =
             menuItem true "Styling using themes" [Url.usage; Url.themes]
             menuItem true "Other hooks" [Url.usage; Url.hooks]
           ])
+          menuItem false "Ecosystem" [Url.ecosystem]
           menuContainer ("Components", Url.components, model.CurrentPath, [
             menuItem true "Autocomplete" [Url.components; Url.autocomplete]
           ])
