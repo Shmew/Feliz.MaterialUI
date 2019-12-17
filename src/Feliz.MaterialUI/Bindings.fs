@@ -242,7 +242,7 @@ type Theme =
   // existing overrides for that component, regardless of which override rules
   // or styles are used.
   member inline this.addOverrides (overrides: IOverrideStyleSheet list) =
-    Object.assign(this.overrides, overrides |> unbox |> createObj) |> ignore
+    Constructors.Object.assign(this.overrides, overrides |> unbox |> createObj) |> ignore
   // Sets the theme's props, replacing any existing props. Use `themeProps.<x>`
   // to specify components.
   member inline this.setProps (props: IThemeProps list) =
@@ -252,7 +252,7 @@ type Theme =
   // component props specified here will completely replace any existing props
   // for that component.
   member inline this.addProps (props: IThemeProps list) =
-    Object.assign(this.props, props |> unbox |> createObj) |> ignore
+    Constructors.Object.assign(this.props, props |> unbox |> createObj) |> ignore
 
 type MakeStylesOptions =
   /// The default theme to use if a theme isn't supplied through a Theme

@@ -59,7 +59,7 @@ let render (state: State) dispatch =
   | Initial ->
       Html.none
   | Loading ->
-      Html.fragment [
+      React.fragment [
         Mui.skeleton [
           skeleton.variant.text
           skeleton.height (length.em 3)
@@ -82,7 +82,7 @@ let render (state: State) dispatch =
         ]
       ]
   | Loaded (Ok (path, content)) ->
-      Html.fragment [
+      React.fragment [
         Mui.tooltip [
           tooltip.title ("Edit this page")
           tooltip.children(

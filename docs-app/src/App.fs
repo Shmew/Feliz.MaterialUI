@@ -225,7 +225,7 @@ let menuContainer = React.functionComponent(fun (name: string, pathPrefix: strin
     | hd::_ when hd = pathPrefix -> true
     | _ -> false
   let isOpen, setIsOpen = React.useState true
-  Html.fragment [
+  React.fragment [
     Mui.listItem [
       prop.onClick (fun _ -> setIsOpen (not isOpen))
       listItem.button true

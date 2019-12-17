@@ -209,7 +209,7 @@ let render (state: State) dispatch =
   | Initial ->
       Html.none
   | Loading ->
-      Html.fragment [
+      React.fragment [
         Mui.skeleton [
           skeleton.variant.rect
           skeleton.height 400
