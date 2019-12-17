@@ -11,6 +11,7 @@ open Feliz
 type IMuiAppBarOverrideRule = interface end
 type IMuiAutocompleteOverrideRule = interface end
 type IMuiAvatarOverrideRule = interface end
+type IMuiAvatarGroupOverrideRule = interface end
 type IMuiBackdropOverrideRule = interface end
 type IMuiBadgeOverrideRule = interface end
 type IMuiBottomNavigationOverrideRule = interface end
@@ -97,6 +98,7 @@ type IMuiTabOverrideRule = interface end
 type IMuiTableOverrideRule = interface end
 type IMuiTableBodyOverrideRule = interface end
 type IMuiTableCellOverrideRule = interface end
+type IMuiTableContainerOverrideRule = interface end
 type IMuiTableFooterOverrideRule = interface end
 type IMuiTableHeadOverrideRule = interface end
 type IMuiTablePaginationOverrideRule = interface end
@@ -118,6 +120,7 @@ type overrides =
   static member inline muiAppBar (rules: IMuiAppBarOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAppBar", createObj !!rules)
   static member inline muiAutocomplete (rules: IMuiAutocompleteOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAutocomplete", createObj !!rules)
   static member inline muiAvatar (rules: IMuiAvatarOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAvatar", createObj !!rules)
+  static member inline muiAvatarGroup (rules: IMuiAvatarGroupOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAvatarGroup", createObj !!rules)
   static member inline muiBackdrop (rules: IMuiBackdropOverrideRule list) : IOverrideStyleSheet = unbox ("MuiBackdrop", createObj !!rules)
   static member inline muiBadge (rules: IMuiBadgeOverrideRule list) : IOverrideStyleSheet = unbox ("MuiBadge", createObj !!rules)
   static member inline muiBottomNavigation (rules: IMuiBottomNavigationOverrideRule list) : IOverrideStyleSheet = unbox ("MuiBottomNavigation", createObj !!rules)
@@ -204,6 +207,7 @@ type overrides =
   static member inline muiTable (rules: IMuiTableOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTable", createObj !!rules)
   static member inline muiTableBody (rules: IMuiTableBodyOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTableBody", createObj !!rules)
   static member inline muiTableCell (rules: IMuiTableCellOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTableCell", createObj !!rules)
+  static member inline muiTableContainer (rules: IMuiTableContainerOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTableContainer", createObj !!rules)
   static member inline muiTableFooter (rules: IMuiTableFooterOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTableFooter", createObj !!rules)
   static member inline muiTableHead (rules: IMuiTableHeadOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTableHead", createObj !!rules)
   static member inline muiTablePagination (rules: IMuiTablePaginationOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTablePagination", createObj !!rules)
@@ -251,12 +255,16 @@ module overrides =
     static member inline focused(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("focused", createObj !!styles)
     /// Styles applied to the tag elements, e.g. the chips.
     static member inline tag(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("tag", createObj !!styles)
+    /// Styles applied to the tag elements, e.g. the chips if `size="small"`.
+    static member inline tagSizeSmall(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("tagSizeSmall", createObj !!styles)
     /// Styles applied to the Input element.
     static member inline inputRoot(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("inputRoot", createObj !!styles)
     /// Styles applied to the input element.
     static member inline input(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("input", createObj !!styles)
     /// Styles applied to the input element if tag focused.
     static member inline inputFocused(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("inputFocused", createObj !!styles)
+    /// Styles applied to the endAdornment element.
+    static member inline endAdornment(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("endAdornment", createObj !!styles)
     /// Styles applied to the clear indictator.
     static member inline clearIndicator(styles: IStyleAttribute list) : IMuiAutocompleteOverrideRule = unbox ("clearIndicator", createObj !!styles)
     /// Styles applied to the clear indictator if the input is dirty.
@@ -288,7 +296,7 @@ module overrides =
   type muiAvatar =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("root", createObj !!styles)
-    /// Styles applied to the root element if there are children and not `src` or `srcSet`.
+    /// Styles applied to the root element if not `src` or `srcSet`.
     static member inline colorDefault(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("colorDefault", createObj !!styles)
     /// Styles applied to the root element if `variant="circle"`.
     static member inline circle(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("circle", createObj !!styles)
@@ -298,6 +306,15 @@ module overrides =
     static member inline square(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("square", createObj !!styles)
     /// Styles applied to the img element if either `src` or `srcSet` is defined.
     static member inline img(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("img", createObj !!styles)
+    /// Styles applied to the fallback icon
+    static member inline fallback(styles: IStyleAttribute list) : IMuiAvatarOverrideRule = unbox ("fallback", createObj !!styles)
+
+  [<Erase>]
+  type muiAvatarGroup =
+    /// Styles applied to the root element.
+    static member inline root(styles: IStyleAttribute list) : IMuiAvatarGroupOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the avatar elements.
+    static member inline avatar(styles: IStyleAttribute list) : IMuiAvatarGroupOverrideRule = unbox ("avatar", createObj !!styles)
 
   [<Erase>]
   type muiBackdrop =
@@ -392,6 +409,8 @@ module overrides =
     static member inline containedPrimary(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("containedPrimary", createObj !!styles)
     /// Styles applied to the root element if `variant="contained"` and `color="secondary"`.
     static member inline containedSecondary(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("containedSecondary", createObj !!styles)
+    /// Styles applied to the root element if `disableElevation={true}`.
+    static member inline disableElevation(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("disableElevation", createObj !!styles)
     /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
     static member inline focusVisible(styles: IStyleAttribute list) : IMuiButtonOverrideRule = unbox ("focusVisible", createObj !!styles)
     /// Pseudo-class applied to the root element if `disabled={true}`.
@@ -442,30 +461,48 @@ module overrides =
     static member inline root(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("root", createObj !!styles)
     /// Styles applied to the root element if `variant="contained"`.
     static member inline contained(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("contained", createObj !!styles)
+    /// Pseudo-class applied to child elements if `disabled={true}`.
+    static member inline disabled(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("disabled", createObj !!styles)
     /// Styles applied to the root element if `fullWidth={true}`.
     static member inline fullWidth(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("fullWidth", createObj !!styles)
+    /// Styles applied to the root element if `orientation="vertical"`.
+    static member inline vertical(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("vertical", createObj !!styles)
     /// Styles applied to the children.
     static member inline grouped(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("grouped", createObj !!styles)
+    /// Styles applied to the children if `orientation="horizontal"`.
+    static member inline groupedHorizontal(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedHorizontal", createObj !!styles)
+    /// Styles applied to the children if `orientation="vertical"`.
+    static member inline groupedVertical(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedVertical", createObj !!styles)
     /// Styles applied to the children if `variant="text"`.
     static member inline groupedText(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedText", createObj !!styles)
+    /// Styles applied to the children if `variant="text"` and `orientation="horizontal"`.
+    static member inline groupedTextHorizontal(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextHorizontal", createObj !!styles)
+    /// Styles applied to the children if `variant="text"` and `orientation="vertical"`.
+    static member inline groupedTextVertical(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextVertical", createObj !!styles)
     /// Styles applied to the children if `variant="text"` and `color="primary"`.
     static member inline groupedTextPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextPrimary", createObj !!styles)
     /// Styles applied to the children if `variant="text"` and `color="secondary"`.
     static member inline groupedTextSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedTextSecondary", createObj !!styles)
     /// Styles applied to the children if `variant="outlined"`.
     static member inline groupedOutlined(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlined", createObj !!styles)
+    /// Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`.
+    static member inline groupedOutlinedHorizontal(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlinedHorizontal", createObj !!styles)
+    /// Styles applied to the children if `variant="outlined"` and `orientation="vertical"`.
+    static member inline groupedOutlinedVertical(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlinedVertical", createObj !!styles)
     /// Styles applied to the children if `variant="outlined"` and `color="primary"`.
     static member inline groupedOutlinedPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlinedPrimary", createObj !!styles)
     /// Styles applied to the children if `variant="outlined"` and `color="secondary"`.
     static member inline groupedOutlinedSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedOutlinedSecondary", createObj !!styles)
     /// Styles applied to the children if `variant="contained"`.
     static member inline groupedContained(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContained", createObj !!styles)
+    /// Styles applied to the children if `variant="contained"` and `orientation="horizontal"`.
+    static member inline groupedContainedHorizontal(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContainedHorizontal", createObj !!styles)
+    /// Styles applied to the children if `variant="contained"` and `orientation="vertical"`.
+    static member inline groupedContainedVertical(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContainedVertical", createObj !!styles)
     /// Styles applied to the children if `variant="contained"` and `color="primary"`.
     static member inline groupedContainedPrimary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContainedPrimary", createObj !!styles)
     /// Styles applied to the children if `variant="contained"` and `color="secondary"`.
     static member inline groupedContainedSecondary(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("groupedContainedSecondary", createObj !!styles)
-    /// Pseudo-class applied to child elements if `disabled={true}`.
-    static member inline disabled(styles: IStyleAttribute list) : IMuiButtonGroupOverrideRule = unbox ("disabled", createObj !!styles)
 
   [<Erase>]
   type muiCard =
@@ -634,6 +671,8 @@ module overrides =
   type muiContainer =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiContainerOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if `disableGutters={true}`.
+    static member inline disableGutters(styles: IStyleAttribute list) : IMuiContainerOverrideRule = unbox ("disableGutters", createObj !!styles)
     /// Styles applied to the root element if `fixed={true}`.
     static member inline fixed'(styles: IStyleAttribute list) : IMuiContainerOverrideRule = unbox ("fixed", createObj !!styles)
     /// Styles applied to the root element if `maxWidth="xs"`.
@@ -835,8 +874,6 @@ module overrides =
     static member inline inputMarginDense(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("inputMarginDense", createObj !!styles)
     /// Styles applied to the `input` if in ``.
     static member inline inputHiddenLabel(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("inputHiddenLabel", createObj !!styles)
-    /// Styles applied to the `input` element if `select={true}`.
-    static member inline inputSelect(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("inputSelect", createObj !!styles)
     /// Styles applied to the `input` element if `multiline={true}`.
     static member inline inputMultiline(styles: IStyleAttribute list) : IMuiFilledInputOverrideRule = unbox ("inputMultiline", createObj !!styles)
     /// Styles applied to the `input` element if `startAdornment` is provided.
@@ -1067,6 +1104,8 @@ module overrides =
     static member inline underline(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("underline", createObj !!styles)
     /// Styles applied to the root element if `error={true}`.
     static member inline error(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("error", createObj !!styles)
+    /// Styles applied to the `input` element if `margin="dense"`.
+    static member inline marginDense(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("marginDense", createObj !!styles)
     /// Styles applied to the root element if `multiline={true}`.
     static member inline multiline(styles: IStyleAttribute list) : IMuiInputOverrideRule = unbox ("multiline", createObj !!styles)
     /// Styles applied to the root element if `fullWidth={true}`.
@@ -1125,8 +1164,6 @@ module overrides =
     static member inline input(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("input", createObj !!styles)
     /// Styles applied to the `input` element if `margin="dense"`.
     static member inline inputMarginDense(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("inputMarginDense", createObj !!styles)
-    /// Styles applied to the `input` element if `select={true}`.
-    static member inline inputSelect(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("inputSelect", createObj !!styles)
     /// Styles applied to the `input` element if `multiline={true}`.
     static member inline inputMultiline(styles: IStyleAttribute list) : IMuiInputBaseOverrideRule = unbox ("inputMultiline", createObj !!styles)
     /// Styles applied to the `input` element if `type="search"`.
@@ -1390,8 +1427,6 @@ module overrides =
     static member inline input(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("input", createObj !!styles)
     /// Styles applied to the `input` element if `margin="dense"`.
     static member inline inputMarginDense(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("inputMarginDense", createObj !!styles)
-    /// Styles applied to the `input` element if `select={true}`.
-    static member inline inputSelect(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("inputSelect", createObj !!styles)
     /// Styles applied to the `input` element if `multiline={true}`.
     static member inline inputMultiline(styles: IStyleAttribute list) : IMuiOutlinedInputOverrideRule = unbox ("inputMultiline", createObj !!styles)
     /// Styles applied to the `input` element if `startAdornment` is provided.
@@ -1858,6 +1893,11 @@ module overrides =
     static member inline stickyHeader(styles: IStyleAttribute list) : IMuiTableCellOverrideRule = unbox ("stickyHeader", createObj !!styles)
 
   [<Erase>]
+  type muiTableContainer =
+    /// Styles applied to the root element.
+    static member inline root(styles: IStyleAttribute list) : IMuiTableContainerOverrideRule = unbox ("root", createObj !!styles)
+
+  [<Erase>]
   type muiTableFooter =
     /// Styles applied to the root element.
     static member inline root(styles: IStyleAttribute list) : IMuiTableFooterOverrideRule = unbox ("root", createObj !!styles)
@@ -1989,8 +2029,14 @@ module overrides =
     static member inline popper(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("popper", createObj !!styles)
     /// Styles applied to the Popper component if `interactive={true}`.
     static member inline popperInteractive(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("popperInteractive", createObj !!styles)
+    /// Styles applied to the Popper component if `arrow={true}`.
+    static member inline popperArrow(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("popperArrow", createObj !!styles)
     /// Styles applied to the tooltip (label wrapper) element.
     static member inline tooltip(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("tooltip", createObj !!styles)
+    /// Styles applied to the tooltip (label wrapper) element if `arrow={true}`.
+    static member inline tooltipArrow(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("tooltipArrow", createObj !!styles)
+    /// Styles applied to the arrow element.
+    static member inline arrow(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("arrow", createObj !!styles)
     /// Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
     static member inline touch(styles: IStyleAttribute list) : IMuiTooltipOverrideRule = unbox ("touch", createObj !!styles)
     /// Styles applied to the tooltip (label wrapper) element if `placement` contains "left".

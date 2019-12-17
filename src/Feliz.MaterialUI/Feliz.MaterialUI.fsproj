@@ -5,8 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.8.3</Version>
-    <PackageReleaseNotes>Update for @material-ui/lab 4.0.0-alpha.32</PackageReleaseNotes>
+    <Version>0.8.4</Version>
+    <PackageReleaseNotes>Updated for @material-ui/core 4.8 and @material-ui/lab 4.0.0-alpha.36</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.template" />
@@ -24,8 +24,8 @@
   </ItemGroup>
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@material-ui/core" Version="gte 4.6 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.32" />
+      <NpmPackage Name="@material-ui/core" Version="gte 4.8 lt 5" ResolutionStrategy="max" />
+      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.36" />
     </NpmDependencies>
   </PropertyGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

@@ -113,6 +113,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "autocomplete", "getOptionLabel", "func" ->
         [RegularPropOverload.create "(getLabel: 'option -> string)" "getLabel"]
 
+    | "autocomplete", "getOptionSelected", "func" ->
+        [RegularPropOverload.create "(getSelected: 'option -> 'a -> bool)" "(Func<_,_,_> getSelected)"]
+
     | "autocomplete", "groupBy", "func" ->
         [RegularPropOverload.create "(getGroup: 'option -> string)" "getGroup"]
 
@@ -124,8 +127,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", "onInputChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> string -> unit)" "(Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: string -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> string -> AutocompleteInputChangeReason -> unit)" "(Func<_,_,_,_> handler)"
+          RegularPropOverload.create "(handler: string -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
         ]
 
     | "autocomplete", "options", "array" ->
@@ -151,10 +154,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           ||> RegularPropOverload.create
         ]
 
-    | "treeView", ("expanded" | "defaultExpanded"), "Array" ->
+    | "treeView", ("expanded" | "defaultExpanded"), "Array<string>" ->
         [RegularPropOverload.create "([<ParamArray>] nodeIds: string [])" "nodeIds"]
 
-    | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax"), "string | number" ->
+    | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax" | "rowsMin"), "string | number" ->
         [RegularPropOverload.create "(value: int)" "value"]
 
     | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textField" | "nativeSelect" | "radioGroup"), "onChange", "func" ->
@@ -305,8 +308,11 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(value: Styles.ICssUnit)" "value"
         ]
 
-    | "collapse", "collapsedHeight", "string" ->
-        [RegularPropOverload.create "(value: Styles.ICssUnit)" "value"]
+    | "collapse", "collapsedHeight", "string | number" ->
+        [
+          RegularPropOverload.create "(value: int)" "value"
+          RegularPropOverload.create "(value: Styles.ICssUnit)" "value"
+        ]
 
     | "dialog", "onClose", "func" ->
         [

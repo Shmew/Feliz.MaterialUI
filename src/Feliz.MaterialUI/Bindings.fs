@@ -361,7 +361,12 @@ type PopoverOriginVertical =
   | Bottom
 
 [<StringEnum; RequireQualifiedAccess>]
-type AutoCompleteMatchFrom =
+type AutocompleteInputChangeReason =
+  | Input
+  | Reset
+
+[<StringEnum; RequireQualifiedAccess>]
+type AutocompleteMatchFrom =
   | Any
   | Start
 
@@ -369,7 +374,7 @@ type AutoCompleteMatchFrom =
 type CreateFilterOptionsOptions =
   abstract ignoreAccents: bool with get, set
   abstract ignoreCase: bool with get, set
-  abstract matchFrom: AutoCompleteMatchFrom with get, set
+  abstract matchFrom: AutocompleteMatchFrom with get, set
   abstract stringify: ('option -> string) with get, set
   abstract trim: bool with get, set
 

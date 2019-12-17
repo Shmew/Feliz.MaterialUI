@@ -88,8 +88,16 @@ type autocomplete =
   static member inline classes (classNames: classes.IAutocompleteClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, clear all values when the user presses escape and the popup is closed.
   static member inline clearOnEscape (value: bool) = Interop.mkAttr "clearOnEscape" value
+  /// Override the default text for the *clear* icon button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline clearText (value: string) = Interop.mkAttr "clearText" value
   /// The icon to display in place of the default close icon.
   static member inline closeIcon (element: ReactElement) = Interop.mkAttr "closeIcon" element
+  /// Override the default text for the *close popup* icon button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline closeText (value: string) = Interop.mkAttr "closeText" value
   /// If `true`, the popup will ignore the blur event if the input if filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
   /// The default input value. Use when the component is not controlled.
@@ -134,6 +142,8 @@ type autocomplete =
   static member inline getOptionDisabled (isDisabled: 'option -> bool) = Interop.mkAttr "getOptionDisabled" isDisabled
   /// Used to determine the string value for a given option. It's used to fill the input (and the list box options if `renderOption` is not provided).
   static member inline getOptionLabel (getLabel: 'option -> string) = Interop.mkAttr "getOptionLabel" getLabel
+  /// Used to determine if an option is selected. Uses strict equality by default.
+  static member inline getOptionSelected (getSelected: 'option -> 'a -> bool) = Interop.mkAttr "getOptionSelected" (Func<_,_,_> getSelected)
   /// If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
   ///
   /// **Signature:**
@@ -153,30 +163,54 @@ type autocomplete =
   /// If `true`, the component is in a loading state.
   static member inline loading (value: bool) = Interop.mkAttr "loading" value
   /// Text to display when in a loading state.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline loadingText (value: ReactElement) = Interop.mkAttr "loadingText" value
   /// Text to display when in a loading state.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline loadingText (values: ReactElement seq) = Interop.mkAttr "loadingText" values
   /// Text to display when in a loading state.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline loadingText (value: string) = Interop.mkAttr "loadingText" value
   /// Text to display when in a loading state.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline loadingText (values: string seq) = Interop.mkAttr "loadingText" values
   /// Text to display when in a loading state.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline loadingText (value: int) = Interop.mkAttr "loadingText" value
   /// Text to display when in a loading state.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline loadingText (value: float) = Interop.mkAttr "loadingText" value
-  /// If true, `value` must be an array and the menu will support multiple selections.
+  /// If `true`, `value` must be an array and the menu will support multiple selections.
   static member inline multiple (value: bool) = Interop.mkAttr "multiple" value
   /// Text to display when there are no options.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline noOptionsText (value: ReactElement) = Interop.mkAttr "noOptionsText" value
   /// Text to display when there are no options.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline noOptionsText (values: ReactElement seq) = Interop.mkAttr "noOptionsText" values
   /// Text to display when there are no options.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline noOptionsText (value: string) = Interop.mkAttr "noOptionsText" value
   /// Text to display when there are no options.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline noOptionsText (values: string seq) = Interop.mkAttr "noOptionsText" values
   /// Text to display when there are no options.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline noOptionsText (value: int) = Interop.mkAttr "noOptionsText" value
   /// Text to display when there are no options.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline noOptionsText (value: float) = Interop.mkAttr "noOptionsText" value
   /// Callback fired when the value changes.
   ///
@@ -210,22 +244,26 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: string) => void`
+  /// `function(event: object, value: string, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *value:* null
-  static member inline onInputChange (handler: Event -> string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_> handler)
+  /// *value:* The new value of the text input
+  ///
+  /// *reason:* One of "input" (user input) or "reset" (programmatic change)
+  static member inline onInputChange (handler: Event -> string -> AutocompleteInputChangeReason -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_,_> handler)
   /// Callback fired when the input value changes.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: string) => void`
+  /// `function(event: object, value: string, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *value:* null
-  static member inline onInputChange (handler: string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// *value:* The new value of the text input
+  ///
+  /// *reason:* One of "input" (user input) or "reset" (programmatic change)
+  static member inline onInputChange (handler: string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
   /// Callback fired when the popup requests to be opened. Use in controlled mode (see open).
   ///
   /// **Signature:**
@@ -236,6 +274,10 @@ type autocomplete =
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// Control the popup` open state.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
+  /// Override the default text for the *open popup* icon button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline openText (value: string) = Interop.mkAttr "openText" value
   /// Array of options.
   static member inline options (options: 'option []) = Interop.mkAttr "options" options
   /// The component used to render the body of the popup.
@@ -281,9 +323,19 @@ type autocomplete =
   /// *getTagProps:* A tag props getter.
   static member inline renderTags (render: 'option [] -> AutocompleteRenderValueState -> ReactElement) = Interop.mkAttr "renderTags" (Func<_,_,_> render)
   /// The value of the autocomplete.
+  ///
+  /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+
+module autocomplete =
+
+  /// The size of the autocomplete.
+  [<Erase>]
+  type size =
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
 
 [<Erase>]
@@ -308,13 +360,13 @@ type avatar =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// Attributes applied to the `img` element if the component is used to display an image.
+  /// Attributes applied to the `img` element if the component is used to display an image. It can be used to listen for the loading error event.
   static member inline imgProps (props: IReactProperty list) = Interop.mkAttr "imgProps" (createObj !!props)
   /// The `sizes` attribute for the `img` element.
   static member inline sizes (value: string) = Interop.mkAttr "sizes" value
   /// The `src` attribute for the `img` element.
   static member inline src (value: string) = Interop.mkAttr "src" value
-  /// The `srcSet` attribute for the `img` element.
+  /// The `srcSet` attribute for the `img` element. Use this attribute for responsive image display.
   static member inline srcSet (value: string) = Interop.mkAttr "srcSet" value
 
 module avatar =
@@ -325,6 +377,24 @@ module avatar =
     static member inline circle = Interop.mkAttr "variant" "circle"
     static member inline rounded = Interop.mkAttr "variant" "rounded"
     static member inline square = Interop.mkAttr "variant" "square"
+
+
+[<Erase>]
+type avatarGroup =
+  /// The avatars to stack.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The avatars to stack.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The avatars to stack.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The avatars to stack.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The avatars to stack.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The avatars to stack.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Override or extend the styles applied to the component. Use `classes.avatarGroup` to specify class names.
+  static member inline classes (classNames: classes.IAvatarGroupClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
 
 
 [<Erase>]
@@ -622,6 +692,8 @@ type button =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// If `true`, no elevation is used.
+  static member inline disableElevation (value: bool) = Interop.mkAttr "disableElevation" value
   /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
@@ -798,6 +870,12 @@ module buttonGroup =
     static member inline inherit' = Interop.mkAttr "color" "inherit"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
+
+  /// The group orientation.
+  [<Erase>]
+  type orientation =
+    static member inline vertical = Interop.mkAttr "orientation" "vertical"
+    static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
 
   /// The size of the button. `small` is equivalent to the dense button styling.
   [<Erase>]
@@ -1175,6 +1253,12 @@ module checkbox =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline default' = Interop.mkAttr "color" "default"
 
+  /// The size of the checkbox. `small` is equivalent to the dense checkbox styling.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
+
   /// *Inherited from `iconButton`*
   ///
   /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
@@ -1183,14 +1267,6 @@ module checkbox =
     static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
     static member inline false' = Interop.mkAttr "edge" false
-
-  /// *Inherited from `iconButton`*
-  ///
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  [<Erase>]
-  type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
 
 
 [<Erase>]
@@ -1201,7 +1277,7 @@ type chip =
   static member inline children  = UnsupportedProp ()
   /// Override or extend the styles applied to the component. Use `classes.chip` to specify class names.
   static member inline classes (classNames: classes.IChipClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// If true, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If false, the chip will not be clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable.
+  /// If `true`, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If false, the chip will not be clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable.
   static member inline clickable (value: bool) = Interop.mkAttr "clickable" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
@@ -1328,6 +1404,8 @@ type collapse =
   /// Override or extend the styles applied to the component. Use `classes.collapse` to specify class names.
   static member inline classes (classNames: classes.ICollapseClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The height of the container when collapsed.
+  static member inline collapsedHeight (value: int) = Interop.mkAttr "collapsedHeight" value
+  /// The height of the container when collapsed.
   static member inline collapsedHeight (value: Styles.ICssUnit) = Interop.mkAttr "collapsedHeight" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
@@ -1368,6 +1446,8 @@ type container =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// If `true`, the left and right padding is removed.
+  static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
   /// Set the max-width to match the min-width of the current breakpoint. This is useful if you'd prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport. It's fluid by default.
   static member inline fixed' (value: bool) = Interop.mkAttr "fixed" value
 
@@ -2177,8 +2257,8 @@ type filledInput =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
-  /// Should be `true` when the component hosts a select.
-  static member inline select (value: bool) = Interop.mkAttr "select" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module filledInput =
 
@@ -2232,6 +2312,12 @@ module formControl =
     static member inline none = Interop.mkAttr "margin" "none"
     static member inline dense = Interop.mkAttr "margin" "dense"
     static member inline normal = Interop.mkAttr "margin" "normal"
+
+  /// The size of the text field.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
 
   /// The variant to use.
   [<Erase>]
@@ -2738,27 +2824,27 @@ type hidden =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// If true, screens this size and down will be hidden.
+  /// If `true`, screens this size and down will be hidden.
   static member inline lgDown (value: bool) = Interop.mkAttr "lgDown" value
-  /// If true, screens this size and up will be hidden.
+  /// If `true`, screens this size and up will be hidden.
   static member inline lgUp (value: bool) = Interop.mkAttr "lgUp" value
-  /// If true, screens this size and down will be hidden.
+  /// If `true`, screens this size and down will be hidden.
   static member inline mdDown (value: bool) = Interop.mkAttr "mdDown" value
-  /// If true, screens this size and up will be hidden.
+  /// If `true`, screens this size and up will be hidden.
   static member inline mdUp (value: bool) = Interop.mkAttr "mdUp" value
   /// Hide the given breakpoint(s).
   static member inline only ([<ParamArray>] values: BreakpointKey []) = Interop.mkAttr "only" values
-  /// If true, screens this size and down will be hidden.
+  /// If `true`, screens this size and down will be hidden.
   static member inline smDown (value: bool) = Interop.mkAttr "smDown" value
-  /// If true, screens this size and up will be hidden.
+  /// If `true`, screens this size and up will be hidden.
   static member inline smUp (value: bool) = Interop.mkAttr "smUp" value
-  /// If true, screens this size and down will be hidden.
+  /// If `true`, screens this size and down will be hidden.
   static member inline xlDown (value: bool) = Interop.mkAttr "xlDown" value
-  /// If true, screens this size and up will be hidden.
+  /// If `true`, screens this size and up will be hidden.
   static member inline xlUp (value: bool) = Interop.mkAttr "xlUp" value
-  /// If true, screens this size and down will be hidden.
+  /// If `true`, screens this size and down will be hidden.
   static member inline xsDown (value: bool) = Interop.mkAttr "xsDown" value
-  /// If true, screens this size and up will be hidden.
+  /// If `true`, screens this size and up will be hidden.
   static member inline xsUp (value: bool) = Interop.mkAttr "xsUp" value
 
 module hidden =
@@ -3008,8 +3094,8 @@ type input =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
-  /// Should be `true` when the component hosts a select.
-  static member inline select (value: bool) = Interop.mkAttr "select" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module input =
 
@@ -3129,8 +3215,8 @@ type inputBase =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// Maximum number of rows to display when multiline option is set to true.
   static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
-  /// Should be `true` when the component hosts a select.
-  static member inline select (value: bool) = Interop.mkAttr "select" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
@@ -4237,8 +4323,8 @@ type nativeSelect =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
-  /// Should be `true` when the component hosts a select.
-  static member inline select (value: bool) = Interop.mkAttr "select" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module nativeSelect =
 
@@ -4370,8 +4456,8 @@ type outlinedInput =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
-  /// Should be `true` when the component hosts a select.
-  static member inline select (value: bool) = Interop.mkAttr "select" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module outlinedInput =
 
@@ -4833,6 +4919,12 @@ module radio =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline default' = Interop.mkAttr "color" "default"
 
+  /// The size of the radio. `small` is equivalent to the dense radio styling.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
+
   /// *Inherited from `iconButton`*
   ///
   /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
@@ -4841,14 +4933,6 @@ module radio =
     static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
     static member inline false' = Interop.mkAttr "edge" false
-
-  /// *Inherited from `iconButton`*
-  ///
-  /// The size of the button. `small` is equivalent to the dense button styling.
-  [<Erase>]
-  type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
 
 
 [<Erase>]
@@ -4907,6 +4991,8 @@ type rating =
   static member inline emptyIcon (element: ReactElement) = Interop.mkAttr "emptyIcon" element
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
   ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  ///
   /// **Signature:**
   ///
   /// `function(value: number) => string`
@@ -4914,6 +5000,8 @@ type rating =
   /// *value:* The rating label's value to format.
   static member inline getLabelText (getText: int -> string) = Interop.mkAttr "getLabelText" getText
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   ///
   /// **Signature:**
   ///
@@ -5040,7 +5128,7 @@ type rootRef =
 
 [<Erase>]
 type select =
-  /// If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.
+  /// If `true`, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.
   static member inline autoWidth (value: bool) = Interop.mkAttr "autoWidth" value
   /// The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true.
   ///
@@ -5086,7 +5174,7 @@ type select =
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
   /// Props applied to the [`Menu`](https://material-ui.com/api/menu/) element.
   static member inline MenuProps (props: IReactProperty list) = Interop.mkAttr "MenuProps" (createObj !!props)
-  /// If true, `value` must be an array and the menu will support multiple selections.
+  /// If `true`, `value` must be an array and the menu will support multiple selections.
   static member inline multiple (value: bool) = Interop.mkAttr "multiple" value
   /// If `true`, the component will be using a native `select` element.
   static member inline native (value: bool) = Interop.mkAttr "native" value
@@ -5272,8 +5360,8 @@ type select =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
-  /// Should be `true` when the component hosts a select.
-  static member inline select (value: bool) = Interop.mkAttr "select" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module select =
 
@@ -5504,11 +5592,17 @@ type slider =
   ///
   /// *value:* The new value.
   static member inline onChangeCommitted (handler: float -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> (fun _ v -> handler v))
-  /// The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+  /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
+  ///
+  /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
   static member inline step (value: int) = Interop.mkAttr "step" value
-  /// The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+  /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
+  ///
+  /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
   static member inline step (value: float) = Interop.mkAttr "step" value
-  /// The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+  /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
+  ///
+  /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
   static member inline step (value: int option) = Interop.mkAttr "step" value
   /// The component used to display the value label.
   static member inline ThumbComponent (value: ReactElementType) = Interop.mkAttr "ThumbComponent" value
@@ -5547,7 +5641,9 @@ type slider =
 module sliderExtensions =
 
   type slider with
-    /// The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
+    /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
+    ///
+    /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
     static member inline step (value: float option) = Interop.mkAttr "step" value
 
 module slider =
@@ -5657,7 +5753,7 @@ type snackbar =
   static member inline onExited (handler: ReactElement -> unit) = Interop.mkAttr "onExited" handler
   /// Callback fired when the transition is exiting.
   static member inline onExiting (handler: ReactElement -> unit) = Interop.mkAttr "onExiting" handler
-  /// If true, `Snackbar` is open.
+  /// If `true`, `Snackbar` is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms.
   static member inline resumeHideDuration (value: int) = Interop.mkAttr "resumeHideDuration" value
@@ -5855,6 +5951,10 @@ type speedDialAction =
   static member inline tooltipTitle (value: float) = Interop.mkAttr "tooltipTitle" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `tooltip`*
+  ///
+  /// If `true`, adds an arrow to the tooltip.
+  static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// *Inherited from `tooltip`*
   ///
   /// Do not respond to focus events.
@@ -6741,6 +6841,28 @@ module tableCell =
 
 
 [<Erase>]
+type tableContainer =
+  /// The table itself, normally ``
+  static member inline children (element: ReactElement) = prop.children element
+  /// The table itself, normally ``
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The table itself, normally ``
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The table itself, normally ``
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The table itself, normally ``
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The table itself, normally ``
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Override or extend the styles applied to the component. Use `classes.tableContainer` to specify class names.
+  static member inline classes (classNames: classes.ITableContainerClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+
+
+[<Erase>]
 type tableFooter =
   /// The content of the component, normally `TableRow`.
   static member inline children (element: ReactElement) = prop.children element
@@ -6790,6 +6912,10 @@ type tablePagination =
   static member inline ActionsComponent (value: ReactElementType) = Interop.mkAttr "ActionsComponent" value
   /// Props applied to the back arrow [`IconButton`](https://material-ui.com/api/icon-button/) component.
   static member inline backIconButtonProps (props: IReactProperty list) = Interop.mkAttr "backIconButtonProps" (createObj !!props)
+  /// Text label for the back arrow icon button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline backIconButtonText (value: string) = Interop.mkAttr "backIconButtonText" value
   /// Override or extend the styles applied to the component. Use `classes.tablePagination` to specify class names.
   static member inline classes (classNames: classes.ITablePaginationClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// The component used for the root node. Either a string to use a DOM element or a component.
@@ -6799,21 +6925,39 @@ type tablePagination =
   /// The total number of rows.
   static member inline count (value: int) = Interop.mkAttr "count" value
   /// Customize the displayed rows label.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelDisplayedRows (getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (values: ReactElement seq) = Interop.mkAttr "labelRowsPerPage" values
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: string) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (values: string seq) = Interop.mkAttr "labelRowsPerPage" values
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: int) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: float) = Interop.mkAttr "labelRowsPerPage" value
   /// Props applied to the next arrow [`IconButton`](https://material-ui.com/api/icon-button/) element.
   static member inline nextIconButtonProps (props: IReactProperty list) = Interop.mkAttr "nextIconButtonProps" (createObj !!props)
+  /// Text label for the next arrow icon button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline nextIconButtonText (value: string) = Interop.mkAttr "nextIconButtonText" value
   /// Callback fired when the page is changed.
   ///
   /// **Signature:**
@@ -7117,10 +7261,12 @@ module tabs =
 
 [<Erase>]
 type textareaAutosize =
-  /// Minimum number of rows to display.
+  /// Use `rowsMin` instead. The prop will be removed in v5.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// Maximum number of rows to display.
   static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// Minimum number of rows to display.
+  static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -7244,6 +7390,12 @@ module textField =
     static member inline none = Interop.mkAttr "margin" "none"
     static member inline dense = Interop.mkAttr "margin" "dense"
     static member inline normal = Interop.mkAttr "margin" "normal"
+
+  /// The size of the text field.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
 
   /// The variant to use.
   [<Erase>]
@@ -7423,6 +7575,8 @@ module toolbar =
 
 [<Erase>]
 type tooltip =
+  /// If `true`, adds an arrow to the tooltip.
+  static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// Tooltip reference element.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).

@@ -16,7 +16,7 @@ type Autocomplete =
   static member createFilterOptions<'option>
       ( ?ignoreAccents: bool,
         ?ignoreCase: bool,
-        ?matchFrom: AutoCompleteMatchFrom,
+        ?matchFrom: AutocompleteMatchFrom,
         ?stringify: 'option -> string,
         ?trim: bool
       ) : 'option [] -> AutocompleteFilterOptionsState -> 'option []

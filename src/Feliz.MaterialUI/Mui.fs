@@ -57,6 +57,20 @@ type Mui =
   /// Any other props supplied will be provided to the root element (native element).
   static member inline avatar (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Avatar") [ Feliz.MaterialUI.avatar.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline avatarGroup props = createElement (importDefault "@material-ui/lab/AvatarGroup") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline avatarGroup (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/AvatarGroup") [ Feliz.MaterialUI.avatarGroup.children (children :> ReactElement seq) ]
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -932,6 +946,16 @@ type Mui =
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline tableCell (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableCell") [ Feliz.MaterialUI.tableCell.children (children :> ReactElement seq) ]
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tableContainer props = createElement (importDefault "@material-ui/core/TableContainer") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tableContainer (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableContainer") [ Feliz.MaterialUI.tableContainer.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
