@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="paket.references" />
     <Compile Include="Library.fs" />
   </ItemGroup>
   <ItemGroup>

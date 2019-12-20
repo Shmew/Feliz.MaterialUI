@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="paket.references" />
     <Compile Include="Tests.fs" />
   </ItemGroup>
   <ItemGroup>
