@@ -118,7 +118,6 @@ Target.create "UpdateFemtoVersionMetadata" (fun _ ->
     "//NpmPackage[@Name='@material-ui/core']/@Version"
     (sprintf "gte %i.%i lt %i" v.Major v.Minor (v.Major + 1u))
 
-  let v = latestCoreStableVersion
   poke
     "src/Feliz.MaterialUI/Feliz.MaterialUI.fsproj"
     "//NpmPackage[@Name='@material-ui/lab']/@Version"
