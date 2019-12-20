@@ -169,4 +169,4 @@ Target.create "CiBuild" ignore
 "Docs:Build"
 ==> "CiBuild"
 
-Target.runOrDefault "Pack"
+Target.runOrDefault "CiBuild"
