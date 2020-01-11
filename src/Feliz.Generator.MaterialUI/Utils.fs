@@ -11,12 +11,12 @@ module String =
     s.Trim ()
 
   /// Converts the first character to lowercase.
-  let lowerFirst (s: string) =
-    s.Substring(0, 1).ToLower() + s.Substring(1)
+  let lowerFirst s =
+    if s = "" then "" else s.Substring(0, 1).ToLower() + s.Substring(1)
 
   /// Converts the first character to lowercase.
-  let upperFirst (s: string) =
-    s.Substring(0, 1).ToUpper() + s.Substring(1)
+  let upperFirst s =
+    if s = "" then "" else s.Substring(0, 1).ToUpper() + s.Substring(1)
 
   /// Splits the string on the specified separator.
   let split (sep: string) (s: string) =
