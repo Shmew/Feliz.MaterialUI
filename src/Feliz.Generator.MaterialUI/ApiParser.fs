@@ -378,7 +378,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         [
           RegularPropOverload.create "(value: int)" "value"
           [ "appear", "int", true
-            "enter", "int", true;
+            "enter", "int", true
             "exit", "int", true ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
@@ -387,7 +387,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | _, ("transitionDuration" | "timeout"), ("number | { enter?: number, exit?: number }" | "number | { enter?: number, exit?: number } | 'auto'") ->
         [
           RegularPropOverload.create "(value: int)" "value"
-          [ "enter", "int", true;
+          [ "enter", "int", true
             "exit", "int", true ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
