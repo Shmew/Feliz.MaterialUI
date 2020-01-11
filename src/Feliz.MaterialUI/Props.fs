@@ -24,6 +24,113 @@ type themeProvider =
 
 
 [<Erase>]
+type alert =
+  /// The action to display. It renders after the message, at the end of the alert.
+  static member inline action (value: ReactElement) = Interop.mkAttr "action" value
+  /// The action to display. It renders after the message, at the end of the alert.
+  static member inline action (values: ReactElement seq) = Interop.mkAttr "action" values
+  /// The action to display. It renders after the message, at the end of the alert.
+  static member inline action (value: string) = Interop.mkAttr "action" value
+  /// The action to display. It renders after the message, at the end of the alert.
+  static member inline action (values: string seq) = Interop.mkAttr "action" values
+  /// The action to display. It renders after the message, at the end of the alert.
+  static member inline action (value: int) = Interop.mkAttr "action" value
+  /// The action to display. It renders after the message, at the end of the alert.
+  static member inline action (value: float) = Interop.mkAttr "action" value
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Override or extend the styles applied to the component. Use `classes.alert` to specify class names.
+  static member inline classes (classNames: classes.IAlertClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// Override the default label for the *close popup* icon button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline closeText (value: string) = Interop.mkAttr "closeText" value
+  /// Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the `severity` prop.
+  static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
+  /// The component maps the `severity` prop to a range of different icons, for instance success to ``. If you wish to change this mapping, you can provide your own. Alternatively, you can use the `icon` prop to override the icon displayed.
+  static member inline iconMapping (?error: ReactElement, ?info: ReactElement, ?success: ReactElement, ?warning: ReactElement) = Interop.mkAttr "iconMapping" (let x = createEmpty<obj> in (if error.IsSome then x?``error`` <- error); (if info.IsSome then x?``info`` <- info); (if success.IsSome then x?``success`` <- success); (if warning.IsSome then x?``warning`` <- warning); x)
+  /// Callback fired when the component requests to be closed. When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object) => void`
+  ///
+  /// *event:* The event source of the callback.
+  static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
+  /// The ARIA role attribute of the element.
+  static member inline role (value: string) = Interop.mkAttr "role" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
+
+module alert =
+
+  /// The main color for the alert. Unless provided, the value is taken from the `severity` prop.
+  [<Erase>]
+  type color =
+    static member inline error = Interop.mkAttr "color" "error"
+    static member inline info = Interop.mkAttr "color" "info"
+    static member inline success = Interop.mkAttr "color" "success"
+    static member inline warning = Interop.mkAttr "color" "warning"
+
+  /// The severity of the alert. This defines the color and icon used.
+  [<Erase>]
+  type severity =
+    static member inline error = Interop.mkAttr "severity" "error"
+    static member inline info = Interop.mkAttr "severity" "info"
+    static member inline success = Interop.mkAttr "severity" "success"
+    static member inline warning = Interop.mkAttr "severity" "warning"
+
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
+
+
+[<Erase>]
+type alertTitle =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Override or extend the styles applied to the component. Use `classes.alertTitle` to specify class names.
+  static member inline classes (classNames: classes.IAlertTitleClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+
+
+[<Erase>]
 type appBar =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
@@ -75,6 +182,14 @@ module appBar =
     static member inline static' = Interop.mkAttr "position" "static"
     static member inline sticky = Interop.mkAttr "position" "sticky"
 
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+
 
 [<Erase>]
 type autocomplete =
@@ -84,6 +199,12 @@ type autocomplete =
   static member inline autoHighlight (value: bool) = Interop.mkAttr "autoHighlight" value
   /// If `true`, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.
   static member inline autoSelect (value: bool) = Interop.mkAttr "autoSelect" value
+  /// Control if the input should be blurred when an option is selected:
+  ///
+  /// - `false` the input is not blurred. - `true` the input is always blurred. - `touch` the input is blurred after a touch event. - `mouse` the input is blurred after a mouse event.
+  static member inline blurOnSelect (value: bool) = Interop.mkAttr "blurOnSelect" value
+  /// Props applied to the [`Chip`](https://material-ui.com/api/chip/) element.
+  static member inline ChipProps (props: IReactProperty list) = Interop.mkAttr "ChipProps" (createObj !!props)
   /// Override or extend the styles applied to the component. Use `classes.autocomplete` to specify class names.
   static member inline classes (classNames: classes.IAutocompleteClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// If `true`, clear all values when the user presses escape and the popup is closed.
@@ -101,7 +222,7 @@ type autocomplete =
   /// If `true`, the popup will ignore the blur event if the input if filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
   /// The default input value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" value
   /// If `true`, the input can't be cleared.
   static member inline disableClearable (value: bool) = Interop.mkAttr "disableClearable" value
   /// If `true`, the popup won't close when a value is selected.
@@ -136,6 +257,8 @@ type autocomplete =
   static member inline filterOptions (filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option []) = Interop.mkAttr "filterOptions" (Func<_,_,_> filterOptions)
   /// If `true`, hide the selected options from the list box.
   static member inline filterSelectedOptions (value: bool) = Interop.mkAttr "filterSelectedOptions" value
+  /// Force the visibility display of the popup icon.
+  static member inline forcePopupIcon (value: bool) = Interop.mkAttr "forcePopupIcon" value
   /// If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
   static member inline freeSolo (value: bool) = Interop.mkAttr "freeSolo" value
   /// Used to determine the disabled state for a given option.
@@ -148,7 +271,7 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(options: any) => string`
+  /// `function(options: T) => string`
   ///
   /// *options:* The option to group.
   static member inline groupBy (getGroup: 'option -> string) = Interop.mkAttr "groupBy" getGroup
@@ -160,6 +283,8 @@ type autocomplete =
   static member inline inputValue (value: string) = Interop.mkAttr "inputValue" value
   /// The component used to render the listbox.
   static member inline ListboxComponent (value: ReactElementType) = Interop.mkAttr "ListboxComponent" value
+  /// Props applied to the Listbox element.
+  static member inline ListboxProps (props: IReactProperty list) = Interop.mkAttr "ListboxProps" (createObj !!props)
   /// If `true`, the component is in a loading state.
   static member inline loading (value: bool) = Interop.mkAttr "loading" value
   /// Text to display when in a loading state.
@@ -216,9 +341,9 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: T) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
   /// *value:* null
   static member inline onChange (handler: Event -> 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
@@ -226,9 +351,9 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: T) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
   /// *value:* null
   static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
@@ -248,9 +373,9 @@ type autocomplete =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value of the text input
+  /// *value:* The new value of the text input.
   ///
-  /// *reason:* One of "input" (user input) or "reset" (programmatic change)
+  /// *reason:* Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
   static member inline onInputChange (handler: Event -> string -> AutocompleteInputChangeReason -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_,_> handler)
   /// Callback fired when the input value changes.
   ///
@@ -260,9 +385,9 @@ type autocomplete =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *value:* The new value of the text input
+  /// *value:* The new value of the text input.
   ///
-  /// *reason:* One of "input" (user input) or "reset" (programmatic change)
+  /// *reason:* Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
   static member inline onInputChange (handler: string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
   /// Callback fired when the popup requests to be opened. Use in controlled mode (see open).
   ///
@@ -306,7 +431,7 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(option: any, state: object) => ReactNode`
+  /// `function(option: T, state: object) => ReactNode`
   ///
   /// *option:* The option to render.
   ///
@@ -316,7 +441,7 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(value: any, getTagProps: function) => ReactNode`
+  /// `function(value: undefined, getTagProps: function) => ReactNode`
   ///
   /// *value:* The `value` provided to the component.
   ///
@@ -325,11 +450,35 @@ type autocomplete =
   /// The value of the autocomplete.
   ///
   /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'option []) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
+[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
+module autocompleteExtensions =
+
+  type autocomplete with
+    /// The default input value. Use when the component is not controlled.
+    static member inline defaultValue (value: 'option) = Interop.mkAttr "defaultValue" value
+    /// The value of the autocomplete.
+    ///
+    /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
+    static member inline value (value: 'option) = Interop.mkAttr "value" value
+
 module autocomplete =
+
+  /// Control if the input should be blurred when an option is selected:
+  ///
+  /// - `false` the input is not blurred. - `true` the input is always blurred. - `touch` the input is blurred after a touch event. - `mouse` the input is blurred after a mouse event.
+  [<Erase>]
+  type blurOnSelect =
+    static member inline mouse = Interop.mkAttr "blurOnSelect" "mouse"
+    static member inline touch = Interop.mkAttr "blurOnSelect" "touch"
+
+  /// Force the visibility display of the popup icon.
+  [<Erase>]
+  type forcePopupIcon =
+    static member inline auto = Interop.mkAttr "forcePopupIcon" "auto"
 
   /// The size of the autocomplete.
   [<Erase>]
@@ -519,9 +668,9 @@ type bottomNavigation =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* We default to the index of the child
+  /// *value:* We default to the index of the child.
   static member inline onChange (handler: Event -> 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
   /// Callback fired when the value changes.
   ///
@@ -529,9 +678,9 @@ type bottomNavigation =
   ///
   /// `function(event: object, value: any) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
-  /// *value:* We default to the index of the child
+  /// *value:* We default to the index of the child.
   static member inline onChange (handler: 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
   /// If `true`, all `BottomNavigationAction`s will show their labels. By default, only the selected `BottomNavigationAction` will show its label.
   static member inline showLabels (value: bool) = Interop.mkAttr "showLabels" value
@@ -926,6 +1075,16 @@ type card =
   ///
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
+
+module card =
+
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
 
 
 [<Erase>]
@@ -1520,7 +1679,7 @@ type dialog =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: Event -> DialogCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   ///
@@ -1530,7 +1689,7 @@ type dialog =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: DialogCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the dialog enters.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -1698,11 +1857,11 @@ type dialogContentText =
   static member inline classes (classNames: classes.IDialogContentTextClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
   /// *Inherited from `typography`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `typography`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `typography`*
   ///
@@ -1720,7 +1879,7 @@ type dialogContentText =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
-  /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  /// The component maps the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module dialogContentText =
@@ -1950,6 +2109,16 @@ type expansionPanel =
   ///
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
+
+module expansionPanel =
+
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
 
 
 [<Erase>]
@@ -2255,6 +2424,12 @@ type filledInput =
   static member inline value (value: 'a) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
+  /// *Inherited from `inputBase`*
+  ///
+  /// Callback fired when the input is blurred.
+  ///
+  /// Notice that the first argument (event) might be undefined.
+  static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
   /// Minimum number of rows to display when multiline option is set to true.
@@ -3094,6 +3269,12 @@ type input =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
+  /// Callback fired when the input is blurred.
+  ///
+  /// Notice that the first argument (event) might be undefined.
+  static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
   /// Minimum number of rows to display when multiline option is set to true.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
@@ -3189,6 +3370,10 @@ type inputBase =
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
   static member inline name (value: string) = Interop.mkAttr "name" value
+  /// Callback fired when the input is blurred.
+  ///
+  /// Notice that the first argument (event) might be undefined.
+  static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// Callback fired when the value is changed.
   ///
   /// **Signature:**
@@ -3375,7 +3560,7 @@ type link =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
-  /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  /// The component maps the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module link =
@@ -3662,7 +3847,7 @@ type menu =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
   static member inline onClose (handler: Event -> MenuCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   ///
@@ -3672,7 +3857,7 @@ type menu =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
   static member inline onClose (handler: MenuCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the Menu enters.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -4171,7 +4356,7 @@ type modal =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: Event -> ModalCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.
   ///
@@ -4181,7 +4366,7 @@ type modal =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`.
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: ModalCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
   static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
@@ -4323,6 +4508,12 @@ type nativeSelect =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
+  /// Callback fired when the input is blurred.
+  ///
+  /// Notice that the first argument (event) might be undefined.
+  static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
   /// Minimum number of rows to display when multiline option is set to true.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
@@ -4456,6 +4647,12 @@ type outlinedInput =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
+  /// Callback fired when the input is blurred.
+  ///
+  /// Notice that the first argument (event) might be undefined.
+  static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
   /// Minimum number of rows to display when multiline option is set to true.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
@@ -4498,6 +4695,14 @@ type paper =
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
+
+module paper =
+
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
 
 
 [<Erase>]
@@ -4566,7 +4771,7 @@ type popover =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: Event -> PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   ///
@@ -4576,7 +4781,7 @@ type popover =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`
+  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the component is entering.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -4985,10 +5190,26 @@ type radioGroup =
 type rating =
   /// Override or extend the styles applied to the component. Use `classes.rating` to specify class names.
   static member inline classes (classNames: classes.IRatingClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
+  /// The default value. Use when the component is not controlled.
+  static member inline defaultValue (value: int) = Interop.mkAttr "defaultValue" value
+  /// The default value. Use when the component is not controlled.
+  static member inline defaultValue (value: float) = Interop.mkAttr "defaultValue" value
   /// If `true`, the rating will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// The icon to display when empty.
   static member inline emptyIcon (element: ReactElement) = Interop.mkAttr "emptyIcon" element
+  /// The label read when the rating input is empty.
+  static member inline emptyLabelText (value: ReactElement) = Interop.mkAttr "emptyLabelText" value
+  /// The label read when the rating input is empty.
+  static member inline emptyLabelText (values: ReactElement seq) = Interop.mkAttr "emptyLabelText" values
+  /// The label read when the rating input is empty.
+  static member inline emptyLabelText (value: string) = Interop.mkAttr "emptyLabelText" value
+  /// The label read when the rating input is empty.
+  static member inline emptyLabelText (values: string seq) = Interop.mkAttr "emptyLabelText" values
+  /// The label read when the rating input is empty.
+  static member inline emptyLabelText (value: int) = Interop.mkAttr "emptyLabelText" value
+  /// The label read when the rating input is empty.
+  static member inline emptyLabelText (value: float) = Interop.mkAttr "emptyLabelText" value
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
@@ -5015,6 +5236,8 @@ type rating =
   static member inline IconContainerComponent (value: ReactElementType) = Interop.mkAttr "IconContainerComponent" value
   /// Maximum rating.
   static member inline max (value: int) = Interop.mkAttr "max" value
+  /// Maximum rating.
+  static member inline max (value: float) = Interop.mkAttr "max" value
   /// The name attribute of the radio `input` elements. If `readOnly` is false, the prop is required, this input name`should be unique within the parent form.
   static member inline name (value: string) = Interop.mkAttr "name" value
   /// Callback fired when the value changes.
@@ -5099,10 +5322,14 @@ type rating =
   static member inline onChangeActive (handler: float -> unit) = Interop.mkAttr "onChangeActive" (Func<_,_,_> (fun _ v -> handler v))
   /// The minimum increment value change allowed.
   static member inline precision (value: int) = Interop.mkAttr "precision" value
+  /// The minimum increment value change allowed.
+  static member inline precision (value: float) = Interop.mkAttr "precision" value
   /// Removes all hover effects and pointer events.
   static member inline readOnly (value: bool) = Interop.mkAttr "readOnly" value
   /// The rating value.
   static member inline value (value: int) = Interop.mkAttr "value" value
+  /// The rating value.
+  static member inline value (value: float) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -5360,6 +5587,12 @@ type select =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
+  /// Callback fired when the input is blurred.
+  ///
+  /// Notice that the first argument (event) might be undefined.
+  static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
   /// Minimum number of rows to display when multiline option is set to true.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
@@ -5397,8 +5630,6 @@ type skeleton =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// If `true` the animation effect is disabled.
-  static member inline disableAnimate (value: bool) = Interop.mkAttr "disableAnimate" value
   /// Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.
   static member inline height (value: int) = Interop.mkAttr "height" value
   /// Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.
@@ -5411,6 +5642,13 @@ type skeleton =
   static member inline children  = UnsupportedProp ()
 
 module skeleton =
+
+  /// The animation. If `false` the animation effect is disabled.
+  [<Erase>]
+  type animation =
+    static member inline pulse = Interop.mkAttr "animation" "pulse"
+    static member inline wave = Interop.mkAttr "animation" "wave"
+    static member inline false' = Interop.mkAttr "animation" false
 
   /// The type of content that will be rendered.
   [<Erase>]
@@ -5681,17 +5919,17 @@ module slider =
 
 [<Erase>]
 type snackbar =
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (values: ReactElement seq) = Interop.mkAttr "action" values
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: string) = Interop.mkAttr "action" value
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (values: string seq) = Interop.mkAttr "action" values
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: int) = Interop.mkAttr "action" value
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: float) = Interop.mkAttr "action" value
   /// The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value.
   static member inline autoHideDuration (value: int) = Interop.mkAttr "autoHideDuration" value
@@ -5729,7 +5967,7 @@ type snackbar =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
+  /// *reason:* Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
   static member inline onClose (handler: Event -> SnackbarCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed. Typically `onClose` is used to set state in the parent component, which is used to control the `Snackbar` `open` prop. The `reason` parameter can optionally be used to control the response to `onClose`, for example ignoring `clickaway`.
   ///
@@ -5739,7 +5977,7 @@ type snackbar =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
+  /// *reason:* Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
   static member inline onClose (handler: SnackbarCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the transition is entering.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -5781,17 +6019,17 @@ module snackbar =
 
 [<Erase>]
 type snackbarContent =
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (values: ReactElement seq) = Interop.mkAttr "action" values
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: string) = Interop.mkAttr "action" value
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (values: string seq) = Interop.mkAttr "action" values
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: int) = Interop.mkAttr "action" value
-  /// The action to display.
+  /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: float) = Interop.mkAttr "action" value
   /// Override or extend the styles applied to the component. Use `classes.snackbarContent` to specify class names.
   static member inline classes (classNames: classes.ISnackbarContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
@@ -5807,6 +6045,8 @@ type snackbarContent =
   static member inline message (value: int) = Interop.mkAttr "message" value
   /// The message to display.
   static member inline message (value: float) = Interop.mkAttr "message" value
+  /// The ARIA role attribute of the element.
+  static member inline role (value: string) = Interop.mkAttr "role" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `paper`*
@@ -5828,11 +6068,13 @@ type snackbarContent =
 
 module snackbarContent =
 
-  /// The role of the SnackbarContent. If the Snackbar requires focus to be closed, the `alertdialog` role should be used instead.
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
   [<Erase>]
-  type role =
-    static member inline alert = Interop.mkAttr "role" "alert"
-    static member inline alertdialog = Interop.mkAttr "role" "alertdialog"
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
 
 
 [<Erase>]
@@ -5867,7 +6109,7 @@ type speedDial =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
+  /// *reason:* Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
   static member inline onClose (handler: Event -> SpeedDialCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   ///
@@ -5877,7 +6119,7 @@ type speedDial =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
+  /// *reason:* Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
   static member inline onClose (handler: SpeedDialCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired when the component requests to be open.
   ///
@@ -5887,7 +6129,7 @@ type speedDial =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
+  /// *reason:* Can be: `"toggle"`, `"focus"`, `"mouseEnter"`.
   static member inline onOpen (handler: Event -> SpeedDialOpenReason -> unit) = Interop.mkAttr "onOpen" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be open.
   ///
@@ -5897,7 +6139,7 @@ type speedDial =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *reason:* Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
+  /// *reason:* Can be: `"toggle"`, `"focus"`, `"mouseEnter"`.
   static member inline onOpen (handler: SpeedDialOpenReason -> unit) = Interop.mkAttr "onOpen" (Func<_,_,_> (fun _ v -> handler v))
   /// If `true`, the SpeedDial is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
@@ -6363,6 +6605,14 @@ module stepper =
   type orientation =
     static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
     static member inline vertical = Interop.mkAttr "orientation" "vertical"
+
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
 
 
 [<Erase>]
@@ -7743,7 +7993,7 @@ type treeView =
   ///
   /// `function(event: object, nodeIds: array) => void`
   ///
-  /// *event:* The event source of the callback
+  /// *event:* The event source of the callback.
   ///
   /// *nodeIds:* The ids of the expanded nodes.
   static member inline onNodeToggle (handler: Event -> string [] -> unit) = Interop.mkAttr "onNodeToggle" handler
@@ -7765,9 +8015,9 @@ type typography =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.typography` to specify class names.
   static member inline classes (classNames: classes.ITypographyClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the text will have a bottom margin.
   static member inline gutterBottom (value: bool) = Interop.mkAttr "gutterBottom" value
@@ -7777,7 +8027,7 @@ type typography =
   static member inline noWrap (value: bool) = Interop.mkAttr "noWrap" value
   /// If `true`, the text will have a bottom margin.
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
-  /// We are empirically mapping the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  /// The component maps the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module typography =

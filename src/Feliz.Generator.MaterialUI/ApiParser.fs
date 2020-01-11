@@ -72,6 +72,15 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     match componentMethodName, propMethodName, propDocType with
     | _, _, "unsupportedProp" ->
         [RegularPropOverload.createCustom "" "UnsupportedProp ()"]
+    | "alert", "iconMapping", "{ error?: node, info?: node, success?: node, warning?: node }" ->
+        [
+          [ "error", "ReactElement", true
+            "info", "ReactElement", true
+            "success", "ReactElement", true
+            "warning", "ReactElement", true ]
+          |> paramListAndObjCreator
+          ||> RegularPropOverload.create
+        ]
     | "buttonBase", "action", "ref" ->
         [
           RegularPropOverload.create "(ref: IRefValue<ButtonBaseActions option>)" "ref"
@@ -146,6 +155,12 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "autocomplete", "renderTags", "func" ->
         [RegularPropOverload.create "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)" "(Func<_,_,_> render)"]
 
+    | "autocomplete", ("defaultValue" | "value"), "any | array" ->
+        [
+          RegularPropOverload.create "(value: 'option [])" "value"
+          RegularPropOverload.create "(value: 'option)" "value" |> RegularPropOverload.setExtension true
+        ]
+
     | "popover", "anchorPosition",  "{ left: number, top: number }" ->
         [
           [ "left", "int", false
@@ -156,6 +171,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "treeView", ("expanded" | "defaultExpanded"), "Array<string>" ->
         [RegularPropOverload.create "([<ParamArray>] nodeIds: string [])" "nodeIds"]
+
+    | "inputBase", "onBlur", "func" ->
+        [RegularPropOverload.create "(handler: Event option -> unit)" "handler"]
 
     | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax" | "rowsMin"), "string | number" ->
         [RegularPropOverload.create "(value: int)" "value"]
@@ -261,6 +279,12 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
           RegularPropOverload.create "(handler: float -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
+
+    | "rating", ("defaultValue" | "max" | "precision" | "value"), "number" ->
+      [
+        RegularPropOverload.create "(value: int)" "value"
+        RegularPropOverload.create "(value: float)" "value"
+      ]
 
     | "select", "onChange", "func" ->
         [
@@ -452,7 +476,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         let otherComponentName = pn.Substring(0, pn.Length - 7)
         [RegularPropOverload.create (sprintf "(classNames: classes.I%sClasses list)" otherComponentName) "(createObj !!classNames)"]
 
-    | _, _, "bool" ->
+    | _, _, t when t = "bool" || t.Split('|') |> Array.map String.trim |> Array.contains "bool" ->
         [RegularPropOverload.create "(value: bool)" "value"]
 
     | _, _, "string" ->
@@ -578,7 +602,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               if value.StartsWith "'" && value.EndsWith "'" then
                 // String
                 value.Replace("'", "\"") |> Some
-              elif value = "number" || value.Contains "{" then None
+              elif value = "number" || value = "bool" || value.Contains "{" then None
               else
                 // Probably literal, e.g. bool or int
                 Some value
@@ -630,7 +654,7 @@ let parseComponent (htmlPathOrUrl: string) =
     let page = ComponentApiPage.Load(htmlPathOrUrl)
     let html = page.Html
 
-    let importMatches = Regex.Match(html.CssSelect("pre").[0].InnerText(), "import (.+) from'(.+?)'")
+    let importMatches = Regex.Match(html.CssSelect("pre").[0].InnerText(), "import (.+?) from'(.+?)'")
     let compMethodName = importMatches.Groups.[1].Value |> String.lowerFirst
     let importPath = importMatches.Groups.[2].Value
 

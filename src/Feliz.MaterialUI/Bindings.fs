@@ -362,8 +362,11 @@ type PopoverOriginVertical =
 
 [<StringEnum; RequireQualifiedAccess>]
 type AutocompleteInputChangeReason =
+  /// User input.
   | Input
+  /// Programmatic change.
   | Reset
+  | Clear
 
 [<StringEnum; RequireQualifiedAccess>]
 type AutocompleteMatchFrom =

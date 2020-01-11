@@ -9,6 +9,52 @@ open Fable.Core
 /// Override or extend the styles applied to components.
 module classes =
 
+  type IAlertClasses = interface end
+  
+  [<Erase>]
+  type alert =
+    /// Styles applied to the root element.
+    static member inline root(className: string) : IAlertClasses = unbox ("root", className)
+    /// Styles applied to the root element if `variant="standard"` and `color="success"`.
+    static member inline standardSuccess(className: string) : IAlertClasses = unbox ("standardSuccess", className)
+    /// Styles applied to the root element if `variant="standard"` and `color="info"`.
+    static member inline standardInfo(className: string) : IAlertClasses = unbox ("standardInfo", className)
+    /// Styles applied to the root element if `variant="standard"` and `color="warning"`.
+    static member inline standardWarning(className: string) : IAlertClasses = unbox ("standardWarning", className)
+    /// Styles applied to the root element if `variant="standard"` and `color="error"`.
+    static member inline standardError(className: string) : IAlertClasses = unbox ("standardError", className)
+    /// Styles applied to the root element if `variant="outlined"` and `color="success"`.
+    static member inline outlinedSuccess(className: string) : IAlertClasses = unbox ("outlinedSuccess", className)
+    /// Styles applied to the root element if `variant="outlined"` and `color="info"`.
+    static member inline outlinedInfo(className: string) : IAlertClasses = unbox ("outlinedInfo", className)
+    /// Styles applied to the root element if `variant="outlined"` and `color="warning"`.
+    static member inline outlinedWarning(className: string) : IAlertClasses = unbox ("outlinedWarning", className)
+    /// Styles applied to the root element if `variant="outlined"` and `color="error"`.
+    static member inline outlinedError(className: string) : IAlertClasses = unbox ("outlinedError", className)
+    /// Styles applied to the root element if `variant="filled"` and `color="success"`.
+    static member inline filledSuccess(className: string) : IAlertClasses = unbox ("filledSuccess", className)
+    /// Styles applied to the root element if `variant="filled"` and `color="info"`.
+    static member inline filledInfo(className: string) : IAlertClasses = unbox ("filledInfo", className)
+    /// Styles applied to the root element if `variant="filled"` and `color="warning"`.
+    static member inline filledWarning(className: string) : IAlertClasses = unbox ("filledWarning", className)
+    /// Styles applied to the root element if `variant="filled"` and `color="error"`.
+    static member inline filledError(className: string) : IAlertClasses = unbox ("filledError", className)
+    /// Styles applied to the icon wrapper element.
+    static member inline icon(className: string) : IAlertClasses = unbox ("icon", className)
+    /// Styles applied to the message wrapper element.
+    static member inline message(className: string) : IAlertClasses = unbox ("message", className)
+    /// Styles applied to the action wrapper element if `action` is provided.
+    static member inline action(className: string) : IAlertClasses = unbox ("action", className)
+
+
+  type IAlertTitleClasses = interface end
+  
+  [<Erase>]
+  type alertTitle =
+    /// Styles applied to the root element.
+    static member inline root(className: string) : IAlertTitleClasses = unbox ("root", className)
+
+
   type IAppBarClasses = interface end
   
   [<Erase>]
@@ -457,8 +503,9 @@ module classes =
     static member inline iconColorPrimary(className: string) : IChipClasses = unbox ("iconColorPrimary", className)
     /// Styles applied to the `icon` element if `color="secondary"`.
     static member inline iconColorSecondary(className: string) : IChipClasses = unbox ("iconColorSecondary", className)
-    /// Styles applied to the label `span` element`.
+    /// Styles applied to the label `span` element.
     static member inline label(className: string) : IChipClasses = unbox ("label", className)
+    /// Styles applied to the label `span` element if `size="small"`.
     static member inline labelSmall(className: string) : IChipClasses = unbox ("labelSmall", className)
     /// Styles applied to the `deleteIcon` element.
     static member inline deleteIcon(className: string) : IChipClasses = unbox ("deleteIcon", className)
@@ -996,6 +1043,7 @@ module classes =
     static member inline colorError(className: string) : IIconClasses = unbox ("colorError", className)
     /// Styles applied to the root element if `color="disabled"`.
     static member inline colorDisabled(className: string) : IIconClasses = unbox ("colorDisabled", className)
+    /// Styles applied to the root element if `fontSize="inherit"`.
     static member inline fontSizeInherit(className: string) : IIconClasses = unbox ("fontSizeInherit", className)
     /// Styles applied to the root element if `fontSize="small"`.
     static member inline fontSizeSmall(className: string) : IIconClasses = unbox ("fontSizeSmall", className)
@@ -1444,6 +1492,8 @@ module classes =
     static member inline root(className: string) : IPaperClasses = unbox ("root", className)
     /// Styles applied to the root element if `square={false}`.
     static member inline rounded(className: string) : IPaperClasses = unbox ("rounded", className)
+    /// Styles applied to the root element if `variant="outlined"`
+    static member inline outlined(className: string) : IPaperClasses = unbox ("outlined", className)
     static member inline elevation0(className: string) : IPaperClasses = unbox ("elevation0", className)
     static member inline elevation1(className: string) : IPaperClasses = unbox ("elevation1", className)
     static member inline elevation2(className: string) : IPaperClasses = unbox ("elevation2", className)
@@ -1585,8 +1635,10 @@ module classes =
     static member inline rect(className: string) : ISkeletonClasses = unbox ("rect", className)
     /// Styles applied to the root element if `variant="circle"`.
     static member inline circle(className: string) : ISkeletonClasses = unbox ("circle", className)
-    /// Styles applied to the root element if `disabledAnimate={false}`.
-    static member inline animate(className: string) : ISkeletonClasses = unbox ("animate", className)
+    /// Styles applied to the root element if `animation="pulse"`.
+    static member inline pulse(className: string) : ISkeletonClasses = unbox ("pulse", className)
+    /// Styles applied to the root element if `animation="wave"`.
+    static member inline wave(className: string) : ISkeletonClasses = unbox ("wave", className)
 
 
   type ISlideClasses = interface end

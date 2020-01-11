@@ -30,6 +30,34 @@ type Mui =
 
   static member inline themeProvider props = createElement (import "ThemeProvider" "@material-ui/core/styles") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  static member inline alert props = createElement (importDefault "@material-ui/lab/Alert") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  static member inline alert (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/Alert") [ Feliz.MaterialUI.alert.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline alertTitle props = createElement (importDefault "@material-ui/lab/AlertTitle") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline alertTitle (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/AlertTitle") [ Feliz.MaterialUI.alertTitle.children (children :> ReactElement seq) ]
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).

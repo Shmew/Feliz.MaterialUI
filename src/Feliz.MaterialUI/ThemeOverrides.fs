@@ -8,6 +8,8 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Feliz
 
+type IMuiAlertOverrideRule = interface end
+type IMuiAlertTitleOverrideRule = interface end
 type IMuiAppBarOverrideRule = interface end
 type IMuiAutocompleteOverrideRule = interface end
 type IMuiAvatarOverrideRule = interface end
@@ -117,6 +119,8 @@ type IMuiTypographyOverrideRule = interface end
 
 [<Erase>]
 type overrides =
+  static member inline muiAlert (rules: IMuiAlertOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAlert", createObj !!rules)
+  static member inline muiAlertTitle (rules: IMuiAlertTitleOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAlertTitle", createObj !!rules)
   static member inline muiAppBar (rules: IMuiAppBarOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAppBar", createObj !!rules)
   static member inline muiAutocomplete (rules: IMuiAutocompleteOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAutocomplete", createObj !!rules)
   static member inline muiAvatar (rules: IMuiAvatarOverrideRule list) : IOverrideStyleSheet = unbox ("MuiAvatar", createObj !!rules)
@@ -225,6 +229,46 @@ type overrides =
   static member inline muiTypography (rules: IMuiTypographyOverrideRule list) : IOverrideStyleSheet = unbox ("MuiTypography", createObj !!rules)
 
 module overrides =
+
+  [<Erase>]
+  type muiAlert =
+    /// Styles applied to the root element.
+    static member inline root(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("root", createObj !!styles)
+    /// Styles applied to the root element if `variant="standard"` and `color="success"`.
+    static member inline standardSuccess(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("standardSuccess", createObj !!styles)
+    /// Styles applied to the root element if `variant="standard"` and `color="info"`.
+    static member inline standardInfo(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("standardInfo", createObj !!styles)
+    /// Styles applied to the root element if `variant="standard"` and `color="warning"`.
+    static member inline standardWarning(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("standardWarning", createObj !!styles)
+    /// Styles applied to the root element if `variant="standard"` and `color="error"`.
+    static member inline standardError(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("standardError", createObj !!styles)
+    /// Styles applied to the root element if `variant="outlined"` and `color="success"`.
+    static member inline outlinedSuccess(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("outlinedSuccess", createObj !!styles)
+    /// Styles applied to the root element if `variant="outlined"` and `color="info"`.
+    static member inline outlinedInfo(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("outlinedInfo", createObj !!styles)
+    /// Styles applied to the root element if `variant="outlined"` and `color="warning"`.
+    static member inline outlinedWarning(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("outlinedWarning", createObj !!styles)
+    /// Styles applied to the root element if `variant="outlined"` and `color="error"`.
+    static member inline outlinedError(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("outlinedError", createObj !!styles)
+    /// Styles applied to the root element if `variant="filled"` and `color="success"`.
+    static member inline filledSuccess(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("filledSuccess", createObj !!styles)
+    /// Styles applied to the root element if `variant="filled"` and `color="info"`.
+    static member inline filledInfo(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("filledInfo", createObj !!styles)
+    /// Styles applied to the root element if `variant="filled"` and `color="warning"`.
+    static member inline filledWarning(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("filledWarning", createObj !!styles)
+    /// Styles applied to the root element if `variant="filled"` and `color="error"`.
+    static member inline filledError(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("filledError", createObj !!styles)
+    /// Styles applied to the icon wrapper element.
+    static member inline icon(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("icon", createObj !!styles)
+    /// Styles applied to the message wrapper element.
+    static member inline message(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("message", createObj !!styles)
+    /// Styles applied to the action wrapper element if `action` is provided.
+    static member inline action(styles: IStyleAttribute list) : IMuiAlertOverrideRule = unbox ("action", createObj !!styles)
+
+  [<Erase>]
+  type muiAlertTitle =
+    /// Styles applied to the root element.
+    static member inline root(styles: IStyleAttribute list) : IMuiAlertTitleOverrideRule = unbox ("root", createObj !!styles)
 
   [<Erase>]
   type muiAppBar =
@@ -615,8 +659,9 @@ module overrides =
     static member inline iconColorPrimary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("iconColorPrimary", createObj !!styles)
     /// Styles applied to the `icon` element if `color="secondary"`.
     static member inline iconColorSecondary(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("iconColorSecondary", createObj !!styles)
-    /// Styles applied to the label `span` element`.
+    /// Styles applied to the label `span` element.
     static member inline label(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("label", createObj !!styles)
+    /// Styles applied to the label `span` element if `size="small"`.
     static member inline labelSmall(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("labelSmall", createObj !!styles)
     /// Styles applied to the `deleteIcon` element.
     static member inline deleteIcon(styles: IStyleAttribute list) : IMuiChipOverrideRule = unbox ("deleteIcon", createObj !!styles)
@@ -1061,6 +1106,7 @@ module overrides =
     static member inline colorError(styles: IStyleAttribute list) : IMuiIconOverrideRule = unbox ("colorError", createObj !!styles)
     /// Styles applied to the root element if `color="disabled"`.
     static member inline colorDisabled(styles: IStyleAttribute list) : IMuiIconOverrideRule = unbox ("colorDisabled", createObj !!styles)
+    /// Styles applied to the root element if `fontSize="inherit"`.
     static member inline fontSizeInherit(styles: IStyleAttribute list) : IMuiIconOverrideRule = unbox ("fontSizeInherit", createObj !!styles)
     /// Styles applied to the root element if `fontSize="small"`.
     static member inline fontSizeSmall(styles: IStyleAttribute list) : IMuiIconOverrideRule = unbox ("fontSizeSmall", createObj !!styles)
@@ -1440,6 +1486,8 @@ module overrides =
     static member inline root(styles: IStyleAttribute list) : IMuiPaperOverrideRule = unbox ("root", createObj !!styles)
     /// Styles applied to the root element if `square={false}`.
     static member inline rounded(styles: IStyleAttribute list) : IMuiPaperOverrideRule = unbox ("rounded", createObj !!styles)
+    /// Styles applied to the root element if `variant="outlined"`
+    static member inline outlined(styles: IStyleAttribute list) : IMuiPaperOverrideRule = unbox ("outlined", createObj !!styles)
     static member inline elevation0(styles: IStyleAttribute list) : IMuiPaperOverrideRule = unbox ("elevation0", createObj !!styles)
     static member inline elevation1(styles: IStyleAttribute list) : IMuiPaperOverrideRule = unbox ("elevation1", createObj !!styles)
     static member inline elevation2(styles: IStyleAttribute list) : IMuiPaperOverrideRule = unbox ("elevation2", createObj !!styles)
@@ -1554,8 +1602,10 @@ module overrides =
     static member inline rect(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("rect", createObj !!styles)
     /// Styles applied to the root element if `variant="circle"`.
     static member inline circle(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("circle", createObj !!styles)
-    /// Styles applied to the root element if `disabledAnimate={false}`.
-    static member inline animate(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("animate", createObj !!styles)
+    /// Styles applied to the root element if `animation="pulse"`.
+    static member inline pulse(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("pulse", createObj !!styles)
+    /// Styles applied to the root element if `animation="wave"`.
+    static member inline wave(styles: IStyleAttribute list) : IMuiSkeletonOverrideRule = unbox ("wave", createObj !!styles)
 
   [<Erase>]
   type muiSlider =

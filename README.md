@@ -30,6 +30,13 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 0.9.0
+
+* Breaking: `snackbarContent.role` is now a normal `string` property (not enum property) as per updated MUI docs
+* Updated for @material-ui/lab 4.0.0-alpha.39
+* Updated doc comments from MUI docs
+* Added `float` overloads to relevant `rating` props
+
 ### 0.8.4
 
 * Updated for @material-ui/core 4.8 and @material-ui/lab 4.0.0-alpha.36
