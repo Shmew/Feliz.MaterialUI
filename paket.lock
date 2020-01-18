@@ -427,9 +427,9 @@ NUGET
       System.Xml.ReaderWriter (>= 4.3)
       System.Xml.XmlDocument (>= 4.3)
       System.Xml.XPath (>= 4.3)
-    Thoth.Json (3.4.1)
-      Fable.Core (>= 3.0)
-      FSharp.Core (>= 4.6.2)
+    Thoth.Json (3.5)
+      Fable.Core (>= 3.1.4)
+      FSharp.Core (>= 4.7)
     Zanaptak.TypedCssClasses (0.2)
       FSharp.Core (>= 4.3.4)
 
