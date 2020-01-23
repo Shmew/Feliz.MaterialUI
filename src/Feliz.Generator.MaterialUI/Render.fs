@@ -34,7 +34,7 @@ module GetLines =
     ]
 
   let themePropsForComponent (comp: MuiComponent) =
-    sprintf """static member inline mui%s(props: IReactProperty list) : IThemeProps = unbox ("Mui%s", createObj !!props)"""
+    sprintf """static member inline mui%s(props: IReactProperty list) : IThemeProp = unbox ("props.Mui%s", createObj !!props)"""
       (comp.GeneratorComponent.MethodName |> String.upperFirst)
       (comp.GeneratorComponent.MethodName |> String.upperFirst)
     |> List.singleton
@@ -42,9 +42,9 @@ module GetLines =
   /// Gets the code lines for the implementation of a single class rule. Does not
   /// include docs.
   let singleThemeOverrideRule stylesheetName (rule: ClassRule) =
-    sprintf "static member inline %s(styles: IStyleAttribute list) : I%sOverrideRule = unbox (\"%s\", createObj !!styles)"
+    sprintf "static member inline %s(styles: IStyleAttribute list) : IThemeProp = unbox (\"overrides.%s.%s\", createObj !!styles)"
       rule.MethodName
-      (stylesheetName |> String.upperFirst)
+      stylesheetName
       rule.RealRuleName
     |> List.singleton
 
@@ -87,15 +87,21 @@ let themePropsDocument (api: MuiComponentApi) =
     "/// THIS FILE IS AUTO-GENERATED //"
     "////////////////////////////////*)"
     ""
+    "open System.ComponentModel"
     "open Fable.Core"
     "open Fable.Core.JsInterop"
     "open Feliz"
     ""
     ""
-    "[<Erase>]"
-    "type themeProps ="
+    "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+    "module themeProps ="
+    ""
+    "  module theme ="
+    ""
+    "    [<Erase>]"
+    "    type props ="
     for comp in api.MuiComponents do
-      yield! GetLines.themePropsForComponent comp |> List.map (indent 1)
+      yield! GetLines.themePropsForComponent comp |> List.map (indent 3)
     ""
   ]
   |> String.concat Environment.NewLine
@@ -114,26 +120,20 @@ let themeOverridesDocument (api: MuiComponentApi) =
     "/// THIS FILE IS AUTO-GENERATED //"
     "////////////////////////////////*)"
     ""
+    "open System.ComponentModel"
     "open Fable.Core"
     "open Fable.Core.JsInterop"
     "open Feliz"
     ""
-    for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
-      sprintf "type I%sOverrideRule = interface end" stylesheetName
+    "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+    "module themeOverrides ="
     ""
-    "[<Erase>]"
-    "type overrides ="
-    for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
-      sprintf "static member inline %s (rules: I%sOverrideRule list) : IOverrideStyleSheet = unbox (\"%s\", createObj !!rules)"
-        (stylesheetName |> String.lowerFirst)
-        stylesheetName
-        stylesheetName
-      |> indent 1
+    "  module theme ="
     ""
-    "module overrides ="
+    "    module overrides ="
     ""
     for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
-      yield! GetLines.themeOverridesForComponent comp stylesheetName |> List.map (indent 1)
+      yield! GetLines.themeOverridesForComponent comp stylesheetName |> List.map (indent 3)
       ""
   ]
   |> String.concat Environment.NewLine

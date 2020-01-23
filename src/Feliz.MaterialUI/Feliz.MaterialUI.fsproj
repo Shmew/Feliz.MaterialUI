@@ -5,16 +5,13 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.9.0 </Version>
-    <PackageReleaseNotes>- Breaking: snackbarContent.role is now a normal string property (not enum property)
- as per updated MUI docs
-- Updated for @material-ui/lab 4.0.0-alpha.39
-- Updated doc comments from MUI docs
-- Added float overloads to relevant rating props</PackageReleaseNotes>
+    <Version>0.10.0 </Version>
+    <PackageReleaseNotes>- Breaking: New DSL for creating themes; properties on the Theme type and related types are now read-only</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>
     <None Include="paket.template" />
+    <Compile Include="FlatBindings.fs" />
     <Compile Include="Misc.fs" />
     <Compile Include="Bindings.fs" />
     <Compile Include="Autocomplete.fs" />
@@ -23,6 +20,7 @@
     <Compile Include="Styles.fs" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />
+    <Compile Include="Theme.fs" />
     <Compile Include="Classes.fs" />
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
@@ -32,6 +30,7 @@
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.8 lt 5" ResolutionStrategy="max" />
       <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.39" />
+      <NpmPackage Name="flat" Version="gte 5 lt 6" ResolutionStrategy="max" />
     </NpmDependencies>
   </PropertyGroup>
   

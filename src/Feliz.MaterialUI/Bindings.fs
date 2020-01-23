@@ -1,5 +1,6 @@
 ﻿namespace Feliz.MaterialUI
 
+open System.ComponentModel
 open Fable.Core
 open Fable.Core.JS
 open Fable.Core.JsInterop
@@ -9,10 +10,10 @@ open Feliz.Styles
 
 
 type PaletteIntention =
-  abstract light: string with get, set
-  abstract main: string with get, set
-  abstract dark: string with get, set
-  abstract contrastText: string with get, set
+  abstract light: string
+  abstract main: string
+  abstract dark: string
+  abstract contrastText: string
 
 [<StringEnum; RequireQualifiedAccess>] 
 type PaletteType =
@@ -20,58 +21,74 @@ type PaletteType =
   | Light
 
 type CommonPalette =
-  abstract black: string with get, set
-  abstract white: string with get, set
+  abstract black: string
+  abstract white: string
 
 type ActionPalette =
-  abstract active: string with get, set
-  abstract hover: string with get, set
-  abstract hoverOpacity: float with get, set
-  abstract selected: string with get, set
-  abstract disabled: string with get, set
-  abstract disabledBackground: string with get, set
+  abstract active: string
+  abstract hover: string
+  abstract hoverOpacity: float
+  abstract selected: string
+  abstract disabled: string
+  abstract disabledBackground: string
 
 type BackgroundPalette =
-  abstract paper: string with get, set
-  abstract ``default``: string with get, set
+  abstract paper: string
+  abstract ``default``: string
 
 type TextPalette =
-  abstract primary: string with get, set
-  abstract secondary: string with get, set
-  abstract disabled: string with get, set
-  abstract hint: string with get, set
+  abstract primary: string
+  abstract secondary: string
+  abstract disabled: string
+  abstract hint: string
 
 type Color =
-  abstract ``50``: string with get, set
-  abstract ``100``: string with get, set
-  abstract ``200``: string with get, set
-  abstract ``300``: string with get, set
-  abstract ``400``: string with get, set
-  abstract ``500``: string with get, set
-  abstract ``600``: string with get, set
-  abstract ``700``: string with get, set
-  abstract ``800``: string with get, set
-  abstract ``900``: string with get, set
-  abstract A100: string with get, set
-  abstract A200: string with get, set
-  abstract A400: string with get, set
-  abstract A700: string with get, set
+  abstract ``50``: string
+  abstract ``100``: string
+  abstract ``200``: string
+  abstract ``300``: string
+  abstract ``400``: string
+  abstract ``500``: string
+  abstract ``600``: string
+  abstract ``700``: string
+  abstract ``800``: string
+  abstract ``900``: string
+  abstract A100: string
+  abstract A200: string
+  abstract A400: string
+  abstract A700: string
 
 type Palette =
-  abstract common: CommonPalette with get, set
-  abstract ``type``: PaletteType with get, set
-  abstract primary: U2<PaletteIntention, Color> with get, set
-  abstract secondary: U2<PaletteIntention, Color> with get, set
-  abstract error: U2<PaletteIntention, Color> with get, set
-  abstract grey: Color with get, set
-  abstract contrastThreshold: int with get, set
+  abstract common: CommonPalette
+  abstract ``type``: PaletteType
+  /// Used to represent primary interface elements for a user.
+  abstract primary: PaletteIntention
+  /// Used to represent secondary interface elements for a user.
+  abstract secondary: PaletteIntention
+  /// Used to represent interface elements that the user should be made aware of.
+  abstract error: PaletteIntention
+  /// Used to represent potentially dangerous actions or important messages.
+  abstract warning: PaletteIntention
+  /// Used to present information to the user that is neutral and not necessarily important.
+  abstract info: PaletteIntention
+  /// Used to indicate the successful completion of an action that user triggered.
+  abstract success: PaletteIntention
+  abstract grey: Color
+  /// Used by `getContrastText` to maximize the contrast between the background and the
+  /// text. Higher values increases the point at which a background color is considered
+  /// light, and given a dark contrast text. Note that `contrastThreshold` follows a
+  /// non-linear curve.
+  abstract contrastThreshold: float
   abstract getContrastText: background: string -> string
-  abstract augmentColor: color: PaletteIntention * ?mainShade : U2<int, string> * ?lightShade : U2<int, string> * ?darkShade : U2<int, string> -> unit
-  abstract tonalOffset: float with get, set
-  abstract text: TextPalette with get, set
-  abstract divider: string with get, set
-  abstract background: BackgroundPalette with get, set
-  abstract action: ActionPalette with get, set
+  abstract augmentColor: color: Color * ?mainShade: string * ?lightShade: string * ?darkShade: string -> unit
+  abstract augmentColor: color: PaletteIntention -> unit
+  /// A higher value for will make calculated values for "light" lighter, and "dark"
+  /// darker.
+  abstract tonalOffset: float
+  abstract text: TextPalette
+  abstract divider: string
+  abstract background: BackgroundPalette
+  abstract action: ActionPalette
 
 [<StringEnum; RequireQualifiedAccess>]
 type Direction =
@@ -79,55 +96,60 @@ type Direction =
   | Rtl
 
 type Shape =
-  abstract borderRadius: int with get, set
+  abstract borderRadius: int
 
 type ZIndex =
-  abstract mobileStepper: int with get, set
-  abstract appBar: int with get, set
-  abstract drawer: int with get, set
-  abstract modal: int with get, set
-  abstract snackbar: int with get, set
-  abstract tooltip: int with get, set
+  abstract mobileStepper: int
+  abstract speedDial: int
+  abstract appBar: int
+  abstract drawer: int
+  abstract modal: int
+  abstract snackbar: int
+  abstract tooltip: int
 
 type VariantTypography =
-  abstract fontSize: string with get, set
-  abstract fontWeight: int with get, set
-  abstract fontFamily: string with get, set
-  abstract letterSpacing: string with get, set
-  abstract lineHeight: string with get, set
-  abstract marginLeft: string with get, set
-  abstract color: string with get, set
-  abstract textTransform: string with get, set
+  abstract fontFamily: string
+  abstract fontWeight: int
+  abstract fontSize: string
+  abstract lineHeight: string
+  abstract letterSpacing: string
+  abstract marginLeft: string option
+  abstract color: string option
+  abstract textTransform: string option
 
 type Typography =
-  abstract round: px: float -> float
+  /// Tells Material-UI what the font-size on the `<html>` element is. This is used to
+  /// adjust the `rem` value so the calculated font size always matches the specification.
+  abstract htmlFontSize: float
   abstract pxToRem: px: float -> string
-  abstract fontFamily: string [] with get, set
-  abstract fontSize: string with get, set
-  abstract fontWeightLight: int with get, set
-  abstract fontWeightRegular: int with get, set
-  abstract fontWeightMedium: int with get, set
-  abstract h1: VariantTypography with get, set
-  abstract h2: VariantTypography with get, set
-  abstract h3: VariantTypography with get, set
-  abstract h4: VariantTypography with get, set
-  abstract h5: VariantTypography with get, set
-  abstract h6: VariantTypography with get, set
-  abstract subtitle1: VariantTypography with get, set
-  abstract subtitle2: VariantTypography with get, set
-  abstract overline: VariantTypography with get, set
-  abstract srOnly: VariantTypography with get, set
-  abstract body2: VariantTypography with get, set
-  abstract body1: VariantTypography with get, set
-  abstract caption: VariantTypography with get, set
-  abstract button: VariantTypography with get, set
+  abstract round: px: float -> float
+  abstract fontFamily: string
+  abstract fontSize: float
+  abstract fontWeightLight: int
+  abstract fontWeightRegular: int
+  abstract fontWeightMedium: int
+  abstract fontWeightBold: int
+  abstract h1: VariantTypography
+  abstract h2: VariantTypography
+  abstract h3: VariantTypography
+  abstract h4: VariantTypography
+  abstract h5: VariantTypography
+  abstract h6: VariantTypography
+  abstract subtitle1: VariantTypography
+  abstract subtitle2: VariantTypography
+  abstract body1: VariantTypography
+  abstract body2: VariantTypography
+  abstract button: VariantTypography
+  abstract caption: VariantTypography
+  abstract overline: VariantTypography
+  abstract srOnly: VariantTypography
 
 type BreakpointValues =
-  abstract xs: int with get, set
-  abstract sm: int with get, set
-  abstract md: int with get, set
-  abstract lg: int with get, set
-  abstract xl: int with get, set
+  abstract xs: int
+  abstract sm: int
+  abstract md: int
+  abstract lg: int
+  abstract xl: int
 
 [<StringEnum; RequireQualifiedAccess>]
 type BreakpointKey =
@@ -139,120 +161,173 @@ type BreakpointKey =
 
 [<AbstractClass; Erase>]
 type Breakpoints =
-  abstract keys: BreakpointKey list with get, set
-  abstract values: BreakpointValues with get, set
+  abstract keys: BreakpointKey []
+  abstract values: BreakpointValues
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the screen size given by the
+  /// breakpoint key.
   abstract up: key: BreakpointKey -> string
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the screen size given by the
+  /// breakpoint key.
   abstract up: widthPx: int -> string
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths less than and including the screen size given by the
+  /// breakpoint key.
   abstract down: key: BreakpointKey -> string
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths less than and including the screen size given by the
+  /// breakpoint key.
   abstract down: widthPx: int -> string
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths including the screen size given by the breakpoint key.
   abstract only: key: BreakpointKey -> string
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the screen size given by the breakpoint key in
+  /// the first argument and less than the the screen size given by the breakpoint key in
+  /// the second argument.
   abstract between: start: BreakpointKey * ``end``: BreakpointKey -> string
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `xs` sreen size.
   member inline this.upXs = this.up(BreakpointKey.Xs)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `sm` sreen size.
   member inline this.upSm = this.up(BreakpointKey.Sm)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `md` sreen size.
   member inline this.upMd = this.up(BreakpointKey.Md)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `lg` sreen size.
   member inline this.upLg = this.up(BreakpointKey.Lg)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `xl` sreen size.
   member inline this.upXl = this.up(BreakpointKey.Xl)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `xs` screen size.
   member inline this.downXs = this.down(BreakpointKey.Xs)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `sm` screen size.
   member inline this.downSm = this.down(BreakpointKey.Sm)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `md` screen size.
   member inline this.downMd = this.down(BreakpointKey.Md)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `lg` screen size.
   member inline this.downLg = this.down(BreakpointKey.Lg)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than and including the `xl` screen size.
   member inline this.downXl = this.down(BreakpointKey.Xl)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths including the `xs` screen size.
   member inline this.onlyXs = this.only(BreakpointKey.Xs)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths including the `sm` screen size.
   member inline this.onlySm = this.only(BreakpointKey.Sm)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths including the `md` screen size.
   member inline this.onlyMd = this.only(BreakpointKey.Md)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths including the `lg` screen size.
   member inline this.onlyLg = this.only(BreakpointKey.Lg)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths including the `xl` screen size.
   member inline this.onlyXl = this.only(BreakpointKey.Xl)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `xs` screen size and less than the the `sm`
+  /// screen size.
   member inline this.betweenXsSm = this.between(BreakpointKey.Xs, BreakpointKey.Sm)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `xs` screen size and less than the the `md`
+  /// screen size.
   member inline this.betweenXsMd = this.between(BreakpointKey.Xs, BreakpointKey.Md)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `xs` screen size and less than the the `lg`
+  /// screen size.
   member inline this.betweenXsLg = this.between(BreakpointKey.Xs, BreakpointKey.Lg)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `xs` screen size and less than the the `xl`
+  /// screen size.
   member inline this.betweenXsXl = this.between(BreakpointKey.Xs, BreakpointKey.Xl)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `sm` screen size and less than the the `md`
+  /// screen size.
   member inline this.betweenSmMd = this.between(BreakpointKey.Sm, BreakpointKey.Md)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `sm` screen size and less than the the `lg`
+  /// screen size.
   member inline this.betweenSmLg = this.between(BreakpointKey.Sm, BreakpointKey.Lg)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `sm` screen size and less than the the `xl`
+  /// screen size.
   member inline this.betweenSmXl = this.between(BreakpointKey.Sm, BreakpointKey.Xl)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `md` screen size and less than the the `lg`
+  /// screen size.
   member inline this.betweenMdLg = this.between(BreakpointKey.Md, BreakpointKey.Lg)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `md` screen size and less than the the `xl`
+  /// screen size.
   member inline this.betweenMdXl = this.between(BreakpointKey.Md, BreakpointKey.Xl)
+  /// Returns a media query string ready to be used with most styling solutions, which
+  /// matches screen widths greater than the `lg` screen size and less than the the `xl`
+  /// screen size.
   member inline this.betweenLgXl = this.between(BreakpointKey.Lg, BreakpointKey.Xl)
 
 [<AbstractClass; Erase>]
 type Mixins =
-  abstract toolbar: obj with get, set
   [<Emit("Object.entries($0.toolbar)")>]
-  member inline __.toolbarStyles : IStyleAttribute [] = jsNative
+  member inline __.toolbar : IStyleAttribute [] = jsNative
 
 type Easing =
-  abstract easeInOut: string with get, set
-  abstract easeOut: string with get, set
-  abstract easeIn: string with get, set
-  abstract sharp: string with get, set
+  abstract easeInOut: string
+  abstract easeOut: string
+  abstract easeIn: string
+  abstract sharp: string
 
 type Duration =
-  abstract shortest: int with get, set
-  abstract shorter: int with get, set
-  abstract short: int with get, set
-  abstract standard: int with get, set
-  abstract complex: int with get, set
-  abstract enteringScreen: int with get, set
-  abstract leavingScreen: int with get, set
+  abstract shortest: int
+  abstract shorter: int
+  abstract short: int
+  abstract standard: int
+  abstract complex: int
+  abstract enteringScreen: int
+  abstract leavingScreen: int
 
 type TransitionOptions =
-  abstract duration: U2<int, string> with get, set
-  abstract easing: string with get, set
-  abstract delay: U2<int, string> with get, set
+  abstract duration: int
+  abstract easing: string
+  abstract delay: int
 
 type Transitions =
-  abstract easing: Easing with get, set
-  abstract duration: Duration with get, set
-  abstract create: props: string * ?options: TransitionOptions -> string
+  abstract easing: Easing
+  abstract duration: Duration
+  abstract create: unit -> string
+  abstract create: prop: string * ?options: TransitionOptions -> string
   abstract create: props: string [] * ?options: TransitionOptions -> string
-  abstract getAutoHeightDuration: height : int -> int
+  abstract getAutoHeightDuration: height: int -> int
 
 [<AbstractClass; Erase>]
 type Theme =
-  abstract breakpoints: Breakpoints with get, set
-  abstract direction: Direction with get, set
-  abstract overrides: obj with get, set
-  abstract palette: Palette with get, set
-  abstract props: obj with get, set
-  abstract shadows: string [] with get, set
-  abstract typography: Typography with get, set
-  abstract shape: Shape with get, set
+  abstract breakpoints: Breakpoints
+  abstract direction: Direction
+  abstract mixins: Mixins
+  [<Emit("$0.overrides"); EditorBrowsable(EditorBrowsableState.Never)>]
+  abstract overridesObj: obj
+  [<EditorBrowsable(EditorBrowsableState.Never)>]
+  member inline this.overrides = this.overridesObj |> Flat.flat.flatten |> objectEntries |> unbox<IThemeProp []>
+  abstract palette: Palette
+  [<Emit("$0.props"); EditorBrowsable(EditorBrowsableState.Never)>]
+  abstract propsObj: obj
+  member inline this.props = this.propsObj |> Flat.flat.flatten |> objectEntries |> unbox<IThemeProp []>
+  abstract shadows: string []
+  abstract typography: Typography
   abstract spacing: a: int -> int
   abstract spacing: a: int * b: int -> int
   abstract spacing: a: int * b: int * c: int -> int
   abstract spacing: a: int * b: int * c: int * d: int -> int
-  abstract zIndex: ZIndex with get, set
-  abstract mixins: Mixins with get, set
-  abstract transitions: Transitions with get, set
-  /// Sets the theme's `spacing`.
-  [<Emit("$0.spacing = $1")>]
-  member __.setSpacing(px: int) : unit = jsNative
-  /// Sets the theme's `spacing`.
-  [<Emit("$0.spacing = $1")>]
-  member __.setSpacing(f: int -> int) : unit = jsNative
-  /// Sets the theme's `spacing`.
-  [<Emit("$0.spacing = $1")>]
-  member __.setSpacing(f: int -> ICssUnit) : unit = jsNative
-  // Sets the theme's overrides, replacing any existing overrides. Use
-  // `overrides.<x>` to specify components and overrides.
-  member inline this.setOverrides (overrides: IOverrideStyleSheet list) =
-    this.overrides <- overrides |> unbox |> createObj
-  // Adds the specified overrides to the theme's existing overrides. Use
-  // `overrides.<x>` to specify components and overrides. This is not a deep
-  // merge; any component overrides specified here will completely replace any
-  // existing overrides for that component, regardless of which override rules
-  // or styles are used.
-  member inline this.addOverrides (overrides: IOverrideStyleSheet list) =
-    Constructors.Object.assign(this.overrides, overrides |> unbox |> createObj) |> ignore
-  // Sets the theme's props, replacing any existing props. Use `themeProps.<x>`
-  // to specify components.
-  member inline this.setProps (props: IThemeProps list) =
-    this.props <- props |> unbox |> createObj
-  // Adds the specified props to the theme's existing props. Use
-  // `themeProps.<x>` to specify components. This is not a deep merge; any
-  // component props specified here will completely replace any existing props
-  // for that component.
-  member inline this.addProps (props: IThemeProps list) =
-    Constructors.Object.assign(this.props, props |> unbox |> createObj) |> ignore
+  abstract shape: Shape
+  abstract transitions: Transitions
+  abstract zIndex: ZIndex
 
 type MakeStylesOptions =
   /// The default theme to use if a theme isn't supplied through a Theme

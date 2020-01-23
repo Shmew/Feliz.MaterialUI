@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 0.10.0
+
+* Breaking: New DSL for creating themes; properties on the `Theme` type and related types are now read-only
+
 ### 0.9.0
 
 * Breaking: `snackbarContent.role` is now a normal `string` property (not enum property) as per updated MUI docs

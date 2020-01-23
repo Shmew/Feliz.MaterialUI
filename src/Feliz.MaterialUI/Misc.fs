@@ -7,5 +7,11 @@ open Fable.Core
 [<Erase; EditorBrowsable(EditorBrowsableState.Never)>]
 type UnsupportedProp () = class end
 
-type IOverrideStyleSheet = interface end
-type IThemeProps = interface end
+type IThemeProp = interface end
+
+
+[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
+module Utils =
+
+  [<Emit("Object.entries($0)"); EditorBrowsable(EditorBrowsableState.Never)>]
+  let inline objectEntries (x: obj) : obj = jsNative

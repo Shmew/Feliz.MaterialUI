@@ -87,8 +87,13 @@ type Styles =
     StyleImports.useTheme ()
 
   /// Generate a theme base on the configured incomplete theme object.
-  static member inline createMuiTheme (theme: Theme) : Theme =
-    StyleImports.createMuiTheme theme
+  static member inline createMuiTheme (props: IThemeProp list) : Theme =
+    props
+    |> unbox
+    |> createObj
+    |> Flat.flat.unflatten
+    :?> Theme
+    |> StyleImports.createMuiTheme
 
   /// Returns a default theme object.
   static member inline createMuiTheme () : Theme =

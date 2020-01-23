@@ -91,7 +91,7 @@ let private useStyles = Styles.makeStyles(fun theme ->
       style.paddingLeft (theme.spacing 4)
     ]
     toolbar = Styles.create [
-      yield! theme.mixins.toolbarStyles
+      yield! theme.mixins.toolbar
     ]
   |}
 )
@@ -101,75 +101,39 @@ module Theme =
 
   let defaultTheme = Styles.createMuiTheme()
 
-  let light = Styles.createMuiTheme(jsOptions<Theme>(fun t ->
-    t.palette <- jsOptions<Palette>(fun p ->
-      p.``type`` <- PaletteType.Light
-      p.primary <- !^Colors.indigo
-      p.secondary <- !^Colors.pink
-      p.background <- jsOptions<BackgroundPalette>(fun p ->
-        p.``default`` <- "#fff"
-      )
-    )
+  let light = Styles.createMuiTheme([
+    theme.palette.type'.light
+    theme.palette.primary Colors.indigo
+    theme.palette.secondary Colors.pink
+    theme.palette.background.default' "#fff"
+    theme.typography.h1.fontSize "3rem"
+    theme.typography.h2.fontSize "2rem"
+    theme.typography.h3.fontSize "1.5rem"
+  ])
 
-    t.typography <- jsOptions<Typography>(fun t ->
-      t.h1 <- jsOptions<VariantTypography>(fun vt ->
-        vt.fontSize <- "3rem"
-      )
-      t.h2 <- jsOptions<VariantTypography>(fun vt ->
-        vt.fontSize <- "2rem"
-      )
-      t.h3 <- jsOptions<VariantTypography>(fun vt ->
-        vt.fontSize <- "1.5rem"
-      )
-    )
-  ))
+  let dark = Styles.createMuiTheme([
+    theme.palette.type'.dark
+    theme.palette.primary Colors.lightBlue
+    theme.palette.secondary Colors.pink
+    theme.palette.background.default' defaultTheme.palette.grey.``900``
+    theme.typography.h1.fontSize "3rem"
+    theme.typography.h2.fontSize "2rem"
+    theme.typography.h3.fontSize "1.5rem"
 
-  let dark = Styles.createMuiTheme(jsOptions<Theme>(fun t ->
-    t.palette <- jsOptions<Palette>(fun p ->
-      p.``type`` <- PaletteType.Dark
-      p.primary <- !^Colors.lightBlue
-      p.secondary <- !^Colors.pink
-      p.background <- jsOptions<BackgroundPalette>(fun p ->
-        p.``default`` <- defaultTheme.palette.grey.``900``
-      )
-    )
-
-    t.typography <- jsOptions<Typography>(fun t ->
-      t.h1 <- jsOptions<VariantTypography>(fun vt ->
-        vt.fontSize <- "3rem"
-      )
-      t.h2 <- jsOptions<VariantTypography>(fun vt ->
-        vt.fontSize <- "2rem"
-      )
-      t.h3 <- jsOptions<VariantTypography>(fun vt ->
-        vt.fontSize <- "1.5rem"
-      )
-    )
-
-    t.setOverrides [
-      overrides.muiAppBar [
-        overrides.muiAppBar.colorDefault [
-          style.backgroundColor defaultTheme.palette.grey.A400
-        ]
-      ]
-      overrides.muiPaper [
-        overrides.muiPaper.root [
-          style.backgroundColor defaultTheme.palette.grey.A400
-        ]
-      ]
-      overrides.muiDrawer [
-        overrides.muiDrawer.paper [
-          style.backgroundColor defaultTheme.palette.grey.``900``
-        ]
-      ]
+    theme.overrides.muiAppBar.colorDefault [
+      style.backgroundColor defaultTheme.palette.grey.A400
+    ]
+    theme.overrides.muiPaper.root [
+      style.backgroundColor defaultTheme.palette.grey.A400
+    ]
+    theme.overrides.muiDrawer.paper [
+      style.backgroundColor defaultTheme.palette.grey.``900``
     ]
 
-    t.setProps [
-      themeProps.muiAppBar [
-        appBar.color.default'
-      ]
+    theme.props.muiAppBar [
+      appBar.color.default'
     ]
-  ))
+  ])
 
 
 let toolbar model dispatch =
