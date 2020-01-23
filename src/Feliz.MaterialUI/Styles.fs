@@ -37,49 +37,46 @@ module StyleImports =
     import "useTheme" "@material-ui/core/styles"
 
 
-[<Erase>]
-type Styles =
+type StyleCreator<'props>() =
 
   /// Use with `makeStyles` etc. when returning an (anonymous) record of style
   /// properties or functions. Simply unboxes the input to `string` (which it is
   /// at runtime when returned by the JSS styling solution), so that the
   /// properties can be used in `className` and `classes` props.
-  static member inline create (styles: #seq<IStyleAttribute>) =
+  member _.create (styles: #seq<IStyleAttribute>) =
     styles |> unbox |> createObj |> unbox<string>
 
   /// Use with `makeStyles` etc. when returning an (anonymous) record of style
   /// properties or functions. Simply unboxes the input to `string` (which it is
   /// at runtime when returned by the JSS styling solution), so that the
   /// properties can be used in `className` and `classes` props.
-  static member inline create (getStyles: 'props -> #seq<IStyleAttribute>) =
+  member _.create (getStyles: 'props -> #seq<IStyleAttribute>) =
     (getStyles >> unbox >> createObj) |> unbox<string>
 
-  /// This hook links a style sheet with a function component.
-  ///
-  /// The Material-UI documentation often calls the returned hook `useStyles`.
-  /// It accepts one argument: the properties that will be used for
-  /// "interpolation" in the style sheet. Use unit `()` if you don't need it.
-  ///
-  /// Note that the object returned by the hook has the same properties as the
-  /// object returned by getStyles, but every prop is a string.
-  static member inline makeStyles
-      ( getStyles: Theme -> 'a
-      ) : ('props -> 'a) =
-    StyleImports.makeStyles_get (getStyles >> toPlainJsObj)
+
+[<Erase>]
+type Styles =
 
   /// This hook links a style sheet with a function component.
   ///
   /// The Material-UI documentation often calls the returned hook `useStyles`.
   /// It accepts one argument: the properties that will be used for
   /// "interpolation" in the style sheet. Use unit `()` if you don't need it.
-  ///
-  /// Note that the object returned by the hook has the same properties as the
-  /// object returned by getStyles, but every prop is a string.
   static member inline makeStyles
-      ( getStyles: Theme -> 'a,
+      ( getStyles: StyleCreator<'props> -> Theme -> 'a
+      ) : ('props -> 'a) =
+    StyleImports.makeStyles_get (getStyles (StyleCreator()) >> toPlainJsObj)
+
+  /// This hook links a style sheet with a function component.
+  ///
+  /// The Material-UI documentation often calls the returned hook `useStyles`.
+  /// It accepts one argument: the properties that will be used for
+  /// "interpolation" in the style sheet. Use unit `()` if you don't need it.
+  static member inline makeStyles
+      ( getStyles: StyleCreator<'props> -> Theme -> 'a,
         options: MakeStylesOptions
       ) : ('props -> 'a) =
-    StyleImports.makeStyles_getWithOpts (getStyles >> toPlainJsObj) options
+    StyleImports.makeStyles_getWithOpts (getStyles (StyleCreator()) >> toPlainJsObj) options
 
   /// This hook returns the theme object so it can be used inside a function
   /// component.
@@ -106,39 +103,6 @@ type Styles =
   /// Generate responsive typography settings based on the options received.
   static member inline responsiveFontSizes (theme: Theme, options: ResponsiveFontSizesOptions) : Theme =
     StyleImports.responsiveFontSizes_opts theme options
-
-
-[<AutoOpen>]
-module Extensions =
-
-  type Styles with
-
-    /// This hook links a style sheet with a function component.
-    ///
-    /// The Material-UI documentation often calls the returned hook `useStyles`.
-    /// It accepts one argument: the properties that will be used for
-    /// "interpolation" in the style sheet. Use unit `()` if you don't need it.
-    ///
-    /// Note that the object returned by the hook has the same properties as the
-    /// styles object, but every prop is a string.
-    static member inline makeStyles
-        ( styles: 'a
-        ) : ('props -> 'a) =
-      StyleImports.makeStyles_obj (styles |> toPlainJsObj)
-
-    /// This hook links a style sheet with a function component.
-    ///
-    /// The Material-UI documentation often calls the returned hook `useStyles`.
-    /// It accepts one argument: the properties that will be used for
-    /// "interpolation" in the style sheet. Use unit `()` if you don't need it.
-    ///
-    /// Note that the object returned by the hook has the same properties as the
-    /// styles object, but every prop is a string.
-    static member inline makeStyles
-        ( styles: 'a,
-          options: MakeStylesOptions
-        ) : ('props -> 'a) =
-      StyleImports.makeStyles_objWithOpts (styles |> toPlainJsObj) options
 
 
 [<Erase>]

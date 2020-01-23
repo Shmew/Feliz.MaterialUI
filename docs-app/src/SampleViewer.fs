@@ -76,20 +76,20 @@ type DemoProps = {
   Path: string list
 }
 
-let useDemoStyles = Styles.makeStyles(fun theme ->
+let useDemoStyles = Styles.makeStyles(fun styles theme ->
   let bgColor =
     if theme.palette.``type`` = PaletteType.Light
     then theme.palette.grey.``100``
     else theme.palette.grey.A400
   {|
-    demoPaper = Styles.create [
+    demoPaper = styles.create [
       style.padding (theme.spacing 3)
       style.backgroundColor bgColor
     ]
-    codePanel = Styles.create [
+    codePanel = styles.create [
       style.backgroundColor bgColor
     ]
-    resetSampleButton = Styles.create [
+    resetSampleButton = styles.create [
       style.floatStyle.right
       style.marginTop (-theme.spacing 2)
       style.marginRight (-theme.spacing 2)

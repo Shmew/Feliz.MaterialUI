@@ -32,7 +32,8 @@ Changelog
 
 ### 0.10.0
 
-* Breaking: New DSL for creating themes; properties on the `Theme` type and related types are now read-only
+* Breaking: New DSL for creating themes; properties on the `Theme` type and related types are now read-only. See [the updated theme docs](https://cmeeren.github.io/Feliz.MaterialUI/#usage/themes) for details.
+* Breaking: Slight change to `makeStyles`. The required signature for your style function is now `fun styles theme -> {| ... |}` and you use the passed-in `styles.create` instead of the static `Styles.create`, which has been removed. This improves type safety for interpolated styles. See [the updated makeStyles docs](https://cmeeren.github.io/Feliz.MaterialUI/#usage/styling) for details.
 
 ### 0.9.0
 

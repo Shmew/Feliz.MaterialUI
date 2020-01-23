@@ -63,34 +63,34 @@ let update (msg: Msg) (m: Model) =
       }
 
 
-let private useStyles = Styles.makeStyles(fun theme ->
+let private useStyles = Styles.makeStyles(fun styles theme ->
   let drawerWidth = 240
   {|
-    root = Styles.create [
+    root = styles.create [
       style.display.flex
     ]
-    appBar = Styles.create [
+    appBar = styles.create [
       style.zIndex (theme.zIndex.drawer + 1)
     ]
-    appBarTitle = Styles.create [
+    appBarTitle = styles.create [
       style.flexGrow 1
     ]
-    drawer = Styles.create [
+    drawer = styles.create [
       style.width (length.px drawerWidth)
       style.flexShrink 0  // TODO: Does this do anything?
     ]
-    drawerPaper = Styles.create [
+    drawerPaper = styles.create [
       style.width (length.px drawerWidth)
     ]
-    content = Styles.create [
+    content = styles.create [
       style.width 0  // TODO: is there a better way to prevent long code boxes extending past the screen?
       style.flexGrow 1
       style.padding (theme.spacing 3)
     ]
-    nestedMenuItem = Styles.create [
+    nestedMenuItem = styles.create [
       style.paddingLeft (theme.spacing 4)
     ]
-    toolbar = Styles.create [
+    toolbar = styles.create [
       yield! theme.mixins.toolbar
     ]
   |}
