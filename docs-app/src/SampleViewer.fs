@@ -15,6 +15,7 @@ open Feliz.MaterialUI
 let samples =
   Map.ofList [
     "Samples.Components.Autocomplete.Autocomplete", Samples.Components.Autocomplete.Autocomplete.getSample
+    "Samples.Samples.SignIn.SignIn", Samples.Samples.SignIn.SignIn.getSample
   ]
 
 

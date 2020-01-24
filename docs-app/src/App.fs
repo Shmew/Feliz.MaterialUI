@@ -24,6 +24,8 @@ module Url =
   let [<Literal>] themes = "themes"
   let [<Literal>] hooks = "hooks"
   let [<Literal>] autocomplete = "autocomplete"
+  let [<Literal>] samples = "samples"
+  let [<Literal>] signIn = "sign-in"
   let [<Literal>] indexMd = "index.md"
 
 
@@ -251,6 +253,9 @@ let drawer model dispatch =
           menuItem false "Ecosystem" [Url.ecosystem]
           menuContainer ("Components", Url.components, model.CurrentPath, [
             menuItem true "Autocomplete" [Url.components; Url.autocomplete]
+          ])
+          menuContainer ("Samples", Url.samples, model.CurrentPath, [
+            menuItem true "Sign-in" [Url.samples; Url.signIn]
           ])
         ]
       ]
