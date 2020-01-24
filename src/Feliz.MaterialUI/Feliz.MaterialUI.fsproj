@@ -5,9 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.10.0 </Version>
-    <PackageReleaseNotes>- Breaking: New DSL for creating themes; properties on the Theme type and related types are now read-only. See the updated theme docs for details.
-- Breaking: Slight change to makeStyles. The required signature for your style function is now fun styles theme -&gt; {| ... |} and you use the passed-in styles.create instead of the static Styles.create, which has been removed. This improves type safety for interpolated styles. See the updated makeStyles docs for details.</PackageReleaseNotes>
+    <Version>0.10.1 </Version>
+    <PackageReleaseNotes>Fixed higher-arity theme.spacing overloads</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>

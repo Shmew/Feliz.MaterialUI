@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 0.10.1
+
+* Fixed higher-arity `theme.spacing` overloads
+
 ### 0.10.0
 
 * Breaking: New DSL for creating themes; properties on the `Theme` type and related types are now read-only. See [the updated theme docs](https://cmeeren.github.io/Feliz.MaterialUI/#usage/themes) for details.

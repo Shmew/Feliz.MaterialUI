@@ -321,9 +321,9 @@ type Theme =
   abstract shadows: string []
   abstract typography: Typography
   abstract spacing: a: int -> int
-  abstract spacing: a: int * b: int -> int
-  abstract spacing: a: int * b: int * c: int -> int
-  abstract spacing: a: int * b: int * c: int * d: int -> int
+  abstract spacing: a: int * b: int -> ICssUnit
+  abstract spacing: a: int * b: int * c: int -> ICssUnit
+  abstract spacing: a: int * b: int * c: int * d: int -> ICssUnit
   abstract shape: Shape
   abstract transitions: Transitions
   abstract zIndex: ZIndex
