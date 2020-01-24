@@ -313,7 +313,6 @@ type Theme =
   abstract mixins: Mixins
   [<Emit("$0.overrides"); EditorBrowsable(EditorBrowsableState.Never)>]
   abstract overridesObj: obj
-  [<EditorBrowsable(EditorBrowsableState.Never)>]
   member inline this.overrides = this.overridesObj |> Flat.flat.flatten |> objectEntries |> unbox<IThemeProp []>
   abstract palette: Palette
   [<Emit("$0.props"); EditorBrowsable(EditorBrowsableState.Never)>]
