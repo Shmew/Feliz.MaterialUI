@@ -88,6 +88,9 @@ type Component = {
 type ComponentApi = {
   /// The namespace for the API.
   Namespace: string
+  /// The expression used to parse `properties: IReactProperty seq` into a prop object
+  /// when creating a component. The default is `createObj !!properties`.
+  ParseProps: string
   /// Lines to insert before the component definitions.
   ComponentsPrelude: string list
   /// Lines to insert before the prop definitions.
@@ -299,6 +302,7 @@ module ComponentApi =
   /// name and no components.
   let create namespace' typeName = {
     Namespace = namespace'
+    ParseProps = "createObj !!properties"
     ComponentsPrelude = []
     PropsPrelude = []
     ComponentContainerTypeName = typeName
@@ -312,6 +316,11 @@ module ComponentApi =
   /// Adds the specified components to the API.
   let addComponents (components: #seq<_>) api =
     (api, components) ||> Seq.fold (flip addComponent)
+
+  /// Sets the expression used to parse `properties: IReactProperty seq` into a prop
+  /// object when creating a component. The default is `createObj !!properties`.
+  let setParseProps parsePropsExpr api =
+    { api with ParseProps = parsePropsExpr }
 
   /// Sets the specified components prelude.
   let setComponentsPrelude lines api =

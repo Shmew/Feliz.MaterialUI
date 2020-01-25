@@ -195,10 +195,10 @@ module Render =
       "import \"createElement\" \"react\"" |> indent 2
       ""
       "let createElement (el: ReactElementType) (properties: IReactProperty seq) : ReactElement =" |> indent 1
-      "reactElement el (createObj !!properties)" |> indent 2
+      sprintf "reactElement el (%s)" api.ParseProps |> indent 2
       ""
       "let createElementTag (tag: string) (properties: IReactProperty seq) : ReactElement =" |> indent 1
-      "reactElementTag tag (createObj !!properties)" |> indent 2
+      sprintf "reactElementTag tag (%s)" api.ParseProps |> indent 2
       ""
       if not api.ComponentsPrelude.IsEmpty then
         yield! api.ComponentsPrelude
