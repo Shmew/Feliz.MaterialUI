@@ -20,10 +20,10 @@ module MuiHelpers =
     import "createElement" "react"
 
   let createElement (el: ReactElementType) (properties: IReactProperty seq) : ReactElement =
-    reactElement el (createObj !!properties)
+    reactElement el (createObj !!properties |> Flat.flat.unflatten)
 
   let createElementTag (tag: string) (properties: IReactProperty seq) : ReactElement =
-    reactElementTag tag (createObj !!properties)
+    reactElementTag tag (createObj !!properties |> Flat.flat.unflatten)
 
 [<Erase>]
 type Mui =

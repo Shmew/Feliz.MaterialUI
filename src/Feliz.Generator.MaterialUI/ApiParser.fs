@@ -799,6 +799,7 @@ let parseApi () =
     ComponentApi.create "Feliz.MaterialUI" "Mui"
     |> ComponentApi.addComponent themeProvider
     |> ComponentApi.addComponents (components |> List.map (fun c -> c.GeneratorComponent))
+    |> ComponentApi.setParseProps "createObj !!properties |> Flat.flat.unflatten"
 
   {
     GeneratorComponentApi = api
