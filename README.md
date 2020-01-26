@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### vNext
+
+* Add missing theme DSL props `shape`, `transitions`, and `zIndex`
+
 ### 0.11.0
 
 * Switched to custom unflatten implementation to avoid problems (see [#39](https://github.com/cmeeren/Feliz.MaterialUI/issues/39) and [hughsk/flat#94](https://github.com/hughsk/flat/issues/94))

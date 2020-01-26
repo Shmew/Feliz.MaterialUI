@@ -355,3 +355,40 @@ module themeStatic =
         static member inline marginLeft (value: ICssUnit) : IThemeProp = unbox ("typography.srOnly.marginLeft", value)
         static member inline color (value: string) : IThemeProp = unbox ("typography.srOnly.color", value)
         static member inline textTransform (value: string) : IThemeProp = unbox ("typography.srOnly.textTransform", value)
+
+
+    [<Erase>]
+    type shape =
+      static member inline borderRadius (value: int) = unbox ("shape.borderRadius", value)
+
+
+    module transitions =
+
+      [<Erase>]
+      type easing =
+        static member inline easeInOut (value: string) = unbox ("transitions.easing.easeInOut", value)
+        static member inline easeOut (value: string) = unbox ("transitions.easing.easeOut", value)
+        static member inline easeIn (value: string) = unbox ("transitions.easing.easeIn", value)
+        static member inline sharp (value: string) = unbox ("transitions.easing.sharp", value)
+
+      [<Erase>]
+      type duration =
+        static member inline shortest (value: int) = unbox ("transitions.duration.shortest", value)
+        static member inline shorter (value: int) = unbox ("transitions.duration.shorter", value)
+        static member inline short (value: int) = unbox ("transitions.duration.short", value)
+        static member inline standard (value: int) = unbox ("transitions.duration.standard", value)
+        static member inline complex (value: int) = unbox ("transitions.duration.complex", value)
+        static member inline enteringScreen (value: int) = unbox ("transitions.duration.enteringScreen", value)
+        static member inline leavingScreen (value: int) = unbox ("transitions.duration.leavingScreen", value)
+
+
+    [<Erase>]
+    type zIndex =
+      static member inline mobileStepper (value: int) = unbox ("zIndex.mobileStepper", value)
+      static member inline speedDial (value: int) = unbox ("zIndex.speedDial", value)
+      static member inline appBar (value: int) = unbox ("zIndex.appBar", value)
+      static member inline drawer (value: int) = unbox ("zIndex.drawer", value)
+      static member inline modal (value: int) = unbox ("zIndex.modal", value)
+      static member inline snackbar (value: int) = unbox ("zIndex.snackbar", value)
+      static member inline tooltip (value: int) = unbox ("zIndex.tooltip", value)
+
