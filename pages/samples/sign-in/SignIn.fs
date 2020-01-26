@@ -104,7 +104,7 @@ let useStyles = Styles.makeStyles(fun styles theme ->
       style.marginTop (theme.spacing 1)
     ]
     submit = styles.create [
-      yield style.margin (theme.spacing(3, 0, 2))
+      style.margin (theme.spacing(3, 0, 2))
     ]
   |}
 )
