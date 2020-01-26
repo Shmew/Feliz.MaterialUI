@@ -30,6 +30,11 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 0.11.0
+
+* Switched to custom unflatten implementation to avoid problems (see [#39](https://github.com/cmeeren/Feliz.MaterialUI/issues/39) and [hughsk/flat#94](https://github.com/hughsk/flat/issues/94))
+- As a consequence of the above, removed (the read-only) `Theme.props` and `Theme.overrides`
+
 ### 0.10.1
 
 * Fixed higher-arity `theme.spacing` overloads

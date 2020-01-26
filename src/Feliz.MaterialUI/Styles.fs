@@ -85,10 +85,8 @@ type Styles =
 
   /// Generate a theme base on the configured incomplete theme object.
   static member inline createMuiTheme (props: IThemeProp list) : Theme =
-    props
-    |> unbox
-    |> createObj
-    |> Flat.flat.unflatten
+    !!props
+    |> Object.fromFlatEntries
     :?> Theme
     |> StyleImports.createMuiTheme
 

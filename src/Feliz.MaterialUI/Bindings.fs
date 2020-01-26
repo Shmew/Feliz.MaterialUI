@@ -311,13 +311,7 @@ type Theme =
   abstract breakpoints: Breakpoints
   abstract direction: Direction
   abstract mixins: Mixins
-  [<Emit("$0.overrides"); EditorBrowsable(EditorBrowsableState.Never)>]
-  abstract overridesObj: obj
-  member inline this.overrides = this.overridesObj |> Flat.flat.flatten |> objectEntries |> unbox<IThemeProp []>
   abstract palette: Palette
-  [<Emit("$0.props"); EditorBrowsable(EditorBrowsableState.Never)>]
-  abstract propsObj: obj
-  member inline this.props = this.propsObj |> Flat.flat.flatten |> objectEntries |> unbox<IThemeProp []>
   abstract shadows: string []
   abstract typography: Typography
   abstract spacing: a: int -> int

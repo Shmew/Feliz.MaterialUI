@@ -5,13 +5,14 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.10.1 </Version>
-    <PackageReleaseNotes>Fixed higher-arity theme.spacing overloads</PackageReleaseNotes>
+    <Version>0.11.0 </Version>
+    <PackageReleaseNotes>- Switched to custom unflatten implementation to avoid problems
+- As a consequence of the above, removed (the read-only) Theme.props and Theme.overrides</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>
     <None Include="paket.template" />
-    <Compile Include="FlatBindings.fs" />
+    <Compile Include="Flatten.fs" />
     <Compile Include="Misc.fs" />
     <Compile Include="Bindings.fs" />
     <Compile Include="Autocomplete.fs" />
@@ -30,7 +31,6 @@
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.8 lt 5" ResolutionStrategy="max" />
       <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.39" />
-      <NpmPackage Name="flat" Version="gte 5 lt 6" ResolutionStrategy="max" />
     </NpmDependencies>
   </PropertyGroup>
   
