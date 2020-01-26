@@ -1,10 +1,11 @@
 ﻿namespace Feliz.MaterialUI
 
-module internal Object =
+open System.ComponentModel
+open Fable.Core
 
-  open Fable.Core
-  open Fable.Core.JS
-  open Fable.Core.JsInterop
+
+[<EditorBrowsable(EditorBrowsableState.Never)>]
+module Object =
 
   [<Emit("""
 function setProperty(target, key, value) {
