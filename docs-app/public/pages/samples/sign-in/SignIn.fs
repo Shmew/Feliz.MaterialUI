@@ -130,7 +130,7 @@ let app = React.functionComponent(fun (model, dispatch) ->
                 lockOutlinedIcon []
               ]
             ]
-                
+
           Mui.typography [
             typography.component' "h1"
             typography.variant.h5

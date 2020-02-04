@@ -320,6 +320,8 @@ type Theme =
   abstract shape: Shape
   abstract transitions: Transitions
   abstract zIndex: ZIndex
+  [<Emit("Object.entries($0)")>]
+  member inline _.asPropArray : IThemeProp [] = jsNative
 
 type MakeStylesOptions =
   /// The default theme to use if a theme isn't supplied through a Theme
