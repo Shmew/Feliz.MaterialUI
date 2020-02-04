@@ -10,6 +10,9 @@ let light = Styles.createMuiTheme([
   theme.palette.type'.light
   theme.palette.primary Colors.indigo
   theme.palette.secondary Colors.pink
+  // Note that to avoid name collisions, the deepest palette props have
+  // an extra ' in their parent names
+  theme.palette.error'.main "#f00"
   theme.palette.background.default' "#fff"
   theme.typography.h1.fontSize "3rem"
   theme.typography.h2.fontSize "2rem"

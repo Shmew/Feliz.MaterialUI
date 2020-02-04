@@ -33,6 +33,8 @@ Changelog
 ### vNext
 
 * Add missing theme DSL props `shape`, `transitions`, and `zIndex`
+* Fix name collisions  in theme DSL
+* Removed invalid `theme.typography.srOnly` from theme DSL
 
 ### 0.11.0
 

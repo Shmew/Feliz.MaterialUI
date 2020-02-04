@@ -142,7 +142,6 @@ type Typography =
   abstract button: VariantTypography
   abstract caption: VariantTypography
   abstract overline: VariantTypography
-  abstract srOnly: VariantTypography
 
 type BreakpointValues =
   abstract xs: int

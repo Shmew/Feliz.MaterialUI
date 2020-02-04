@@ -23,6 +23,7 @@ module themeStatic =
       static member inline rtl : IThemeProp = unbox ("direction", "rtl")
 
 
+    [<Erase>]
     type palette =
       static member inline primary (color: Color) : IThemeProp = unbox ("palette.primary", color)
       static member inline secondary (color: Color) : IThemeProp = unbox ("palette.secondary", color)
@@ -64,42 +65,42 @@ module themeStatic =
         static member inline dark : IThemeProp = unbox ("palette.type", "dark")
 
       [<Erase>]
-      type primary =
+      type primary' =
         static member inline light (color: string) : IThemeProp = unbox ("palette.primary.light", color)
         static member inline main (color: string) : IThemeProp = unbox ("palette.primary.main", color)
         static member inline dark (color: string) : IThemeProp = unbox ("palette.primary.dark", color)
         static member inline contrastText (color: string) : IThemeProp = unbox ("palette.primary.contrastText", color)
 
       [<Erase>]
-      type secondary =
+      type secondary' =
         static member inline light (color: string) : IThemeProp = unbox ("palette.secondary.light", color)
         static member inline main (color: string) : IThemeProp = unbox ("palette.secondary.main", color)
         static member inline dark (color: string) : IThemeProp = unbox ("palette.secondary.dark", color)
         static member inline contrastText (color: string) : IThemeProp = unbox ("palette.secondary.contrastText", color)
 
       [<Erase>]
-      type error =
+      type error' =
         static member inline light (color: string) : IThemeProp = unbox ("palette.error.light", color)
         static member inline main (color: string) : IThemeProp = unbox ("palette.error.main", color)
         static member inline dark (color: string) : IThemeProp = unbox ("palette.error.dark", color)
         static member inline contrastText (color: string) : IThemeProp = unbox ("palette.error.contrastText", color)
 
       [<Erase>]
-      type warning =
+      type warning' =
         static member inline light (color: string) : IThemeProp = unbox ("palette.warning.light", color)
         static member inline main (color: string) : IThemeProp = unbox ("palette.warning.main", color)
         static member inline dark (color: string) : IThemeProp = unbox ("palette.warning.dark", color)
         static member inline contrastText (color: string) : IThemeProp = unbox ("palette.warning.contrastText", color)
 
       [<Erase>]
-      type info =
+      type info' =
         static member inline light (color: string) : IThemeProp = unbox ("palette.info.light", color)
         static member inline main (color: string) : IThemeProp = unbox ("palette.info.main", color)
         static member inline dark (color: string) : IThemeProp = unbox ("palette.info.dark", color)
         static member inline contrastText (color: string) : IThemeProp = unbox ("palette.info.contrastText", color)
 
       [<Erase>]
-      type success =
+      type success' =
         static member inline light (color: string) : IThemeProp = unbox ("palette.success.light", color)
         static member inline main (color: string) : IThemeProp = unbox ("palette.success.main", color)
         static member inline dark (color: string) : IThemeProp = unbox ("palette.success.dark", color)
@@ -341,21 +342,6 @@ module themeStatic =
         static member inline color (value: string) : IThemeProp = unbox ("typography.overline.color", value)
         static member inline textTransform (value: string) : IThemeProp = unbox ("typography.overline.textTransform", value)
 
-      [<Erase>]
-      type srOnly =
-        static member inline fontFamily (value: string) : IThemeProp = unbox ("typography.srOnly.fontFamily", value)
-        static member inline fontWeight (value: int) : IThemeProp = unbox ("typography.srOnly.fontWeight", value)
-        static member inline fontSize (value: int) : IThemeProp = unbox ("typography.srOnly.fontSize", value)
-        static member inline fontSize (value: float) : IThemeProp = unbox ("typography.srOnly.fontSize", value)
-        static member inline fontSize (value: ICssUnit) : IThemeProp = unbox ("typography.srOnly.fontSize", value)
-        static member inline fontSize (value: string) : IThemeProp = unbox ("typography.srOnly.fontSize", value)
-        static member inline lineHeight (value: int) : IThemeProp = unbox ("typography.srOnly.lineHeight", value)
-        static member inline lineHeight (value: float) : IThemeProp = unbox ("typography.srOnly.lineHeight", value)
-        static member inline letterSpacing (value: ICssUnit) : IThemeProp = unbox ("typography.srOnly.letterSpacing", value)
-        static member inline marginLeft (value: ICssUnit) : IThemeProp = unbox ("typography.srOnly.marginLeft", value)
-        static member inline color (value: string) : IThemeProp = unbox ("typography.srOnly.color", value)
-        static member inline textTransform (value: string) : IThemeProp = unbox ("typography.srOnly.textTransform", value)
-
 
     [<Erase>]
     type shape =
@@ -391,4 +377,3 @@ module themeStatic =
       static member inline modal (value: int) = unbox ("zIndex.modal", value)
       static member inline snackbar (value: int) = unbox ("zIndex.snackbar", value)
       static member inline tooltip (value: int) = unbox ("zIndex.tooltip", value)
-
