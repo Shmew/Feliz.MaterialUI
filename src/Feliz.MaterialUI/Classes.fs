@@ -91,6 +91,10 @@ module classes =
     static member inline tag(className: string) : IAutocompleteClasses = unbox ("tag", className)
     /// Styles applied to the tag elements, e.g. the chips if `size="small"`.
     static member inline tagSizeSmall(className: string) : IAutocompleteClasses = unbox ("tagSizeSmall", className)
+    /// Styles applied when the popup icon is rendered.
+    static member inline hasPopupIcon(className: string) : IAutocompleteClasses = unbox ("hasPopupIcon", className)
+    /// Styles applied when the clear icon is rendered.
+    static member inline hasClearIcon(className: string) : IAutocompleteClasses = unbox ("hasClearIcon", className)
     /// Styles applied to the Input element.
     static member inline inputRoot(className: string) : IAutocompleteClasses = unbox ("inputRoot", className)
     /// Styles applied to the input element.
@@ -99,13 +103,13 @@ module classes =
     static member inline inputFocused(className: string) : IAutocompleteClasses = unbox ("inputFocused", className)
     /// Styles applied to the endAdornment element.
     static member inline endAdornment(className: string) : IAutocompleteClasses = unbox ("endAdornment", className)
-    /// Styles applied to the clear indictator.
+    /// Styles applied to the clear indicator.
     static member inline clearIndicator(className: string) : IAutocompleteClasses = unbox ("clearIndicator", className)
-    /// Styles applied to the clear indictator if the input is dirty.
+    /// Styles applied to the clear indicator if the input is dirty.
     static member inline clearIndicatorDirty(className: string) : IAutocompleteClasses = unbox ("clearIndicatorDirty", className)
-    /// Styles applied to the popup indictator.
+    /// Styles applied to the popup indicator.
     static member inline popupIndicator(className: string) : IAutocompleteClasses = unbox ("popupIndicator", className)
-    /// Styles applied to the popup indictator if the popup is open.
+    /// Styles applied to the popup indicator if the popup is open.
     static member inline popupIndicatorOpen(className: string) : IAutocompleteClasses = unbox ("popupIndicatorOpen", className)
     /// Styles applied to the popper element.
     static member inline popper(className: string) : IAutocompleteClasses = unbox ("popper", className)
@@ -1207,7 +1211,7 @@ module classes =
   type linearProgress =
     /// Styles applied to the root element.
     static member inline root(className: string) : ILinearProgressClasses = unbox ("root", className)
-    /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+    /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`.
     static member inline colorPrimary(className: string) : ILinearProgressClasses = unbox ("colorPrimary", className)
     /// Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
     static member inline colorSecondary(className: string) : ILinearProgressClasses = unbox ("colorSecondary", className)

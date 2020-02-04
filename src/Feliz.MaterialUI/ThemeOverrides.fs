@@ -87,6 +87,10 @@ module themeOverrides =
         static member inline tag(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.tag", createObj !!styles)
         /// Styles applied to the tag elements, e.g. the chips if `size="small"`.
         static member inline tagSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.tagSizeSmall", createObj !!styles)
+        /// Styles applied when the popup icon is rendered.
+        static member inline hasPopupIcon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.hasPopupIcon", createObj !!styles)
+        /// Styles applied when the clear icon is rendered.
+        static member inline hasClearIcon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.hasClearIcon", createObj !!styles)
         /// Styles applied to the Input element.
         static member inline inputRoot(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.inputRoot", createObj !!styles)
         /// Styles applied to the input element.
@@ -95,13 +99,13 @@ module themeOverrides =
         static member inline inputFocused(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.inputFocused", createObj !!styles)
         /// Styles applied to the endAdornment element.
         static member inline endAdornment(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.endAdornment", createObj !!styles)
-        /// Styles applied to the clear indictator.
+        /// Styles applied to the clear indicator.
         static member inline clearIndicator(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.clearIndicator", createObj !!styles)
-        /// Styles applied to the clear indictator if the input is dirty.
+        /// Styles applied to the clear indicator if the input is dirty.
         static member inline clearIndicatorDirty(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.clearIndicatorDirty", createObj !!styles)
-        /// Styles applied to the popup indictator.
+        /// Styles applied to the popup indicator.
         static member inline popupIndicator(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.popupIndicator", createObj !!styles)
-        /// Styles applied to the popup indictator if the popup is open.
+        /// Styles applied to the popup indicator if the popup is open.
         static member inline popupIndicatorOpen(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.popupIndicatorOpen", createObj !!styles)
         /// Styles applied to the popper element.
         static member inline popper(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.popper", createObj !!styles)
@@ -1038,7 +1042,7 @@ module themeOverrides =
       type muiLinearProgress =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLinearProgress.root", createObj !!styles)
-        /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+        /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`.
         static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLinearProgress.colorPrimary", createObj !!styles)
         /// Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
         static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLinearProgress.colorSecondary", createObj !!styles)

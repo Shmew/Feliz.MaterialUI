@@ -228,6 +228,12 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(getText: float -> int -> string)" "getText"
         ]
 
+    | "slider", "scale", "func" ->
+      [
+        RegularPropOverload.create "(transform: int -> int)" "transform"
+        RegularPropOverload.create "(transform: float -> float)" "transform"
+      ]
+
     | "typography", "variantMapping", "object" ->
         [
           [ "h1", "string", true
@@ -633,6 +639,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "tableRow", "children" ->
         s.Replace("Should be valid | children", "Should be valid `<tr>` children")
          .Replace("|  |", "")
+    | "formHelperText", "children" ->
+        s.Replace("If `''` is provided", "If `' '` is provided")
     | _ -> s
 
   let transformedMarkdownDocLines =

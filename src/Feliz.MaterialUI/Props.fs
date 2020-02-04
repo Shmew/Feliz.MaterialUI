@@ -375,7 +375,7 @@ type autocomplete =
   ///
   /// *value:* The new value of the text input.
   ///
-  /// *reason:* Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+  /// *reason:* Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
   static member inline onInputChange (handler: Event -> string -> AutocompleteInputChangeReason -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_,_> handler)
   /// Callback fired when the input value changes.
   ///
@@ -387,7 +387,7 @@ type autocomplete =
   ///
   /// *value:* The new value of the text input.
   ///
-  /// *reason:* Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+  /// *reason:* Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
   static member inline onInputChange (handler: string -> unit) = Interop.mkAttr "onInputChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
   /// Callback fired when the popup requests to be opened. Use in controlled mode (see open).
   ///
@@ -447,6 +447,8 @@ type autocomplete =
   ///
   /// *getTagProps:* A tag props getter.
   static member inline renderTags (render: 'option [] -> AutocompleteRenderValueState -> ReactElement) = Interop.mkAttr "renderTags" (Func<_,_,_> render)
+  /// If `true`, the input's text will be selected on focus.
+  static member inline selectOnFocus (value: bool) = Interop.mkAttr "selectOnFocus" value
   /// The value of the autocomplete.
   ///
   /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
@@ -1312,7 +1314,7 @@ type checkbox =
   static member inline checkedIcon (element: ReactElement) = Interop.mkAttr "checkedIcon" element
   /// Override or extend the styles applied to the component. Use `classes.checkbox` to specify class names.
   static member inline classes (classNames: classes.ICheckboxClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// If `true`, the switch will be disabled.
+  /// If `true`, the checkbox will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -1711,13 +1713,13 @@ type dialog =
   static member inline PaperComponent (value: ReactElementType) = Interop.mkAttr "PaperComponent" value
   /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
@@ -2089,9 +2091,9 @@ type expansionPanel =
   ///
   /// *expanded:* The `expanded` state of the panel.
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
-  /// The component used for the collapse effect.
+  /// The component used for the collapse effect. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `paper`*
   ///
@@ -2584,16 +2586,28 @@ type formGroup =
 [<Erase>]
 type formHelperText =
   /// The content of the component.
+  ///
+  /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
+  ///
+  /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (elements: ReactElement seq) = prop.children elements
   /// The content of the component.
+  ///
+  /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (value: string) = Interop.mkAttr "children" value
   /// The content of the component.
+  ///
+  /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (values: string seq) = Interop.mkAttr "children" values
   /// The content of the component.
+  ///
+  /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
+  ///
+  /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.formHelperText` to specify class names.
   static member inline classes (classNames: classes.IFormHelperTextClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
@@ -3973,11 +3987,11 @@ type menu =
   static member inline transformOrigin (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
   /// *Inherited from `popover`*
   ///
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// *Inherited from `popover`*
   ///
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
@@ -4603,7 +4617,19 @@ type outlinedInput =
   static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
   static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
-  /// The width of the label.
+  /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
+  static member inline label (value: ReactElement) = Interop.mkAttr "label" value
+  /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
+  static member inline label (values: ReactElement seq) = Interop.mkAttr "label" values
+  /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
+  static member inline label (value: string) = Interop.mkAttr "label" value
+  /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
+  static member inline label (values: string seq) = Interop.mkAttr "label" values
+  /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
+  static member inline label (value: int) = Interop.mkAttr "label" value
+  /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
+  static member inline label (value: float) = Interop.mkAttr "label" value
+  /// The width of the label. Is ignored if `label` is provided. Prefer `label` if the input label appears with a strike through.
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
@@ -4815,13 +4841,13 @@ type popover =
   ///
   /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
   static member inline transformOrigin (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
@@ -5034,7 +5060,7 @@ type radio =
   static member inline checkedIcon (element: ReactElement) = Interop.mkAttr "checkedIcon" element
   /// Override or extend the styles applied to the component. Use `classes.radio` to specify class names.
   static member inline classes (classNames: classes.IRadioClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// If `true`, the switch will be disabled.
+  /// If `true`, the radio will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -5395,9 +5421,21 @@ type select =
   static member inline input (value: ReactElement) = Interop.mkAttr "input" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// The idea of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value.
+  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  static member inline label (value: ReactElement) = Interop.mkAttr "label" value
+  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  static member inline label (values: ReactElement seq) = Interop.mkAttr "label" values
+  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  static member inline label (value: string) = Interop.mkAttr "label" value
+  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  static member inline label (values: string seq) = Interop.mkAttr "label" values
+  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  static member inline label (value: int) = Interop.mkAttr "label" value
+  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  static member inline label (value: float) = Interop.mkAttr "label" value
+  /// The ID of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value.
   static member inline labelId (value: string) = Interop.mkAttr "labelId" value
-  /// The label width to be used on OutlinedInput. This prop is required when the `variant` prop is `outlined`.
+  /// See OutlinedLabel#label
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
   /// Props applied to the [`Menu`](https://material-ui.com/api/menu/) element.
   static member inline MenuProps (props: IReactProperty list) = Interop.mkAttr "MenuProps" (createObj !!props)
@@ -5830,6 +5868,10 @@ type slider =
   ///
   /// *value:* The new value.
   static member inline onChangeCommitted (handler: float -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> (fun _ v -> handler v))
+  /// A transformation function, to change the scale of the slider.
+  static member inline scale (transform: int -> int) = Interop.mkAttr "scale" transform
+  /// A transformation function, to change the scale of the slider.
+  static member inline scale (transform: float -> float) = Interop.mkAttr "scale" transform
   /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
   ///
   /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
@@ -5995,13 +6037,13 @@ type snackbar =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms.
   static member inline resumeHideDuration (value: int) = Interop.mkAttr "resumeHideDuration" value
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
 module snackbar =
@@ -6145,13 +6187,13 @@ type speedDial =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The icon to display in the SpeedDial Fab when the SpeedDial is open.
   static member inline openIcon (element: ReactElement) = Interop.mkAttr "openIcon" element
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
 module speedDial =
@@ -6287,11 +6329,11 @@ type speedDialAction =
   static member inline title (value: float) = Interop.mkAttr "title" value
   /// *Inherited from `tooltip`*
   ///
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// *Inherited from `tooltip`*
   ///
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
 module speedDialAction =
@@ -6365,6 +6407,8 @@ type step =
   static member inline completed (value: bool) = Interop.mkAttr "completed" value
   /// Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// Expand the step.
+  static member inline expanded (value: bool) = Interop.mkAttr "expanded" value
 
 
 [<Erase>]
@@ -6488,7 +6532,7 @@ type stepContent =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override or extend the styles applied to the component. Use `classes.stepContent` to specify class names.
   static member inline classes (classNames: classes.IStepContentClasses list) = Interop.mkAttr "classes" (createObj !!classNames)
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
@@ -6498,7 +6542,7 @@ type stepContent =
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
 module stepContent =
@@ -6569,7 +6613,7 @@ type stepLabel =
 
 [<Erase>]
 type stepper =
-  /// Set the active step (zero based index).
+  /// Set the active step (zero based index). Set to -1 to disable all the steps.
   static member inline activeStep (value: int) = Interop.mkAttr "activeStep" value
   /// If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon.
   static member inline alternativeLabel (value: bool) = Interop.mkAttr "alternativeLabel" value
@@ -7173,6 +7217,8 @@ type tablePagination =
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The total number of rows.
+  ///
+  /// To enable server side pagination for an unknown number of items, provide -1.
   static member inline count (value: int) = Interop.mkAttr "count" value
   /// Customize the displayed rows label.
   ///
@@ -7883,9 +7929,9 @@ type tooltip =
   static member inline title (value: int) = Interop.mkAttr "title" value
   /// Tooltip title. Zero-length titles string are never displayed.
   static member inline title (value: float) = Interop.mkAttr "title" value
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
-  /// Props applied to the `Transition` element.
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
 module tooltip =
@@ -7955,8 +8001,10 @@ type treeItem =
   static member inline label (value: float) = Interop.mkAttr "label" value
   /// The id of the node.
   static member inline nodeId (value: string) = Interop.mkAttr "nodeId" value
-  /// The component used for the transition.
+  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+  static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
 
 [<Erase>]

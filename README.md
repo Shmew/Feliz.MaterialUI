@@ -30,10 +30,11 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
-### vNext
+### 0.12.0
 
+* Updated for @material-ui/core 4.9 and @material-ui/lab 4.0.0-alpha.41
 * Add missing theme DSL props `shape`, `transitions`, and `zIndex`
-* Fix name collisions  in theme DSL
+* Fix name collisions in theme DSL
 * Removed invalid `theme.typography.srOnly` from theme DSL
 
 ### 0.11.0
