@@ -120,17 +120,17 @@ let app = React.functionComponent(fun (model, dispatch) ->
         prop.children [
           if model.IsBusy then
             Mui.circularProgress [
-              prop.className classes.progressBar
+              circularProgress.classes.root classes.progressBar
               circularProgress.color.secondary
             ]
           else
             Mui.avatar [
-              prop.className classes.avatar
+              avatar.classes.root classes.avatar
               avatar.children [
                 lockOutlinedIcon []
               ]
             ]
-                
+
           Mui.typography [
             typography.component' "h1"
             typography.variant.h5
@@ -195,7 +195,7 @@ let app = React.functionComponent(fun (model, dispatch) ->
                 button.fullWidth true
                 button.variant.contained
                 button.color.primary
-                prop.className classes.submit
+                button.classes.root classes.submit
                 button.children "Sign In"
                 button.disabled model.IsBusy
                 prop.onClick (fun e ->
