@@ -5,12 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.12.0</Version>
-    <PackageReleaseNotes>- Updated for @material-ui/core 4.9 and @material-ui/lab 4.0.0-alpha.41
-- Add missing theme DSL props `shape`, `transitions`, and `zIndex`
-- Fix name collisions in theme DSL
-- Removed invalid `theme.typography.srOnly` from theme DSL
-</PackageReleaseNotes>
+    <Version>0.13.0</Version>
+    <PackageReleaseNotes>Flattened the classes props, see updated docs</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>

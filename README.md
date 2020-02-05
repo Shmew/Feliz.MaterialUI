@@ -30,9 +30,9 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
-### vNext
+### 0.13.0
 
-* Flattened the `classes` DSL, see updated docs
+* Flattened the `classes` props, see updated docs
 
 ### 0.12.0
 
