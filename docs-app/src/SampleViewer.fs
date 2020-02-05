@@ -111,13 +111,13 @@ let Demo = React.functionComponent(fun (props: DemoProps) ->
 
     // Sample
     Mui.paper [
-      prop.className c.demoPaper
+      paper.classes.root c.demoPaper
       prop.children [
         Mui.tooltip [
           tooltip.title ("Reset sample")
           tooltip.children(
             Mui.iconButton [
-              prop.className c.resetSampleButton
+              iconButton.classes.root c.resetSampleButton
               button.children (undoIcon [])
               prop.onClick (fun _ -> setSampleKey (sampleKey + 1))
             ]

@@ -145,7 +145,7 @@ let toolbar model dispatch =
       typography.variant.h6
       typography.color.inherit'
       typography.children "Feliz.MaterialUI"
-      prop.className c.appBarTitle
+      typography.classes.root c.appBarTitle
     ]
 
     // Light/dark mode button
@@ -221,7 +221,7 @@ let drawer model dispatch =
       prop.key fragment
       prop.href fragment
       if isNested then
-        prop.className c.nestedMenuItem
+        listItem.classes.root c.nestedMenuItem
       listItem.button true
       listItem.component' "a"
       listItem.selected ((model.CurrentPath = path))
@@ -231,11 +231,9 @@ let drawer model dispatch =
     ]
 
   Mui.drawer [
-    prop.className c.drawer
+    drawer.classes.root c.drawer
     drawer.variant.permanent
-    drawer.classes [
-      classes.drawer.paper c.drawerPaper
-    ]
+    drawer.classes.paper c.drawerPaper
     drawer.children [
       Html.div [ prop.className c.toolbar ]
       Mui.list [
@@ -283,7 +281,7 @@ let App = FunctionComponent.Of((fun (model, dispatch) ->
             prop.children [
               Mui.cssBaseline []
               Mui.appBar [
-                prop.className c.appBar
+                appBar.classes.root c.appBar
                 appBar.position.fixed'
                 appBar.children [
                   toolbar model dispatch

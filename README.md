@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### vNext
+
+* Flattened the `classes` DSL, see updated docs
+
 ### 0.12.0
 
 * Updated for @material-ui/core 4.9 and @material-ui/lab 4.0.0-alpha.41

@@ -52,8 +52,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
   let markdownDocLines =
     if propMethodName = "classes" then
-      sprintf "Override or extend the styles applied to the component. Use `classes.%s` to specify class names." componentMethodName
-      |> List.singleton
+      ["Override or extend the styles applied to the component."]
     else
       rowHtml.CssSelect("td").[3].Elements()
       |> docElementsToMarkdownLines
@@ -478,9 +477,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | _, pn, ("object" | "{ component?: element type }") when pn.EndsWith "Props" ->
         [RegularPropOverload.create "(props: IReactProperty list)" "(createObj !!props)"]
 
-    | _, pn, "object" when pn.EndsWith "Classes" ->
-        let otherComponentName = pn.Substring(0, pn.Length - 7)
-        [RegularPropOverload.create (sprintf "(classNames: classes.I%sClasses list)" otherComponentName) "(createObj !!classNames)"]
+    | _, pn, "object" when pn = "classes" || pn.EndsWith "Classes" ->
+        []
 
     | _, _, t when t = "bool" || t.Split('|') |> Array.map String.trim |> Array.contains "bool" ->
         [RegularPropOverload.create "(value: bool)" "value"]
@@ -539,13 +537,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | _, _, "any" ->
         [RegularPropOverload.create "(value: 'a)" "value"]
-
-    | _, "classes", _ ->
-        [
-          RegularPropOverload.create
-            (sprintf "(classNames: classes.I%sClasses list)" (String.upperFirst componentMethodName))
-            "(createObj !!classNames)"
-        ]
 
     | _ when isProbablyEnumProp ->
         []
@@ -711,7 +702,6 @@ let parseComponent (htmlPathOrUrl: string) =
           let rowHtml = page.Tables.Props.Html.CssSelect("tbody > tr").[i]
           parseProp compMethodName r rowHtml
       )
-      |> Array.filter (fun p -> not (p.RegularOverloads.IsEmpty && p.EnumOverloads.IsEmpty))
 
     let addChildrenOverloadIfSupported (comp: Component) =
       let hasReactElementSeqChildren = 

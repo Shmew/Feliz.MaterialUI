@@ -13,24 +13,47 @@ module GetLines =
 
   /// Gets the code lines for the implementation of a single class rule. Does not
   /// include docs.
-  let singleClassRule (comp: MuiComponent) (rule: ClassRule) =
-    sprintf "static member inline %s(className: string) : I%sClasses = unbox (\"%s\", className)"
+  let singleClassRule (propName: string) (rule: ClassRule) =
+    sprintf "static member inline %s(className: string) : IReactProperty = unbox (\"%s.%s\", className)"
       rule.MethodName
-      (comp.GeneratorComponent.MethodName |> String.upperFirst)
+      propName
       rule.RealRuleName
     |> List.singleton
 
 
-  let classRulesForComponent (comp: MuiComponent) =
+  let classRulesForComponent (api: MuiComponentApi) (comp: MuiComponent) =
     [
-      sprintf "type I%sClasses = interface end" (comp.GeneratorComponent.MethodName |> String.upperFirst)
-      if not comp.ClassRules.IsEmpty then
+      let propsAndClassRules =
+        comp.GeneratorComponent.Props
+        |> List.choose (fun p ->
+            if p.MethodName = "classes" && not comp.ClassRules.IsEmpty then
+              Some (p, comp.ClassRules)
+            elif p.MethodName.EndsWith "Classes" then
+              let otherCompName =
+                p.MethodName.Substring(0, p.MethodName.Length-7)
+                |> String.lowerFirst
+              let rules =
+                api.MuiComponents
+                |> List.find (fun c -> c.GeneratorComponent.MethodName = otherCompName)
+                |> fun c -> c.ClassRules
+              if not rules.IsEmpty then Some (p, rules) else None
+            else None
+              
+        )
+
+      if not propsAndClassRules.IsEmpty then
+        sprintf "module %s =" comp.GeneratorComponent.MethodName
+
+        for prop, classRules in propsAndClassRules do
+          ""
+          yield! prop.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 1)
+          "[<Erase>]" |> indent 1
+          sprintf "type %s =" prop.MethodName |> indent 1
+          for rule in classRules do
+            yield! rule.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 2)
+            yield! singleClassRule prop.MethodName rule |> List.map (indent 2)
         ""
-        "[<Erase>]"
-        sprintf "type %s =" comp.GeneratorComponent.MethodName
-        for rule in comp.ClassRules do
-          yield! rule.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 1)
-          yield! singleClassRule comp rule |> List.map (indent 1)
+        ""
     ]
 
   let themePropsForComponent (comp: MuiComponent) =
@@ -66,15 +89,15 @@ let classesDocument (api: MuiComponentApi) =
     "/// THIS FILE IS AUTO-GENERATED //"
     "////////////////////////////////*)"
     ""
+    "open System.ComponentModel"
     "open Fable.Core"
+    "open Feliz"
     ""
-    "/// Override or extend the styles applied to components."
-    "module classes ="
+    "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+    "module classesProps ="
     ""
     for comp in api.MuiComponents do
-      yield! GetLines.classRulesForComponent comp |> List.map (indent 1)
-      ""
-      ""
+      yield! GetLines.classRulesForComponent api comp |> List.map (indent 1)
   ]
   |> String.concat Environment.NewLine
 
