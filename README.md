@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### vNext
+
+* Update from MUI docs
+
 ### 0.13.0
 
 * Flattened the `classes` props, see updated docs

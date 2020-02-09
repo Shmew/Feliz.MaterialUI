@@ -82,6 +82,10 @@ module classesProps =
       static member inline colorPrimary(className: string) : IReactProperty = unbox ("classes.colorPrimary", className)
       /// Styles applied to the root element if `color="secondary"`.
       static member inline colorSecondary(className: string) : IReactProperty = unbox ("classes.colorSecondary", className)
+      /// Styles applied to the root element if `color="inherit"`.
+      static member inline colorInherit(className: string) : IReactProperty = unbox ("classes.colorInherit", className)
+      /// Styles applied to the root element if `color="transparent"`.
+      static member inline colorTransparent(className: string) : IReactProperty = unbox ("classes.colorTransparent", className)
   
   
   module autocomplete =
@@ -843,7 +847,7 @@ module classesProps =
       static member inline adornedStart(className: string) : IReactProperty = unbox ("classes.adornedStart", className)
       /// Styles applied to the root element if `endAdornment` is provided.
       static member inline adornedEnd(className: string) : IReactProperty = unbox ("classes.adornedEnd", className)
-      /// Styles applied to the root element if `error={true}`.
+      /// Pseudo-class applied to the root element if `error={true}`.
       static member inline error(className: string) : IReactProperty = unbox ("classes.error", className)
       /// Styles applied to the `input` element if `margin="dense"`.
       static member inline marginDense(className: string) : IReactProperty = unbox ("classes.marginDense", className)
@@ -1132,7 +1136,7 @@ module classesProps =
       static member inline colorSecondary(className: string) : IReactProperty = unbox ("classes.colorSecondary", className)
       /// Styles applied to the root element if `disableUnderline={false}`.
       static member inline underline(className: string) : IReactProperty = unbox ("classes.underline", className)
-      /// Styles applied to the root element if `error={true}`.
+      /// Pseudo-class applied to the root element if `error={true}`.
       static member inline error(className: string) : IReactProperty = unbox ("classes.error", className)
       /// Styles applied to the `input` element if `margin="dense"`.
       static member inline marginDense(className: string) : IReactProperty = unbox ("classes.marginDense", className)
@@ -1188,7 +1192,7 @@ module classesProps =
       static member inline adornedStart(className: string) : IReactProperty = unbox ("classes.adornedStart", className)
       /// Styles applied to the root element if `endAdornment` is provided.
       static member inline adornedEnd(className: string) : IReactProperty = unbox ("classes.adornedEnd", className)
-      /// Styles applied to the root element if `error={true}`.
+      /// Pseudo-class applied to the root element if `error={true}`.
       static member inline error(className: string) : IReactProperty = unbox ("classes.error", className)
       /// Styles applied to the `input` element if `margin="dense"`.
       static member inline marginDense(className: string) : IReactProperty = unbox ("classes.marginDense", className)
@@ -1585,7 +1589,7 @@ module classesProps =
       static member inline adornedStart(className: string) : IReactProperty = unbox ("classes.adornedStart", className)
       /// Styles applied to the root element if `endAdornment` is provided.
       static member inline adornedEnd(className: string) : IReactProperty = unbox ("classes.adornedEnd", className)
-      /// Styles applied to the root element if `error={true}`.
+      /// Pseudo-class applied to the root element if `error={true}`.
       static member inline error(className: string) : IReactProperty = unbox ("classes.error", className)
       /// Styles applied to the `input` element if `margin="dense"`.
       static member inline marginDense(className: string) : IReactProperty = unbox ("classes.marginDense", className)

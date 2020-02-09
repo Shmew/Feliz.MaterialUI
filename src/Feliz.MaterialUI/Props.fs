@@ -166,6 +166,7 @@ module appBar =
     static member inline inherit' = Interop.mkAttr "color" "inherit"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
+    static member inline transparent = Interop.mkAttr "color" "transparent"
 
   /// The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
   [<Erase>]

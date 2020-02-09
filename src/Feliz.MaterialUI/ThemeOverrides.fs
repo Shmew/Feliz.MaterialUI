@@ -76,6 +76,10 @@ module themeOverrides =
         static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAppBar.colorPrimary", createObj !!styles)
         /// Styles applied to the root element if `color="secondary"`.
         static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAppBar.colorSecondary", createObj !!styles)
+        /// Styles applied to the root element if `color="inherit"`.
+        static member inline colorInherit(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAppBar.colorInherit", createObj !!styles)
+        /// Styles applied to the root element if `color="transparent"`.
+        static member inline colorTransparent(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAppBar.colorTransparent", createObj !!styles)
 
       [<Erase>]
       type muiAutocomplete =
@@ -697,7 +701,7 @@ module themeOverrides =
         static member inline adornedStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFilledInput.adornedStart", createObj !!styles)
         /// Styles applied to the root element if `endAdornment` is provided.
         static member inline adornedEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFilledInput.adornedEnd", createObj !!styles)
-        /// Styles applied to the root element if `error={true}`.
+        /// Pseudo-class applied to the root element if `error={true}`.
         static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFilledInput.error", createObj !!styles)
         /// Styles applied to the `input` element if `margin="dense"`.
         static member inline marginDense(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFilledInput.marginDense", createObj !!styles)
@@ -938,7 +942,7 @@ module themeOverrides =
         static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInput.colorSecondary", createObj !!styles)
         /// Styles applied to the root element if `disableUnderline={false}`.
         static member inline underline(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInput.underline", createObj !!styles)
-        /// Styles applied to the root element if `error={true}`.
+        /// Pseudo-class applied to the root element if `error={true}`.
         static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInput.error", createObj !!styles)
         /// Styles applied to the `input` element if `margin="dense"`.
         static member inline marginDense(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInput.marginDense", createObj !!styles)
@@ -986,7 +990,7 @@ module themeOverrides =
         static member inline adornedStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.adornedStart", createObj !!styles)
         /// Styles applied to the root element if `endAdornment` is provided.
         static member inline adornedEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.adornedEnd", createObj !!styles)
-        /// Styles applied to the root element if `error={true}`.
+        /// Pseudo-class applied to the root element if `error={true}`.
         static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.error", createObj !!styles)
         /// Styles applied to the `input` element if `margin="dense"`.
         static member inline marginDense(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.marginDense", createObj !!styles)
@@ -1251,7 +1255,7 @@ module themeOverrides =
         static member inline adornedStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiOutlinedInput.adornedStart", createObj !!styles)
         /// Styles applied to the root element if `endAdornment` is provided.
         static member inline adornedEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiOutlinedInput.adornedEnd", createObj !!styles)
-        /// Styles applied to the root element if `error={true}`.
+        /// Pseudo-class applied to the root element if `error={true}`.
         static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiOutlinedInput.error", createObj !!styles)
         /// Styles applied to the `input` element if `margin="dense"`.
         static member inline marginDense(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiOutlinedInput.marginDense", createObj !!styles)
