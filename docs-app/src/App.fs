@@ -22,6 +22,7 @@ module Url =
   let [<Literal>] classes = "classes"
   let [<Literal>] styling = "styling"
   let [<Literal>] themes = "themes"
+  let [<Literal>] localization = "localization"
   let [<Literal>] hooks = "hooks"
   let [<Literal>] autocomplete = "autocomplete"
   let [<Literal>] samples = "samples"
@@ -246,6 +247,7 @@ let drawer model dispatch =
             menuItem true "Classes" [Url.usage; Url.classes]
             menuItem true "Styling using makeStyles" [Url.usage; Url.styling]
             menuItem true "Styling using themes" [Url.usage; Url.themes]
+            menuItem true "Localization" [Url.usage; Url.localization]
             menuItem true "Other hooks" [Url.usage; Url.hooks]
           ])
           menuItem false "Ecosystem" [Url.ecosystem]

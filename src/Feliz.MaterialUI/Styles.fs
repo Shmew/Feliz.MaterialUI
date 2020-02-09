@@ -1,5 +1,6 @@
 ﻿namespace Feliz.MaterialUI
 
+open System
 open System.ComponentModel
 open Fable.Core
 open Fable.Core.JsInterop
@@ -27,7 +28,7 @@ module StyleImports =
   let responsiveFontSizes_opts (theme: Theme) (opts: ResponsiveFontSizesOptions) : Theme =
     import "responsiveFontSizes" "@material-ui/core/styles"
 
-  let createMuiTheme (theme: Theme) : Theme =
+  let createMuiTheme_argsArray (theme: Theme, [<ParamArray>] extra: Theme []) : Theme =
     import "createMuiTheme" "@material-ui/core/styles"
 
   let createMuiTheme_unit () : Theme =
@@ -84,12 +85,17 @@ type Styles =
     StyleImports.useTheme ()
 
   /// Generate a theme base on the incomplete theme object represented by the specified
-  /// props.
-  static member inline createMuiTheme (props: IThemeProp list) : Theme =
-    !!props
-    |> Object.fromFlatEntries
-    :?> Theme
-    |> StyleImports.createMuiTheme
+  /// props, and deep merge any extra arguments with this theme.
+  static member inline createMuiTheme (props: IThemeProp list, [<ParamArray>] merge: Theme []) : Theme =
+    let theme =
+      !!props
+      |> Object.fromFlatEntries
+      :?> Theme
+    StyleImports.createMuiTheme_argsArray(theme, merge)
+
+  /// Deep merge any extra arguments with the first theme.
+  static member inline createMuiTheme (theme: Theme, [<ParamArray>] merge: Theme []) : Theme =
+    StyleImports.createMuiTheme_argsArray(theme, merge)
 
   /// Returns a default theme object.
   static member inline createMuiTheme () : Theme =

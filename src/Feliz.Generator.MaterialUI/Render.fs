@@ -80,6 +80,12 @@ module GetLines =
         yield! singleThemeOverrideRule stylesheetName rule |> List.map (indent 1)
     ]
 
+  let locale (loc: Locale) =
+    [
+      sprintf "/// %s" loc.Name
+      sprintf "static member inline %s: Theme = import \"%s\" \"@material-ui/core/locale\"" loc.ImportName loc.ImportName
+    ]
+
 
 let classesDocument (api: MuiComponentApi) =
   [
@@ -158,5 +164,26 @@ let themeOverridesDocument (api: MuiComponentApi) =
     for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
       yield! GetLines.themeOverridesForComponent comp stylesheetName |> List.map (indent 3)
       ""
+  ]
+  |> String.concat Environment.NewLine
+
+
+let localizationDocument (localization: Localization) =
+
+  [
+    "namespace Feliz.MaterialUI"
+    ""
+    "(*////////////////////////////////"
+    "/// THIS FILE IS AUTO-GENERATED //"
+    "////////////////////////////////*)"
+    ""
+    "open Fable.Core"
+    "open Fable.Core.JsInterop"
+    ""
+    "[<Erase>]"
+    "type Locale ="
+    for loc in localization.Locales do
+      yield! GetLines.locale loc |> List.map (indent 1)
+    ""
   ]
   |> String.concat Environment.NewLine

@@ -21,3 +21,14 @@ type MuiComponentApi = {
   GeneratorComponentApi: ComponentApi
   MuiComponents: MuiComponent list
 }
+
+
+type Locale = {
+  Name: string
+  ImportName: string
+}
+
+
+type Localization = {
+  Locales: Locale list
+}

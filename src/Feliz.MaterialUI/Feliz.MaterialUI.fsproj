@@ -5,8 +5,9 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.13.0</Version>
-    <PackageReleaseNotes>Flattened the classes props, see updated docs</PackageReleaseNotes>
+    <Version>0.13.1</Version>
+    <PackageReleaseNotes>- Add support for localization
+- Update from MUI docs</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>
@@ -17,6 +18,7 @@
     <Compile Include="Autocomplete.fs" />
     <Compile Include="Hooks.fs" />
     <Compile Include="Colors.fs" />
+    <Compile Include="Localization.fs" />
     <Compile Include="Styles.fs" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />

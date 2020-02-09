@@ -13,6 +13,7 @@
     <Compile Include="Common.fs" />
     <Compile Include="HtmlCache.fs" />
     <Compile Include="ApiParser.fs" />
+    <Compile Include="LocalizationParser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   

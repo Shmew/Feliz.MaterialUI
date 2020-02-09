@@ -30,8 +30,9 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
-### vNext
+### 0.13.1
 
+* Add support for localization
 * Update from MUI docs
 
 ### 0.13.0

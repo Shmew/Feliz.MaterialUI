@@ -772,7 +772,7 @@ let parseComponent (htmlPathOrUrl: string) =
 let parseApi () =
 
   let components =
-    HtmlCache.getFiles ()
+    HtmlCache.getApiFiles ()
     |> Array.Parallel.map parseComponent
     |> Array.toList
 
