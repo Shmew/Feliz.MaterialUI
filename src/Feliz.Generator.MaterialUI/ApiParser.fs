@@ -8,7 +8,6 @@ open System.Text.RegularExpressions
 open Domain
 
 
-// TODO: Clean up / refactor / rewrite
 let paramListAndObjCreator paramData =
   let toSafeName = kebabCaseToCamelCase >> prefixUnderscoreToNumbers >> appendApostropheToReservedKeywords
   let paramList =

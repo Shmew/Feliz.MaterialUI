@@ -114,6 +114,5 @@ type Styles =
 type style =
 
   /// Allows nesting styles, for example for JSS selectors etc.
-  // TODO: rename?
   static member inline inner (name: string) (styles: IStyleAttribute list) =
     Interop.mkStyle name (createObj !!styles)
