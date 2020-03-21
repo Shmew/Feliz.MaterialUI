@@ -443,6 +443,15 @@ type AutocompleteMatchFrom =
   | Start
 
 
+[<StringEnum; RequireQualifiedAccess>]
+type AutocompleteOnChangeReason =
+  | [<CompiledName("create-option")>] CreateOption
+  | [<CompiledName("select-option")>] SelectOption
+  | [<CompiledName("remove-option")>] RemoveOption
+  | Blur
+  | Clear
+
+
 type CreateFilterOptionsOptions =
   abstract ignoreAccents: bool with get, set
   abstract ignoreCase: bool with get, set
@@ -497,4 +506,8 @@ type AutocompleteRenderInputParams =
 
 [<AbstractClass; Erase>]
 type AutocompleteRenderGroupParams =
+  inherit PropsObject
+
+[<AbstractClass; Erase>]
+type PaginationRenderItemParams =
   inherit PropsObject

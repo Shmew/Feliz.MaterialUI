@@ -719,6 +719,20 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([InputBase](https://material-ui.com/api/input-base/)).
   static member inline outlinedInput props = createElement (importDefault "@material-ui/core/OutlinedInput") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline pagination props = createElement (importDefault "@material-ui/lab/Pagination") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline paginationItem props = createElement (importDefault "@material-ui/lab/PaginationItem") props
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -779,6 +793,16 @@ type Mui =
 
   /// The component cannot hold a ref.
   static member inline rootRef props = createElement (importDefault "@material-ui/core/RootRef") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline scopedCssBaseline props = createElement (importDefault "@material-ui/core/ScopedCssBaseline") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline scopedCssBaseline (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ScopedCssBaseline") [ Feliz.MaterialUI.scopedCssBaseline.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///

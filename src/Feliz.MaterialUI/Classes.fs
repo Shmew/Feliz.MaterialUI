@@ -620,6 +620,15 @@ module classesProps =
       static member inline maxWidthXl(className: string) : IReactProperty = unbox ("classes.maxWidthXl", className)
   
   
+  module cssBaseline =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Apply global styles.
+      static member inline global'(className: string) : IReactProperty = unbox ("classes.@global", className)
+  
+  
   module dialog =
   
     /// Override or extend the styles applied to the component.
@@ -714,6 +723,8 @@ module classesProps =
       static member inline middle(className: string) : IReactProperty = unbox ("classes.middle", className)
       /// Styles applied to the root element if `orientation="vertical"`.
       static member inline vertical(className: string) : IReactProperty = unbox ("classes.vertical", className)
+      /// Styles applied to the root element if `flexItem={true}`.
+      static member inline flexItem(className: string) : IReactProperty = unbox ("classes.flexItem", className)
   
   
   module drawer =
@@ -1180,6 +1191,8 @@ module classesProps =
     /// Override or extend the styles applied to the component.
     [<Erase>]
     type classes =
+      /// Apply global styles.
+      static member inline global'(className: string) : IReactProperty = unbox ("classes.@global", className)
       /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the root element if the component is a descendant of `FormControl`.
@@ -1609,6 +1622,17 @@ module classesProps =
       static member inline inputAdornedEnd(className: string) : IReactProperty = unbox ("classes.inputAdornedEnd", className)
   
   
+  module pagination =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the ul element.
+      static member inline ul(className: string) : IReactProperty = unbox ("classes.ul", className)
+  
+  
   module paper =
   
     /// Override or extend the styles applied to the component.
@@ -1712,6 +1736,15 @@ module classesProps =
       static member inline iconActive(className: string) : IReactProperty = unbox ("classes.iconActive", className)
       /// Styles applied to the icon wrapping elements when decimals are necessary.
       static member inline decimal(className: string) : IReactProperty = unbox ("classes.decimal", className)
+  
+  
+  module scopedCssBaseline =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
   
   
   module select =
@@ -2431,6 +2464,8 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Pseudo-class applied to the root element when expanded.
       static member inline expanded(className: string) : IReactProperty = unbox ("classes.expanded", className)
+      /// Pseudo-class applied to the root element when selected.
+      static member inline selected(className: string) : IReactProperty = unbox ("classes.selected", className)
       /// Styles applied to the `role="group"` element.
       static member inline group(className: string) : IReactProperty = unbox ("classes.group", className)
       /// Styles applied to the tree node content.

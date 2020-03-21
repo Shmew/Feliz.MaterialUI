@@ -14,7 +14,7 @@ let view model dispatch =
   ]
 ```
 
-Prop names that are reserved F# keywords generally end with a prime/apostrophe (`'`), e.g.:
+Names that are reserved F# keywords generally end with a prime/apostrophe (`'`), e.g.:
 
 ```f#
 Mui.radio [

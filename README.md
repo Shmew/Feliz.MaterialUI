@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 0.14.0
+
+* Updated for @material-ui/lab 4.0.0-alpha.46
+
 ### 0.13.1
 
 * Add support for localization

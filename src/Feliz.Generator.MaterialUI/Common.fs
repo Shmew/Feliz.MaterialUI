@@ -27,11 +27,15 @@ let prefixUnderscoreToNumbers (s: string) =
   else s
 
 
+let trimStart (start: char) (str: string) =
+  str.TrimStart(start)
+
+
 let appendApostropheToReservedKeywords =
   let reserved =
     [
       "checked"; "static"; "fixed"; "inline"; "default"; "component";
-      "inherit"; "open"; "type"; "true"; "false"; "in"; "end"
+      "inherit"; "open"; "type"; "true"; "false"; "in"; "end"; "global"
     ]
     |> Set.ofList
   fun s -> if reserved.Contains s then s + "'" else s

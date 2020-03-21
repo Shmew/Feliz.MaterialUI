@@ -9,6 +9,8 @@ open Fable.Core.JsInterop
 
 [<Erase>]
 type Locale =
+  /// Armenian
+  static member inline hyAM: Theme = import "hyAM" "@material-ui/core/locale"
   /// Azerbaijani
   static member inline azAZ: Theme = import "azAZ" "@material-ui/core/locale"
   /// Bulgarian
@@ -23,12 +25,16 @@ type Locale =
   static member inline nlNL: Theme = import "nlNL" "@material-ui/core/locale"
   /// English (United States)
   static member inline enUS: Theme = import "enUS" "@material-ui/core/locale"
+  /// Estonian
+  static member inline etEE: Theme = import "etEE" "@material-ui/core/locale"
   /// Finnish
   static member inline fiFI: Theme = import "fiFI" "@material-ui/core/locale"
   /// French
   static member inline frFR: Theme = import "frFR" "@material-ui/core/locale"
   /// German
   static member inline deDE: Theme = import "deDE" "@material-ui/core/locale"
+  /// Hebrew
+  static member inline heIL: Theme = import "heIL" "@material-ui/core/locale"
   /// Hungarian
   static member inline huHU: Theme = import "huHU" "@material-ui/core/locale"
   /// Icelandic

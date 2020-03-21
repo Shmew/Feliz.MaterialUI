@@ -526,6 +526,11 @@ module themeOverrides =
         static member inline maxWidthXl(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiContainer.maxWidthXl", createObj !!styles)
 
       [<Erase>]
+      type muiCssBaseline =
+        /// Apply global styles.
+        static member inline global'(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCssBaseline.@global", createObj !!styles)
+
+      [<Erase>]
       type muiDialog =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDialog.root", createObj !!styles)
@@ -596,6 +601,8 @@ module themeOverrides =
         static member inline middle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDivider.middle", createObj !!styles)
         /// Styles applied to the root element if `orientation="vertical"`.
         static member inline vertical(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDivider.vertical", createObj !!styles)
+        /// Styles applied to the root element if `flexItem={true}`.
+        static member inline flexItem(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDivider.flexItem", createObj !!styles)
 
       [<Erase>]
       type muiDrawer =
@@ -978,6 +985,8 @@ module themeOverrides =
 
       [<Erase>]
       type muiInputBase =
+        /// Apply global styles.
+        static member inline global'(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.@global", createObj !!styles)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.root", createObj !!styles)
         /// Styles applied to the root element if the component is a descendant of `FormControl`.
@@ -1275,6 +1284,46 @@ module themeOverrides =
         static member inline inputAdornedEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiOutlinedInput.inputAdornedEnd", createObj !!styles)
 
       [<Erase>]
+      type muiPagination =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPagination.root", createObj !!styles)
+        /// Styles applied to the ul element.
+        static member inline ul(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPagination.ul", createObj !!styles)
+
+      [<Erase>]
+      type muiPaginationItem =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.root", createObj !!styles)
+        /// Styles applied to the root element if `type="page"`.
+        static member inline page(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.page", createObj !!styles)
+        /// Styles applied applied to the root element if `size="small"`.
+        static member inline sizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.sizeSmall", createObj !!styles)
+        /// Styles applied applied to the root element if `size="large"`.
+        static member inline sizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.sizeLarge", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="primary"`.
+        static member inline textPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.textPrimary", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="secondary"`.
+        static member inline textSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.textSecondary", createObj !!styles)
+        /// Styles applied to the root element if `outlined="true"`.
+        static member inline outlined(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.outlined", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+        static member inline outlinedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.outlinedPrimary", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+        static member inline outlinedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.outlinedSecondary", createObj !!styles)
+        /// Styles applied to the root element if `rounded="true"`.
+        static member inline rounded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.rounded", createObj !!styles)
+        /// Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`.
+        static member inline ellipsis(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.ellipsis", createObj !!styles)
+        /// Pseudo-class applied to the root element if keyboard focused.
+        static member inline focusVisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.focusVisible", createObj !!styles)
+        /// Pseudo-class applied to the root element if `disabled={true}`.
+        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.disabled", createObj !!styles)
+        /// Pseudo-class applied to the root element if `selected={true}`.
+        static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.selected", createObj !!styles)
+        /// Styles applied to the icon element.
+        static member inline icon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaginationItem.icon", createObj !!styles)
+
+      [<Erase>]
       type muiPaper =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.root", createObj !!styles)
@@ -1362,6 +1411,11 @@ module themeOverrides =
         static member inline iconActive(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiRating.iconActive", createObj !!styles)
         /// Styles applied to the icon wrapping elements when decimals are necessary.
         static member inline decimal(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiRating.decimal", createObj !!styles)
+
+      [<Erase>]
+      type muiScopedCssBaseline =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiScopedCssBaseline.root", createObj !!styles)
 
       [<Erase>]
       type muiSelect =
@@ -1915,6 +1969,8 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTreeItem.root", createObj !!styles)
         /// Pseudo-class applied to the root element when expanded.
         static member inline expanded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTreeItem.expanded", createObj !!styles)
+        /// Pseudo-class applied to the root element when selected.
+        static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTreeItem.selected", createObj !!styles)
         /// Styles applied to the `role="group"` element.
         static member inline group(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTreeItem.group", createObj !!styles)
         /// Styles applied to the tree node content.

@@ -40,6 +40,7 @@ let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
     MethodName = 
       row.``Rule name``
       |> kebabCaseToCamelCase
+      |> trimStart '@'
       |> appendApostropheToReservedKeywords
     RealRuleName = row.``Rule name``
   }
@@ -128,8 +129,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", "onChange", "func" ->
         [
-          RegularPropOverload.create "(handler: Event -> 'option -> unit)" "(Func<_,_,_> handler)"
-          RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> 'option -> AutocompleteOnChangeReason -> unit)" "(Func<_,_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
         ]
 
     | "autocomplete", "onInputChange", "func" ->
@@ -275,8 +276,19 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "tablePagination", "labelDisplayedRows", "func" ->
         [RegularPropOverload.create "(getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement)" "getLabel"]
 
-    | "rating", ("onChange" | "onChangeActive"), "func"
     | "slider", ("onChange" | "onChangeCommitted"), "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: Event -> float -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: float -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: Event -> int [] -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: Event -> float [] -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: int [] -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+          RegularPropOverload.create "(handler: float [] -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+        ]
+
+    | "rating", ("onChange" | "onChangeActive"), "func" ->
         [
           RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
           RegularPropOverload.create "(handler: Event -> float -> unit)" "(Func<_,_,_> handler)"
@@ -402,6 +414,18 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "treeView", "onNodeToggle", "func" ->
         [RegularPropOverload.create "(handler: Event -> string [] -> unit)" "handler"]
 
+    | "treeView", ("defaultSelected" | "selected"), "Array<string> | string" ->
+      [
+        RegularPropOverload.create "(value: string)" "value"
+        RegularPropOverload.create "([<ParamArray>] values: string [])" "values"
+      ]
+
+    | "treeView", "onNodeSelect", "func" ->
+      [
+        RegularPropOverload.create "(handler: Event -> string -> unit)" "(Func<_,_,_> handler)"
+        RegularPropOverload.create "(handler: Event -> string [] -> unit)" "(Func<_,_,_> handler)"
+      ]
+
     | _, "transitionDuration", "number | { appear?: number, enter?: number, exit?: number }" ->
         [
           RegularPropOverload.create "(value: int)" "value"
@@ -472,6 +496,22 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(ref: IRefValue<Element option>)" "ref"
           RegularPropOverload.create "(handler: Element -> unit)" "handler"
         ]
+
+    | "pagination", "getItemAriaLabel", "func" ->
+        [
+          RegularPropOverload.create "(getLabel: string -> int -> bool -> string)" "(Func<_,_,_,_> (fun t p s -> getLabel t p s))"
+        ]
+
+    | "pagination", "onChange", "func" ->
+      [
+        RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
+        RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_> (fun _ p -> handler p))"
+      ]
+
+    | "pagination", "renderItem", "func" ->
+      [
+        RegularPropOverload.create "(render: PaginationRenderItemParams -> ReactElement)" "(Func<_,_> (fun p -> render p))"
+      ]
 
     | _, pn, ("object" | "{ component?: element type }") when pn.EndsWith "Props" ->
         [RegularPropOverload.create "(props: IReactProperty list)" "(createObj !!props)"]

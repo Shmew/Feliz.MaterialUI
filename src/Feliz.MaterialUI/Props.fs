@@ -212,7 +212,7 @@ type autocomplete =
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
-  /// If `true`, the popup will ignore the blur event if the input if filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
+  /// If `true`, the popup will ignore the blur event if the input is filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
   /// The default input value. Use when the component is not controlled.
   static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" value
@@ -224,15 +224,13 @@ type autocomplete =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the list box in the popup will not wrap focus.
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
-  /// If `true`, the popup won't open on input focus.
-  static member inline disableOpenOnFocus (value: bool) = Interop.mkAttr "disableOpenOnFocus" value
   /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
   static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
   /// A filter function that determines the options that are eligible.
   ///
   /// **Signature:**
   ///
-  /// `function(options: undefined, state: object) => undefined`
+  /// `function(options: T[], state: object) => undefined`
   ///
   /// *options:* The options to render.
   ///
@@ -242,7 +240,7 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(options: undefined, state: object) => undefined`
+  /// `function(options: T[], state: object) => undefined`
   ///
   /// *options:* The options to render.
   ///
@@ -334,29 +332,35 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: T) => void`
+  /// `function(event: object, value: T, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
   /// *value:* null
-  static member inline onChange (handler: Event -> 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
+  ///
+  /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
+  static member inline onChange (handler: Event -> 'option -> AutocompleteOnChangeReason -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> handler)
   /// Callback fired when the value changes.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: T) => void`
+  /// `function(event: object, value: T, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
   /// *value:* null
-  static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  ///
+  /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
+  static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
   /// Callback fired when the popup requests to be closed. Use in controlled mode (see open).
   ///
   /// **Signature:**
   ///
-  /// `function(event: object) => void`
+  /// `function(event: object, reason: string) => void`
   ///
   /// *event:* The event source of the callback.
+  ///
+  /// *reason:* Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
   static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// Callback fired when the input value changes.
   ///
@@ -392,6 +396,8 @@ type autocomplete =
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// Control the popup` open state.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
+  /// If `true`, the popup will open on input focus.
+  static member inline openOnFocus (value: bool) = Interop.mkAttr "openOnFocus" value
   /// Override the default text for the *open popup* icon button.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
@@ -434,13 +440,13 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(value: undefined, getTagProps: function) => ReactNode`
+  /// `function(value: T[], getTagProps: function) => ReactNode`
   ///
   /// *value:* The `value` provided to the component.
   ///
   /// *getTagProps:* A tag props getter.
   static member inline renderTags (render: 'option [] -> AutocompleteRenderValueState -> ReactElement) = Interop.mkAttr "renderTags" (Func<_,_,_> render)
-  /// If `true`, the input's text will be selected on focus.
+  /// If `true`, the input's text will be selected on focus. It helps the user clear the selected value.
   static member inline selectOnFocus (value: bool) = Interop.mkAttr "selectOnFocus" value
   /// The value of the autocomplete.
   ///
@@ -535,6 +541,16 @@ type avatarGroup =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The avatars to stack.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Max avatars to show before +x.
+  static member inline max (value: int) = Interop.mkAttr "max" value
+
+module avatarGroup =
+
+  /// Spacing between avatars.
+  [<Erase>]
+  type spacing =
+    static member inline medium = Interop.mkAttr "spacing" "medium"
+    static member inline small = Interop.mkAttr "spacing" "small"
 
 
 [<Erase>]
@@ -780,6 +796,10 @@ type breadcrumbs =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// Override the default label for the expand button.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline expandText (value: string) = Interop.mkAttr "expandText" value
   /// If max items is exceeded, the number of items to show after the ellipsis.
   static member inline itemsAfterCollapse (value: int) = Interop.mkAttr "itemsAfterCollapse" value
   /// If max items is exceeded, the number of items to show before the ellipsis.
@@ -1311,7 +1331,7 @@ type checkbox =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type' (value: string) = Interop.mkAttr "type" value
-  /// The value of the component.
+  /// The value of the component. The browser uses "on" as the default value.
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -1910,6 +1930,8 @@ type divider =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a DOM element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// If `true`, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
+  static member inline flexItem (value: bool) = Interop.mkAttr "flexItem" value
   /// If `true`, the divider will have a lighter color.
   static member inline light (value: bool) = Interop.mkAttr "light" value
   /// This component does not support children.
@@ -3471,13 +3493,13 @@ module link =
   /// The color of the link.
   [<Erase>]
   type color =
-    static member inline default' = Interop.mkAttr "color" "default"
-    static member inline error = Interop.mkAttr "color" "error"
+    static member inline initial = Interop.mkAttr "color" "initial"
     static member inline inherit' = Interop.mkAttr "color" "inherit"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline textPrimary = Interop.mkAttr "color" "textPrimary"
     static member inline textSecondary = Interop.mkAttr "color" "textSecondary"
+    static member inline error = Interop.mkAttr "color" "error"
 
   /// Controls when the link should have an underline.
   [<Erase>]
@@ -4557,6 +4579,153 @@ module outlinedInput =
 
 
 [<Erase>]
+type pagination =
+  /// Number of always visible pages at the beginning and end.
+  static member inline boundaryCount (value: int) = Interop.mkAttr "boundaryCount" value
+  /// The total number of pages.
+  static member inline count (value: int) = Interop.mkAttr "count" value
+  /// The page selected by default when the component is uncontrolled.
+  static member inline defaultPage (value: int) = Interop.mkAttr "defaultPage" value
+  /// If `true`, the pagination component will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// Accepts a function which returns a string value that provides a user-friendly name for the current page.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(type: string, page: number, selected: bool) => string`
+  ///
+  /// *type:* The link or button type to format ('page'
+  static member inline getItemAriaLabel (getLabel: string -> int -> bool -> string) = Interop.mkAttr "getItemAriaLabel" (Func<_,_,_,_> (fun t p s -> getLabel t p s))
+  /// If `true`, hide the next-page button.
+  static member inline hideNextButton (value: bool) = Interop.mkAttr "hideNextButton" value
+  /// If `true`, hide the previous-page button.
+  static member inline hidePrevButton (value: bool) = Interop.mkAttr "hidePrevButton" value
+  /// Callback fired when the page is changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, page: number) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *page:* The page selected.
+  static member inline onChange (handler: Event -> int -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
+  /// Callback fired when the page is changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, page: number) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *page:* The page selected.
+  static member inline onChange (handler: int -> unit) = Interop.mkAttr "onChange" (Func<_,_> (fun _ p -> handler p))
+  /// The current page.
+  static member inline page (value: int) = Interop.mkAttr "page" value
+  /// Render the item.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(params: object) => ReactNode`
+  ///
+  /// *params:* The props to spread on a PaginationItem.
+  static member inline renderItem (render: PaginationRenderItemParams -> ReactElement) = Interop.mkAttr "renderItem" (Func<_,_> (fun p -> render p))
+  /// If `true`, show the first-page button.
+  static member inline showFirstButton (value: bool) = Interop.mkAttr "showFirstButton" value
+  /// If `true`, show the last-page button.
+  static member inline showLastButton (value: bool) = Interop.mkAttr "showLastButton" value
+  /// Number of always visible pages before and after the current page.
+  static member inline siblingCount (value: int) = Interop.mkAttr "siblingCount" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
+
+module pagination =
+
+  /// The active color.
+  [<Erase>]
+  type color =
+    static member inline default' = Interop.mkAttr "color" "default"
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
+  /// The shape of the pagination items.
+  [<Erase>]
+  type shape =
+    static member inline round = Interop.mkAttr "shape" "round"
+    static member inline rounded = Interop.mkAttr "shape" "rounded"
+
+  /// The size of the pagination component.
+  [<Erase>]
+  type size =
+    static member inline large = Interop.mkAttr "size" "large"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
+
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline text = Interop.mkAttr "variant" "text"
+
+
+[<Erase>]
+type paginationItem =
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// The component used for the root node. Either a string to use a DOM element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// If `true`, the item will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// The current page number.
+  static member inline page (value: int) = Interop.mkAttr "page" value
+  /// If `true` the pagination item is selected.
+  static member inline selected (value: bool) = Interop.mkAttr "selected" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
+
+module paginationItem =
+
+  /// The active color.
+  [<Erase>]
+  type color =
+    static member inline standard = Interop.mkAttr "color" "standard"
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
+  /// The shape of the pagination item.
+  [<Erase>]
+  type shape =
+    static member inline round = Interop.mkAttr "shape" "round"
+    static member inline rounded = Interop.mkAttr "shape" "rounded"
+
+  /// The size of the pagination item.
+  [<Erase>]
+  type size =
+    static member inline small = Interop.mkAttr "size" "small"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline large = Interop.mkAttr "size" "large"
+
+  /// The type of pagination item.
+  [<Erase>]
+  type type' =
+    static member inline page = Interop.mkAttr "type" "page"
+    static member inline first = Interop.mkAttr "type" "first"
+    static member inline last = Interop.mkAttr "type" "last"
+    static member inline next = Interop.mkAttr "type" "next"
+    static member inline previous = Interop.mkAttr "type" "previous"
+    static member inline startEllipsis = Interop.mkAttr "type" "start-ellipsis"
+    static member inline endEllipsis = Interop.mkAttr "type" "end-ellipsis"
+
+  /// The pagination item variant.
+  [<Erase>]
+  type variant =
+    static member inline text = Interop.mkAttr "variant" "text"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+
+
+[<Erase>]
 type paper =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
@@ -5035,7 +5204,7 @@ type radioGroup =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The default `input` element value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
-  /// The name used to reference the value of the control.
+  /// The name used to reference the value of the control. If you don't provide this prop, it falls back to a randomly generated name.
   static member inline name (value: string) = Interop.mkAttr "name" value
   /// Callback fired when a radio button is selected.
   ///
@@ -5227,6 +5396,22 @@ type rootRef =
 
 
 [<Erase>]
+type scopedCssBaseline =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
 type select =
   /// If `true`, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input.
   static member inline autoWidth (value: bool) = Interop.mkAttr "autoWidth" value
@@ -5266,21 +5451,21 @@ type select =
   static member inline input (value: ReactElement) = Interop.mkAttr "input" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline label (value: ReactElement) = Interop.mkAttr "label" value
-  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline label (values: ReactElement seq) = Interop.mkAttr "label" values
-  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline label (value: string) = Interop.mkAttr "label" value
-  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline label (values: string seq) = Interop.mkAttr "label" values
-  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline label (value: int) = Interop.mkAttr "label" value
-  /// See [OutlinedLabel#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline label (value: float) = Interop.mkAttr "label" value
   /// The ID of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value.
   static member inline labelId (value: string) = Interop.mkAttr "labelId" value
-  /// See OutlinedLabel#label
+  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
   /// Props applied to the [`Menu`](https://material-ui.com/api/menu/) element.
   static member inline MenuProps (props: IReactProperty list) = Interop.mkAttr "MenuProps" (createObj !!props)
@@ -5633,7 +5818,7 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5643,7 +5828,7 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5653,7 +5838,7 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5663,17 +5848,57 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
   /// *value:* The new value.
   static member inline onChange (handler: float -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// Callback function that is fired when the slider's value changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChange (handler: Event -> int [] -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
+  /// Callback function that is fired when the slider's value changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChange (handler: Event -> float [] -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
+  /// Callback function that is fired when the slider's value changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChange (handler: int [] -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// Callback function that is fired when the slider's value changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChange (handler: float [] -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback function that is fired when the `mouseup` is triggered.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5683,7 +5908,7 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5693,7 +5918,7 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
@@ -5703,12 +5928,52 @@ type slider =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: any) => void`
+  /// `function(event: object, value: number | number[]) => void`
   ///
   /// *event:* The event source of the callback.
   ///
   /// *value:* The new value.
   static member inline onChangeCommitted (handler: float -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> (fun _ v -> handler v))
+  /// Callback function that is fired when the `mouseup` is triggered.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChangeCommitted (handler: Event -> int [] -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> handler)
+  /// Callback function that is fired when the `mouseup` is triggered.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChangeCommitted (handler: Event -> float [] -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> handler)
+  /// Callback function that is fired when the `mouseup` is triggered.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChangeCommitted (handler: int [] -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> (fun _ v -> handler v))
+  /// Callback function that is fired when the `mouseup` is triggered.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: number | number[]) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value.
+  static member inline onChangeCommitted (handler: float [] -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> (fun _ v -> handler v))
   /// A transformation function, to change the scale of the slider.
   static member inline scale (transform: int -> int) = Interop.mkAttr "scale" transform
   /// A transformation function, to change the scale of the slider.
@@ -6086,6 +6351,10 @@ type speedDialAction =
   ///
   /// The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`).
   static member inline enterDelay (value: int) = Interop.mkAttr "enterDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+  static member inline enterNextDelay (value: int) = Interop.mkAttr "enterNextDelay" value
   /// *Inherited from `tooltip`*
   ///
   /// The number of milliseconds a user must touch the element before showing the tooltip.
@@ -6564,7 +6833,7 @@ type swipeableDrawer =
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// If `true`, the drawer is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
-  /// Props applied to the swipe area element.
+  /// The element is used to intercept the touch events on the edge.
   static member inline SwipeAreaProps (props: IReactProperty list) = Interop.mkAttr "SwipeAreaProps" (createObj !!props)
   /// The width of the left most (or right most) area in pixels where the drawer can be swiped open from.
   static member inline swipeAreaWidth (value: int) = Interop.mkAttr "swipeAreaWidth" value
@@ -6651,7 +6920,7 @@ type switch =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// The input component prop `type`.
   static member inline type' (value: string) = Interop.mkAttr "type" value
-  /// The value of the component.
+  /// The value of the component. The browser uses "on" as the default value.
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -7662,6 +7931,8 @@ type tooltip =
   static member inline disableTouchListener (value: bool) = Interop.mkAttr "disableTouchListener" value
   /// The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`).
   static member inline enterDelay (value: int) = Interop.mkAttr "enterDelay" value
+  /// The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+  static member inline enterNextDelay (value: int) = Interop.mkAttr "enterNextDelay" value
   /// The number of milliseconds a user must touch the element before showing the tooltip.
   static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
   /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
@@ -7802,8 +8073,36 @@ type treeView =
   static member inline defaultExpandIcon (element: ReactElement) = Interop.mkAttr "defaultExpandIcon" element
   /// The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop.
   static member inline defaultParentIcon (element: ReactElement) = Interop.mkAttr "defaultParentIcon" element
+  /// Selected node ids. (Uncontrolled) When `multiSelect` is true this takes an array of strings; when false (default) a string.
+  static member inline defaultSelected (value: string) = Interop.mkAttr "defaultSelected" value
+  /// Selected node ids. (Uncontrolled) When `multiSelect` is true this takes an array of strings; when false (default) a string.
+  static member inline defaultSelected ([<ParamArray>] values: string []) = Interop.mkAttr "defaultSelected" values
+  /// If `true` selection is disabled.
+  static member inline disableSelection (value: bool) = Interop.mkAttr "disableSelection" value
   /// Expanded node ids. (Controlled)
   static member inline expanded ([<ParamArray>] nodeIds: string []) = Interop.mkAttr "expanded" nodeIds
+  /// If true `ctrl` and `shift` will trigger multiselect.
+  static member inline multiSelect (value: bool) = Interop.mkAttr "multiSelect" value
+  /// Callback fired when tree items are selected/unselected.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: array | string) => void`
+  ///
+  /// *event:* The event source of the callback
+  ///
+  /// *value:* of the selected nodes. When `multiSelect` is true this is an array of strings; when false (default) a string.
+  static member inline onNodeSelect (handler: Event -> string -> unit) = Interop.mkAttr "onNodeSelect" (Func<_,_,_> handler)
+  /// Callback fired when tree items are selected/unselected.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: array | string) => void`
+  ///
+  /// *event:* The event source of the callback
+  ///
+  /// *value:* of the selected nodes. When `multiSelect` is true this is an array of strings; when false (default) a string.
+  static member inline onNodeSelect (handler: Event -> string [] -> unit) = Interop.mkAttr "onNodeSelect" (Func<_,_,_> handler)
   /// Callback fired when tree items are expanded/collapsed.
   ///
   /// **Signature:**
@@ -7814,6 +8113,10 @@ type treeView =
   ///
   /// *nodeIds:* The ids of the expanded nodes.
   static member inline onNodeToggle (handler: Event -> string [] -> unit) = Interop.mkAttr "onNodeToggle" handler
+  /// Selected node ids. (Controlled) When `multiSelect` is true this takes an array of strings; when false (default) a string.
+  static member inline selected (value: string) = Interop.mkAttr "selected" value
+  /// Selected node ids. (Controlled) When `multiSelect` is true this takes an array of strings; when false (default) a string.
+  static member inline selected ([<ParamArray>] values: string []) = Interop.mkAttr "selected" values
 
 
 [<Erase>]

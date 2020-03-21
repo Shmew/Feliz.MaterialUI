@@ -5,9 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.13.1</Version>
-    <PackageReleaseNotes>- Add support for localization
-- Update from MUI docs</PackageReleaseNotes>
+    <Version>0.14.0</Version>
+    <PackageReleaseNotes>Updated for @material-ui/lab 4.0.0-alpha.46</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>
@@ -31,7 +30,7 @@
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.9 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.41" />
+      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.46" />
     </NpmDependencies>
   </PropertyGroup>
   
