@@ -95,6 +95,8 @@ module classesProps =
     type classes =
       /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `fullWidth={true}`.
+      static member inline fullWidth(className: string) : IReactProperty = unbox ("classes.fullWidth", className)
       /// Pseudo-class applied to the root element if focused.
       static member inline focused(className: string) : IReactProperty = unbox ("classes.focused", className)
       /// Styles applied to the tag elements, e.g. the chips.
@@ -1534,6 +1536,32 @@ module classesProps =
       /// Styles applied to the root element if dense.
       static member inline dense(className: string) : IReactProperty = unbox ("classes.dense", className)
   
+    /// `classes` prop applied to the [`ListItem`](https://material-ui.com/api/list-item/) element.
+    [<Erase>]
+    type ListItemClasses =
+      /// Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
+      static member inline root(className: string) : IReactProperty = unbox ("ListItemClasses.root", className)
+      /// Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
+      static member inline container(className: string) : IReactProperty = unbox ("ListItemClasses.container", className)
+      /// Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
+      static member inline focusVisible(className: string) : IReactProperty = unbox ("ListItemClasses.focusVisible", className)
+      /// Styles applied to the `component` element if dense.
+      static member inline dense(className: string) : IReactProperty = unbox ("ListItemClasses.dense", className)
+      /// Styles applied to the `component` element if `alignItems="flex-start"`.
+      static member inline alignItemsFlexStart(className: string) : IReactProperty = unbox ("ListItemClasses.alignItemsFlexStart", className)
+      /// Pseudo-class applied to the inner `component` element if `disabled={true}`.
+      static member inline disabled(className: string) : IReactProperty = unbox ("ListItemClasses.disabled", className)
+      /// Styles applied to the inner `component` element if `divider={true}`.
+      static member inline divider(className: string) : IReactProperty = unbox ("ListItemClasses.divider", className)
+      /// Styles applied to the inner `component` element if `disableGutters={false}`.
+      static member inline gutters(className: string) : IReactProperty = unbox ("ListItemClasses.gutters", className)
+      /// Styles applied to the inner `component` element if `button={true}`.
+      static member inline button(className: string) : IReactProperty = unbox ("ListItemClasses.button", className)
+      /// Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
+      static member inline secondaryAction(className: string) : IReactProperty = unbox ("ListItemClasses.secondaryAction", className)
+      /// Pseudo-class applied to the root element if `selected={true}`.
+      static member inline selected(className: string) : IReactProperty = unbox ("ListItemClasses.selected", className)
+  
   
   module mobileStepper =
   
@@ -1917,7 +1945,7 @@ module classesProps =
       /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
       static member inline tooltipPlacementRight(className: string) : IReactProperty = unbox ("classes.tooltipPlacementRight", className)
   
-    /// Classes applied to the [`Tooltip`](https://material-ui.com/api/tooltip/) element.
+    /// `classes` prop applied to the [`Tooltip`](https://material-ui.com/api/tooltip/) element.
     [<Erase>]
     type TooltipClasses =
       /// Styles applied to the Popper component.
@@ -2432,27 +2460,6 @@ module classesProps =
       static member inline tooltipPlacementTop(className: string) : IReactProperty = unbox ("classes.tooltipPlacementTop", className)
       /// Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
       static member inline tooltipPlacementBottom(className: string) : IReactProperty = unbox ("classes.tooltipPlacementBottom", className)
-  
-  
-  module touchRipple =
-  
-    /// Override or extend the styles applied to the component.
-    [<Erase>]
-    type classes =
-      /// Styles applied to the root element.
-      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
-      /// Styles applied to the internal `Ripple` components `ripple` class.
-      static member inline ripple(className: string) : IReactProperty = unbox ("classes.ripple", className)
-      /// Styles applied to the internal `Ripple` components `rippleVisible` class.
-      static member inline rippleVisible(className: string) : IReactProperty = unbox ("classes.rippleVisible", className)
-      /// Styles applied to the internal `Ripple` components `ripplePulsate` class.
-      static member inline ripplePulsate(className: string) : IReactProperty = unbox ("classes.ripplePulsate", className)
-      /// Styles applied to the internal `Ripple` components `child` class.
-      static member inline child(className: string) : IReactProperty = unbox ("classes.child", className)
-      /// Styles applied to the internal `Ripple` components `childLeaving` class.
-      static member inline childLeaving(className: string) : IReactProperty = unbox ("classes.childLeaving", className)
-      /// Styles applied to the internal `Ripple` components `childPulsate` class.
-      static member inline childPulsate(className: string) : IReactProperty = unbox ("classes.childPulsate", className)
   
   
   module treeItem =

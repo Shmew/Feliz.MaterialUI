@@ -92,7 +92,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(handler: PopoverActions -> unit)" "handler"
         ]
 
-    | "popover", ("anchorOrigin" | "transformOrigin"), "{ horizontal: number | 'left' | 'center' | 'right', vertical: number | 'top' | 'center' | 'bottom' }" ->
+    | "popover", ("anchorOrigin" | "transformOrigin"), "{ horizontal: 'center' | 'left' | 'right' | number, vertical: 'bottom' | 'center' | 'top' | number }" ->
         [
           RegularPropOverload.create "(horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical)" "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
           RegularPropOverload.create "(horizontal: int, vertical: PopoverOriginVertical)" "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
@@ -123,6 +123,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", "getOptionSelected", "func" ->
         [RegularPropOverload.create "(getSelected: 'option -> 'a -> bool)" "(Func<_,_,_> getSelected)"]
+
+    | "autocomplete", "getLimitTagsText", "func" ->
+        [RegularPropOverload.create "(getText: int -> ReactElement)" "getText"]
 
     | "autocomplete", "groupBy", "func" ->
         [RegularPropOverload.create "(getGroup: 'option -> string)" "getGroup"]
@@ -174,7 +177,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "inputBase", "onBlur", "func" ->
         [RegularPropOverload.create "(handler: Event option -> unit)" "handler"]
 
-    | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax" | "rowsMin"), "string | number" ->
+    | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax" | "rowsMin"), "number | string" ->
         [RegularPropOverload.create "(value: int)" "value"]
 
     | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textField" | "nativeSelect" | "radioGroup"), "onChange", "func" ->
@@ -297,10 +300,17 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "rating", ("defaultValue" | "max" | "precision" | "value"), "number" ->
-      [
-        RegularPropOverload.create "(value: int)" "value"
-        RegularPropOverload.create "(value: float)" "value"
-      ]
+        [
+          RegularPropOverload.create "(value: int)" "value"
+          RegularPropOverload.create "(value: float)" "value"
+        ]
+
+    | "radioGroup", "defaultValue", "Array<string> | number | string" ->
+        [
+          // TODO: Should this accept arrays, too? Or is that just an artifact of the way
+          // the MUI docs are generated?
+          RegularPropOverload.create "(value: 'a)" "value"
+        ]
 
     | "select", "onChange", "func" ->
         [
@@ -348,7 +358,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(value: Styles.ICssUnit)" "value"
         ]
 
-    | "collapse", "collapsedHeight", "string | number" ->
+    | "collapse", "collapsedHeight", "number | string" ->
         [
           RegularPropOverload.create "(value: int)" "value"
           RegularPropOverload.create "(value: Styles.ICssUnit)" "value"
@@ -426,6 +436,15 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         RegularPropOverload.create "(handler: Event -> string [] -> unit)" "(Func<_,_,_> handler)"
       ]
 
+    | _, "transitionDuration", "number | { enter?: number, exit?: number }" ->
+        [
+          RegularPropOverload.create "(value: int)" "value"
+          [ "enter", "int", true
+            "exit", "int", true ]
+          |> paramListAndObjCreator
+          ||> RegularPropOverload.create
+        ]
+
     | _, "transitionDuration", "number | { appear?: number, enter?: number, exit?: number }" ->
         [
           RegularPropOverload.create "(value: int)" "value"
@@ -436,16 +455,17 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           ||> RegularPropOverload.create
         ]
 
-    | _, ("transitionDuration" | "timeout"), ("number | { enter?: number, exit?: number }" | "number | { enter?: number, exit?: number } | 'auto'") ->
+    | _, ("transitionDuration" | "timeout"), ("'auto' | number | { appear?: number, enter?: number, exit?: number }" | "number | { appear?: number, enter?: number, exit?: number }") ->
         [
           RegularPropOverload.create "(value: int)" "value"
-          [ "enter", "int", true
+          [ "appear", "int", true
+            "enter", "int", true
             "exit", "int", true ]
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
         ]
 
-    | _, "anchorEl", "object | func" ->
+    | _, "anchorEl", ("func | Element" | "object | func") ->
         [
           RegularPropOverload.create "(value: Element option)" "value"
           RegularPropOverload.create "(handler: unit -> Element option)" "handler"
@@ -598,7 +618,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create "xl" "\"xl\""
           ]
 
-      | "snackbar", "anchorOrigin", "{ horizontal: 'left' | 'center' | 'right', vertical: 'top' | 'bottom' }" ->
+      | "snackbar", "anchorOrigin", "{ horizontal: 'center' | 'left' | 'right', vertical: 'bottom' | 'top' }" ->
           [
             EnumPropOverload.create "topLeft" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])"
             EnumPropOverload.create "topCenter" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"center\" ])"
@@ -608,7 +628,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create "bottomRight" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])"
           ]
 
-      | "popover", ("anchorOrigin" | "transformOrigin"), "{ horizontal: number | 'left' | 'center' | 'right', vertical: number | 'top' | 'center' | 'bottom' }" ->
+      | "popover", ("anchorOrigin" | "transformOrigin"), "{ horizontal: 'center' | 'left' | 'right' | number, vertical: 'bottom' | 'center' | 'top' | number }" ->
           [
             EnumPropOverload.create "topLeft" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])"
             EnumPropOverload.create "topCenter" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"center\" ])"
@@ -643,16 +663,19 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
                 // Probably literal, e.g. bool or int
                 Some value
           )
-        
-        enumValueExpressions
-        |> List.map (fun v ->
-            let methodName = 
-              v.Trim('"')
-              |> kebabCaseToCamelCase
-              |> prefixUnderscoreToNumbers
-              |> appendApostropheToReservedKeywords
-            EnumPropOverload.create methodName v
-        )
+
+        let overloads =
+          enumValueExpressions
+          |> List.map (fun v ->
+              let methodName = 
+                v.Trim('"')
+                |> kebabCaseToCamelCase
+                |> prefixUnderscoreToNumbers
+                |> appendApostropheToReservedKeywords
+              EnumPropOverload.create methodName v
+          )
+        if overloads.IsEmpty then failwithf "No enum overloads for %s.%s" componentMethodName propMethodName
+        overloads
 
   let globalDocTransform (s: string) =
     s.Replace(" It supports those theme colors that make sense for this component.", "")
@@ -767,11 +790,12 @@ let parseComponent (htmlPathOrUrl: string) =
         comp |> Component.addProp prop
 
 
-    let stylesheetName =
-      Regex.Match(page.Html.Body().ToString(), "Style sheet name:\s*\<code\>(.+?)\<\/code\>")
+    let componentName =
+      Regex.Match(page.Html.Body().ToString(), "The \<code\>(.+?)\<\/code\> name can be used for")
         .Groups.[1].Value
       |> Some
       |> Option.filter (not << String.IsNullOrEmpty)
+      |> Option.orElse (Some ("Mui" + String.upperFirst compMethodName))  // TODO: Remove when resolved: https://github.com/mui-org/material-ui/issues/20556
 
     let setInheritance =
       let inheritFrom =
@@ -804,7 +828,7 @@ let parseComponent (htmlPathOrUrl: string) =
             |> Array.toList
           with :? KeyNotFoundException -> []
         rowsAndHtml |> List.map (fun (r, html) -> parseClassRule r html)
-      StylesheetName = stylesheetName
+      ComponentName = componentName
     }
 
 

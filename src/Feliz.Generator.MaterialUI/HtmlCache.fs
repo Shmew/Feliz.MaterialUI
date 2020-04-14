@@ -19,6 +19,7 @@ let private downloadUrl (uri: Uri) =
     let path = pathSegments.[0 .. pathSegments.Length - 2] |> String.concat sep
     let name = pathSegments |> Array.last
     let filename = cacheFolder + sep + path + sep + name + ".html"
+    filename |> Path.GetDirectoryName |> Directory.CreateDirectory |> ignore
     do! File.WriteAllTextAsync(filename, html, Text.Encoding.UTF8) |> Async.AwaitTask
   }
 
@@ -26,6 +27,8 @@ let private downloadUrl (uri: Uri) =
 let refresh =
   async {
     let baseUrl = "https://material-ui.com"
+
+    Directory.Delete(cacheFolder, true)
 
     let! testApiPage = ComponentApiPage.AsyncLoad(baseUrl + "/api/app-bar")
 

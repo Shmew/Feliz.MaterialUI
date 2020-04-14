@@ -85,6 +85,8 @@ module themeOverrides =
       type muiAutocomplete =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.root", createObj !!styles)
+        /// Styles applied to the root element if `fullWidth={true}`.
+        static member inline fullWidth(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.fullWidth", createObj !!styles)
         /// Pseudo-class applied to the root element if focused.
         static member inline focused(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.focused", createObj !!styles)
         /// Styles applied to the tag elements, e.g. the chips.
@@ -1945,23 +1947,6 @@ module themeOverrides =
         static member inline tooltipPlacementTop(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTooltip.tooltipPlacementTop", createObj !!styles)
         /// Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
         static member inline tooltipPlacementBottom(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTooltip.tooltipPlacementBottom", createObj !!styles)
-
-      [<Erase>]
-      type muiTouchRipple =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.root", createObj !!styles)
-        /// Styles applied to the internal `Ripple` components `ripple` class.
-        static member inline ripple(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.ripple", createObj !!styles)
-        /// Styles applied to the internal `Ripple` components `rippleVisible` class.
-        static member inline rippleVisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.rippleVisible", createObj !!styles)
-        /// Styles applied to the internal `Ripple` components `ripplePulsate` class.
-        static member inline ripplePulsate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.ripplePulsate", createObj !!styles)
-        /// Styles applied to the internal `Ripple` components `child` class.
-        static member inline child(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.child", createObj !!styles)
-        /// Styles applied to the internal `Ripple` components `childLeaving` class.
-        static member inline childLeaving(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.childLeaving", createObj !!styles)
-        /// Styles applied to the internal `Ripple` components `childPulsate` class.
-        static member inline childPulsate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTouchRipple.childPulsate", createObj !!styles)
 
       [<Erase>]
       type muiTreeItem =

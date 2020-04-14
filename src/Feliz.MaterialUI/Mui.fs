@@ -101,12 +101,12 @@ type Mui =
 
   /// The `ref` is forwarded to the root element.
   ///
-  /// Any other props supplied will be provided to the root element (native element).
+  /// Any other props supplied will be provided to the root element ([Fade](https://material-ui.com/api/fade/)).
   static member inline backdrop props = createElement (importDefault "@material-ui/core/Backdrop") props
 
   /// The `ref` is forwarded to the root element.
   ///
-  /// Any other props supplied will be provided to the root element (native element).
+  /// Any other props supplied will be provided to the root element ([Fade](https://material-ui.com/api/fade/)).
   static member inline backdrop (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Backdrop") [ Feliz.MaterialUI.backdrop.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -1116,11 +1116,6 @@ type Mui =
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline tooltip props = createElement (importDefault "@material-ui/core/Tooltip") props
-
-  /// The `ref` is attached to an Imperative Handle. Have a look at the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonBase/TouchRipple.js) for more detail.
-  ///
-  /// Any other props supplied will be provided to the root element (native element).
-  static member inline touchRipple props = createElement (importDefault "@material-ui/core/ButtonBase/TouchRipple.js/TouchRipple") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
   ///

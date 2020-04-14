@@ -1,12 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>0.14.0</Version>
-    <PackageReleaseNotes>Updated for @material-ui/lab 4.0.0-alpha.46</PackageReleaseNotes>
+    <Version>0.15.0</Version>
+    <PackageReleaseNotes>Updated from fixed MUI docs and for @material-ui/lab 4.0.0-alpha.49, see important breaking change in repo changelog</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>
@@ -30,7 +30,7 @@
   <PropertyGroup>
     <NpmDependencies>
       <NpmPackage Name="@material-ui/core" Version="gte 4.9 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.46" />
+      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.49" />
     </NpmDependencies>
   </PropertyGroup>
   

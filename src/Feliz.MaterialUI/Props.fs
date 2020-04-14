@@ -222,6 +222,8 @@ type autocomplete =
   static member inline disableCloseOnSelect (value: bool) = Interop.mkAttr "disableCloseOnSelect" value
   /// If `true`, the input will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// If `true`, will allow focus on disabled items.
+  static member inline disabledItemsFocusable (value: bool) = Interop.mkAttr "disabledItemsFocusable" value
   /// If `true`, the list box in the popup will not wrap focus.
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
   /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
@@ -252,6 +254,16 @@ type autocomplete =
   static member inline forcePopupIcon (value: bool) = Interop.mkAttr "forcePopupIcon" value
   /// If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
   static member inline freeSolo (value: bool) = Interop.mkAttr "freeSolo" value
+  /// If `true`, the input will take up the full width of its container.
+  static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
+  /// The label to display when the tags are truncated (`limitTags`).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(more: number) => ReactNode`
+  ///
+  /// *more:* The number of truncated tags.
+  static member inline getLimitTagsText (getText: int -> ReactElement) = Interop.mkAttr "getLimitTagsText" getText
   /// Used to determine the disabled state for a given option.
   static member inline getOptionDisabled (isDisabled: 'option -> bool) = Interop.mkAttr "getOptionDisabled" isDisabled
   /// Used to determine the string value for a given option. It's used to fill the input (and the list box options if `renderOption` is not provided).
@@ -272,6 +284,8 @@ type autocomplete =
   static member inline includeInputInList (value: bool) = Interop.mkAttr "includeInputInList" value
   /// The input value.
   static member inline inputValue (value: string) = Interop.mkAttr "inputValue" value
+  /// The maximum number of tags that will be visible when not focused. Set `-1` to disable the limit.
+  static member inline limitTags (value: int) = Interop.mkAttr "limitTags" value
   /// The component used to render the listbox.
   static member inline ListboxComponent (value: ReactElementType) = Interop.mkAttr "ListboxComponent" value
   /// Props applied to the Listbox element.
@@ -575,6 +589,18 @@ type backdrop =
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  /// *Inherited from `fade`*
+  ///
+  /// If `true`, the component will transition in.
+  static member inline in' (value: bool) = Interop.mkAttr "in" value
+  /// *Inherited from `fade`*
+  ///
+  /// The duration for the transition, in milliseconds.
+  static member inline timeout (value: int) = Interop.mkAttr "timeout" value
+  /// *Inherited from `fade`*
+  ///
+  /// The duration for the transition, in milliseconds.
+  static member inline timeout (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 
 [<Erase>]
@@ -1329,8 +1355,6 @@ type checkbox =
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// If `true`, the `input` element will be required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
-  /// The input component prop `type`.
-  static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the component. The browser uses "on" as the default value.
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
@@ -1389,15 +1413,15 @@ module checkbox =
   /// The color of the component.
   [<Erase>]
   type color =
+    static member inline default' = Interop.mkAttr "color" "default"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline default' = Interop.mkAttr "color" "default"
 
   /// The size of the checkbox. `small` is equivalent to the dense checkbox styling.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// *Inherited from `iconButton`*
   ///
@@ -1407,6 +1431,15 @@ module checkbox =
     static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
     static member inline false' = Interop.mkAttr "edge" false
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -1484,9 +1517,9 @@ module circularProgress =
   /// The color of the component.
   [<Erase>]
   type color =
+    static member inline inherit' = Interop.mkAttr "color" "inherit"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline inherit' = Interop.mkAttr "color" "inherit"
 
   /// The variant to use. Use indeterminate when there is no progress value.
   [<Erase>]
@@ -1502,6 +1535,8 @@ type clickAwayListener =
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
+  /// The mouse event to listen to. You can disable the listener by providing `false`.
+  static member inline disableReactTree (value: bool) = Interop.mkAttr "disableReactTree" value
   /// Callback fired when a "click away" event is detected.
   static member inline onClickAway (handler: Event -> unit) = Interop.mkAttr "onClickAway" handler
 
@@ -1518,8 +1553,8 @@ module clickAwayListener =
   /// The touch event to listen to. You can disable the listener by providing `false`.
   [<Erase>]
   type touchEvent =
-    static member inline onTouchStart = Interop.mkAttr "touchEvent" "onTouchStart"
     static member inline onTouchEnd = Interop.mkAttr "touchEvent" "onTouchEnd"
+    static member inline onTouchStart = Interop.mkAttr "touchEvent" "onTouchStart"
     static member inline false' = Interop.mkAttr "touchEvent" false
 
 
@@ -1554,7 +1589,7 @@ type collapse =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline timeout (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module collapse =
 
@@ -1687,7 +1722,7 @@ type dialog =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
@@ -1756,11 +1791,11 @@ module dialog =
   /// Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`.
   [<Erase>]
   type maxWidth =
-    static member inline xs = Interop.mkAttr "maxWidth" "xs"
-    static member inline sm = Interop.mkAttr "maxWidth" "sm"
-    static member inline md = Interop.mkAttr "maxWidth" "md"
     static member inline lg = Interop.mkAttr "maxWidth" "lg"
+    static member inline md = Interop.mkAttr "maxWidth" "md"
+    static member inline sm = Interop.mkAttr "maxWidth" "sm"
     static member inline xl = Interop.mkAttr "maxWidth" "xl"
+    static member inline xs = Interop.mkAttr "maxWidth" "xs"
     static member inline false' = Interop.mkAttr "maxWidth" false
 
   /// Determine the container for scrolling the dialog.
@@ -1988,17 +2023,17 @@ type drawer =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module drawer =
 
   /// Side from which the drawer will appear.
   [<Erase>]
   type anchor =
-    static member inline left = Interop.mkAttr "anchor" "left"
-    static member inline top = Interop.mkAttr "anchor" "top"
-    static member inline right = Interop.mkAttr "anchor" "right"
     static member inline bottom = Interop.mkAttr "anchor" "bottom"
+    static member inline left = Interop.mkAttr "anchor" "left"
+    static member inline right = Interop.mkAttr "anchor" "right"
+    static member inline top = Interop.mkAttr "anchor" "top"
 
   /// The variant to use.
   [<Erase>]
@@ -2048,6 +2083,8 @@ type expansionPanel =
   ///
   /// *expanded:* The `expanded` state of the panel.
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
   /// The component used for the collapse effect. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
@@ -2064,10 +2101,6 @@ type expansionPanel =
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
-  /// *Inherited from `paper`*
-  ///
-  /// If `true`, rounded corners are disabled.
-  static member inline square (value: bool) = Interop.mkAttr "square" value
 
 module expansionPanel =
 
@@ -2300,7 +2333,7 @@ type fade =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline timeout (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 
 [<Erase>]
@@ -2309,8 +2342,6 @@ type filledInput =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
-  /// The CSS class name of the wrapper element.
-  static member inline className (value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// If `true`, the `input` element will be disabled.
@@ -2325,9 +2356,9 @@ type filledInput =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -2413,6 +2444,8 @@ type formControl =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the label should be displayed in an error state.
   static member inline error (value: bool) = Interop.mkAttr "error" value
+  /// If `true`, the component will be displayed in focused state.
+  static member inline focused (value: bool) = Interop.mkAttr "focused" value
   /// If `true`, the component will take up the full width of its container.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// If `true`, the label will be hidden. This is used to increase density for a `FilledInput`. Be sure to add `aria-label` to the `input` element.
@@ -2473,7 +2506,6 @@ type formControlLabel =
   static member inline label (value: int) = Interop.mkAttr "label" value
   /// The text to be used in an enclosing label element.
   static member inline label (value: float) = Interop.mkAttr "label" value
-  static member inline name (value: string) = Interop.mkAttr "name" value
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
@@ -2500,10 +2532,10 @@ module formControlLabel =
   /// The position of the label.
   [<Erase>]
   type labelPlacement =
+    static member inline bottom = Interop.mkAttr "labelPlacement" "bottom"
     static member inline end' = Interop.mkAttr "labelPlacement" "end"
     static member inline start = Interop.mkAttr "labelPlacement" "start"
     static member inline top = Interop.mkAttr "labelPlacement" "top"
-    static member inline bottom = Interop.mkAttr "labelPlacement" "bottom"
 
 
 [<Erase>]
@@ -2899,8 +2931,8 @@ module gridListTileBar =
   /// Position of the title bar.
   [<Erase>]
   type titlePosition =
-    static member inline top = Interop.mkAttr "titlePosition" "top"
     static member inline bottom = Interop.mkAttr "titlePosition" "bottom"
+    static member inline top = Interop.mkAttr "titlePosition" "top"
 
 
 [<Erase>]
@@ -2916,7 +2948,7 @@ type grow =
   /// The duration for the transition, in milliseconds.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline timeout (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module grow =
 
@@ -3140,8 +3172,6 @@ type input =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
-  /// The CSS class name of the wrapper element.
-  static member inline className (value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// If `true`, the `input` element will be disabled.
@@ -3156,9 +3186,9 @@ type input =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -3275,8 +3305,6 @@ type inputBase =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
-  /// The CSS class name of the wrapper element.
-  static member inline className (value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// If `true`, the `input` element will be disabled.
@@ -3414,9 +3442,9 @@ module inputLabel =
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
 
 [<Erase>]
@@ -3439,9 +3467,9 @@ module linearProgress =
   /// The variant to use. Use indeterminate or query when there is no progress value.
   [<Erase>]
   type variant =
+    static member inline buffer = Interop.mkAttr "variant" "buffer"
     static member inline determinate = Interop.mkAttr "variant" "determinate"
     static member inline indeterminate = Interop.mkAttr "variant" "indeterminate"
-    static member inline buffer = Interop.mkAttr "variant" "buffer"
     static member inline query = Interop.mkAttr "variant" "query"
 
 
@@ -3641,17 +3669,17 @@ type listItemSecondaryAction =
 
 [<Erase>]
 type listItemText =
-  /// Alias for the `primary` property.
+  /// Alias for the `primary` prop.
   static member inline children (element: ReactElement) = prop.children element
-  /// Alias for the `primary` property.
+  /// Alias for the `primary` prop.
   static member inline children (elements: ReactElement seq) = prop.children elements
-  /// Alias for the `primary` property.
+  /// Alias for the `primary` prop.
   static member inline children (value: string) = Interop.mkAttr "children" value
-  /// Alias for the `primary` property.
+  /// Alias for the `primary` prop.
   static member inline children (values: string seq) = Interop.mkAttr "children" values
-  /// Alias for the `primary` property.
+  /// Alias for the `primary` prop.
   static member inline children (value: int) = Interop.mkAttr "children" value
-  /// Alias for the `primary` property.
+  /// Alias for the `primary` prop.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `children` (or `primary`) text, and optional `secondary` text with the Typography component.
   static member inline disableTypography (value: bool) = Interop.mkAttr "disableTypography" value
@@ -3785,7 +3813,7 @@ type menu =
   /// The length of the transition in `ms`, or 'auto'
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The length of the transition in `ms`, or 'auto'
-  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// *Inherited from `popover`*
   ///
   /// A ref for imperative actions. It currently only supports updatePosition() action.
@@ -3979,6 +4007,7 @@ module menu =
 
   /// *Inherited from `popover`*
   ///
+  /// This determines which anchor prop to refer to to set the position of the popover.
   [<Erase>]
   type anchorReference =
     static member inline anchorEl = Interop.mkAttr "anchorReference" "anchorEl"
@@ -4067,9 +4096,9 @@ module menuItem =
 
 [<Erase>]
 type menuList =
-  /// If `true`, will focus the `[role="menu"]` container and move into tab order
+  /// If `true`, will focus the `[role="menu"]` container and move into tab order.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
-  /// If `true`, will focus the first menuitem if `variant="menu"` or selected item if `variant="selectedMenu"`
+  /// If `true`, will focus the first menuitem if `variant="menu"` or selected item if `variant="selectedMenu"`.
   static member inline autoFocusItem (value: bool) = Interop.mkAttr "autoFocusItem" value
   /// MenuList contents, normally `MenuItem`s.
   static member inline children (element: ReactElement) = prop.children element
@@ -4083,6 +4112,8 @@ type menuList =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// MenuList contents, normally `MenuItem`s.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// If `true`, will allow focus on disabled items.
+  static member inline disabledItemsFocusable (value: bool) = Interop.mkAttr "disabledItemsFocusable" value
   /// If `true`, the menu items will not wrap focus.
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
   /// *Inherited from `list`*
@@ -4192,15 +4223,15 @@ module mobileStepper =
   [<Erase>]
   type position =
     static member inline bottom = Interop.mkAttr "position" "bottom"
-    static member inline top = Interop.mkAttr "position" "top"
     static member inline static' = Interop.mkAttr "position" "static"
+    static member inline top = Interop.mkAttr "position" "top"
 
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline text = Interop.mkAttr "variant" "text"
     static member inline dots = Interop.mkAttr "variant" "dots"
     static member inline progress = Interop.mkAttr "variant" "progress"
+    static member inline text = Interop.mkAttr "variant" "text"
 
 
 [<Erase>]
@@ -4321,10 +4352,6 @@ type nativeSelect =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// *Inherited from `input`*
   ///
-  /// The CSS class name of the wrapper element.
-  static member inline className (value: string) = Interop.mkAttr "className" value
-  /// *Inherited from `input`*
-  ///
   /// The default `input` element value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// *Inherited from `input`*
@@ -4353,11 +4380,11 @@ type nativeSelect =
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
@@ -4419,9 +4446,9 @@ module nativeSelect =
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
   /// *Inherited from `input`*
   ///
@@ -4476,8 +4503,6 @@ type outlinedInput =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element will be focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
-  /// The CSS class name of the wrapper element.
-  static member inline className (value: string) = Interop.mkAttr "className" value
   /// The default `input` element value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   /// If `true`, the `input` element will be disabled.
@@ -4490,7 +4515,7 @@ type outlinedInput =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -4814,24 +4839,8 @@ type popover =
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
   /// Callback fired when the component requests to be closed.
-  ///
-  /// **Signature:**
-  ///
-  /// `function(event: object, reason: string) => void`
-  ///
-  /// *event:* The event source of the callback.
-  ///
-  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: Event -> PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
-  ///
-  /// **Signature:**
-  ///
-  /// `function(event: object, reason: string) => void`
-  ///
-  /// *event:* The event source of the callback.
-  ///
-  /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
   /// Callback fired before the component is entering.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
@@ -4870,7 +4879,7 @@ type popover =
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
@@ -4951,6 +4960,7 @@ module popover =
     static member inline bottomCenter = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "center" ])
     static member inline bottomRight = Interop.mkAttr "anchorOrigin" (createObj [ "vertical" ==> "bottom"; "horizontal" ==> "right" ])
 
+  /// This determines which anchor prop to refer to to set the position of the popover.
   [<Erase>]
   type anchorReference =
     static member inline anchorEl = Interop.mkAttr "anchorReference" "anchorEl"
@@ -4982,15 +4992,15 @@ module popover =
 type popper =
   /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
   ///
-  /// The reference element should be an HTML Element instance or a referenceObject: https://popper.js.org/popper-documentation.html#referenceObject.
+  /// The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
   static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
   /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
   ///
-  /// The reference element should be an HTML Element instance or a referenceObject: https://popper.js.org/popper-documentation.html#referenceObject.
+  /// The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
   static member inline anchorEl (handler: unit -> Element option) = Interop.mkAttr "anchorEl" handler
   /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
   ///
-  /// The reference element should be an HTML Element instance or a referenceObject: https://popper.js.org/popper-documentation.html#referenceObject.
+  /// The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
   static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// Popper render function or node.
   static member inline children (element: ReactElement) = prop.children element
@@ -5018,11 +5028,11 @@ type popper =
   static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
   /// Popper.js is based on a "plugin-like" architecture, most of its features are fully encapsulated "modifiers".
   ///
-  /// A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, [read the modifiers documentation](https://github.com/FezVrasta/popper.js/blob/master/docs/_includes/popper-documentation.md#modifiers--object).
+  /// A modifier is a function that is called each time Popper.js needs to compute the position of the popper. For this reason, modifiers should be very performant to avoid bottlenecks. To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v1/#modifiers).
   static member inline modifiers (value: 'a) = Interop.mkAttr "modifiers" value
   /// If `true`, the popper is visible.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
-  /// Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
+  /// Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
   static member inline popperOptions (value: 'a) = Interop.mkAttr "popperOptions" value
   /// A ref that points to the used popper instance.
   static member inline popperRef (ref: IRefValue<Element option>) = Interop.mkAttr "popperRef" ref
@@ -5108,8 +5118,6 @@ type radio =
   static member inline onChange (handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// If `true`, the `input` element will be required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
-  /// The input component prop `type`.
-  static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the component.
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
@@ -5168,15 +5176,15 @@ module radio =
   /// The color of the component.
   [<Erase>]
   type color =
+    static member inline default' = Interop.mkAttr "color" "default"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline default' = Interop.mkAttr "color" "default"
 
   /// The size of the radio. `small` is equivalent to the dense radio styling.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// *Inherited from `iconButton`*
   ///
@@ -5186,6 +5194,15 @@ module radio =
     static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
     static member inline false' = Interop.mkAttr "edge" false
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -5380,9 +5397,9 @@ module rating =
   /// The size of the rating.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
 
 [<Erase>]
@@ -5447,6 +5464,8 @@ type select =
   static member inline displayEmpty (value: bool) = Interop.mkAttr "displayEmpty" value
   /// The icon that displays the arrow.
   static member inline IconComponent (value: ReactElementType) = Interop.mkAttr "IconComponent" value
+  /// The `id` of the wrapper element or the `select` elment when `native`.
+  static member inline id (value: string) = Interop.mkAttr "id" value
   /// An `Input` element; does not have to be a material-ui specific `Input`.
   static member inline input (value: ReactElement) = Interop.mkAttr "input" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element.
@@ -5575,10 +5594,6 @@ type select =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// *Inherited from `input`*
   ///
-  /// The CSS class name of the wrapper element.
-  static member inline className (value: string) = Interop.mkAttr "className" value
-  /// *Inherited from `input`*
-  ///
   /// If `true`, the `input` element will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// *Inherited from `input`*
@@ -5599,15 +5614,11 @@ type select =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// *Inherited from `input`*
   ///
-  /// The id of the `input` element.
-  static member inline id (value: string) = Interop.mkAttr "id" value
-  /// *Inherited from `input`*
-  ///
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the native input. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a DOM element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
@@ -5669,9 +5680,9 @@ module select =
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
   /// *Inherited from `input`*
   ///
@@ -5735,17 +5746,17 @@ type slide =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline timeout (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
 
 module slide =
 
   /// Direction the child node will enter from.
   [<Erase>]
   type direction =
+    static member inline down = Interop.mkAttr "direction" "down"
     static member inline left = Interop.mkAttr "direction" "left"
     static member inline right = Interop.mkAttr "direction" "right"
     static member inline up = Interop.mkAttr "direction" "up"
-    static member inline down = Interop.mkAttr "direction" "down"
 
 
 [<Erase>]
@@ -6146,7 +6157,7 @@ type snackbar =
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
-  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -6315,6 +6326,10 @@ type speedDialAction =
   static member inline FabProps (props: IReactProperty list) = Interop.mkAttr "FabProps" (createObj !!props)
   /// The Icon to display in the SpeedDial Fab.
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
+  /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
+  static member inline id (value: string) = Interop.mkAttr "id" value
+  /// If `true`, the tooltip is shown.
+  static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// Make the tooltip always visible when the SpeedDial is open.
   static member inline tooltipOpen (value: bool) = Interop.mkAttr "tooltipOpen" value
   /// Label to display in the tooltip.
@@ -6361,10 +6376,6 @@ type speedDialAction =
   static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
   /// *Inherited from `tooltip`*
   ///
-  /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
-  static member inline id (value: string) = Interop.mkAttr "id" value
-  /// *Inherited from `tooltip`*
-  ///
   /// Makes a tooltip interactive, i.e. will not close when the user hovers over the tooltip before the `leaveDelay` is expired.
   static member inline interactive (value: bool) = Interop.mkAttr "interactive" value
   /// *Inherited from `tooltip`*
@@ -6395,10 +6406,6 @@ type speedDialAction =
   ///
   /// *event:* The event source of the callback.
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
-  /// *Inherited from `tooltip`*
-  ///
-  /// If `true`, the tooltip is shown.
-  static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// *Inherited from `tooltip`*
   ///
   /// Props applied to the [`Popper`](https://material-ui.com/api/popper/) element.
@@ -6631,7 +6638,7 @@ type stepContent =
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
   /// Set to 'auto' to automatically calculate transition time based on height.
-  static member inline transitionDuration (?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
 
@@ -6865,10 +6872,10 @@ module swipeableDrawer =
   /// Side from which the drawer will appear.
   [<Erase>]
   type anchor =
-    static member inline left = Interop.mkAttr "anchor" "left"
-    static member inline top = Interop.mkAttr "anchor" "top"
-    static member inline right = Interop.mkAttr "anchor" "right"
     static member inline bottom = Interop.mkAttr "anchor" "bottom"
+    static member inline left = Interop.mkAttr "anchor" "left"
+    static member inline right = Interop.mkAttr "anchor" "right"
+    static member inline top = Interop.mkAttr "anchor" "top"
 
   /// *Inherited from `drawer`*
   ///
@@ -6906,7 +6913,7 @@ type switch =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string). You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange (handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// Callback fired when the state is changed.
   ///
@@ -6914,12 +6921,10 @@ type switch =
   ///
   /// `function(event: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string). You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// If `true`, the `input` element will be required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
-  /// The input component prop `type`.
-  static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the component. The browser uses "on" as the default value.
   static member inline value (value: string) = Interop.mkAttr "value" value
   /// This component does not support children.
@@ -6978,22 +6983,31 @@ module switch =
   /// The color of the component.
   [<Erase>]
   type color =
+    static member inline default' = Interop.mkAttr "color" "default"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline default' = Interop.mkAttr "color" "default"
 
   /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
   [<Erase>]
   type edge =
-    static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
+    static member inline start = Interop.mkAttr "edge" "start"
     static member inline false' = Interop.mkAttr "edge" false
 
   /// The size of the switch. `small` is equivalent to the dense switch styling.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
+
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
+  [<Erase>]
+  type type' =
+    static member inline submit = Interop.mkAttr "type" "submit"
+    static member inline reset = Interop.mkAttr "type" "reset"
+    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -7168,24 +7182,24 @@ module tableCell =
   /// Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals.
   [<Erase>]
   type align =
-    static member inline inherit' = Interop.mkAttr "align" "inherit"
-    static member inline left = Interop.mkAttr "align" "left"
     static member inline center = Interop.mkAttr "align" "center"
-    static member inline right = Interop.mkAttr "align" "right"
+    static member inline inherit' = Interop.mkAttr "align" "inherit"
     static member inline justify = Interop.mkAttr "align" "justify"
+    static member inline left = Interop.mkAttr "align" "left"
+    static member inline right = Interop.mkAttr "align" "right"
 
   /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
   [<Erase>]
   type padding =
-    static member inline default' = Interop.mkAttr "padding" "default"
     static member inline checkbox = Interop.mkAttr "padding" "checkbox"
+    static member inline default' = Interop.mkAttr "padding" "default"
     static member inline none = Interop.mkAttr "padding" "none"
 
   /// Specify the size of the cell. By default, the Table parent component set the value (`medium`).
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// Set aria-sort direction.
   [<Erase>]
@@ -7197,9 +7211,9 @@ module tableCell =
   /// Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value.
   [<Erase>]
   type variant =
-    static member inline head = Interop.mkAttr "variant" "head"
     static member inline body = Interop.mkAttr "variant" "body"
     static member inline footer = Interop.mkAttr "variant" "footer"
+    static member inline head = Interop.mkAttr "variant" "head"
 
 
 [<Erase>]
@@ -7280,31 +7294,31 @@ type tablePagination =
   ///
   /// To enable server side pagination for an unknown number of items, provide -1.
   static member inline count (value: int) = Interop.mkAttr "count" value
-  /// Customize the displayed rows label.
+  /// Customize the displayed rows label. Invoked with a `{ from, to, count, page }` object.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelDisplayedRows (getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
-  /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
-  /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (values: ReactElement seq) = Interop.mkAttr "labelRowsPerPage" values
-  /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: string) = Interop.mkAttr "labelRowsPerPage" value
-  /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (values: string seq) = Interop.mkAttr "labelRowsPerPage" values
-  /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: int) = Interop.mkAttr "labelRowsPerPage" value
-  /// Customize the rows per page label. Invoked with a `{ from, to, count, page }` object.
+  /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: float) = Interop.mkAttr "labelRowsPerPage" value
@@ -7366,19 +7380,19 @@ module tablePagination =
   /// Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals.
   [<Erase>]
   type align =
-    static member inline inherit' = Interop.mkAttr "align" "inherit"
-    static member inline left = Interop.mkAttr "align" "left"
     static member inline center = Interop.mkAttr "align" "center"
-    static member inline right = Interop.mkAttr "align" "right"
+    static member inline inherit' = Interop.mkAttr "align" "inherit"
     static member inline justify = Interop.mkAttr "align" "justify"
+    static member inline left = Interop.mkAttr "align" "left"
+    static member inline right = Interop.mkAttr "align" "right"
 
   /// *Inherited from `tableCell`*
   ///
   /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
   [<Erase>]
   type padding =
-    static member inline default' = Interop.mkAttr "padding" "default"
     static member inline checkbox = Interop.mkAttr "padding" "checkbox"
+    static member inline default' = Interop.mkAttr "padding" "default"
     static member inline none = Interop.mkAttr "padding" "none"
 
   /// *Inherited from `tableCell`*
@@ -7386,8 +7400,8 @@ module tablePagination =
   /// Specify the size of the cell. By default, the Table parent component set the value (`medium`).
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// *Inherited from `tableCell`*
   ///
@@ -7403,9 +7417,9 @@ module tablePagination =
   /// Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value.
   [<Erase>]
   type variant =
-    static member inline head = Interop.mkAttr "variant" "head"
     static member inline body = Interop.mkAttr "variant" "body"
     static member inline footer = Interop.mkAttr "variant" "footer"
+    static member inline head = Interop.mkAttr "variant" "head"
 
 
 [<Erase>]
@@ -7653,10 +7667,10 @@ type textField =
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// Props applied to the [`InputLabel`](https://material-ui.com/api/input-label/) element.
   static member inline InputLabelProps (props: IReactProperty list) = Interop.mkAttr "InputLabelProps" (createObj !!props)
-  /// Props applied to the Input element. It will be a [`FilledInput`](https://material-ui.com/api/filled-input/), [`OutlinedInput`](https://material-ui.com/api/outlined-input/) or [`Input`](https://material-ui.com/api/input/) component depending on the `variant` prop value.
-  static member inline InputProps (props: IReactProperty list) = Interop.mkAttr "InputProps" (createObj !!props)
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
+  /// Props applied to the Input element. It will be a [`FilledInput`](https://material-ui.com/api/filled-input/), [`OutlinedInput`](https://material-ui.com/api/outlined-input/) or [`Input`](https://material-ui.com/api/input/) component depending on the `variant` prop value.
+  static member inline InputProps (props: IReactProperty list) = Interop.mkAttr "InputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
   static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
@@ -7721,6 +7735,10 @@ type textField =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `formControl`*
   ///
+  /// If `true`, the component will be displayed in focused state.
+  static member inline focused (value: bool) = Interop.mkAttr "focused" value
+  /// *Inherited from `formControl`*
+  ///
   /// If `true`, the label will be hidden. This is used to increase density for a `FilledInput`. Be sure to add `aria-label` to the `input` element.
   static member inline hiddenLabel (value: bool) = Interop.mkAttr "hiddenLabel" value
 
@@ -7735,22 +7753,22 @@ module textField =
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
   type margin =
-    static member inline none = Interop.mkAttr "margin" "none"
     static member inline dense = Interop.mkAttr "margin" "dense"
+    static member inline none = Interop.mkAttr "margin" "none"
     static member inline normal = Interop.mkAttr "margin" "normal"
 
   /// The size of the text field.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
 
 [<Erase>]
@@ -8000,14 +8018,6 @@ module tooltip =
 
 
 [<Erase>]
-type touchRipple =
-  /// If `true`, the ripple starts at the center of the component rather than at the point of interaction.
-  static member inline center (value: bool) = Interop.mkAttr "center" value
-  /// This component does not support children.
-  static member inline children  = UnsupportedProp ()
-
-
-[<Erase>]
 type treeItem =
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
@@ -8206,4 +8216,4 @@ type zoom =
   /// The duration for the transition, in milliseconds.
   static member inline timeout (value: int) = Interop.mkAttr "timeout" value
   /// The duration for the transition, in milliseconds.
-  static member inline timeout (?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  static member inline timeout (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "timeout" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)

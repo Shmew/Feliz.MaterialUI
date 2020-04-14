@@ -30,6 +30,11 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 0.15.0
+
+* Updated from fixed MUI docs and for @material-ui/lab 4.0.0-alpha.49
+* Breaking: `timeout` and `transitionDuration` props have had their optional argument list extended at the beginning. If you have used positional arguments instead of named arguments, you must change your code to use named arguments.
+
 ### 0.14.0
 
 * Updated for @material-ui/lab 4.0.0-alpha.46

@@ -56,10 +56,10 @@ module GetLines =
         ""
     ]
 
-  let themePropsForComponent (comp: MuiComponent) =
-    sprintf """static member inline mui%s(props: IReactProperty list) : IThemeProp = unbox ("props.Mui%s", createObj !!props)"""
-      (comp.GeneratorComponent.MethodName |> String.upperFirst)
-      (comp.GeneratorComponent.MethodName |> String.upperFirst)
+  let themePropsForComponent stylesheetName =
+    sprintf """static member inline %s(props: IReactProperty list) : IThemeProp = unbox ("props.%s", createObj !!props)"""
+      (stylesheetName |> String.lowerFirst)
+      stylesheetName
     |> List.singleton
 
   /// Gets the code lines for the implementation of a single class rule. Does not
@@ -109,6 +109,11 @@ let classesDocument (api: MuiComponentApi) =
 
 
 let themePropsDocument (api: MuiComponentApi) =
+
+  let getStylesheetName = function
+    | { ComponentName = Some n } as c -> Some n
+    | _ -> None
+
   [
     sprintf "namespace %s" api.GeneratorComponentApi.Namespace
     ""
@@ -129,8 +134,8 @@ let themePropsDocument (api: MuiComponentApi) =
     ""
     "    [<Erase>]"
     "    type props ="
-    for comp in api.MuiComponents do
-      yield! GetLines.themePropsForComponent comp |> List.map (indent 3)
+    for stylesheetName in api.MuiComponents |> List.choose getStylesheetName do
+      yield! GetLines.themePropsForComponent stylesheetName |> List.map (indent 3)
     ""
   ]
   |> String.concat Environment.NewLine
@@ -139,7 +144,7 @@ let themePropsDocument (api: MuiComponentApi) =
 let themeOverridesDocument (api: MuiComponentApi) =
 
   let getCompAndStylesheetName = function
-    | { StylesheetName = Some n } as c -> Some (c, n)
+    | { ComponentName = Some n } as c -> Some (c, n)
     | _ -> None
 
   [
@@ -162,8 +167,9 @@ let themeOverridesDocument (api: MuiComponentApi) =
     "    module overrides ="
     ""
     for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
-      yield! GetLines.themeOverridesForComponent comp stylesheetName |> List.map (indent 3)
-      ""
+      if not comp.ClassRules.IsEmpty then
+        yield! GetLines.themeOverridesForComponent comp stylesheetName |> List.map (indent 3)
+        ""
   ]
   |> String.concat Environment.NewLine
 

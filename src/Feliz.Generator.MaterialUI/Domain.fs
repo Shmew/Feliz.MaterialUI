@@ -13,7 +13,7 @@ type ClassRule = {
 type MuiComponent = { 
   GeneratorComponent: Component
   ClassRules: ClassRule list
-  StylesheetName: string option
+  ComponentName: string option
 }
 
 

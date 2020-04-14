@@ -139,7 +139,6 @@ module themeProps =
       static member inline muiToggleButtonGroup(props: IReactProperty list) : IThemeProp = unbox ("props.MuiToggleButtonGroup", createObj !!props)
       static member inline muiToolbar(props: IReactProperty list) : IThemeProp = unbox ("props.MuiToolbar", createObj !!props)
       static member inline muiTooltip(props: IReactProperty list) : IThemeProp = unbox ("props.MuiTooltip", createObj !!props)
-      static member inline muiTouchRipple(props: IReactProperty list) : IThemeProp = unbox ("props.MuiTouchRipple", createObj !!props)
       static member inline muiTreeItem(props: IReactProperty list) : IThemeProp = unbox ("props.MuiTreeItem", createObj !!props)
       static member inline muiTreeView(props: IReactProperty list) : IThemeProp = unbox ("props.MuiTreeView", createObj !!props)
       static member inline muiTypography(props: IReactProperty list) : IThemeProp = unbox ("props.MuiTypography", createObj !!props)
