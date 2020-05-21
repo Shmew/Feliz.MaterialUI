@@ -301,6 +301,8 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButtonGroup.root", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"`.
         static member inline contained(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButtonGroup.contained", createObj !!styles)
+        /// Styles applied to the root element if `disableElevation={true}`.
+        static member inline disableElevation(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButtonGroup.disableElevation", createObj !!styles)
         /// Pseudo-class applied to child elements if `disabled={true}`.
         static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButtonGroup.disabled", createObj !!styles)
         /// Styles applied to the root element if `fullWidth={true}`.
@@ -802,7 +804,7 @@ module themeOverrides =
 
       [<Erase>]
       type muiGrid =
-        /// Styles applied to the root element
+        /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.root", createObj !!styles)
         /// Styles applied to the root element if `container={true}`.
         static member inline container(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.container", createObj !!styles)
@@ -1331,7 +1333,7 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.root", createObj !!styles)
         /// Styles applied to the root element if `square={false}`.
         static member inline rounded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.rounded", createObj !!styles)
-        /// Styles applied to the root element if `variant="outlined"`
+        /// Styles applied to the root element if `variant="outlined"`.
         static member inline outlined(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.outlined", createObj !!styles)
         static member inline elevation0(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.elevation0", createObj !!styles)
         static member inline elevation1(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.elevation1", createObj !!styles)
@@ -1361,7 +1363,7 @@ module themeOverrides =
 
       [<Erase>]
       type muiPopover =
-        /// Styles applied to the root element
+        /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPopover.root", createObj !!styles)
         /// Styles applied to the `Paper` component.
         static member inline paper(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPopover.paper", createObj !!styles)
@@ -1650,9 +1652,9 @@ module themeOverrides =
       type muiStepLabel =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiStepLabel.root", createObj !!styles)
-        /// Styles applied to the root element if `orientation="horizontal".
+        /// Styles applied to the root element if `orientation="horizontal"`.
         static member inline horizontal(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiStepLabel.horizontal", createObj !!styles)
-        /// Styles applied to the root element if `orientation="vertical".
+        /// Styles applied to the root element if `orientation="vertical"`.
         static member inline vertical(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiStepLabel.vertical", createObj !!styles)
         /// Styles applied to the `Typography` component which wraps `children`.
         static member inline label(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiStepLabel.label", createObj !!styles)
@@ -1857,6 +1859,11 @@ module themeOverrides =
         static member inline iconDirectionAsc(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTableSortLabel.iconDirectionAsc", createObj !!styles)
 
       [<Erase>]
+      type muiTabPanel =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabPanel.root", createObj !!styles)
+
+      [<Erase>]
       type muiTabs =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.root", createObj !!styles)
@@ -1880,6 +1887,15 @@ module themeOverrides =
         static member inline scrollButtonsDesktop(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.scrollButtonsDesktop", createObj !!styles)
         /// Styles applied to the `TabIndicator` component.
         static member inline indicator(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.indicator", createObj !!styles)
+
+      [<Erase>]
+      type muiTabScrollButton =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabScrollButton.root", createObj !!styles)
+        /// Styles applied to the root element if `orientation="vertical"`.
+        static member inline vertical(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabScrollButton.vertical", createObj !!styles)
+        /// Pseudo-class applied to the root element if `disabled={true}`.
+        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabScrollButton.disabled", createObj !!styles)
 
       [<Erase>]
       type muiTextField =
@@ -1907,10 +1923,6 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.root", createObj !!styles)
         /// Styles applied to the children.
         static member inline grouped(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.grouped", createObj !!styles)
-        /// Styles applied to the children if `size="small"`.
-        static member inline groupedSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.groupedSizeSmall", createObj !!styles)
-        /// Styles applied to the children if `size="large"`.
-        static member inline groupedSizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.groupedSizeLarge", createObj !!styles)
 
       [<Erase>]
       type muiToolbar =

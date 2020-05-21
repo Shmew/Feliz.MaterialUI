@@ -35,6 +35,8 @@ type Locale =
   static member inline deDE: Theme = import "deDE" "@material-ui/core/locale"
   /// Hebrew
   static member inline heIL: Theme = import "heIL" "@material-ui/core/locale"
+  /// Hindi
+  static member inline hiIN: Theme = import "hiIN" "@material-ui/core/locale"
   /// Hungarian
   static member inline huHU: Theme = import "huHU" "@material-ui/core/locale"
   /// Icelandic

@@ -142,6 +142,13 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(handler: string -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
         ]
 
+    | "autocomplete", "onHighlightChange", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> 'option -> AutocompleteHighlightChangeReason -> unit)" "(Func<_,_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'option -> AutocompleteHighlightChangeReason -> unit)" "(Func<_,_,_,_> (fun _ o r -> handler o r))"
+          RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ o _ -> handler o))"
+        ]
+
     | "autocomplete", "options", "array" ->
         [RegularPropOverload.create "(options: 'option [])" "options"]
 
@@ -465,10 +472,19 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           ||> RegularPropOverload.create
         ]
 
-    | _, "anchorEl", ("func | Element" | "object | func") ->
+    | "popper", "anchorEl", ("HTML element | object | func") ->
         [
           RegularPropOverload.create "(value: Element option)" "value"
-          RegularPropOverload.create "(handler: unit -> Element option)" "handler"
+          RegularPropOverload.create "(getElement: unit -> Element option)" "getElement"
+          RegularPropOverload.create "(referenceObject: obj)" "referenceObject"
+          RegularPropOverload.create "(getReferenceObject: unit -> obj)" "getReferenceObject"
+          RegularPropOverload.create "(ref: IRefValue<Element option>)" "(fun () -> ref.current)"
+        ]
+
+    | _, "anchorEl", ("HTML element | func") ->
+        [
+          RegularPropOverload.create "(value: Element option)" "value"
+          RegularPropOverload.create "(getElement: unit -> Element option)" "getElement"
           RegularPropOverload.create "(ref: IRefValue<Element option>)" "(fun () -> ref.current)"
         ]
 
@@ -477,7 +493,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         RegularPropOverload.create "(handler: Element option -> unit)" "handler"
       ]
 
-    | ("modal" | "popover" | "popper" | "portal"), "container", ("object | func" | "func | React.Component | Element") ->
+    | ("modal" | "popover" | "popper" | "portal"), "container", ("HTML element | React.Component | func") ->
         [
           RegularPropOverload.create "(element: Element option)" "element"
           RegularPropOverload.create "(element: ReactElement option)" "element"
@@ -571,6 +587,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         [RegularPropOverload.createCustom "(elements: ReactElement seq)" "prop.children elements"]
 
     | _, "children", "node"
+    | "tabList", "children", "Array<element>"
     | "popper", "children", "node | func" ->  // TODO: popper.children can also be a func, but can't find signature docs
         [
           RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element"
@@ -720,13 +737,13 @@ let parseComponent (htmlPathOrUrl: string) =
     let importPath = importMatches.Groups.[2].Value
 
     let noteNodes1 =
-      html.CssSelect(".markdown-body").[0].Elements()
+      html.CssSelect(".markdown-body").[1].Elements()
       |> List.skipWhile (fun n -> n.Name() <> "table")
       |> List.trySkip 1
       |> List.takeWhile (fun n -> n.Name() = "p")
 
     let noteNodes2 =
-      html.CssSelect(".markdown-body").[0].Elements()
+      html.CssSelect(".markdown-body").[1].Elements()
       |> List.skipWhile (fun n -> n.Name() <> "h2" || n.InnerText() <> "Notes")
       |> List.trySkip 1
       |> List.takeWhile (fun n -> n.Name() = "p")

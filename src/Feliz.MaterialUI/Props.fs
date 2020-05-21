@@ -69,11 +69,11 @@ type alert =
   static member inline role (value: string) = Interop.mkAttr "role" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -142,11 +142,11 @@ type appBar =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -200,6 +200,10 @@ type autocomplete =
   static member inline blurOnSelect (value: bool) = Interop.mkAttr "blurOnSelect" value
   /// Props applied to the [`Chip`](https://material-ui.com/api/chip/) element.
   static member inline ChipProps (props: IReactProperty list) = Interop.mkAttr "ChipProps" (createObj !!props)
+  /// If `true`, the input's text will be cleared on blur if no value is selected.
+  ///
+  /// Set to `true` if you want to help the user enter a new value. Set to `false` if you want to help the user resume his search.
+  static member inline clearOnBlur (value: bool) = Interop.mkAttr "clearOnBlur" value
   /// If `true`, clear all values when the user presses escape and the popup is closed.
   static member inline clearOnEscape (value: bool) = Interop.mkAttr "clearOnEscape" value
   /// Override the default text for the *clear* icon button.
@@ -265,10 +269,28 @@ type autocomplete =
   /// *more:* The number of truncated tags.
   static member inline getLimitTagsText (getText: int -> ReactElement) = Interop.mkAttr "getLimitTagsText" getText
   /// Used to determine the disabled state for a given option.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(option: T) => boolean`
+  ///
+  /// *option:* The option to test.
   static member inline getOptionDisabled (isDisabled: 'option -> bool) = Interop.mkAttr "getOptionDisabled" isDisabled
   /// Used to determine the string value for a given option. It's used to fill the input (and the list box options if `renderOption` is not provided).
+  ///
+  /// **Signature:**
+  ///
+  /// `function(option: T) => string`
   static member inline getOptionLabel (getLabel: 'option -> string) = Interop.mkAttr "getOptionLabel" getLabel
-  /// Used to determine if an option is selected. Uses strict equality by default.
+  /// Used to determine if an option is selected, considering the current value. Uses strict equality by default.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(option: T, value: T) => boolean`
+  ///
+  /// *option:* The option to test.
+  ///
+  /// *value:* The value to test against.
   static member inline getOptionSelected (getSelected: 'option -> 'a -> bool) = Interop.mkAttr "getOptionSelected" (Func<_,_,_> getSelected)
   /// If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
   ///
@@ -276,8 +298,10 @@ type autocomplete =
   ///
   /// `function(options: T) => string`
   ///
-  /// *options:* The option to group.
+  /// *options:* The options to group.
   static member inline groupBy (getGroup: 'option -> string) = Interop.mkAttr "groupBy" getGroup
+  /// If `true`, the component handles the "Home" and "End" keys when the popup is open. It should move focus to the first option and last option, respectively.
+  static member inline handleHomeEndKeys (value: bool) = Interop.mkAttr "handleHomeEndKeys" value
   /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// If `true`, the highlight can move to the input.
@@ -350,7 +374,7 @@ type autocomplete =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *value:* null
+  /// *value:* The new value of the component.
   ///
   /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
   static member inline onChange (handler: Event -> 'option -> AutocompleteOnChangeReason -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> handler)
@@ -362,7 +386,7 @@ type autocomplete =
   ///
   /// *event:* The event source of the callback.
   ///
-  /// *value:* null
+  /// *value:* The new value of the component.
   ///
   /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
   static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
@@ -376,6 +400,42 @@ type autocomplete =
   ///
   /// *reason:* Can be: `"toggleInput"`, `"escape"`, `"select-option"`, `"blur"`.
   static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
+  /// Callback fired when the highlight option changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, option: T, reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *option:* The highlighted option.
+  ///
+  /// *reason:* Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+  static member inline onHighlightChange (handler: Event -> 'option -> AutocompleteHighlightChangeReason -> unit) = Interop.mkAttr "onHighlightChange" (Func<_,_,_,_> handler)
+  /// Callback fired when the highlight option changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, option: T, reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *option:* The highlighted option.
+  ///
+  /// *reason:* Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+  static member inline onHighlightChange (handler: 'option -> AutocompleteHighlightChangeReason -> unit) = Interop.mkAttr "onHighlightChange" (Func<_,_,_,_> (fun _ o r -> handler o r))
+  /// Callback fired when the highlight option changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, option: T, reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *option:* The highlighted option.
+  ///
+  /// *reason:* Can be: `"keyboard"`, `"auto"`, `"mouse"`.
+  static member inline onHighlightChange (handler: 'option -> unit) = Interop.mkAttr "onHighlightChange" (Func<_,_,_,_> (fun _ o _ -> handler o))
   /// Callback fired when the input value changes.
   ///
   /// **Signature:**
@@ -437,8 +497,6 @@ type autocomplete =
   /// **Signature:**
   ///
   /// `function(params: object) => ReactNode`
-  ///
-  /// *params:* null
   static member inline renderInput (render: AutocompleteRenderInputParams -> ReactElement) = Interop.mkAttr "renderInput" render
   /// Render the option, use `getOptionLabel` by default.
   ///
@@ -518,9 +576,9 @@ type avatar =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Attributes applied to the `img` element if the component is used to display an image. It can be used to listen for the loading error event.
   static member inline imgProps (props: IReactProperty list) = Interop.mkAttr "imgProps" (createObj !!props)
@@ -591,6 +649,10 @@ type backdrop =
   static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
   /// *Inherited from `fade`*
   ///
+  /// Enable this prop if you encounter 'Function components cannot be given refs', use `unstable_createStrictModeTheme`, and can't forward the ref in the child component.
+  static member inline disableStrictModeCompat (value: bool) = Interop.mkAttr "disableStrictModeCompat" value
+  /// *Inherited from `fade`*
+  ///
   /// If `true`, the component will transition in.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
   /// *Inherited from `fade`*
@@ -629,9 +691,9 @@ type badge =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The badge will be added relative to this node.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the badge will be invisible.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
@@ -685,9 +747,9 @@ type bottomNavigation =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Callback fired when the value changes.
   ///
@@ -751,13 +813,13 @@ type bottomNavigationAction =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -818,9 +880,9 @@ type breadcrumbs =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The breadcrumb children.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a HTML element or a component. By default, it maps the variant to a good default headline component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a HTML element or a component. By default, it maps the variant to a good default headline component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Override the default label for the expand button.
   ///
@@ -860,9 +922,9 @@ type button =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the button.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -969,11 +1031,11 @@ type buttonBase =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -1018,12 +1080,14 @@ type buttonGroup =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the button group.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the buttons will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// If `true`, no elevation is used.
+  static member inline disableElevation (value: bool) = Interop.mkAttr "disableElevation" value
   /// If `true`, the button keyboard focus ripple will be disabled. `disableRipple` must also be true.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the button ripple effect will be disabled.
@@ -1080,11 +1144,11 @@ type card =
   static member inline raised (value: bool) = Interop.mkAttr "raised" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -1134,13 +1198,13 @@ type cardActionArea =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -1219,9 +1283,9 @@ type cardContent =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
@@ -1251,9 +1315,9 @@ type cardHeader =
   static member inline avatar (value: int) = Interop.mkAttr "avatar" value
   /// The Avatar for the Card Header.
   static member inline avatar (value: float) = Interop.mkAttr "avatar" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, `subheader` and `title` won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `title` text, and optional `subheader` text with the Typography component.
   static member inline disableTypography (value: bool) = Interop.mkAttr "disableTypography" value
@@ -1303,9 +1367,9 @@ type cardMedia =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// Component for rendering image. Either a string to use a DOM element or a component.
+  /// Component for rendering image. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// Component for rendering image. Either a string to use a DOM element or a component.
+  /// Component for rendering image. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible.
   static member inline image (value: string) = Interop.mkAttr "image" value
@@ -1377,13 +1441,13 @@ type checkbox =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -1450,9 +1514,9 @@ type chip =
   static member inline children  = UnsupportedProp ()
   /// If `true`, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If false, the chip will not be clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable.
   static member inline clickable (value: bool) = Interop.mkAttr "clickable" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Override the default delete icon element. Shown only if `onDelete` is set.
   static member inline deleteIcon (value: ReactElement) = Interop.mkAttr "deleteIcon" value
@@ -1576,10 +1640,12 @@ type collapse =
   static member inline collapsedHeight (value: int) = Interop.mkAttr "collapsedHeight" value
   /// The height of the container when collapsed.
   static member inline collapsedHeight (value: Styles.ICssUnit) = Interop.mkAttr "collapsedHeight" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// Enable this prop if you encounter 'Function components cannot be given refs', use `unstable_createStrictModeTheme`, and can't forward the ref in the passed `Component`.
+  static member inline disableStrictModeCompat (value: bool) = Interop.mkAttr "disableStrictModeCompat" value
   /// If `true`, the component will transition in.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
   /// The duration for the transition, in milliseconds.
@@ -1609,9 +1675,9 @@ type container =
   static member inline children (values: string seq) = Interop.mkAttr "children" values
   static member inline children (value: int) = Interop.mkAttr "children" value
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the left and right padding is removed.
   static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
@@ -1739,19 +1805,27 @@ type dialog =
   static member inline closeAfterTransition (value: bool) = Interop.mkAttr "closeAfterTransition" value
   /// *Inherited from `modal`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: Element option) = Interop.mkAttr "container" element
   /// *Inherited from `modal`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
   /// *Inherited from `modal`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
   /// *Inherited from `modal`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// *Inherited from `modal`*
   ///
@@ -1857,11 +1931,11 @@ type dialogContentText =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// *Inherited from `typography`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
+  /// The component used for the root node. Either a string to use a HTML element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `typography`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
+  /// The component used for the root node. Either a string to use a HTML element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `typography`*
   ///
@@ -1879,7 +1953,7 @@ type dialogContentText =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
-  /// The component maps the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module dialogContentText =
@@ -1961,9 +2035,9 @@ type dialogTitle =
 type divider =
   /// Absolutely position the element.
   static member inline absolute (value: bool) = Interop.mkAttr "absolute" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, a vertical divider will have the correct height when used in flex container. (By default, a vertical divider will have a calculated height of `0px` if it is the child of a flex container.)
   static member inline flexItem (value: bool) = Interop.mkAttr "flexItem" value
@@ -2091,11 +2165,11 @@ type expansionPanel =
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -2179,13 +2253,13 @@ type expansionPanelSummary =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -2246,9 +2320,9 @@ type fab =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the button.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -2328,6 +2402,8 @@ module fab =
 type fade =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
+  /// Enable this prop if you encounter 'Function components cannot be given refs', use `unstable_createStrictModeTheme`, and can't forward the ref in the child component.
+  static member inline disableStrictModeCompat (value: bool) = Interop.mkAttr "disableStrictModeCompat" value
   /// If `true`, the component will transition in.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
   /// The duration for the transition, in milliseconds.
@@ -2356,9 +2432,9 @@ type filledInput =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -2436,9 +2512,9 @@ type formControl =
   static member inline children (element: ReactElement) = prop.children element
   /// The contents of the form control.
   static member inline children (elements: ReactElement seq) = prop.children elements
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the label, input and helper text should be displayed in a disabled state.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -2582,9 +2658,9 @@ type formHelperText =
   ///
   /// If `' '` is provided, the component reserves one line height for displaying a future message.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the helper text should be displayed in a disabled state.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -2626,9 +2702,9 @@ type formLabel =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the label should be displayed in a disabled state.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -2664,9 +2740,9 @@ type grid =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*.
   static member inline container (value: bool) = Interop.mkAttr "container" value
@@ -2850,9 +2926,9 @@ type gridList =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Number of columns.
   static member inline cols (value: int) = Interop.mkAttr "cols" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Number of px for the spacing between tiles.
   static member inline spacing (value: int) = Interop.mkAttr "spacing" value
@@ -2881,9 +2957,9 @@ type gridListTile =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Width of the tile in number of grid cells.
   static member inline cols (value: int) = Interop.mkAttr "cols" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Height of the tile in number of grid cells.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
@@ -2939,6 +3015,8 @@ module gridListTileBar =
 type grow =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
+  /// Enable this prop if you encounter 'Function components cannot be given refs', use `unstable_createStrictModeTheme`, and can't forward the ref in the child component.
+  static member inline disableStrictModeCompat (value: bool) = Interop.mkAttr "disableStrictModeCompat" value
   /// If `true`, show the component; triggers the enter or exit animation.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
   /// The duration for the transition, in milliseconds.
@@ -3042,9 +3120,9 @@ type icon =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The name of the icon font ligature.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 module icon =
@@ -3102,13 +3180,13 @@ type iconButton =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -3186,9 +3264,9 @@ type input =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -3274,9 +3352,9 @@ type inputAdornment =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component, normally an `IconButton` or string.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Disable pointer events on the root. This allows for the content of the adornment to focus the input on click.
   static member inline disablePointerEvents (value: bool) = Interop.mkAttr "disablePointerEvents" value
@@ -3317,9 +3395,9 @@ type inputBase =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -3415,11 +3493,11 @@ type inputLabel =
   static member inline shrink (value: bool) = Interop.mkAttr "shrink" value
   /// *Inherited from `formLabel`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `formLabel`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `formLabel`*
   ///
@@ -3487,11 +3565,11 @@ type link =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the link.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -3513,7 +3591,7 @@ type link =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
-  /// The component maps the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module link =
@@ -3571,9 +3649,9 @@ type list =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The prop is available to descendant components as the `dense` context.
   static member inline dense (value: bool) = Interop.mkAttr "dense" value
@@ -3611,9 +3689,9 @@ type listItem =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component. If a `ListItemSecondaryAction` is used it must be the last child.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
+  /// The component used for the root node. Either a string to use a HTML element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
+  /// The component used for the root node. Either a string to use a HTML element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The container component used when a `ListItemSecondaryAction` is the last child.
   static member inline ContainerComponent (value: ReactElementType) = Interop.mkAttr "ContainerComponent" value
@@ -3648,7 +3726,17 @@ type listItemAvatar =
 [<Erase>]
 type listItemIcon =
   /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
-  static member inline children (value: ReactElement) = Interop.mkAttr "children" value
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component, normally `Icon`, `SvgIcon`, or a `@material-ui/icons` SVG icon element.
+  static member inline children (value: float) = Interop.mkAttr "children" value
 
 
 [<Erase>]
@@ -3729,9 +3817,9 @@ type listSubheader =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the List Subheader will not have gutters.
   static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
@@ -3752,11 +3840,11 @@ module listSubheader =
 
 [<Erase>]
 type menu =
-  /// The DOM element used to set the position of the menu.
+  /// A HTML element, or a function that returns it. It's used to set the position of the menu.
   static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
-  /// The DOM element used to set the position of the menu.
-  static member inline anchorEl (handler: unit -> Element option) = Interop.mkAttr "anchorEl" handler
-  /// The DOM element used to set the position of the menu.
+  /// A HTML element, or a function that returns it. It's used to set the position of the menu.
+  static member inline anchorEl (getElement: unit -> Element option) = Interop.mkAttr "anchorEl" getElement
+  /// A HTML element, or a function that returns it. It's used to set the position of the menu.
   static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled children are not focusable. If you set this prop to `false` focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
@@ -3852,19 +3940,27 @@ type menu =
   static member inline anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
   /// *Inherited from `popover`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: Element option) = Interop.mkAttr "container" element
   /// *Inherited from `popover`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
   /// *Inherited from `popover`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
   /// *Inherited from `popover`*
   ///
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// *Inherited from `popover`*
   ///
@@ -3934,7 +4030,7 @@ type menu =
   static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
   /// *Inherited from `modal`*
   ///
-  /// If `true`, clicking the backdrop will not fire any callback.
+  /// If `true`, clicking the backdrop will not fire `onClose`.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
   /// *Inherited from `modal`*
   ///
@@ -3944,7 +4040,7 @@ type menu =
   static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
   /// *Inherited from `modal`*
   ///
-  /// If `true`, hitting escape will not fire any callback.
+  /// If `true`, hitting escape will not fire `onClose`.
   static member inline disableEscapeKeyDown (value: bool) = Interop.mkAttr "disableEscapeKeyDown" value
   /// *Inherited from `modal`*
   ///
@@ -4046,9 +4142,9 @@ type menuItem =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Menu item contents.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, compact vertical padding designed for keyboard and mouse input will be used.
   static member inline dense (value: bool) = Interop.mkAttr "dense" value
@@ -4118,11 +4214,11 @@ type menuList =
   static member inline disableListWrap (value: bool) = Interop.mkAttr "disableListWrap" value
   /// *Inherited from `list`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `list`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `list`*
   ///
@@ -4202,11 +4298,11 @@ type mobileStepper =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -4246,25 +4342,33 @@ type modal =
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// When set to true the Modal waits until a nested Transition is completed before closing.
   static member inline closeAfterTransition (value: bool) = Interop.mkAttr "closeAfterTransition" value
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: Element option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
   ///
   /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
   static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
-  /// If `true`, clicking the backdrop will not fire any callback.
+  /// If `true`, clicking the backdrop will not fire `onClose`.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
   /// If `true`, the modal will not prevent focus from leaving the modal while open.
   ///
   /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
   static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
-  /// If `true`, hitting escape will not fire any callback.
+  /// If `true`, hitting escape will not fire `onClose`.
   static member inline disableEscapeKeyDown (value: bool) = Interop.mkAttr "disableEscapeKeyDown" value
   /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
   static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
@@ -4380,11 +4484,11 @@ type nativeSelect =
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
@@ -4515,7 +4619,7 @@ type outlinedInput =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The id of the `input` element.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
@@ -4653,7 +4757,7 @@ type pagination =
   ///
   /// **Signature:**
   ///
-  /// `function(params: object) => ReactNode`
+  /// `function(params: PaginationRenderItemParams) => ReactNode`
   ///
   /// *params:* The props to spread on a PaginationItem.
   static member inline renderItem (render: PaginationRenderItemParams -> ReactElement) = Interop.mkAttr "renderItem" (Func<_,_> (fun p -> render p))
@@ -4671,9 +4775,9 @@ module pagination =
   /// The active color.
   [<Erase>]
   type color =
-    static member inline default' = Interop.mkAttr "color" "default"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
+    static member inline standard = Interop.mkAttr "color" "standard"
 
   /// The shape of the pagination items.
   [<Erase>]
@@ -4697,9 +4801,9 @@ module pagination =
 
 [<Erase>]
 type paginationItem =
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the item will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -4764,9 +4868,9 @@ type paper =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
@@ -4788,11 +4892,11 @@ type popover =
   static member inline action (ref: IRefValue<PopoverActions option>) = Interop.mkAttr "action" ref
   /// A ref for imperative actions. It currently only supports updatePosition() action.
   static member inline action (handler: PopoverActions -> unit) = Interop.mkAttr "action" handler
-  /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
+  /// A HTML element, or a function that returns it. It's used to set the position of the popover.
   static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
-  /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
-  static member inline anchorEl (handler: unit -> Element option) = Interop.mkAttr "anchorEl" handler
-  /// This is the DOM element, or a function that returns the DOM element, that may be used to set the position of the popover.
+  /// A HTML element, or a function that returns it. It's used to set the position of the popover.
+  static member inline anchorEl (getElement: unit -> Element option) = Interop.mkAttr "anchorEl" getElement
+  /// A HTML element, or a function that returns it. It's used to set the position of the popover.
   static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
   ///
@@ -4824,13 +4928,21 @@ type popover =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: Element option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
+  ///
+  /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// The elevation of the popover.
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
@@ -4902,7 +5014,7 @@ type popover =
   static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
   /// *Inherited from `modal`*
   ///
-  /// If `true`, clicking the backdrop will not fire any callback.
+  /// If `true`, clicking the backdrop will not fire `onClose`.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
   /// *Inherited from `modal`*
   ///
@@ -4912,7 +5024,7 @@ type popover =
   static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
   /// *Inherited from `modal`*
   ///
-  /// If `true`, hitting escape will not fire any callback.
+  /// If `true`, hitting escape will not fire `onClose`.
   static member inline disableEscapeKeyDown (value: bool) = Interop.mkAttr "disableEscapeKeyDown" value
   /// *Inherited from `modal`*
   ///
@@ -4990,17 +5102,15 @@ module popover =
 
 [<Erase>]
 type popper =
-  /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
-  ///
-  /// The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
+  /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
   static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
-  /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
-  ///
-  /// The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
-  static member inline anchorEl (handler: unit -> Element option) = Interop.mkAttr "anchorEl" handler
-  /// This is the reference element, or a function that returns the reference element, that may be used to set the position of the popover. The return value will passed as the reference object of the Popper instance.
-  ///
-  /// The reference element should be an HTML Element instance or a [referenceObject](https://popper.js.org/docs/v1/#referenceObject).
+  /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
+  static member inline anchorEl (getElement: unit -> Element option) = Interop.mkAttr "anchorEl" getElement
+  /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
+  static member inline anchorEl (referenceObject: obj) = Interop.mkAttr "anchorEl" referenceObject
+  /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
+  static member inline anchorEl (getReferenceObject: unit -> obj) = Interop.mkAttr "anchorEl" getReferenceObject
+  /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
   static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// Popper render function or node.
   static member inline children (element: ReactElement) = prop.children element
@@ -5014,13 +5124,21 @@ type popper =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Popper render function or node.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: Element option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
-  /// A node, component instance, or function that returns either. The `container` will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
   static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
@@ -5074,13 +5192,21 @@ type portal =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The children to render into the `container`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: Element option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (element: ReactElement option) = Interop.mkAttr "container" element
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
-  /// A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
+  /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
+  ///
+  /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// Disable the portal behavior. The children stay within it's parent DOM hierarchy.
   static member inline disablePortal (value: bool) = Interop.mkAttr "disablePortal" value
@@ -5140,13 +5266,13 @@ type radio =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -5464,7 +5590,7 @@ type select =
   static member inline displayEmpty (value: bool) = Interop.mkAttr "displayEmpty" value
   /// The icon that displays the arrow.
   static member inline IconComponent (value: ReactElementType) = Interop.mkAttr "IconComponent" value
-  /// The `id` of the wrapper element or the `select` elment when `native`.
+  /// The `id` of the wrapper element or the `select` element when `native`.
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// An `Input` element; does not have to be a material-ui specific `Input`.
   static member inline input (value: ReactElement) = Interop.mkAttr "input" value
@@ -5614,11 +5740,11 @@ type select =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: string) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
-  /// The component used for the `input` element. Either a string to use a DOM element or a component.
+  /// The component used for the `input` element. Either a string to use a HTML element or a component.
   static member inline inputComponent (value: ReactElementType) = Interop.mkAttr "inputComponent" value
   /// *Inherited from `input`*
   ///
@@ -5703,9 +5829,9 @@ module select =
 
 [<Erase>]
 type skeleton =
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card.
   static member inline height (value: int) = Interop.mkAttr "height" value
@@ -5767,9 +5893,9 @@ type slider =
   static member inline ariaLabelledby (value: string) = Interop.mkAttr "aria-labelledby" value
   /// A string value that provides a user-friendly name for the current value of the slider.
   static member inline ariaValuetext (value: string) = Interop.mkAttr "aria-valuetext" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The default element value. Use when the component is not controlled.
   static member inline defaultValue (value: int) = Interop.mkAttr "defaultValue" value
@@ -6206,11 +6332,11 @@ type snackbarContent =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -6556,13 +6682,13 @@ type stepButton =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -6718,11 +6844,11 @@ type stepper =
   static member inline nonLinear (value: bool) = Interop.mkAttr "nonLinear" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `paper`*
   ///
@@ -6764,9 +6890,9 @@ type svgIcon =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Node passed into the SVG element.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Applies a color attribute to the SVG element.
   static member inline htmlColor (value: string) = Interop.mkAttr "htmlColor" value
@@ -6947,13 +7073,13 @@ type switch =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -7052,13 +7178,13 @@ type tab =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -7096,6 +7222,24 @@ module tab =
 
 
 [<Erase>]
+type tabContext =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The value of the currently selected `Tab`.
+  static member inline value (value: string) = Interop.mkAttr "value" value
+
+
+[<Erase>]
 type table =
   /// The content of the table, normally `TableHead` and `TableBody`.
   static member inline children (element: ReactElement) = prop.children element
@@ -7109,9 +7253,9 @@ type table =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the table, normally `TableHead` and `TableBody`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Set the header sticky.
   ///
@@ -7148,9 +7292,9 @@ type tableBody =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component, normally `TableRow`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
@@ -7168,9 +7312,9 @@ type tableCell =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The table cell contents.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Set scope attribute.
   static member inline scope (value: string) = Interop.mkAttr "scope" value
@@ -7230,9 +7374,9 @@ type tableContainer =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The table itself, normally ``
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
@@ -7250,9 +7394,9 @@ type tableFooter =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component, normally `TableRow`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
@@ -7270,15 +7414,15 @@ type tableHead =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component, normally `TableRow`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
 
 
 [<Erase>]
 type tablePagination =
-  /// The component used for displaying the actions. Either a string to use a DOM element or a component.
+  /// The component used for displaying the actions. Either a string to use a HTML element or a component.
   static member inline ActionsComponent (value: ReactElementType) = Interop.mkAttr "ActionsComponent" value
   /// Props applied to the back arrow [`IconButton`](https://material-ui.com/api/icon-button/) component.
   static member inline backIconButtonProps (props: IReactProperty list) = Interop.mkAttr "backIconButtonProps" (createObj !!props)
@@ -7286,9 +7430,9 @@ type tablePagination =
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline backIconButtonText (value: string) = Interop.mkAttr "backIconButtonText" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The total number of rows.
   ///
@@ -7301,27 +7445,7 @@ type tablePagination =
   /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
-  static member inline labelRowsPerPage (value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
-  /// Customize the rows per page label.
-  ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
-  static member inline labelRowsPerPage (values: ReactElement seq) = Interop.mkAttr "labelRowsPerPage" values
-  /// Customize the rows per page label.
-  ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: string) = Interop.mkAttr "labelRowsPerPage" value
-  /// Customize the rows per page label.
-  ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
-  static member inline labelRowsPerPage (values: string seq) = Interop.mkAttr "labelRowsPerPage" values
-  /// Customize the rows per page label.
-  ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
-  static member inline labelRowsPerPage (value: int) = Interop.mkAttr "labelRowsPerPage" value
-  /// Customize the rows per page label.
-  ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
-  static member inline labelRowsPerPage (value: float) = Interop.mkAttr "labelRowsPerPage" value
   /// Props applied to the next arrow [`IconButton`](https://material-ui.com/api/icon-button/) element.
   static member inline nextIconButtonProps (props: IReactProperty list) = Interop.mkAttr "nextIconButtonProps" (createObj !!props)
   /// Text label for the next arrow icon button.
@@ -7428,9 +7552,9 @@ type tableRow =
   static member inline children (element: ReactElement) = prop.children element
   /// Should be valid `<tr>` children such as `TableCell`.
   static member inline children (elements: ReactElement seq) = prop.children elements
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the table row will shade on hover.
   static member inline hover (value: bool) = Interop.mkAttr "hover" value
@@ -7472,13 +7596,13 @@ type tableSortLabel =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -7532,11 +7656,165 @@ module tableSortLabel =
 
 
 [<Erase>]
+type tabList =
+  static member inline children (element: ReactElement) = prop.children element
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// *Inherited from `tabs`*
+  ///
+  /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
+  static member inline action (ref: IRefValue<TabsActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `tabs`*
+  ///
+  /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
+  static member inline action (handler: TabsActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `tabs`*
+  ///
+  /// The label for the Tabs as a string.
+  static member inline ariaLabel (value: string) = Interop.mkAttr "aria-label" value
+  /// *Inherited from `tabs`*
+  ///
+  /// An id or list of ids separated by a space that label the Tabs.
+  static member inline ariaLabelledby (value: string) = Interop.mkAttr "aria-labelledby" value
+  /// *Inherited from `tabs`*
+  ///
+  /// If `true`, the tabs will be centered. This property is intended for large views.
+  static member inline centered (value: bool) = Interop.mkAttr "centered" value
+  /// *Inherited from `tabs`*
+  ///
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `tabs`*
+  ///
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `tabs`*
+  ///
+  /// Callback fired when the value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: any) => void`
+  ///
+  /// *event:* The event source of the callback
+  ///
+  /// *value:* We default to the index of the child (number)
+  static member inline onChange (handler: Event -> 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
+  /// *Inherited from `tabs`*
+  ///
+  /// Callback fired when the value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: any) => void`
+  ///
+  /// *event:* The event source of the callback
+  ///
+  /// *value:* We default to the index of the child (number)
+  static member inline onChange (handler: 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Inherited from `tabs`*
+  ///
+  /// The component used to render the scroll buttons.
+  static member inline ScrollButtonComponent (value: ReactElementType) = Interop.mkAttr "ScrollButtonComponent" value
+  /// *Inherited from `tabs`*
+  ///
+  /// If `true` the selected tab changes on focus. Otherwise it only changes on activation.
+  static member inline selectionFollowsFocus (value: bool) = Interop.mkAttr "selectionFollowsFocus" value
+  /// *Inherited from `tabs`*
+  ///
+  /// Props applied to the tab indicator element.
+  static member inline TabIndicatorProps (props: IReactProperty list) = Interop.mkAttr "TabIndicatorProps" (createObj !!props)
+  /// *Inherited from `tabs`*
+  ///
+  /// Props applied to the [`TabScrollButton`](https://material-ui.com/api/tab-scroll-button/) element.
+  static member inline TabScrollButtonProps (props: IReactProperty list) = Interop.mkAttr "TabScrollButtonProps" (createObj !!props)
+  /// *Inherited from `tabs`*
+  ///
+  /// The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`.
+  static member inline value (value: 'a) = Interop.mkAttr "value" value
+
+module tabList =
+
+  /// *Inherited from `tabs`*
+  ///
+  /// Determines the color of the indicator.
+  [<Erase>]
+  type indicatorColor =
+    static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
+    static member inline primary = Interop.mkAttr "indicatorColor" "primary"
+
+  /// *Inherited from `tabs`*
+  ///
+  /// The tabs orientation (layout flow direction).
+  [<Erase>]
+  type orientation =
+    static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
+    static member inline vertical = Interop.mkAttr "orientation" "vertical"
+
+  /// *Inherited from `tabs`*
+  ///
+  /// Determine behavior of scroll buttons when tabs are set to scroll:
+  ///
+  /// - `auto` will only present them when not all the items are visible. - `desktop` will only present them on medium and larger viewports. - `on` will always present them. - `off` will never present them.
+  [<Erase>]
+  type scrollButtons =
+    static member inline auto = Interop.mkAttr "scrollButtons" "auto"
+    static member inline desktop = Interop.mkAttr "scrollButtons" "desktop"
+    static member inline on = Interop.mkAttr "scrollButtons" "on"
+    static member inline off = Interop.mkAttr "scrollButtons" "off"
+
+  /// *Inherited from `tabs`*
+  ///
+  /// Determines the color of the `Tab`.
+  [<Erase>]
+  type textColor =
+    static member inline secondary = Interop.mkAttr "textColor" "secondary"
+    static member inline primary = Interop.mkAttr "textColor" "primary"
+    static member inline inherit' = Interop.mkAttr "textColor" "inherit"
+
+  /// *Inherited from `tabs`*
+  ///
+  /// Determines additional display behavior of the tabs:
+  ///
+  ///  - `scrollable` will invoke scrolling properties and allow for horizontally scrolling (or swiping) of the tab bar. -`fullWidth` will make the tabs grow to use all the available space, which should be used for small views, like on mobile. - `standard` will render the default state.
+  [<Erase>]
+  type variant =
+    static member inline standard = Interop.mkAttr "variant" "standard"
+    static member inline scrollable = Interop.mkAttr "variant" "scrollable"
+    static member inline fullWidth = Interop.mkAttr "variant" "fullWidth"
+
+
+[<Erase>]
+type tabPanel =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The `value` of the corresponding `Tab`. Must use the index of the `Tab` when no `value` was passed to `Tab`.
+  static member inline value (value: string) = Interop.mkAttr "value" value
+
+
+[<Erase>]
 type tabs =
   /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
   static member inline action (ref: IRefValue<TabsActions option>) = Interop.mkAttr "action" ref
   /// Callback fired when the component mounts. This is useful when you want to trigger an action programmatically. It supports two actions: `updateIndicator()` and `updateScrollButtons()`
   static member inline action (handler: TabsActions -> unit) = Interop.mkAttr "action" handler
+  /// The label for the Tabs as a string.
+  static member inline ariaLabel (value: string) = Interop.mkAttr "aria-label" value
+  /// An id or list of ids separated by a space that label the Tabs.
+  static member inline ariaLabelledby (value: string) = Interop.mkAttr "aria-labelledby" value
   /// If `true`, the tabs will be centered. This property is intended for large views.
   static member inline centered (value: bool) = Interop.mkAttr "centered" value
   /// The content of the component.
@@ -7551,9 +7829,9 @@ type tabs =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Callback fired when the value changes.
   ///
@@ -7577,8 +7855,12 @@ type tabs =
   static member inline onChange (handler: 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
   /// The component used to render the scroll buttons.
   static member inline ScrollButtonComponent (value: ReactElementType) = Interop.mkAttr "ScrollButtonComponent" value
+  /// If `true` the selected tab changes on focus. Otherwise it only changes on activation.
+  static member inline selectionFollowsFocus (value: bool) = Interop.mkAttr "selectionFollowsFocus" value
   /// Props applied to the tab indicator element.
   static member inline TabIndicatorProps (props: IReactProperty list) = Interop.mkAttr "TabIndicatorProps" (createObj !!props)
+  /// Props applied to the [`TabScrollButton`](https://material-ui.com/api/tab-scroll-button/) element.
+  static member inline TabScrollButtonProps (props: IReactProperty list) = Interop.mkAttr "TabScrollButtonProps" (createObj !!props)
   /// The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
 
@@ -7621,6 +7903,38 @@ module tabs =
     static member inline standard = Interop.mkAttr "variant" "standard"
     static member inline scrollable = Interop.mkAttr "variant" "scrollable"
     static member inline fullWidth = Interop.mkAttr "variant" "fullWidth"
+
+
+[<Erase>]
+type tabScrollButton =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// If `true`, the element will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+
+module tabScrollButton =
+
+  /// Which direction should the button indicate?
+  [<Erase>]
+  type direction =
+    static member inline left = Interop.mkAttr "direction" "left"
+    static member inline right = Interop.mkAttr "direction" "right"
+
+  /// The tabs orientation (layout flow direction).
+  [<Erase>]
+  type orientation =
+    static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
+    static member inline vertical = Interop.mkAttr "orientation" "vertical"
 
 
 [<Erase>]
@@ -7727,11 +8041,11 @@ type textField =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `formControl`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `formControl`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `formControl`*
   ///
@@ -7809,13 +8123,13 @@ type toggleButton =
   static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
@@ -7889,8 +8203,12 @@ type toggleButtonGroup =
   /// *value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. If no value is selected and `exclusive` is true the value is null; when false an empty array.
   static member inline onChange (handler: 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
   /// The currently selected value within the group or an array of selected values when `exclusive` is false.
+  ///
+  /// The value must have reference equality with the option in order to be selected.
   static member inline value (value: 'toggleButtonValue option) = Interop.mkAttr "value" value
   /// The currently selected value within the group or an array of selected values when `exclusive` is false.
+  ///
+  /// The value must have reference equality with the option in order to be selected.
   static member inline value (values: 'toggleButtonValue []) = Interop.mkAttr "value" values
 
 module toggleButtonGroup =
@@ -7917,9 +8235,9 @@ type toolbar =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, disables gutter padding.
   static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
@@ -8053,6 +8371,10 @@ type treeItem =
   static member inline label (value: float) = Interop.mkAttr "label" value
   /// The id of the node.
   static member inline nodeId (value: string) = Interop.mkAttr "nodeId" value
+  /// `onClick` handler for the icon container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
+  static member inline onIconClick (handler: Event -> unit) = Interop.mkAttr "onIconClick" handler
+  /// `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
+  static member inline onLabelClick (handler: Event -> unit) = Interop.mkAttr "onLabelClick" handler
   /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
@@ -8143,9 +8465,9 @@ type typography =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
+  /// The component used for the root node. Either a string to use a HTML element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a DOM element or a component. Overrides the behavior of the `variantMapping` prop.
+  /// The component used for the root node. Either a string to use a HTML element or a component. Overrides the behavior of the `variantMapping` prop.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the text will have a bottom margin.
   static member inline gutterBottom (value: bool) = Interop.mkAttr "gutterBottom" value
@@ -8155,7 +8477,7 @@ type typography =
   static member inline noWrap (value: bool) = Interop.mkAttr "noWrap" value
   /// If `true`, the text will have a bottom margin.
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
-  /// The component maps the variant prop to a range of different DOM element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
+  /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
 module typography =
@@ -8211,6 +8533,8 @@ module typography =
 type zoom =
   /// A single child content element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
+  /// Enable this prop if you encounter 'Function components cannot be given refs', use `unstable_createStrictModeTheme`, and can't forward the ref in the child component.
+  static member inline disableStrictModeCompat (value: bool) = Interop.mkAttr "disableStrictModeCompat" value
   /// If `true`, the component will transition in.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
   /// The duration for the transition, in milliseconds.

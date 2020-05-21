@@ -351,6 +351,8 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the root element if `variant="contained"`.
       static member inline contained(className: string) : IReactProperty = unbox ("classes.contained", className)
+      /// Styles applied to the root element if `disableElevation={true}`.
+      static member inline disableElevation(className: string) : IReactProperty = unbox ("classes.disableElevation", className)
       /// Pseudo-class applied to child elements if `disabled={true}`.
       static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
       /// Styles applied to the root element if `fullWidth={true}`.
@@ -976,7 +978,7 @@ module classesProps =
     /// Override or extend the styles applied to the component.
     [<Erase>]
     type classes =
-      /// Styles applied to the root element
+      /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the root element if `container={true}`.
       static member inline container(className: string) : IReactProperty = unbox ("classes.container", className)
@@ -1516,7 +1518,7 @@ module classesProps =
     /// `classes` prop applied to the [`Popover`](https://material-ui.com/api/popover/) element.
     [<Erase>]
     type PopoverClasses =
-      /// Styles applied to the root element
+      /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("PopoverClasses.root", className)
       /// Styles applied to the `Paper` component.
       static member inline paper(className: string) : IReactProperty = unbox ("PopoverClasses.paper", className)
@@ -1670,7 +1672,7 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the root element if `square={false}`.
       static member inline rounded(className: string) : IReactProperty = unbox ("classes.rounded", className)
-      /// Styles applied to the root element if `variant="outlined"`
+      /// Styles applied to the root element if `variant="outlined"`.
       static member inline outlined(className: string) : IReactProperty = unbox ("classes.outlined", className)
       static member inline elevation0(className: string) : IReactProperty = unbox ("classes.elevation0", className)
       static member inline elevation1(className: string) : IReactProperty = unbox ("classes.elevation1", className)
@@ -1704,7 +1706,7 @@ module classesProps =
     /// Override or extend the styles applied to the component.
     [<Erase>]
     type classes =
-      /// Styles applied to the root element
+      /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the `Paper` component.
       static member inline paper(className: string) : IReactProperty = unbox ("classes.paper", className)
@@ -2087,9 +2089,9 @@ module classesProps =
     type classes =
       /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
-      /// Styles applied to the root element if `orientation="horizontal".
+      /// Styles applied to the root element if `orientation="horizontal"`.
       static member inline horizontal(className: string) : IReactProperty = unbox ("classes.horizontal", className)
-      /// Styles applied to the root element if `orientation="vertical".
+      /// Styles applied to the root element if `orientation="vertical"`.
       static member inline vertical(className: string) : IReactProperty = unbox ("classes.vertical", className)
       /// Styles applied to the `Typography` component which wraps `children`.
       static member inline label(className: string) : IReactProperty = unbox ("classes.label", className)
@@ -2346,6 +2348,15 @@ module classesProps =
       static member inline iconDirectionAsc(className: string) : IReactProperty = unbox ("classes.iconDirectionAsc", className)
   
   
+  module tabPanel =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+  
+  
   module tabs =
   
     /// Override or extend the styles applied to the component.
@@ -2373,6 +2384,19 @@ module classesProps =
       static member inline scrollButtonsDesktop(className: string) : IReactProperty = unbox ("classes.scrollButtonsDesktop", className)
       /// Styles applied to the `TabIndicator` component.
       static member inline indicator(className: string) : IReactProperty = unbox ("classes.indicator", className)
+  
+  
+  module tabScrollButton =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `orientation="vertical"`.
+      static member inline vertical(className: string) : IReactProperty = unbox ("classes.vertical", className)
+      /// Pseudo-class applied to the root element if `disabled={true}`.
+      static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
   
   
   module textField =
@@ -2412,10 +2436,6 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the children.
       static member inline grouped(className: string) : IReactProperty = unbox ("classes.grouped", className)
-      /// Styles applied to the children if `size="small"`.
-      static member inline groupedSizeSmall(className: string) : IReactProperty = unbox ("classes.groupedSizeSmall", className)
-      /// Styles applied to the children if `size="large"`.
-      static member inline groupedSizeLarge(className: string) : IReactProperty = unbox ("classes.groupedSizeLarge", className)
   
   
   module toolbar =

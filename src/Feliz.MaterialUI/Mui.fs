@@ -621,6 +621,11 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  static member inline listItemIcon (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ListItemIcon") [ Feliz.MaterialUI.listItemIcon.children (children :> ReactElement seq) ]
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
   static member inline listItemSecondaryAction props = createElement (importDefault "@material-ui/core/ListItemSecondaryAction") props
 
   /// The `ref` is forwarded to the root element.
@@ -964,6 +969,20 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline tab props = createElement (importDefault "@material-ui/core/Tab") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The component cannot hold a ref.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tabContext props = createElement (importDefault "@material-ui/lab/TabContext") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The component cannot hold a ref.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tabContext (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TabContext") [ Feliz.MaterialUI.tabContext.children (children :> ReactElement seq) ]
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -1054,6 +1073,34 @@ type Mui =
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline tableSortLabel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TableSortLabel") [ Feliz.MaterialUI.tableSortLabel.children (children :> ReactElement seq) ]
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([Tabs](https://material-ui.com/api/tabs/)).
+  static member inline tabList props = createElement (importDefault "@material-ui/lab/TabList") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([Tabs](https://material-ui.com/api/tabs/)).
+  static member inline tabList (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TabList") [ Feliz.MaterialUI.tabList.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tabPanel props = createElement (importDefault "@material-ui/lab/TabPanel") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tabPanel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TabPanel") [ Feliz.MaterialUI.tabPanel.children (children :> ReactElement seq) ]
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
@@ -1063,6 +1110,16 @@ type Mui =
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline tabs (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Tabs") [ Feliz.MaterialUI.tabs.children (children :> ReactElement seq) ]
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tabScrollButton props = createElement (importDefault "@material-ui/core/TabScrollButton") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline tabScrollButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TabScrollButton") [ Feliz.MaterialUI.tabScrollButton.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///

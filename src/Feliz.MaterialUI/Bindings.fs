@@ -438,6 +438,12 @@ type AutocompleteInputChangeReason =
   | Clear
 
 [<StringEnum; RequireQualifiedAccess>]
+type AutocompleteHighlightChangeReason =
+  | Keyboard
+  | Auto
+  | Mouse
+
+[<StringEnum; RequireQualifiedAccess>]
 type AutocompleteMatchFrom =
   | Any
   | Start
