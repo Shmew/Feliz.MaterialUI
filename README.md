@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 1.0.1
+
+* Loosened FSharp.Core version requirements
+
 ### 1.0.0
 
 * Updated for Feliz 1.1, @material-ui/core 4.9.14, and @material-ui/lab 4.0.0-alpha.53

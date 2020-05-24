@@ -5,8 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.0.0</Version>
-    <PackageReleaseNotes>Updated for Feliz 1.1, @material-ui/core 4.9.14, and @material-ui/lab 4.0.0-alpha.53</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Loosened FSharp.Core version requirements</PackageReleaseNotes>
   </PropertyGroup>
   
   <ItemGroup>
