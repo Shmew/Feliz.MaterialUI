@@ -47,7 +47,7 @@ type Msg =
 
 
 let init () = {
-  CurrentPath = []
+  CurrentPath = Router.currentUrl ()
   CustomThemeMode = None
 }
 
