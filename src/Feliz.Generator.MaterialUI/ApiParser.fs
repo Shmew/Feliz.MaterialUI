@@ -164,10 +164,16 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "autocomplete", "renderTags", "func" ->
         [RegularPropOverload.create "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)" "(Func<_,_,_> render)"]
 
-    | "autocomplete", ("defaultValue" | "value"), "any | array" ->
+    | "autocomplete", ("defaultValue" | "value"), "props.multiple ? [] : null" ->
         [
           RegularPropOverload.create "(value: 'option [])" "value"
           RegularPropOverload.create "(value: 'option)" "value" |> RegularPropOverload.setExtension true
+        ]
+
+    | "accordion", "onChange", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> bool -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: bool -> unit)" "(Func<_,_,_> (fun _ b -> handler b))"
         ]
 
     | "popover", "anchorPosition",  "{ left: number, top: number }" ->
@@ -577,7 +583,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | ("filledInput" | "input" | "inputBase" | "outlinedInput"), ("startAdornment" | "endAdornment"), "node" ->
         [RegularPropOverload.create "(element: ReactElement)" "element"]
 
-    | ("formControl" | "tableRow"), "children", "node" ->
+    | ("formControl" | "tableRow" | "container"), "children", "node" ->
         [
           RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element"
           RegularPropOverload.createCustom "(elements: ReactElement seq)" "prop.children elements"
@@ -613,6 +619,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | _, _, "any" ->
         [RegularPropOverload.create "(value: 'a)" "value"]
+
+    | _, _, "func" ->
+        [RegularPropOverload.create "(func: unit -> 'a)" "func"]
 
     | _ when isProbablyEnumProp ->
         []

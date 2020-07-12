@@ -7,6 +7,7 @@
     <Authors>Christer van der Meeren</Authors>
     <Version>1.0.1</Version>
     <PackageReleaseNotes>Loosened FSharp.Core version requirements</PackageReleaseNotes>
+    <PackageVersion>1.1.0</PackageVersion>
   </PropertyGroup>
   
   <ItemGroup>
