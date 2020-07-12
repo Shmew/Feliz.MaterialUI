@@ -798,7 +798,7 @@ let parseComponent (htmlPathOrUrl: string) =
             p.MethodName = "children"
             && p.RegularOverloads |> List.exists (fun o -> o.ParamsCode = "(elements: ReactElement seq)")
         )
-      if not hasReactElementSeqChildren then comp
+      if (not hasReactElementSeqChildren) && comp.MethodName <> "container" then comp
       else
         // Use #seq<ReactElement> to help overload resolution when using empty lists
         let overload = ComponentOverload.create "(children: #seq<ReactElement>)" (sprintf "[ Feliz.MaterialUI.%s.children (children :> ReactElement seq) ]" comp.MethodName)
