@@ -1,5 +1,5 @@
 type project
-licenseExpression https://github.com/cmeeren/Feliz.MaterialUI/blob/master/LICENSE
+licenseExpression MIT
 projectUrl https://github.com/cmeeren/Feliz.MaterialUI
 tags
   f# fable bindings feliz react material-ui materialui
