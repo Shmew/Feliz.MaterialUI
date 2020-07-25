@@ -30,6 +30,11 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 1.1.0
+
+* Updated for @material-ui/core 4.11 and @material-ui/lab 4.0.0-alpha.56
+* Breaking: `type'` prop removed from `buttonBase` and all inheriting components; use `prop.type'` from Feliz instead
+
 ### 1.0.1
 
 * Loosened FSharp.Core version requirements

@@ -24,6 +24,184 @@ type themeProvider =
 
 
 [<Erase>]
+type accordion =
+  /// The content of the accordion.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the accordion.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the accordion.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the accordion.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the accordion.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the accordion.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// If `true`, expands the accordion by default.
+  static member inline defaultExpanded (value: bool) = Interop.mkAttr "defaultExpanded" value
+  /// If `true`, the accordion will be displayed in a disabled state.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// If `true`, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.
+  static member inline expanded (value: bool) = Interop.mkAttr "expanded" value
+  /// Callback fired when the expand/collapse state is changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, expanded: boolean) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *expanded:* The `expanded` state of the accordion.
+  static member inline onChange (handler: Event -> bool -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
+  /// Callback fired when the expand/collapse state is changed.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, expanded: boolean) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *expanded:* The `expanded` state of the accordion.
+  static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// If `true`, rounded corners are disabled.
+  static member inline square (value: bool) = Interop.mkAttr "square" value
+  /// The component used for the collapse effect. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
+  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+  static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `paper`*
+  ///
+  /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+
+module accordion =
+
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  [<Erase>]
+  type variant =
+    static member inline elevation = Interop.mkAttr "variant" "elevation"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+
+
+[<Erase>]
+type accordionActions =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// If `true`, the actions do not have additional margin.
+  static member inline disableSpacing (value: bool) = Interop.mkAttr "disableSpacing" value
+
+
+[<Erase>]
+type accordionDetails =
+  /// The content of the accordion details.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the accordion details.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the accordion details.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the accordion details.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the accordion details.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the accordion details.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
+type accordionSummary =
+  /// The content of the accordion summary.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the accordion summary.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the accordion summary.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the accordion summary.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the accordion summary.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the accordion summary.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The icon to display as the expand indicator.
+  static member inline expandIcon (element: ReactElement) = Interop.mkAttr "expandIcon" element
+  /// Props applied to the `IconButton` element wrapping the expand icon.
+  static member inline IconButtonProps (props: IReactProperty list) = Interop.mkAttr "IconButtonProps" (createObj !!props)
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (ref: IRefValue<ButtonBaseActions option>) = Interop.mkAttr "action" ref
+  /// *Inherited from `buttonBase`*
+  ///
+  /// A ref for imperative actions. It currently only supports `focusVisible()` action.
+  static member inline action (handler: ButtonBaseActions -> unit) = Interop.mkAttr "action" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripples will be centered. They won't start at the cursor interaction position.
+  static member inline centerRipple (value: bool) = Interop.mkAttr "centerRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  ///
+  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will be disabled.
+  static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the ripple effect will be disabled.
+  ///
+  /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`.
+  static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the touch ripple effect will be disabled.
+  static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// If `true`, the base button will have a keyboard focus ripple.
+  static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
+  /// *Inherited from `buttonBase`*
+  ///
+  /// Props applied to the `TouchRipple` element.
+  static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
+
+
+[<Erase>]
 type alert =
   /// The action to display. It renders after the message, at the end of the alert.
   static member inline action (value: ReactElement) = Interop.mkAttr "action" value
@@ -220,6 +398,8 @@ type autocomplete =
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
   /// The default input value. Use when the component is not controlled.
   static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" value
+  /// The default input value. Use when the component is not controlled.
+  static member inline defaultValue (value: 'option option) = Interop.mkAttr "defaultValue" value
   /// If `true`, the input can't be cleared.
   static member inline disableClearable (value: bool) = Interop.mkAttr "disableClearable" value
   /// If `true`, the popup won't close when a value is selected.
@@ -370,26 +550,50 @@ type autocomplete =
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: T, reason: string) => void`
+  /// `function(event: object, value: T | T[], reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
   /// *value:* The new value of the component.
   ///
   /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
-  static member inline onChange (handler: Event -> 'option -> AutocompleteOnChangeReason -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> handler)
+  static member inline onChange (handler: Event -> 'option [] -> AutocompleteOnChangeReason -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> handler)
   /// Callback fired when the value changes.
   ///
   /// **Signature:**
   ///
-  /// `function(event: object, value: T, reason: string) => void`
+  /// `function(event: object, value: T | T[], reason: string) => void`
   ///
   /// *event:* The event source of the callback.
   ///
   /// *value:* The new value of the component.
   ///
   /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
-  static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
+  static member inline onChange (handler: 'option [] -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
+  /// Callback fired when the value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: T | T[], reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value of the component.
+  ///
+  /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
+  static member inline onChange (handler: Event -> 'option option -> AutocompleteOnChangeReason -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> handler)
+  /// Callback fired when the value changes.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(event: object, value: T | T[], reason: string) => void`
+  ///
+  /// *event:* The event source of the callback.
+  ///
+  /// *value:* The new value of the component.
+  ///
+  /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
+  static member inline onChange (handler: 'option option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
   /// Callback fired when the popup requests to be closed. Use in controlled mode (see open).
   ///
   /// **Signature:**
@@ -524,6 +728,10 @@ type autocomplete =
   ///
   /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
   static member inline value (value: 'option []) = Interop.mkAttr "value" value
+  /// The value of the autocomplete.
+  ///
+  /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
+  static member inline value (value: 'option option) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -533,6 +741,30 @@ module autocompleteExtensions =
   type autocomplete with
     /// The default input value. Use when the component is not controlled.
     static member inline defaultValue (value: 'option) = Interop.mkAttr "defaultValue" value
+    /// Callback fired when the value changes.
+    ///
+    /// **Signature:**
+    ///
+    /// `function(event: object, value: T | T[], reason: string) => void`
+    ///
+    /// *event:* The event source of the callback.
+    ///
+    /// *value:* The new value of the component.
+    ///
+    /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
+    static member inline onChange (handler: Event -> 'option -> AutocompleteOnChangeReason -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> handler)
+    /// Callback fired when the value changes.
+    ///
+    /// **Signature:**
+    ///
+    /// `function(event: object, value: T | T[], reason: string) => void`
+    ///
+    /// *event:* The event source of the callback.
+    ///
+    /// *value:* The new value of the component.
+    ///
+    /// *reason:* One of "create-option", "select-option", "remove-option", "blur" or "clear".
+    static member inline onChange (handler: 'option -> unit) = Interop.mkAttr "onChange" (Func<_,_,_,_> (fun _ v _ -> handler v))
     /// The value of the autocomplete.
     ///
     /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
@@ -839,7 +1071,7 @@ type bottomNavigationAction =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -853,17 +1085,6 @@ type bottomNavigationAction =
   ///
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module bottomNavigationAction =
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -880,9 +1101,9 @@ type breadcrumbs =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The breadcrumb children.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the root node. Either a string to use a HTML element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// The component used for the root node. Either a string to use a HTML element or a component. By default, it maps the variant to a good default headline component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Override the default label for the expand button.
   ///
@@ -930,7 +1151,7 @@ type button =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, no elevation is used.
   static member inline disableElevation (value: bool) = Interop.mkAttr "disableElevation" value
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
   ///
@@ -962,7 +1183,7 @@ type button =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -990,25 +1211,16 @@ module button =
   /// The size of the button. `small` is equivalent to the dense button styling.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline text = Interop.mkAttr "variant" "text"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline contained = Interop.mkAttr "variant" "contained"
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline text = Interop.mkAttr "variant" "text"
 
 
 [<Erase>]
@@ -1047,7 +1259,7 @@ type buttonBase =
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
   /// If `true`, the touch ripple effect will be disabled.
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
@@ -1055,15 +1267,6 @@ type buttonBase =
   static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module buttonBase =
-
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -1088,7 +1291,7 @@ type buttonGroup =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, no elevation is used.
   static member inline disableElevation (value: bool) = Interop.mkAttr "disableElevation" value
-  /// If `true`, the button keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the button keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the button ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -1105,25 +1308,25 @@ module buttonGroup =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
 
-  /// The group orientation.
+  /// The group orientation (layout flow direction).
   [<Erase>]
   type orientation =
-    static member inline vertical = Interop.mkAttr "orientation" "vertical"
     static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
+    static member inline vertical = Interop.mkAttr "orientation" "vertical"
 
   /// The size of the button. `small` is equivalent to the dense button styling.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline text = Interop.mkAttr "variant" "text"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline contained = Interop.mkAttr "variant" "contained"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline text = Interop.mkAttr "variant" "text"
 
 
 [<Erase>]
@@ -1224,7 +1427,7 @@ type cardActionArea =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1238,17 +1441,6 @@ type cardActionArea =
   ///
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module cardActionArea =
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -1367,9 +1559,9 @@ type cardMedia =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// Component for rendering image. Either a string to use a HTML element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
-  /// Component for rendering image. Either a string to use a HTML element or a component.
+  /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible.
   static member inline image (value: string) = Interop.mkAttr "image" value
@@ -1425,7 +1617,7 @@ type checkbox =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `iconButton`*
   ///
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1457,7 +1649,7 @@ type checkbox =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1495,15 +1687,6 @@ module checkbox =
     static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
     static member inline false' = Interop.mkAttr "edge" false
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -1551,8 +1734,8 @@ module chip =
   /// The size of the chip.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// The variant to use.
   [<Erase>]
@@ -1599,7 +1782,7 @@ type clickAwayListener =
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
-  /// The mouse event to listen to. You can disable the listener by providing `false`.
+  /// If `true`, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled.
   static member inline disableReactTree (value: bool) = Interop.mkAttr "disableReactTree" value
   /// Callback fired when a "click away" event is detected.
   static member inline onClickAway (handler: Event -> unit) = Interop.mkAttr "onClickAway" handler
@@ -1689,11 +1872,11 @@ module container =
   /// Determine the max-width of the container. The container width grows with the size of the screen. Set to `false` to disable `maxWidth`.
   [<Erase>]
   type maxWidth =
-    static member inline xs = Interop.mkAttr "maxWidth" "xs"
-    static member inline sm = Interop.mkAttr "maxWidth" "sm"
-    static member inline md = Interop.mkAttr "maxWidth" "md"
     static member inline lg = Interop.mkAttr "maxWidth" "lg"
+    static member inline md = Interop.mkAttr "maxWidth" "md"
+    static member inline sm = Interop.mkAttr "maxWidth" "sm"
     static member inline xl = Interop.mkAttr "maxWidth" "xl"
+    static member inline xs = Interop.mkAttr "maxWidth" "xs"
     static member inline false' = Interop.mkAttr "maxWidth" false
 
 
@@ -2239,6 +2422,8 @@ type expansionPanelSummary =
   static member inline expandIcon (element: ReactElement) = Interop.mkAttr "expandIcon" element
   /// Props applied to the `IconButton` element wrapping the expand icon.
   static member inline IconButtonProps (props: IReactProperty list) = Interop.mkAttr "IconButtonProps" (createObj !!props)
+  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
+  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
   /// *Inherited from `buttonBase`*
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -2279,7 +2464,7 @@ type expansionPanelSummary =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -2287,23 +2472,8 @@ type expansionPanelSummary =
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
-  /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
-  static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
-  /// *Inherited from `buttonBase`*
-  ///
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module expansionPanelSummary =
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -2326,7 +2496,7 @@ type fab =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -2350,7 +2520,7 @@ type fab =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -2378,24 +2548,15 @@ module fab =
   /// The size of the button. `small` is equivalent to the dense button styling.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
-    static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
+    static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline round = Interop.mkAttr "variant" "round"
     static member inline extended = Interop.mkAttr "variant" "extended"
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
+    static member inline round = Interop.mkAttr "variant" "round"
 
 
 [<Erase>]
@@ -2540,22 +2701,22 @@ module formControl =
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
   type margin =
-    static member inline none = Interop.mkAttr "margin" "none"
     static member inline dense = Interop.mkAttr "margin" "dense"
+    static member inline none = Interop.mkAttr "margin" "none"
     static member inline normal = Interop.mkAttr "margin" "normal"
 
   /// The size of the text field.
   [<Erase>]
   type size =
-    static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
+    static member inline small = Interop.mkAttr "size" "small"
 
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
 
 [<Erase>]
@@ -2683,9 +2844,9 @@ module formHelperText =
   /// The variant to use.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline filled = Interop.mkAttr "variant" "filled"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
 
 [<Erase>]
@@ -3162,7 +3323,7 @@ type iconButton =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// If `true`, the button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -3196,7 +3357,7 @@ type iconButton =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -3233,15 +3394,6 @@ module iconButton =
   type size =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -5250,7 +5402,7 @@ type radio =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `iconButton`*
   ///
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -5282,7 +5434,7 @@ type radio =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -5320,15 +5472,6 @@ module radio =
     static member inline start = Interop.mkAttr "edge" "start"
     static member inline end' = Interop.mkAttr "edge" "end"
     static member inline false' = Interop.mkAttr "edge" false
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -5829,6 +5972,18 @@ module select =
 
 [<Erase>]
 type skeleton =
+  /// Optional children to infer width and height from.
+  static member inline children (element: ReactElement) = prop.children element
+  /// Optional children to infer width and height from.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// Optional children to infer width and height from.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// Optional children to infer width and height from.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// Optional children to infer width and height from.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// Optional children to infer width and height from.
+  static member inline children (value: float) = Interop.mkAttr "children" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -5841,8 +5996,6 @@ type skeleton =
   static member inline width (value: int) = Interop.mkAttr "width" value
   /// Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.
   static member inline width (value: Styles.ICssUnit) = Interop.mkAttr "width" value
-  /// This component does not support children.
-  static member inline children  = UnsupportedProp ()
 
 module skeleton =
 
@@ -6534,6 +6687,10 @@ type speedDialAction =
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// *Inherited from `tooltip`*
   ///
+  /// The component used for the popper.
+  static member inline PopperComponent (value: ReactElementType) = Interop.mkAttr "PopperComponent" value
+  /// *Inherited from `tooltip`*
+  ///
   /// Props applied to the [`Popper`](https://material-ui.com/api/popper/) element.
   static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
   /// *Inherited from `tooltip`*
@@ -6708,7 +6865,7 @@ type stepButton =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -6722,17 +6879,6 @@ type stepButton =
   ///
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module stepButton =
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -7057,7 +7203,7 @@ type switch =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `iconButton`*
   ///
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7089,7 +7235,7 @@ type switch =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7126,15 +7272,6 @@ module switch =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
 
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
-
 
 [<Erase>]
 type tab =
@@ -7142,7 +7279,7 @@ type tab =
   static member inline children  = UnsupportedProp ()
   /// If `true`, the tab will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -7194,7 +7331,7 @@ type tab =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7208,17 +7345,6 @@ type tab =
   ///
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module tab =
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -7445,7 +7571,27 @@ type tablePagination =
   /// Customize the rows per page label.
   ///
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline labelRowsPerPage (value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
+  /// Customize the rows per page label.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline labelRowsPerPage (values: ReactElement seq) = Interop.mkAttr "labelRowsPerPage" values
+  /// Customize the rows per page label.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline labelRowsPerPage (value: string) = Interop.mkAttr "labelRowsPerPage" value
+  /// Customize the rows per page label.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline labelRowsPerPage (values: string seq) = Interop.mkAttr "labelRowsPerPage" values
+  /// Customize the rows per page label.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline labelRowsPerPage (value: int) = Interop.mkAttr "labelRowsPerPage" value
+  /// Customize the rows per page label.
+  ///
+  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  static member inline labelRowsPerPage (value: float) = Interop.mkAttr "labelRowsPerPage" value
   /// Props applied to the next arrow [`IconButton`](https://material-ui.com/api/icon-button/) element.
   static member inline nextIconButtonProps (props: IReactProperty list) = Interop.mkAttr "nextIconButtonProps" (createObj !!props)
   /// Text label for the next arrow icon button.
@@ -7622,7 +7768,7 @@ type tableSortLabel =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7644,15 +7790,6 @@ module tableSortLabel =
   type direction =
     static member inline asc = Interop.mkAttr "direction" "asc"
     static member inline desc = Interop.mkAttr "direction" "desc"
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -7743,8 +7880,8 @@ module tabList =
   /// Determines the color of the indicator.
   [<Erase>]
   type indicatorColor =
-    static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
     static member inline primary = Interop.mkAttr "indicatorColor" "primary"
+    static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
 
   /// *Inherited from `tabs`*
   ///
@@ -7763,17 +7900,17 @@ module tabList =
   type scrollButtons =
     static member inline auto = Interop.mkAttr "scrollButtons" "auto"
     static member inline desktop = Interop.mkAttr "scrollButtons" "desktop"
-    static member inline on = Interop.mkAttr "scrollButtons" "on"
     static member inline off = Interop.mkAttr "scrollButtons" "off"
+    static member inline on = Interop.mkAttr "scrollButtons" "on"
 
   /// *Inherited from `tabs`*
   ///
   /// Determines the color of the `Tab`.
   [<Erase>]
   type textColor =
-    static member inline secondary = Interop.mkAttr "textColor" "secondary"
-    static member inline primary = Interop.mkAttr "textColor" "primary"
     static member inline inherit' = Interop.mkAttr "textColor" "inherit"
+    static member inline primary = Interop.mkAttr "textColor" "primary"
+    static member inline secondary = Interop.mkAttr "textColor" "secondary"
 
   /// *Inherited from `tabs`*
   ///
@@ -7782,9 +7919,9 @@ module tabList =
   ///  - `scrollable` will invoke scrolling properties and allow for horizontally scrolling (or swiping) of the tab bar. -`fullWidth` will make the tabs grow to use all the available space, which should be used for small views, like on mobile. - `standard` will render the default state.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline scrollable = Interop.mkAttr "variant" "scrollable"
     static member inline fullWidth = Interop.mkAttr "variant" "fullWidth"
+    static member inline scrollable = Interop.mkAttr "variant" "scrollable"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
 
 [<Erase>]
@@ -7869,8 +8006,8 @@ module tabs =
   /// Determines the color of the indicator.
   [<Erase>]
   type indicatorColor =
-    static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
     static member inline primary = Interop.mkAttr "indicatorColor" "primary"
+    static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
 
   /// The tabs orientation (layout flow direction).
   [<Erase>]
@@ -7885,24 +8022,24 @@ module tabs =
   type scrollButtons =
     static member inline auto = Interop.mkAttr "scrollButtons" "auto"
     static member inline desktop = Interop.mkAttr "scrollButtons" "desktop"
-    static member inline on = Interop.mkAttr "scrollButtons" "on"
     static member inline off = Interop.mkAttr "scrollButtons" "off"
+    static member inline on = Interop.mkAttr "scrollButtons" "on"
 
   /// Determines the color of the `Tab`.
   [<Erase>]
   type textColor =
-    static member inline secondary = Interop.mkAttr "textColor" "secondary"
-    static member inline primary = Interop.mkAttr "textColor" "primary"
     static member inline inherit' = Interop.mkAttr "textColor" "inherit"
+    static member inline primary = Interop.mkAttr "textColor" "primary"
+    static member inline secondary = Interop.mkAttr "textColor" "secondary"
 
   /// Determines additional display behavior of the tabs:
   ///
   ///  - `scrollable` will invoke scrolling properties and allow for horizontally scrolling (or swiping) of the tab bar. -`fullWidth` will make the tabs grow to use all the available space, which should be used for small views, like on mobile. - `standard` will render the default state.
   [<Erase>]
   type variant =
-    static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline scrollable = Interop.mkAttr "variant" "scrollable"
     static member inline fullWidth = Interop.mkAttr "variant" "fullWidth"
+    static member inline scrollable = Interop.mkAttr "variant" "scrollable"
+    static member inline standard = Interop.mkAttr "variant" "standard"
 
 
 [<Erase>]
@@ -8086,6 +8223,143 @@ module textField =
 
 
 [<Erase>]
+type timeline =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+module timeline =
+
+  /// The position where the timeline's content should appear.
+  [<Erase>]
+  type align =
+    static member inline alternate = Interop.mkAttr "align" "alternate"
+    static member inline left = Interop.mkAttr "align" "left"
+    static member inline right = Interop.mkAttr "align" "right"
+
+
+[<Erase>]
+type timelineConnector =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
+type timelineContent =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
+type timelineDot =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+module timelineDot =
+
+  /// The dot can have a different colors.
+  [<Erase>]
+  type color =
+    static member inline grey = Interop.mkAttr "color" "grey"
+    static member inline inherit' = Interop.mkAttr "color" "inherit"
+    static member inline primary = Interop.mkAttr "color" "primary"
+    static member inline secondary = Interop.mkAttr "color" "secondary"
+
+  /// The dot can appear filled or outlined.
+  [<Erase>]
+  type variant =
+    static member inline default' = Interop.mkAttr "variant" "default"
+    static member inline outlined = Interop.mkAttr "variant" "outlined"
+
+
+[<Erase>]
+type timelineItem =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
+type timelineOppositeContent =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
+type timelineSeparator =
+  /// The content of the component.
+  static member inline children (element: ReactElement) = prop.children element
+  /// The content of the component.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// The content of the component.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// The content of the component.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// The content of the component.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+
+
+[<Erase>]
 type toggleButton =
   /// The content of the button.
   static member inline children (element: ReactElement) = prop.children element
@@ -8101,7 +8375,7 @@ type toggleButton =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// If `true`, the button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
-  /// If `true`, the keyboard focus ripple will be disabled. `disableRipple` must also be true.
+  /// If `true`, the keyboard focus ripple will be disabled.
   static member inline disableFocusRipple (value: bool) = Interop.mkAttr "disableFocusRipple" value
   /// If `true`, the ripple effect will be disabled.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
@@ -8139,7 +8413,7 @@ type toggleButton =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// If `true`, the base button will have a keyboard focus ripple. `disableRipple` must also be `false`.
+  /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
@@ -8153,17 +8427,6 @@ type toggleButton =
   ///
   /// Props applied to the `TouchRipple` element.
   static member inline TouchRippleProps (props: IReactProperty list) = Interop.mkAttr "TouchRippleProps" (createObj !!props)
-
-module toggleButton =
-
-  /// *Inherited from `buttonBase`*
-  ///
-  /// Used to control the button's purpose. This prop passes the value to the `type` attribute of the native button component.
-  [<Erase>]
-  type type' =
-    static member inline submit = Interop.mkAttr "type" "submit"
-    static member inline reset = Interop.mkAttr "type" "reset"
-    static member inline button = Interop.mkAttr "type" "button"
 
 
 [<Erase>]
@@ -8212,6 +8475,12 @@ type toggleButtonGroup =
   static member inline value (values: 'toggleButtonValue []) = Interop.mkAttr "value" values
 
 module toggleButtonGroup =
+
+  /// The group orientation (layout flow direction).
+  [<Erase>]
+  type orientation =
+    static member inline horizontal = Interop.mkAttr "orientation" "horizontal"
+    static member inline vertical = Interop.mkAttr "orientation" "vertical"
 
   /// The size of the buttons.
   [<Erase>]
@@ -8297,6 +8566,8 @@ type tooltip =
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
   /// If `true`, the tooltip is shown.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
+  /// The component used for the popper.
+  static member inline PopperComponent (value: ReactElementType) = Interop.mkAttr "PopperComponent" value
   /// Props applied to the [`Popper`](https://material-ui.com/api/popper/) element.
   static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
   /// Tooltip title. Zero-length titles string are never displayed.
@@ -8527,6 +8798,38 @@ module typography =
     static member inline overline = Interop.mkAttr "variant" "overline"
     static member inline srOnly = Interop.mkAttr "variant" "srOnly"
     static member inline inherit' = Interop.mkAttr "variant" "inherit"
+
+
+[<Erase>]
+type unstable_TrapFocus =
+  /// A single child content element.
+  static member inline children (element: ReactElement) = prop.children element
+  /// A single child content element.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// A single child content element.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// A single child content element.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// A single child content element.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// A single child content element.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// If `true`, the trap focus will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any trap focus children that have the `disableAutoFocus` prop.
+  ///
+  /// Generally this should never be set to `true` as it makes the trap focus less accessible to assistive technologies, like screen readers.
+  static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
+  /// If `true`, the trap focus will not prevent focus from leaving the trap focus while open.
+  ///
+  /// Generally this should never be set to `true` as it makes the trap focus less accessible to assistive technologies, like screen readers.
+  static member inline disableEnforceFocus (value: bool) = Interop.mkAttr "disableEnforceFocus" value
+  /// If `true`, the trap focus will not restore focus to previously focused element once trap focus is hidden.
+  static member inline disableRestoreFocus (value: bool) = Interop.mkAttr "disableRestoreFocus" value
+  /// Return the document to consider. We use it to implement the restore focus between different browser documents.
+  static member inline getDoc (getDoc: unit -> Document) = Interop.mkAttr "getDoc" getDoc
+  /// Do we still want to enforce the focus? This prop helps nesting TrapFocus elements.
+  static member inline isEnabled (isEnabled: unit -> bool) = Interop.mkAttr "isEnabled" isEnabled
+  /// If `true`, focus will be locked.
+  static member inline open' (value: bool) = Interop.mkAttr "open" value
 
 
 [<Erase>]

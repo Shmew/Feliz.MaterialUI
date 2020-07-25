@@ -191,7 +191,7 @@ let app = React.functionComponent(fun (model, dispatch) ->
                 )
               ]
               Mui.button [
-                button.type'.submit
+                prop.type'.submit
                 button.fullWidth true
                 button.variant.contained
                 button.color.primary

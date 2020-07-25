@@ -17,6 +17,44 @@ module themeOverrides =
     module overrides =
 
       [<Erase>]
+      type muiAccordion =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordion.root", createObj !!styles)
+        /// Styles applied to the root element if `square={false}`.
+        static member inline rounded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordion.rounded", createObj !!styles)
+        /// Styles applied to the root element if `expanded={true}`.
+        static member inline expanded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordion.expanded", createObj !!styles)
+        /// Styles applied to the root element if `disabled={true}`.
+        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordion.disabled", createObj !!styles)
+
+      [<Erase>]
+      type muiAccordionActions =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionActions.root", createObj !!styles)
+        /// Styles applied to the root element if `disableSpacing={false}`.
+        static member inline spacing(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionActions.spacing", createObj !!styles)
+
+      [<Erase>]
+      type muiAccordionDetails =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionDetails.root", createObj !!styles)
+
+      [<Erase>]
+      type muiAccordionSummary =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.root", createObj !!styles)
+        /// Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
+        static member inline expanded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.expanded", createObj !!styles)
+        /// Pseudo-class applied to the root element if `focused={true}`.
+        static member inline focused(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.focused", createObj !!styles)
+        /// Pseudo-class applied to the root element if `disabled={true}`.
+        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.disabled", createObj !!styles)
+        /// Styles applied to the children wrapper element.
+        static member inline content(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.content", createObj !!styles)
+        /// Styles applied to the `IconButton` component when `expandIcon` is supplied.
+        static member inline expandIcon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.expandIcon", createObj !!styles)
+
+      [<Erase>]
       type muiAlert =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAlert.root", createObj !!styles)
@@ -1253,6 +1291,8 @@ module themeOverrides =
         static member inline iconFilled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiNativeSelect.iconFilled", createObj !!styles)
         /// Styles applied to the icon component if `variant="outlined"`.
         static member inline iconOutlined(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiNativeSelect.iconOutlined", createObj !!styles)
+        /// Styles applied to the underlying native input component.
+        static member inline nativeInput(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiNativeSelect.nativeInput", createObj !!styles)
 
       [<Erase>]
       type muiOutlinedInput =
@@ -1443,6 +1483,8 @@ module themeOverrides =
         static member inline iconFilled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSelect.iconFilled", createObj !!styles)
         /// Styles applied to the icon component if `variant="outlined"`.
         static member inline iconOutlined(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSelect.iconOutlined", createObj !!styles)
+        /// Styles applied to the underlying native input component.
+        static member inline nativeInput(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSelect.nativeInput", createObj !!styles)
 
       [<Erase>]
       type muiSkeleton =
@@ -1458,6 +1500,12 @@ module themeOverrides =
         static member inline pulse(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.pulse", createObj !!styles)
         /// Styles applied to the root element if `animation="wave"`.
         static member inline wave(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.wave", createObj !!styles)
+        /// Styles applied when the component is passed children.
+        static member inline withChildren(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.withChildren", createObj !!styles)
+        /// Styles applied when the component is passed children and no width.
+        static member inline fitContent(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.fitContent", createObj !!styles)
+        /// Styles applied when the component is passed children and no height.
+        static member inline heightAuto(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.heightAuto", createObj !!styles)
 
       [<Erase>]
       type muiSlider =
@@ -1903,6 +1951,75 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTextField.root", createObj !!styles)
 
       [<Erase>]
+      type muiTimeline =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimeline.root", createObj !!styles)
+        /// Styles applied to the root element if `align="left"`.
+        static member inline alignLeft(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimeline.alignLeft", createObj !!styles)
+        /// Styles applied to the root element if `align="right"`.
+        static member inline alignRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimeline.alignRight", createObj !!styles)
+        /// Styles applied to the root element if `align="alternate"`.
+        static member inline alignAlternate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimeline.alignAlternate", createObj !!styles)
+
+      [<Erase>]
+      type muiTimelineConnector =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineConnector.root", createObj !!styles)
+
+      [<Erase>]
+      type muiTimelineContent =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineContent.root", createObj !!styles)
+        /// Styles applied to the root element if `align="right"`.
+        static member inline alignRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineContent.alignRight", createObj !!styles)
+
+      [<Erase>]
+      type muiTimelineDot =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.root", createObj !!styles)
+        /// Styles applied to the root element if `color="grey"` and `variant="default"`.
+        static member inline defaultGrey(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.defaultGrey", createObj !!styles)
+        /// Styles applied to the root element if `color="grey"` and `variant="outlined"`.
+        static member inline outlinedGrey(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.outlinedGrey", createObj !!styles)
+        /// Styles applied to the root element if `color="primary"` and `variant="default"`.
+        static member inline defaultPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.defaultPrimary", createObj !!styles)
+        /// Styles applied to the root element if `color="primary"` and `variant="outlined"`.
+        static member inline outlinedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.outlinedPrimary", createObj !!styles)
+        /// Styles applied to the root element if `color="secondary"` and `variant="default"`.
+        static member inline defaultSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.defaultSecondary", createObj !!styles)
+        /// Styles applied to the root element if `color="secondary"` and `variant="outlined"`.
+        static member inline outlinedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineDot.outlinedSecondary", createObj !!styles)
+
+      [<Erase>]
+      type muiTimelineItem =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.root", createObj !!styles)
+        /// Styles applied to the root element if `align="left"`.
+        static member inline alignLeft(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.alignLeft", createObj !!styles)
+        /// Styles applied to the root element if `align="right"`.
+        static member inline alignRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.alignRight", createObj !!styles)
+        /// Styles applied to the root element if `align="alternate"`.
+        static member inline alignAlternate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.alignAlternate", createObj !!styles)
+        /// Styles applied to the root element if no there isn't TimelineOppositeContent provided.
+        static member inline missingOppositeContent(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.missingOppositeContent", createObj !!styles)
+        /// Styles applied to the timeline content node.
+        static member inline content(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.content", createObj !!styles)
+        /// Styles applied to the timeline opposite content node.
+        static member inline oppositeContent(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineItem.oppositeContent", createObj !!styles)
+
+      [<Erase>]
+      type muiTimelineOppositeContent =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineOppositeContent.root", createObj !!styles)
+        /// Styles applied to the root element if `align="right"`.
+        static member inline alignRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineOppositeContent.alignRight", createObj !!styles)
+
+      [<Erase>]
+      type muiTimelineSeparator =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTimelineSeparator.root", createObj !!styles)
+
+      [<Erase>]
       type muiToggleButton =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButton.root", createObj !!styles)
@@ -1921,8 +2038,14 @@ module themeOverrides =
       type muiToggleButtonGroup =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.root", createObj !!styles)
+        /// Styles applied to the root element if `orientation="vertical"`.
+        static member inline vertical(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.vertical", createObj !!styles)
         /// Styles applied to the children.
         static member inline grouped(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.grouped", createObj !!styles)
+        /// Styles applied to the children if `orientation="horizontal"`.
+        static member inline groupedHorizontal(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.groupedHorizontal", createObj !!styles)
+        /// Styles applied to the children if `orientation="vertical"`.
+        static member inline groupedVertical(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiToggleButtonGroup.groupedVertical", createObj !!styles)
 
       [<Erase>]
       type muiToolbar =

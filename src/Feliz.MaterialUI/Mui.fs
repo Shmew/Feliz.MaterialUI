@@ -30,6 +30,46 @@ type Mui =
 
   static member inline themeProvider props = createElement (import "ThemeProvider" "@material-ui/core/styles") props
 
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  static member inline accordion props = createElement (importDefault "@material-ui/core/Accordion") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  static member inline accordion (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Accordion") [ Feliz.MaterialUI.accordion.children (children :> ReactElement seq) ]
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline accordionActions props = createElement (importDefault "@material-ui/core/AccordionActions") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline accordionActions (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/AccordionActions") [ Feliz.MaterialUI.accordionActions.children (children :> ReactElement seq) ]
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline accordionDetails props = createElement (importDefault "@material-ui/core/AccordionDetails") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline accordionDetails (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/AccordionDetails") [ Feliz.MaterialUI.accordionDetails.children (children :> ReactElement seq) ]
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
+  static member inline accordionSummary props = createElement (importDefault "@material-ui/core/AccordionSummary") props
+
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
+  static member inline accordionSummary (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/AccordionSummary") [ Feliz.MaterialUI.accordionSummary.children (children :> ReactElement seq) ]
+
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
   ///
   /// The `ref` is forwarded to the root element.
@@ -826,6 +866,13 @@ type Mui =
   /// Any other props supplied will be provided to the root element (native element).
   static member inline skeleton props = createElement (importDefault "@material-ui/lab/Skeleton") props
 
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline skeleton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/Skeleton") [ Feliz.MaterialUI.skeleton.children (children :> ReactElement seq) ]
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props)).
@@ -1135,6 +1182,104 @@ type Mui =
   ///
   /// The `ref` is forwarded to the root element.
   ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timeline props = createElement (importDefault "@material-ui/lab/Timeline") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timeline (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/Timeline") [ Feliz.MaterialUI.timeline.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineConnector props = createElement (importDefault "@material-ui/lab/TimelineConnector") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineConnector (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TimelineConnector") [ Feliz.MaterialUI.timelineConnector.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineContent props = createElement (importDefault "@material-ui/lab/TimelineContent") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TimelineContent") [ Feliz.MaterialUI.timelineContent.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineDot props = createElement (importDefault "@material-ui/lab/TimelineDot") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineDot (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TimelineDot") [ Feliz.MaterialUI.timelineDot.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineItem props = createElement (importDefault "@material-ui/lab/TimelineItem") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TimelineItem") [ Feliz.MaterialUI.timelineItem.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineOppositeContent props = createElement (importDefault "@material-ui/lab/TimelineOppositeContent") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineOppositeContent (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TimelineOppositeContent") [ Feliz.MaterialUI.timelineOppositeContent.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineSeparator props = createElement (importDefault "@material-ui/lab/TimelineSeparator") props
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
+  /// Any other props supplied will be provided to the root element (native element).
+  static member inline timelineSeparator (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TimelineSeparator") [ Feliz.MaterialUI.timelineSeparator.children (children :> ReactElement seq) ]
+
+  /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
+  ///
+  /// The `ref` is forwarded to the root element.
+  ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
   static member inline toggleButton props = createElement (importDefault "@material-ui/lab/ToggleButton") props
 
@@ -1216,6 +1361,12 @@ type Mui =
   ///
   /// Any other props supplied will be provided to the root element (native element).
   static member inline typography (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Typography") [ Feliz.MaterialUI.typography.children (children :> ReactElement seq) ]
+
+  /// The component cannot hold a ref.
+  static member inline unstable_TrapFocus props = createElement (importDefault "@material-ui/core/Unstable_TrapFocus") props
+
+  /// The component cannot hold a ref.
+  static member inline unstable_TrapFocus (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Unstable_TrapFocus") [ Feliz.MaterialUI.unstable_TrapFocus.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///

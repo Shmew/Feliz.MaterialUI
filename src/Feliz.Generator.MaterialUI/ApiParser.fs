@@ -69,8 +69,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
   let regularOverloads =
     match componentMethodName, propMethodName, propDocType with
+
     | _, _, "unsupportedProp" ->
         [RegularPropOverload.createCustom "" "UnsupportedProp ()"]
+
     | "alert", "iconMapping", "{ error?: node, info?: node, success?: node, warning?: node }" ->
         [
           [ "error", "ReactElement", true
@@ -80,11 +82,19 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           |> paramListAndObjCreator
           ||> RegularPropOverload.create
         ]
+
     | "buttonBase", "action", "ref" ->
         [
           RegularPropOverload.create "(ref: IRefValue<ButtonBaseActions option>)" "ref"
           RegularPropOverload.create "(handler: ButtonBaseActions -> unit)" "handler"
         ]
+
+    | "buttonBase", "type'", _ ->
+        // https://github.com/mui-org/material-ui/issues/21924
+        //
+        // If documented, it's just to specify the default value; the corresponding Feliz
+        // prop (prop.type') should be used
+        []
 
     | "popover", "action", "ref" ->
         [
@@ -108,6 +118,12 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "tablePagination", "rowsPerPageOptions", "array" ->
         [RegularPropOverload.create "([<ParamArray>] values: int [])" "values"]
+
+    | "accordion", "onChange", "func" ->
+        [
+          RegularPropOverload.create "(handler: Event -> bool -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: bool -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+        ]
 
     | "autocomplete", "filterOptions", "func" ->
         [
@@ -133,7 +149,15 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "autocomplete", "onChange", "func" ->
         [
           RegularPropOverload.create "(handler: Event -> 'option -> AutocompleteOnChangeReason -> unit)" "(Func<_,_,_,_> handler)"
+          |> RegularPropOverload.setExtension true
           RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
+          |> RegularPropOverload.setExtension true
+
+          RegularPropOverload.create "(handler: Event -> 'option [] -> AutocompleteOnChangeReason -> unit)" "(Func<_,_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'option [] -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
+
+          RegularPropOverload.create "(handler: Event -> 'option option -> AutocompleteOnChangeReason -> unit)" "(Func<_,_,_,_> handler)"
+          RegularPropOverload.create "(handler: 'option option -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
         ]
 
     | "autocomplete", "onInputChange", "func" ->
@@ -164,9 +188,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "autocomplete", "renderTags", "func" ->
         [RegularPropOverload.create "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)" "(Func<_,_,_> render)"]
 
-    | "autocomplete", ("defaultValue" | "value"), "any | array" ->
+    | "autocomplete", ("defaultValue" | "value"), "any" ->
         [
           RegularPropOverload.create "(value: 'option [])" "value"
+          RegularPropOverload.create "(value: 'option option)" "value"
           RegularPropOverload.create "(value: 'option)" "value" |> RegularPropOverload.setExtension true
         ]
 
@@ -539,15 +564,21 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "pagination", "onChange", "func" ->
-      [
-        RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
-        RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_> (fun _ p -> handler p))"
-      ]
+        [
+          RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
+          RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_> (fun _ p -> handler p))"
+        ]
 
     | "pagination", "renderItem", "func" ->
-      [
-        RegularPropOverload.create "(render: PaginationRenderItemParams -> ReactElement)" "(Func<_,_> (fun p -> render p))"
-      ]
+        [
+          RegularPropOverload.create "(render: PaginationRenderItemParams -> ReactElement)" "(Func<_,_> (fun p -> render p))"
+        ]
+
+    | "unstable_TrapFocus", "getDoc", "func" ->
+        [RegularPropOverload.create "(getDoc: unit -> Document)" "getDoc"]
+
+    | "unstable_TrapFocus", "isEnabled", "func" ->
+        [RegularPropOverload.create "(isEnabled: unit -> bool)" "isEnabled"]
 
     | _, pn, ("object" | "{ component?: element type }") when pn.EndsWith "Props" ->
         [RegularPropOverload.create "(props: IReactProperty list)" "(createObj !!props)"]
@@ -781,6 +812,23 @@ let parseComponent (htmlPathOrUrl: string) =
           let rowHtml = page.Tables.Props.Html.CssSelect("tbody > tr").[i]
           parseProp compMethodName r rowHtml
       )
+
+    let props =
+      // TODO: Remove when docs are fixed:
+      // https://github.com/mui-org/material-ui/issues/21711#issuecomment-657233933
+      if compMethodName = "container" then
+        let children = 
+          Prop.create "children" "children"
+          |> Prop.addRegularOverloads [
+            RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element"
+            RegularPropOverload.createCustom "(elements: ReactElement seq)" "prop.children elements"
+            RegularPropOverload.create "(value: string)" "value"
+            RegularPropOverload.create "(values: string seq)" "values"
+            RegularPropOverload.create "(value: int)" "value"
+            RegularPropOverload.create "(value: float)" "value"
+          ]
+        Array.append [|children|] props
+      else props
 
     let addChildrenOverloadIfSupported (comp: Component) =
       let hasReactElementSeqChildren = 

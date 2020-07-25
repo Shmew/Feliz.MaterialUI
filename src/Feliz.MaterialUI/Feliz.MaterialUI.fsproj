@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Loosened FSharp.Core version requirements</PackageReleaseNotes>
+    <Version>1.1.0</Version>
+    <PackageReleaseNotes>- Updated for @material-ui/core 4.11 and @material-ui/lab 4.0.0-alpha.56
+- Breaking: 'type' prop removed from buttonBase and all inheriting components; use prop.type' from Feliz instead</PackageReleaseNotes>
   </PropertyGroup>
-  
   <ItemGroup>
     <None Include="paket.template" />
     <Compile Include="Flatten.fs" />
@@ -26,14 +25,11 @@
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
   </ItemGroup>
-  
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@material-ui/core" Version="gte 4.9 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.53" />
+      <NpmPackage Name="@material-ui/core" Version="gte 4.11 lt 5" ResolutionStrategy="max" />
+      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.56" />
     </NpmDependencies>
   </PropertyGroup>
-  
   <Import Project="..\..\.paket\Paket.Restore.targets" />
-  
 </Project>

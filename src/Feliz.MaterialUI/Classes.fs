@@ -11,6 +11,60 @@ open Feliz
 [<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
 module classesProps =
 
+  module accordion =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `square={false}`.
+      static member inline rounded(className: string) : IReactProperty = unbox ("classes.rounded", className)
+      /// Styles applied to the root element if `expanded={true}`.
+      static member inline expanded(className: string) : IReactProperty = unbox ("classes.expanded", className)
+      /// Styles applied to the root element if `disabled={true}`.
+      static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
+  
+  
+  module accordionActions =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `disableSpacing={false}`.
+      static member inline spacing(className: string) : IReactProperty = unbox ("classes.spacing", className)
+  
+  
+  module accordionDetails =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+  
+  
+  module accordionSummary =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
+      static member inline expanded(className: string) : IReactProperty = unbox ("classes.expanded", className)
+      /// Pseudo-class applied to the root element if `focused={true}`.
+      static member inline focused(className: string) : IReactProperty = unbox ("classes.focused", className)
+      /// Pseudo-class applied to the root element if `disabled={true}`.
+      static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
+      /// Styles applied to the children wrapper element.
+      static member inline content(className: string) : IReactProperty = unbox ("classes.content", className)
+      /// Styles applied to the `IconButton` component when `expandIcon` is supplied.
+      static member inline expandIcon(className: string) : IReactProperty = unbox ("classes.expandIcon", className)
+  
+  
   module alert =
   
     /// Override or extend the styles applied to the component.
@@ -1613,6 +1667,8 @@ module classesProps =
       static member inline iconFilled(className: string) : IReactProperty = unbox ("classes.iconFilled", className)
       /// Styles applied to the icon component if `variant="outlined"`.
       static member inline iconOutlined(className: string) : IReactProperty = unbox ("classes.iconOutlined", className)
+      /// Styles applied to the underlying native input component.
+      static member inline nativeInput(className: string) : IReactProperty = unbox ("classes.nativeInput", className)
   
   
   module outlinedInput =
@@ -1802,6 +1858,8 @@ module classesProps =
       static member inline iconFilled(className: string) : IReactProperty = unbox ("classes.iconFilled", className)
       /// Styles applied to the icon component if `variant="outlined"`.
       static member inline iconOutlined(className: string) : IReactProperty = unbox ("classes.iconOutlined", className)
+      /// Styles applied to the underlying native input component.
+      static member inline nativeInput(className: string) : IReactProperty = unbox ("classes.nativeInput", className)
   
   
   module skeleton =
@@ -1821,6 +1879,12 @@ module classesProps =
       static member inline pulse(className: string) : IReactProperty = unbox ("classes.pulse", className)
       /// Styles applied to the root element if `animation="wave"`.
       static member inline wave(className: string) : IReactProperty = unbox ("classes.wave", className)
+      /// Styles applied when the component is passed children.
+      static member inline withChildren(className: string) : IReactProperty = unbox ("classes.withChildren", className)
+      /// Styles applied when the component is passed children and no width.
+      static member inline fitContent(className: string) : IReactProperty = unbox ("classes.fitContent", className)
+      /// Styles applied when the component is passed children and no height.
+      static member inline heightAuto(className: string) : IReactProperty = unbox ("classes.heightAuto", className)
   
   
   module slider =
@@ -2408,6 +2472,103 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
   
   
+  module timeline =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `align="left"`.
+      static member inline alignLeft(className: string) : IReactProperty = unbox ("classes.alignLeft", className)
+      /// Styles applied to the root element if `align="right"`.
+      static member inline alignRight(className: string) : IReactProperty = unbox ("classes.alignRight", className)
+      /// Styles applied to the root element if `align="alternate"`.
+      static member inline alignAlternate(className: string) : IReactProperty = unbox ("classes.alignAlternate", className)
+  
+  
+  module timelineConnector =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+  
+  
+  module timelineContent =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `align="right"`.
+      static member inline alignRight(className: string) : IReactProperty = unbox ("classes.alignRight", className)
+  
+  
+  module timelineDot =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `color="grey"` and `variant="default"`.
+      static member inline defaultGrey(className: string) : IReactProperty = unbox ("classes.defaultGrey", className)
+      /// Styles applied to the root element if `color="grey"` and `variant="outlined"`.
+      static member inline outlinedGrey(className: string) : IReactProperty = unbox ("classes.outlinedGrey", className)
+      /// Styles applied to the root element if `color="primary"` and `variant="default"`.
+      static member inline defaultPrimary(className: string) : IReactProperty = unbox ("classes.defaultPrimary", className)
+      /// Styles applied to the root element if `color="primary"` and `variant="outlined"`.
+      static member inline outlinedPrimary(className: string) : IReactProperty = unbox ("classes.outlinedPrimary", className)
+      /// Styles applied to the root element if `color="secondary"` and `variant="default"`.
+      static member inline defaultSecondary(className: string) : IReactProperty = unbox ("classes.defaultSecondary", className)
+      /// Styles applied to the root element if `color="secondary"` and `variant="outlined"`.
+      static member inline outlinedSecondary(className: string) : IReactProperty = unbox ("classes.outlinedSecondary", className)
+  
+  
+  module timelineItem =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `align="left"`.
+      static member inline alignLeft(className: string) : IReactProperty = unbox ("classes.alignLeft", className)
+      /// Styles applied to the root element if `align="right"`.
+      static member inline alignRight(className: string) : IReactProperty = unbox ("classes.alignRight", className)
+      /// Styles applied to the root element if `align="alternate"`.
+      static member inline alignAlternate(className: string) : IReactProperty = unbox ("classes.alignAlternate", className)
+      /// Styles applied to the root element if no there isn't TimelineOppositeContent provided.
+      static member inline missingOppositeContent(className: string) : IReactProperty = unbox ("classes.missingOppositeContent", className)
+      /// Styles applied to the timeline content node.
+      static member inline content(className: string) : IReactProperty = unbox ("classes.content", className)
+      /// Styles applied to the timeline opposite content node.
+      static member inline oppositeContent(className: string) : IReactProperty = unbox ("classes.oppositeContent", className)
+  
+  
+  module timelineOppositeContent =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `align="right"`.
+      static member inline alignRight(className: string) : IReactProperty = unbox ("classes.alignRight", className)
+  
+  
+  module timelineSeparator =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+  
+  
   module toggleButton =
   
     /// Override or extend the styles applied to the component.
@@ -2434,8 +2595,14 @@ module classesProps =
     type classes =
       /// Styles applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `orientation="vertical"`.
+      static member inline vertical(className: string) : IReactProperty = unbox ("classes.vertical", className)
       /// Styles applied to the children.
       static member inline grouped(className: string) : IReactProperty = unbox ("classes.grouped", className)
+      /// Styles applied to the children if `orientation="horizontal"`.
+      static member inline groupedHorizontal(className: string) : IReactProperty = unbox ("classes.groupedHorizontal", className)
+      /// Styles applied to the children if `orientation="vertical"`.
+      static member inline groupedVertical(className: string) : IReactProperty = unbox ("classes.groupedVertical", className)
   
   
   module toolbar =
