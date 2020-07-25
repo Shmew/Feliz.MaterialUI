@@ -33,11 +33,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline accordion props = createElement (importDefault "@material-ui/core/Accordion") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline accordion (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Accordion") [ Feliz.MaterialUI.accordion.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -113,6 +119,10 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `options`
+  ///   - `renderInput`
   static member inline autocomplete props = createElement (importDefault "@material-ui/lab/Autocomplete") props
 
   /// The `ref` is forwarded to the root element.
@@ -142,11 +152,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Fade](https://material-ui.com/api/fade/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline backdrop props = createElement (importDefault "@material-ui/core/Backdrop") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Fade](https://material-ui.com/api/fade/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline backdrop (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Backdrop") [ Feliz.MaterialUI.backdrop.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -285,6 +301,10 @@ type Mui =
   static member inline circularProgress props = createElement (importDefault "@material-ui/core/CircularProgress") props
 
   /// The component cannot hold a ref.
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `onClickAway`
   static member inline clickAwayListener props = createElement (importDefault "@material-ui/core/ClickAwayListener") props
 
   /// The `ref` is forwarded to the root element.
@@ -316,11 +336,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Modal](https://material-ui.com/api/modal/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline dialog props = createElement (importDefault "@material-ui/core/Dialog") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Modal](https://material-ui.com/api/modal/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline dialog (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Dialog") [ Feliz.MaterialUI.dialog.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -391,11 +417,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline expansionPanel props = createElement (importDefault "@material-ui/core/ExpansionPanel") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline expansionPanel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/ExpansionPanel") [ Feliz.MaterialUI.expansionPanel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -431,11 +463,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline fab props = createElement (importDefault "@material-ui/core/Fab") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline fab (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Fab") [ Feliz.MaterialUI.fab.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -461,6 +499,9 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `control`
   static member inline formControlLabel props = createElement (importDefault "@material-ui/core/FormControlLabel") props
 
   /// The `ref` is forwarded to the root element.
@@ -516,11 +557,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline gridList props = createElement (importDefault "@material-ui/core/GridList") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline gridList (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/GridList") [ Feliz.MaterialUI.gridList.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -586,11 +633,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline inputAdornment props = createElement (importDefault "@material-ui/core/InputAdornment") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline inputAdornment (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/InputAdornment") [ Feliz.MaterialUI.inputAdornment.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -621,11 +674,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Typography](https://material-ui.com/api/typography/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline link props = createElement (importDefault "@material-ui/core/Link") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Typography](https://material-ui.com/api/typography/)).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline link (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Link") [ Feliz.MaterialUI.link.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -651,6 +710,9 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline listItemAvatar props = createElement (importDefault "@material-ui/core/ListItemAvatar") props
 
   /// The `ref` is forwarded to the root element.
@@ -706,11 +768,17 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Popover](https://material-ui.com/api/popover/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline menu props = createElement (importDefault "@material-ui/core/Menu") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Popover](https://material-ui.com/api/popover/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline menu (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Menu") [ Feliz.MaterialUI.menu.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -736,11 +804,18 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
+  ///
+  /// Required props:
+  ///   - `steps`
   static member inline mobileStepper props = createElement (importDefault "@material-ui/core/MobileStepper") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `open'`
   static member inline modal props = createElement (importDefault "@material-ui/core/Modal") props
 
   /// The `ref` is forwarded to the root element.
@@ -791,21 +866,35 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Modal](https://material-ui.com/api/modal/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline popover props = createElement (importDefault "@material-ui/core/Popover") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Modal](https://material-ui.com/api/modal/)).
+  ///
+  /// Required props:
+  ///   - `open'`
   static member inline popover (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Popover") [ Feliz.MaterialUI.popover.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `open'`
   static member inline popper props = createElement (importDefault "@material-ui/core/Popper") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `open'`
   static member inline popper (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Popper") [ Feliz.MaterialUI.popper.children (children :> ReactElement seq) ]
 
   /// The component cannot hold a ref.
@@ -837,6 +926,10 @@ type Mui =
   static member inline rating props = createElement (importDefault "@material-ui/lab/Rating") props
 
   /// The component cannot hold a ref.
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `rootRef`
   static member inline rootRef props = createElement (importDefault "@material-ui/core/RootRef") props
 
   /// The `ref` is forwarded to the root element.
@@ -898,6 +991,10 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `ariaLabel`
+  ///   - `open'`
   static member inline speedDial props = createElement (importDefault "@material-ui/lab/SpeedDial") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -905,6 +1002,10 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `ariaLabel`
+  ///   - `open'`
   static member inline speedDial (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/SpeedDial") [ Feliz.MaterialUI.speedDial.children (children :> ReactElement seq) ]
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -999,11 +1100,21 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Drawer](https://material-ui.com/api/drawer/)).
+  ///
+  /// Required props:
+  ///   - `onClose`
+  ///   - `onOpen`
+  ///   - `open'`
   static member inline swipeableDrawer props = createElement (importDefault "@material-ui/core/SwipeableDrawer") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Drawer](https://material-ui.com/api/drawer/)).
+  ///
+  /// Required props:
+  ///   - `onClose`
+  ///   - `onOpen`
+  ///   - `open'`
   static member inline swipeableDrawer (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/SwipeableDrawer") [ Feliz.MaterialUI.swipeableDrawer.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -1021,6 +1132,9 @@ type Mui =
   /// The component cannot hold a ref.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `value`
   static member inline tabContext props = createElement (importDefault "@material-ui/lab/TabContext") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1028,16 +1142,25 @@ type Mui =
   /// The component cannot hold a ref.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `value`
   static member inline tabContext (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TabContext") [ Feliz.MaterialUI.tabContext.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline table props = createElement (importDefault "@material-ui/core/Table") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
   static member inline table (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Table") [ Feliz.MaterialUI.table.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -1098,6 +1221,12 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([TableCell](https://material-ui.com/api/table-cell/)).
+  ///
+  /// Required props:
+  ///   - `count`
+  ///   - `onChangePage`
+  ///   - `page`
+  ///   - `rowsPerPage`
   static member inline tablePagination props = createElement (importDefault "@material-ui/core/TablePagination") props
 
   /// The `ref` is forwarded to the root element.
@@ -1139,6 +1268,9 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `value`
   static member inline tabPanel props = createElement (importDefault "@material-ui/lab/TabPanel") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1146,6 +1278,9 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `value`
   static member inline tabPanel (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TabPanel") [ Feliz.MaterialUI.tabPanel.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -1161,11 +1296,19 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `direction`
+  ///   - `orientation`
   static member inline tabScrollButton props = createElement (importDefault "@material-ui/core/TabScrollButton") props
 
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `direction`
+  ///   - `orientation`
   static member inline tabScrollButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/TabScrollButton") [ Feliz.MaterialUI.tabScrollButton.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.
@@ -1281,6 +1424,10 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `value`
   static member inline toggleButton props = createElement (importDefault "@material-ui/lab/ToggleButton") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1288,6 +1435,10 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([ButtonBase](https://material-ui.com/api/button-base/)).
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `value`
   static member inline toggleButton (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/ToggleButton") [ Feliz.MaterialUI.toggleButton.children (children :> ReactElement seq) ]
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1317,6 +1468,10 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `children`
+  ///   - `title`
   static member inline tooltip props = createElement (importDefault "@material-ui/core/Tooltip") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1324,6 +1479,9 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `nodeId`
   static member inline treeItem props = createElement (importDefault "@material-ui/lab/TreeItem") props
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1331,6 +1489,9 @@ type Mui =
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element (native element).
+  ///
+  /// Required props:
+  ///   - `nodeId`
   static member inline treeItem (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/lab/TreeItem") [ Feliz.MaterialUI.treeItem.children (children :> ReactElement seq) ]
 
   /// **This is an experimental component from @material-ui/lab. Breaking changes may occur at any time.**
@@ -1363,9 +1524,19 @@ type Mui =
   static member inline typography (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Typography") [ Feliz.MaterialUI.typography.children (children :> ReactElement seq) ]
 
   /// The component cannot hold a ref.
+  ///
+  /// Required props:
+  ///   - `getDoc`
+  ///   - `isEnabled`
+  ///   - `open'`
   static member inline unstable_TrapFocus props = createElement (importDefault "@material-ui/core/Unstable_TrapFocus") props
 
   /// The component cannot hold a ref.
+  ///
+  /// Required props:
+  ///   - `getDoc`
+  ///   - `isEnabled`
+  ///   - `open'`
   static member inline unstable_TrapFocus (children: #seq<ReactElement>) = createElement (importDefault "@material-ui/core/Unstable_TrapFocus") [ Feliz.MaterialUI.unstable_TrapFocus.children (children :> ReactElement seq) ]
 
   /// The `ref` is forwarded to the root element.

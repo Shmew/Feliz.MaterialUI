@@ -209,6 +209,11 @@ module Render =
       for comp in api.Components do
       for overload in comp.Overloads do
         yield! comp.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 1)
+        let requiredProps = comp.Props |> List.filter (fun c -> c.IsRequired)
+        if not requiredProps.IsEmpty then
+          "///" |> indent 1
+          "/// Required props:" |> indent 1
+          for p in requiredProps do sprintf "///   - `%s`" p.MethodName |> indent 1
         yield! GetLines.singleComponentOverload comp overload |> List.map (indent 1)
         ""
     ]

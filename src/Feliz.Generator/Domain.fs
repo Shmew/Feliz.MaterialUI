@@ -46,6 +46,8 @@ type EnumPropOverload = {
 type Prop = {
   /// The doc lines for the prop, without leading ///.
   DocLines: string list
+  /// Whether this prop is required.
+  IsRequired: bool
   /// The actual name of the prop in the native API.
   RealPropName: string
   /// The name used for the prop overload methods (and for the prop types for
@@ -162,6 +164,7 @@ module Prop =
   /// docs or overloads.
   let create realPropName methodName = {
     DocLines = []
+    IsRequired = false
     RealPropName = realPropName
     MethodName = methodName
     RegularOverloads = []
@@ -171,6 +174,10 @@ module Prop =
   /// Sets the prop's doc lines.
   let setDocs docLines (prop: Prop) =
     { prop with DocLines = docLines }
+
+  /// Sets whether the prop is required.
+  let setRequired value prop =
+    { prop with IsRequired = value }
 
   /// Adds the specified regular (non-enum) overload to the prop.
   let addRegularOverload overload prop =

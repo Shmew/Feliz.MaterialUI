@@ -47,6 +47,7 @@ let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
 
 
 let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: HtmlNode) : Prop =
+  let isRequired = row.Name.EndsWith "*"
   let realPropName = row.Name.Trim(' ', '*')
   let propMethodName = realPropName |> kebabCaseToCamelCase |> appendApostropheToReservedKeywords
 
@@ -752,6 +753,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
   Prop.create realPropName propMethodName
   |> Prop.setDocs transformedMarkdownDocLines
+  |> Prop.setRequired isRequired
   |> Prop.addRegularOverloads regularOverloads
   |> Prop.addEnumOverloads enumOverloads
 

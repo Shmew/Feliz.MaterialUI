@@ -34,6 +34,7 @@ Changelog
 
 * Updated for @material-ui/core 4.11 and @material-ui/lab 4.0.0-alpha.56
 * Breaking: `type'` prop removed from `buttonBase` and all inheriting components; use `prop.type'` from Feliz instead
+* Component documentation now lists any required props
 
 ### 1.0.1
 
