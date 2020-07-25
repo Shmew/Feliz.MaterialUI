@@ -3,19 +3,19 @@
   "isRoot": true,
   "tools": {
     "paket": {
-      "version": "5.241.2",
+      "version": "5.249.0",
       "commands": [
         "paket"
       ]
     },
     "femto": {
-      "version": "0.8.3",
+      "version": "0.8.6",
       "commands": [
         "femto"
       ]
     },
     "fake-cli": {
-      "version": "5.19.0",
+      "version": "5.20.2",
       "commands": [
         "fake"
       ]
