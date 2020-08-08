@@ -922,10 +922,41 @@ let parseApi () =
       |> Prop.addRegularOverload (RegularPropOverload.create "(extendTheme: Theme -> Theme)" "extendTheme")
     )
 
+  // https://material-ui.com/styles/api/#stylesprovider
+  let stylesProvider =
+    Component.createImportSelector "stylesProvider" "StylesProvider" "@material-ui/core/styles"
+    |> Component.setDocs [
+        "This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context."
+        ""
+        "It should preferably be used at **the root of your component tree**."
+    ]
+    |> Component.addProp (
+        Prop.create "children" "children"
+        |> Prop.setDocs ["Your component tree."]
+        |> Prop.addRegularOverload (
+            RegularPropOverload.createCustom "(elements: ReactElement seq)" "prop.children elements"
+        )
+    )
+    |> Component.addProp (
+      Prop.create "disableGeneration" "disableGeneration"
+      |> Prop.setDocs ["You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property."]
+      |> Prop.addRegularOverload (RegularPropOverload.create "(value: bool)" "value")
+    )
+    |> Component.addProp (
+      Prop.create "injectFirst" "injectFirst"
+      |> Prop.setDocs ["By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop."]
+      |> Prop.addRegularOverload (RegularPropOverload.create "(value: bool)" "value")
+    )
+    |> Component.addProp (
+      Prop.create "jss" "jss"
+      |> Prop.setDocs ["JSS's instance."]
+      |> Prop.addRegularOverload (RegularPropOverload.create "(value: obj)" "value")
+    )
 
   let api =
     ComponentApi.create "Feliz.MaterialUI" "Mui"
     |> ComponentApi.addComponent themeProvider
+    |> ComponentApi.addComponent stylesProvider
     |> ComponentApi.addComponents (components |> List.map (fun c -> c.GeneratorComponent))
     |> ComponentApi.setParseProps "!!properties |> Object.fromFlatEntries"
 

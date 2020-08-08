@@ -4,10 +4,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.1.0</Version>
-    <PackageReleaseNotes>- Updated for @material-ui/core 4.11 and @material-ui/lab 4.0.0-alpha.56
-- Breaking: 'type' prop removed from buttonBase and all inheriting components; use prop.type' from Feliz instead
-- Component documentation now lists any required props</PackageReleaseNotes>
+    <Version>1.2.0</Version>
+    <PackageReleaseNotes>- Added the stylesProvider component</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.template" />

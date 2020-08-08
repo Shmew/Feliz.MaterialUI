@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 1.2.0
+
+* Added the `stylesProvider` component
+
 ### 1.1.0
 
 * Updated for @material-ui/core 4.11 and @material-ui/lab 4.0.0-alpha.56

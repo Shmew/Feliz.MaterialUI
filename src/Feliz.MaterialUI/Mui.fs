@@ -30,6 +30,11 @@ type Mui =
 
   static member inline themeProvider props = createElement (import "ThemeProvider" "@material-ui/core/styles") props
 
+  /// This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context.
+  ///
+  /// It should preferably be used at **the root of your component tree**.
+  static member inline stylesProvider props = createElement (import "StylesProvider" "@material-ui/core/styles") props
+
   /// The `ref` is forwarded to the root element.
   ///
   /// Any other props supplied will be provided to the root element ([Paper](https://material-ui.com/api/paper/)).
