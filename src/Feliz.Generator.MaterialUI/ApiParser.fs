@@ -30,7 +30,7 @@ let paramListAndObjCreator paramData =
   paramList, objCreator
 
 
-let parseClassRule compMethodName (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
+let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
   let markdownDocLines =
     rowHtml.CssSelect("td").[2].Elements()
     |> docElementsToMarkdownLines
@@ -42,7 +42,8 @@ let parseClassRule compMethodName (row: ComponentApiPage.Css.Row) (rowHtml: Html
     |> appendApostropheToReservedKeywords
 
   if methodName = "" then
-    printfn "WARNING: Missing class rule name for component '%s', skipping rule" compMethodName
+    // Classes API may not be supported for this component
+    // https://github.com/mui-org/material-ui/issues/22783#issuecomment-699686571
     None
   else
     Some {
@@ -913,7 +914,7 @@ let parseComponent (htmlPathOrUrl: string) =
             )
             |> Array.toList
           with :? KeyNotFoundException -> []
-        rowsAndHtml |> List.choose (fun (r, html) -> parseClassRule compMethodName r html)
+        rowsAndHtml |> List.choose (fun (r, html) -> parseClassRule r html)
       ComponentName = componentName
     }
 
