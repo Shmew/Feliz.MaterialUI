@@ -30,20 +30,30 @@ let paramListAndObjCreator paramData =
   paramList, objCreator
 
 
-let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
+let parseClassRule compMethodName (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
   let markdownDocLines =
     rowHtml.CssSelect("td").[2].Elements()
     |> docElementsToMarkdownLines
 
-  {
-    DocLines = markdownDocLines
-    MethodName = 
-      row.``Rule name``
-      |> kebabCaseToCamelCase
-      |> trimStart '@'
-      |> appendApostropheToReservedKeywords
-    RealRuleName = row.``Rule name``
-  }
+  let methodName =
+    row.``Rule name``
+    |> kebabCaseToCamelCase
+    |> trimStart '@'
+    |> appendApostropheToReservedKeywords
+
+  if methodName = "" then
+    printfn "WARNING: Missing class rule name for component '%s', skipping rule" compMethodName
+    None
+  else
+    Some {
+      DocLines = markdownDocLines
+      MethodName = 
+        row.``Rule name``
+        |> kebabCaseToCamelCase
+        |> trimStart '@'
+        |> appendApostropheToReservedKeywords
+      RealRuleName = row.``Rule name``
+    }
 
 
 let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: HtmlNode) : Prop =
@@ -764,10 +774,17 @@ let parseComponent (htmlPathOrUrl: string) =
 
     let page = ComponentApiPage.Load(htmlPathOrUrl)
     let html = page.Html
+    let importDefaultMatches = Regex.Match(html.CssSelect("pre").[0].InnerText(), "import ?(.+?) ?from ?'(.+?)'")
+    if importDefaultMatches.Length = 0 then failwith "No import matches"
+    let compMethodName = importDefaultMatches.Groups.[1].Value |> String.lowerFirst
+    let importPath = importDefaultMatches.Groups.[2].Value
+    let compMethodName, importSelector =
+      let matches = Regex.Match(compMethodName, "{ ?(.+?)? ?}")
+      if matches.Length = 0 then
+        compMethodName, None
+      else
+          matches.Groups.[1].Value |> String.lowerFirst, Some (matches.Groups.[1].Value)
 
-    let importMatches = Regex.Match(html.CssSelect("pre").[0].InnerText(), "import (.+?) from'(.+?)'")
-    let compMethodName = importMatches.Groups.[1].Value |> String.lowerFirst
-    let importPath = importMatches.Groups.[2].Value
 
     let noteNodes1 =
       html.CssSelect(".markdown-body").[1].Elements()
@@ -878,7 +895,9 @@ let parseComponent (htmlPathOrUrl: string) =
 
     {
       GeneratorComponent =
-        Component.createImportDefault compMethodName importPath
+        match importSelector with
+        | None -> Component.createImportDefault compMethodName importPath
+        | Some selector -> Component.createImportSelector compMethodName selector importPath
         |> Component.setDocs markdownDocLines
         |> Component.addOverloads additionalOverloads
         |> Component.addProps props
@@ -894,7 +913,7 @@ let parseComponent (htmlPathOrUrl: string) =
             )
             |> Array.toList
           with :? KeyNotFoundException -> []
-        rowsAndHtml |> List.map (fun (r, html) -> parseClassRule r html)
+        rowsAndHtml |> List.choose (fun (r, html) -> parseClassRule compMethodName r html)
       ComponentName = componentName
     }
 
@@ -903,6 +922,8 @@ let parseApi () =
 
   let components =
     HtmlCache.getApiFiles ()
+    // TODO: Support DataGrid and XGrid
+    |> Array.filter (fun path -> not <| path.EndsWith "data-grid.html" && not <| path.EndsWith "x-grid.html")
     |> Array.Parallel.map parseComponent
     |> Array.toList
 

@@ -267,9 +267,9 @@ let App = FunctionComponent.Of((fun (model, dispatch) ->
   let isDarkMode = Hooks.useMediaQuery "@media (prefers-color-scheme: dark)"
   let systemThemeMode = if isDarkMode then Dark else Light
   let c = useStyles ()
-  Router.router [
-    Router.onUrlChanged (SetPath >> dispatch)
-    Router.application [
+  React.router [
+    router.onUrlChanged (SetPath >> dispatch)
+    router.children [
       Mui.themeProvider [
         themeProvider.theme (
           match model.CustomThemeMode |> Option.defaultValue systemThemeMode with
