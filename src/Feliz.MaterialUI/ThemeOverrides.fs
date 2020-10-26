@@ -570,7 +570,7 @@ module themeOverrides =
       [<Erase>]
       type muiCssBaseline =
         /// Apply global styles.
-        static member inline global'(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCssBaseline.@global", createObj !!styles)
+        static member inline global'(htmlTagsWithStyles: (string * (IStyleAttribute list)) list) : IThemeProp = unbox ("overrides.MuiCssBaseline.@global", createObj !!(htmlTagsWithStyles |> List.map (fun (tag, styles) -> tag, createObj !!styles)))
 
       [<Erase>]
       type muiDialog =

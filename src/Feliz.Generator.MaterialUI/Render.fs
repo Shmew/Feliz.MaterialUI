@@ -77,7 +77,11 @@ module GetLines =
       sprintf "type %s =" (stylesheetName |> String.lowerFirst)
       for rule in comp.ClassRules do
         yield! rule.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 1)
-        yield! singleThemeOverrideRule stylesheetName rule |> List.map (indent 1)
+        if comp.GeneratorComponent.MethodName = "cssBaseline" && rule.RealRuleName = "@global" then
+          "static member inline global'(htmlTagsWithStyles: (string * (IStyleAttribute list)) list) : IThemeProp = unbox (\"overrides.MuiCssBaseline.@global\", createObj !!(htmlTagsWithStyles |> List.map (fun (tag, styles) -> tag, createObj !!styles)))"
+          |> indent 1
+        else
+          yield! singleThemeOverrideRule stylesheetName rule |> List.map (indent 1)
     ]
 
   let locale (loc: Locale) =
