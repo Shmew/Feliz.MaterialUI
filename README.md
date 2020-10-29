@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 1.2.1
+
+* Fixed the signature of `theme.overrides.muiCssBaseline.global'`
+
 ### 1.2.0
 
 * Added the `stylesProvider` component
