@@ -2,31 +2,26 @@
 
 open System.ComponentModel
 open Fable.Core
-
+open Fable.Core.JsInterop
 
 [<EditorBrowsable(EditorBrowsableState.Never)>]
 module Object =
+  [<Emit("$0 === undefined")>]
+  let private isUndefined x = jsNative
 
-  [<Emit("""
-function setProperty(target, key, value) {
-  const sepIdx = key.indexOf('.')
-  if (sepIdx === -1) {
-    target[key] = value
-  } else {
-    const topKey = key.substring(0, sepIdx)
-    const nestedKey = key.substring(sepIdx + 1)
-    if (target[topKey] === undefined) {
-      target[topKey] = {}
-    }
-    setProperty(target[topKey], nestedKey, value)
-  }
-}
+  let fromFlatEntries (kvs: seq<string * obj>) : obj =
+    let rec setProperty (target : obj) (key : string) (value : obj) =
+      match key.IndexOf '.' with
+      | -1 -> target?(key) <- value
+      | sepIdx ->
+        let topKey = key.Substring (0, sepIdx)
+        let nestedKey = key.Substring (sepIdx + 1)
+        if isUndefined target?(topKey) then
+          target?(topKey) <- obj ()
+        setProperty target?(topKey) nestedKey value
 
-const target = {}
-for (let kv of $0) {
-  setProperty(target, kv[0], kv[1])
-}
+    let target = obj ()
+    for (key, value) in kvs do
+      setProperty target key value
+    target
 
-return target
-""")>]
-  let fromFlatEntries (kvs: seq<string * obj>) : obj = jsNative
