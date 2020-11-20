@@ -159,6 +159,9 @@ Target.create "CiBuild" ignore
 "Docs:NpmInstall"
   ==> "Docs:Build"
 
+"Build"
+  ==> "Docs:Build"
+
 "Docs:Build"
   ==> "Docs:Publish"
 
