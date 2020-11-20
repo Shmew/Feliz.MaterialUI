@@ -4,8 +4,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.2.2</Version>
-    <PackageReleaseNotes>Added workaround for regression in Fable 3</PackageReleaseNotes>
+    <Version>1.2.3</Version>
+    <PackageReleaseNotes>Support FSharp.Core 5</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />

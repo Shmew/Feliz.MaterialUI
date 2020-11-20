@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 1.2.3
+
+* Support FSharp.Core 5
+
 ### 1.2.2
 
 * Added workaround for regression in Fable 3 ([#58](https://github.com/cmeeren/Feliz.MaterialUI/pull/58), thanks to [@inosik](https://github.com/inosik))
