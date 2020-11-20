@@ -49,7 +49,7 @@ Target.create "Build" (fun _ ->
 Target.create "RegenerateFromLive" (fun _ ->
   DotNet.exec
     // Set working directory to output directory to get same paths as when running in VS
-    (fun c -> { c with WorkingDirectory = "src/Feliz.Generator.MaterialUI/bin/Release/netcoreapp3.0" })
+    (fun c -> { c with WorkingDirectory = "src/Feliz.Generator.MaterialUI/bin/Release/netcoreapp3.1" })
     "run"
     "--project ../../.. -- --refresh"
   |> getExitCode |> failIfNonZero
@@ -58,7 +58,7 @@ Target.create "RegenerateFromLive" (fun _ ->
 Target.create "RegenerateFromCache" (fun _ ->
   DotNet.exec
     // Set working directory to output directory to get same paths as when running in VS
-    (fun c -> { c with WorkingDirectory = "src/Feliz.Generator.MaterialUI/bin/Release/netcoreapp3.0" })
+    (fun c -> { c with WorkingDirectory = "src/Feliz.Generator.MaterialUI/bin/Release/netcoreapp3.1" })
     "run"
     "--project ../../.."
   |> getExitCode |> failIfNonZero
