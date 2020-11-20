@@ -8,6 +8,7 @@
     <PackageReleaseNotes>Added workaround for regression in Fable 3</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="paket.references" />
     <None Include="paket.template" />
     <Compile Include="Flatten.fs" />
     <Compile Include="Misc.fs" />
