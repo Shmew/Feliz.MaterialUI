@@ -14,4 +14,4 @@ type IThemeProp = interface end
 module Utils =
 
   [<Emit("Object.entries($0)"); EditorBrowsable(EditorBrowsableState.Never)>]
-  let inline objectEntries (x: obj) : obj = jsNative
+  let objectEntries (x: obj) : obj = jsNative
