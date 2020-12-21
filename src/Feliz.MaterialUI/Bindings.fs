@@ -1,13 +1,9 @@
 ﻿namespace Feliz.MaterialUI
 
-open System.ComponentModel
 open Fable.Core
-open Fable.Core.JS
-open Fable.Core.JsInterop
 open Browser.Types
 open Feliz
 open Feliz.Styles
-
 
 type PaletteIntention =
   abstract light: string
@@ -15,7 +11,7 @@ type PaletteIntention =
   abstract dark: string
   abstract contrastText: string
 
-[<StringEnum; RequireQualifiedAccess>] 
+[<StringEnum; RequireQualifiedAccess>]
 type PaletteType =
   | Dark
   | Light
@@ -158,7 +154,6 @@ type BreakpointKey =
   | Lg
   | Xl
 
-[<AbstractClass; Erase>]
 type Breakpoints =
   abstract keys: BreakpointKey []
   abstract values: BreakpointValues
@@ -186,96 +181,99 @@ type Breakpoints =
   /// the first argument and less than the the screen size given by the breakpoint key in
   /// the second argument.
   abstract between: start: BreakpointKey * ``end``: BreakpointKey -> string
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `xs` sreen size.
-  member inline this.upXs = this.up(BreakpointKey.Xs)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `sm` sreen size.
-  member inline this.upSm = this.up(BreakpointKey.Sm)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `md` sreen size.
-  member inline this.upMd = this.up(BreakpointKey.Md)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `lg` sreen size.
-  member inline this.upLg = this.up(BreakpointKey.Lg)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `xl` sreen size.
-  member inline this.upXl = this.up(BreakpointKey.Xl)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `xs` screen size.
-  member inline this.downXs = this.down(BreakpointKey.Xs)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `sm` screen size.
-  member inline this.downSm = this.down(BreakpointKey.Sm)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `md` screen size.
-  member inline this.downMd = this.down(BreakpointKey.Md)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `lg` screen size.
-  member inline this.downLg = this.down(BreakpointKey.Lg)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than and including the `xl` screen size.
-  member inline this.downXl = this.down(BreakpointKey.Xl)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths including the `xs` screen size.
-  member inline this.onlyXs = this.only(BreakpointKey.Xs)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths including the `sm` screen size.
-  member inline this.onlySm = this.only(BreakpointKey.Sm)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths including the `md` screen size.
-  member inline this.onlyMd = this.only(BreakpointKey.Md)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths including the `lg` screen size.
-  member inline this.onlyLg = this.only(BreakpointKey.Lg)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths including the `xl` screen size.
-  member inline this.onlyXl = this.only(BreakpointKey.Xl)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `xs` screen size and less than the the `sm`
-  /// screen size.
-  member inline this.betweenXsSm = this.between(BreakpointKey.Xs, BreakpointKey.Sm)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `xs` screen size and less than the the `md`
-  /// screen size.
-  member inline this.betweenXsMd = this.between(BreakpointKey.Xs, BreakpointKey.Md)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `xs` screen size and less than the the `lg`
-  /// screen size.
-  member inline this.betweenXsLg = this.between(BreakpointKey.Xs, BreakpointKey.Lg)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `xs` screen size and less than the the `xl`
-  /// screen size.
-  member inline this.betweenXsXl = this.between(BreakpointKey.Xs, BreakpointKey.Xl)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `sm` screen size and less than the the `md`
-  /// screen size.
-  member inline this.betweenSmMd = this.between(BreakpointKey.Sm, BreakpointKey.Md)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `sm` screen size and less than the the `lg`
-  /// screen size.
-  member inline this.betweenSmLg = this.between(BreakpointKey.Sm, BreakpointKey.Lg)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `sm` screen size and less than the the `xl`
-  /// screen size.
-  member inline this.betweenSmXl = this.between(BreakpointKey.Sm, BreakpointKey.Xl)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `md` screen size and less than the the `lg`
-  /// screen size.
-  member inline this.betweenMdLg = this.between(BreakpointKey.Md, BreakpointKey.Lg)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `md` screen size and less than the the `xl`
-  /// screen size.
-  member inline this.betweenMdXl = this.between(BreakpointKey.Md, BreakpointKey.Xl)
-  /// Returns a media query string ready to be used with most styling solutions, which
-  /// matches screen widths greater than the `lg` screen size and less than the the `xl`
-  /// screen size.
-  member inline this.betweenLgXl = this.between(BreakpointKey.Lg, BreakpointKey.Xl)
 
-[<AbstractClass; Erase>]
+[<AutoOpen>]
+module Extensions =
+  type Breakpoints with
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `xs` sreen size.
+    member inline this.upXs = this.up(BreakpointKey.Xs)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `sm` sreen size.
+    member inline this.upSm = this.up(BreakpointKey.Sm)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `md` sreen size.
+    member inline this.upMd = this.up(BreakpointKey.Md)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `lg` sreen size.
+    member inline this.upLg = this.up(BreakpointKey.Lg)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `xl` sreen size.
+    member inline this.upXl = this.up(BreakpointKey.Xl)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `xs` screen size.
+    member inline this.downXs = this.down(BreakpointKey.Xs)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `sm` screen size.
+    member inline this.downSm = this.down(BreakpointKey.Sm)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `md` screen size.
+    member inline this.downMd = this.down(BreakpointKey.Md)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `lg` screen size.
+    member inline this.downLg = this.down(BreakpointKey.Lg)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than and including the `xl` screen size.
+    member inline this.downXl = this.down(BreakpointKey.Xl)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths including the `xs` screen size.
+    member inline this.onlyXs = this.only(BreakpointKey.Xs)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths including the `sm` screen size.
+    member inline this.onlySm = this.only(BreakpointKey.Sm)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths including the `md` screen size.
+    member inline this.onlyMd = this.only(BreakpointKey.Md)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths including the `lg` screen size.
+    member inline this.onlyLg = this.only(BreakpointKey.Lg)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths including the `xl` screen size.
+    member inline this.onlyXl = this.only(BreakpointKey.Xl)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `xs` screen size and less than the the `sm`
+    /// screen size.
+    member inline this.betweenXsSm = this.between(BreakpointKey.Xs, BreakpointKey.Sm)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `xs` screen size and less than the the `md`
+    /// screen size.
+    member inline this.betweenXsMd = this.between(BreakpointKey.Xs, BreakpointKey.Md)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `xs` screen size and less than the the `lg`
+    /// screen size.
+    member inline this.betweenXsLg = this.between(BreakpointKey.Xs, BreakpointKey.Lg)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `xs` screen size and less than the the `xl`
+    /// screen size.
+    member inline this.betweenXsXl = this.between(BreakpointKey.Xs, BreakpointKey.Xl)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `sm` screen size and less than the the `md`
+    /// screen size.
+    member inline this.betweenSmMd = this.between(BreakpointKey.Sm, BreakpointKey.Md)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `sm` screen size and less than the the `lg`
+    /// screen size.
+    member inline this.betweenSmLg = this.between(BreakpointKey.Sm, BreakpointKey.Lg)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `sm` screen size and less than the the `xl`
+    /// screen size.
+    member inline this.betweenSmXl = this.between(BreakpointKey.Sm, BreakpointKey.Xl)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `md` screen size and less than the the `lg`
+    /// screen size.
+    member inline this.betweenMdLg = this.between(BreakpointKey.Md, BreakpointKey.Lg)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `md` screen size and less than the the `xl`
+    /// screen size.
+    member inline this.betweenMdXl = this.between(BreakpointKey.Md, BreakpointKey.Xl)
+    /// Returns a media query string ready to be used with most styling solutions, which
+    /// matches screen widths greater than the `lg` screen size and less than the the `xl`
+    /// screen size.
+    member inline this.betweenLgXl = this.between(BreakpointKey.Lg, BreakpointKey.Xl)
+
 type Mixins =
   [<Emit("Object.entries($0.toolbar)")>]
-  member inline __.toolbar : IStyleAttribute [] = jsNative
+  abstract toolbar : IStyleAttribute []
 
 type Easing =
   abstract easeInOut: string
@@ -305,7 +303,6 @@ type Transitions =
   abstract create: props: string [] * ?options: TransitionOptions -> string
   abstract getAutoHeightDuration: height: int -> int
 
-[<AbstractClass; Erase>]
 type Theme =
   abstract breakpoints: Breakpoints
   abstract direction: Direction
@@ -321,7 +318,7 @@ type Theme =
   abstract transitions: Transitions
   abstract zIndex: ZIndex
   [<Emit("Object.entries($0)")>]
-  member inline _.asPropArray : IThemeProp [] = jsNative
+  abstract asPropArray : IThemeProp []
 
 type MakeStylesOptions =
   /// The default theme to use if a theme isn't supplied through a Theme
@@ -357,7 +354,7 @@ type ResponsiveFontSizesOptions =
   abstract breakpoints: BreakpointKey [] with get, set
   /// Whether font sizes change slightly so line heights are preserved and align
   /// to Material Design's 4px line height grid. This requires a unitless line
-  /// height in the theme's styles. Default to `false`. 
+  /// height in the theme's styles. Default to `false`.
   abstract disableAlign: bool with get, set
   /// This value determines the strength of font size resizing. The higher the
   /// value, the less difference there is between font sizes on small screens.
@@ -477,43 +474,36 @@ type AutocompleteRenderValueState =
   abstract className: string
   abstract onDelete: Event -> unit
 
-[<Erase>]
 type PropsObject =
   /// Gets all properties on this object as Feliz properties you can `yield!`.
   [<Emit("Object.entries($0)")>]
-  member inline _.felizProps : IReactProperty [] = jsNative
+  abstract felizProps : IReactProperty []
 
-[<AbstractClass; Erase>]
 type AutocompleteRenderInputParams_InputLabelProps =
   inherit PropsObject
 
-[<AbstractClass; Erase>]
 type AutocompleteRenderInputParams_InputProps =
   inherit PropsObject
   [<Emit("[\"className\", $0.className]")>]
-  member inline _.className : IReactProperty = jsNative
+  abstract className : IReactProperty
   [<Emit("[\"startAdornment\", $0.startAdornment]")>]
-  member inline _.startAdornment : IReactProperty = jsNative
+  abstract startAdornment : IReactProperty
   [<Emit("[\"endAdornment\", $0.endAdornment]")>]
-  member inline _.endAdornment : IReactProperty = jsNative
+  abstract endAdornment : IReactProperty
 
-[<AbstractClass; Erase>]
 type AutocompleteRenderInputParams_inputProps =
   inherit PropsObject
 
-[<AbstractClass; Erase>]
 type AutocompleteRenderInputParams =
   inherit PropsObject
   abstract InputLabelProps: AutocompleteRenderInputParams_InputLabelProps
   abstract InputProps: AutocompleteRenderInputParams_InputProps
   abstract inputProps: AutocompleteRenderInputParams_inputProps
   [<Emit("[\"ref\", $0.ref]")>]
-  member inline _.ref : IReactProperty = jsNative
+  abstract ref : IReactProperty
 
-[<AbstractClass; Erase>]
 type AutocompleteRenderGroupParams =
   inherit PropsObject
 
-[<AbstractClass; Erase>]
 type PaginationRenderItemParams =
   inherit PropsObject

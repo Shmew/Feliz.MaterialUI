@@ -1925,7 +1925,7 @@ module themeOverrides =
         static member inline centered(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.centered", createObj !!styles)
         /// Styles applied to the tablist element.
         static member inline scroller(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.scroller", createObj !!styles)
-        /// Styles applied to the tablist element if `!variant="scrollable"`.
+        /// Styles applied to the tablist element if `!variant="scrollable"`.
         static member inline fixed'(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.fixed", createObj !!styles)
         /// Styles applied to the tablist element if `variant="scrollable"`.
         static member inline scrollable(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTabs.scrollable", createObj !!styles)
