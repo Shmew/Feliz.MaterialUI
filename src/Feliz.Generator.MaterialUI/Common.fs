@@ -62,3 +62,4 @@ let docElementsToMarkdownLines (nodes: HtmlNode list) =
   |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, "\r\n\r\n(\r\n)+", "\r\n\r\n")
   |> String.split "\r\n"
   |> List.trimEmptyLines
+  |> List.map String.removeControlCharacters

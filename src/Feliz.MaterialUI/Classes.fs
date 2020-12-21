@@ -2438,7 +2438,7 @@ module classesProps =
       static member inline centered(className: string) : IReactProperty = unbox ("classes.centered", className)
       /// Styles applied to the tablist element.
       static member inline scroller(className: string) : IReactProperty = unbox ("classes.scroller", className)
-      /// Styles applied to the tablist element if `!variant="scrollable"`.
+      /// Styles applied to the tablist element if `!variant="scrollable"`.
       static member inline fixed'(className: string) : IReactProperty = unbox ("classes.fixed", className)
       /// Styles applied to the tablist element if `variant="scrollable"`.
       static member inline scrollable(className: string) : IReactProperty = unbox ("classes.scrollable", className)

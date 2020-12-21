@@ -1,6 +1,8 @@
 ﻿[<AutoOpen>]
 module Utils
 
+open System.Text.RegularExpressions
+
 
 let flip f x y = f y x
 
@@ -21,6 +23,12 @@ module String =
   /// Splits the string on the specified separator.
   let split (sep: string) (s: string) =
     s.Split(sep) |> Array.toList
+
+  /// Removes invisible control characters, including tabs and newlines.
+  let removeControlCharacters =
+    // https://stackoverflow.com/a/40568888/2978652
+    let r = Regex("\p{Cc}", RegexOptions.Compiled)
+    fun (s: string) -> r.Replace(s, "")
 
 
 module List =
