@@ -30,6 +30,10 @@ To run targets using Fake: `dotnet fake build -t TargetName`
 Changelog
 ---------
 
+### 1.2.4
+
+* Better support for Fable 3 ([#64](https://github.com/cmeeren/Feliz.MaterialUI/pull/64), thanks to [@alfonsogarciacaro](alfonsogarciacaro))
+
 ### 1.2.3
 
 * Support FSharp.Core 5

@@ -4,8 +4,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.2.3</Version>
-    <PackageReleaseNotes>Support FSharp.Core 5</PackageReleaseNotes>
+    <Version>1.2.4</Version>
+    <PackageReleaseNotes>Better support for Fable 3 (#64, thanks to @alfonsogarciacaro)</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
