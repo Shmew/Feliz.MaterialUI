@@ -409,7 +409,7 @@ type autocomplete =
   /// If `true`, the popup will ignore the blur event if the input is filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
   /// The default input value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" (ResizeArray value)
   /// The default input value. Use when the component is not controlled.
   static member inline defaultValue (value: 'option option) = Interop.mkAttr "defaultValue" value
   /// If `true`, the input can't be cleared.
@@ -433,7 +433,7 @@ type autocomplete =
   /// *options:* The options to render.
   ///
   /// *state:* The state of the component.
-  static member inline filterOptions (filterOptions: 'option [] -> string -> 'option []) = Interop.mkAttr "filterOptions" (Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> filterOptions opts s.inputValue))
+  static member inline filterOptions (filterOptions: 'option [] -> string -> 'option []) = Interop.mkAttr "filterOptions" (Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> ResizeArray (filterOptions opts s.inputValue)))
   /// A filter function that determines the options that are eligible.
   ///
   /// **Signature:**
@@ -693,7 +693,7 @@ type autocomplete =
   /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
   static member inline openText (value: string) = Interop.mkAttr "openText" value
   /// Array of options.
-  static member inline options (options: 'option []) = Interop.mkAttr "options" options
+  static member inline options (options: 'option []) = Interop.mkAttr "options" (ResizeArray options)
   /// The component used to render the body of the popup.
   static member inline PaperComponent (value: ReactElementType) = Interop.mkAttr "PaperComponent" value
   /// The component used to position the popup.
@@ -739,7 +739,7 @@ type autocomplete =
   /// The value of the autocomplete.
   ///
   /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
-  static member inline value (value: 'option []) = Interop.mkAttr "value" value
+  static member inline value (value: 'option []) = Interop.mkAttr "value" (ResizeArray value)
   /// The value of the autocomplete.
   ///
   /// The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop.
@@ -7643,7 +7643,7 @@ type tablePagination =
   /// The number of rows per page.
   static member inline rowsPerPage (value: int) = Interop.mkAttr "rowsPerPage" value
   /// Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.
-  static member inline rowsPerPageOptions ([<ParamArray>] values: int []) = Interop.mkAttr "rowsPerPageOptions" values
+  static member inline rowsPerPageOptions ([<ParamArray>] values: int []) = Interop.mkAttr "rowsPerPageOptions" (ResizeArray values)
   /// Props applied to the rows per page [`Select`](https://material-ui.com/api/select/) element.
   static member inline SelectProps (props: IReactProperty list) = Interop.mkAttr "SelectProps" (createObj !!props)
   /// This component does not support children.
@@ -8484,7 +8484,7 @@ type toggleButtonGroup =
   /// The currently selected value within the group or an array of selected values when `exclusive` is false.
   ///
   /// The value must have reference equality with the option in order to be selected.
-  static member inline value (values: 'toggleButtonValue []) = Interop.mkAttr "value" values
+  static member inline value (values: 'toggleButtonValue []) = Interop.mkAttr "value" (ResizeArray values)
 
 module toggleButtonGroup =
 

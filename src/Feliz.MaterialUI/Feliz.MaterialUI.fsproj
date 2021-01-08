@@ -4,8 +4,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.2.4</Version>
-    <PackageReleaseNotes>Better support for Fable 3 (#64, thanks to @alfonsogarciacaro)</PackageReleaseNotes>
+    <Version>1.2.5</Version>
+    <PackageReleaseNotes>https://github.com/cmeeren/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />

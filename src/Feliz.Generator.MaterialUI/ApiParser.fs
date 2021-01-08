@@ -129,7 +129,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "tablePagination", "rowsPerPageOptions", "array" ->
-        [RegularPropOverload.create "([<ParamArray>] values: int [])" "values"]
+        [RegularPropOverload.create "([<ParamArray>] values: int [])" "(ResizeArray values)"]
 
     | "accordion", "onChange", "func" ->
         [
@@ -139,7 +139,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", "filterOptions", "func" ->
         [
-          RegularPropOverload.create "(filterOptions: 'option [] -> string -> 'option [])" "(Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> filterOptions opts s.inputValue))"
+          RegularPropOverload.create "(filterOptions: 'option [] -> string -> 'option [])" "(Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> ResizeArray (filterOptions opts s.inputValue)))"
           RegularPropOverload.create "(filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option [])" "(Func<_,_,_> filterOptions)"
         ]
 
@@ -186,7 +186,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "autocomplete", "options", "array" ->
-        [RegularPropOverload.create "(options: 'option [])" "options"]
+        [RegularPropOverload.create "(options: 'option [])" "(ResizeArray options)"]
 
     | "autocomplete", "renderGroup", "func" ->
         [RegularPropOverload.create "(render: AutocompleteRenderGroupParams -> ReactElement)" "render"]
@@ -202,7 +202,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "autocomplete", ("defaultValue" | "value"), "any" ->
         [
-          RegularPropOverload.create "(value: 'option [])" "value"
+          RegularPropOverload.create "(value: 'option [])" "(ResizeArray value)"
           RegularPropOverload.create "(value: 'option option)" "value"
           RegularPropOverload.create "(value: 'option)" "value" |> RegularPropOverload.setExtension true
         ]
@@ -305,7 +305,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "toggleButtonGroup", "value", "any" ->
         [
           RegularPropOverload.create "(value: 'toggleButtonValue option)" "value"
-          RegularPropOverload.create "(values: 'toggleButtonValue [])" "values"
+          RegularPropOverload.create "(values: 'toggleButtonValue [])" "(ResizeArray values)"
         ]
 
     | ("checkbox" | "formControlLabel" | "switch"), "onChange", "func" ->
