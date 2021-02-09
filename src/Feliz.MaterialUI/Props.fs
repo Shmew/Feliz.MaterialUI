@@ -1602,9 +1602,9 @@ type checkbox =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
@@ -2003,7 +2003,7 @@ type dialog =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  static member inline container (element: #Element option) = Interop.mkAttr "container" element
   /// *Inherited from `modal`*
   ///
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
@@ -2015,7 +2015,7 @@ type dialog =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  static member inline container (getElement: unit -> #Element option) = Interop.mkAttr "container" getElement
   /// *Inherited from `modal`*
   ///
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
@@ -2612,9 +2612,9 @@ type filledInput =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -2740,9 +2740,9 @@ type formControlLabel =
   /// If `true`, the control will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// The text to be used in an enclosing label element.
   static member inline label (value: ReactElement) = Interop.mkAttr "label" value
   /// The text to be used in an enclosing label element.
@@ -3435,9 +3435,9 @@ type input =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -3566,9 +3566,9 @@ type inputBase =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -4005,11 +4005,11 @@ module listSubheader =
 [<Erase>]
 type menu =
   /// A HTML element, or a function that returns it. It's used to set the position of the menu.
-  static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
+  static member inline anchorEl (value: #Element option) = Interop.mkAttr "anchorEl" value
   /// A HTML element, or a function that returns it. It's used to set the position of the menu.
-  static member inline anchorEl (getElement: unit -> Element option) = Interop.mkAttr "anchorEl" getElement
+  static member inline anchorEl (getElement: unit -> #Element option) = Interop.mkAttr "anchorEl" getElement
   /// A HTML element, or a function that returns it. It's used to set the position of the menu.
-  static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
+  static member inline anchorEl (ref: IRefValue<#Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled children are not focusable. If you set this prop to `false` focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// Menu contents, normally `MenuItem`s.
@@ -4107,7 +4107,7 @@ type menu =
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  static member inline container (element: #Element option) = Interop.mkAttr "container" element
   /// *Inherited from `popover`*
   ///
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
@@ -4119,7 +4119,7 @@ type menu =
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  static member inline container (getElement: unit -> #Element option) = Interop.mkAttr "container" getElement
   /// *Inherited from `popover`*
   ///
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
@@ -4133,7 +4133,7 @@ type menu =
   /// *Inherited from `popover`*
   ///
   /// This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` prop. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element.
-  static member inline getContentAnchorEl (handler: Element option -> unit) = Interop.mkAttr "getContentAnchorEl" handler
+  static member inline getContentAnchorEl (handler: #Element option -> unit) = Interop.mkAttr "getContentAnchorEl" handler
   /// *Inherited from `popover`*
   ///
   /// Specifies how close to the edge of the window the popover can appear.
@@ -4509,7 +4509,7 @@ type modal =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  static member inline container (element: #Element option) = Interop.mkAttr "container" element
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -4517,7 +4517,7 @@ type modal =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  static member inline container (getElement: unit -> #Element option) = Interop.mkAttr "container" getElement
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -4657,11 +4657,11 @@ type nativeSelect =
   /// *Inherited from `input`*
   ///
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// *Inherited from `input`*
   ///
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// *Inherited from `input`*
   ///
   /// If `true`, a textarea element will be rendered.
@@ -4788,9 +4788,9 @@ type outlinedInput =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
   static member inline label (value: ReactElement) = Interop.mkAttr "label" value
   /// The label of the input. It is only used for layout. The actual labelling is handled by `InputLabel`. If specified `labelWidth` is ignored.
@@ -5057,11 +5057,11 @@ type popover =
   /// A ref for imperative actions. It currently only supports updatePosition() action.
   static member inline action (handler: PopoverActions -> unit) = Interop.mkAttr "action" handler
   /// A HTML element, or a function that returns it. It's used to set the position of the popover.
-  static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
+  static member inline anchorEl (value: #Element option) = Interop.mkAttr "anchorEl" value
   /// A HTML element, or a function that returns it. It's used to set the position of the popover.
-  static member inline anchorEl (getElement: unit -> Element option) = Interop.mkAttr "anchorEl" getElement
+  static member inline anchorEl (getElement: unit -> #Element option) = Interop.mkAttr "anchorEl" getElement
   /// A HTML element, or a function that returns it. It's used to set the position of the popover.
-  static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
+  static member inline anchorEl (ref: IRefValue<#Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// This is the point on the anchor where the popover's `anchorEl` will attach to. This is not used when the anchorReference is 'anchorPosition'.
   ///
   /// Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
@@ -5095,7 +5095,7 @@ type popover =
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  static member inline container (element: #Element option) = Interop.mkAttr "container" element
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
@@ -5103,7 +5103,7 @@ type popover =
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  static member inline container (getElement: unit -> #Element option) = Interop.mkAttr "container" getElement
   /// A HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
@@ -5111,7 +5111,7 @@ type popover =
   /// The elevation of the popover.
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` prop. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element.
-  static member inline getContentAnchorEl (handler: Element option -> unit) = Interop.mkAttr "getContentAnchorEl" handler
+  static member inline getContentAnchorEl (handler: #Element option -> unit) = Interop.mkAttr "getContentAnchorEl" handler
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
   /// Callback fired when the component requests to be closed.
@@ -5267,15 +5267,15 @@ module popover =
 [<Erase>]
 type popper =
   /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
-  static member inline anchorEl (value: Element option) = Interop.mkAttr "anchorEl" value
+  static member inline anchorEl (value: #Element option) = Interop.mkAttr "anchorEl" value
   /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
-  static member inline anchorEl (getElement: unit -> Element option) = Interop.mkAttr "anchorEl" getElement
+  static member inline anchorEl (getElement: unit -> #Element option) = Interop.mkAttr "anchorEl" getElement
   /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
   static member inline anchorEl (referenceObject: obj) = Interop.mkAttr "anchorEl" referenceObject
   /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
   static member inline anchorEl (getReferenceObject: unit -> obj) = Interop.mkAttr "anchorEl" getReferenceObject
   /// A HTML element, [referenceObject](https://popper.js.org/docs/v1/#referenceObject), or a function that returns either. It's used to set the position of the popper. The return value will passed as the reference object of the Popper instance.
-  static member inline anchorEl (ref: IRefValue<Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
+  static member inline anchorEl (ref: IRefValue<#Element option>) = Interop.mkAttr "anchorEl" (fun () -> ref.current)
   /// Popper render function or node.
   static member inline children (element: ReactElement) = prop.children element
   /// Popper render function or node.
@@ -5291,7 +5291,7 @@ type popper =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  static member inline container (element: #Element option) = Interop.mkAttr "container" element
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -5299,7 +5299,7 @@ type popper =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  static member inline container (getElement: unit -> #Element option) = Interop.mkAttr "container" getElement
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -5317,9 +5317,9 @@ type popper =
   /// Options provided to the [`popper.js`](https://popper.js.org/docs/v1/) instance.
   static member inline popperOptions (value: 'a) = Interop.mkAttr "popperOptions" value
   /// A ref that points to the used popper instance.
-  static member inline popperRef (ref: IRefValue<Element option>) = Interop.mkAttr "popperRef" ref
+  static member inline popperRef (ref: IRefValue<#Element option>) = Interop.mkAttr "popperRef" ref
   /// A ref that points to the used popper instance.
-  static member inline popperRef (handler: Element -> unit) = Interop.mkAttr "popperRef" handler
+  static member inline popperRef (handler: #Element -> unit) = Interop.mkAttr "popperRef" handler
   /// Help supporting a react-transition-group/Transition component.
   static member inline transition (value: bool) = Interop.mkAttr "transition" value
 
@@ -5359,7 +5359,7 @@ type portal =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (element: Element option) = Interop.mkAttr "container" element
+  static member inline container (element: #Element option) = Interop.mkAttr "container" element
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -5367,7 +5367,7 @@ type portal =
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
-  static member inline container (getElement: unit -> Element option) = Interop.mkAttr "container" getElement
+  static member inline container (getElement: unit -> #Element option) = Interop.mkAttr "container" getElement
   /// A HTML element, component instance, or function that returns either. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -5393,9 +5393,9 @@ type radio =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// Name attribute of the `input` element.
   static member inline name (value: string) = Interop.mkAttr "name" value
   /// Callback fired when the state is changed.
@@ -5688,9 +5688,9 @@ type rootRef =
   /// The wrapped element.
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// A ref that points to the first DOM node of the wrapped element.
-  static member inline rootRef (ref: IRefValue<Element option>) = Interop.mkAttr "rootRef" ref
+  static member inline rootRef (ref: IRefValue<#Element option>) = Interop.mkAttr "rootRef" ref
   /// A ref that points to the first DOM node of the wrapped element.
-  static member inline rootRef (handler: Element -> unit) = Interop.mkAttr "rootRef" handler
+  static member inline rootRef (handler: #Element -> unit) = Interop.mkAttr "rootRef" handler
 
 
 [<Erase>]
@@ -5904,11 +5904,11 @@ type select =
   /// *Inherited from `input`*
   ///
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// *Inherited from `input`*
   ///
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// *Inherited from `input`*
   ///
   /// If `true`, a textarea element will be rendered.
@@ -7188,9 +7188,9 @@ type switch =
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// Callback fired when the state is changed.
   ///
   /// **Signature:**
@@ -8135,9 +8135,9 @@ type textField =
   /// Props applied to the Input element. It will be a [`FilledInput`](https://material-ui.com/api/filled-input/), [`OutlinedInput`](https://material-ui.com/api/outlined-input/) or [`Input`](https://material-ui.com/api/input/) component depending on the `variant` prop value.
   static member inline InputProps (props: IReactProperty list) = Interop.mkAttr "InputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
-  static member inline inputRef (ref: IRefValue<Element option>) = Interop.mkAttr "inputRef" ref
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
-  static member inline inputRef (handler: Element -> unit) = Interop.mkAttr "inputRef" handler
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// The label content.
   static member inline label (value: ReactElement) = Interop.mkAttr "label" value
   /// The label content.

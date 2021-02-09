@@ -511,30 +511,30 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | "popper", "anchorEl", ("HTML element | object | func") ->
         [
-          RegularPropOverload.create "(value: Element option)" "value"
-          RegularPropOverload.create "(getElement: unit -> Element option)" "getElement"
+          RegularPropOverload.create "(value: #Element option)" "value"
+          RegularPropOverload.create "(getElement: unit -> #Element option)" "getElement"
           RegularPropOverload.create "(referenceObject: obj)" "referenceObject"
           RegularPropOverload.create "(getReferenceObject: unit -> obj)" "getReferenceObject"
-          RegularPropOverload.create "(ref: IRefValue<Element option>)" "(fun () -> ref.current)"
+          RegularPropOverload.create "(ref: IRefValue<#Element option>)" "(fun () -> ref.current)"
         ]
 
     | _, "anchorEl", ("HTML element | func") ->
         [
-          RegularPropOverload.create "(value: Element option)" "value"
-          RegularPropOverload.create "(getElement: unit -> Element option)" "getElement"
-          RegularPropOverload.create "(ref: IRefValue<Element option>)" "(fun () -> ref.current)"
+          RegularPropOverload.create "(value: #Element option)" "value"
+          RegularPropOverload.create "(getElement: unit -> #Element option)" "getElement"
+          RegularPropOverload.create "(ref: IRefValue<#Element option>)" "(fun () -> ref.current)"
         ]
 
     | "popover", "getContentAnchorEl", "func" ->
       [
-        RegularPropOverload.create "(handler: Element option -> unit)" "handler"
+        RegularPropOverload.create "(handler: #Element option -> unit)" "handler"
       ]
 
     | ("modal" | "popover" | "popper" | "portal"), "container", ("HTML element | React.Component | func") ->
         [
-          RegularPropOverload.create "(element: Element option)" "element"
+          RegularPropOverload.create "(element: #Element option)" "element"
           RegularPropOverload.create "(element: ReactElement option)" "element"
-          RegularPropOverload.create "(getElement: unit -> Element option)" "getElement"
+          RegularPropOverload.create "(getElement: unit -> #Element option)" "getElement"
           RegularPropOverload.create "(getElement: unit -> ReactElement option)" "getElement"
         ]
 
@@ -553,21 +553,21 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | ("checkbox" | "filledInput" | "formControlLabel" | "input" | "inputBase" | "outlinedInput" | "radio" | "switch" | "textField"), "inputRef", "ref" ->
         [
-          RegularPropOverload.create "(ref: IRefValue<Element option>)" "ref"
-          RegularPropOverload.create "(handler: Element -> unit)" "handler"
+          RegularPropOverload.create "(ref: IRefValue<#Element option>)" "ref"
+          RegularPropOverload.create "(handler: #Element -> unit)" "handler"
         ]
 
     | "buttonBase", "buttonRef", "ref" ->
         [
-          RegularPropOverload.create "(ref: IRefValue<Element option>)" "ref"
-          RegularPropOverload.create "(handler: Element -> unit)" "handler"
+          RegularPropOverload.create "(ref: IRefValue<#Element option>)" "ref"
+          RegularPropOverload.create "(handler: #Element -> unit)" "handler"
         ]
 
     | "popper", "popperRef", "ref"
     | "rootRef", "rootRef", "refType.isRequired" ->
         [
-          RegularPropOverload.create "(ref: IRefValue<Element option>)" "ref"
-          RegularPropOverload.create "(handler: Element -> unit)" "handler"
+          RegularPropOverload.create "(ref: IRefValue<#Element option>)" "ref"
+          RegularPropOverload.create "(handler: #Element -> unit)" "handler"
         ]
 
     | "pagination", "getItemAriaLabel", "func" ->
