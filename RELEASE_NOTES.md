@@ -1,6 +1,10 @@
 Changelog
 =========
 
+### 1.2.6 (2021-02-09)
+
+* Make some props accept subtypes of `Element` without requiring explicit casts ([#69](https://github.com/cmeeren/Feliz.MaterialUI/issues/69))
+
 ### 1.2.5 (2021-01-08)
 
 * Fix problem with `int []` props such as `tablePagination.rowsPerPageOptions` ([#66](https://github.com/cmeeren/Feliz.MaterialUI/issues/66))
