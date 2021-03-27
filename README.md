@@ -2,6 +2,8 @@
 
 [Feliz](https://github.com/Zaid-Ajaj/Feliz)-style Fable bindings for [Material-UI](https://material-ui.com/).
 
+# [Maintainer wanted!](https://github.com/cmeeren/Feliz.MaterialUI/issues/72)
+
 Documentation
 --------------
 
