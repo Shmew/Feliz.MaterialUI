@@ -176,7 +176,7 @@ let toolbar model dispatch =
       tooltip.title "Feliz.MaterialUI on GitHub"
       tooltip.children(
         Mui.iconButton [
-          prop.href "https://github.com/cmeeren/Feliz.MaterialUI"
+          prop.href "https://github.com/Shmew/Feliz.MaterialUI"
           iconButton.component' "a"
           iconButton.color.inherit'
           iconButton.children (gitHubIcon [])

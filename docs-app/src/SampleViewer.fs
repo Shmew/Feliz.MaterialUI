@@ -152,7 +152,7 @@ let Demo = React.functionComponent(fun (props: DemoProps) ->
           tooltip.title "View the source on GitHub"
           tooltip.children(
             Mui.iconButton [
-              prop.href (sprintf "https://github.com/cmeeren/Feliz.MaterialUI/tree/master/docs-app/public/%s" (String.concat "/" props.Path))
+              prop.href (sprintf "https://github.com/Shmew/Feliz.MaterialUI/tree/master/docs-app/public/%s" (String.concat "/" props.Path))
               iconButton.component' "a"
               iconButton.color.inherit'
               iconButton.children (gitHubIcon [])
@@ -193,12 +193,12 @@ let Demo = React.functionComponent(fun (props: DemoProps) ->
     //      expansionPanelSummary.children [
     //        Mui.typography (if isExpanded then "Hide code" else "Show code")
 
-            
+
     //      ]
     //    ]
     //    Mui.expansionPanelDetails [
-          
-          
+
+
     //    ]
     //  ]
     //]

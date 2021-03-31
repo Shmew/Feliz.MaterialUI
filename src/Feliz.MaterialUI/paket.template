@@ -1,7 +1,7 @@
 type project
 licenseExpression MIT
 licenseUrl https://licenses.nuget.org/MIT
-projectUrl https://github.com/cmeeren/Feliz.MaterialUI
+projectUrl https://github.com/Shmew/Feliz.MaterialUI
 tags
   f# fable bindings feliz react material-ui materialui
 dependencies

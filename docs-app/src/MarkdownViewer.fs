@@ -90,7 +90,7 @@ let render (state: State) dispatch =
               prop.style [
                 style.floatStyle.right
               ]
-              prop.href (sprintf "https://github.com/cmeeren/Feliz.MaterialUI/edit/master/docs-app/public/%s" (String.concat "/" path))
+              prop.href (sprintf "https://github.com/Shmew/Feliz.MaterialUI/edit/master/docs-app/public/%s" (String.concat "/" path))
               iconButton.component' "a"
               iconButton.children (pencilIcon [])
             ]
