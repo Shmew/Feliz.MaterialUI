@@ -5,7 +5,7 @@
     <Description>Feliz-style Fable bindings for Material-UI.</Description>
     <Authors>Christer van der Meeren</Authors>
     <Version>1.2.6</Version>
-    <PackageReleaseNotes>https://github.com/cmeeren/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/Shmew/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />

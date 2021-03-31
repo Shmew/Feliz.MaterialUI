@@ -1,6 +1,6 @@
 var ghPages = require("gh-pages");
 
-var packageUrl = "https://github.com/cmeeren/Feliz.MaterialUI.git";
+var packageUrl = "https://github.com/Shmew/Feliz.MaterialUI.git";
 
 console.log("Publishing to ", packageUrl);
 

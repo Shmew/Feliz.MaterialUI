@@ -21,4 +21,4 @@ Note that all components from `@material-ui/lab` are experimental, and there wil
 Feedback welcome!
 -----------------
 
-If you have suggestions or feedback, please [open an issue on GitHub](https://github.com/cmeeren/Feliz.MaterialUI/issues)!
+If you have suggestions or feedback, please [open an issue on GitHub](https://github.com/Shmew/Feliz.MaterialUI/issues)!
