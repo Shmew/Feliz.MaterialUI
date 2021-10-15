@@ -3309,6 +3309,7 @@ module icon =
     static member inline action = Interop.mkAttr "color" "action"
     static member inline error = Interop.mkAttr "color" "success"
     static member inline error = Interop.mkAttr "color" "warning"
+    static member inline error = Interop.mkAttr "color" "info"
     static member inline error = Interop.mkAttr "color" "error"
     static member inline disabled = Interop.mkAttr "color" "disabled"
 
