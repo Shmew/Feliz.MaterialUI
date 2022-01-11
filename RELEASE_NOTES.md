@@ -5,7 +5,7 @@ Changelog
 
 * Updated for @material-ui/core 4.12 and @material-ui/lab 4.0.0-alpha.60
 * Added special cases for `imageList`'s broken documentation
-* Ignoring missing docs
+* Fixed markdown to docs to look for the correct markdown
 
 ### 1.2.6 (2021-02-09)
 
