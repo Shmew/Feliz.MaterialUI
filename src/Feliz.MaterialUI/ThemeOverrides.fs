@@ -45,8 +45,10 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.root", createObj !!styles)
         /// Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
         static member inline expanded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.expanded", createObj !!styles)
-        /// Pseudo-class applied to the root element if `focused={true}`.
+        /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
         static member inline focused(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.focused", createObj !!styles)
+        /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+        static member inline focusVisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.focusVisible", createObj !!styles)
         /// Pseudo-class applied to the root element if `disabled={true}`.
         static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAccordionSummary.disabled", createObj !!styles)
         /// Styles applied to the children wrapper element.
@@ -178,6 +180,8 @@ module themeOverrides =
         static member inline colorDefault(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAvatar.colorDefault", createObj !!styles)
         /// Styles applied to the root element if `variant="circle"`.
         static member inline circle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAvatar.circle", createObj !!styles)
+        /// Styles applied to the root element if `variant="circular"`.
+        static member inline circular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAvatar.circular", createObj !!styles)
         /// Styles applied to the root element if `variant="rounded"`.
         static member inline rounded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAvatar.rounded", createObj !!styles)
         /// Styles applied to the root element if `variant="square"`.
@@ -217,20 +221,36 @@ module themeOverrides =
         static member inline dot(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.dot", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
         static member inline anchorOriginTopRightRectangle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopRightRectangle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`.
+        static member inline anchorOriginTopRightRectangular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopRightRectangular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
         static member inline anchorOriginBottomRightRectangle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomRightRectangle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`.
+        static member inline anchorOriginBottomRightRectangular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomRightRectangular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
         static member inline anchorOriginTopLeftRectangle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopLeftRectangle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`.
+        static member inline anchorOriginTopLeftRectangular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopLeftRectangular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
         static member inline anchorOriginBottomLeftRectangle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomLeftRectangle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`.
+        static member inline anchorOriginBottomLeftRectangular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomLeftRectangular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
         static member inline anchorOriginTopRightCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopRightCircle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`.
+        static member inline anchorOriginTopRightCircular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopRightCircular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
         static member inline anchorOriginBottomRightCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomRightCircle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`.
+        static member inline anchorOriginBottomRightCircular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomRightCircular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
         static member inline anchorOriginTopLeftCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopLeftCircle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`.
+        static member inline anchorOriginTopLeftCircular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginTopLeftCircular", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
         static member inline anchorOriginBottomLeftCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomLeftCircle", createObj !!styles)
+        /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`.
+        static member inline anchorOriginBottomLeftCircular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.anchorOriginBottomLeftCircular", createObj !!styles)
         /// Pseudo-class to the badge `span` element if `invisible={true}`.
         static member inline invisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.invisible", createObj !!styles)
 
@@ -520,6 +540,8 @@ module themeOverrides =
         static member inline static'(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.static", createObj !!styles)
         /// Styles applied to the root element if `variant="indeterminate"`.
         static member inline indeterminate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.indeterminate", createObj !!styles)
+        /// Styles applied to the root element if `variant="determinate"`.
+        static member inline determinate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.determinate", createObj !!styles)
         /// Styles applied to the root element if `color="primary"`.
         static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.colorPrimary", createObj !!styles)
         /// Styles applied to the root element if `color="secondary"`.
@@ -532,16 +554,18 @@ module themeOverrides =
         static member inline circleStatic(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.circleStatic", createObj !!styles)
         /// Styles applied to the `circle` svg path if `variant="indeterminate"`.
         static member inline circleIndeterminate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.circleIndeterminate", createObj !!styles)
+        /// Styles applied to the `circle` svg path if `variant="determinate"`.
+        static member inline circleDeterminate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.circleDeterminate", createObj !!styles)
         /// Styles applied to the `circle` svg path if `disableShrink={true}`.
         static member inline circleDisableShrink(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.circleDisableShrink", createObj !!styles)
 
       [<Erase>]
       type muiCollapse =
-        /// Styles applied to the container element.
-        static member inline container(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCollapse.container", createObj !!styles)
-        /// Styles applied to the container element when the transition has entered.
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCollapse.root", createObj !!styles)
+        /// Styles applied to the root element when the transition has entered.
         static member inline entered(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCollapse.entered", createObj !!styles)
-        /// Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
+        /// Styles applied to the root element when the transition has exited and `collapsedSize` != 0px.
         static member inline hidden(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCollapse.hidden", createObj !!styles)
         /// Styles applied to the outer wrapper element.
         static member inline wrapper(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCollapse.wrapper", createObj !!styles)
@@ -864,11 +888,11 @@ module themeOverrides =
         static member inline alignContentXsFlexEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.align-content-xs-flex-end", createObj !!styles)
         static member inline alignContentXsSpaceBetween(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.align-content-xs-space-between", createObj !!styles)
         static member inline alignContentXsSpaceAround(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.align-content-xs-space-around", createObj !!styles)
-        static member inline justifyXsCenter(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-xs-center", createObj !!styles)
-        static member inline justifyXsFlexEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-xs-flex-end", createObj !!styles)
-        static member inline justifyXsSpaceBetween(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-xs-space-between", createObj !!styles)
-        static member inline justifyXsSpaceAround(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-xs-space-around", createObj !!styles)
-        static member inline justifyXsSpaceEvenly(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-xs-space-evenly", createObj !!styles)
+        static member inline justifyContentXsCenter(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-content-xs-center", createObj !!styles)
+        static member inline justifyContentXsFlexEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-content-xs-flex-end", createObj !!styles)
+        static member inline justifyContentXsSpaceBetween(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-content-xs-space-between", createObj !!styles)
+        static member inline justifyContentXsSpaceAround(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-content-xs-space-around", createObj !!styles)
+        static member inline justifyContentXsSpaceEvenly(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.justify-content-xs-space-evenly", createObj !!styles)
         static member inline spacingXs1(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.spacing-xs-1", createObj !!styles)
         static member inline spacingXs2(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.spacing-xs-2", createObj !!styles)
         static member inline spacingXs3(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.spacing-xs-3", createObj !!styles)
@@ -976,6 +1000,47 @@ module themeOverrides =
         static member inline sizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiIconButton.sizeSmall", createObj !!styles)
         /// Styles applied to the children container element.
         static member inline label(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiIconButton.label", createObj !!styles)
+
+      [<Erase>]
+      type muiImageList =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageList.root", createObj !!styles)
+
+      [<Erase>]
+      type muiImageListItem =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItem.root", createObj !!styles)
+        /// Styles applied to the `div` element that wraps the children.
+        static member inline item(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItem.item", createObj !!styles)
+        /// Styles applied to an `img` element child, if needed to ensure it covers the item.
+        static member inline imgFullHeight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItem.imgFullHeight", createObj !!styles)
+        /// Styles applied to an `img` element child, if needed to ensure it covers the item.
+        static member inline imgFullWidth(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItem.imgFullWidth", createObj !!styles)
+
+      [<Erase>]
+      type muiImageListItemBar =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.root", createObj !!styles)
+        /// Styles applied to the root element if `position="bottom"`.
+        static member inline positionBottom(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.positionBottom", createObj !!styles)
+        /// Styles applied to the root element if `position="top"`.
+        static member inline positionTop(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.positionTop", createObj !!styles)
+        /// Styles applied to the root element if a `subtitle` is provided.
+        static member inline rootSubtitle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.rootSubtitle", createObj !!styles)
+        /// Styles applied to the title and subtitle container element.
+        static member inline titleWrap(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.titleWrap", createObj !!styles)
+        /// Styles applied to the container element if `actionPosition="left"`.
+        static member inline titleWrapActionPosLeft(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.titleWrapActionPosLeft", createObj !!styles)
+        /// Styles applied to the container element if `actionPosition="right"`.
+        static member inline titleWrapActionPosRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.titleWrapActionPosRight", createObj !!styles)
+        /// Styles applied to the title container element.
+        static member inline title(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.title", createObj !!styles)
+        /// Styles applied to the subtitle container element.
+        static member inline subtitle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.subtitle", createObj !!styles)
+        /// Styles applied to the actionIcon if supplied.
+        static member inline actionIcon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.actionIcon", createObj !!styles)
+        /// Styles applied to the actionIcon if `actionPosition="left"`.
+        static member inline actionIconActionPosLeft(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiImageListItemBar.actionIconActionPosLeft", createObj !!styles)
 
       [<Erase>]
       type muiInput =
@@ -1786,11 +1851,11 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.root", createObj !!styles)
         /// Styles applied to the root element if both `icon` and `label` are provided.
         static member inline labelIcon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.labelIcon", createObj !!styles)
-        /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="inherit"`.
+        /// Styles applied to the root element if the parent [`Tabs`](https://v4.mui.com/api/tabs/) has `textColor="inherit"`.
         static member inline textColorInherit(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.textColorInherit", createObj !!styles)
-        /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="primary"`.
+        /// Styles applied to the root element if the parent [`Tabs`](https://v4.mui.com/api/tabs/) has `textColor="primary"`.
         static member inline textColorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.textColorPrimary", createObj !!styles)
-        /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="secondary"`.
+        /// Styles applied to the root element if the parent [`Tabs`](https://v4.mui.com/api/tabs/) has `textColor="secondary"`.
         static member inline textColorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.textColorSecondary", createObj !!styles)
         /// Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
         static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.selected", createObj !!styles)

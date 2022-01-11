@@ -55,8 +55,10 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
       static member inline expanded(className: string) : IReactProperty = unbox ("classes.expanded", className)
-      /// Pseudo-class applied to the root element if `focused={true}`.
+      /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
       static member inline focused(className: string) : IReactProperty = unbox ("classes.focused", className)
+      /// Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+      static member inline focusVisible(className: string) : IReactProperty = unbox ("classes.focusVisible", className)
       /// Pseudo-class applied to the root element if `disabled={true}`.
       static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
       /// Styles applied to the children wrapper element.
@@ -208,6 +210,8 @@ module classesProps =
       static member inline colorDefault(className: string) : IReactProperty = unbox ("classes.colorDefault", className)
       /// Styles applied to the root element if `variant="circle"`.
       static member inline circle(className: string) : IReactProperty = unbox ("classes.circle", className)
+      /// Styles applied to the root element if `variant="circular"`.
+      static member inline circular(className: string) : IReactProperty = unbox ("classes.circular", className)
       /// Styles applied to the root element if `variant="rounded"`.
       static member inline rounded(className: string) : IReactProperty = unbox ("classes.rounded", className)
       /// Styles applied to the root element if `variant="square"`.
@@ -259,20 +263,36 @@ module classesProps =
       static member inline dot(className: string) : IReactProperty = unbox ("classes.dot", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
       static member inline anchorOriginTopRightRectangle(className: string) : IReactProperty = unbox ("classes.anchorOriginTopRightRectangle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`.
+      static member inline anchorOriginTopRightRectangular(className: string) : IReactProperty = unbox ("classes.anchorOriginTopRightRectangular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
       static member inline anchorOriginBottomRightRectangle(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomRightRectangle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`.
+      static member inline anchorOriginBottomRightRectangular(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomRightRectangular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
       static member inline anchorOriginTopLeftRectangle(className: string) : IReactProperty = unbox ("classes.anchorOriginTopLeftRectangle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`.
+      static member inline anchorOriginTopLeftRectangular(className: string) : IReactProperty = unbox ("classes.anchorOriginTopLeftRectangular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
       static member inline anchorOriginBottomLeftRectangle(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomLeftRectangle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`.
+      static member inline anchorOriginBottomLeftRectangular(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomLeftRectangular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
       static member inline anchorOriginTopRightCircle(className: string) : IReactProperty = unbox ("classes.anchorOriginTopRightCircle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`.
+      static member inline anchorOriginTopRightCircular(className: string) : IReactProperty = unbox ("classes.anchorOriginTopRightCircular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
       static member inline anchorOriginBottomRightCircle(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomRightCircle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`.
+      static member inline anchorOriginBottomRightCircular(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomRightCircular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
       static member inline anchorOriginTopLeftCircle(className: string) : IReactProperty = unbox ("classes.anchorOriginTopLeftCircle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`.
+      static member inline anchorOriginTopLeftCircular(className: string) : IReactProperty = unbox ("classes.anchorOriginTopLeftCircular", className)
       /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
       static member inline anchorOriginBottomLeftCircle(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomLeftCircle", className)
+      /// Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`.
+      static member inline anchorOriginBottomLeftCircular(className: string) : IReactProperty = unbox ("classes.anchorOriginBottomLeftCircular", className)
       /// Pseudo-class to the badge `span` element if `invisible={true}`.
       static member inline invisible(className: string) : IReactProperty = unbox ("classes.invisible", className)
   
@@ -622,6 +642,8 @@ module classesProps =
       static member inline static'(className: string) : IReactProperty = unbox ("classes.static", className)
       /// Styles applied to the root element if `variant="indeterminate"`.
       static member inline indeterminate(className: string) : IReactProperty = unbox ("classes.indeterminate", className)
+      /// Styles applied to the root element if `variant="determinate"`.
+      static member inline determinate(className: string) : IReactProperty = unbox ("classes.determinate", className)
       /// Styles applied to the root element if `color="primary"`.
       static member inline colorPrimary(className: string) : IReactProperty = unbox ("classes.colorPrimary", className)
       /// Styles applied to the root element if `color="secondary"`.
@@ -634,6 +656,8 @@ module classesProps =
       static member inline circleStatic(className: string) : IReactProperty = unbox ("classes.circleStatic", className)
       /// Styles applied to the `circle` svg path if `variant="indeterminate"`.
       static member inline circleIndeterminate(className: string) : IReactProperty = unbox ("classes.circleIndeterminate", className)
+      /// Styles applied to the `circle` svg path if `variant="determinate"`.
+      static member inline circleDeterminate(className: string) : IReactProperty = unbox ("classes.circleDeterminate", className)
       /// Styles applied to the `circle` svg path if `disableShrink={true}`.
       static member inline circleDisableShrink(className: string) : IReactProperty = unbox ("classes.circleDisableShrink", className)
   
@@ -643,11 +667,11 @@ module classesProps =
     /// Override or extend the styles applied to the component.
     [<Erase>]
     type classes =
-      /// Styles applied to the container element.
-      static member inline container(className: string) : IReactProperty = unbox ("classes.container", className)
-      /// Styles applied to the container element when the transition has entered.
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element when the transition has entered.
       static member inline entered(className: string) : IReactProperty = unbox ("classes.entered", className)
-      /// Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
+      /// Styles applied to the root element when the transition has exited and `collapsedSize` != 0px.
       static member inline hidden(className: string) : IReactProperty = unbox ("classes.hidden", className)
       /// Styles applied to the outer wrapper element.
       static member inline wrapper(className: string) : IReactProperty = unbox ("classes.wrapper", className)
@@ -1054,11 +1078,11 @@ module classesProps =
       static member inline alignContentXsFlexEnd(className: string) : IReactProperty = unbox ("classes.align-content-xs-flex-end", className)
       static member inline alignContentXsSpaceBetween(className: string) : IReactProperty = unbox ("classes.align-content-xs-space-between", className)
       static member inline alignContentXsSpaceAround(className: string) : IReactProperty = unbox ("classes.align-content-xs-space-around", className)
-      static member inline justifyXsCenter(className: string) : IReactProperty = unbox ("classes.justify-xs-center", className)
-      static member inline justifyXsFlexEnd(className: string) : IReactProperty = unbox ("classes.justify-xs-flex-end", className)
-      static member inline justifyXsSpaceBetween(className: string) : IReactProperty = unbox ("classes.justify-xs-space-between", className)
-      static member inline justifyXsSpaceAround(className: string) : IReactProperty = unbox ("classes.justify-xs-space-around", className)
-      static member inline justifyXsSpaceEvenly(className: string) : IReactProperty = unbox ("classes.justify-xs-space-evenly", className)
+      static member inline justifyContentXsCenter(className: string) : IReactProperty = unbox ("classes.justify-content-xs-center", className)
+      static member inline justifyContentXsFlexEnd(className: string) : IReactProperty = unbox ("classes.justify-content-xs-flex-end", className)
+      static member inline justifyContentXsSpaceBetween(className: string) : IReactProperty = unbox ("classes.justify-content-xs-space-between", className)
+      static member inline justifyContentXsSpaceAround(className: string) : IReactProperty = unbox ("classes.justify-content-xs-space-around", className)
+      static member inline justifyContentXsSpaceEvenly(className: string) : IReactProperty = unbox ("classes.justify-content-xs-space-evenly", className)
       static member inline spacingXs1(className: string) : IReactProperty = unbox ("classes.spacing-xs-1", className)
       static member inline spacingXs2(className: string) : IReactProperty = unbox ("classes.spacing-xs-2", className)
       static member inline spacingXs3(className: string) : IReactProperty = unbox ("classes.spacing-xs-3", className)
@@ -1186,6 +1210,59 @@ module classesProps =
       static member inline sizeSmall(className: string) : IReactProperty = unbox ("classes.sizeSmall", className)
       /// Styles applied to the children container element.
       static member inline label(className: string) : IReactProperty = unbox ("classes.label", className)
+  
+  
+  module imageList =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+  
+  
+  module imageListItem =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the `div` element that wraps the children.
+      static member inline item(className: string) : IReactProperty = unbox ("classes.item", className)
+      /// Styles applied to an `img` element child, if needed to ensure it covers the item.
+      static member inline imgFullHeight(className: string) : IReactProperty = unbox ("classes.imgFullHeight", className)
+      /// Styles applied to an `img` element child, if needed to ensure it covers the item.
+      static member inline imgFullWidth(className: string) : IReactProperty = unbox ("classes.imgFullWidth", className)
+  
+  
+  module imageListItemBar =
+  
+    /// Override or extend the styles applied to the component.
+    [<Erase>]
+    type classes =
+      /// Styles applied to the root element.
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Styles applied to the root element if `position="bottom"`.
+      static member inline positionBottom(className: string) : IReactProperty = unbox ("classes.positionBottom", className)
+      /// Styles applied to the root element if `position="top"`.
+      static member inline positionTop(className: string) : IReactProperty = unbox ("classes.positionTop", className)
+      /// Styles applied to the root element if a `subtitle` is provided.
+      static member inline rootSubtitle(className: string) : IReactProperty = unbox ("classes.rootSubtitle", className)
+      /// Styles applied to the title and subtitle container element.
+      static member inline titleWrap(className: string) : IReactProperty = unbox ("classes.titleWrap", className)
+      /// Styles applied to the container element if `actionPosition="left"`.
+      static member inline titleWrapActionPosLeft(className: string) : IReactProperty = unbox ("classes.titleWrapActionPosLeft", className)
+      /// Styles applied to the container element if `actionPosition="right"`.
+      static member inline titleWrapActionPosRight(className: string) : IReactProperty = unbox ("classes.titleWrapActionPosRight", className)
+      /// Styles applied to the title container element.
+      static member inline title(className: string) : IReactProperty = unbox ("classes.title", className)
+      /// Styles applied to the subtitle container element.
+      static member inline subtitle(className: string) : IReactProperty = unbox ("classes.subtitle", className)
+      /// Styles applied to the actionIcon if supplied.
+      static member inline actionIcon(className: string) : IReactProperty = unbox ("classes.actionIcon", className)
+      /// Styles applied to the actionIcon if `actionPosition="left"`.
+      static member inline actionIconActionPosLeft(className: string) : IReactProperty = unbox ("classes.actionIconActionPosLeft", className)
   
   
   module input =
@@ -1381,7 +1458,7 @@ module classesProps =
       /// Pseudo-class applied to the root element if the link is keyboard focused.
       static member inline focusVisible(className: string) : IReactProperty = unbox ("classes.focusVisible", className)
   
-    /// `classes` prop applied to the [`Typography`](https://material-ui.com/api/typography/) element.
+    /// `classes` prop applied to the [`Typography`](https://v4.mui.com/api/typography/) element.
     [<Erase>]
     type TypographyClasses =
       /// Styles applied to the root element.
@@ -1569,7 +1646,7 @@ module classesProps =
       /// Styles applied to the `List` component via `MenuList`.
       static member inline list(className: string) : IReactProperty = unbox ("classes.list", className)
   
-    /// `classes` prop applied to the [`Popover`](https://material-ui.com/api/popover/) element.
+    /// `classes` prop applied to the [`Popover`](https://v4.mui.com/api/popover/) element.
     [<Erase>]
     type PopoverClasses =
       /// Styles applied to the root element.
@@ -1592,7 +1669,7 @@ module classesProps =
       /// Styles applied to the root element if dense.
       static member inline dense(className: string) : IReactProperty = unbox ("classes.dense", className)
   
-    /// `classes` prop applied to the [`ListItem`](https://material-ui.com/api/list-item/) element.
+    /// `classes` prop applied to the [`ListItem`](https://v4.mui.com/api/list-item/) element.
     [<Erase>]
     type ListItemClasses =
       /// Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
@@ -2011,7 +2088,7 @@ module classesProps =
       /// Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
       static member inline tooltipPlacementRight(className: string) : IReactProperty = unbox ("classes.tooltipPlacementRight", className)
   
-    /// `classes` prop applied to the [`Tooltip`](https://material-ui.com/api/tooltip/) element.
+    /// `classes` prop applied to the [`Tooltip`](https://v4.mui.com/api/tooltip/) element.
     [<Erase>]
     type TooltipClasses =
       /// Styles applied to the Popper component.
@@ -2255,11 +2332,11 @@ module classesProps =
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the root element if both `icon` and `label` are provided.
       static member inline labelIcon(className: string) : IReactProperty = unbox ("classes.labelIcon", className)
-      /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="inherit"`.
+      /// Styles applied to the root element if the parent [`Tabs`](https://v4.mui.com/api/tabs/) has `textColor="inherit"`.
       static member inline textColorInherit(className: string) : IReactProperty = unbox ("classes.textColorInherit", className)
-      /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="primary"`.
+      /// Styles applied to the root element if the parent [`Tabs`](https://v4.mui.com/api/tabs/) has `textColor="primary"`.
       static member inline textColorPrimary(className: string) : IReactProperty = unbox ("classes.textColorPrimary", className)
-      /// Styles applied to the root element if the parent [`Tabs`](https://material-ui.com/api/tabs/) has `textColor="secondary"`.
+      /// Styles applied to the root element if the parent [`Tabs`](https://v4.mui.com/api/tabs/) has `textColor="secondary"`.
       static member inline textColorSecondary(className: string) : IReactProperty = unbox ("classes.textColorSecondary", className)
       /// Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
       static member inline selected(className: string) : IReactProperty = unbox ("classes.selected", className)

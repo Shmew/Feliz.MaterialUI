@@ -54,12 +54,12 @@ let private markdownConverter =
 
 let docElementsToMarkdownLines (nodes: HtmlNode list) =
   (nodes
-  |> Seq.map (fun x -> x.ToString().Replace("\r\n", "<br><br>"))
+  |> Seq.map (fun x -> x.ToString().Replace("\n", "<br><br>").Replace("\r", ""))
   |> String.concat ""
-  |> fun s -> s.Replace("href=\"/", "href=\"https://material-ui.com/")
+  |> fun s -> s.Replace("href=\"/", "href=\"https://v4.mui.com/")
   |> fun s -> s.Replace("</code><code>", "</code> <code>")
   |> markdownConverter.Convert)
-  |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, "\r\n\r\n(\r\n)+", "\r\n\r\n")
-  |> String.split "\r\n"
+  |> fun s -> System.Text.RegularExpressions.Regex.Replace(s, "\r?\n\r?\n(\r?\n)+", "\r\n\r\n")
+  |> String.split "\n"
   |> List.trimEmptyLines
   |> List.map String.removeControlCharacters
