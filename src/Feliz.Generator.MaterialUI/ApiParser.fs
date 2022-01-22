@@ -48,7 +48,7 @@ let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
   else
     Some {
       DocLines = markdownDocLines
-      MethodName = 
+      MethodName =
         row.``Rule name``
         |> kebabCaseToCamelCase
         |> trimStart '@'
@@ -68,7 +68,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     else
       rowHtml.CssSelect("td").[3].Elements()
       |> docElementsToMarkdownLines
-  
+
   let propDocType = row.Type.Trim()
 
 
@@ -221,7 +221,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "inputBase", "onBlur", "func" ->
         [RegularPropOverload.create "(handler: Event option -> unit)" "handler"]
 
-    | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax" | "rowsMin"), "number | string" ->
+    | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textareaAutosize" | "textField"), ("rows" | "rowsMax" | "rowsMin" | "maxRows" | "minRows"), "number | string" ->
         [RegularPropOverload.create "(value: int)" "value"]
 
     | ("input" | "filledInput" | "outlinedInput" | "inputBase" | "textField" | "nativeSelect" | "radioGroup"), "onChange", "func" ->
@@ -402,7 +402,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(value: Styles.ICssUnit)" "value"
         ]
 
-    | "collapse", "collapsedHeight", "number | string" ->
+    | "collapse", ("collapsedHeight" | "collapsedSize"), "number | string" ->
         [
           RegularPropOverload.create "(value: int)" "value"
           RegularPropOverload.create "(value: Styles.ICssUnit)" "value"
@@ -641,6 +641,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(value: float)" "value"
         ]
 
+    // Fixes the broken docs of imageList
+    | "imageList", "cellHeight", "number | oneOf(['auto'" ->
+        [RegularPropOverload.create "(value: int)" "value"]
+
     | _, _, "node" ->
         [
           RegularPropOverload.create "(value: ReactElement)" "value"
@@ -656,7 +660,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | _, _, "any" ->
         [RegularPropOverload.create "(value: 'a)" "value"]
-
     | _ when isProbablyEnumProp ->
         []
 
@@ -708,17 +711,19 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create "bottomLeft" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"left\" ])"
             EnumPropOverload.create "bottomRight" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])"
           ]
+      | "imageList", "cellHeight", "number | oneOf(['auto'" ->
+        []
 
       | _ ->
         let enumValueExpressions =
           propDocType.Split("|")
           |> Array.toList
-          |> List.choose (fun s -> 
+          |> List.choose (fun s ->
               let value = s.Trim()
               if value.StartsWith "'" && value.EndsWith "'" then
                 // String
                 value.Replace("'", "\"") |> Some
-              elif value = "number" || value = "bool" || value.Contains "{" then None
+              elif value = "number" || value = "bool" || value.Contains "{" || String.IsNullOrWhiteSpace value then None
               else
                 // Probably literal, e.g. bool or int
                 Some value
@@ -727,7 +732,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         let overloads =
           enumValueExpressions
           |> List.map (fun v ->
-              let methodName = 
+              let methodName =
                 v.Trim('"')
                 |> kebabCaseToCamelCase
                 |> prefixUnderscoreToNumbers
@@ -743,7 +748,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
      .Replace("event.target.value", "event.Value")
      .Replace(" The DOM API casts this to a string.", "")
 
-  let propSpecifiDocTransform (s: string) =
+  let propSpecificDocTransform (s: string) =
     match componentMethodName, propMethodName with
     | "nativeSelect", "children" ->
         s.Replace("Can be some `` elements.", "Can be some `<option>` elements.")
@@ -759,7 +764,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
   let transformedMarkdownDocLines =
     markdownDocLines
     |> List.map globalDocTransform
-    |> List.map propSpecifiDocTransform
+    |> List.map propSpecificDocTransform
     |> List.trimEmptyLines
 
   Prop.create realPropName propMethodName
@@ -786,19 +791,18 @@ let parseComponent (htmlPathOrUrl: string) =
       else
           matches.Groups.[1].Value |> String.lowerFirst, Some (matches.Groups.[1].Value)
 
-
     let noteNodes1 =
-      html.CssSelect(".markdown-body").[1].Elements()
+      html.CssSelect(".markdown-body").[0].Elements()
       |> List.skipWhile (fun n -> n.Name() <> "table")
       |> List.trySkip 1
       |> List.takeWhile (fun n -> n.Name() = "p")
 
     let noteNodes2 =
-      html.CssSelect(".markdown-body").[1].Elements()
+      html.CssSelect(".markdown-body").[0].Elements()
       |> List.skipWhile (fun n -> n.Name() <> "h2" || n.InnerText() <> "Notes")
       |> List.trySkip 1
       |> List.takeWhile (fun n -> n.Name() = "p")
-    
+
     let markdownDocLines =
       noteNodes1 @ noteNodes2
       |> docElementsToMarkdownLines
@@ -837,7 +841,7 @@ let parseComponent (htmlPathOrUrl: string) =
       // TODO: Remove when docs are fixed:
       // https://github.com/mui-org/material-ui/issues/21711#issuecomment-657233933
       if compMethodName = "container" then
-        let children = 
+        let children =
           Prop.create "children" "children"
           |> Prop.addRegularOverloads [
             RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element"
@@ -851,9 +855,9 @@ let parseComponent (htmlPathOrUrl: string) =
       else props
 
     let addChildrenOverloadIfSupported (comp: Component) =
-      let hasReactElementSeqChildren = 
+      let hasReactElementSeqChildren =
         comp.Props
-        |> List.exists (fun p -> 
+        |> List.exists (fun p ->
             p.MethodName = "children"
             && p.RegularOverloads |> List.exists (fun o -> o.ParamsCode = "(elements: ReactElement seq)")
         )
@@ -888,7 +892,7 @@ let parseComponent (htmlPathOrUrl: string) =
           .Groups.[1].Value
       match compMethodName, inheritFrom with
       | _, (null | "") -> id
-      | ("collapse" | "fade" | "grow" | "slide" | "zoom"), "Transition" -> 
+      | ("collapse" | "fade" | "grow" | "slide" | "zoom"), "Transition" ->
           id  // The Transition component is from an external library
       | _, ("native component" | "native element") ->
           id  // Native DOM inheritance not currently supported
@@ -907,7 +911,7 @@ let parseComponent (htmlPathOrUrl: string) =
         |> setInheritance
       ClassRules =
         let rowsAndHtml =
-          try 
+          try
             page.Tables.CSS.Rows
             |> Array.mapi (fun i r ->
                 r, page.Tables.CSS.Html.CssSelect("tbody > tr").[i]

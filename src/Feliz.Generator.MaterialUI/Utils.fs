@@ -40,7 +40,7 @@ module List =
 
   let trimEmptyLines list =
     list
-    |> List.skipWhile ((=) "")
+    |> List.skipWhile System.String.IsNullOrWhiteSpace
     |> List.rev
-    |> List.skipWhile ((=) "")
+    |> List.skipWhile System.String.IsNullOrWhiteSpace
     |> List.rev

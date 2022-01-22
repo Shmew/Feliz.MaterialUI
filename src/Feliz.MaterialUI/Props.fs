@@ -77,7 +77,7 @@ type accordion =
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
-  /// The component used for the collapse effect. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the collapse effect. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
@@ -155,6 +155,8 @@ type accordionSummary =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The icon to display as the expand indicator.
   static member inline expandIcon (element: ReactElement) = Interop.mkAttr "expandIcon" element
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// Props applied to the `IconButton` element wrapping the expand icon.
   static member inline IconButtonProps (props: IReactProperty list) = Interop.mkAttr "IconButtonProps" (createObj !!props)
   /// *Inherited from `buttonBase`*
@@ -173,13 +175,13 @@ type accordionSummary =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -199,10 +201,6 @@ type accordionSummary =
   ///
   /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
-  /// *Inherited from `buttonBase`*
-  ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
-  static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
   /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
@@ -241,7 +239,7 @@ type alert =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Override the default label for the *close popup* icon button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
   /// Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the `severity` prop.
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
@@ -388,7 +386,7 @@ type autocomplete =
   ///
   /// - `false` the input is not blurred. - `true` the input is always blurred. - `touch` the input is blurred after a touch event. - `mouse` the input is blurred after a mouse event.
   static member inline blurOnSelect (value: bool) = Interop.mkAttr "blurOnSelect" value
-  /// Props applied to the [`Chip`](https://material-ui.com/api/chip/) element.
+  /// Props applied to the [`Chip`](https://v4.mui.com/api/chip/) element.
   static member inline ChipProps (props: IReactProperty list) = Interop.mkAttr "ChipProps" (createObj !!props)
   /// If `true`, the input's text will be cleared on blur if no value is selected.
   ///
@@ -398,13 +396,13 @@ type autocomplete =
   static member inline clearOnEscape (value: bool) = Interop.mkAttr "clearOnEscape" value
   /// Override the default text for the *clear* icon button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline clearText (value: string) = Interop.mkAttr "clearText" value
   /// The icon to display in place of the default close icon.
   static member inline closeIcon (element: ReactElement) = Interop.mkAttr "closeIcon" element
   /// Override the default text for the *close popup* icon button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
   /// If `true`, the popup will ignore the blur event if the input is filled. You can inspect the popup markup with your browser tools. Consider this option when you need to customize the component.
   static member inline debug (value: bool) = Interop.mkAttr "debug" value
@@ -510,53 +508,53 @@ type autocomplete =
   static member inline loading (value: bool) = Interop.mkAttr "loading" value
   /// Text to display when in a loading state.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline loadingText (value: ReactElement) = Interop.mkAttr "loadingText" value
   /// Text to display when in a loading state.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline loadingText (values: ReactElement seq) = Interop.mkAttr "loadingText" values
   /// Text to display when in a loading state.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline loadingText (value: string) = Interop.mkAttr "loadingText" value
   /// Text to display when in a loading state.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline loadingText (values: string seq) = Interop.mkAttr "loadingText" values
   /// Text to display when in a loading state.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline loadingText (value: int) = Interop.mkAttr "loadingText" value
   /// Text to display when in a loading state.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline loadingText (value: float) = Interop.mkAttr "loadingText" value
   /// If `true`, `value` must be an array and the menu will support multiple selections.
   static member inline multiple (value: bool) = Interop.mkAttr "multiple" value
   /// Text to display when there are no options.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline noOptionsText (value: ReactElement) = Interop.mkAttr "noOptionsText" value
   /// Text to display when there are no options.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline noOptionsText (values: ReactElement seq) = Interop.mkAttr "noOptionsText" values
   /// Text to display when there are no options.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline noOptionsText (value: string) = Interop.mkAttr "noOptionsText" value
   /// Text to display when there are no options.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline noOptionsText (values: string seq) = Interop.mkAttr "noOptionsText" values
   /// Text to display when there are no options.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline noOptionsText (value: int) = Interop.mkAttr "noOptionsText" value
   /// Text to display when there are no options.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline noOptionsText (value: float) = Interop.mkAttr "noOptionsText" value
   /// Callback fired when the value changes.
   ///
@@ -690,7 +688,7 @@ type autocomplete =
   static member inline openOnFocus (value: bool) = Interop.mkAttr "openOnFocus" value
   /// Override the default text for the *open popup* icon button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline openText (value: string) = Interop.mkAttr "openText" value
   /// Array of options.
   static member inline options (options: 'option []) = Interop.mkAttr "options" (ResizeArray options)
@@ -839,6 +837,7 @@ module avatar =
   [<Erase>]
   type variant =
     static member inline circle = Interop.mkAttr "variant" "circle"
+    static member inline circular = Interop.mkAttr "variant" "circular"
     static member inline rounded = Interop.mkAttr "variant" "rounded"
     static member inline square = Interop.mkAttr "variant" "square"
 
@@ -969,6 +968,8 @@ module badge =
   type overlap =
     static member inline circle = Interop.mkAttr "overlap" "circle"
     static member inline rectangle = Interop.mkAttr "overlap" "rectangle"
+    static member inline circular = Interop.mkAttr "overlap" "circular"
+    static member inline rectangular = Interop.mkAttr "overlap" "rectangular"
 
   /// The variant to use.
   [<Erase>]
@@ -1059,13 +1060,13 @@ type bottomNavigationAction =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1087,7 +1088,7 @@ type bottomNavigationAction =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1119,7 +1120,7 @@ type breadcrumbs =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Override the default label for the expand button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline expandText (value: string) = Interop.mkAttr "expandText" value
   /// If max items is exceeded, the number of items to show after the ellipsis.
   static member inline itemsAfterCollapse (value: int) = Interop.mkAttr "itemsAfterCollapse" value
@@ -1199,7 +1200,7 @@ type button =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1257,11 +1258,11 @@ type buttonBase =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the base button will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -1273,7 +1274,7 @@ type buttonBase =
   static member inline disableTouchRipple (value: bool) = Interop.mkAttr "disableTouchRipple" value
   /// If `true`, the base button will have a keyboard focus ripple.
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// Callback fired when the component is focused with a keyboard. We trigger a `onFocus` callback too.
   static member inline onFocusVisible (handler: Event -> unit) = Interop.mkAttr "onFocusVisible" handler
@@ -1415,13 +1416,13 @@ type cardActionArea =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1443,7 +1444,7 @@ type cardActionArea =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1647,13 +1648,13 @@ type checkbox =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1665,7 +1666,7 @@ type checkbox =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -1766,7 +1767,7 @@ type circularProgress =
   static member inline size (value: Styles.ICssUnit) = Interop.mkAttr "size" value
   /// The thickness of the circle.
   static member inline thickness (value: int) = Interop.mkAttr "thickness" value
-  /// The value of the progress indicator for the determinate and static variants. Value between 0 and 100.
+  /// The value of the progress indicator for the determinate variant. Value between 0 and 100.
   static member inline value (value: int) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -1792,7 +1793,7 @@ module circularProgress =
 type clickAwayListener =
   /// The wrapped element.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// If `true`, the React tree is ignored and only the DOM tree is considered. This prop changes how portaled elements are handled.
   static member inline disableReactTree (value: bool) = Interop.mkAttr "disableReactTree" value
@@ -1831,10 +1832,18 @@ type collapse =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content node to be collapsed.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// *Deprecated*. The prop was renamed to support the vertical orientation, use `collapsedSize` instead
+  ///
   /// The height of the container when collapsed.
   static member inline collapsedHeight (value: int) = Interop.mkAttr "collapsedHeight" value
+  /// *Deprecated*. The prop was renamed to support the vertical orientation, use `collapsedSize` instead
+  ///
   /// The height of the container when collapsed.
   static member inline collapsedHeight (value: Styles.ICssUnit) = Interop.mkAttr "collapsedHeight" value
+  /// The height of the container when collapsed.
+  static member inline collapsedSize (value: int) = Interop.mkAttr "collapsedSize" value
+  /// The height of the container when collapsed.
+  static member inline collapsedSize (value: Styles.ICssUnit) = Interop.mkAttr "collapsedSize" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -1926,6 +1935,8 @@ type dialog =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Dialog children, usually the included sub-components.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
+  ///
   /// If `true`, clicking the backdrop will not fire the `onClose` callback.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
   /// If `true`, hitting escape will not fire the `onClose` callback.
@@ -1936,6 +1947,8 @@ type dialog =
   ///
   /// Notice that the dialog width grow is limited by the default margin.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
+  ///
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
   /// Callback fired when the component requests to be closed.
@@ -1958,27 +1971,41 @@ type dialog =
   ///
   /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: DialogCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the dialog enters.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the dialog has entered.
   static member inline onEntered (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntered" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the dialog is entering.
   static member inline onEntering (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntering" handler
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
+  ///
   /// Callback fired when the escape key is pressed, `disableKeyboard` is false and the modal is in focus.
   static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the dialog exits.
   static member inline onExit (handler: ReactElement -> unit) = Interop.mkAttr "onExit" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the dialog has exited.
   static member inline onExited (handler: ReactElement -> unit) = Interop.mkAttr "onExited" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the dialog is exiting.
   static member inline onExiting (handler: ReactElement -> unit) = Interop.mkAttr "onExiting" handler
   /// If `true`, the Dialog is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The component used to render the body of the dialog.
   static member inline PaperComponent (value: ReactElementType) = Interop.mkAttr "PaperComponent" value
-  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  /// Props applied to the [`Paper`](https://v4.mui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
@@ -1992,7 +2019,7 @@ type dialog =
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
   /// *Inherited from `modal`*
   ///
-  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  /// Props applied to the [`Backdrop`](https://v4.mui.com/api/backdrop/) element.
   static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
@@ -2273,7 +2300,7 @@ type drawer =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The elevation of the drawer.
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
-  /// Props applied to the [`Modal`](https://material-ui.com/api/modal/) element.
+  /// Props applied to the [`Modal`](https://v4.mui.com/api/modal/) element.
   static member inline ModalProps (props: IReactProperty list) = Interop.mkAttr "ModalProps" (createObj !!props)
   /// Callback fired when the component requests to be closed.
   ///
@@ -2285,9 +2312,9 @@ type drawer =
   static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// If `true`, the drawer is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
-  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  /// Props applied to the [`Paper`](https://v4.mui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
-  /// Props applied to the [`Slide`](https://material-ui.com/api/slide/) element.
+  /// Props applied to the [`Slide`](https://v4.mui.com/api/slide/) element.
   static member inline SlideProps (props: IReactProperty list) = Interop.mkAttr "SlideProps" (createObj !!props)
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
@@ -2354,7 +2381,7 @@ type expansionPanel =
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
-  /// The component used for the collapse effect. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the collapse effect. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
@@ -2452,13 +2479,13 @@ type expansionPanelSummary =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -2480,7 +2507,7 @@ type expansionPanelSummary =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -2536,7 +2563,7 @@ type fab =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -2564,10 +2591,11 @@ module fab =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
 
-  /// The variant to use.
+  /// The variant to use. 'round' is deprecated, use 'circular' instead.
   [<Erase>]
   type variant =
     static member inline extended = Interop.mkAttr "variant" "extended"
+    static member inline circular = Interop.mkAttr "variant" "circular"
     static member inline round = Interop.mkAttr "variant" "round"
 
 
@@ -2615,6 +2643,8 @@ type filledInput =
   static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
   static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -2643,8 +2673,6 @@ type filledInput =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
-  /// Maximum number of rows to display when multiline option is set to true.
-  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
@@ -2655,13 +2683,21 @@ type filledInput =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
+  /// *Inherited from `inputBase`*
+  ///
   /// Callback fired when the input is blurred.
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
-  /// Minimum number of rows to display when multiline option is set to true.
+  /// Maximum number of rows to display.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module filledInput =
@@ -2953,6 +2989,8 @@ module grid =
     static member inline column = Interop.mkAttr "direction" "column"
     static member inline columnReverse = Interop.mkAttr "direction" "column-reverse"
 
+  /// *Deprecated*. Use `justifyContent` instead, the prop was renamed.
+  ///
   /// Defines the `justify-content` style property. It is applied for all screen sizes.
   [<Erase>]
   type justify =
@@ -2962,6 +3000,16 @@ module grid =
     static member inline spaceBetween = Interop.mkAttr "justify" "space-between"
     static member inline spaceAround = Interop.mkAttr "justify" "space-around"
     static member inline spaceEvenly = Interop.mkAttr "justify" "space-evenly"
+
+  /// Defines the `justify-content` style property. It is applied for all screen sizes.
+  [<Erase>]
+  type justifyContent =
+    static member inline flexStart = Interop.mkAttr "justifyContent" "flex-start"
+    static member inline center = Interop.mkAttr "justifyContent" "center"
+    static member inline flexEnd = Interop.mkAttr "justifyContent" "flex-end"
+    static member inline spaceBetween = Interop.mkAttr "justifyContent" "space-between"
+    static member inline spaceAround = Interop.mkAttr "justifyContent" "space-around"
+    static member inline spaceEvenly = Interop.mkAttr "justifyContent" "space-evenly"
 
   /// Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden.
   [<Erase>]
@@ -3313,10 +3361,11 @@ module icon =
   /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
   [<Erase>]
   type fontSize =
-    static member inline inherit' = Interop.mkAttr "fontSize" "inherit"
     static member inline default' = Interop.mkAttr "fontSize" "default"
-    static member inline small = Interop.mkAttr "fontSize" "small"
+    static member inline inherit' = Interop.mkAttr "fontSize" "inherit"
     static member inline large = Interop.mkAttr "fontSize" "large"
+    static member inline medium = Interop.mkAttr "fontSize" "medium"
+    static member inline small = Interop.mkAttr "fontSize" "small"
 
 
 [<Erase>]
@@ -3355,13 +3404,13 @@ type iconButton =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -3373,7 +3422,7 @@ type iconButton =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -3409,6 +3458,123 @@ module iconButton =
 
 
 [<Erase>]
+type imageList =
+  /// *Deprecated*. Use the `rowHeight` prop instead.
+  ///
+  /// Cell height in `px`. Set to `'auto'` to let the children determine the height.
+  static member inline cellHeight (value: int) = Interop.mkAttr "cellHeight" value
+  /// Items that will be in the image list.
+  static member inline children (element: ReactElement) = prop.children element
+  /// Items that will be in the image list.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// Items that will be in the image list.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// Items that will be in the image list.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// Items that will be in the image list.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// Items that will be in the image list.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Number of columns.
+  static member inline cols (value: int) = Interop.mkAttr "cols" value
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// The gap between items in `px`.
+  static member inline gap (value: int) = Interop.mkAttr "gap" value
+  /// *Deprecated*. Use the `gap` prop instead.
+  ///
+  /// The spacing between items in `px`.
+  static member inline spacing (value: int) = Interop.mkAttr "spacing" value
+
+module imageList =
+
+  /// The height of one row in `px`.
+  [<Erase>]
+  type rowHeight =
+    static member inline auto = Interop.mkAttr "rowHeight" "auto"
+
+
+[<Erase>]
+type imageListItem =
+  /// While you can pass any node as children, the main use case is for an img.
+  static member inline children (element: ReactElement) = prop.children element
+  /// While you can pass any node as children, the main use case is for an img.
+  static member inline children (elements: ReactElement seq) = prop.children elements
+  /// While you can pass any node as children, the main use case is for an img.
+  static member inline children (value: string) = Interop.mkAttr "children" value
+  /// While you can pass any node as children, the main use case is for an img.
+  static member inline children (values: string seq) = Interop.mkAttr "children" values
+  /// While you can pass any node as children, the main use case is for an img.
+  static member inline children (value: int) = Interop.mkAttr "children" value
+  /// While you can pass any node as children, the main use case is for an img.
+  static member inline children (value: float) = Interop.mkAttr "children" value
+  /// Width of the item in number of grid columns.
+  static member inline cols (value: int) = Interop.mkAttr "cols" value
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: string) = Interop.mkAttr "component" value
+  /// The component used for the root node. Either a string to use a HTML element or a component.
+  static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// Height of the item in number of grid rows.
+  static member inline rows (value: int) = Interop.mkAttr "rows" value
+
+
+[<Erase>]
+type imageListItemBar =
+  /// An IconButton element to be used as secondary action target (primary action target is the item itself).
+  static member inline actionIcon (element: ReactElement) = Interop.mkAttr "actionIcon" element
+  /// String or element serving as subtitle (support text).
+  static member inline subtitle (value: ReactElement) = Interop.mkAttr "subtitle" value
+  /// String or element serving as subtitle (support text).
+  static member inline subtitle (values: ReactElement seq) = Interop.mkAttr "subtitle" values
+  /// String or element serving as subtitle (support text).
+  static member inline subtitle (value: string) = Interop.mkAttr "subtitle" value
+  /// String or element serving as subtitle (support text).
+  static member inline subtitle (values: string seq) = Interop.mkAttr "subtitle" values
+  /// String or element serving as subtitle (support text).
+  static member inline subtitle (value: int) = Interop.mkAttr "subtitle" value
+  /// String or element serving as subtitle (support text).
+  static member inline subtitle (value: float) = Interop.mkAttr "subtitle" value
+  /// Title to be displayed on item.
+  static member inline title (value: ReactElement) = Interop.mkAttr "title" value
+  /// Title to be displayed on item.
+  static member inline title (values: ReactElement seq) = Interop.mkAttr "title" values
+  /// Title to be displayed on item.
+  static member inline title (value: string) = Interop.mkAttr "title" value
+  /// Title to be displayed on item.
+  static member inline title (values: string seq) = Interop.mkAttr "title" values
+  /// Title to be displayed on item.
+  static member inline title (value: int) = Interop.mkAttr "title" value
+  /// Title to be displayed on item.
+  static member inline title (value: float) = Interop.mkAttr "title" value
+  /// This component does not support children.
+  static member inline children  = UnsupportedProp ()
+
+module imageListItemBar =
+
+  /// Position of secondary action IconButton.
+  [<Erase>]
+  type actionPosition =
+    static member inline left = Interop.mkAttr "actionPosition" "left"
+    static member inline right = Interop.mkAttr "actionPosition" "right"
+
+  /// Position of the title bar.
+  [<Erase>]
+  type position =
+    static member inline bottom = Interop.mkAttr "position" "bottom"
+    static member inline top = Interop.mkAttr "position" "top"
+
+  /// *Deprecated*. Use the `position` prop instead.
+  ///
+  /// Position of the title bar.
+  [<Erase>]
+  type titlePosition =
+    static member inline bottom = Interop.mkAttr "titlePosition" "bottom"
+    static member inline top = Interop.mkAttr "titlePosition" "top"
+
+
+[<Erase>]
 type input =
   /// This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
@@ -3438,6 +3604,8 @@ type input =
   static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
   static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -3466,8 +3634,6 @@ type input =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
-  /// Maximum number of rows to display when multiline option is set to true.
-  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
@@ -3478,13 +3644,21 @@ type input =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
+  /// *Inherited from `inputBase`*
+  ///
   /// Callback fired when the input is blurred.
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
-  /// Minimum number of rows to display when multiline option is set to true.
+  /// Maximum number of rows to display.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module input =
@@ -3569,6 +3743,10 @@ type inputBase =
   static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
   /// Pass a ref to the `input` element.
   static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -3601,9 +3779,9 @@ type inputBase =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
-  /// Maximum number of rows to display when multiline option is set to true.
+  /// Maximum number of rows to display.
   static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
-  /// Minimum number of rows to display when multiline option is set to true.
+  /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
@@ -3731,11 +3909,11 @@ type link =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Applies the theme typography styles.
   static member inline variant (value: string) = Interop.mkAttr "variant" value
@@ -4026,7 +4204,7 @@ type menu =
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// When opening the menu will not focus the active item but the `[role="menu"]` unless `autoFocus` is also set to `false`. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications.
   static member inline disableAutoFocusItem (value: bool) = Interop.mkAttr "disableAutoFocusItem" value
-  /// Props applied to the [`MenuList`](https://material-ui.com/api/menu-list/) element.
+  /// Props applied to the [`MenuList`](https://v4.mui.com/api/menu-list/) element.
   static member inline MenuListProps (props: IReactProperty list) = Interop.mkAttr "MenuListProps" (createObj !!props)
   /// Callback fired when the component requests to be closed.
   ///
@@ -4048,16 +4226,28 @@ type menu =
   ///
   /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
   static member inline onClose (handler: MenuCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the Menu enters.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the Menu has entered.
   static member inline onEntered (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntered" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the Menu is entering.
   static member inline onEntering (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntering" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the Menu exits.
   static member inline onExit (handler: ReactElement -> unit) = Interop.mkAttr "onExit" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the Menu has exited.
   static member inline onExited (handler: ReactElement -> unit) = Interop.mkAttr "onExited" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the Menu is exiting.
   static member inline onExiting (handler: ReactElement -> unit) = Interop.mkAttr "onExiting" handler
   /// If `true`, the menu is visible.
@@ -4066,6 +4256,8 @@ type menu =
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The length of the transition in `ms`, or 'auto'
   static member inline transitionDuration (?appear: int, ?enter: int, ?exit: int) = Interop.mkAttr "transitionDuration" (let x = createEmpty<obj> in (if appear.IsSome then x?``appear`` <- appear); (if enter.IsSome then x?``enter`` <- enter); (if exit.IsSome then x?``exit`` <- exit); x)
+  /// Props applied to the transition element. By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition) component.
+  static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `popover`*
   ///
   /// A ref for imperative actions. It currently only supports updatePosition() action.
@@ -4140,7 +4332,7 @@ type menu =
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
   /// *Inherited from `popover`*
   ///
-  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  /// Props applied to the [`Paper`](https://v4.mui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
   /// *Inherited from `popover`*
   ///
@@ -4168,19 +4360,15 @@ type menu =
   static member inline transformOrigin (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
   /// *Inherited from `popover`*
   ///
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
-  /// *Inherited from `popover`*
-  ///
-  /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
-  static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
   /// *Inherited from `modal`*
   ///
-  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  /// Props applied to the [`Backdrop`](https://v4.mui.com/api/backdrop/) element.
   static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
@@ -4193,6 +4381,8 @@ type menu =
   /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
   static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
   /// *Inherited from `modal`*
+  ///
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
   ///
   /// If `true`, clicking the backdrop will not fire `onClose`.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
@@ -4228,9 +4418,13 @@ type menu =
   static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
   /// *Inherited from `modal`*
   ///
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
+  ///
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
   /// *Inherited from `modal`*
+  ///
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
   ///
   /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
   static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
@@ -4498,11 +4692,11 @@ module mobileStepper =
 type modal =
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
-  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  /// Props applied to the [`Backdrop`](https://v4.mui.com/api/backdrop/) element.
   static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
   /// A single child content element.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// When set to true the Modal waits until a nested Transition is completed before closing.
   static member inline closeAfterTransition (value: bool) = Interop.mkAttr "closeAfterTransition" value
@@ -4526,6 +4720,8 @@ type modal =
   ///
   /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
   static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
+  ///
   /// If `true`, clicking the backdrop will not fire `onClose`.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
   /// If `true`, the modal will not prevent focus from leaving the modal while open.
@@ -4544,6 +4740,8 @@ type modal =
   static member inline hideBackdrop (value: bool) = Interop.mkAttr "hideBackdrop" value
   /// Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal.
   static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
+  ///
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
   /// Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -4566,6 +4764,8 @@ type modal =
   ///
   /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: ModalCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
+  ///
   /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
   static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
   /// If `true`, the modal is open.
@@ -4664,6 +4864,10 @@ type nativeSelect =
   static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// *Inherited from `input`*
   ///
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
+  /// *Inherited from `input`*
+  ///
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// *Inherited from `input`*
@@ -4688,10 +4892,6 @@ type nativeSelect =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// *Inherited from `input`*
   ///
-  /// Maximum number of rows to display when multiline option is set to true.
-  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
-  /// *Inherited from `input`*
-  ///
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// *Inherited from `input`*
@@ -4700,13 +4900,21 @@ type nativeSelect =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
+  /// *Inherited from `inputBase`*
+  ///
   /// Callback fired when the input is blurred.
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
-  /// Minimum number of rows to display when multiline option is set to true.
+  /// Maximum number of rows to display.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module nativeSelect =
@@ -4805,6 +5013,8 @@ type outlinedInput =
   static member inline label (value: float) = Interop.mkAttr "label" value
   /// The width of the label. Is ignored if `label` is provided. Prefer `label` if the input label appears with a strike through.
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -4835,8 +5045,6 @@ type outlinedInput =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
-  /// Maximum number of rows to display when multiline option is set to true.
-  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
@@ -4847,13 +5055,21 @@ type outlinedInput =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
+  /// *Inherited from `inputBase`*
+  ///
   /// Callback fired when the input is blurred.
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
-  /// Minimum number of rows to display when multiline option is set to true.
+  /// Maximum number of rows to display.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module outlinedInput =
@@ -4883,7 +5099,7 @@ type pagination =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// Accepts a function which returns a string value that provides a user-friendly name for the current page.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   ///
   /// **Signature:**
   ///
@@ -5118,21 +5334,33 @@ type popover =
   static member inline onClose (handler: Event -> PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed.
   static member inline onClose (handler: PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the component is entering.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the component has entered.
   static member inline onEntered (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntered" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the component is entering.
   static member inline onEntering (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntering" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the component is exiting.
   static member inline onExit (handler: ReactElement -> unit) = Interop.mkAttr "onExit" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the component has exited.
   static member inline onExited (handler: ReactElement -> unit) = Interop.mkAttr "onExited" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the component is exiting.
   static member inline onExiting (handler: ReactElement -> unit) = Interop.mkAttr "onExiting" handler
   /// If `true`, the popover is visible.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
-  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  /// Props applied to the [`Paper`](https://v4.mui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
   /// This is the point on the popover which will attach to the anchor's origin.
   ///
@@ -5150,7 +5378,7 @@ type popover =
   ///
   /// Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
   static member inline transformOrigin (horizontal: int, vertical: int) = Interop.mkAttr "transformOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Set to 'auto' to automatically calculate transition time based on height.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
@@ -5164,7 +5392,7 @@ type popover =
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
   /// *Inherited from `modal`*
   ///
-  /// Props applied to the [`Backdrop`](https://material-ui.com/api/backdrop/) element.
+  /// Props applied to the [`Backdrop`](https://v4.mui.com/api/backdrop/) element.
   static member inline BackdropProps (props: IReactProperty list) = Interop.mkAttr "BackdropProps" (createObj !!props)
   /// *Inherited from `modal`*
   ///
@@ -5177,6 +5405,8 @@ type popover =
   /// Generally this should never be set to `true` as it makes the modal less accessible to assistive technologies, like screen readers.
   static member inline disableAutoFocus (value: bool) = Interop.mkAttr "disableAutoFocus" value
   /// *Inherited from `modal`*
+  ///
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to filter the `backdropClick` events.
   ///
   /// If `true`, clicking the backdrop will not fire `onClose`.
   static member inline disableBackdropClick (value: bool) = Interop.mkAttr "disableBackdropClick" value
@@ -5212,9 +5442,13 @@ type popover =
   static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
   /// *Inherited from `modal`*
   ///
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `backdropClick` events.
+  ///
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
   /// *Inherited from `modal`*
+  ///
+  /// *Deprecated*. Use the onClose prop with the `reason` argument to handle the `escapeKeyDown` events.
   ///
   /// Callback fired when the escape key is pressed, `disableEscapeKeyDown` is false and the modal is in focus.
   static member inline onEscapeKeyDown (handler: Event -> unit) = Interop.mkAttr "onEscapeKeyDown" handler
@@ -5432,13 +5666,13 @@ type radio =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -5450,7 +5684,7 @@ type radio =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -5552,7 +5786,7 @@ type rating =
   static member inline emptyLabelText (value: float) = Interop.mkAttr "emptyLabelText" value
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   ///
   /// **Signature:**
   ///
@@ -5562,7 +5796,7 @@ type rating =
   static member inline getLabelText (getText: int -> string) = Interop.mkAttr "getLabelText" getText
   /// Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   ///
   /// **Signature:**
   ///
@@ -5751,23 +5985,23 @@ type select =
   static member inline input (value: ReactElement) = Interop.mkAttr "input" value
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline label (value: ReactElement) = Interop.mkAttr "label" value
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline label (values: ReactElement seq) = Interop.mkAttr "label" values
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline label (value: string) = Interop.mkAttr "label" value
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline label (values: string seq) = Interop.mkAttr "label" values
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline label (value: int) = Interop.mkAttr "label" value
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline label (value: float) = Interop.mkAttr "label" value
   /// The ID of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value.
   static member inline labelId (value: string) = Interop.mkAttr "labelId" value
-  /// See [OutlinedInput#label](https://material-ui.com/api/outlined-input/#props)
+  /// See [OutlinedInput#label](https://v4.mui.com/api/outlined-input/#props)
   static member inline labelWidth (value: int) = Interop.mkAttr "labelWidth" value
-  /// Props applied to the [`Menu`](https://material-ui.com/api/menu/) element.
+  /// Props applied to the [`Menu`](https://v4.mui.com/api/menu/) element.
   static member inline MenuProps (props: IReactProperty list) = Interop.mkAttr "MenuProps" (createObj !!props)
   /// If `true`, `value` must be an array and the menu will support multiple selections.
   static member inline multiple (value: bool) = Interop.mkAttr "multiple" value
@@ -5911,6 +6145,10 @@ type select =
   static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// *Inherited from `input`*
   ///
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
+  /// *Inherited from `input`*
+  ///
   /// If `true`, a textarea element will be rendered.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// *Inherited from `input`*
@@ -5935,10 +6173,6 @@ type select =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// *Inherited from `input`*
   ///
-  /// Maximum number of rows to display when multiline option is set to true.
-  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
-  /// *Inherited from `input`*
-  ///
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// *Inherited from `input`*
@@ -5947,13 +6181,21 @@ type select =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
+  /// Minimum number of rows to display when multiline option is set to true.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
+  /// *Inherited from `inputBase`*
+  ///
   /// Callback fired when the input is blurred.
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
-  /// Minimum number of rows to display when multiline option is set to true.
+  /// Maximum number of rows to display.
+  static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
 
 module select =
@@ -6030,7 +6272,7 @@ module skeleton =
 type slide =
   /// A single child content element.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// If `true`, show the component; triggers the enter or exit animation.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
@@ -6389,7 +6631,7 @@ type snackbar =
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// Props applied to the `ClickAwayListener` element.
   static member inline ClickAwayListenerProps (props: IReactProperty list) = Interop.mkAttr "ClickAwayListenerProps" (createObj !!props)
-  /// Props applied to the [`SnackbarContent`](https://material-ui.com/api/snackbar-content/) element.
+  /// Props applied to the [`SnackbarContent`](https://v4.mui.com/api/snackbar-content/) element.
   static member inline ContentProps (props: IReactProperty list) = Interop.mkAttr "ContentProps" (createObj !!props)
   /// If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
   static member inline disableWindowBlurListener (value: bool) = Interop.mkAttr "disableWindowBlurListener" value
@@ -6427,23 +6669,35 @@ type snackbar =
   ///
   /// *reason:* Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
   static member inline onClose (handler: SnackbarCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the transition is entering.
   static member inline onEnter (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEnter" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the transition has entered.
   static member inline onEntered (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntered" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the transition is entering.
   static member inline onEntering (handler: ReactElement -> bool -> unit) = Interop.mkAttr "onEntering" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired before the transition is exiting.
   static member inline onExit (handler: ReactElement -> unit) = Interop.mkAttr "onExit" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the transition has exited.
   static member inline onExited (handler: ReactElement -> unit) = Interop.mkAttr "onExited" handler
+  /// *Deprecated*. Use the `TransitionProps` prop instead.
+  ///
   /// Callback fired when the transition is exiting.
   static member inline onExiting (handler: ReactElement -> unit) = Interop.mkAttr "onExiting" handler
   /// If `true`, `Snackbar` is open.
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms.
   static member inline resumeHideDuration (value: int) = Interop.mkAttr "resumeHideDuration" value
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
@@ -6539,7 +6793,7 @@ type speedDial =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// SpeedDialActions to display when the SpeedDial is `open`.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// Props applied to the [`Fab`](https://material-ui.com/api/fab/) element.
+  /// Props applied to the [`Fab`](https://v4.mui.com/api/fab/) element.
   static member inline FabProps (props: IReactProperty list) = Interop.mkAttr "FabProps" (createObj !!props)
   /// If `true`, the SpeedDial will be hidden.
   static member inline hidden (value: bool) = Interop.mkAttr "hidden" value
@@ -6589,7 +6843,7 @@ type speedDial =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The icon to display in the SpeedDial Fab when the SpeedDial is open.
   static member inline openIcon (element: ReactElement) = Interop.mkAttr "openIcon" element
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
@@ -6613,7 +6867,7 @@ module speedDial =
 type speedDialAction =
   /// Adds a transition delay, to allow a series of SpeedDialActions to be animated.
   static member inline delay (value: int) = Interop.mkAttr "delay" value
-  /// Props applied to the [`Fab`](https://material-ui.com/api/fab/) component.
+  /// Props applied to the [`Fab`](https://v4.mui.com/api/fab/) component.
   static member inline FabProps (props: IReactProperty list) = Interop.mkAttr "FabProps" (createObj !!props)
   /// The Icon to display in the SpeedDial Fab.
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
@@ -6703,7 +6957,7 @@ type speedDialAction =
   static member inline PopperComponent (value: ReactElementType) = Interop.mkAttr "PopperComponent" value
   /// *Inherited from `tooltip`*
   ///
-  /// Props applied to the [`Popper`](https://material-ui.com/api/popper/) element.
+  /// Props applied to the [`Popper`](https://v4.mui.com/api/popper/) element.
   static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
   /// *Inherited from `tooltip`*
   ///
@@ -6731,7 +6985,7 @@ type speedDialAction =
   static member inline title (value: float) = Interop.mkAttr "title" value
   /// *Inherited from `tooltip`*
   ///
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// *Inherited from `tooltip`*
   ///
@@ -6853,13 +7107,13 @@ type stepButton =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -6881,7 +7135,7 @@ type stepButton =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -6913,7 +7167,7 @@ type stepContent =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Step content.
   static member inline children (value: float) = Interop.mkAttr "children" value
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Adjust the duration of the content expand transition. Passed as a prop to the transition component.
   ///
@@ -6982,9 +7236,9 @@ type stepLabel =
   static member inline optional (value: int) = Interop.mkAttr "optional" value
   /// The optional node to display.
   static member inline optional (value: float) = Interop.mkAttr "optional" value
-  /// The component to render in place of the [`StepIcon`](https://material-ui.com/api/step-icon/).
+  /// The component to render in place of the [`StepIcon`](https://v4.mui.com/api/step-icon/).
   static member inline StepIconComponent (value: ReactElementType) = Interop.mkAttr "StepIconComponent" value
-  /// Props applied to the [`StepIcon`](https://material-ui.com/api/step-icon/) element.
+  /// Props applied to the [`StepIcon`](https://v4.mui.com/api/step-icon/) element.
   static member inline StepIconProps (props: IReactProperty list) = Interop.mkAttr "StepIconProps" (createObj !!props)
 
 
@@ -7079,6 +7333,7 @@ module svgIcon =
     static member inline default' = Interop.mkAttr "fontSize" "default"
     static member inline inherit' = Interop.mkAttr "fontSize" "inherit"
     static member inline large = Interop.mkAttr "fontSize" "large"
+    static member inline medium = Interop.mkAttr "fontSize" "medium"
     static member inline small = Interop.mkAttr "fontSize" "small"
 
 
@@ -7138,15 +7393,15 @@ type swipeableDrawer =
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `drawer`*
   ///
-  /// Props applied to the [`Modal`](https://material-ui.com/api/modal/) element.
+  /// Props applied to the [`Modal`](https://v4.mui.com/api/modal/) element.
   static member inline ModalProps (props: IReactProperty list) = Interop.mkAttr "ModalProps" (createObj !!props)
   /// *Inherited from `drawer`*
   ///
-  /// Props applied to the [`Paper`](https://material-ui.com/api/paper/) element.
+  /// Props applied to the [`Paper`](https://v4.mui.com/api/paper/) element.
   static member inline PaperProps (props: IReactProperty list) = Interop.mkAttr "PaperProps" (createObj !!props)
   /// *Inherited from `drawer`*
   ///
-  /// Props applied to the [`Slide`](https://material-ui.com/api/slide/) element.
+  /// Props applied to the [`Slide`](https://v4.mui.com/api/slide/) element.
   static member inline SlideProps (props: IReactProperty list) = Interop.mkAttr "SlideProps" (createObj !!props)
 
 module swipeableDrawer =
@@ -7233,13 +7488,13 @@ type switch =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7251,7 +7506,7 @@ type switch =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7329,13 +7584,13 @@ type tab =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7347,7 +7602,7 @@ type tab =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7402,12 +7657,13 @@ type table =
 
 module table =
 
-  /// Allows TableCells to inherit padding of the Table.
+  /// Allows TableCells to inherit padding of the Table. `default` is deprecated, use `normal` instead.
   [<Erase>]
   type padding =
-    static member inline default' = Interop.mkAttr "padding" "default"
+    static member inline normal = Interop.mkAttr "padding" "normal"
     static member inline checkbox = Interop.mkAttr "padding" "checkbox"
     static member inline none = Interop.mkAttr "padding" "none"
+    static member inline default' = Interop.mkAttr "padding" "default"
 
   /// Allows TableCells to inherit size of the Table.
   [<Erase>]
@@ -7470,12 +7726,13 @@ module tableCell =
     static member inline left = Interop.mkAttr "align" "left"
     static member inline right = Interop.mkAttr "align" "right"
 
-  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
+  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`normal`). `default` is deprecated, use `normal` instead.
   [<Erase>]
   type padding =
+    static member inline normal = Interop.mkAttr "padding" "normal"
     static member inline checkbox = Interop.mkAttr "padding" "checkbox"
-    static member inline default' = Interop.mkAttr "padding" "default"
     static member inline none = Interop.mkAttr "padding" "none"
+    static member inline default' = Interop.mkAttr "padding" "default"
 
   /// Specify the size of the cell. By default, the Table parent component set the value (`medium`).
   [<Erase>]
@@ -7562,11 +7819,11 @@ type tableHead =
 type tablePagination =
   /// The component used for displaying the actions. Either a string to use a HTML element or a component.
   static member inline ActionsComponent (value: ReactElementType) = Interop.mkAttr "ActionsComponent" value
-  /// Props applied to the back arrow [`IconButton`](https://material-ui.com/api/icon-button/) component.
+  /// Props applied to the back arrow [`IconButton`](https://v4.mui.com/api/icon-button/) component.
   static member inline backIconButtonProps (props: IReactProperty list) = Interop.mkAttr "backIconButtonProps" (createObj !!props)
   /// Text label for the back arrow icon button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline backIconButtonText (value: string) = Interop.mkAttr "backIconButtonText" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
@@ -7578,48 +7835,50 @@ type tablePagination =
   static member inline count (value: int) = Interop.mkAttr "count" value
   /// Customize the displayed rows label. Invoked with a `{ from, to, count, page }` object.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelDisplayedRows (getLabel: {| from: int; ``to``: int; count: int |} -> ReactElement) = Interop.mkAttr "labelDisplayedRows" getLabel
   /// Customize the rows per page label.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelRowsPerPage (value: ReactElement) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelRowsPerPage (values: ReactElement seq) = Interop.mkAttr "labelRowsPerPage" values
   /// Customize the rows per page label.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelRowsPerPage (value: string) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelRowsPerPage (values: string seq) = Interop.mkAttr "labelRowsPerPage" values
   /// Customize the rows per page label.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelRowsPerPage (value: int) = Interop.mkAttr "labelRowsPerPage" value
   /// Customize the rows per page label.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline labelRowsPerPage (value: float) = Interop.mkAttr "labelRowsPerPage" value
-  /// Props applied to the next arrow [`IconButton`](https://material-ui.com/api/icon-button/) element.
+  /// Props applied to the next arrow [`IconButton`](https://v4.mui.com/api/icon-button/) element.
   static member inline nextIconButtonProps (props: IReactProperty list) = Interop.mkAttr "nextIconButtonProps" (createObj !!props)
   /// Text label for the next arrow icon button.
   ///
-  /// For localization purposes, you can use the provided [translations](https://material-ui.com/guides/localization/).
+  /// For localization purposes, you can use the provided [translations](https://v4.mui.com/guides/localization/).
   static member inline nextIconButtonText (value: string) = Interop.mkAttr "nextIconButtonText" value
+  /// *Deprecated*. Use the `onPageChange` prop instead.
+  ///
   /// Callback fired when the page is changed.
-  ///
-  /// **Signature:**
-  ///
-  /// `function(event: object, page: number) => void`
-  ///
-  /// *event:* The event source of the callback.
-  ///
-  /// *page:* The page selected.
   static member inline onChangePage (handler: Event -> int -> unit) = Interop.mkAttr "onChangePage" (Func<_,_,_> handler)
+  /// *Deprecated*. Use the `onPageChange` prop instead.
+  ///
+  /// Callback fired when the page is changed.
+  static member inline onChangePage (handler: int -> unit) = Interop.mkAttr "onChangePage" (Func<_,_,_> (fun _ v -> handler v))
+  /// *Deprecated*. Use the `onRowsPerPageChange` prop instead.
+  ///
+  /// Callback fired when the number of rows per page is changed.
+  static member inline onChangeRowsPerPage (handler: Event -> unit) = Interop.mkAttr "onChangeRowsPerPage" handler
   /// Callback fired when the page is changed.
   ///
   /// **Signature:**
@@ -7629,7 +7888,7 @@ type tablePagination =
   /// *event:* The event source of the callback.
   ///
   /// *page:* The page selected.
-  static member inline onChangePage (handler: int -> unit) = Interop.mkAttr "onChangePage" (Func<_,_,_> (fun _ v -> handler v))
+  static member inline onPageChange (handler: Event -> unit) = Interop.mkAttr "onPageChange" handler
   /// Callback fired when the number of rows per page is changed.
   ///
   /// **Signature:**
@@ -7637,14 +7896,14 @@ type tablePagination =
   /// `function(event: object) => void`
   ///
   /// *event:* The event source of the callback.
-  static member inline onChangeRowsPerPage (handler: Event -> unit) = Interop.mkAttr "onChangeRowsPerPage" handler
+  static member inline onRowsPerPageChange (handler: Event -> unit) = Interop.mkAttr "onRowsPerPageChange" handler
   /// The zero-based index of the current page.
   static member inline page (value: int) = Interop.mkAttr "page" value
   /// The number of rows per page.
   static member inline rowsPerPage (value: int) = Interop.mkAttr "rowsPerPage" value
   /// Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.
   static member inline rowsPerPageOptions ([<ParamArray>] values: int []) = Interop.mkAttr "rowsPerPageOptions" (ResizeArray values)
-  /// Props applied to the rows per page [`Select`](https://material-ui.com/api/select/) element.
+  /// Props applied to the rows per page [`Select`](https://v4.mui.com/api/select/) element.
   static member inline SelectProps (props: IReactProperty list) = Interop.mkAttr "SelectProps" (createObj !!props)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -7670,12 +7929,13 @@ module tablePagination =
 
   /// *Inherited from `tableCell`*
   ///
-  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`default`).
+  /// Sets the padding applied to the cell. By default, the Table parent component set the value (`normal`). `default` is deprecated, use `normal` instead.
   [<Erase>]
   type padding =
+    static member inline normal = Interop.mkAttr "padding" "normal"
     static member inline checkbox = Interop.mkAttr "padding" "checkbox"
-    static member inline default' = Interop.mkAttr "padding" "default"
     static member inline none = Interop.mkAttr "padding" "none"
+    static member inline default' = Interop.mkAttr "padding" "default"
 
   /// *Inherited from `tableCell`*
   ///
@@ -7756,13 +8016,13 @@ type tableSortLabel =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7784,7 +8044,7 @@ type tableSortLabel =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -7878,7 +8138,7 @@ type tabList =
   static member inline TabIndicatorProps (props: IReactProperty list) = Interop.mkAttr "TabIndicatorProps" (createObj !!props)
   /// *Inherited from `tabs`*
   ///
-  /// Props applied to the [`TabScrollButton`](https://material-ui.com/api/tab-scroll-button/) element.
+  /// Props applied to the [`TabScrollButton`](https://v4.mui.com/api/tab-scroll-button/) element.
   static member inline TabScrollButtonProps (props: IReactProperty list) = Interop.mkAttr "TabScrollButtonProps" (createObj !!props)
   /// *Inherited from `tabs`*
   ///
@@ -8008,7 +8268,7 @@ type tabs =
   static member inline selectionFollowsFocus (value: bool) = Interop.mkAttr "selectionFollowsFocus" value
   /// Props applied to the tab indicator element.
   static member inline TabIndicatorProps (props: IReactProperty list) = Interop.mkAttr "TabIndicatorProps" (createObj !!props)
-  /// Props applied to the [`TabScrollButton`](https://material-ui.com/api/tab-scroll-button/) element.
+  /// Props applied to the [`TabScrollButton`](https://v4.mui.com/api/tab-scroll-button/) element.
   static member inline TabScrollButtonProps (props: IReactProperty list) = Interop.mkAttr "TabScrollButtonProps" (createObj !!props)
   /// The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this property to `false`.
   static member inline value (value: 'a) = Interop.mkAttr "value" value
@@ -8088,10 +8348,20 @@ module tabScrollButton =
 
 [<Erase>]
 type textareaAutosize =
-  /// Use `rowsMin` instead. The prop will be removed in v5.
+  /// Maximum number of rows to display.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
+  /// Minimum number of rows to display.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
+  /// *Deprecated*. Use `minRows` instead.
+  ///
+  /// Minimum number of rows to display.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// *Deprecated*. Use `maxRows` instead.
+  ///
   /// Maximum number of rows to display.
   static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
+  /// *Deprecated*. Use `minRows` instead.
+  ///
   /// Minimum number of rows to display.
   static member inline rowsMin (value: int) = Interop.mkAttr "rowsMin" value
   /// This component does not support children.
@@ -8110,7 +8380,7 @@ type textField =
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the label will be displayed in an error state.
   static member inline error (value: bool) = Interop.mkAttr "error" value
-  /// Props applied to the [`FormHelperText`](https://material-ui.com/api/form-helper-text/) element.
+  /// Props applied to the [`FormHelperText`](https://v4.mui.com/api/form-helper-text/) element.
   static member inline FormHelperTextProps (props: IReactProperty list) = Interop.mkAttr "FormHelperTextProps" (createObj !!props)
   /// If `true`, the input will take up the full width of its container.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
@@ -8128,11 +8398,11 @@ type textField =
   static member inline helperText (value: float) = Interop.mkAttr "helperText" value
   /// The id of the `input` element. Use this prop to make `label` and `helperText` accessible for screen readers.
   static member inline id (value: string) = Interop.mkAttr "id" value
-  /// Props applied to the [`InputLabel`](https://material-ui.com/api/input-label/) element.
+  /// Props applied to the [`InputLabel`](https://v4.mui.com/api/input-label/) element.
   static member inline InputLabelProps (props: IReactProperty list) = Interop.mkAttr "InputLabelProps" (createObj !!props)
   /// [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
   static member inline inputProps (props: IReactProperty list) = Interop.mkAttr "inputProps" (createObj !!props)
-  /// Props applied to the Input element. It will be a [`FilledInput`](https://material-ui.com/api/filled-input/), [`OutlinedInput`](https://material-ui.com/api/outlined-input/) or [`Input`](https://material-ui.com/api/input/) component depending on the `variant` prop value.
+  /// Props applied to the Input element. It will be a [`FilledInput`](https://v4.mui.com/api/filled-input/), [`OutlinedInput`](https://v4.mui.com/api/outlined-input/) or [`Input`](https://v4.mui.com/api/input/) component depending on the `variant` prop value.
   static member inline InputProps (props: IReactProperty list) = Interop.mkAttr "InputProps" (createObj !!props)
   /// Pass a ref to the `input` element.
   static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
@@ -8150,6 +8420,10 @@ type textField =
   static member inline label (value: int) = Interop.mkAttr "label" value
   /// The label content.
   static member inline label (value: float) = Interop.mkAttr "label" value
+  /// Maximum number of rows to display when multiline option is set to true.
+  static member inline maxRows (value: int) = Interop.mkAttr "maxRows" value
+  /// Minimum number of rows to display.
+  static member inline minRows (value: int) = Interop.mkAttr "minRows" value
   /// If `true`, a textarea element will be rendered instead of an input.
   static member inline multiline (value: bool) = Interop.mkAttr "multiline" value
   /// Name attribute of the `input` element.
@@ -8174,13 +8448,17 @@ type textField =
   static member inline placeholder (value: string) = Interop.mkAttr "placeholder" value
   /// If `true`, the label is displayed as required and the `input` element` will be required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// *Deprecated*. Use `minRows` instead
+  ///
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
-  /// Maximum number of rows to display when multiline option is set to true.
+  /// *Deprecated*. Use `maxRows` instead
+  ///
+  /// Maximum number of rows to display.
   static member inline rowsMax (value: int) = Interop.mkAttr "rowsMax" value
-  /// Render a [`Select`](https://material-ui.com/api/select/) element while passing the Input element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children.
+  /// Render a [`Select`](https://v4.mui.com/api/select/) element while passing the Input element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children.
   static member inline select (value: bool) = Interop.mkAttr "select" value
-  /// Props applied to the [`Select`](https://material-ui.com/api/select/) element.
+  /// Props applied to the [`Select`](https://v4.mui.com/api/select/) element.
   static member inline SelectProps (props: IReactProperty list) = Interop.mkAttr "SelectProps" (createObj !!props)
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
   static member inline type' (value: string) = Interop.mkAttr "type" value
@@ -8411,13 +8689,13 @@ type toggleButton =
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `buttonBase`*
   ///
@@ -8429,7 +8707,7 @@ type toggleButton =
   static member inline focusRipple (value: bool) = Interop.mkAttr "focusRipple" value
   /// *Inherited from `buttonBase`*
   ///
-  /// This prop can help a person know which element has the keyboard focus. The class name will be applied when the element gain the focus through a keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
+  /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
   /// *Inherited from `buttonBase`*
   ///
@@ -8538,7 +8816,7 @@ type tooltip =
   static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// Tooltip reference element.
   ///
-  /// ⚠️ [Needs to be able to hold a ref](https://material-ui.com/guides/composition/#caveat-with-refs).
+  /// ⚠️ [Needs to be able to hold a ref](https://v4.mui.com/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
   /// Do not respond to focus events.
   static member inline disableFocusListener (value: bool) = Interop.mkAttr "disableFocusListener" value
@@ -8580,7 +8858,7 @@ type tooltip =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The component used for the popper.
   static member inline PopperComponent (value: ReactElementType) = Interop.mkAttr "PopperComponent" value
-  /// Props applied to the [`Popper`](https://material-ui.com/api/popper/) element.
+  /// Props applied to the [`Popper`](https://v4.mui.com/api/popper/) element.
   static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
   /// Tooltip title. Zero-length titles string are never displayed.
   static member inline title (value: ReactElement) = Interop.mkAttr "title" value
@@ -8594,7 +8872,7 @@ type tooltip =
   static member inline title (value: int) = Interop.mkAttr "title" value
   /// Tooltip title. Zero-length titles string are never displayed.
   static member inline title (value: float) = Interop.mkAttr "title" value
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)
@@ -8658,7 +8936,7 @@ type treeItem =
   static member inline onIconClick (handler: Event -> unit) = Interop.mkAttr "onIconClick" handler
   /// `onClick` handler for the label container. Call `event.preventDefault()` to prevent `onNodeToggle` from being called.
   static member inline onLabelClick (handler: Event -> unit) = Interop.mkAttr "onLabelClick" handler
-  /// The component used for the transition. [Follow this guide](https://material-ui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+  /// The component used for the transition. [Follow this guide](https://v4.mui.com/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
   static member inline TransitionProps (props: IReactProperty list) = Interop.mkAttr "TransitionProps" (createObj !!props)

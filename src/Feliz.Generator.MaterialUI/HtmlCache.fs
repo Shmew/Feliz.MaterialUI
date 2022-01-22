@@ -6,7 +6,7 @@ open System.Net.Http
 open FSharp.Data
 
 
-let cacheFolder = @"..\..\..\cache"
+let cacheFolder = @"../../../cache"
 let sep = string Path.DirectorySeparatorChar
 
 
@@ -26,7 +26,7 @@ let private downloadUrl (uri: Uri) =
 
 let refresh =
   async {
-    let baseUrl = "https://material-ui.com"
+    let baseUrl = "https://v4.mui.com"
 
     Directory.Delete(cacheFolder, true)
 
@@ -34,9 +34,12 @@ let refresh =
 
     let apiPageUrls =
       testApiPage.Html.CssSelect("nav ul li").[2].CssSelect("ul li")
-      |> List.map (fun menuItem ->
-        let relUrl = menuItem.CssSelect("a").[0].AttributeValue("href")
-        Uri(baseUrl + relUrl)
+      |> List.choose (fun menuItem ->
+        let links = menuItem.CssSelect("a")
+        if List.isEmpty links then None
+        else
+          let relUrl = links.[0].AttributeValue("href")
+          baseUrl + relUrl |> Uri |> Some
       )
 
     let otherUrls =
