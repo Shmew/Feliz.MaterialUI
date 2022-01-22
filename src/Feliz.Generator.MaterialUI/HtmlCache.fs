@@ -28,7 +28,7 @@ let refresh =
   async {
     let baseUrl = "https://v4.mui.com"
 
-//    Directory.Delete(cacheFolder, true)
+    Directory.Delete(cacheFolder, true)
 
     let! testApiPage = ComponentApiPage.AsyncLoad(baseUrl + "/api/app-bar")
 
