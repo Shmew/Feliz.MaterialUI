@@ -26,7 +26,7 @@ let private downloadUrl (uri: Uri) =
 
 let refresh =
   async {
-    let baseUrl = "https://v4.mui.com"
+    let baseUrl = "https://mui.com"
 
     Directory.Delete(cacheFolder, true)
 
