@@ -83,30 +83,44 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     match componentMethodName, propMethodName, propDocType with
 
     | _, _, "unsupportedProp" ->
-        [RegularPropOverload.createCustom "" "UnsupportedProp ()"]
+      [RegularPropOverload.createCustom "" "UnsupportedProp ()"]
 
     | "alert", "iconMapping", "{ error?: node, info?: node, success?: node, warning?: node }" ->
-        [
-          [ "error", "ReactElement", true
-            "info", "ReactElement", true
-            "success", "ReactElement", true
-            "warning", "ReactElement", true ]
-          |> paramListAndObjCreator
-          ||> RegularPropOverload.create
-        ]
+      [
+        [ "error", "ReactElement", true
+          "info", "ReactElement", true
+          "success", "ReactElement", true
+          "warning", "ReactElement", true ]
+        |> paramListAndObjCreator
+        ||> RegularPropOverload.create
+      ]
 
     | "buttonBase", "action", "ref" ->
-        [
-          RegularPropOverload.create "(ref: IRefValue<ButtonBaseActions option>)" "ref"
-          RegularPropOverload.create "(handler: ButtonBaseActions -> unit)" "handler"
-        ]
+      [
+        RegularPropOverload.create "(ref: IRefValue<ButtonBaseActions option>)" "ref"
+        RegularPropOverload.create "(handler: ButtonBaseActions -> unit)" "handler"
+      ]
 
-    | "buttonBase", "type'", _ ->
-        // https://github.com/mui-org/material-ui/issues/21924
-        //
-        // If documented, it's just to specify the default value; the corresponding Feliz
-        // prop (prop.type') should be used
-        []
+    | "buttonUnstyled", "action", "func | { current?: { focusVisible: func } }" ->
+      [
+        RegularPropOverload.create "(ref: IRefValue<ButtonUnstyledActions option>)" "ref"
+        RegularPropOverload.create "(handler: ButtonUnstyledActions -> unit)" "handler"
+      ]
+
+    | "calendarPicker", "views", "Array<'day' | 'month' | 'year'>" ->
+        [RegularPropOverload.create "([<ParamArray>] views: CalendarPickerView [])" "views"]
+
+    | "calendarPicker", "shouldDisableDate", "func" ->
+        [RegularPropOverload.create "(shouldDisableDate: System.DateTime -> bool)" "shouldDisableDate"]
+
+    | "calendarPicker", "shouldDisableYear", "func" ->
+        [RegularPropOverload.create "(shouldDisableYear: int -> bool)" "shouldDisableYear"]
+
+    | "clockPicker", "getClockLabelText", "func" ->
+      []
+
+    | "clockPicker", ("getHoursClockNumberText" | "getMinutesClockNumberText" | "getSecondsClockNumberText" as name), "func" ->
+      [RegularPropOverload.create (sprintf "(%s: string -> string)" name) name]
 
     | "popover", "action", "ref" ->
         [
@@ -136,6 +150,21 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(handler: Event -> bool -> unit)" "(Func<_,_,_> handler)"
           RegularPropOverload.create "(handler: bool -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
         ]
+
+    | _, "sx", "Array<func | object | bool> | func | object" ->
+        [
+          RegularPropOverload.create "(styleOverrides: IStyleAttribute list)" "styleOverrides"
+          RegularPropOverload.create "(enabled: bool list)" "enabled"
+          RegularPropOverload.create "(themeOverride: Theme -> IStyleAttribute list)" "themeOverride"
+          RegularPropOverload.create "(themeOverrides: (Theme -> IStyleAttribute list) list)" "themeOverrides"
+        ]
+
+    | "autocomplete", "componentsProps", "{ clearIndicator?: object, paper?: object }" ->
+      // TODO can't be bothered for now
+      []
+
+    | "autocomplete", "isOptionEqualToValue", "func" ->
+      [ RegularPropOverload.create "(tester: ('a -> 'a -> bool))" "tester" ]
 
     | "autocomplete", "filterOptions", "func" ->
         [
@@ -344,17 +373,15 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         ]
 
     | "rating", ("defaultValue" | "max" | "precision" | "value"), "number" ->
-        [
-          RegularPropOverload.create "(value: int)" "value"
-          RegularPropOverload.create "(value: float)" "value"
-        ]
+      [
+        RegularPropOverload.create "(value: int)" "value"
+        RegularPropOverload.create "(value: float)" "value"
+      ]
 
-    | "radioGroup", "defaultValue", "Array<string> | number | string" ->
-        [
-          // TODO: Should this accept arrays, too? Or is that just an artifact of the way
-          // the MUI docs are generated?
-          RegularPropOverload.create "(value: 'a)" "value"
-        ]
+    | "radioGroup", "defaultValue", "any" ->
+      [
+        RegularPropOverload.create "(value: 'a)" "value"
+      ]
 
     | "select", "onChange", "func" ->
         [
@@ -509,7 +536,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           ||> RegularPropOverload.create
         ]
 
-    | "popper", "anchorEl", ("HTML element | object | func") ->
+    | "popper", "anchorEl", "HTML element | object | func" ->
         [
           RegularPropOverload.create "(value: #Element option)" "value"
           RegularPropOverload.create "(getElement: unit -> #Element option)" "getElement"
@@ -518,7 +545,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(ref: IRefValue<#Element option>)" "(fun () -> ref.current)"
         ]
 
-    | _, "anchorEl", ("HTML element | func") ->
+    | _, "anchorEl", "HTML element | func" ->
         [
           RegularPropOverload.create "(value: #Element option)" "value"
           RegularPropOverload.create "(getElement: unit -> #Element option)" "getElement"
@@ -530,7 +557,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         RegularPropOverload.create "(handler: #Element option -> unit)" "handler"
       ]
 
-    | ("modal" | "popover" | "popper" | "portal"), "container", ("HTML element | React.Component | func") ->
+    | ("modal" | "popover" | "popper" | "portal"), "container", "HTML element | React.Component | func" ->
         [
           RegularPropOverload.create "(element: #Element option)" "element"
           RegularPropOverload.create "(element: ReactElement option)" "element"
@@ -542,10 +569,25 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         [RegularPropOverload.create "(value: 'a)" "value"]
 
     | _, "component'", ("elementType" | "element type")
+    | _, "components", "{ Root?: elementType }"
     | ("filledInput" | "input" | "inputBase"), "inputComponent", "elementType" ->
         [
           RegularPropOverload.create "(value: string)" "value"
           RegularPropOverload.create "(value: ReactElementType)" "value"
+        ]
+    | ("badge" | "badgeUnstyled"), "components", "{ Badge?: elementType, Root?: elementType }" ->
+        [
+          RegularPropOverload.create "(badge: string, root: string)" "(badge, root)"
+          RegularPropOverload.create "(badge: ReactElementType, root: ReactElementType)" "(badge, root)"
+        ]
+
+    | _, "componentsProps", "{ root?: object }" ->
+        [
+          RegularPropOverload.create "(props: IReactProperty list)" "props"
+        ]
+    | ("badge" | "badgeUnstyled"), "componentsProps", "{ badge?: object, root?: object }" ->
+        [
+          RegularPropOverload.create "(badge: IReactProperty list, root: IReactProperty list)" "(badge, root)"
         ]
 
     | _, pn, ("elementType" | "element type") when pn.EndsWith "Component" ->
@@ -660,6 +702,16 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     | _, _, "any" ->
         [RegularPropOverload.create "(value: 'a)" "value"]
+
+    | _, name, "integer" ->
+      [RegularPropOverload.create (sprintf "(%s: int)" name) name]
+
+    | _, name, "bool" ->
+      [RegularPropOverload.create (sprintf "(%s: bool)" name) name]
+
+    | _, name, "func" when name.StartsWith "render" ->
+        [RegularPropOverload.create "(renderer: unit -> ReactElement)" "renderer"]
+
     | _ when isProbablyEnumProp ->
         []
 
@@ -704,14 +756,15 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create "bottomRight" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])"
           ]
 
-      | "badge", "anchorOrigin", "{ horizontal: 'left' | 'right', vertical: 'bottom' | 'top' }" ->
+      | ("badge" | "badgeUnstyled"), "anchorOrigin", "{ horizontal: 'left' | 'right', vertical: 'bottom' | 'top' }" ->
           [
             EnumPropOverload.create "topLeft" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])"
             EnumPropOverload.create "topRight" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"right\" ])"
             EnumPropOverload.create "bottomLeft" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"left\" ])"
             EnumPropOverload.create "bottomRight" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])"
           ]
-      | "imageList", "cellHeight", "number | oneOf(['auto'" ->
+      | "imageList", "cellHeight", "number | oneOf(['auto'"
+      | "calendarPicker", "views", "Array<'day' | 'month' | 'year'>" ->
         []
 
       | _ ->
@@ -789,7 +842,7 @@ let parseComponent (htmlPathOrUrl: string) =
       if matches.Length = 0 then
         compMethodName, None
       else
-          matches.Groups.[1].Value |> String.lowerFirst, Some (matches.Groups.[1].Value)
+          matches.Groups.[1].Value |> String.lowerFirst, Some matches.Groups.[1].Value
 
     let noteNodes1 =
       html.CssSelect(".markdown-body").[0].Elements()

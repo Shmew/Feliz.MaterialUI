@@ -1,5 +1,6 @@
 ﻿namespace Feliz.MaterialUI
 
+open System.Globalization
 open Fable.Core
 open Browser.Types
 open Feliz
@@ -367,6 +368,9 @@ type ResponsiveFontSizesOptions =
 type ButtonBaseActions =
   abstract focusVisible: unit -> bool
 
+type ButtonUnstyledActions =
+  abstract focusVisible: unit -> bool
+
 type PopoverActions =
   abstract updatePosition: unit -> unit
 
@@ -454,6 +458,12 @@ type AutocompleteOnChangeReason =
   | Blur
   | Clear
 
+
+[<StringEnum; RequireQualifiedAccess>]
+type CalendarPickerView =
+  | Day
+  | Month
+  | Year
 
 type CreateFilterOptionsOptions =
   abstract ignoreAccents: bool with get, set
