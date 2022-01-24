@@ -107,20 +107,51 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         RegularPropOverload.create "(handler: ButtonUnstyledActions -> unit)" "handler"
       ]
 
-    | "calendarPicker", "views", "Array<'day' | 'month' | 'year'>" ->
+    | ("datePicker" | "calendarPicker"), "views", "Array<'day' | 'month' | 'year'>" ->
         [RegularPropOverload.create "([<ParamArray>] views: CalendarPickerView [])" "views"]
 
-    | "calendarPicker", "shouldDisableDate", "func" ->
+    | "timePicker", "views", "Array<'hours' | 'minutes' | 'seconds'>" ->
+        [RegularPropOverload.create "([<ParamArray>] views: DateTimePickerView [])" "views"]
+
+    | "dateTimePicker", "views", "Array<'day' | 'hours' | 'minutes' | 'month' | 'seconds' | 'year'>" ->
+        [RegularPropOverload.create "([<ParamArray>] views: DateTimePickerView [])" "views"]
+
+    | ("dateTimePicker" | "dateRangePicker" | "datePicker" | "calendarPicker"), "shouldDisableDate", "func" ->
         [RegularPropOverload.create "(shouldDisableDate: System.DateTime -> bool)" "shouldDisableDate"]
 
-    | "calendarPicker", "shouldDisableYear", "func" ->
+    | ("dateTimePicker" | "dateRangePicker" | "datePicker" | "calendarPicker"), "shouldDisableYear", "func" ->
         [RegularPropOverload.create "(shouldDisableYear: int -> bool)" "shouldDisableYear"]
 
-    | "clockPicker", "getClockLabelText", "func" ->
+    | ("dateTimePicker" | "datePicker"), "value", "any | Date | number | string" ->
+      [
+        RegularPropOverload.create "(value: System.DateTime)" "value"
+        RegularPropOverload.create "(value: string)" "value"
+        RegularPropOverload.create "(value: int)" "value"
+      ]
+
+    | "dateRangePicker", "value", "Array<any | Date | number | string>" ->
+      [
+        RegularPropOverload.create "(value: System.DateTime list)" "value"
+        RegularPropOverload.create "(value: string list)" "value"
+        RegularPropOverload.create "(value: int list)" "value"
+      ]
+
+    | ("dateTimePicker" | "clockPicker"), "getClockLabelText", "func"
+    | ("dateTimePicker" | "dateRangePicker" | "datePicker"), "rifmFormatter", "func"
+    | ("dateTimePicker" | "dateRangePicker" | "datePicker"), ("getOpenDialogAriaText" | "getViewSwitchingButtonText"), "func" ->
       []
 
     | "clockPicker", ("getHoursClockNumberText" | "getMinutesClockNumberText" | "getSecondsClockNumberText" as name), "func" ->
       [RegularPropOverload.create (sprintf "(%s: string -> string)" name) name]
+
+    | ("dateTimePicker" | "clockPicker"), "shouldDisableTime", "func" ->
+      [RegularPropOverload.create "(shouldDisableTime: (System.DateTime * string) -> bool)" "shouldDisableTime"]
+
+    | "dateRangePicker", "calendars", "1 | 2 | 3" ->
+      [RegularPropOverload.create "(numCalendars: int)" "numCalendars"]
+
+    | ("dateTimePicker" | "dateRangePicker" | "datePicker"), "acceptRegex", "RegExp" ->
+      [RegularPropOverload.create "(acceptRegex: System.Text.RegularExpressions.Regex)" "acceptRegex"]
 
     | "popover", "action", "ref" ->
         [
@@ -158,10 +189,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(themeOverride: Theme -> IStyleAttribute list)" "themeOverride"
           RegularPropOverload.create "(themeOverrides: (Theme -> IStyleAttribute list) list)" "themeOverrides"
         ]
-
-    | "autocomplete", "componentsProps", "{ clearIndicator?: object, paper?: object }" ->
-      // TODO can't be bothered for now
-      []
 
     | "autocomplete", "isOptionEqualToValue", "func" ->
       [ RegularPropOverload.create "(tester: ('a -> 'a -> bool))" "tester" ]
@@ -235,6 +262,18 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           RegularPropOverload.create "(value: 'option option)" "value"
           RegularPropOverload.create "(value: 'option)" "value" |> RegularPropOverload.setExtension true
         ]
+
+    | "collapse", "easing", "{ enter?: string, exit?: string } | string" ->
+      [
+          RegularPropOverload.create "(enter: string, exit: string)" "(enter, exit)"
+          RegularPropOverload.create "(both: string)" "both"
+      ]
+
+    | "collapse", "addEndListener", "func" ->
+      [
+          RegularPropOverload.create "(listener: unit -> unit)" "listener"
+          RegularPropOverload.create "(listenerWithCallback: (unit -> unit) -> unit)" "listenerWithCallback"
+      ]
 
     | "popover", "anchorPosition",  "{ left: number, top: number }" ->
         [
@@ -569,31 +608,16 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         [RegularPropOverload.create "(value: 'a)" "value"]
 
     | _, "component'", ("elementType" | "element type")
-    | _, "components", "{ Root?: elementType }"
     | ("filledInput" | "input" | "inputBase"), "inputComponent", "elementType" ->
         [
           RegularPropOverload.create "(value: string)" "value"
           RegularPropOverload.create "(value: ReactElementType)" "value"
         ]
-    | ("badge" | "badgeUnstyled"), "components", "{ Badge?: elementType, Root?: elementType }" ->
-        [
-          RegularPropOverload.create "(badge: string, root: string)" "(badge, root)"
-          RegularPropOverload.create "(badge: ReactElementType, root: ReactElementType)" "(badge, root)"
-        ]
-
-    | _, "componentsProps", "{ root?: object }" ->
-        [
-          RegularPropOverload.create "(props: IReactProperty list)" "props"
-        ]
-    | ("badge" | "badgeUnstyled"), "componentsProps", "{ badge?: object, root?: object }" ->
-        [
-          RegularPropOverload.create "(badge: IReactProperty list, root: IReactProperty list)" "(badge, root)"
-        ]
 
     | _, pn, ("elementType" | "element type") when pn.EndsWith "Component" ->
         [RegularPropOverload.create "(value: ReactElementType)" "value"]
 
-    | ("checkbox" | "filledInput" | "formControlLabel" | "input" | "inputBase" | "outlinedInput" | "radio" | "switch" | "textField"), "inputRef", "ref" ->
+    | ("checkbox" | "dateRangePicker" | "dateTimePicker" | "datePicker" | "filledInput" | "formControlLabel" | "input" | "inputBase" | "outlinedInput" | "radio" | "switch" | "textField"), "inputRef", ("ref" | "func | { current?: object }") ->
         [
           RegularPropOverload.create "(ref: IRefValue<#Element option>)" "ref"
           RegularPropOverload.create "(handler: #Element -> unit)" "handler"
@@ -687,6 +711,52 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     | "imageList", "cellHeight", "number | oneOf(['auto'" ->
         [RegularPropOverload.create "(value: int)" "value"]
 
+    | component', "componentsProps", fields ->
+      fields.TrimStart('{').TrimEnd('}').Split(',')
+      |> Array.map (fun p -> p.Split(':') |> Array.map (fun s -> s.Trim()))
+      |> Array.choose (function
+        | [|key; type'|] ->
+          let isOptional = key.EndsWith('?')
+          let typeOrProps = if type' = "object" then "IReactProperty list" else type'
+          Some (key.TrimEnd('?'), typeOrProps, isOptional)
+        | parts ->
+          printfn "Invalid parts in %s: %A" component' parts
+          None
+        )
+      |> Array.toList
+      |> paramListAndObjCreator
+      ||> RegularPropOverload.create
+      |> List.singleton
+
+    // | ("badge" | "badgeUnstyled"), "components", "{ Badge?: elementType, Root?: elementType }"
+    | component', "components", fields ->
+      let parsedFields =
+        fields.TrimStart('{').TrimEnd('}').Split(',')
+        |> Array.map (fun p -> p.Split(':'))
+        |> Array.choose (function
+          | [|key; _|] ->
+            let isOptional = key.EndsWith('?')
+            Some (key.TrimEnd('?'), isOptional)
+          | parts ->
+            printfn "Invalid parts in %s: %A" component' parts
+            None
+          )
+        |> Array.toList
+
+      let strings =
+        parsedFields
+        |> List.map (fun (name, isOptional) -> (name, "string", isOptional))
+        |> paramListAndObjCreator
+        ||> RegularPropOverload.create
+
+      let reactElementTypes =
+        parsedFields
+        |> List.map (fun (name, isOptional) -> (name, "ReactElementType", isOptional))
+        |> paramListAndObjCreator
+        ||> RegularPropOverload.create
+
+      [strings; reactElementTypes]
+
     | _, _, "node" ->
         [
           RegularPropOverload.create "(value: ReactElement)" "value"
@@ -764,7 +834,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             EnumPropOverload.create "bottomRight" "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])"
           ]
       | "imageList", "cellHeight", "number | oneOf(['auto'"
-      | "calendarPicker", "views", "Array<'day' | 'month' | 'year'>" ->
+      | ("dateTimePicker" | "datePicker" | "calendarPicker"), "views", _ ->
         []
 
       | _ ->

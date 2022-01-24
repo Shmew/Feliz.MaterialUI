@@ -465,6 +465,21 @@ type CalendarPickerView =
   | Month
   | Year
 
+[<StringEnum; RequireQualifiedAccess>]
+type TimePickerView =
+  | Seconds
+  | Minutes
+  | Hours
+
+[<StringEnum; RequireQualifiedAccess>]
+type DateTimePickerView =
+  | Seconds
+  | Minutes
+  | Hours
+  | Day
+  | Month
+  | Year
+
 type CreateFilterOptionsOptions =
   abstract ignoreAccents: bool with get, set
   abstract ignoreCase: bool with get, set

@@ -365,6 +365,8 @@ type autocomplete =
   ///
   /// For localization purposes, you can use the provided [translations](https://mui.com/guides/localization/).
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
+  /// The props used for each slot inside.
+  static member inline componentsProps (?clearIndicator: IReactProperty list, ?paper: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if clearIndicator.IsSome then x?``clearIndicator`` <- clearIndicator); (if paper.IsSome then x?``paper`` <- paper); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" (ResizeArray value)
   /// The default value. Use when the component is not controlled.
@@ -877,11 +879,11 @@ type backdrop =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Backdrop.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   ///   If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   ///   The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
@@ -917,11 +919,11 @@ type backdropUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Backdrop.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   ///   If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
 
@@ -957,11 +959,11 @@ type badge =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (badge: string, root: string) = Interop.mkAttr "components" (badge, root)
+  static member inline components (? Badge: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (badge: ReactElementType, root: ReactElementType) = Interop.mkAttr "components" (badge, root)
+  static member inline components (? Badge: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Badge.
-  static member inline componentsProps (badge: IReactProperty list, root: IReactProperty list) = Interop.mkAttr "componentsProps" (badge, root)
+  static member inline componentsProps (?badge: IReactProperty list, ?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge); (if root.IsSome then x?``root`` <- root); x)
   ///   If `true`, the badge is invisible.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   /// Max count to show.
@@ -1044,11 +1046,11 @@ type badgeUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (badge: string, root: string) = Interop.mkAttr "components" (badge, root)
+  static member inline components (? Badge: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (badge: ReactElementType, root: ReactElementType) = Interop.mkAttr "components" (badge, root)
+  static member inline components (? Badge: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Badge.
-  static member inline componentsProps (badge: IReactProperty list, root: IReactProperty list) = Interop.mkAttr "componentsProps" (badge, root)
+  static member inline componentsProps (?badge: IReactProperty list, ?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge); (if root.IsSome then x?``root`` <- root); x)
   ///   If `true`, the badge is invisible.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   /// Max count to show.
@@ -1422,9 +1424,9 @@ type buttonUnstyled =
   ///   The component used for the Root slot. Either a string to use a HTML element or a component. This is equivalent to `components.Root`. If both are provided, the `component` is used.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Button. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Button. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   ///   If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// This component does not support children.
@@ -1938,9 +1940,11 @@ type clockPicker =
   ///   Set to `true` if focus should be moved to clock picker.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); x)
   /// Do not ignore date part when validating min/max time.
   static member inline disableIgnoringDatePartForTimeValidation (value: bool) = Interop.mkAttr "disableIgnoringDatePartForTimeValidation" value
   /// Get clock number aria-text for hours.
@@ -1960,7 +1964,7 @@ type clockPicker =
   /// Right arrow icon aria-label text.
   static member inline rightArrowButtonText (value: string) = Interop.mkAttr "rightArrowButtonText" value
   ///   Dynamically check if time is disabled or not. If returns `false` appropriate time point will ot be acceptable.
-  static member inline shouldDisableTime (value: TODO) = Interop.mkAttr "shouldDisableTime" value
+  static member inline shouldDisableTime (shouldDisableTime: (System.DateTime * string) -> bool) = Interop.mkAttr "shouldDisableTime" shouldDisableTime
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -1968,7 +1972,9 @@ type clockPicker =
 [<Erase>]
 type collapse =
   /// Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.
-  static member inline addEndListener (value: TODO) = Interop.mkAttr "addEndListener" value
+  static member inline addEndListener (listener: unit -> unit) = Interop.mkAttr "addEndListener" listener
+  /// Add a custom transition end trigger. Called with the transitioning DOM node and a done callback. Allows for more fine grained transition end logic. Note: Timeouts are still used as a fallback if provided.
+  static member inline addEndListener (listenerWithCallback: (unit -> unit) -> unit) = Interop.mkAttr "addEndListener" listenerWithCallback
   /// The content node to be collapsed.
   static member inline children (element: ReactElement) = prop.children element
   /// The content node to be collapsed.
@@ -1994,7 +2000,9 @@ type collapse =
   /// ⚠️ [Needs to be able to hold a ref](https://mui.com/guides/composition/#caveat-with-refs).
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The transition timing function. You may specify a single easing or a object containing enter and exit values.
-  static member inline easing (value: TODO) = Interop.mkAttr "easing" value
+  static member inline easing (enter: string, exit: string) = Interop.mkAttr "easing" (enter, exit)
+  /// The transition timing function. You may specify a single easing or a object containing enter and exit values.
+  static member inline easing (both: string) = Interop.mkAttr "easing" both
   ///   If `true`, the component will transition in.
   static member inline in' (value: bool) = Interop.mkAttr "in" value
   ///   The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
@@ -2094,7 +2102,7 @@ type datePicker =
   ///   The `renderInput` prop allows you to customize the rendered input. The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
   static member inline renderInput (renderer: unit -> ReactElement) = Interop.mkAttr "renderInput" renderer
   /// Regular expression to detect "accepted" symbols.
-  static member inline acceptRegex (value: TODO) = Interop.mkAttr "acceptRegex" value
+  static member inline acceptRegex (acceptRegex: System.Text.RegularExpressions.Regex) = Interop.mkAttr "acceptRegex" acceptRegex
   ///   If `true`, `onChange` is fired on click even if the same date is selected.
   static member inline allowSameDateSelection (value: bool) = Interop.mkAttr "allowSameDateSelection" value
   /// Cancel text message.
@@ -2126,9 +2134,11 @@ type datePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   CSS media query when `Mobile` mode will be changed to `Desktop`.
@@ -2147,16 +2157,14 @@ type datePicker =
   static member inline disableMaskedInput (value: bool) = Interop.mkAttr "disableMaskedInput" value
   /// Do not render open picker button (renders only text field with validation).
   static member inline disableOpenPicker (value: bool) = Interop.mkAttr "disableOpenPicker" value
-  /// Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
-  static member inline getOpenDialogAriaText (value: TODO) = Interop.mkAttr "getOpenDialogAriaText" value
-  /// Get aria-label text for switching between views button.
-  static member inline getViewSwitchingButtonText (value: TODO) = Interop.mkAttr "getViewSwitchingButtonText" value
   /// Props to pass to keyboard input adornment.
   static member inline InputAdornmentProps (props: IReactProperty list) = Interop.mkAttr "InputAdornmentProps" (createObj !!props)
   /// Format string.
   static member inline inputFormat (value: string) = Interop.mkAttr "inputFormat" value
   ///   Pass a ref to the `input` element.
-  static member inline inputRef (value: TODO) = Interop.mkAttr "inputRef" value
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
+  ///   Pass a ref to the `input` element.
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// Left arrow icon aria-label text.
   static member inline leftArrowButtonText (value: string) = Interop.mkAttr "leftArrowButtonText" value
   ///   If `true` renders `LoadingComponent` in calendar instead of calendar view. Can be used to preload information and show it in calendar.
@@ -2211,14 +2219,12 @@ type datePicker =
   static member inline renderDay (renderer: unit -> ReactElement) = Interop.mkAttr "renderDay" renderer
   ///   Component displaying when passed `loading` true.
   static member inline renderLoading (renderer: unit -> ReactElement) = Interop.mkAttr "renderLoading" renderer
-  /// Custom formatter to be passed into Rifm component.
-  static member inline rifmFormatter (value: TODO) = Interop.mkAttr "rifmFormatter" value
   /// Right arrow icon aria-label text.
   static member inline rightArrowButtonText (value: string) = Interop.mkAttr "rightArrowButtonText" value
   /// Disable specific date. @DateIOType
-  static member inline shouldDisableDate (value: TODO) = Interop.mkAttr "shouldDisableDate" value
+  static member inline shouldDisableDate (shouldDisableDate: System.DateTime -> bool) = Interop.mkAttr "shouldDisableDate" shouldDisableDate
   ///   Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view @DateIOType.
-  static member inline shouldDisableYear (value: TODO) = Interop.mkAttr "shouldDisableYear" value
+  static member inline shouldDisableYear (shouldDisableYear: int -> bool) = Interop.mkAttr "shouldDisableYear" shouldDisableYear
   ///   If `true`, days that have `outsideCurrentMonth={true}` are displayed.
   static member inline showDaysOutsideCurrentMonth (value: bool) = Interop.mkAttr "showDaysOutsideCurrentMonth" value
   ///   If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
@@ -2268,7 +2274,13 @@ type datePicker =
   ///   Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: TODO) = Interop.mkAttr "value" value
+  static member inline value (value: System.DateTime) = Interop.mkAttr "value" value
+  /// The value of the picker.
+  static member inline value (value: string) = Interop.mkAttr "value" value
+  /// The value of the picker.
+  static member inline value (value: int) = Interop.mkAttr "value" value
+  /// Array of views to show.
+  static member inline views ([<ParamArray>] views: CalendarPickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -2287,13 +2299,6 @@ module datePicker =
     static member inline landscape = Interop.mkAttr "orientation" "landscape"
     static member inline portrait = Interop.mkAttr "orientation" "portrait"
 
-  /// Array of views to show.
-  [<Erase>]
-  type views =
-    static member inline Array<'day' = Interop.mkAttr "views" Array<'day'
-    static member inline month = Interop.mkAttr "views" "month"
-    static member inline 'year'> = Interop.mkAttr "views" 'year'>
-
 
 [<Erase>]
 type dateRangePicker =
@@ -2302,13 +2307,17 @@ type dateRangePicker =
   ///   The `renderInput` prop allows you to customize the rendered input. The `startProps` and `endProps` arguments of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api), that you need to forward to the range start/end inputs respectively. Pay specific attention to the `ref` and `inputProps` keys.
   static member inline renderInput (renderer: unit -> ReactElement) = Interop.mkAttr "renderInput" renderer
   /// The value of the date range picker.
-  static member inline value (value: TODO) = Interop.mkAttr "value" value
+  static member inline value (value: System.DateTime list) = Interop.mkAttr "value" value
+  /// The value of the date range picker.
+  static member inline value (value: string list) = Interop.mkAttr "value" value
+  /// The value of the date range picker.
+  static member inline value (value: int list) = Interop.mkAttr "value" value
   /// Regular expression to detect "accepted" symbols.
-  static member inline acceptRegex (value: TODO) = Interop.mkAttr "acceptRegex" value
+  static member inline acceptRegex (acceptRegex: System.Text.RegularExpressions.Regex) = Interop.mkAttr "acceptRegex" acceptRegex
   ///   If `true`, `onChange` is fired on click even if the same date is selected.
   static member inline allowSameDateSelection (value: bool) = Interop.mkAttr "allowSameDateSelection" value
   ///   The number of calendars that render on **desktop**.
-  static member inline calendars (value: TODO) = Interop.mkAttr "calendars" value
+  static member inline calendars (numCalendars: int) = Interop.mkAttr "calendars" numCalendars
   /// Cancel text message.
   static member inline cancelText (value: ReactElement) = Interop.mkAttr "cancelText" value
   /// Cancel text message.
@@ -2338,9 +2347,11 @@ type dateRangePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   CSS media query when `Mobile` mode will be changed to `Desktop`.
@@ -2373,16 +2384,14 @@ type dateRangePicker =
   static member inline endText (value: int) = Interop.mkAttr "endText" value
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: float) = Interop.mkAttr "endText" value
-  /// Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
-  static member inline getOpenDialogAriaText (value: TODO) = Interop.mkAttr "getOpenDialogAriaText" value
-  /// Get aria-label text for switching between views button.
-  static member inline getViewSwitchingButtonText (value: TODO) = Interop.mkAttr "getViewSwitchingButtonText" value
   /// Props to pass to keyboard input adornment.
   static member inline InputAdornmentProps (props: IReactProperty list) = Interop.mkAttr "InputAdornmentProps" (createObj !!props)
   /// Format string.
   static member inline inputFormat (value: string) = Interop.mkAttr "inputFormat" value
   ///   Pass a ref to the `input` element.
-  static member inline inputRef (value: TODO) = Interop.mkAttr "inputRef" value
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
+  ///   Pass a ref to the `input` element.
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// Left arrow icon aria-label text.
   static member inline leftArrowButtonText (value: string) = Interop.mkAttr "leftArrowButtonText" value
   ///   If `true` renders `LoadingComponent` in calendar instead of calendar view. Can be used to preload information and show it in calendar.
@@ -2435,14 +2444,12 @@ type dateRangePicker =
   static member inline renderDay (renderer: unit -> ReactElement) = Interop.mkAttr "renderDay" renderer
   ///   Component displaying when passed `loading` true.
   static member inline renderLoading (renderer: unit -> ReactElement) = Interop.mkAttr "renderLoading" renderer
-  /// Custom formatter to be passed into Rifm component.
-  static member inline rifmFormatter (value: TODO) = Interop.mkAttr "rifmFormatter" value
   /// Right arrow icon aria-label text.
   static member inline rightArrowButtonText (value: string) = Interop.mkAttr "rightArrowButtonText" value
   /// Disable specific date. @DateIOType
-  static member inline shouldDisableDate (value: TODO) = Interop.mkAttr "shouldDisableDate" value
+  static member inline shouldDisableDate (shouldDisableDate: System.DateTime -> bool) = Interop.mkAttr "shouldDisableDate" shouldDisableDate
   ///   Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view @DateIOType.
-  static member inline shouldDisableYear (value: TODO) = Interop.mkAttr "shouldDisableYear" value
+  static member inline shouldDisableYear (shouldDisableYear: int -> bool) = Interop.mkAttr "shouldDisableYear" shouldDisableYear
   ///   If `true`, days that have `outsideCurrentMonth={true}` are displayed.
   static member inline showDaysOutsideCurrentMonth (value: bool) = Interop.mkAttr "showDaysOutsideCurrentMonth" value
   ///   If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
@@ -2564,7 +2571,7 @@ type dateTimePicker =
   ///   The `renderInput` prop allows you to customize the rendered input. The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward. Pay specific attention to the `ref` and `inputProps` keys.
   static member inline renderInput (renderer: unit -> ReactElement) = Interop.mkAttr "renderInput" renderer
   /// Regular expression to detect "accepted" symbols.
-  static member inline acceptRegex (value: TODO) = Interop.mkAttr "acceptRegex" value
+  static member inline acceptRegex (acceptRegex: System.Text.RegularExpressions.Regex) = Interop.mkAttr "acceptRegex" acceptRegex
   ///   If `true`, `onChange` is fired on click even if the same date is selected.
   static member inline allowSameDateSelection (value: bool) = Interop.mkAttr "allowSameDateSelection" value
   /// 12h/24h view for hour selection clock.
@@ -2600,9 +2607,11 @@ type dateTimePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   /// Date tab icon.
   static member inline dateRangeIcon (element: ReactElement) = Interop.mkAttr "dateRangeIcon" element
   ///   Default calendar month displayed when `value={null}`.
@@ -2625,12 +2634,6 @@ type dateTimePicker =
   static member inline disableMaskedInput (value: bool) = Interop.mkAttr "disableMaskedInput" value
   /// Do not render open picker button (renders only text field with validation).
   static member inline disableOpenPicker (value: bool) = Interop.mkAttr "disableOpenPicker" value
-  /// Accessible text that helps user to understand which time and view is selected.
-  static member inline getClockLabelText (value: TODO) = Interop.mkAttr "getClockLabelText" value
-  /// Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
-  static member inline getOpenDialogAriaText (value: TODO) = Interop.mkAttr "getOpenDialogAriaText" value
-  /// Get aria-label text for switching between views button.
-  static member inline getViewSwitchingButtonText (value: TODO) = Interop.mkAttr "getViewSwitchingButtonText" value
   /// To show tabs.
   static member inline hideTabs (value: bool) = Interop.mkAttr "hideTabs" value
   /// Props to pass to keyboard input adornment.
@@ -2638,7 +2641,9 @@ type dateTimePicker =
   /// Format string.
   static member inline inputFormat (value: string) = Interop.mkAttr "inputFormat" value
   ///   Pass a ref to the `input` element.
-  static member inline inputRef (value: TODO) = Interop.mkAttr "inputRef" value
+  static member inline inputRef (ref: IRefValue<#Element option>) = Interop.mkAttr "inputRef" ref
+  ///   Pass a ref to the `input` element.
+  static member inline inputRef (handler: #Element -> unit) = Interop.mkAttr "inputRef" handler
   /// Left arrow icon aria-label text.
   static member inline leftArrowButtonText (value: string) = Interop.mkAttr "leftArrowButtonText" value
   ///   If `true` renders `LoadingComponent` in calendar instead of calendar view. Can be used to preload information and show it in calendar.
@@ -2703,16 +2708,14 @@ type dateTimePicker =
   static member inline renderDay (renderer: unit -> ReactElement) = Interop.mkAttr "renderDay" renderer
   ///   Component displaying when passed `loading` true.
   static member inline renderLoading (renderer: unit -> ReactElement) = Interop.mkAttr "renderLoading" renderer
-  /// Custom formatter to be passed into Rifm component.
-  static member inline rifmFormatter (value: TODO) = Interop.mkAttr "rifmFormatter" value
   /// Right arrow icon aria-label text.
   static member inline rightArrowButtonText (value: string) = Interop.mkAttr "rightArrowButtonText" value
   /// Disable specific date. @DateIOType
-  static member inline shouldDisableDate (value: TODO) = Interop.mkAttr "shouldDisableDate" value
+  static member inline shouldDisableDate (shouldDisableDate: System.DateTime -> bool) = Interop.mkAttr "shouldDisableDate" shouldDisableDate
   ///   Dynamically check if time is disabled or not. If returns `false` appropriate time point will ot be acceptable.
-  static member inline shouldDisableTime (value: TODO) = Interop.mkAttr "shouldDisableTime" value
+  static member inline shouldDisableTime (shouldDisableTime: (System.DateTime * string) -> bool) = Interop.mkAttr "shouldDisableTime" shouldDisableTime
   ///   Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view @DateIOType.
-  static member inline shouldDisableYear (value: TODO) = Interop.mkAttr "shouldDisableYear" value
+  static member inline shouldDisableYear (shouldDisableYear: int -> bool) = Interop.mkAttr "shouldDisableYear" shouldDisableYear
   ///   If `true`, days that have `outsideCurrentMonth={true}` are displayed.
   static member inline showDaysOutsideCurrentMonth (value: bool) = Interop.mkAttr "showDaysOutsideCurrentMonth" value
   ///   If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
@@ -2764,7 +2767,13 @@ type dateTimePicker =
   ///   Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: TODO) = Interop.mkAttr "value" value
+  static member inline value (value: System.DateTime) = Interop.mkAttr "value" value
+  /// The value of the picker.
+  static member inline value (value: string) = Interop.mkAttr "value" value
+  /// The value of the picker.
+  static member inline value (value: int) = Interop.mkAttr "value" value
+  /// Array of views to show.
+  static member inline views ([<ParamArray>] views: DateTimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -2786,16 +2795,6 @@ module dateTimePicker =
     static member inline landscape = Interop.mkAttr "orientation" "landscape"
     static member inline portrait = Interop.mkAttr "orientation" "portrait"
 
-  /// Array of views to show.
-  [<Erase>]
-  type views =
-    static member inline Array<'day' = Interop.mkAttr "views" Array<'day'
-    static member inline hours = Interop.mkAttr "views" "hours"
-    static member inline minutes = Interop.mkAttr "views" "minutes"
-    static member inline month = Interop.mkAttr "views" "month"
-    static member inline seconds = Interop.mkAttr "views" "seconds"
-    static member inline 'year'> = Interop.mkAttr "views" 'year'>
-
 
 [<Erase>]
 type desktopDatePicker =
@@ -2810,9 +2809,11 @@ type desktopDatePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   If `true` the popup or dialog will immediately close after submitting full date.
@@ -2964,9 +2965,11 @@ type desktopDateRangePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
@@ -3126,9 +3129,11 @@ type desktopDateTimePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   /// Date tab icon.
   static member inline dateRangeIcon (element: ReactElement) = Interop.mkAttr "dateRangeIcon" element
   ///   Default calendar month displayed when `value={null}`.
@@ -3306,7 +3311,9 @@ type desktopTimePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? OpenPickerIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? OpenPickerIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
   ///   If `true` the popup or dialog will immediately close after submitting full date.
   static member inline disableCloseOnSelect (value: bool) = Interop.mkAttr "disableCloseOnSelect" value
   ///   If `true`, the picker and text field are disabled.
@@ -3835,9 +3842,11 @@ type filledInput =
   ///   If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?input: IReactProperty list, ?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   ///   If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -4004,7 +4013,7 @@ type formControlLabel =
   ///   If `true`, the component appears selected.
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?typography: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if typography.IsSome then x?``typography`` <- typography); x)
   ///   If `true`, the control is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   ///   If `true`, the label is rendered as it is passed without an additional typography node.
@@ -4074,9 +4083,9 @@ type formControlUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the FormControl. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the FormControl. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   ///   If `true`, the label, input and helper text should be displayed in a disabled state.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   ///   If `true`, the label is displayed in an error state.
@@ -4700,9 +4709,11 @@ type input =
   ///   If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?input: IReactProperty list, ?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   ///   If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -4846,9 +4857,11 @@ type inputBase =
   ///   If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?input: IReactProperty list, ?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   ///   If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -5027,9 +5040,11 @@ type inputUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Root: string, ? Textarea: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Textarea.IsSome then x?`` Textarea`` <-  Textarea); x)
+  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Root: ReactElementType, ? Textarea: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Textarea.IsSome then x?`` Textarea`` <-  Textarea); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?input: IReactProperty list, ?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   ///   If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -5263,11 +5278,11 @@ type listItem =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   /// <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1cw4hi4" focusable="false" aria-hidden="true" viewbox="0 0 24 24" data-testid="ReportProblemOutlinedIcon"><br><br>      <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path><br><br>    </svg>
   ///
   /// **Deprecated**
@@ -5841,9 +5856,11 @@ type mobileDatePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   Props applied to the
@@ -6045,9 +6062,11 @@ type mobileDateRangePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   Props applied to the
@@ -6257,9 +6276,11 @@ type mobileDateTimePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   /// Date tab icon.
   static member inline dateRangeIcon (element: ReactElement) = Interop.mkAttr "dateRangeIcon" element
   ///   Default calendar month displayed when `value={null}`.
@@ -6547,7 +6568,9 @@ type mobileTimePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? OpenPickerIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? OpenPickerIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
   ///   Props applied to the
   ///
   /// [`Dialog`](https://mui.com/api/dialog/) element.
@@ -6707,11 +6730,11 @@ type modal =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   ///   An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -6789,11 +6812,11 @@ type modalUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   ///   An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -6958,7 +6981,9 @@ type outlinedInput =
   ///   If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
   ///   If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -7172,7 +7197,9 @@ type paginationItem =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for first, last, next & previous item type
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? first: string, ? last: string, ? next: string, ? previous: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  first.IsSome then x?`` first`` <-  first); (if  last.IsSome then x?`` last`` <-  last); (if  next.IsSome then x?`` next`` <-  next); (if  previous.IsSome then x?`` previous`` <-  previous); x)
+  /// The components used for first, last, next & previous item type
+  static member inline components (? first: ReactElementType, ? last: ReactElementType, ? next: ReactElementType, ? previous: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  first.IsSome then x?`` first`` <-  first); (if  last.IsSome then x?`` last`` <-  last); (if  next.IsSome then x?`` next`` <-  next); (if  previous.IsSome then x?`` previous`` <-  previous); x)
   ///   If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// The current page number.
@@ -8246,7 +8273,11 @@ type slider =
   /// A string value that provides a user-friendly name for the current value of the slider.
   static member inline ariaValuetext (value: string) = Interop.mkAttr "aria-valuetext" value
   /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Mark: string, ? MarkLabel: string, ? Rail: string, ? Root: string, ? Thumb: string, ? Track: string, ? ValueLabel: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
+  /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Mark: ReactElementType, ? MarkLabel: ReactElementType, ? Rail: ReactElementType, ? Root: ReactElementType, ? Thumb: ReactElementType, ? Track: ReactElementType, ? ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
+  /// The props used for each slot inside the Slider.
+  static member inline componentsProps (?input: IReactProperty list, ?mark: IReactProperty list, ?markLabel: IReactProperty list, ?rail: IReactProperty list, ?root: IReactProperty list, ?thumb: IReactProperty list, ?track: IReactProperty list, ?style: IReactProperty list, ?value: Array<number> | number, ?valueLabelDisplay: 'auto' | 'off' | 'on' }) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if mark.IsSome then x?``mark`` <- mark); (if markLabel.IsSome then x?``markLabel`` <- markLabel); (if rail.IsSome then x?``rail`` <- rail); (if root.IsSome then x?``root`` <- root); (if thumb.IsSome then x?``thumb`` <- thumb); (if track.IsSome then x?``track`` <- track); (if style.IsSome then x?``style`` <- style); (if value.IsSome then x?``value`` <- value); (if valueLabelDisplay.IsSome then x?``valueLabelDisplay`` <- valueLabelDisplay); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: int) = Interop.mkAttr "defaultValue" value
   /// The default value. Use when the component is not controlled.
@@ -8597,7 +8628,11 @@ type sliderUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Mark: string, ? MarkLabel: string, ? Rail: string, ? Root: string, ? Thumb: string, ? Track: string, ? ValueLabel: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
+  /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Mark: ReactElementType, ? MarkLabel: ReactElementType, ? Rail: ReactElementType, ? Root: ReactElementType, ? Thumb: ReactElementType, ? Track: ReactElementType, ? ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
+  /// The props used for each slot inside the Slider.
+  static member inline componentsProps (?input: IReactProperty list, ?mark: IReactProperty list, ?markLabel: IReactProperty list, ?rail: IReactProperty list, ?root: IReactProperty list, ?thumb: IReactProperty list, ?track: IReactProperty list, ?style: IReactProperty list, ?value: Array<number> | number, ?valueLabelDisplay: 'auto' | 'off' | 'on' }) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if mark.IsSome then x?``mark`` <- mark); (if markLabel.IsSome then x?``markLabel`` <- markLabel); (if rail.IsSome then x?``rail`` <- rail); (if root.IsSome then x?``root`` <- root); (if thumb.IsSome then x?``thumb`` <- thumb); (if track.IsSome then x?``track`` <- track); (if style.IsSome then x?``style`` <- style); (if value.IsSome then x?``value`` <- value); (if valueLabelDisplay.IsSome then x?``valueLabelDisplay`` <- valueLabelDisplay); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: TODO) = Interop.mkAttr "defaultValue" value
   ///   If `true`, the component is disabled.
@@ -9089,9 +9124,11 @@ type staticDatePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   If `true` the popup or dialog will immediately close after submitting full date.
@@ -9243,9 +9280,11 @@ type staticDateRangePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   ///   Default calendar month displayed when `value={null}`.
   static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
   ///   If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
@@ -9405,9 +9444,11 @@ type staticDateTimePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? LeftArrowButton: string, ? LeftArrowIcon: string, ? OpenPickerIcon: string, ? RightArrowButton: string, ? RightArrowIcon: string, ? SwitchViewButton: string, ? SwitchViewIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? LeftArrowButton: ReactElementType, ? LeftArrowIcon: ReactElementType, ? OpenPickerIcon: ReactElementType, ? RightArrowButton: ReactElementType, ? RightArrowIcon: ReactElementType, ? SwitchViewButton: ReactElementType, ? SwitchViewIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  LeftArrowButton.IsSome then x?`` LeftArrowButton`` <-  LeftArrowButton); (if  LeftArrowIcon.IsSome then x?`` LeftArrowIcon`` <-  LeftArrowIcon); (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); (if  RightArrowButton.IsSome then x?`` RightArrowButton`` <-  RightArrowButton); (if  RightArrowIcon.IsSome then x?`` RightArrowIcon`` <-  RightArrowIcon); (if  SwitchViewButton.IsSome then x?`` SwitchViewButton`` <-  SwitchViewButton); (if  SwitchViewIcon.IsSome then x?`` SwitchViewIcon`` <-  SwitchViewIcon); x)
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?leftArrowButton: IReactProperty list, ?rightArrowButton: IReactProperty list, ?switchViewButton: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if leftArrowButton.IsSome then x?``leftArrowButton`` <- leftArrowButton); (if rightArrowButton.IsSome then x?``rightArrowButton`` <- rightArrowButton); (if switchViewButton.IsSome then x?``switchViewButton`` <- switchViewButton); x)
   /// Date tab icon.
   static member inline dateRangeIcon (element: ReactElement) = Interop.mkAttr "dateRangeIcon" element
   ///   Default calendar month displayed when `value={null}`.
@@ -9585,7 +9626,9 @@ type staticTimePicker =
   /// className applied to the root component.
   static member inline className (value: string) = Interop.mkAttr "className" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? OpenPickerIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? OpenPickerIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
   ///   If `true` the popup or dialog will immediately close after submitting full date.
   static member inline disableCloseOnSelect (value: bool) = Interop.mkAttr "disableCloseOnSelect" value
   ///   If `true`, the picker and text field are disabled.
@@ -9872,7 +9915,7 @@ type stepLabel =
   /// In most cases will simply be a string containing a title for the label.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The props used for each slot inside.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?label: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if label.IsSome then x?``label`` <- label); x)
   ///   If `true`, the step is marked as failed.
   static member inline error (value: bool) = Interop.mkAttr "error" value
   /// Override the default label of the step icon.
@@ -10145,9 +10188,11 @@ type switchUnstyled =
   ///   The component used for the Root slot. Either a string to use a HTML element or a component. This is equivalent to `components.Root`. If both are provided, the `component` is used.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Switch. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Input: string, ? Root: string, ? Thumb: string, ? Track: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); x)
+  /// The components used for each slot inside the Switch. Either a string to use a HTML element or a component.
+  static member inline components (? Input: ReactElementType, ? Root: ReactElementType, ? Thumb: ReactElementType, ? Track: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); x)
   /// The props used for each slot inside the Switch.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?input: IReactProperty list, ?root: IReactProperty list, ?thumb: IReactProperty list, ?track: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); (if thumb.IsSome then x?``thumb`` <- thumb); (if track.IsSome then x?``track`` <- track); x)
   /// The default checked state. Use when the component is not controlled.
   static member inline defaultChecked (value: bool) = Interop.mkAttr "defaultChecked" value
   ///   If `true`, the component is disabled.
@@ -10597,9 +10642,11 @@ type tablePaginationUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the TablePagination. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Actions: string, ? DisplayedRows: string, ? MenuItem: string, ? Root: string, ? Select: string, ? SelectLabel: string, ? Spacer: string, ? Toolbar: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Actions.IsSome then x?`` Actions`` <-  Actions); (if  DisplayedRows.IsSome then x?`` DisplayedRows`` <-  DisplayedRows); (if  MenuItem.IsSome then x?`` MenuItem`` <-  MenuItem); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Select.IsSome then x?`` Select`` <-  Select); (if  SelectLabel.IsSome then x?`` SelectLabel`` <-  SelectLabel); (if  Spacer.IsSome then x?`` Spacer`` <-  Spacer); (if  Toolbar.IsSome then x?`` Toolbar`` <-  Toolbar); x)
+  /// The components used for each slot inside the TablePagination. Either a string to use a HTML element or a component.
+  static member inline components (? Actions: ReactElementType, ? DisplayedRows: ReactElementType, ? MenuItem: ReactElementType, ? Root: ReactElementType, ? Select: ReactElementType, ? SelectLabel: ReactElementType, ? Spacer: ReactElementType, ? Toolbar: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Actions.IsSome then x?`` Actions`` <-  Actions); (if  DisplayedRows.IsSome then x?`` DisplayedRows`` <-  DisplayedRows); (if  MenuItem.IsSome then x?`` MenuItem`` <-  MenuItem); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Select.IsSome then x?`` Select`` <-  Select); (if  SelectLabel.IsSome then x?`` SelectLabel`` <-  SelectLabel); (if  Spacer.IsSome then x?`` Spacer`` <-  Spacer); (if  Toolbar.IsSome then x?`` Toolbar`` <-  Toolbar); x)
   /// The props used for each slot inside the TablePagination.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?actions: IReactProperty list, ?displayedRows: IReactProperty list, ?menuItem: IReactProperty list, ?root: IReactProperty list, ?select: IReactProperty list, ?selectLabel: IReactProperty list, ?spacer: IReactProperty list, ?toolbar: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if actions.IsSome then x?``actions`` <- actions); (if displayedRows.IsSome then x?``displayedRows`` <- displayedRows); (if menuItem.IsSome then x?``menuItem`` <- menuItem); (if root.IsSome then x?``root`` <- root); (if select.IsSome then x?``select`` <- select); (if selectLabel.IsSome then x?``selectLabel`` <- selectLabel); (if spacer.IsSome then x?``spacer`` <- spacer); (if toolbar.IsSome then x?``toolbar`` <- toolbar); x)
   ///   Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.
   ///
   /// For localization purposes, you can use the provided [translations](https://mui.com/guides/localization/).
@@ -10777,11 +10824,11 @@ type tabPanelUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the TabPanel. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the TabPanel. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the TabPanel.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
 
 
 [<Erase>]
@@ -10958,11 +11005,11 @@ type tabsListUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the TabsList. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the TabsList. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the TabsList.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
 
 
 [<Erase>]
@@ -10984,11 +11031,11 @@ type tabsUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Tabs. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Tabs. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Tabs.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: TODO) = Interop.mkAttr "defaultValue" value
   /// Callback invoked when new value is being set.
@@ -11022,11 +11069,11 @@ type tabUnstyled =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Tab. Either a string to use a HTML element or a component.
-  static member inline components (value: string) = Interop.mkAttr "components" value
+  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The components used for each slot inside the Tab. Either a string to use a HTML element or a component.
-  static member inline components (value: ReactElementType) = Interop.mkAttr "components" value
+  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Tab.
-  static member inline componentsProps (props: IReactProperty list) = Interop.mkAttr "componentsProps" props
+  static member inline componentsProps (?root: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   ///   If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// Callback invoked when new value is being set.
@@ -11446,7 +11493,9 @@ type timePicker =
   /// Clear text message.
   static member inline clearText (value: float) = Interop.mkAttr "clearText" value
   /// The components used for each slot. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? OpenPickerIcon: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
+  /// The components used for each slot. Either a string to use a HTML element or a component.
+  static member inline components (? OpenPickerIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  OpenPickerIcon.IsSome then x?`` OpenPickerIcon`` <-  OpenPickerIcon); x)
   ///   CSS media query when `Mobile` mode will be changed to `Desktop`.
   static member inline desktopModeMediaQuery (value: string) = Interop.mkAttr "desktopModeMediaQuery" value
   ///   Props applied to the
@@ -11567,6 +11616,8 @@ type timePicker =
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
   static member inline value (value: TODO) = Interop.mkAttr "value" value
+  /// Array of views to show.
+  static member inline views ([<ParamArray>] views: DateTimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -11799,9 +11850,11 @@ type tooltip =
   ///   If `true`, adds an arrow to the tooltip.
   static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (value: TODO) = Interop.mkAttr "components" value
+  static member inline components (? Arrow: string, ? Popper: string, ? Tooltip: string, ? Transition: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Arrow.IsSome then x?`` Arrow`` <-  Arrow); (if  Popper.IsSome then x?`` Popper`` <-  Popper); (if  Tooltip.IsSome then x?`` Tooltip`` <-  Tooltip); (if  Transition.IsSome then x?`` Transition`` <-  Transition); x)
+  /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
+  static member inline components (? Arrow: ReactElementType, ? Popper: ReactElementType, ? Tooltip: ReactElementType, ? Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Arrow.IsSome then x?`` Arrow`` <-  Arrow); (if  Popper.IsSome then x?`` Popper`` <-  Popper); (if  Tooltip.IsSome then x?`` Tooltip`` <-  Tooltip); (if  Transition.IsSome then x?`` Transition`` <-  Transition); x)
   ///   The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
-  static member inline componentsProps (value: TODO) = Interop.mkAttr "componentsProps" value
+  static member inline componentsProps (?arrow: IReactProperty list, ?popper: IReactProperty list, ?tooltip: IReactProperty list, ?transition: IReactProperty list) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- arrow); (if popper.IsSome then x?``popper`` <- popper); (if tooltip.IsSome then x?``tooltip`` <- tooltip); (if transition.IsSome then x?``transition`` <- transition); x)
   ///   Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child.
   static member inline describeChild (value: bool) = Interop.mkAttr "describeChild" value
   /// Do not respond to focus-visible events.
