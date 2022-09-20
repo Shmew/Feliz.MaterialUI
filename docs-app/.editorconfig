@@ -1,0 +1,11 @@
+root = false
+
+[*.fs]
+fsharp_space_before_uppercase_invocation = true
+
+# Write a comment by starting the line with a '#'
+[*.{fs,fsx,fsi}]
+fsharp_bar_before_discriminated_union_declaration = true
+fsharp_multiline_block_brackets_on_same_column = true
+fsharp_experimental_stroustrup_style = true
+fsharp_single_argument_web_mode=true

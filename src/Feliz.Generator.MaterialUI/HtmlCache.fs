@@ -30,7 +30,7 @@ let refresh =
 
     Directory.Delete(cacheFolder, true)
 
-    let! testApiPage = ComponentApiPage.AsyncLoad(baseUrl + "/api/app-bar")
+    let! testApiPage = ComponentApiPage.AsyncLoad(baseUrl + "/material-ui/api/app-bar")
 
     let apiPageUrls =
       testApiPage.Html.CssSelect("nav ul li").[2].CssSelect("ul li")
@@ -42,12 +42,23 @@ let refresh =
           baseUrl + relUrl |> Uri |> Some
       )
 
+    let! datePickersApiPage = MuiXDatePickersApiIndex.AsyncGetSample()
+
+    let datePickersApiUrls =
+      let anchors = datePickersApiPage.Lists.Components.Html.CssSelect("li a")
+      [
+        for a in anchors do
+          let relUrl = a.AttributeValue("href")
+          Uri(baseUrl + relUrl)
+      ]
+      
+
     let otherUrls =
-      ["/guides/localization"]
+      ["/material-ui/guides/localization"]
       |> List.map (sprintf "%s%s" baseUrl >> Uri)
 
     do!
-      apiPageUrls @ otherUrls
+      apiPageUrls @ datePickersApiUrls @ otherUrls
       |> List.map downloadUrl
       |> Async.Parallel
       |> Async.Ignore
@@ -55,7 +66,13 @@ let refresh =
 
 
 let getApiFiles () =
-  Directory.GetFiles(cacheFolder + string Path.DirectorySeparatorChar + "api", "*.html")
+  let apiDirPath = Path.Combine(cacheFolder, "material-ui", "api")
+  let datePickersApiDirPath = Path.Combine(cacheFolder, "x", "api", "date-pickers")
+  [|
+    Directory.GetFiles(apiDirPath, "*.html")
+    Directory.GetFiles(datePickersApiDirPath, "*.html")
+  |]
+  |> Array.concat
   |> Array.sortBy (fun s -> s.Substring(0, s.LastIndexOf ".").Replace("-", ""))
 
-let localizationFile = Path.Combine(cacheFolder, "guides", "localization.html")
+let localizationFile = Path.Combine(cacheFolder, "material-ui", "guides", "localization.html")

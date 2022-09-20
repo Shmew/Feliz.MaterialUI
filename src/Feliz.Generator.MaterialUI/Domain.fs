@@ -7,6 +7,7 @@ type ClassRule = {
   DocLines: string list
   MethodName: string
   RealRuleName: string
+  GlobalClass : string
 }
 
 
@@ -32,3 +33,15 @@ type Locale = {
 type Localization = {
   Locales: Locale list
 }
+
+type BreakpointKey = string
+
+type JsParamName = string
+type FsParamName = string
+type FsExprCode = string
+
+type ParamName = string
+
+type ParamTypeSignature = string
+
+type IsOptional = bool

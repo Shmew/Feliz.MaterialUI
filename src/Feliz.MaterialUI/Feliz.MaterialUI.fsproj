@@ -27,8 +27,8 @@
   </ItemGroup>
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@material-ui/core" Version="gte 4.12 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.60" />
+      <NpmPackage Name="@mui/material" Version="gte 5.10 lt 6" ResolutionStrategy="max" />
+      <NpmPackage Name="@mui/lab" Version="5.0.0-alpha.99" />
     </NpmDependencies>
   </PropertyGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

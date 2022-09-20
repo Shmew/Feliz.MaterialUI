@@ -17,6 +17,10 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Include="index.html" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Feliz.MaterialUI\Feliz.MaterialUI.fsproj" />
   </ItemGroup>
   

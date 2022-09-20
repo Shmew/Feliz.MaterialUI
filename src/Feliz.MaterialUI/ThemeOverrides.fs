@@ -155,7 +155,7 @@ module themeOverrides =
         static member inline inputRoot(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.inputRoot", createObj !!styles)
         /// Styles applied to the input element.
         static member inline input(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.input", createObj !!styles)
-        /// Styles applied to the input element if tag focused.
+        /// Styles applied to the input element if the input is focused.
         static member inline inputFocused(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.inputFocused", createObj !!styles)
         /// Styles applied to the endAdornment element.
         static member inline endAdornment(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiAutocomplete.endAdornment", createObj !!styles)
@@ -216,13 +216,6 @@ module themeOverrides =
         static member inline invisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBackdrop.invisible", createObj !!styles)
 
       [<Erase>]
-      type muiBackdropUnstyled =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBackdropUnstyled.root", createObj !!styles)
-        /// Styles applied to the root element if `invisible={true}`.
-        static member inline invisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBackdropUnstyled.invisible", createObj !!styles)
-
-      [<Erase>]
       type muiBadge =
         /// Class name applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.root", createObj !!styles)
@@ -276,27 +269,6 @@ module themeOverrides =
         static member inline overlapCircular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadge.overlapCircular", createObj !!styles)
 
       [<Erase>]
-      type muiBadgeUnstyled =
-        /// Class name applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.root", createObj !!styles)
-        /// Class name applied to the badge `span` element.
-        static member inline badge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.badge", createObj !!styles)
-        /// Class name applied to the badge `span` element if `variant="dot"`.
-        static member inline dot(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.dot", createObj !!styles)
-        /// Class name applied to the badge `span` element if `variant="standard"`.
-        static member inline standard(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.standard", createObj !!styles)
-        /// Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`.
-        static member inline anchorOriginTopRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.anchorOriginTopRight", createObj !!styles)
-        /// Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`.
-        static member inline anchorOriginBottomRight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.anchorOriginBottomRight", createObj !!styles)
-        /// Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`.
-        static member inline anchorOriginTopLeft(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.anchorOriginTopLeft", createObj !!styles)
-        /// Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`.
-        static member inline anchorOriginBottomLeft(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.anchorOriginBottomLeft", createObj !!styles)
-        /// State class applied to the badge `span` element if `invisible={true}`.
-        static member inline invisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBadgeUnstyled.invisible", createObj !!styles)
-
-      [<Erase>]
       type muiBottomNavigation =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiBottomNavigation.root", createObj !!styles)
@@ -335,6 +307,14 @@ module themeOverrides =
         static member inline textPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.textPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="text"` and `color="secondary"`.
         static member inline textSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.textSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="success"`.
+        static member inline textSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.textSuccess", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="error"`.
+        static member inline textError(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.textError", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="info"`.
+        static member inline textInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.textInfo", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="warning"`.
+        static member inline textWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.textWarning", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"`.
         static member inline outlined(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlined", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"` and `color="inherit"`.
@@ -343,6 +323,14 @@ module themeOverrides =
         static member inline outlinedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
         static member inline outlinedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="success"`.
+        static member inline outlinedSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedSuccess", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="error"`.
+        static member inline outlinedError(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedError", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="info"`.
+        static member inline outlinedInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedInfo", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="warning"`.
+        static member inline outlinedWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedWarning", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"`.
         static member inline contained(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.contained", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"` and `color="inherit"`.
@@ -351,6 +339,14 @@ module themeOverrides =
         static member inline containedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"` and `color="secondary"`.
         static member inline containedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="success"`.
+        static member inline containedSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedSuccess", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="info"`.
+        static member inline containedInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedInfo", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="error"`.
+        static member inline containedError(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedError", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="warning"`.
+        static member inline containedWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedWarning", createObj !!styles)
         /// Styles applied to the root element if `disableElevation={true}`.
         static member inline disableElevation(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.disableElevation", createObj !!styles)
         /// State class applied to the ButtonBase root element if the button is keyboard focused.
@@ -373,7 +369,7 @@ module themeOverrides =
         static member inline outlinedSizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.outlinedSizeLarge", createObj !!styles)
         /// Styles applied to the root element if `size="small"` and `variant="contained"`.
         static member inline containedSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedSizeSmall", createObj !!styles)
-        /// Styles applied to the root element if `size="small"` and `variant="contained"`.
+        /// Styles applied to the root element if `size="medium"` and `variant="contained"`.
         static member inline containedSizeMedium(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedSizeMedium", createObj !!styles)
         /// Styles applied to the root element if `size="large"` and `variant="contained"`.
         static member inline containedSizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButton.containedSizeLarge", createObj !!styles)
@@ -459,22 +455,6 @@ module themeOverrides =
         static member inline groupedContainedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButtonGroup.groupedContainedPrimary", createObj !!styles)
         /// Styles applied to the children if `variant="contained"` and `color="secondary"`.
         static member inline groupedContainedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiButtonGroup.groupedContainedSecondary", createObj !!styles)
-
-      [<Erase>]
-      type muiCalendarPicker =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPicker.root", createObj !!styles)
-        /// Styles applied to the transition group element.
-        static member inline viewTransitionContainer(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPicker.viewTransitionContainer", createObj !!styles)
-
-      [<Erase>]
-      type muiCalendarPickerSkeleton =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPickerSkeleton.root", createObj !!styles)
-        /// Styles applied to the week element.
-        static member inline week(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPickerSkeleton.week", createObj !!styles)
-        /// Styles applied to the day element.
-        static member inline daySkeleton(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPickerSkeleton.daySkeleton", createObj !!styles)
 
       [<Erase>]
       type muiCard =
@@ -575,6 +555,10 @@ module themeOverrides =
         static member inline outlinedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.outlinedPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
         static member inline outlinedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.outlinedSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="filled"` and `color="primary"`.
+        static member inline filledPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.filledPrimary", createObj !!styles)
+        /// Styles applied to the root element if `variant="filled"` and `color="secondary"`.
+        static member inline filledSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.filledSecondary", createObj !!styles)
         /// Styles applied to the avatar element.
         static member inline avatar(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.avatar", createObj !!styles)
         /// Styles applied to the avatar element if `size="small"`.
@@ -615,6 +599,10 @@ module themeOverrides =
         static member inline deleteIconOutlinedColorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.deleteIconOutlinedColorPrimary", createObj !!styles)
         /// Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
         static member inline deleteIconOutlinedColorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.deleteIconOutlinedColorSecondary", createObj !!styles)
+        /// Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`.
+        static member inline deleteIconFilledColorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.deleteIconFilledColorPrimary", createObj !!styles)
+        /// Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`.
+        static member inline deleteIconFilledColorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.deleteIconFilledColorSecondary", createObj !!styles)
         /// State class applied to the root element if keyboard focused.
         static member inline focusVisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiChip.focusVisible", createObj !!styles)
 
@@ -640,11 +628,6 @@ module themeOverrides =
         static member inline circleIndeterminate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.circleIndeterminate", createObj !!styles)
         /// Styles applied to the `circle` svg path if `disableShrink={true}`.
         static member inline circleDisableShrink(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCircularProgress.circleDisableShrink", createObj !!styles)
-
-      [<Erase>]
-      type muiClockPicker =
-        /// Styles applied to the arrowSwitcher element.
-        static member inline arrowSwitcher(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiClockPicker.arrowSwitcher", createObj !!styles)
 
       [<Erase>]
       type muiCollapse =
@@ -679,33 +662,6 @@ module themeOverrides =
         static member inline maxWidthLg(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiContainer.maxWidthLg", createObj !!styles)
         /// Styles applied to the root element if `maxWidth="xl"`.
         static member inline maxWidthXl(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiContainer.maxWidthXl", createObj !!styles)
-
-      [<Erase>]
-      type muiDateRangePickerDay =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.root", createObj !!styles)
-        /// Styles applied to the root element if `isHighlighting=true` and `outsideCurrentMonth=false`.
-        static member inline rangeIntervalDayHighlight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayHighlight", createObj !!styles)
-        /// Styles applied to the root element if `isStartOfHighlighting=true` or `day` is the start of the month.
-        static member inline rangeIntervalDayHighlightStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayHighlightStart", createObj !!styles)
-        /// Styles applied to the root element if `isEndOfHighlighting=true` or `day` is the end of the month.
-        static member inline rangeIntervalDayHighlightEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayHighlightEnd", createObj !!styles)
-        /// Styles applied to the preview element.
-        static member inline rangeIntervalPreview(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalPreview", createObj !!styles)
-        /// Styles applied to the root element if `isPreviewing=true` and `outsideCurrentMonth=false`.
-        static member inline rangeIntervalDayPreview(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayPreview", createObj !!styles)
-        /// Styles applied to the root element if `isStartOfPreviewing=true` or `day` is the start of the month.
-        static member inline rangeIntervalDayPreviewStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayPreviewStart", createObj !!styles)
-        /// Styles applied to the root element if `isEndOfPreviewing=true` or `day` is the end of the month.
-        static member inline rangeIntervalDayPreviewEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayPreviewEnd", createObj !!styles)
-        /// Styles applied to the day element.
-        static member inline day(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.day", createObj !!styles)
-        /// Styles applied to the day element if `isHighlighting=false`.
-        static member inline dayOutsideRangeInterval(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.dayOutsideRangeInterval", createObj !!styles)
-        /// Styles applied to the day element if `selected=false` and `isHighlighting=true`.
-        static member inline dayInsideRangeInterval(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.dayInsideRangeInterval", createObj !!styles)
-        /// Styles applied to the day element if `selected=false`.
-        static member inline notSelectedDate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.notSelectedDate", createObj !!styles)
 
       [<Erase>]
       type muiDialog =
@@ -907,6 +863,8 @@ module themeOverrides =
         static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFormControlLabel.disabled", createObj !!styles)
         /// Styles applied to the label's Typography component.
         static member inline label(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFormControlLabel.label", createObj !!styles)
+        /// State class applied to the root element if `error={true}`.
+        static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFormControlLabel.error", createObj !!styles)
 
       [<Erase>]
       type muiFormGroup =
@@ -914,6 +872,8 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFormGroup.root", createObj !!styles)
         /// Styles applied to the root element if `row={true}`.
         static member inline row(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFormGroup.row", createObj !!styles)
+        /// State class applied to the root element if `error={true}`.
+        static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiFormGroup.error", createObj !!styles)
 
       [<Erase>]
       type muiFormHelperText =
@@ -955,23 +915,14 @@ module themeOverrides =
 
       [<Erase>]
       type muiGrid =
-        /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.root", createObj !!styles)
-        /// Styles applied to the root element if `container={true}`.
         static member inline container(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.container", createObj !!styles)
-        /// Styles applied to the root element if `item={true}`.
         static member inline item(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.item", createObj !!styles)
-        /// Styles applied to the root element if `zeroMinWidth={true}`.
         static member inline zeroMinWidth(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.zeroMinWidth", createObj !!styles)
-        /// Styles applied to the root element if `direction="column"`.
         static member inline directionXsColumn(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.direction-xs-column", createObj !!styles)
-        /// Styles applied to the root element if `direction="column-reverse"`.
         static member inline directionXsColumnReverse(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.direction-xs-column-reverse", createObj !!styles)
-        /// Styles applied to the root element if `direction="row-reverse"`.
         static member inline directionXsRowReverse(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.direction-xs-row-reverse", createObj !!styles)
-        /// Styles applied to the root element if `wrap="nowrap"`.
         static member inline wrapXsNowrap(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.wrap-xs-nowrap", createObj !!styles)
-        /// Styles applied to the root element if `wrap="reverse"`.
         static member inline wrapXsWrapReverse(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.wrap-xs-wrap-reverse", createObj !!styles)
         static member inline spacingXs1(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.spacing-xs-1", createObj !!styles)
         static member inline spacingXs2(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiGrid.spacing-xs-2", createObj !!styles)
@@ -1175,6 +1126,8 @@ module themeOverrides =
         static member inline fullWidth(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.fullWidth", createObj !!styles)
         /// Styles applied to the root element if `hiddenLabel={true}`.
         static member inline hiddenLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.hiddenLabel", createObj !!styles)
+        /// State class applied to the root element if `readOnly={true}`.
+        static member inline readOnly(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.readOnly", createObj !!styles)
         /// Styles applied to the input element.
         static member inline input(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiInputBase.input", createObj !!styles)
         /// Styles applied to the input element if `size="small"`.
@@ -1393,6 +1346,14 @@ module themeOverrides =
         static member inline textPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.textPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="text"` and `color="secondary"`.
         static member inline textSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.textSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="success"`.
+        static member inline textSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.textSuccess", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="error"`.
+        static member inline textError(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.textError", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="info"`.
+        static member inline textInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.textInfo", createObj !!styles)
+        /// Styles applied to the root element if `variant="text"` and `color="warning"`.
+        static member inline textWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.textWarning", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"`.
         static member inline outlined(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlined", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"` and `color="inherit"`.
@@ -1401,6 +1362,14 @@ module themeOverrides =
         static member inline outlinedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
         static member inline outlinedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="success"`.
+        static member inline outlinedSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedSuccess", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="error"`.
+        static member inline outlinedError(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedError", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="info"`.
+        static member inline outlinedInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedInfo", createObj !!styles)
+        /// Styles applied to the root element if `variant="outlined"` and `color="warning"`.
+        static member inline outlinedWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedWarning", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"`.
         static member inline contained(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.contained", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"` and `color="inherit"`.
@@ -1409,6 +1378,14 @@ module themeOverrides =
         static member inline containedPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedPrimary", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"` and `color="secondary"`.
         static member inline containedSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedSecondary", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="success"`.
+        static member inline containedSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedSuccess", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="info"`.
+        static member inline containedInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedInfo", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="error"`.
+        static member inline containedError(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedError", createObj !!styles)
+        /// Styles applied to the root element if `variant="contained"` and `color="warning"`.
+        static member inline containedWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedWarning", createObj !!styles)
         /// Styles applied to the root element if `disableElevation={true}`.
         static member inline disableElevation(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.disableElevation", createObj !!styles)
         /// State class applied to the ButtonBase root element if the button is keyboard focused.
@@ -1431,7 +1408,7 @@ module themeOverrides =
         static member inline outlinedSizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.outlinedSizeLarge", createObj !!styles)
         /// Styles applied to the root element if `size="small"` and `variant="contained"`.
         static member inline containedSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedSizeSmall", createObj !!styles)
-        /// Styles applied to the root element if `size="small"` and `variant="contained"`.
+        /// Styles applied to the root element if `size="medium"` and `variant="contained"`.
         static member inline containedSizeMedium(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedSizeMedium", createObj !!styles)
         /// Styles applied to the root element if `size="large"` and `variant="contained"`.
         static member inline containedSizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiLoadingButton.containedSizeLarge", createObj !!styles)
@@ -1524,18 +1501,6 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiModal.root", createObj !!styles)
         /// Styles applied to the root element if the `Modal` has exited.
         static member inline hidden(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiModal.hidden", createObj !!styles)
-
-      [<Erase>]
-      type muiModalUnstyled =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiModalUnstyled.root", createObj !!styles)
-        /// Styles applied to the root element if the `Modal` has exited.
-        static member inline hidden(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiModalUnstyled.hidden", createObj !!styles)
-
-      [<Erase>]
-      type muiMonthPicker =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiMonthPicker.root", createObj !!styles)
 
       [<Erase>]
       type muiNativeSelect =
@@ -1686,23 +1651,6 @@ module themeOverrides =
         static member inline elevation24(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPaper.elevation24", createObj !!styles)
 
       [<Erase>]
-      type muiPickersDay =
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.root", createObj !!styles)
-        /// Styles applied to the root element if `disableMargin=false`.
-        static member inline dayWithMargin(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.dayWithMargin", createObj !!styles)
-        /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=true`.
-        static member inline dayOutsideMonth(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.dayOutsideMonth", createObj !!styles)
-        /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=false`.
-        static member inline hiddenDaySpacingFiller(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.hiddenDaySpacingFiller", createObj !!styles)
-        /// Styles applied to the root element if `disableHighlightToday=false` and `today=true`.
-        static member inline today(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.today", createObj !!styles)
-        /// State class applied to the root element if `selected=true`.
-        static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.selected", createObj !!styles)
-        /// State class applied to the root element if `disabled=true`.
-        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.disabled", createObj !!styles)
-
-      [<Erase>]
       type muiPopover =
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPopover.root", createObj !!styles)
@@ -1799,6 +1747,8 @@ module themeOverrides =
         static member inline text(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.text", createObj !!styles)
         /// Styles applied to the root element if `variant="rectangular"`.
         static member inline rectangular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.rectangular", createObj !!styles)
+        /// Styles applied to the root element if `variant="rounded"`.
+        static member inline rounded(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.rounded", createObj !!styles)
         /// Styles applied to the root element if `variant="circular"`.
         static member inline circular(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSkeleton.circular", createObj !!styles)
         /// Styles applied to the root element if `animation="pulse"`.
@@ -1866,49 +1816,6 @@ module themeOverrides =
         static member inline thumbColorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSlider.thumbColorSecondary", createObj !!styles)
         /// Class name applied to the thumb element if `size="small"`.
         static member inline thumbSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSlider.thumbSizeSmall", createObj !!styles)
-
-      [<Erase>]
-      type muiSliderUnstyled =
-        /// Class name applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.root", createObj !!styles)
-        /// Class name applied to the root element if `marks` is provided with at least one label.
-        static member inline marked(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.marked", createObj !!styles)
-        /// Class name applied to the root element if `orientation="vertical"`.
-        static member inline vertical(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.vertical", createObj !!styles)
-        /// State class applied to the root and thumb element if `disabled={true}`.
-        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.disabled", createObj !!styles)
-        /// State class applied to the root if a thumb is being dragged.
-        static member inline dragging(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.dragging", createObj !!styles)
-        /// Class name applied to the rail element.
-        static member inline rail(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.rail", createObj !!styles)
-        /// Class name applied to the track element.
-        static member inline track(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.track", createObj !!styles)
-        /// Class name applied to the root element if `track={false}`.
-        static member inline trackFalse(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.trackFalse", createObj !!styles)
-        /// Class name applied to the root element if `track="inverted"`.
-        static member inline trackInverted(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.trackInverted", createObj !!styles)
-        /// Class name applied to the thumb element.
-        static member inline thumb(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.thumb", createObj !!styles)
-        /// State class applied to the thumb element if it's active.
-        static member inline active(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.active", createObj !!styles)
-        /// State class applied to the thumb element if keyboard focused.
-        static member inline focusVisible(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.focusVisible", createObj !!styles)
-        /// Class name applied to the thumb label element.
-        static member inline valueLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.valueLabel", createObj !!styles)
-        /// Class name applied to the thumb label element if it's open.
-        static member inline valueLabelOpen(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.valueLabelOpen", createObj !!styles)
-        /// Class name applied to the thumb label's circle element.
-        static member inline valueLabelCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.valueLabelCircle", createObj !!styles)
-        /// Class name applied to the thumb label's label element.
-        static member inline valueLabelLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.valueLabelLabel", createObj !!styles)
-        /// Class name applied to the mark element.
-        static member inline mark(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.mark", createObj !!styles)
-        /// Class name applied to the mark element if active (depending on the value).
-        static member inline markActive(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.markActive", createObj !!styles)
-        /// Class name applied to the mark label element.
-        static member inline markLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.markLabel", createObj !!styles)
-        /// Class name applied to the mark label element if active (depending on the value).
-        static member inline markLabelActive(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiSliderUnstyled.markLabelActive", createObj !!styles)
 
       [<Erase>]
       type muiSnackbar =
@@ -2148,11 +2055,11 @@ module themeOverrides =
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.root", createObj !!styles)
         /// Styles applied to the root element if both `icon` and `label` are provided.
         static member inline labelIcon(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.labelIcon", createObj !!styles)
-        /// Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`.
+        /// Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="inherit"`.
         static member inline textColorInherit(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.textColorInherit", createObj !!styles)
-        /// Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`.
+        /// Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="primary"`.
         static member inline textColorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.textColorPrimary", createObj !!styles)
-        /// Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`.
+        /// Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="secondary"`.
         static member inline textColorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.textColorSecondary", createObj !!styles)
         /// State class applied to the root element if `selected={true}` (controlled by the Tabs component).
         static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTab.selected", createObj !!styles)
@@ -2543,6 +2450,78 @@ module themeOverrides =
         static member inline gutterBottom(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTypography.gutterBottom", createObj !!styles)
         /// Styles applied to the root element if `paragraph={true}`.
         static member inline paragraph(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiTypography.paragraph", createObj !!styles)
+
+      [<Erase>]
+      type muiCalendarPicker =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPicker.root", createObj !!styles)
+        /// Styles applied to the transition group element.
+        static member inline viewTransitionContainer(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPicker.viewTransitionContainer", createObj !!styles)
+
+      [<Erase>]
+      type muiCalendarPickerSkeleton =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPickerSkeleton.root", createObj !!styles)
+        /// Styles applied to the week element.
+        static member inline week(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPickerSkeleton.week", createObj !!styles)
+        /// Styles applied to the day element.
+        static member inline daySkeleton(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiCalendarPickerSkeleton.daySkeleton", createObj !!styles)
+
+      [<Erase>]
+      type muiClockPicker =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiClockPicker.root", createObj !!styles)
+        /// Styles applied to the arrowSwitcher element.
+        static member inline arrowSwitcher(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiClockPicker.arrowSwitcher", createObj !!styles)
+
+      [<Erase>]
+      type muiDateRangePickerDay =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.root", createObj !!styles)
+        /// Styles applied to the root element if `isHighlighting=true` and `outsideCurrentMonth=false`.
+        static member inline rangeIntervalDayHighlight(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayHighlight", createObj !!styles)
+        /// Styles applied to the root element if `isStartOfHighlighting=true` or `day` is the start of the month.
+        static member inline rangeIntervalDayHighlightStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayHighlightStart", createObj !!styles)
+        /// Styles applied to the root element if `isEndOfHighlighting=true` or `day` is the end of the month.
+        static member inline rangeIntervalDayHighlightEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayHighlightEnd", createObj !!styles)
+        /// Styles applied to the preview element.
+        static member inline rangeIntervalPreview(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalPreview", createObj !!styles)
+        /// Styles applied to the root element if `isPreviewing=true` and `outsideCurrentMonth=false`.
+        static member inline rangeIntervalDayPreview(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayPreview", createObj !!styles)
+        /// Styles applied to the root element if `isStartOfPreviewing=true` or `day` is the start of the month.
+        static member inline rangeIntervalDayPreviewStart(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayPreviewStart", createObj !!styles)
+        /// Styles applied to the root element if `isEndOfPreviewing=true` or `day` is the end of the month.
+        static member inline rangeIntervalDayPreviewEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.rangeIntervalDayPreviewEnd", createObj !!styles)
+        /// Styles applied to the day element.
+        static member inline day(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.day", createObj !!styles)
+        /// Styles applied to the day element if `isHighlighting=false`.
+        static member inline dayOutsideRangeInterval(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.dayOutsideRangeInterval", createObj !!styles)
+        /// Styles applied to the day element if `selected=false` and `isHighlighting=true`.
+        static member inline dayInsideRangeInterval(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.dayInsideRangeInterval", createObj !!styles)
+        /// Styles applied to the day element if `selected=false`.
+        static member inline notSelectedDate(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiDateRangePickerDay.notSelectedDate", createObj !!styles)
+
+      [<Erase>]
+      type muiMonthPicker =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiMonthPicker.root", createObj !!styles)
+
+      [<Erase>]
+      type muiPickersDay =
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.root", createObj !!styles)
+        /// Styles applied to the root element if `disableMargin=false`.
+        static member inline dayWithMargin(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.dayWithMargin", createObj !!styles)
+        /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=true`.
+        static member inline dayOutsideMonth(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.dayOutsideMonth", createObj !!styles)
+        /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=false`.
+        static member inline hiddenDaySpacingFiller(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.hiddenDaySpacingFiller", createObj !!styles)
+        /// Styles applied to the root element if `disableHighlightToday=false` and `today=true`.
+        static member inline today(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.today", createObj !!styles)
+        /// State class applied to the root element if `selected=true`.
+        static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.selected", createObj !!styles)
+        /// State class applied to the root element if `disabled=true`.
+        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("overrides.MuiPickersDay.disabled", createObj !!styles)
 
       [<Erase>]
       type muiYearPicker =
