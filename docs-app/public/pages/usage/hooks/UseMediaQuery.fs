@@ -7,8 +7,8 @@ open Feliz.MaterialUI
 type private Props = { key: string }
 
 [<ReactComponent>]
-let UseMediaQuerySample (key: string) =
-    let isDarkMode = Hooks.useMediaQuery "@media (prefers-color-scheme: dark)"
+let UseMediaQuerySample (sampleKey: string) =
+    let isDarkMode = Hooks.useMediaQuery "(prefers-color-scheme: dark)"
 
     Html.div [
         Mui.typography [

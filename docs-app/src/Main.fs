@@ -9,10 +9,9 @@ open Feliz
 open Feliz.Router
 open Elmish
 open Elmish.React
-#if DEBUG
 open Elmish.Debug
 open Elmish.HMR
-#endif
+
 
 open Fable.Core.JsInterop
 open Fable.Core.DynamicExtensions

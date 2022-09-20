@@ -3,20 +3,30 @@ framework: auto-detect
 storage: none
 
 nuget FSharp.Core >= 4.7.2 lowest_matching: true
-nuget Fable.Elmish.Debugger
-nuget Fable.Elmish.HMR
-nuget Fable.Elmish.React
 nuget Fable.Mocha
-nuget Fable.SimpleHttp
 nuget Fable.React >= 8 < 9
 nuget Feliz
-nuget Feliz.ElmishComponents
-nuget Feliz.UseElmish
-nuget Feliz.Markdown
-nuget Feliz.Router
 nuget FSharp.Data
 nuget ReverseMarkdown
-nuget Zanaptak.TypedCssClasses
+
+group DocsApp
+
+    source https://api.nuget.org/v3/index.json
+    framework: auto-detect
+    storage: none
+
+    nuget Feliz
+    nuget Fable.React >= 8 < 9
+    nuget FSharp.Core >= 6.0.5
+    nuget Fable.Elmish 4.0.0-beta-3
+    nuget Fable.Elmish.React 4.0.0-beta-1
+    nuget Fable.Elmish.HMR 6.0.0-beta-002
+    nuget Fable.Elmish.Debugger 4.0.0-beta-1 
+    nuget Feliz.UseElmish
+    nuget Feliz.Markdown
+    nuget Feliz.Router
+    nuget Fable.SimpleHttp
+    nuget Zanaptak.TypedCssClasses
 
 group FakeBuild
     source https://api.nuget.org/v3/index.json

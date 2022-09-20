@@ -5,7 +5,7 @@ open Feliz
 open Feliz.MaterialUI
 
 [<ReactComponent>]
-let LocalizationSample (key: string) =
+let LocalizationSample (sampleKey: string) =
     Mui.themeProvider [
         // createMuiTheme as used below extends the existing theme, which is necessary due to
         // this documentation's styling solution; there is also a createMuiTheme overload

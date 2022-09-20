@@ -74,41 +74,41 @@ type DemoProps =
         Path: string list
     |}
 
-let useDemoStyles =
-    Styles.makeStyles (fun styles theme ->
-        let bgColor =
-            if theme.palette.``type`` = PaletteType.Light then
-                theme.palette.grey.``100``
-            else
-                theme.palette.grey.A400
+//let useDemoStyles =
+//    Styles.makeStyles (fun styles theme ->
+//        let bgColor =
+//            if theme.palette.mode = PaletteType.Light then
+//                theme.palette.grey.``100``
+//            else
+//                theme.palette.grey.A400
 
-        {|
-            demoPaper =
-                styles.create [
-                    style.padding (theme.spacing 3)
-                    style.backgroundColor bgColor
-                ]
-            codePanel =
-                styles.create [
-                    style.backgroundColor bgColor
-                ]
-            resetSampleButton =
-                styles.create [
-                    style.floatStyle.right
-                    style.marginTop (-theme.spacing 2)
-                    style.marginRight (-theme.spacing 2)
-                ]
-        |})
+//        {|
+//            demoPaper =
+//                styles.create [
+//                    style.padding (theme.spacing 3)
+//                    style.backgroundColor bgColor
+//                ]
+//            codePanel =
+//                styles.create [
+//                    style.backgroundColor bgColor
+//                ]
+//            resetSampleButton =
+//                styles.create [
+//                    style.floatStyle.right
+//                    style.marginTop (-theme.spacing 2)
+//                    style.marginRight (-theme.spacing 2)
+//                ]
+//        |})
 
 
-[<ReactComponent>]
-let Demo (props: DemoProps) =
-    let c = useDemoStyles ()
+[<ReactMemoComponent>]
+let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string list) = //(props: DemoProps) =
+    //let c = useDemoStyles ()
     let isExpanded, setIsExpanded = React.useState false
-    let sampleKey, setSampleKey = React.useState 0
+    let sampleKey, updateSampleKey = React.useStateWithUpdater 0
 
     let sample =
-        React.useMemo ((fun () -> props.GetSample (string sampleKey)), [| string sampleKey |])
+        React.useMemo ((fun () -> getSample (string sampleKey)), [| string sampleKey |])
 
     Html.div [
 
@@ -122,7 +122,7 @@ let Demo (props: DemoProps) =
                         Mui.iconButton [
                             //iconButton.classes.root c.resetSampleButton
                             button.children "Undo" //(undoIcon [])
-                            prop.onClick (fun _ -> setSampleKey (sampleKey + 1))
+                            prop.onClick (fun _ -> updateSampleKey (fun k -> k + 1))
                         ]
                     )
                 ]
@@ -161,7 +161,7 @@ let Demo (props: DemoProps) =
                             prop.href (
                                 sprintf
                                     "https://github.com/Shmew/Feliz.MaterialUI/tree/master/docs-app/public/%s"
-                                    (String.concat "/" props.Path)
+                                    (String.concat "/" path)
                             )
                             iconButton.component' "a"
                             iconButton.color.inherit'
@@ -178,8 +178,8 @@ let Demo (props: DemoProps) =
             collapse.sx [ style.display.block ]
             collapse.children [
                 Markdown.markdown [
-                    prop.className c.codePanel
-                    markdown.source props.MarkdownCodeBlock
+                    //prop.className c.codePanel
+                    markdown.source markdownCodeBlock
                     markdown.escapeHtml false
                     markdown.renderers [
                         markdown.renderers.code (fun props -> CommonViews.Code props.language props.value)
@@ -211,7 +211,7 @@ let Demo (props: DemoProps) =
 
 [<ReactComponent>]
 let SampleViewer path =
-    let state, dispatch = React.useElmish((fun () -> init path), update, [| !!path |])
+    let state, dispatch = React.useElmish((init path), update, [| !!path |])
 
     match state with
     | Initial -> Html.none
@@ -223,13 +223,8 @@ let SampleViewer path =
             ]
         ]
     | Loaded (Ok (getSample, codeBlock, path)) ->
-        Demo (
-            {|
-                GetSample = getSample
-                MarkdownCodeBlock = codeBlock
-                Path = path
-            |}
-        )
+        Demo getSample codeBlock path
+
     | Loaded (Error errorMsg) ->
         Mui.typography [
             typography.sx (fun t -> [ style.color t.palette.error.main ])

@@ -3,7 +3,6 @@
 open System
 open Fable.Core.JsInterop
 open Feliz
-open Feliz.ElmishComponents
 open Feliz.MaterialUI
 open Feliz.UseElmish
 open Elmish

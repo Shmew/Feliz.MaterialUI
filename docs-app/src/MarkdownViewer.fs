@@ -6,7 +6,6 @@ open Fable.React
 open Fable.SimpleHttp
 open Feliz
 open Feliz.UseElmish
-open Feliz.ElmishComponents
 open Feliz.Markdown
 open Feliz.MaterialUI
 open SampleViewer
@@ -48,8 +47,22 @@ let update (msg: Msg) (state: State) =
     | LoadCompleted res -> Loaded res, Cmd.none
 
 
-[<ReactComponent>]
+[<ReactMemoComponent>]
 let MarkdownLoaderView (state: State) dispatch =
+
+    let markdownCodeRender = React.useCallback(
+        (fun (props: ICodeProperties) ->
+            match state with
+            | Loaded (Ok (path, _)) ->
+                if props.language = "sample" then
+                    let path = path.[0 .. path.Length - 2] @ [ props.value ]
+                    SampleViewer path
+                else
+                    CommonViews.Code props.language props.value
+            | _ -> Html.none
+        ), [| state |]
+    )
+    
     match state with
     | Initial -> Html.none
     | Loading ->
@@ -106,12 +119,13 @@ let MarkdownLoaderView (state: State) dispatch =
                             prop.href props.href
                             link.children props.children
                         ])
-                    markdown.renderers.code (fun props ->
-                        if props.language = "sample" then
-                            let path = path.[0 .. path.Length - 2] @ [ props.value ]
-                            SampleViewer path
-                        else
-                            CommonViews.Code props.language props.value)
+                    markdown.renderers.code markdownCodeRender
+                        //(fun props ->
+                        //if props.language = "sample" then
+                        //    let path = path.[0 .. path.Length - 2] @ [ props.value ]
+                        //    SampleViewer path
+                        //else
+                        //    CommonViews.Code props.language props.value)
                     markdown.renderers.heading (fun props ->
                         Mui.typography [
                             match props.level with
@@ -137,7 +151,7 @@ let MarkdownLoaderView (state: State) dispatch =
 
 
 [<ReactMemoComponent>]
-let MarkdownViewer (props: {| path: _ |}) =
-    let state, dispatch = React.useElmish((fun () -> init props.path), update, [| !!props.path |])
+let MarkdownViewer path =
+    let state, dispatch = React.useElmish((fun () -> init path), update, [| !!path |])
 
     MarkdownLoaderView state dispatch

@@ -60,9 +60,9 @@ module themeStatic =
 
 
       [<Erase>]
-      type type' =
-        static member inline light : IThemeProp = unbox ("palette.type", "light")
-        static member inline dark : IThemeProp = unbox ("palette.type", "dark")
+      type mode =
+        static member inline light : IThemeProp = unbox ("palette.mode", "light")
+        static member inline dark : IThemeProp = unbox ("palette.mode", "dark")
 
       [<Erase>]
       type primary' =

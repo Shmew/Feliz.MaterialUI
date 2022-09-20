@@ -58,7 +58,7 @@ type Color =
 
 type Palette =
     abstract common: CommonPalette
-    abstract ``type``: PaletteType
+    abstract mode: PaletteType
     /// Used to represent primary interface elements for a user.
     abstract primary: PaletteIntention
     /// Used to represent secondary interface elements for a user.

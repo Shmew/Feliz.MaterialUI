@@ -1,10 +1,12 @@
-Fable.Elmish.Debugger
-Fable.Elmish.HMR
-Fable.Elmish.React
-Fable.SimpleHttp
-Fable.React
-Feliz.ElmishComponents
-Feliz.Markdown
-Feliz.Router
-Zanaptak.TypedCssClasses
-FSharp.Core
+group DocsApp
+    FSharp.Core
+    Feliz
+    Feliz.Router
+    Feliz.Markdown
+    Feliz.UseElmish
+    Fable.Elmish.Debugger
+    Fable.Elmish.HMR
+    Fable.Elmish.React
+    Fable.SimpleHttp
+    Fable.React
+    Zanaptak.TypedCssClasses

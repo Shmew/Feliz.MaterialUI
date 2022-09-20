@@ -134,7 +134,7 @@ module Theme =
     let light =
         Styles.createTheme (
             [
-                theme.palette.type'.light
+                theme.palette.mode.light
                 theme.palette.primary Colors.indigo
                 theme.palette.secondary Colors.pink
                 theme.palette.background.default' "#fff"
@@ -147,7 +147,7 @@ module Theme =
     let dark =
         Styles.createTheme (
             [
-                theme.palette.type'.dark
+                theme.palette.mode.dark
                 theme.palette.primary Colors.lightBlue
                 theme.palette.secondary Colors.pink
                 theme.palette.background.default' defaultTheme.palette.grey.``900``
@@ -280,7 +280,7 @@ let Drawer model dispatch =
             xs = [
                 style.display.block
                 style.inner ("&" + drawer.classes.paper) [
-                    style.width (length.px Constants.drawerWidth)
+                    style.width (Constants.drawerWidth)
                     style.boxSizing.borderBox
                     //style.flexShrink 0 // TODO: Does this do anything?]
                 ]
@@ -333,7 +333,7 @@ let Drawer model dispatch =
 
 [<ReactComponent>]
 let AppView model dispatch =
-    let isDarkMode = Hooks.useMediaQuery "@media (prefers-color-scheme: dark)"
+    let isDarkMode = Hooks.useMediaQuery "(prefers-color-scheme: dark)"
     let systemThemeMode = if isDarkMode then Dark else Light
     //let c = useStyles ()
     //let t = Styles.useTheme()
@@ -361,13 +361,10 @@ let AppView model dispatch =
                             Mui.cssBaseline []
 
                             Mui.appBar [
-                                //appBar.classes.root c.appBar
                                 appBar.position.fixed'
                                 appBar.sx (fun t -> [
                                     style.width (length.calc (sprintf "100%% - %ipx" Constants.drawerWidth))
                                     style.marginLeft (length.px Constants.drawerWidth)
-                                    //style.inner ("&" + appBar.classes.root)
-                                    //    [style.zIndex (t.zIndex.drawer + 1)]
                                 ])
                                 appBar.children [
                                     Toolbar model dispatch
@@ -392,19 +389,12 @@ let AppView model dispatch =
                                 ]
                                 //prop.className c.content
 
-                                //prop.style [
-                                //    style.width 0 // TODO: is there a better way to prevent long code boxes extending past the screen?
-                                //    style.flexGrow 1
-                                //    style.padding (t.spacing 3)
-                                //]
                                 box.children [
                                     Mui.toolbar []
                                     //Html.div [ prop.className c.toolbar ]
                                     //Mui.box [ box.sx(fun t -> t.mixins.toolbar) ]
                                     MarkdownViewer
-                                        {|
-                                            path = (Url.pages :: model.CurrentPath @ [ Url.indexMd ])
-                                        |}
+                                        (Url.pages :: model.CurrentPath @ [ Url.indexMd ])
                                 ]
                             ]
                         ]
