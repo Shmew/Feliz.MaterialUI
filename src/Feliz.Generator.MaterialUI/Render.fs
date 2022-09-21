@@ -70,9 +70,9 @@ module GetLines =
               ""
               "" ]
 
-    let themePropsForComponent stylesheetName =
+    let themeDefaultPropsForComponent stylesheetName =
         sprintf
-            """static member inline %s(props: IReactProperty list) : IThemeProp = unbox ("props.%s", createObj !!props)"""
+            """static member inline %s(props: IReactProperty list) : IThemeProp = unbox ("components.%s.defaultProps", createObj !!props)"""
             (stylesheetName |> String.lowerFirst)
             stylesheetName
         |> List.singleton
@@ -87,21 +87,48 @@ module GetLines =
             rule.RealRuleName
         |> List.singleton
 
+    let singleStyleOverrideRule stylesheetName (rule: ClassRule) =
+        sprintf
+            "static member inline %s(styles: IStyleAttribute list) : IThemeProp = unbox (\"components.%s.styleOverrides.%s\", createObj !!styles)"
+            rule.MethodName
+            stylesheetName
+            rule.RealRuleName
+        |> List.singleton
+
+    let componentVariants stylesheetName = [
+        indent 1 "/// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied."
+        sprintf
+            "static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants(\"%s\", values)"
+            stylesheetName
+        |> indent 1
+    ]
+
+    //let componentOverrideHelperCode (stylesheetName: string) = [
+    //    indent 1 "static member inline componentOverride(?styleOverrides: seq<IStyleOverride>, ?variants: IComponentVariant []): IComponentOverride ="
+    //    indent 2
+    //        (sprintf "Styles.createComponentOverride(\"%s\", ?styleOverrides = styleOverrides, ?variants = variants)" stylesheetName)
+    //    ""
+    //]
+
     let themeOverridesForComponent (comp: MuiComponent) stylesheetName =
         [ "[<Erase>]"
           sprintf "type %s =" (stylesheetName |> String.lowerFirst)
+
+          //yield! componentOverrideHelperCode stylesheetName
+          yield! componentVariants stylesheetName
+
           for rule in comp.ClassRules do
               yield!
                   rule.DocLines
                   |> List.map (String.prefix "/// " >> String.trim >> indent 1)
 
-              if comp.GeneratorComponent.MethodName = "cssBaseline"
-                 && rule.RealRuleName = "@global" then
-                  "static member inline global'(htmlTagsWithStyles: (string * (IStyleAttribute list)) list) : IThemeProp = unbox (\"overrides.MuiCssBaseline.@global\", createObj !!(htmlTagsWithStyles |> List.map (fun (tag, styles) -> tag, createObj !!styles)))"
+              if comp.GeneratorComponent.MethodName = "cssBaseline" then
+                 //&& rule.RealRuleName = "@global" then
+                  "static member inline global'(htmlTagsWithStyles: (string * (IStyleAttribute list)) list) : IThemeProp = unbox (\"styleOverrides.MuiCssBaseline.@global\", createObj !!(htmlTagsWithStyles |> List.map (fun (tag, styles) -> tag, createObj !!styles)))"
                   |> indent 1
               else
                   yield!
-                      singleThemeOverrideRule stylesheetName rule
+                      singleStyleOverrideRule stylesheetName rule
                       |> List.map (indent 1) ]
 
     let locale (loc: Locale) =
@@ -156,10 +183,10 @@ let themePropsDocument (api: MuiComponentApi) =
       "  module theme ="
       ""
       "    [<Erase>]"
-      "    type props ="
+      "    type defaultProps ="
       for stylesheetName in api.MuiComponents |> List.choose getStylesheetName do
           yield!
-              GetLines.themePropsForComponent stylesheetName
+              GetLines.themeDefaultPropsForComponent stylesheetName
               |> List.map (indent 3)
       "" ]
     |> String.concat Environment.NewLine
@@ -177,6 +204,7 @@ let themeOverridesDocument (api: MuiComponentApi) =
       "/// THIS FILE IS AUTO-GENERATED //"
       "////////////////////////////////*)"
       ""
+      "open System"
       "open System.ComponentModel"
       "open Fable.Core"
       "open Fable.Core.JsInterop"
@@ -187,7 +215,7 @@ let themeOverridesDocument (api: MuiComponentApi) =
       ""
       "  module theme ="
       ""
-      "    module overrides ="
+      "    module styleOverrides ="
       ""
       for comp, stylesheetName in
           api.MuiComponents

@@ -636,7 +636,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               RegularPropOverload.createCustom "(elements: seq<ReactElement>)" "prop.children elements" ]
 
         | "hidden", "only", "'xs' | 'sm' | 'md' | 'lg' | 'xl' | Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'>" ->
-            [ RegularPropOverload.create "([<ParamArray>] values: BreakpointKey [])" "values" ]
+            [ RegularPropOverload.create "([<ParamArray>] values: IBreakpointKey [])" "values" ]
 
         | "inputBase", "onBlur", "func" -> [ RegularPropOverload.create "(handler: Event option -> unit)" "handler" ]
 
@@ -819,8 +819,13 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         | "swipeableDrawer", "hysteresis", "number" -> [ RegularPropOverload.create "(value: float)" "value" ]
 
         | _, "sx", "Array<func | object | bool> | func | object" ->
-            let themeOverrideCallbackValueCode =
-                "(Func<Theme, _> (fun theme -> let styleOverrides = themeOverride theme in (createObj !!styleOverrides)))"
+            //let themeOverrideCallbackValueCode =
+            //    "(Func<Theme, _> (fun theme -> let styleOverrides = themeOverride theme in (createObj !!styleOverrides)))"
+
+            let themeStylesOverrideHelper = "Helpers.themeStylesOverride"
+            let breakpointThemeOverridesHelper = "Helpers.breakpointThemeStylesOverrides"
+            let themeBreakpointStylesOverridesHelper = "Helpers.themeBreakpointStylesOverrides"
+
             [
                 RegularPropOverload.create "(styleOverrides: #seq<IStyleAttribute>)" "(createObj !!styleOverrides)"
 
@@ -832,23 +837,32 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
                 RegularPropOverload.create
                     "(themeOverride: Theme -> #seq<IStyleAttribute>)"
-                    themeOverrideCallbackValueCode
+                    (sprintf "(%s themeOverride)" themeStylesOverrideHelper)
+                    //themeOverrideCallbackValueCode
 
                 RegularPropOverload.create
                     "(themeOverrides: (Theme -> #seq<IStyleAttribute>) [])"
-                    (sprintf "(themeOverrides |> Array.map (fun themeOverride -> %s))" themeOverrideCallbackValueCode)
+                    (sprintf "(themeOverrides |> Array.map %s)" themeStylesOverrideHelper)
+                    //(sprintf "(themeOverrides |> Array.map (fun themeOverride -> %s))" themeOverrideCallbackValueCode)
 
                 RegularPropOverload.create
-                    "(breakpointThemeOverrides: (string * (Theme -> #seq<IStyleAttribute>)) [])"
-                    (sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> breakpoint, %s) |> !!createObj)" themeOverrideCallbackValueCode)
+                    "(breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) [])"
+                    (sprintf "(%s breakpointThemeOverrides)" breakpointThemeOverridesHelper)
+                    //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s themeOverride) |> !!createObj)" themeStylesOverrideHelper)
+                    //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s) |> !!createObj)" themeOverrideCallbackValueCode)
 
                 RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
                     "(Theme -> #seq<IStyleAttribute>)"
-                    (sprintf "(fun themeOverride -> %s)" themeOverrideCallbackValueCode)
+                    themeStylesOverrideHelper
+                    //(sprintf "(fun themeOverride -> %s)" themeOverrideCallbackValueCode)
+
+                //RegularPropOverload.create
+                //    "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
+                //    "(themeBreakpointOverrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> string bp, createObj !!styles) |> !!createObj))))"
 
                 RegularPropOverload.create
-                    "(themeBreakpointOverrides: (Theme -> (string * #seq<IStyleAttribute>) list) [])"
-                    "(themeBreakpointOverrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> bp, createObj !!styles) |> !!createObj))))"
+                    "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
+                    (sprintf "(%s themeBreakpointOverrides)" themeBreakpointStylesOverridesHelper)
             ]
 
         | "tabs", "action", "ref" ->
@@ -1525,6 +1539,19 @@ let parseApi () =
 
     let api =
         ComponentApi.create "Feliz.MaterialUI" "Mui"
+        |> ComponentApi.setPropsPrelude [
+            "[<Erase>]"
+            "type private Helpers ="
+            Render.indent 1 "static member inline themeStylesOverride (callback: Theme -> #seq<IStyleAttribute>): 't ="
+            Render.indent 2 "!!(Func<Theme, _> (fun theme -> let styleOverrides = callback theme in (createObj !!styleOverrides)))"
+            ""
+            Render.indent 1 "static member inline breakpointThemeStylesOverrides (overrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) ="
+            Render.indent 2 "overrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, Helpers.themeStylesOverride themeOverride) |> !!createObj"
+            ""
+            Render.indent 1 "static member inline themeBreakpointStylesOverrides (overrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) ="
+            Render.indent 2 "overrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> style.breakpoint bp styles) |> !!createObj)))"
+            ""
+        ]
         |> ComponentApi.addComponent themeProvider
         |> ComponentApi.addComponent stylesProvider
         |> ComponentApi.addComponent styledEngineProvider

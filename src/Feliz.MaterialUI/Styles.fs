@@ -98,9 +98,50 @@ type Styles =
     static member inline responsiveFontSizes(theme: Theme, options: ResponsiveFontSizesOptions) : Theme =
         StyleImports.responsiveFontSizes_opts theme options
 
+    static member inline createComponentOverride(componentStylesheetName: string, ?styleOverrides: seq<IStyleOverride>, ?variants: IComponentVariant []) : IComponentOverride =
+        !! (componentStylesheetName,
+            createObj [
+                "styleOverrides", createObj !! (defaultArg styleOverrides [])
+                "variants", variants
+            ])
+
+    static member inline createComponentVariant(props : seq<IReactProperty>, style : seq<IStyleAttribute>) : IComponentVariant =
+        !! createObj [
+            "props", createObj !!props
+            "style", createObj !!style
+        ]
+
+
 [<Erase>]
 type style =
 
     /// Allows nesting styles, for example for JSS selectors etc.
     static member inline inner (name: string) (styles: IStyleAttribute list) =
         Interop.mkStyle name (createObj !!styles)
+
+    static member inline breakpoint (breakpointKey: IBreakpointKey) (styles: #seq<IStyleAttribute>) =
+        Interop.mkStyle (string breakpointKey) (createObj !!styles)
+
+    static member inline muiBreakpoints(
+            ?xs: seq<IStyleAttribute>,
+            ?sm: seq<IStyleAttribute>,
+            ?md: seq<IStyleAttribute>,
+            ?lg: seq<IStyleAttribute>,
+            ?xl: seq<IStyleAttribute>
+        ) =
+        createObj !![
+            MuiBreakpointKey.Xs, createObj !! (defaultArg xs [])
+            MuiBreakpointKey.Sm, createObj !! (defaultArg sm [])
+            MuiBreakpointKey.Md, createObj !! (defaultArg md [])
+            MuiBreakpointKey.Lg, createObj !! (defaultArg lg [])
+            MuiBreakpointKey.Xl, createObj !! (defaultArg xl [])
+        ]
+
+    //static member inline themeStylesOverride (callback: Theme -> #seq<IStyleAttribute>): 't =
+    //    !!(Func<Theme, _> (fun theme -> let styleOverrides = callback theme in (createObj !!styleOverrides)))
+
+    //static member inline breakpointThemeOverrides (overrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) =
+    //    overrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, style.themeStylesOverride themeOverride) |> !!createObj
+
+    //static member inline themeBreakpointStylesOverrides (overrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) =
+    //    overrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> style.breakpoint bp styles) |> !!createObj)))

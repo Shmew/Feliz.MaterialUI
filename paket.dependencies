@@ -3,7 +3,6 @@ framework: auto-detect
 storage: none
 
 nuget FSharp.Core >= 4.7.2 lowest_matching: true
-nuget Fable.Mocha
 nuget Fable.React >= 8 < 9
 nuget Feliz
 nuget FSharp.Data
@@ -15,6 +14,7 @@ group DocsApp
     framework: auto-detect
     storage: none
 
+    nuget Fable.Mocha
     nuget Feliz
     nuget Fable.React >= 8 < 9
     nuget FSharp.Core >= 6.0.5

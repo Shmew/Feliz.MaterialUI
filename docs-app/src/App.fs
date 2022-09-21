@@ -155,17 +155,20 @@ module Theme =
                 theme.typography.h2.fontSize "2rem"
                 theme.typography.h3.fontSize "1.5rem"
 
-                theme.overrides.muiAppBar.colorDefault [
-                    style.backgroundColor defaultTheme.palette.grey.A400
+                theme.styleOverrides.muiAppBar.colorDefault [
+                    style.backgroundColor defaultTheme.palette.grey.A700
                 ]
-                theme.overrides.muiPaper.root [
-                    style.backgroundColor defaultTheme.palette.grey.A400
+                theme.styleOverrides.muiPaper.root [
+                    style.backgroundColor defaultTheme.palette.grey.A700
                 ]
-                theme.overrides.muiDrawer.paper [
+                theme.styleOverrides.muiDrawer.paper [
                     style.backgroundColor defaultTheme.palette.grey.``900``
                 ]
+                    //variants = [|
+                    //    Styles.createComponentVariant()
+                    //|]
 
-                theme.props.muiAppBar [
+                theme.defaultProps.muiAppBar [
                     appBar.color.default'
                 ]
             ]
@@ -355,7 +358,6 @@ let AppView model dispatch =
                         //prop.className c.root
                         box.sx (fun t -> [
                             style.display.flex
-                            style.backgroundColor t.palette.grey.A400
                         ])
                         box.children [
                             Mui.cssBaseline []
@@ -363,8 +365,9 @@ let AppView model dispatch =
                             Mui.appBar [
                                 appBar.position.fixed'
                                 appBar.sx (fun t -> [
-                                    style.width (length.calc (sprintf "100%% - %ipx" Constants.drawerWidth))
-                                    style.marginLeft (length.px Constants.drawerWidth)
+                                    //style.width (length.calc (sprintf "100%% - %ipx" Constants.drawerWidth))
+                                    //style.marginLeft (length.px Constants.drawerWidth)
+                                    style.zIndex (t.zIndex.drawer + 1)
                                 ])
                                 appBar.children [
                                     Toolbar model dispatch

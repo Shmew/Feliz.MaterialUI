@@ -18,9 +18,9 @@
     <Compile Include="Colors.fs" />
     <Compile Include="Localization.fs" />
     <Compile Include="Styles.fs" />
+    <Compile Include="Theme.fs" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />
-    <Compile Include="Theme.fs" />
     <Compile Include="Classes.fs" />
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />

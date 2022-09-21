@@ -107,6 +107,18 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
     let isExpanded, setIsExpanded = React.useState false
     let sampleKey, updateSampleKey = React.useStateWithUpdater 0
 
+    let theme = Styles.useTheme()
+
+    let bgColor = React.useMemo (
+        (fun () ->
+            if theme.palette.mode = PaletteType.Light then
+                theme.palette.grey.``100``
+            else
+                theme.palette.grey.A700
+        ), [| theme.palette.mode; theme.palette.grey |]
+    )
+        
+
     let sample =
         React.useMemo ((fun () -> getSample (string sampleKey)), [| string sampleKey |])
 
@@ -115,12 +127,21 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
         // Sample
         Mui.paper [
             //paper.classes.root c.demoPaper
+            paper.sx [
+                style.padding (theme.spacing 3)
+                style.backgroundColor bgColor
+            ]
             prop.children [
                 Mui.tooltip [
                     tooltip.title ("Reset sample")
                     tooltip.children (
                         Mui.iconButton [
                             //iconButton.classes.root c.resetSampleButton
+                            iconButton.sx [
+                                style.floatStyle.right
+                                style.marginTop (-theme.spacing 2)
+                                style.marginRight (-theme.spacing 2)
+                            ]
                             button.children "Undo" //(undoIcon [])
                             prop.onClick (fun _ -> updateSampleKey (fun k -> k + 1))
                         ]
@@ -133,7 +154,6 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
 
         Mui.grid [
             grid.container true
-            //grid.direction (FlexDirection.Row)
             grid.sx [ style.justifyContent.flexEnd; style.flexDirection.row ]
             grid.children [
                 // GitHub button
@@ -175,7 +195,12 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
         // Code
         Mui.collapse [
             collapse.in' isExpanded
-            collapse.sx [ style.display.block ]
+            collapse.sx [
+                style.display.block;
+                style.inner ("&" + collapse.classes.wrapperInner) [
+                    style.backgroundColor bgColor
+                ]
+            ]
             collapse.children [
                 Markdown.markdown [
                     //prop.className c.codePanel

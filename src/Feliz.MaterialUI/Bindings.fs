@@ -146,6 +146,7 @@ type Typography =
     abstract caption: VariantTypography
     abstract overline: VariantTypography
 
+
 type BreakpointValues =
     abstract xs: int
     abstract sm: int
@@ -153,22 +154,32 @@ type BreakpointValues =
     abstract lg: int
     abstract xl: int
 
+
+type IBreakpointKey = interface end
+
+
 [<StringEnum; RequireQualifiedAccess>]
-type BreakpointKey =
+type MuiBreakpointKey =
     | Xs
     | Sm
     | Md
     | Lg
     | Xl
+with
+    interface IBreakpointKey
+
+
+type BreakpointStyles = IBreakpointKey * seq<IStyleAttribute>
+
 
 type Breakpoints =
-    abstract keys: BreakpointKey []
+    abstract keys: MuiBreakpointKey []
     abstract values: BreakpointValues
 
     /// Returns a media query string ready to be used with most styling solutions, which
     /// matches screen widths greater than and including the screen size given by the
     /// breakpoint key.
-    abstract up: key: BreakpointKey -> string
+    abstract up: key: MuiBreakpointKey -> string
 
     /// Returns a media query string ready to be used with most styling solutions, which
     /// matches screen widths greater than and including the screen size given by the
@@ -178,7 +189,7 @@ type Breakpoints =
     /// Returns a media query string ready to be used with most styling solutions, which
     /// matches screen widths less than and including the screen size given by the
     /// breakpoint key.
-    abstract down: key: BreakpointKey -> string
+    abstract down: key: MuiBreakpointKey -> string
 
     /// Returns a media query string ready to be used with most styling solutions, which
     /// matches screen widths less than and including the screen size given by the
@@ -187,140 +198,126 @@ type Breakpoints =
 
     /// Returns a media query string ready to be used with most styling solutions, which
     /// matches screen widths including the screen size given by the breakpoint key.
-    abstract only: key: BreakpointKey -> string
+    abstract only: key: MuiBreakpointKey -> string
 
     /// Returns a media query string ready to be used with most styling solutions, which
     /// matches screen widths greater than the screen size given by the breakpoint key in
     /// the first argument and less than the the screen size given by the breakpoint key in
     /// the second argument.
-    abstract between: start: BreakpointKey * ``end``: BreakpointKey -> string
+    abstract between: start: MuiBreakpointKey * ``end``: MuiBreakpointKey -> string
 
 [<AutoOpen>]
 module Extensions =
     type Breakpoints with
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `xs` sreen size.
-        member inline this.upXs = this.up (BreakpointKey.Xs)
+        member inline this.upXs = this.up (MuiBreakpointKey.Xs)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `sm` sreen size.
-        member inline this.upSm = this.up (BreakpointKey.Sm)
+        member inline this.upSm = this.up (MuiBreakpointKey.Sm)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `md` sreen size.
-        member inline this.upMd = this.up (BreakpointKey.Md)
+        member inline this.upMd = this.up (MuiBreakpointKey.Md)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `lg` sreen size.
-        member inline this.upLg = this.up (BreakpointKey.Lg)
+        member inline this.upLg = this.up (MuiBreakpointKey.Lg)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `xl` sreen size.
-        member inline this.upXl = this.up (BreakpointKey.Xl)
+        member inline this.upXl = this.up (MuiBreakpointKey.Xl)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `xs` screen size.
-        member inline this.downXs = this.down (BreakpointKey.Xs)
+        member inline this.downXs = this.down (MuiBreakpointKey.Xs)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `sm` screen size.
-        member inline this.downSm = this.down (BreakpointKey.Sm)
+        member inline this.downSm = this.down (MuiBreakpointKey.Sm)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `md` screen size.
-        member inline this.downMd = this.down (BreakpointKey.Md)
+        member inline this.downMd = this.down (MuiBreakpointKey.Md)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `lg` screen size.
-        member inline this.downLg = this.down (BreakpointKey.Lg)
+        member inline this.downLg = this.down (MuiBreakpointKey.Lg)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than and including the `xl` screen size.
-        member inline this.downXl = this.down (BreakpointKey.Xl)
+        member inline this.downXl = this.down (MuiBreakpointKey.Xl)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths including the `xs` screen size.
-        member inline this.onlyXs = this.only (BreakpointKey.Xs)
+        member inline this.onlyXs = this.only (MuiBreakpointKey.Xs)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths including the `sm` screen size.
-        member inline this.onlySm = this.only (BreakpointKey.Sm)
+        member inline this.onlySm = this.only (MuiBreakpointKey.Sm)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths including the `md` screen size.
-        member inline this.onlyMd = this.only (BreakpointKey.Md)
+        member inline this.onlyMd = this.only (MuiBreakpointKey.Md)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths including the `lg` screen size.
-        member inline this.onlyLg = this.only (BreakpointKey.Lg)
+        member inline this.onlyLg = this.only (MuiBreakpointKey.Lg)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths including the `xl` screen size.
-        member inline this.onlyXl = this.only (BreakpointKey.Xl)
+        member inline this.onlyXl = this.only (MuiBreakpointKey.Xl)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `xs` screen size and less than the the `sm`
         /// screen size.
-        member inline this.betweenXsSm = this.between (BreakpointKey.Xs, BreakpointKey.Sm)
+        member inline this.betweenXsSm = this.between (MuiBreakpointKey.Xs, MuiBreakpointKey.Sm)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `xs` screen size and less than the the `md`
         /// screen size.
-        member inline this.betweenXsMd = this.between (BreakpointKey.Xs, BreakpointKey.Md)
+        member inline this.betweenXsMd = this.between (MuiBreakpointKey.Xs, MuiBreakpointKey.Md)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `xs` screen size and less than the the `lg`
         /// screen size.
-        member inline this.betweenXsLg = this.between (BreakpointKey.Xs, BreakpointKey.Lg)
+        member inline this.betweenXsLg = this.between (MuiBreakpointKey.Xs, MuiBreakpointKey.Lg)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `xs` screen size and less than the the `xl`
         /// screen size.
-        member inline this.betweenXsXl = this.between (BreakpointKey.Xs, BreakpointKey.Xl)
+        member inline this.betweenXsXl = this.between (MuiBreakpointKey.Xs, MuiBreakpointKey.Xl)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `sm` screen size and less than the the `md`
         /// screen size.
-        member inline this.betweenSmMd = this.between (BreakpointKey.Sm, BreakpointKey.Md)
+        member inline this.betweenSmMd = this.between (MuiBreakpointKey.Sm, MuiBreakpointKey.Md)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `sm` screen size and less than the the `lg`
         /// screen size.
-        member inline this.betweenSmLg = this.between (BreakpointKey.Sm, BreakpointKey.Lg)
+        member inline this.betweenSmLg = this.between (MuiBreakpointKey.Sm, MuiBreakpointKey.Lg)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `sm` screen size and less than the the `xl`
         /// screen size.
-        member inline this.betweenSmXl = this.between (BreakpointKey.Sm, BreakpointKey.Xl)
+        member inline this.betweenSmXl = this.between (MuiBreakpointKey.Sm, MuiBreakpointKey.Xl)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `md` screen size and less than the the `lg`
         /// screen size.
-        member inline this.betweenMdLg = this.between (BreakpointKey.Md, BreakpointKey.Lg)
+        member inline this.betweenMdLg = this.between (MuiBreakpointKey.Md, MuiBreakpointKey.Lg)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `md` screen size and less than the the `xl`
         /// screen size.
-        member inline this.betweenMdXl = this.between (BreakpointKey.Md, BreakpointKey.Xl)
+        member inline this.betweenMdXl = this.between (MuiBreakpointKey.Md, MuiBreakpointKey.Xl)
 
         /// Returns a media query string ready to be used with most styling solutions, which
         /// matches screen widths greater than the `lg` screen size and less than the the `xl`
         /// screen size.
-        member inline this.betweenLgXl = this.between (BreakpointKey.Lg, BreakpointKey.Xl)
-
-type IBreakpointedProp =
-    interface
-    end
-
-type IBreakpointedProp<'Value> =
-    inherit IBreakpointedProp
-
-type BreakpointedProp<'Value> =
-    static member xs(value: 'Value) : IBreakpointedProp<'Value> = !!(BreakpointKey.Xs, value)
-    static member sm(value: 'Value) : IBreakpointedProp<'Value> = !!(BreakpointKey.Sm, value)
-    static member md(value: 'Value) : IBreakpointedProp<'Value> = !!(BreakpointKey.Md, value)
-    static member lg(value: 'Value) : IBreakpointedProp<'Value> = !!(BreakpointKey.Lg, value)
-    static member xl(value: 'Value) : IBreakpointedProp<'Value> = !!(BreakpointKey.Xl, value)
+        member inline this.betweenLgXl = this.between (MuiBreakpointKey.Lg, MuiBreakpointKey.Xl)
 
 type Mixins =
     [<Emit("Object.entries($0.toolbar)")>]
@@ -354,7 +351,35 @@ type Transitions =
     abstract create: props: string [] * ?options: TransitionOptions -> string
     abstract getAutoHeightDuration: height: int -> int
 
+
+type IStyleOverride = interface end
+
+type IComponentOverride = interface end
+
+type IComponentVariant =
+    abstract props : seq<IReactProperty>
+    abstract style : seq<IStyleAttribute>
+
+type ComponentVariant = {
+    props : seq<IReactProperty>
+    style : seq<IStyleAttribute>
+}
+
+type IComponentOverrideEntry =
+    abstract styleOverrides : seq<IStyleOverride>
+    abstract variants : IComponentVariant []
+
+//type ComponentTheme =
+//    static member componentOverride(?styleOverrides: IStyleAttribute list, ?variants: #seq<IComponentVariant>) =
+//        let styleOverrides = styleOverrides |> Option.map (fun s -> createObj !!s)
+//        let variants = variants |> Option.map (fun (props, vstyles) -> {| props = createObj !!props; styles = createObj !!vstyles |})
+//        ()
+    //abstract defaultProps: ComponentsProps['MuiAlert'];
+    //abstract styleOverrides: ComponentsOverrides<Theme>['MuiAlert'];
+    //abstract variants?: ComponentsVariants['MuiAlert'];
+
 type Theme =
+    abstract components: seq<IComponentOverride>
     abstract breakpoints: Breakpoints
     abstract direction: Direction
     abstract mixins: Mixins
@@ -371,6 +396,14 @@ type Theme =
 
     [<Emit("Object.entries($0)")>]
     abstract asPropArray: IThemeProp []
+
+
+[<Erase>]
+type Sx =
+    | Styles of seq<IStyleAttribute>
+    | Breakpoint of (IBreakpointKey * seq<IStyleAttribute>)
+    | Callback of (Theme -> seq<IStyleAttribute>)
+
 
 type MakeStylesOptions =
     /// The default theme to use if a theme isn't supplied through a Theme
@@ -405,7 +438,7 @@ type TypographyVariant =
 
 type ResponsiveFontSizesOptions =
     /// Default to `['sm', 'md', 'lg']`.
-    abstract breakpoints: BreakpointKey [] with get, set
+    abstract breakpoints: MuiBreakpointKey [] with get, set
 
     /// Whether font sizes change slightly so line heights are preserved and align
     /// to Material Design's 4px line height grid. This requires a unitless line
