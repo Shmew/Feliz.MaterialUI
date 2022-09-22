@@ -56,24 +56,23 @@ module Pnpm =
 
      /// Runs the given process and returns the process result.
     let private execute (pnpmParams: PnpmParams) command =
-        let result = ref None
-        let npmPath = Path.GetFullPath(pnpmParams.PnpmFilePath)
+        let mutable result = None
+        let pnpmPath = Path.GetFullPath(pnpmParams.PnpmFilePath)
         let args = command |> parse
         try 
-            let exitCode = 
-                Process.execSimple (fun info -> 
-                    { info with
-                         WorkingDirectory = pnpmParams.WorkingDirectory
-                         FileName = npmPath
-                         Arguments = args
-                    }
-                   ) pnpmParams.Timeout
-            if exitCode <> 0 then result := Some(sprintf "exit code: %d" exitCode)
+            let procResult =
+                CreateProcess.fromRawCommand pnpmPath [args]
+                |> CreateProcess.withWorkingDirectory pnpmParams.WorkingDirectory
+                |> CreateProcess.withTimeout pnpmParams.Timeout
+                |> Proc.run
+
+            let exitCode = procResult.ExitCode
+            if exitCode <> 0 then result <- Some(sprintf "exit code: %d" exitCode)
         with exn ->
-            let message = ref exn.Message
-            if not (isNull exn.InnerException) then message := !message + Environment.NewLine + exn.InnerException.Message
-            result := Some(!message)
-        match !result with
+            let mutable message = exn.Message
+            if not (isNull exn.InnerException) then message <- message + Environment.NewLine + exn.InnerException.Message
+            result <- Some(message)
+        match result with
         | None -> ()
         | Some msg ->
             match command with

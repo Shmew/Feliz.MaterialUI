@@ -16,6 +16,13 @@ let failIfNonZero (exitCode: int) =
     if exitCode <> 0 then
         failwithf "Failed with exit code %i" exitCode
 
+module NpmPackages =
+
+    let [<Literal>] muiMaterial = "@mui/material"
+    let [<Literal>] muiLab = "@mui/lab"
+    let [<Literal>] muiIconsMaterial = "@mui/icons-material"
+
+
 let root = __SOURCE_DIRECTORY__ </> ".."
 
 let slnPath = root </> "Feliz.MaterialUI.sln"
@@ -125,13 +132,13 @@ Target.create "UpdateFemtoVersionMetadata" (fun _ ->
         |> Seq.last
 
     let latestCoreStableVersion =
-        "@mui/material" |> getLatestNpmPackageStableVersion
+        NpmPackages.muiMaterial |> getLatestNpmPackageStableVersion
 
     let latestLabVersion =
         CreateProcess.fromRawCommand
             npm
             [ "show"
-              "@mui/lab"
+              NpmPackages.muiLab
               "version" ]
         |> CreateProcess.withWorkingDirectory docsAppDirPath
         |> CreateProcess.redirectOutput
@@ -140,23 +147,23 @@ Target.create "UpdateFemtoVersionMetadata" (fun _ ->
         |> SemVer.parse
 
     let latestIconsStableVersion =
-        "@mui/icons-material" |> getLatestNpmPackageStableVersion
+        NpmPackages.muiIconsMaterial |> getLatestNpmPackageStableVersion
 
     let v = latestCoreStableVersion
 
     poke
         muiLibProjectPath
-        "//NpmPackage[@Name='@mui/material']/@Version"
+        $"//NpmPackage[@Name='{NpmPackages.muiMaterial}']/@Version"
         (sprintf "gte %i.%i lt %i" v.Major v.Minor (v.Major + 1u))
 
     poke
         muiLibProjectPath
-        "//NpmPackage[@Name='@mui/lab']/@Version"
+        $"//NpmPackage[@Name='{NpmPackages.muiLab}']/@Version"
         latestLabVersion.AsString
 
     poke
         muiIconsLibProjectPath
-        "//NpmPackage[@Name='@mui/icons-material']/@Version"
+        $"//NpmPackage[@Name='{NpmPackages.muiIconsMaterial}']/@Version"
         (sprintf "gte %i.%i lt %i" v.Major v.Minor (v.Major + 1u))
 )
 
