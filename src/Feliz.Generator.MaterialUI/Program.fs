@@ -7,7 +7,7 @@ open Feliz.Generator
 let main argv =
     if argv |> Array.contains "--refresh" then
         HtmlCache.refresh |> Async.RunSynchronously
-
+    
     let api = ApiParser.parseApi ()
     File.WriteAllText(@"../../../../Feliz.MaterialUI/Mui.fs", Render.componentDocument api.GeneratorComponentApi)
     File.WriteAllText(@"../../../../Feliz.MaterialUI/Props.fs", Render.propsDocument api.GeneratorComponentApi)
@@ -18,4 +18,6 @@ let main argv =
     let localization = LocalizationParser.parse ()
     File.WriteAllText(@"../../../../Feliz.MaterialUI/Localization.fs", Render.localizationDocument localization)
 
+    let icons = MaterialIconsParser.parseIcons()
+    File.WriteAllText(@"../../../../Feliz.MaterialUI.Icons/MaterialIcons.fs", Render.materialIconsDocument icons)
     0

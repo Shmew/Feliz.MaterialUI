@@ -9,11 +9,12 @@ type ComponentApiPage = HtmlProvider<"cache/material-ui/api/app-bar.html">
 
 type LocalizationPage = HtmlProvider<"cache/material-ui/guides/localization.html">
 
-type MuiXDatePickersApiIndex = HtmlProvider<"https://mui.com/x/api/date-pickers/index.html">
+type MuiXDatePickersApiIndex = HtmlProvider<"cache/x/api/date-pickers/index.html">
 
 //type SystemPropertiesApi = HtmlProvider<"https://mui.com/system/properties">
 
 //type MaterialIconsPage = HtmlProvider<"https://mui.com/material-ui/material-icons/">
+type MaterialIconsPage = HtmlProvider<"cache/material-ui/material-icons.html">
 
 let kebabCaseToCamelCase (s: string) =
     let pieces = s.Split("-")

@@ -9,6 +9,8 @@ open Feliz.MaterialUI
 open Feliz.Router
 open MarkdonViewer
 
+module MuiIcons = Feliz.MaterialUI.Icons
+
 [<RequireQualifiedAccess>]
 module Url =
 
@@ -201,9 +203,9 @@ let Toolbar model dispatch =
                     iconButton.color.inherit'
                     iconButton.children [
                         match model.CustomThemeMode with
-                        | None -> Html.text "A" //brightnessAutoIcon []
-                        | Some Light -> Html.text "L" //brightness7Icon []
-                        | Some Dark -> Html.text "D" //brightness4Icon []
+                        | None -> MuiIcons.BrightnessAutoIcon []
+                        | Some Light -> MuiIcons.Brightness7Icon []
+                        | Some Dark -> MuiIcons.Brightness4Icon []
                     ]
                 ]
             )

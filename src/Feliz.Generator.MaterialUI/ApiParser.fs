@@ -1514,7 +1514,7 @@ let parseApi () =
         |> Component.addChildrenProp
 
     let cacheProvider =
-        Component.createImportSelector "cacheProvider" "CacheProvider" "@emotion/reac"
+        Component.createImportSelector "cacheProvider" "CacheProvider" "@emotion/react"
         |> Component.setDocs [
             "If you are using Emotion and have a custom cache in your app, it will override the one coming from MUI."
             "In order for the injection order to still be correct, you need to add the prepend option."
@@ -1539,6 +1539,9 @@ let parseApi () =
 
     let api =
         ComponentApi.create "Feliz.MaterialUI" "Mui"
+        |> ComponentApi.setComponentsPrelude [
+            
+        ]
         |> ComponentApi.setPropsPrelude [
             "[<Erase>]"
             "type private Helpers ="

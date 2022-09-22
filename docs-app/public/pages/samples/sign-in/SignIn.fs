@@ -4,7 +4,7 @@ open System
 open System.Text.RegularExpressions
 open Fable.Core.JsInterop
 open Elmish
-//open Fable.MaterialUI.Icons
+open Feliz.MaterialUI.Icons
 open Feliz
 open Feliz.UseElmish
 open Feliz.MaterialUI
@@ -147,8 +147,7 @@ let SignIn (key: string) =
                         Mui.avatar [
                             //avatar.classes.root classes.avatar
                             avatar.children [
-                                //lockOutlinedIcon []
-                                Html.text "L"
+                                LockOutlinedIcon []
                             ]
                         ]
 

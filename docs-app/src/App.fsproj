@@ -21,6 +21,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Feliz.MaterialUI.Icons\Feliz.MaterialUI.Icons.fsproj" />
     <ProjectReference Include="..\..\src\Feliz.MaterialUI\Feliz.MaterialUI.fsproj" />
   </ItemGroup>
   

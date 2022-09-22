@@ -138,6 +138,14 @@ module GetLines =
               loc.ImportName
               loc.ImportName ]
 
+
+    let materialIcon (iconTitle: string) =
+        [
+            sprintf "let inline %s (props: #seq<IReactProperty>) = ofImport \"default\" \"@mui/icons-material/%s\" (createObj !!props) []"
+                (jsParamNameToFsParamName iconTitle + "Icon")
+                iconTitle
+        ]
+
 let classesDocument (api: MuiComponentApi) =
     [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
       ""
@@ -243,5 +251,23 @@ let localizationDocument (localization: Localization) =
       "type Locale ="
       for loc in localization.Locales do
           yield! GetLines.locale loc |> List.map (indent 1)
+      "" ]
+    |> String.concat Environment.NewLine
+
+
+let materialIconsDocument (iconTitles: seq<string>) =
+    [ "module Feliz.MaterialUI.Icons"
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      "open Fable.React"
+      "open Feliz"
+      ""
+      for iconTitle in iconTitles do
+          yield! GetLines.materialIcon iconTitle //|> List.map (indent 1)
       "" ]
     |> String.concat Environment.NewLine

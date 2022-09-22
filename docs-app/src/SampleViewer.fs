@@ -142,7 +142,7 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
                                 style.marginTop (-theme.spacing 2)
                                 style.marginRight (-theme.spacing 2)
                             ]
-                            button.children "Undo" //(undoIcon [])
+                            button.children (Feliz.MaterialUI.Icons.UndoIcon [])
                             prop.onClick (fun _ -> updateSampleKey (fun k -> k + 1))
                         ]
                     )
@@ -168,7 +168,7 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
                         Mui.iconButton [
                             prop.onClick (fun _ -> setIsExpanded (not isExpanded))
                             iconButton.color.inherit'
-                            iconButton.children "C" //(codeIcon [])
+                            iconButton.children (Feliz.MaterialUI.Icons.CodeIcon [])
                         ]
                     )
                 ]
@@ -185,7 +185,7 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
                             )
                             iconButton.component' "a"
                             iconButton.color.inherit'
-                            iconButton.children "GH" //(gitHubIcon [])
+                            iconButton.children (Feliz.MaterialUI.Icons.GitHubIcon [])
                         ]
                     )
                 ]

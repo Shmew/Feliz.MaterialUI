@@ -41,7 +41,7 @@ type Mui =
 
   /// If you are using Emotion and have a custom cache in your app, it will override the one coming from MUI.
   /// In order for the injection order to still be correct, you need to add the prepend option.
-  static member inline cacheProvider props = createElement (import "CacheProvider" "@emotion/reac") props
+  static member inline cacheProvider props = createElement (import "CacheProvider" "@emotion/react") props
 
   static member inline accordion props = createElement (importDefault "@mui/material/Accordion") props
 
