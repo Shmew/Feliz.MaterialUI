@@ -34,6 +34,515 @@ let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
               RealRuleName = row.``Rule name``
               GlobalClass = row.``Global class`` }
 
+
+let (|SxProp|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | _, "sx", "Array<func | object | bool> | func | object" ->
+        //let themeOverrideCallbackValueCode =
+        //    "(Func<Theme, _> (fun theme -> let styleOverrides = themeOverride theme in (createObj !!styleOverrides)))"
+
+        let themeStylesOverrideHelper = "Helpers.themeStylesOverride"
+        let breakpointThemeOverridesHelper = "Helpers.breakpointThemeStylesOverrides"
+        let themeBreakpointStylesOverridesHelper = "Helpers.themeBreakpointStylesOverrides"
+
+        Some [
+            RegularPropOverload.create "(styleOverrides: #seq<IStyleAttribute>)" "(createObj !!styleOverrides)"
+
+            //RegularPropOverload.create "(enabled: bool list)" "enabled"
+
+            RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
+                "(#seq<IStyleAttribute>)"
+                "!!createObj"
+
+            RegularPropOverload.create
+                "(themeOverride: Theme -> #seq<IStyleAttribute>)"
+                (sprintf "(%s themeOverride)" themeStylesOverrideHelper)
+                //themeOverrideCallbackValueCode
+
+            RegularPropOverload.create
+                "(themeOverrides: (Theme -> #seq<IStyleAttribute>) [])"
+                (sprintf "(themeOverrides |> Array.map %s)" themeStylesOverrideHelper)
+                //(sprintf "(themeOverrides |> Array.map (fun themeOverride -> %s))" themeOverrideCallbackValueCode)
+
+            RegularPropOverload.create
+                "(breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) [])"
+                (sprintf "(%s breakpointThemeOverrides)" breakpointThemeOverridesHelper)
+                //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s themeOverride) |> !!createObj)" themeStylesOverrideHelper)
+                //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s) |> !!createObj)" themeOverrideCallbackValueCode)
+
+            RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
+                "(Theme -> #seq<IStyleAttribute>)"
+                themeStylesOverrideHelper
+                //(sprintf "(fun themeOverride -> %s)" themeOverrideCallbackValueCode)
+
+            //RegularPropOverload.create
+            //    "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
+            //    "(themeBreakpointOverrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> string bp, createObj !!styles) |> !!createObj))))"
+
+            RegularPropOverload.create
+                "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
+                (sprintf "(%s themeBreakpointOverrides)" themeBreakpointStylesOverridesHelper)
+        ]
+
+    | _ -> None
+
+
+let (|AutoComplelete|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | "autocomplete", "isOptionEqualToValue", "func" ->
+        Some [ RegularPropOverload.create "(tester: ('a -> 'a -> bool))" "tester" ]
+
+    | "autocomplete", "filterOptions", "func" ->
+        Some [
+            RegularPropOverload.create
+                "(filterOptions: 'option [] -> string -> 'option [])"
+                "(Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> ResizeArray (filterOptions opts s.inputValue)))"
+            RegularPropOverload.create
+                "(filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option [])"
+                "(Func<_,_,_> filterOptions)"
+        ]
+
+    | "autocomplete", "getOptionDisabled", "func" ->
+        Some [ RegularPropOverload.create "(isDisabled: 'option -> bool)" "isDisabled" ]
+
+    | "autocomplete", "getOptionLabel", "func" ->
+        Some [ RegularPropOverload.create "(getLabel: 'option -> string)" "getLabel" ]
+
+    | "autocomplete", "getOptionSelected", "func" ->
+        Some [ RegularPropOverload.create "(getSelected: 'option -> 'a -> bool)" "(Func<_,_,_> getSelected)" ]
+
+    | "autocomplete", "getLimitTagsText", "func" ->
+        Some [ RegularPropOverload.create "(getText: int -> ReactElement)" "getText" ]
+
+    | "autocomplete", "groupBy", "func" ->
+        Some [ RegularPropOverload.create "(getGroup: 'option -> string)" "getGroup" ]
+
+    | "autocomplete", "onChange", "func" ->
+        Some [
+            RegularPropOverload.create
+                "(handler: Event -> 'option -> AutocompleteOnChangeReason -> unit)"
+                "(Func<_,_,_,_> handler)"
+            |> RegularPropOverload.setExtension true
+            RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
+            |> RegularPropOverload.setExtension true
+
+            RegularPropOverload.create
+                "(handler: Event -> 'option [] -> AutocompleteOnChangeReason -> unit)"
+                "(Func<_,_,_,_> handler)"
+            RegularPropOverload.create "(handler: 'option [] -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
+
+            RegularPropOverload.create
+                "(handler: Event -> 'option option -> AutocompleteOnChangeReason -> unit)"
+                "(Func<_,_,_,_> handler)"
+            RegularPropOverload.create
+                "(handler: 'option option -> unit)"
+                "(Func<_,_,_,_> (fun _ v _ -> handler v))"
+        ]
+
+    | "autocomplete", "onInputChange", "func" ->
+        Some [
+            RegularPropOverload.create
+                "(handler: Event -> string -> AutocompleteInputChangeReason -> unit)"
+                "(Func<_,_,_,_> handler)"
+            RegularPropOverload.create "(handler: string -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
+        ]
+
+    | "autocomplete", "onHighlightChange", "func" ->
+        Some [
+            RegularPropOverload.create
+                "(handler: Event -> 'option -> AutocompleteHighlightChangeReason -> unit)"
+                "(Func<_,_,_,_> handler)"
+            RegularPropOverload.create
+                "(handler: 'option -> AutocompleteHighlightChangeReason -> unit)"
+                "(Func<_,_,_,_> (fun _ o r -> handler o r))"
+            RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ o _ -> handler o))"
+        ]
+
+    | "autocomplete", "options", "array" ->
+        Some [ RegularPropOverload.create "(options: 'option [])" "(ResizeArray options)" ]
+
+    | "autocomplete", "renderGroup", "func" ->
+        Some [ RegularPropOverload.create "(render: AutocompleteRenderGroupParams -> ReactElement)" "render" ]
+
+    | "autocomplete", "renderInput", "func" ->
+        Some [ RegularPropOverload.create "(render: AutocompleteRenderInputParams -> ReactElement)" "render" ]
+
+    | "autocomplete", "renderOption", "func" ->
+        Some [ RegularPropOverload.create
+                    "(render: 'option -> AutocompleteRenderOptionState -> ReactElement)"
+                    "(Func<_,_,_> render)" ]
+
+    | "autocomplete", "renderTags", "func" ->
+        Some [ RegularPropOverload.create
+                    "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)"
+                    "(Func<_,_,_> render)" ]
+
+    | "autocomplete", ("defaultValue" | "value"), "any" ->
+        Some [
+            RegularPropOverload.create "(value: 'option [])" "(ResizeArray value)"
+            RegularPropOverload.create "(value: 'option option)" "value"
+            RegularPropOverload.create "(value: 'option)" "value"
+            |> RegularPropOverload.setExtension true
+        ]
+
+    | _ -> None
+
+let (|AllDateTimePickers|_|) componentMethodName =
+    match componentMethodName with
+    | "dateTimePicker"
+    | "desktopDateTimePicker"
+    | "mobileDateTimePicker"
+    | "staticDateTimePicker" -> Some componentMethodName
+    | _ -> None
+
+let (|AllDatePickers|_|) componentMethodName =
+    match componentMethodName with
+    | "datePicker"
+    | "desktopDatePicker"
+    | "mobileDatePicker"
+    | "staticDatePicker" -> Some componentMethodName
+    | _ -> None
+
+let (|AllTimePickers|_|) componentMethodName =
+    match componentMethodName with
+    | "timePicker"
+    | "desktopTimePicker"
+    | "mobileTimePicker"
+    | "staticTimePicker" -> Some componentMethodName
+    | _ -> None
+
+let (|AllDateRangePickers|_|) componentMethodName =
+    match componentMethodName with
+    | "dateRangePicker"
+    | "desktopDateRangePicker"
+    | "mobileDateRangePicker"
+    | "staticDateRangePicker" -> Some componentMethodName
+    | _ -> None
+
+let (|DateAndTimePickers|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | (AllDatePickers _
+        | "calendarPicker"),
+        "views",
+        "Array<'day' | 'month' | 'year'>" ->
+        Some [ RegularPropOverload.create "([<ParamArray>] views: DatePickerView [])" "views" ]
+
+    | (AllTimePickers _
+        | "clockPicker"),
+        "views",
+        "Array<'hours' | 'minutes' | 'seconds'>" ->
+        Some [ RegularPropOverload.create "([<ParamArray>] views: TimePickerView [])" "views" ]
+
+    | AllDateTimePickers _, "views", "Array<'day' | 'hours' | 'minutes' | 'month' | 'seconds' | 'year'>" ->
+        Some [ RegularPropOverload.create "([<ParamArray>] views: DateTimePickerView [])" "views" ]
+
+    | (AllDateTimePickers _
+        | AllDatePickers _
+        | AllDateRangePickers _
+        | "calendarPicker"),
+        "shouldDisableDate",
+        "func" ->
+        Some [ RegularPropOverload.create
+                    "(shouldDisableDate: System.DateTime -> bool)"
+                    "(Func<_, _> shouldDisableDate)" ]
+
+    | (AllDateTimePickers _
+        | AllDatePickers _
+        | AllDateRangePickers _
+        | "calendarPicker"
+        | "yearPicker"),
+        "shouldDisableYear",
+        "func" ->
+        Some [ RegularPropOverload.create "(shouldDisableYear: int -> bool)" "(Func<_, _> shouldDisableYear)" ]
+
+    | (AllDateTimePickers _
+        | AllDatePickers _
+        | AllDateRangePickers _
+        | "calendarPicker"
+        | "monthPicker"),
+        "shouldDisableMonth",
+        "func" ->
+        Some [ RegularPropOverload.create "(shouldDisableMonth: int -> bool)" "(Func<_, _> shouldDisableMonth)" ]
+
+    | (AllDateTimePickers _
+        | AllDatePickers _),
+        "value",
+        "any | Date | number | string" ->
+        Some [
+            RegularPropOverload.create "(value: System.DateTime)" "value"
+            RegularPropOverload.create "(value: string)" "value"
+            RegularPropOverload.create "(value: int)" "value"
+        ]
+
+    | (AllDateRangePickers _),
+        "value",
+        ("Array<any | Date | number | string>" | "Array<any>") ->
+        Some [
+            RegularPropOverload.create "(value: System.DateTime list)" "value"
+            RegularPropOverload.create "(value: string list)" "value"
+            RegularPropOverload.create "(value: int list)" "value"
+        ]
+
+    | (AllDateTimePickers _ | AllTimePickers _ | "clockPicker"),
+        "getClockLabelText",
+        "func"
+    | (AllDateTimePickers _
+        | AllDatePickers _
+        | AllDateRangePickers _
+        | AllTimePickers _),
+        "rifmFormatter",
+        "func"
+    | ("calendarPicker"
+        | AllDateTimePickers _
+        | AllDateRangePickers _
+        | AllTimePickers _
+        | AllDatePickers _),
+        ("getOpenDialogAriaText"
+        | "getViewSwitchingButtonText"),
+        "func" -> Some []
+
+    | "clockPicker",
+        ("getHoursClockNumberText"
+        | "getMinutesClockNumberText"
+        | "getSecondsClockNumberText" as name),
+        "func" -> Some [ RegularPropOverload.create (sprintf "(%s: string -> string)" name) name ]
+
+    | (AllDateTimePickers _
+        | AllTimePickers _
+        | "clockPicker"),
+        "shouldDisableTime",
+        "func" ->
+        Some [
+            RegularPropOverload.create
+                "(shouldDisableTime: System.DateTime -> string -> bool)"
+                "(Func<_, _, _> shouldDisableTime)"
+        ]
+
+    | AllDateRangePickers _, "calendars", "1 | 2 | 3" ->
+        Some [ RegularPropOverload.create "(numCalendars: int)" "numCalendars" ]
+
+    | (AllDateTimePickers _
+        | AllDateRangePickers _
+        | AllDatePickers _
+        | AllTimePickers _),
+        "acceptRegex",
+        "RegExp" ->
+        Some [ RegularPropOverload.create "(acceptRegex: System.Text.RegularExpressions.Regex)" "acceptRegex" ]
+
+    | ("calendarPicker"
+        | AllDateTimePickers _
+        | AllDatePickers _
+        | AllDateRangePickers _),
+        "dayOfWeekFormatter",
+        "func" -> Some [ RegularPropOverload.create "(formatter: string -> string)" "(Func<_, _> formatter)" ]
+
+    | _ -> None
+
+let (|LocalizationProviderRegularOverloads|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | "localizationProvider", "dateAdapter", "func" -> Some []
+
+    | "localizationProvider", "locale", "object | string" -> Some []
+
+    | "localizationProvider", "adapterLocale", "object | string" ->
+        Some [ RegularPropOverload.create "(localeCode: string)" "localeCode" ]
+
+    | "localizationProvider", "dateFormats", formats ->
+        let formatsObjEntries = formats.TrimStart('{').TrimEnd('}').Split(',')
+
+        let formatsKeyValuePairs = [
+            for entry in formatsObjEntries do
+                match entry.Trim().Split(':') with
+                | [| objKey; objValue |] ->
+                    let isOptional = objKey.EndsWith('?')
+                    let propName = objKey.Trim().TrimEnd('?')
+
+                    if objValue.Trim() = "string" then
+                        yield (propName, "string", isOptional)
+                    else
+                        yield! []
+
+                | _ -> yield! []
+        ]
+
+        let formatsParams, formatsValue = formatsKeyValuePairs |> paramListAndObjCreator
+
+        Some [ RegularPropOverload.create formatsParams formatsValue ]
+
+    | "localizationProvider", "localeText", "object" -> Some [ RegularPropOverload.create "(value: obj)" "value" ]
+
+    | "localizationProvider", "dateLibInstance", "any" -> Some [ RegularPropOverload.create "(value: obj)" "value" ]
+
+    | _ -> None
+
+let (|Popover|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | "popover", "action", "ref" ->
+        Some [
+            RegularPropOverload.create "(ref: IRefValue<PopoverActions option>)" "ref"
+            RegularPropOverload.create "(handler: PopoverActions -> unit)" "handler"
+        ]
+
+    | "popover",
+        ("anchorOrigin"
+        | "transformOrigin"),
+        "{ horizontal: 'center' | 'left' | 'right' | number, vertical: 'bottom' | 'center' | 'top' | number }" ->
+        Some [
+            RegularPropOverload.create
+                "(horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical)"
+                "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+            RegularPropOverload.create
+                "(horizontal: int, vertical: PopoverOriginVertical)"
+                "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+            RegularPropOverload.create
+                "(horizontal: PopoverOriginHorizontal, vertical: int)"
+                "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+            RegularPropOverload.create
+                "(horizontal: int, vertical: int)"
+                "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
+        ]
+
+    | "popover", "anchorPosition", "{ left: number, top: number }" ->
+        Some [
+            [ "left", "int", false
+              "top", "int", false ]
+            |> paramListAndObjCreator
+            ||> RegularPropOverload.create
+        ]
+
+    | "popover", "onClose", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: Event -> PopoverCloseReason -> unit)" "(Func<_,_,_> handler)"
+            RegularPropOverload.create
+                "(handler: PopoverCloseReason -> unit)"
+                "(Func<_,_,_> (fun _ v -> handler v))"
+            ]
+
+    | "popover", "getContentAnchorEl", "func" ->
+        Some [ RegularPropOverload.create "(handler: #Element option -> unit)" "handler" ]
+
+    | _ -> None
+
+let (|Slider|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | "slider", "componentsProps", type' ->
+        Some [
+            RegularPropOverload.create "(componentsProps: obj)" "componentsProps"
+            RegularPropOverload.create "(componentsProps: seq<IReactProperty>)" "(createObj !!componentsProps)"
+        ]
+    | "slider",
+        ("value"
+        | "defaultValue"),
+        _ ->
+        Some [
+            RegularPropOverload.create "(value: int)" "value"
+            RegularPropOverload.create "(value: float)" "value"
+            RegularPropOverload.create "(min: int, max: int)" "(min, max)"
+            RegularPropOverload.create "(min: float, max: float)" "(min, max)"
+        ]
+
+    | "slider", "marks", "bool | array" ->
+        Some [
+            RegularPropOverload.create "(value: bool)" "value"
+            RegularPropOverload.create
+                "([<ParamArray>] values: int [])"
+                "(values |> Array.map (fun x -> createObj [ \"value\" ==> x ]))"
+            RegularPropOverload.create
+                "([<ParamArray>] values: float [])"
+                "(values |> Array.map (fun x -> createObj [ \"value\" ==> x ]))"
+            RegularPropOverload.create
+                "([<ParamArray>] valuesAndLabels: (int * string option) [])"
+                "(valuesAndLabels |> Array.map (fun (v, lb) -> createObj [ \"value\" ==> v; \"label\" ==> lb ]))"
+            RegularPropOverload.create
+                "([<ParamArray>] valuesAndLabels: (float * string option) [])"
+                "(valuesAndLabels |> Array.map (fun (v, lb) -> createObj [ \"value\" ==> v; \"label\" ==> lb ]))"
+        ]
+
+    | "slider", "valueLabelFormat", _ ->
+        Some [
+            RegularPropOverload.create "(value: string)" "value"
+            RegularPropOverload.create "(format: int -> int -> string)" "format"
+            RegularPropOverload.create "(format: float -> int -> string)" "format"
+        ]
+
+    | "slider", "getAriaLabel", "func" -> Some [ RegularPropOverload.create "(getLabel: int -> string)" "getLabel" ]
+
+    | "slider", "getAriaValueText", "func" ->
+        Some [
+            RegularPropOverload.create "(getText: int -> int -> string)" "getText"
+            RegularPropOverload.create "(getText: float -> int -> string)" "getText"
+        ]
+
+    | "slider", "scale", "func" ->
+        Some [
+            RegularPropOverload.create "(transform: int -> int)" "transform"
+            RegularPropOverload.create "(transform: float -> float)" "transform"
+        ]
+
+    | "slider",
+        ("onChange"
+        | "onChangeCommitted"),
+        "func" ->
+        Some [
+            RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
+            RegularPropOverload.create "(handler: Event -> float -> unit)" "(Func<_,_,_> handler)"
+            RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+            RegularPropOverload.create "(handler: float -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+            RegularPropOverload.create "(handler: Event -> int [] -> unit)" "(Func<_,_,_> handler)"
+            RegularPropOverload.create "(handler: Event -> float [] -> unit)" "(Func<_,_,_> handler)"
+            RegularPropOverload.create "(handler: int [] -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+            RegularPropOverload.create "(handler: float [] -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
+        ]
+
+    | "slider", "step", "number" ->
+        Some [
+            RegularPropOverload.create "(value: int)" "value"
+            RegularPropOverload.create "(value: float)" "value"
+            RegularPropOverload.create "(value: int option)" "value"
+            RegularPropOverload.create "(value: float option)" "value"
+            |> RegularPropOverload.setExtension true
+        ]
+
+    | _ -> None
+
+let (|GridAndStack|_|) (componentMethodName, propMethodName, propDocType) =
+    match componentMethodName, propMethodName, propDocType with
+    | ("grid"
+        | "stack"),
+        ("spacing"
+        | "rowSpacing"
+        | "columnSpacing"),
+        "Array<number | string> | number | object | string" ->
+        Some [
+            RegularPropOverload.create "(spacing: int)" "spacing"
+            RegularPropOverload.create "(spacing: Styles.ICssUnit)" "spacing"
+            RegularPropOverload.create "(spacing: string)" "spacing"
+            //RegularPropOverload.create "([<ParamArray>] spacing: IBreakpointedProp<int> [])" "(createObj !!spacing)"
+            //RegularPropOverload.create "([<ParamArray>] spacing: IBreakpointedProp<Styles.ICssUnit> [])" "(createObj !!spacing)"
+            RegularPropOverload.createWithMuiBreakpoints "int"
+            RegularPropOverload.createWithMuiBreakpoints "Styles.ICssUnit"
+        ]
+
+    | ("grid"
+        | "stack"),
+        "direction",
+        _ ->
+        Some [
+            RegularPropOverload.create "(direction: FlexDirection)" "direction"
+            RegularPropOverload.createWithMuiBreakpoints "FlexDirection"
+            //RegularPropOverload.create "([<ParamArray>] direction: IBreakpointedProp<FlexDirection> [])" "(createObj !!direction)"
+        ]
+
+    | "grid", "columns", _ ->
+        Some [
+            RegularPropOverload.create "(value: int)" "value"
+            RegularPropOverload.createWithMuiBreakpoints "int"
+            //RegularPropOverload.create "([<ParamArray>] values: IBreakpointedProp<int> [])" "(createObj !!values)"
+        ]
+
+    | _ -> None
+
+
 let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: HtmlNode) : Prop =
     let isRequired = row.Name.EndsWith "*"
     let realPropName = row.Name.Trim(' ', '*')
@@ -54,441 +563,24 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     let isProbablyEnumProp =
         //(componentMethodName = "grid" && propMethodName = "spacing")
-        (propDocType.Contains "'" // There is a string value
-         && propDocType <> "'' | any"
-         && not (propDocType.Contains "Array<")
-         && not (
-             componentMethodName = "slider"
-             && propMethodName = "componentsProps"
-         )
-         && not (
-             componentMethodName = "popper"
-             && [ "modifiers"; "popperOptions" ]
+        propDocType.Contains "'" // There is a string value
+            && propDocType <> "'' | any"
+            && not (propDocType.Contains "Array<")
+        && not (
+            componentMethodName = "slider"
+            && propMethodName = "componentsProps"
+        ) && not (
+            componentMethodName = "popper"
+            && [ "modifiers"; "popperOptions" ]
                 |> List.contains propMethodName
-         )
-         && (propDocType.Contains "|" // There are multiple values (at least one string per above)
-             || (propDocType.StartsWith "'"
-                 && propDocType.EndsWith "'"))) // There is a single string value
-
-    let (|AutoComplelete|_|) (componentMethodName, propMethodName, propDocType) =
-        match componentMethodName, propMethodName, propDocType with
-        | "autocomplete", "isOptionEqualToValue", "func" ->
-            Some [ RegularPropOverload.create "(tester: ('a -> 'a -> bool))" "tester" ]
-
-        | "autocomplete", "filterOptions", "func" ->
-            Some [ RegularPropOverload.create
-                       "(filterOptions: 'option [] -> string -> 'option [])"
-                       "(Func<_,_,_> (fun opts (s: AutocompleteFilterOptionsState) -> ResizeArray (filterOptions opts s.inputValue)))"
-                   RegularPropOverload.create
-                       "(filterOptions: 'option [] -> AutocompleteFilterOptionsState -> 'option [])"
-                       "(Func<_,_,_> filterOptions)" ]
-
-        | "autocomplete", "getOptionDisabled", "func" ->
-            Some [ RegularPropOverload.create "(isDisabled: 'option -> bool)" "isDisabled" ]
-
-        | "autocomplete", "getOptionLabel", "func" ->
-            Some [ RegularPropOverload.create "(getLabel: 'option -> string)" "getLabel" ]
-
-        | "autocomplete", "getOptionSelected", "func" ->
-            Some [ RegularPropOverload.create "(getSelected: 'option -> 'a -> bool)" "(Func<_,_,_> getSelected)" ]
-
-        | "autocomplete", "getLimitTagsText", "func" ->
-            Some [ RegularPropOverload.create "(getText: int -> ReactElement)" "getText" ]
-
-        | "autocomplete", "groupBy", "func" ->
-            Some [ RegularPropOverload.create "(getGroup: 'option -> string)" "getGroup" ]
-
-        | "autocomplete", "onChange", "func" ->
-            Some [ RegularPropOverload.create
-                       "(handler: Event -> 'option -> AutocompleteOnChangeReason -> unit)"
-                       "(Func<_,_,_,_> handler)"
-                   |> RegularPropOverload.setExtension true
-                   RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
-                   |> RegularPropOverload.setExtension true
-
-                   RegularPropOverload.create
-                       "(handler: Event -> 'option [] -> AutocompleteOnChangeReason -> unit)"
-                       "(Func<_,_,_,_> handler)"
-                   RegularPropOverload.create "(handler: 'option [] -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))"
-
-                   RegularPropOverload.create
-                       "(handler: Event -> 'option option -> AutocompleteOnChangeReason -> unit)"
-                       "(Func<_,_,_,_> handler)"
-                   RegularPropOverload.create
-                       "(handler: 'option option -> unit)"
-                       "(Func<_,_,_,_> (fun _ v _ -> handler v))" ]
-
-        | "autocomplete", "onInputChange", "func" ->
-            Some [ RegularPropOverload.create
-                       "(handler: Event -> string -> AutocompleteInputChangeReason -> unit)"
-                       "(Func<_,_,_,_> handler)"
-                   RegularPropOverload.create "(handler: string -> unit)" "(Func<_,_,_,_> (fun _ v _ -> handler v))" ]
-
-        | "autocomplete", "onHighlightChange", "func" ->
-            Some [ RegularPropOverload.create
-                       "(handler: Event -> 'option -> AutocompleteHighlightChangeReason -> unit)"
-                       "(Func<_,_,_,_> handler)"
-                   RegularPropOverload.create
-                       "(handler: 'option -> AutocompleteHighlightChangeReason -> unit)"
-                       "(Func<_,_,_,_> (fun _ o r -> handler o r))"
-                   RegularPropOverload.create "(handler: 'option -> unit)" "(Func<_,_,_,_> (fun _ o _ -> handler o))" ]
-
-        | "autocomplete", "options", "array" ->
-            Some [ RegularPropOverload.create "(options: 'option [])" "(ResizeArray options)" ]
-
-        | "autocomplete", "renderGroup", "func" ->
-            Some [ RegularPropOverload.create "(render: AutocompleteRenderGroupParams -> ReactElement)" "render" ]
-
-        | "autocomplete", "renderInput", "func" ->
-            Some [ RegularPropOverload.create "(render: AutocompleteRenderInputParams -> ReactElement)" "render" ]
-
-        | "autocomplete", "renderOption", "func" ->
-            Some [ RegularPropOverload.create
-                       "(render: 'option -> AutocompleteRenderOptionState -> ReactElement)"
-                       "(Func<_,_,_> render)" ]
-
-        | "autocomplete", "renderTags", "func" ->
-            Some [ RegularPropOverload.create
-                       "(render: 'option [] -> AutocompleteRenderValueState -> ReactElement)"
-                       "(Func<_,_,_> render)" ]
-
-        | "autocomplete",
-          ("defaultValue"
-          | "value"),
-          "any" ->
-            Some [ RegularPropOverload.create "(value: 'option [])" "(ResizeArray value)"
-                   RegularPropOverload.create "(value: 'option option)" "value"
-                   RegularPropOverload.create "(value: 'option)" "value"
-                   |> RegularPropOverload.setExtension true ]
-
-        | _ -> None
-
-    let (|AllDateTimePickers|_|) componentMethodName =
-        match componentMethodName with
-        | "dateTimePicker"
-        | "desktopDateTimePicker"
-        | "mobileDateTimePicker"
-        | "staticDateTimePicker" -> Some componentMethodName
-        | _ -> None
-
-    let (|AllDatePickers|_|) componentMethodName =
-        match componentMethodName with
-        | "datePicker"
-        | "desktopDatePicker"
-        | "mobileDatePicker"
-        | "staticDatePicker" -> Some componentMethodName
-        | _ -> None
-
-    let (|AllTimePickers|_|) componentMethodName =
-        match componentMethodName with
-        | "timePicker"
-        | "desktopTimePicker"
-        | "mobileTimePicker"
-        | "staticTimePicker" -> Some componentMethodName
-        | _ -> None
-
-    let (|AllDateRangePickers|_|) componentMethodName =
-        match componentMethodName with
-        | "dateRangePicker"
-        | "desktopDateRangePicker"
-        | "mobileDateRangePicker"
-        | "staticDateRangePicker" -> Some componentMethodName
-        | _ -> None
-
-    let (|DateAndTimePickers|_|) (componentMethodName, propMethodName, propDocType) =
-        match componentMethodName, propMethodName, propDocType with
-        | (AllDatePickers _
-          | "calendarPicker"),
-          "views",
-          "Array<'day' | 'month' | 'year'>" ->
-            Some [ RegularPropOverload.create "([<ParamArray>] views: DatePickerView [])" "views" ]
-
-        | (AllTimePickers _
-          | "clockPicker"),
-          "views",
-          "Array<'hours' | 'minutes' | 'seconds'>" ->
-            Some [ RegularPropOverload.create "([<ParamArray>] views: TimePickerView [])" "views" ]
-
-        | AllDateTimePickers _, "views", "Array<'day' | 'hours' | 'minutes' | 'month' | 'seconds' | 'year'>" ->
-            Some [ RegularPropOverload.create "([<ParamArray>] views: DateTimePickerView [])" "views" ]
-
-        | (AllDateTimePickers _
-          | AllDatePickers _
-          | AllDateRangePickers _
-          | "calendarPicker"),
-          "shouldDisableDate",
-          "func" ->
-            Some [ RegularPropOverload.create
-                       "(shouldDisableDate: System.DateTime -> bool)"
-                       "(Func<_, _> shouldDisableDate)" ]
-
-        | (AllDateTimePickers _
-          | AllDatePickers _
-          | AllDateRangePickers _
-          | "calendarPicker"
-          | "yearPicker"),
-          "shouldDisableYear",
-          "func" ->
-            Some [ RegularPropOverload.create "(shouldDisableYear: int -> bool)" "(Func<_, _> shouldDisableYear)" ]
-
-        | (AllDateTimePickers _
-          | AllDatePickers _
-          | AllDateRangePickers _
-          | "calendarPicker"
-          | "monthPicker"),
-          "shouldDisableMonth",
-          "func" ->
-            Some [ RegularPropOverload.create "(shouldDisableMonth: int -> bool)" "(Func<_, _> shouldDisableMonth)" ]
-
-        | (AllDateTimePickers _
-          | AllDatePickers _),
-          "value",
-          "any | Date | number | string" ->
-            Some [ RegularPropOverload.create "(value: System.DateTime)" "value"
-                   RegularPropOverload.create "(value: string)" "value"
-                   RegularPropOverload.create "(value: int)" "value" ]
-
-        | (AllDateRangePickers _),
-          "value",
-          ("Array<any | Date | number | string>"
-          | "Array<any>") ->
-            Some [ RegularPropOverload.create "(value: System.DateTime list)" "value"
-                   RegularPropOverload.create "(value: string list)" "value"
-                   RegularPropOverload.create "(value: int list)" "value" ]
-
-        | (AllDateTimePickers _
-          | AllTimePickers _
-          | "clockPicker"),
-          "getClockLabelText",
-          "func"
-        | (AllDateTimePickers _
-          | AllDatePickers _
-          | AllDateRangePickers _
-          | AllTimePickers _),
-          "rifmFormatter",
-          "func"
-        | ("calendarPicker"
-          | AllDateTimePickers _
-          | AllDateRangePickers _
-          | AllTimePickers _
-          | AllDatePickers _),
-          ("getOpenDialogAriaText"
-          | "getViewSwitchingButtonText"),
-          "func" -> Some []
-
-        | "clockPicker",
-          ("getHoursClockNumberText"
-          | "getMinutesClockNumberText"
-          | "getSecondsClockNumberText" as name),
-          "func" -> Some [ RegularPropOverload.create (sprintf "(%s: string -> string)" name) name ]
-
-        | (AllDateTimePickers _
-          | AllTimePickers _
-          | "clockPicker"),
-          "shouldDisableTime",
-          "func" ->
-            Some [ RegularPropOverload.create
-                       "(shouldDisableTime: System.DateTime -> string -> bool)"
-                       "(Func<_, _, _> shouldDisableTime)" ]
-
-        | AllDateRangePickers _, "calendars", "1 | 2 | 3" ->
-            Some [ RegularPropOverload.create "(numCalendars: int)" "numCalendars" ]
-
-        | (AllDateTimePickers _
-          | AllDateRangePickers _
-          | AllDatePickers _
-          | AllTimePickers _),
-          "acceptRegex",
-          "RegExp" ->
-            Some [ RegularPropOverload.create "(acceptRegex: System.Text.RegularExpressions.Regex)" "acceptRegex" ]
-
-        | ("calendarPicker"
-          | AllDateTimePickers _
-          | AllDatePickers _
-          | AllDateRangePickers _),
-          "dayOfWeekFormatter",
-          "func" -> Some [ RegularPropOverload.create "(formatter: string -> string)" "(Func<_, _> formatter)" ]
-
-        | _ -> None
-
-    let (|LocalizationProviderRegularOverloads|_|) (componentMethodName, propMethodName, propDocType) =
-        match componentMethodName, propMethodName, propDocType with
-        | "localizationProvider", "dateAdapter", "func" -> Some []
-
-        | "localizationProvider", "locale", "object | string" -> Some []
-
-        | "localizationProvider", "adapterLocale", "object | string" ->
-            Some [ RegularPropOverload.create "(localeCode: string)" "localeCode" ]
-
-        | "localizationProvider", "dateFormats", formats ->
-            let formatsObjEntries = formats.TrimStart('{').TrimEnd('}').Split(',')
-
-            let formatsKeyValuePairs =
-                [ for entry in formatsObjEntries do
-                      match entry.Trim().Split(':') with
-                      | [| objKey; objValue |] ->
-                          let isOptional = objKey.EndsWith('?')
-                          let propName = objKey.Trim().TrimEnd('?')
-
-                          if objValue.Trim() = "string" then
-                              yield (propName, "string", isOptional)
-                          else
-                              yield! []
-
-                      | _ -> yield! [] ]
-
-            let formatsParams, formatsValue = formatsKeyValuePairs |> paramListAndObjCreator
-
-            Some [ RegularPropOverload.create formatsParams formatsValue ]
-
-        | "localizationProvider", "localeText", "object" -> Some [ RegularPropOverload.create "(value: obj)" "value" ]
-
-        | "localizationProvider", "dateLibInstance", "any" -> Some [ RegularPropOverload.create "(value: obj)" "value" ]
-
-        | _ -> None
-
-    let (|Popover|_|) (componentMethodName, propMethodName, propDocType) =
-        match componentMethodName, propMethodName, propDocType with
-        | "popover", "action", "ref" ->
-            Some [ RegularPropOverload.create "(ref: IRefValue<PopoverActions option>)" "ref"
-                   RegularPropOverload.create "(handler: PopoverActions -> unit)" "handler" ]
-
-        | "popover",
-          ("anchorOrigin"
-          | "transformOrigin"),
-          "{ horizontal: 'center' | 'left' | 'right' | number, vertical: 'bottom' | 'center' | 'top' | number }" ->
-            Some [ RegularPropOverload.create
-                       "(horizontal: PopoverOriginHorizontal, vertical: PopoverOriginVertical)"
-                       "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
-                   RegularPropOverload.create
-                       "(horizontal: int, vertical: PopoverOriginVertical)"
-                       "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
-                   RegularPropOverload.create
-                       "(horizontal: PopoverOriginHorizontal, vertical: int)"
-                       "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])"
-                   RegularPropOverload.create
-                       "(horizontal: int, vertical: int)"
-                       "(createObj [ \"horizontal\" ==> horizontal; \"vertical\" ==> vertical ])" ]
-
-        | "popover", "anchorPosition", "{ left: number, top: number }" ->
-            Some [ [ "left", "int", false
-                     "top", "int", false ]
-                   |> paramListAndObjCreator
-                   ||> RegularPropOverload.create ]
-
-        | "popover", "onClose", "func" ->
-            Some [ RegularPropOverload.create "(handler: Event -> PopoverCloseReason -> unit)" "(Func<_,_,_> handler)"
-                   RegularPropOverload.create
-                       "(handler: PopoverCloseReason -> unit)"
-                       "(Func<_,_,_> (fun _ v -> handler v))" ]
-
-        | "popover", "getContentAnchorEl", "func" ->
-            Some [ RegularPropOverload.create "(handler: #Element option -> unit)" "handler" ]
-
-        | _ -> None
-
-    let (|Slider|_|) (componentMethodName, propMethodName, propDocType) =
-        match componentMethodName, propMethodName, propDocType with
-        | "slider", "componentsProps", type' ->
-            Some [ RegularPropOverload.create "(componentsProps: obj)" "componentsProps"
-                   RegularPropOverload.create "(componentsProps: seq<IReactProperty>)" "(createObj !!componentsProps)" ]
-        | "slider",
-          ("value"
-          | "defaultValue"),
-          _ ->
-            Some [ RegularPropOverload.create "(value: int)" "value"
-                   RegularPropOverload.create "(value: float)" "value"
-                   RegularPropOverload.create "(min: int, max: int)" "(min, max)"
-                   RegularPropOverload.create "(min: float, max: float)" "(min, max)" ]
-
-        | "slider", "marks", "bool | array" ->
-            Some [ RegularPropOverload.create "(value: bool)" "value"
-                   RegularPropOverload.create
-                       "([<ParamArray>] values: int [])"
-                       "(values |> Array.map (fun x -> createObj [ \"value\" ==> x ]))"
-                   RegularPropOverload.create
-                       "([<ParamArray>] values: float [])"
-                       "(values |> Array.map (fun x -> createObj [ \"value\" ==> x ]))"
-                   RegularPropOverload.create
-                       "([<ParamArray>] valuesAndLabels: (int * string option) [])"
-                       "(valuesAndLabels |> Array.map (fun (v, lb) -> createObj [ \"value\" ==> v; \"label\" ==> lb ]))"
-                   RegularPropOverload.create
-                       "([<ParamArray>] valuesAndLabels: (float * string option) [])"
-                       "(valuesAndLabels |> Array.map (fun (v, lb) -> createObj [ \"value\" ==> v; \"label\" ==> lb ]))" ]
-
-        | "slider", "valueLabelFormat", _ ->
-            Some [ RegularPropOverload.create "(value: string)" "value"
-                   RegularPropOverload.create "(format: int -> int -> string)" "format"
-                   RegularPropOverload.create "(format: float -> int -> string)" "format" ]
-
-        | "slider", "getAriaLabel", "func" -> Some [ RegularPropOverload.create "(getLabel: int -> string)" "getLabel" ]
-
-        | "slider", "getAriaValueText", "func" ->
-            Some [ RegularPropOverload.create "(getText: int -> int -> string)" "getText"
-                   RegularPropOverload.create "(getText: float -> int -> string)" "getText" ]
-
-        | "slider", "scale", "func" ->
-            Some [ RegularPropOverload.create "(transform: int -> int)" "transform"
-                   RegularPropOverload.create "(transform: float -> float)" "transform" ]
-
-        | "slider",
-          ("onChange"
-          | "onChangeCommitted"),
-          "func" ->
-            Some [ RegularPropOverload.create "(handler: Event -> int -> unit)" "(Func<_,_,_> handler)"
-                   RegularPropOverload.create "(handler: Event -> float -> unit)" "(Func<_,_,_> handler)"
-                   RegularPropOverload.create "(handler: int -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
-                   RegularPropOverload.create "(handler: float -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
-                   RegularPropOverload.create "(handler: Event -> int [] -> unit)" "(Func<_,_,_> handler)"
-                   RegularPropOverload.create "(handler: Event -> float [] -> unit)" "(Func<_,_,_> handler)"
-                   RegularPropOverload.create "(handler: int [] -> unit)" "(Func<_,_,_> (fun _ v -> handler v))"
-                   RegularPropOverload.create "(handler: float [] -> unit)" "(Func<_,_,_> (fun _ v -> handler v))" ]
-
-        | "slider", "step", "number" ->
-            Some [ RegularPropOverload.create "(value: int)" "value"
-                   RegularPropOverload.create "(value: float)" "value"
-                   RegularPropOverload.create "(value: int option)" "value"
-                   RegularPropOverload.create "(value: float option)" "value"
-                   |> RegularPropOverload.setExtension true ]
-
-        | _ -> None
-
-    let (|GridAndStack|_|) (componentMethodName, propMethodName, propDocType) =
-        match componentMethodName, propMethodName, propDocType with
-        | ("grid"
-          | "stack"),
-          ("spacing"
-          | "rowSpacing"
-          | "columnSpacing"),
-          "Array<number | string> | number | object | string" ->
-            Some [
-                RegularPropOverload.create "(spacing: int)" "spacing"
-                RegularPropOverload.create "(spacing: Styles.ICssUnit)" "spacing"
-                RegularPropOverload.create "(spacing: string)" "spacing"
-                //RegularPropOverload.create "([<ParamArray>] spacing: IBreakpointedProp<int> [])" "(createObj !!spacing)"
-                //RegularPropOverload.create "([<ParamArray>] spacing: IBreakpointedProp<Styles.ICssUnit> [])" "(createObj !!spacing)"
-                RegularPropOverload.createWithMuiBreakpoints "int"
-                RegularPropOverload.createWithMuiBreakpoints "Styles.ICssUnit"
-            ]
-
-        | ("grid"
-          | "stack"),
-          "direction",
-          _ ->
-            Some [
-                RegularPropOverload.create "(direction: FlexDirection)" "direction"
-                RegularPropOverload.createWithMuiBreakpoints "FlexDirection"
-                //RegularPropOverload.create "([<ParamArray>] direction: IBreakpointedProp<FlexDirection> [])" "(createObj !!direction)"
-            ]
-
-        | "grid", "columns", _ ->
-            Some [
-                RegularPropOverload.create "(value: int)" "value"
-                RegularPropOverload.createWithMuiBreakpoints "int"
-                //RegularPropOverload.create "([<ParamArray>] values: IBreakpointedProp<int> [])" "(createObj !!values)"
-            ]
-
-        | _ -> None
+        ) && (
+            propDocType.Contains "|" // There are multiple values (at least one string per above)
+            || (propDocType.StartsWith "'"
+            && propDocType.EndsWith "'")
+        )
+        // There is a single string value
+
+    
 
     let regularOverloads =
         match componentMethodName, propMethodName, propDocType with
@@ -817,53 +909,6 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             [ RegularPropOverload.createCustom "(elements: seq<ReactElement>)" "prop.children elements" ]
 
         | "swipeableDrawer", "hysteresis", "number" -> [ RegularPropOverload.create "(value: float)" "value" ]
-
-        | _, "sx", "Array<func | object | bool> | func | object" ->
-            //let themeOverrideCallbackValueCode =
-            //    "(Func<Theme, _> (fun theme -> let styleOverrides = themeOverride theme in (createObj !!styleOverrides)))"
-
-            let themeStylesOverrideHelper = "Helpers.themeStylesOverride"
-            let breakpointThemeOverridesHelper = "Helpers.breakpointThemeStylesOverrides"
-            let themeBreakpointStylesOverridesHelper = "Helpers.themeBreakpointStylesOverrides"
-
-            [
-                RegularPropOverload.create "(styleOverrides: #seq<IStyleAttribute>)" "(createObj !!styleOverrides)"
-
-                //RegularPropOverload.create "(enabled: bool list)" "enabled"
-
-                RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
-                    "(#seq<IStyleAttribute>)"
-                    "!!createObj"
-
-                RegularPropOverload.create
-                    "(themeOverride: Theme -> #seq<IStyleAttribute>)"
-                    (sprintf "(%s themeOverride)" themeStylesOverrideHelper)
-                    //themeOverrideCallbackValueCode
-
-                RegularPropOverload.create
-                    "(themeOverrides: (Theme -> #seq<IStyleAttribute>) [])"
-                    (sprintf "(themeOverrides |> Array.map %s)" themeStylesOverrideHelper)
-                    //(sprintf "(themeOverrides |> Array.map (fun themeOverride -> %s))" themeOverrideCallbackValueCode)
-
-                RegularPropOverload.create
-                    "(breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) [])"
-                    (sprintf "(%s breakpointThemeOverrides)" breakpointThemeOverridesHelper)
-                    //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s themeOverride) |> !!createObj)" themeStylesOverrideHelper)
-                    //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s) |> !!createObj)" themeOverrideCallbackValueCode)
-
-                RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
-                    "(Theme -> #seq<IStyleAttribute>)"
-                    themeStylesOverrideHelper
-                    //(sprintf "(fun themeOverride -> %s)" themeOverrideCallbackValueCode)
-
-                //RegularPropOverload.create
-                //    "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
-                //    "(themeBreakpointOverrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> string bp, createObj !!styles) |> !!createObj))))"
-
-                RegularPropOverload.create
-                    "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
-                    (sprintf "(%s themeBreakpointOverrides)" themeBreakpointStylesOverridesHelper)
-            ]
 
         | "tabs", "action", "ref" ->
             [ RegularPropOverload.create "(ref: IRefValue<TabsActions option>)" "ref"
