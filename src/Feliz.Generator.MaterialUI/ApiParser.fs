@@ -64,6 +64,28 @@ let naiveComponentsPropsParser (component': string) (prop: string) (fields: stri
     |> List.singleton
 
 
+let isProbablyEnumPropNaive
+    (componentMethodName: string)
+    (propMethodName: string)
+    (propDocType: string) =
+    //(componentMethodName = "grid" && propMethodName = "spacing")
+    propDocType.Contains "'" // There is a string value
+        && propDocType <> "'' | any"
+        && not (propDocType.Contains "Array<")
+    && not (
+        componentMethodName = "slider"
+        && propMethodName = "componentsProps"
+    ) && not (
+        componentMethodName = "popper"
+        && [ "modifiers"; "popperOptions" ]
+            |> List.contains propMethodName
+    ) && (
+        propDocType.Contains "|" // There are multiple values (at least one string per above)
+        || (propDocType.StartsWith "'"
+        && propDocType.EndsWith "'")
+    )
+
+
 let (|SxProp|_|) (componentMethodName, propMethodName, propDocType) =
     match componentMethodName, propMethodName, propDocType with
     | _, "sx", "Array<func | object | bool> | func | object" ->
@@ -577,25 +599,16 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     let propDocType = row.Type.Trim()
 
     let isProbablyEnumProp =
-        //(componentMethodName = "grid" && propMethodName = "spacing")
-        propDocType.Contains "'" // There is a string value
-            && propDocType <> "'' | any"
-            && not (propDocType.Contains "Array<")
-        && not (
-            componentMethodName = "slider"
-            && propMethodName = "componentsProps"
-        ) && not (
-            componentMethodName = "popper"
-            && [ "modifiers"; "popperOptions" ]
-                |> List.contains propMethodName
-        ) && (
-            propDocType.Contains "|" // There are multiple values (at least one string per above)
-            || (propDocType.StartsWith "'"
-            && propDocType.EndsWith "'")
-        )
-        // There is a single string value
+        isProbablyEnumPropNaive componentMethodName propMethodName propDocType
 
-    
+    //let parsedPropDocType =
+    //    propDocType
+    //    |> DocTypeSignatureParser.tryParseTypeSignatureString
+    //    |> Result.mapError (fun errorMsg ->
+    //        sprintf "Doc type signature parsing error for component %A, prop %A: %s"
+    //            componentMethodName
+    //            propMethodName
+    //            errorMsg)
 
     let regularOverloads =
         match componentMethodName, propMethodName, propDocType with
@@ -1079,9 +1092,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
                 |> DocTypeSignatureParser.parseAndTranslateCustom
                     (fun defaultTranslators -> {
                         defaultTranslators with
-                            Atomic = function
+                            InnerAtomic = function
                                 | TsAtomicType.Object -> "seq<IReactProperty>"
-                                | at -> defaultTranslators.Atomic at
+                                | at -> defaultTranslators.InnerAtomic at
                     })
             match translationResult with
             | Result.Ok propOverloads ->

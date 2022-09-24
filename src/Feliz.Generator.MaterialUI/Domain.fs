@@ -61,6 +61,7 @@ type TsAtomicType =
     | Object
     | Element
     | ElementType
+    | Node
     | StringLiteral of string
     | OtherType of typeName: string
 

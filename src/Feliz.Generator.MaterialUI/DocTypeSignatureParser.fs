@@ -28,6 +28,7 @@ module Parsers =
             stringReturn "object" TsAtomicType.Object
             stringReturn "elementType" ElementType
             stringReturn "element" Element
+            stringReturn "node" Node
             tsStringLiteral tsIdentifier |>> StringLiteral
             tsIdentifier |>> OtherType
         ] |>> TsType.Atomic
@@ -84,16 +85,17 @@ module Translators =
     type FsTypeSignature = string
 
     type Translators = {
-        Atomic: TsAtomicType -> FsTypeSignature
+        InnerAtomic: TsAtomicType -> FsTypeSignature
         InnerObject: (string * TsType * bool) list -> FsTypeSignature
         InnerUnion: TsType list -> FsTypeSignature
         InnerArray: TsType -> FsTypeSignature
+        TopLevelAtomic: TsAtomicType -> PropOverload list
         TopLevelObject: (string * TsType * bool) list -> PropOverload list
         TopLevelUnion: TsType list -> PropOverload list
         TopLevelArray: TsType -> PropOverload list
     }
 
-    let translateTsAtomicType (tsAtomicType: TsAtomicType) =
+    let translateInnerTsAtomicType (tsAtomicType: TsAtomicType) =
         match tsAtomicType with
         | String -> "string"
         | Number -> "float"
@@ -104,12 +106,12 @@ module Translators =
         | ElementType -> "ReactElementType"
         | StringLiteral s -> "\"" + s + "\""
         | OtherType typeName -> typeName
-
+        | Node -> "U6<ReactElement, seq<ReactElement>, string, seq<string>, int, float>"
 
     let rec translateNestedTsTypeSign customize (tsType: TsType) =
         let translators = translators customize
         match tsType with
-        | Atomic t -> translators.Atomic t
+        | Atomic t -> translators.InnerAtomic t
         | Array elType -> translators.InnerArray elType
         | Union cases -> translators.InnerUnion cases
         | TsType.Object objEntries -> translators.InnerObject objEntries
@@ -155,15 +157,28 @@ module Translators =
     and translateTopLevelTsType (customize: Translators -> Translators) (tsType: TsType) =
         let translators = translators customize
         match tsType with
-        | Atomic t ->
-            let typeSign = translators.Atomic t
-            RegularPropOverload.create ("(value: " + typeSign + ")") "value"
-            |> PropOverload.Regular
-            |> List.singleton
-
+        | Atomic t -> translators.TopLevelAtomic t
         | Union cases -> translators.TopLevelUnion cases
         | Object objEntries -> translators.TopLevelObject objEntries
         | Array elType -> translators.TopLevelArray elType
+
+    and translateTopLevelTsAtomicType customize (tsAtomicType: TsAtomicType) =
+        match tsAtomicType with
+        | Node ->
+            [ RegularPropOverload.create "(value: ReactElement)" "value"
+              RegularPropOverload.create "(values: seq<ReactElement>)" "values"
+              RegularPropOverload.create "(value: string)" "value"
+              RegularPropOverload.create "(values: string seq)" "values"
+              RegularPropOverload.create "(value: int)" "value"
+              RegularPropOverload.create "(value: float)" "value" ]
+            |> List.map PropOverload.Regular
+
+        | t ->
+            let translators = translators customize
+            let typeSign = translators.InnerAtomic t
+            RegularPropOverload.create ("(value: " + typeSign + ")") "value"
+            |> PropOverload.Regular
+            |> List.singleton
 
     and translateTopLevelObject customize (objEntries: (string * TsType * bool) list) =
         let translatedParams =
@@ -213,10 +228,11 @@ module Translators =
 
     and translators (customize: Translators -> Translators): Translators =
         {
-            Atomic = translateTsAtomicType
+            InnerAtomic = translateInnerTsAtomicType
             InnerObject = translateNestedObjectTypeSign customize
             InnerUnion = translateNestedUnionTypeSign customize
             InnerArray = translateNestedArrayTypeSign customize
+            TopLevelAtomic = translateTopLevelTsAtomicType customize
             TopLevelObject = translateTopLevelObject customize
             TopLevelUnion = translateTopLevelUnion customize
             TopLevelArray = translateTopLevelArray customize
