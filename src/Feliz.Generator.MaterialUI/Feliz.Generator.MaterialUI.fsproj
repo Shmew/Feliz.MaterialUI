@@ -10,6 +10,7 @@
     <Compile Include="Utils.fs" />
     <Compile Include="Domain.fs" />
     <Compile Include="Common.fs" />
+    <Compile Include="DocTypeSignatureParser.fs" />
     <Compile Include="Render.fs" />
     <Compile Include="HtmlCache.fs" />
     <Compile Include="ApiParser.fs" />

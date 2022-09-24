@@ -1198,7 +1198,7 @@ type badge =
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
   static member inline components (? Badge: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Badge.
-  static member inline componentsProps (?badge: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?badge: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge); (if root.IsSome then x?``root`` <- root); x)
   /// If `true`, the badge is invisible.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   /// Max count to show.
@@ -2629,7 +2629,7 @@ type dialog =
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
   /// *Inherited from `modal`*
   ///
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
@@ -5574,7 +5574,7 @@ type menu =
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
   /// *Inherited from `modal`*
   ///
   /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
@@ -5988,7 +5988,7 @@ type modal =
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
   static member inline components (? Backdrop: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -6813,7 +6813,7 @@ type popover =
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
   /// *Inherited from `modal`*
   ///
   /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
@@ -6937,7 +6937,7 @@ type popper =
   /// The components used for each slot inside the Popper. Either a string to use a HTML element or a component.
   static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
   /// The props used for each slot inside the Popper.
-  static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -7854,9 +7854,7 @@ type slider =
   /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
   static member inline components (? Input: ReactElementType, ? Mark: ReactElementType, ? MarkLabel: ReactElementType, ? Rail: ReactElementType, ? Root: ReactElementType, ? Thumb: ReactElementType, ? Track: ReactElementType, ? ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
   /// The props used for each slot inside the Slider.
-  static member inline componentsProps (componentsProps: obj) = Interop.mkAttr "componentsProps" componentsProps
-  /// The props used for each slot inside the Slider.
-  static member inline componentsProps (componentsProps: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (createObj !!componentsProps)
+  static member inline componentsProps (?input: U2<Func<obj, obj>, seq<IReactProperty>>, ?mark: U2<Func<obj, obj>, seq<IReactProperty>>, ?markLabel: U2<Func<obj, obj>, seq<IReactProperty>>, ?rail: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>, ?thumb: U2<Func<obj, obj>, seq<IReactProperty>>, ?track: U2<Func<obj, obj>, seq<IReactProperty>>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; components: {| Root: ReactElementType option |} option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if mark.IsSome then x?``mark`` <- mark); (if markLabel.IsSome then x?``markLabel`` <- markLabel); (if rail.IsSome then x?``rail`` <- rail); (if root.IsSome then x?``root`` <- root); (if thumb.IsSome then x?``thumb`` <- thumb); (if track.IsSome then x?``track`` <- track); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: int) = Interop.mkAttr "defaultValue" value
   /// The default value. Use when the component is not controlled.

@@ -36,6 +36,8 @@ NUGET
     Feliz.CompilerPlugins (1.10)
       Fable.AST (>= 3.0)
       FSharp.Core (>= 4.7.2)
+    FParsec (1.1.1)
+      FSharp.Core (>= 4.3.4)
     FSharp.Core (4.7.2)
     FSharp.Data (4.2.8)
       FSharp.Core (>= 4.7.2)

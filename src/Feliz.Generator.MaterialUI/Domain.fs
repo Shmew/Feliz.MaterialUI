@@ -34,6 +34,11 @@ type Localization = {
   Locales: Locale list
 }
 
+[<RequireQualifiedAccess>]
+type PropOverload =
+    | Regular of RegularPropOverload
+    | Enum of EnumPropOverload
+
 type BreakpointKey = string
 
 type JsParamName = string
@@ -45,3 +50,22 @@ type ParamName = string
 type ParamTypeSignature = string
 
 type IsOptional = bool
+
+type FsTypeSignature = string
+
+type TsAtomicType =
+    | String
+    | Number
+    | Bool
+    | Func
+    | Object
+    | Element
+    | ElementType
+    | StringLiteral of string
+    | OtherType of typeName: string
+
+type TsType =
+    | Atomic of TsAtomicType
+    | Union of cases: TsType list
+    | Object of entries: (string * TsType * bool) list
+    | Array of TsType

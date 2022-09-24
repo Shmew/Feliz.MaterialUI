@@ -35,20 +35,44 @@ let parseClassRule (row: ComponentApiPage.Css.Row) (rowHtml: HtmlNode) =
               GlobalClass = row.``Global class`` }
 
 
+let naiveComponentsPropsParser (component': string) (prop: string) (fields: string) =
+    let translateType (t: string) =
+        //if type' = "object" then "IReactProperty list" else type'
+        match t.Trim() with
+        | "object" -> Some "seq<IReactProperty>"
+        | "func" -> None
+        | otherType -> Some otherType
+
+    fields.TrimStart('{').TrimEnd('}').Split(',')
+    |> Array.map (fun p -> p.Split(':') |> Array.map (fun s -> s.Trim()))
+    |> Array.choose (function
+        | [| key; type' |] ->
+            let isOptional = key.EndsWith('?')
+            let typeCases = type'.Split('|') |> Array.choose translateType
+
+            match typeCases with
+            | PropsTypeUnion component' prop translatedType ->
+                Some(key.TrimEnd('?'), translatedType, isOptional)
+            | _ -> None
+
+        | parts ->
+            printfn "Invalid parts in %s: %A" component' parts
+            None)
+    |> Array.toList
+    |> paramListAndObjCreator
+    ||> RegularPropOverload.create
+    |> List.singleton
+
+
 let (|SxProp|_|) (componentMethodName, propMethodName, propDocType) =
     match componentMethodName, propMethodName, propDocType with
     | _, "sx", "Array<func | object | bool> | func | object" ->
-        //let themeOverrideCallbackValueCode =
-        //    "(Func<Theme, _> (fun theme -> let styleOverrides = themeOverride theme in (createObj !!styleOverrides)))"
-
         let themeStylesOverrideHelper = "Helpers.themeStylesOverride"
         let breakpointThemeOverridesHelper = "Helpers.breakpointThemeStylesOverrides"
         let themeBreakpointStylesOverridesHelper = "Helpers.themeBreakpointStylesOverrides"
 
         Some [
             RegularPropOverload.create "(styleOverrides: #seq<IStyleAttribute>)" "(createObj !!styleOverrides)"
-
-            //RegularPropOverload.create "(enabled: bool list)" "enabled"
 
             RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
                 "(#seq<IStyleAttribute>)"
@@ -57,27 +81,18 @@ let (|SxProp|_|) (componentMethodName, propMethodName, propDocType) =
             RegularPropOverload.create
                 "(themeOverride: Theme -> #seq<IStyleAttribute>)"
                 (sprintf "(%s themeOverride)" themeStylesOverrideHelper)
-                //themeOverrideCallbackValueCode
 
             RegularPropOverload.create
                 "(themeOverrides: (Theme -> #seq<IStyleAttribute>) [])"
                 (sprintf "(themeOverrides |> Array.map %s)" themeStylesOverrideHelper)
-                //(sprintf "(themeOverrides |> Array.map (fun themeOverride -> %s))" themeOverrideCallbackValueCode)
 
             RegularPropOverload.create
                 "(breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) [])"
                 (sprintf "(%s breakpointThemeOverrides)" breakpointThemeOverridesHelper)
-                //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s themeOverride) |> !!createObj)" themeStylesOverrideHelper)
-                //(sprintf "(breakpointThemeOverrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, %s) |> !!createObj)" themeOverrideCallbackValueCode)
 
             RegularPropOverload.createWithMuiBreakpointsAndParamValueTransform
                 "(Theme -> #seq<IStyleAttribute>)"
                 themeStylesOverrideHelper
-                //(sprintf "(fun themeOverride -> %s)" themeOverrideCallbackValueCode)
-
-            //RegularPropOverload.create
-            //    "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
-            //    "(themeBreakpointOverrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> string bp, createObj !!styles) |> !!createObj))))"
 
             RegularPropOverload.create
                 "(themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) [])"
@@ -425,11 +440,11 @@ let (|Popover|_|) (componentMethodName, propMethodName, propDocType) =
 
 let (|Slider|_|) (componentMethodName, propMethodName, propDocType) =
     match componentMethodName, propMethodName, propDocType with
-    | "slider", "componentsProps", type' ->
-        Some [
-            RegularPropOverload.create "(componentsProps: obj)" "componentsProps"
-            RegularPropOverload.create "(componentsProps: seq<IReactProperty>)" "(createObj !!componentsProps)"
-        ]
+    //| "slider", "componentsProps", type' ->
+    //    Some [
+    //        RegularPropOverload.create "(componentsProps: obj)" "componentsProps"
+    //        RegularPropOverload.create "(componentsProps: seq<IReactProperty>)" "(createObj !!componentsProps)"
+    //    ]
     | "slider",
         ("value"
         | "defaultValue"),
@@ -597,7 +612,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         | Popover overloads
         | Slider overloads
         | GridAndStack overloads
-        | LocalizationProviderRegularOverloads overloads -> overloads
+        | LocalizationProviderRegularOverloads overloads
+        | SxProp overloads ->
+            overloads
 
         | "accordion", "onChange", "func" ->
             [ RegularPropOverload.create "(handler: Event -> bool -> unit)" "(Func<_,_,_> handler)"
@@ -1056,32 +1073,26 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         | "imageList", "cellHeight", "number | oneOf(['auto'" -> [ RegularPropOverload.create "(value: int)" "value" ]
 
         | component', ("componentsProps" as prop), fields ->
-            let translateType (t: string) =
-                //if type' = "object" then "IReactProperty list" else type'
-                match t.Trim() with
-                | "object" -> Some "seq<IReactProperty>"
-                | "func" -> None
-                | otherType -> Some otherType
+            //naiveComponentsPropsParser component' prop fields
+            let translationResult =
+                fields
+                |> DocTypeSignatureParser.parseAndTranslateCustom
+                    (fun defaultTranslators -> {
+                        defaultTranslators with
+                            Atomic = function
+                                | TsAtomicType.Object -> "seq<IReactProperty>"
+                                | at -> defaultTranslators.Atomic at
+                    })
+            match translationResult with
+            | Result.Ok propOverloads ->
+                propOverloads
+                |> List.choose (function
+                    | PropOverload.Regular p -> Some p
+                    | _ -> None)
 
-            fields.TrimStart('{').TrimEnd('}').Split(',')
-            |> Array.map (fun p -> p.Split(':') |> Array.map (fun s -> s.Trim()))
-            |> Array.choose (function
-                | [| key; type' |] ->
-                    let isOptional = key.EndsWith('?')
-                    let typeCases = type'.Split('|') |> Array.choose translateType
-
-                    match typeCases with
-                    | PropsTypeUnion component' prop translatedType ->
-                        Some(key.TrimEnd('?'), translatedType, isOptional)
-                    | _ -> None
-
-                | parts ->
-                    printfn "Invalid parts in %s: %A" component' parts
-                    None)
-            |> Array.toList
-            |> paramListAndObjCreator
-            ||> RegularPropOverload.create
-            |> List.singleton
+            | Result.Error errorMsg ->
+                printfn "Doc translation error for component %A, prop %A: %s" component' prop errorMsg
+                []
 
         | component', "components", "object" -> [ RegularPropOverload.create "(value: obj)" "value" ]
 

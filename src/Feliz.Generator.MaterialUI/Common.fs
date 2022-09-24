@@ -33,7 +33,7 @@ let kebabCaseToCamelCase (s: string) =
 
 let prefixUnderscoreToNumbers (s: string) =
     if s.Length > 0
-       && s |> Seq.head |> System.Char.IsNumber then
+        && s |> Seq.head |> System.Char.IsNumber then
         "_" + s
     else
         s
@@ -113,6 +113,18 @@ let jsParamNameToFsParamName (paramName: JsParamName) =
     |> prefixUnderscoreToNumbers
     |> appendApostropheToReservedKeywords
 
+
+let jsObjectFromParamsCode (toSafeName) (objEntries: (ParamName * ParamTypeSignature * IsOptional) list) =
+    objEntries
+    |> List.map (fun (name, _, isOptional) ->
+            if isOptional then
+                sprintf "(if %s.IsSome then x?``%s`` <- %s)" (toSafeName name) name (toSafeName name)
+            else
+                sprintf "x?``%s`` <- %s" name (toSafeName name))
+        |> String.concat "; "
+        |> sprintf "(let x = createEmpty<obj> in %s; x)"
+
+
 /// <summary> Helps to create overloads for a prop that could take an object with optional fields.
 /// A parameter is a list of tuples having the form: (parameter-name, parameter-type, is-optional) --
 /// to represent object fields.
@@ -131,15 +143,7 @@ let paramListAndObjCreator (paramData: (ParamName * ParamTypeSignature * IsOptio
         |> String.concat ", "
         |> sprintf "(%s)"
 
-    let objCreator =
-        paramData
-        |> List.map (fun (name, _, isOptional) ->
-            if isOptional then
-                sprintf "(if %s.IsSome then x?``%s`` <- %s)" (toSafeName name) name (toSafeName name)
-            else
-                sprintf "x?``%s`` <- %s" name (toSafeName name))
-        |> String.concat "; "
-        |> sprintf "(let x = createEmpty<obj> in %s; x)"
+    let objCreator = paramData |> jsObjectFromParamsCode toSafeName
 
     paramList, objCreator
 
