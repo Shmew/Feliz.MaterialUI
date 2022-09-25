@@ -85,6 +85,45 @@ let isProbablyEnumPropNaive
         && propDocType.EndsWith "'")
     )
 
+let translateEnumPropNaive
+    (componentMethodName: string)
+    (propMethodName: string)
+    (propDocType: string)
+    =
+    let enumValueExpressions =
+        propDocType.Split("|")
+        |> Array.toList
+        |> List.choose (fun s ->
+            let value = s.Trim()
+
+            if value.StartsWith "'" && value.EndsWith "'" then
+                // String
+                value.Replace("'", "\"") |> Some
+            elif value = "number"
+                    || value = "bool"
+                    || value.Contains "{"
+                    || String.IsNullOrWhiteSpace value then
+                None
+            else
+                // Probably literal, e.g. bool or int
+                Some value)
+
+    let overloads =
+        enumValueExpressions
+        |> List.map (fun v ->
+            let methodName =
+                v.Trim('"')
+                |> kebabCaseToCamelCase
+                |> prefixUnderscoreToNumbers
+                |> appendApostropheToReservedKeywords
+
+            EnumPropOverload.create methodName v)
+
+    if overloads.IsEmpty then
+        failwithf "No enum overloads for %s.%s" componentMethodName propMethodName
+
+    overloads
+
 
 let (|SxProp|_|) (componentMethodName, propMethodName, propDocType) =
     match componentMethodName, propMethodName, propDocType with
@@ -598,17 +637,40 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
     let propDocType = row.Type.Trim()
 
-    let isProbablyEnumProp =
-        isProbablyEnumPropNaive componentMethodName propMethodName propDocType
+    //let isProbablyEnumProp =
+    //    isProbablyEnumPropNaive componentMethodName propMethodName propDocType
 
-    //let parsedPropDocType =
-    //    propDocType
-    //    |> DocTypeSignatureParser.tryParseTypeSignatureString
-    //    |> Result.mapError (fun errorMsg ->
-    //        sprintf "Doc type signature parsing error for component %A, prop %A: %s"
-    //            componentMethodName
-    //            propMethodName
-    //            errorMsg)
+    let parsedPropDocType =
+        propDocType
+        |> DocTypeSignatureParser.tryParseTypeSignatureString
+        |> Result.mapError (fun errorMsg ->
+            sprintf "Doc type signature parsing error for component %A, prop %A: %s"
+                componentMethodName
+                propMethodName
+                errorMsg)
+
+    let translatedPropOverloads =
+        parsedPropDocType
+        |> Result.map (fun docType ->
+            let propOverloads =
+                docType
+                |> DocTypeSignatureParser.translateCustom (fun defaultTranslators ->
+                    match propMethodName with
+                    | "componentsProps" ->
+                        { defaultTranslators with
+                            InnerAtomic = function
+                                | TsAtomicType.Object -> "seq<IReactProperty>"
+                                | at -> defaultTranslators.InnerAtomic at
+                        }
+                    | _ -> defaultTranslators
+                )
+            (propOverloads, ([], []))
+            ||> List.foldBack (fun propOverload (regularOvs, enumOvs) ->
+                match propOverload with
+                | PropOverload.Regular regularOv -> regularOv :: regularOvs, enumOvs
+                | PropOverload.Enum enumOv -> regularOvs, enumOv :: enumOvs
+            )
+        )
 
     let regularOverloads =
         match componentMethodName, propMethodName, propDocType with
@@ -756,6 +818,9 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
           "node" ->
             [ RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element"
               RegularPropOverload.createCustom "(elements: seq<ReactElement>)" "prop.children elements" ]
+
+        | "globalStyles", "styles", "func | number | object | { __emotion_styles: any } | string | bool" ->
+            [ RegularPropOverload.create "(value: #seq<IStyleAttribute>)" "(createObj !!value)"]
 
         | "hidden", "only", "'xs' | 'sm' | 'md' | 'lg' | 'xl' | Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'>" ->
             [ RegularPropOverload.create "([<ParamArray>] values: IBreakpointKey [])" "values" ]
@@ -1062,7 +1127,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
             ->
             [ RegularPropOverload.create "(value: bool)" "value" ]
 
-        | _, _, "string" -> [ RegularPropOverload.create "(value: string)" "value" ]
+        //| _, _, "string" -> [ RegularPropOverload.create "(value: string)" "value" ]
 
         | "gridList", "cellHeight", "number | 'auto'"
         | _, _, "number" -> [ RegularPropOverload.create "(value: int)" "value" ]
@@ -1072,8 +1137,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         | _, pn, "node" when pn = "icon" || pn.EndsWith "Icon" ->
             [ RegularPropOverload.create "(element: ReactElement)" "element" ]
 
+        //| "tabList", "children", "Array<element>"
         | _, "children", "node"
-        | "tabList", "children", "Array<element>"
         | "popper", "children", "node | func" -> // TODO: popper.children can also be a func, but can't find signature docs
             [ RegularPropOverload.createCustom "(element: ReactElement)" "prop.children element"
               RegularPropOverload.createCustom "(elements: seq<ReactElement>)" "prop.children elements"
@@ -1082,87 +1147,95 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               RegularPropOverload.create "(value: int)" "value"
               RegularPropOverload.create "(value: float)" "value" ]
 
-        // Fixes the broken docs of imageList
-        | "imageList", "cellHeight", "number | oneOf(['auto'" -> [ RegularPropOverload.create "(value: int)" "value" ]
+        //// Fixes the broken docs of imageList
+        //| "imageList", "cellHeight", "number | oneOf(['auto'" -> [ RegularPropOverload.create "(value: int)" "value" ]
 
-        | component', ("componentsProps" as prop), fields ->
-            //naiveComponentsPropsParser component' prop fields
-            let translationResult =
-                fields
-                |> DocTypeSignatureParser.parseAndTranslateCustom
-                    (fun defaultTranslators -> {
-                        defaultTranslators with
-                            InnerAtomic = function
-                                | TsAtomicType.Object -> "seq<IReactProperty>"
-                                | at -> defaultTranslators.InnerAtomic at
-                    })
-            match translationResult with
-            | Result.Ok propOverloads ->
-                propOverloads
-                |> List.choose (function
-                    | PropOverload.Regular p -> Some p
-                    | _ -> None)
+        //| component', ("componentsProps" as prop), fields ->
+        //    //naiveComponentsPropsParser component' prop fields
+        //    let translationResult =
+        //        fields
+        //        |> DocTypeSignatureParser.parseAndTranslateCustom
+        //            (fun defaultTranslators -> {
+        //                defaultTranslators with
+        //                    InnerAtomic = function
+        //                        | TsAtomicType.Object -> "seq<IReactProperty>"
+        //                        | at -> defaultTranslators.InnerAtomic at
+        //            })
+        //    match translationResult with
+        //    | Result.Ok propOverloads ->
+        //        propOverloads
+        //        |> List.choose (function
+        //            | PropOverload.Regular p -> Some p
+        //            | _ -> None)
 
-            | Result.Error errorMsg ->
-                printfn "Doc translation error for component %A, prop %A: %s" component' prop errorMsg
-                []
+        //    | Result.Error errorMsg ->
+        //        printfn "Doc translation error for component %A, prop %A: %s" component' prop errorMsg
+        //        []
 
-        | component', "components", "object" -> [ RegularPropOverload.create "(value: obj)" "value" ]
+        //| component', "components", "object" -> [ RegularPropOverload.create "(value: obj)" "value" ]
 
         // | ("badge" | "badgeUnstyled"), "components", "{ Badge?: elementType, Root?: elementType }"
-        | component', "components", fields ->
-            let parsedFields =
-                fields.TrimStart('{').TrimEnd('}').Split(',')
-                |> Array.map (fun p -> p.Split(':'))
-                |> Array.choose (function
-                    | [| key; _ |] ->
-                        let isOptional = key.EndsWith('?')
-                        Some(key.TrimEnd('?'), isOptional)
-                    | parts ->
-                        printfn "Invalid parts in %s: %A" component' parts
-                        None)
-                |> Array.toList
+        //| component', "components", fields ->
+        //    let parsedFields =
+        //        fields.TrimStart('{').TrimEnd('}').Split(',')
+        //        |> Array.map (fun p -> p.Split(':'))
+        //        |> Array.choose (function
+        //            | [| key; _ |] ->
+        //                let isOptional = key.EndsWith('?')
+        //                Some(key.TrimEnd('?'), isOptional)
+        //            | parts ->
+        //                printfn "Invalid parts in %s: %A" component' parts
+        //                None)
+        //        |> Array.toList
 
-            let strings =
-                parsedFields
-                |> List.map (fun (name, isOptional) -> (name, "string", isOptional))
-                |> paramListAndObjCreator
-                ||> RegularPropOverload.create
+        //    let strings =
+        //        parsedFields
+        //        |> List.map (fun (name, isOptional) -> (name, "string", isOptional))
+        //        |> paramListAndObjCreator
+        //        ||> RegularPropOverload.create
 
-            let reactElementTypes =
-                parsedFields
-                |> List.map (fun (name, isOptional) -> (name, "ReactElementType", isOptional))
-                |> paramListAndObjCreator
-                ||> RegularPropOverload.create
+        //    let reactElementTypes =
+        //        parsedFields
+        //        |> List.map (fun (name, isOptional) -> (name, "ReactElementType", isOptional))
+        //        |> paramListAndObjCreator
+        //        ||> RegularPropOverload.create
 
-            [ strings; reactElementTypes ]
+        //    [ strings; reactElementTypes ]
 
-        | _, _, "node" ->
-            [ RegularPropOverload.create "(value: ReactElement)" "value"
-              RegularPropOverload.create "(values: seq<ReactElement>)" "values"
-              RegularPropOverload.create "(value: string)" "value"
-              RegularPropOverload.create "(values: string seq)" "values"
-              RegularPropOverload.create "(value: int)" "value"
-              RegularPropOverload.create "(value: float)" "value" ]
+        //| _, _, "node" ->
+        //    [ RegularPropOverload.create "(value: ReactElement)" "value"
+        //      RegularPropOverload.create "(values: seq<ReactElement>)" "values"
+        //      RegularPropOverload.create "(value: string)" "value"
+        //      RegularPropOverload.create "(values: string seq)" "values"
+        //      RegularPropOverload.create "(value: int)" "value"
+        //      RegularPropOverload.create "(value: float)" "value" ]
 
-        | _, _, "element" -> [ RegularPropOverload.create "(value: ReactElement)" "value" ]
+        //| _, _, "element" -> [ RegularPropOverload.create "(value: ReactElement)" "value" ]
 
-        | _, _, "element | string" ->
-            [ RegularPropOverload.create "(value: string)" "value"
-              RegularPropOverload.create "(value: ReactElement)" "value" ]
+        //| _, _, "element | string" ->
+        //    [ RegularPropOverload.create "(value: string)" "value"
+        //      RegularPropOverload.create "(value: ReactElement)" "value" ]
 
-        | _, _, "any" -> [ RegularPropOverload.create "(value: 'a)" "value" ]
+        //| _, _, "any" -> [ RegularPropOverload.create "(value: 'a)" "value" ]
 
-        | _, name, "integer" -> [ RegularPropOverload.create (sprintf "(%s: int)" name) name ]
+        //| _, name, "integer" -> [ RegularPropOverload.create (sprintf "(%s: int)" name) name ]
 
-        | _, name, "bool" -> [ RegularPropOverload.create (sprintf "(%s: bool)" name) name ]
+        //| _, name, "bool" -> [ RegularPropOverload.create (sprintf "(%s: bool)" name) name ]
 
         | _, name, "func" when name.StartsWith "render" ->
             [ RegularPropOverload.create "(renderer: unit -> ReactElement)" "renderer" ]
 
-        | _ when isProbablyEnumProp -> []
+        //| _ when isProbablyEnumProp -> []
 
-        | _ -> [ RegularPropOverload.create "(value: TODO)" "value" ]
+        //| _ -> [ RegularPropOverload.create "(value: TODO)" "value" ]
+
+        | _ ->
+            match translatedPropOverloads with
+            | Result.Error errorMsg ->
+                printfn "%s" errorMsg
+                []
+            | Result.Ok (regularPropOvs, _) ->
+                regularPropOvs
 
     let enumOverloads =
         match componentMethodName, propMethodName, propDocType with
@@ -1172,7 +1245,10 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               EnumPropOverload.create "luxon" @"(import ""AdapterLuxon"" ""@mui/x-date-pickers/AdapterLuxon"")"
               EnumPropOverload.create "moment" @"(import ""AdapterMoment"" ""@mui/x-date-pickers/AdapterMoment"")" ]
 
-        | _ when not isProbablyEnumProp -> []
+        //| _ when not isProbablyEnumProp -> []
+
+        | "globalStyles", "styles", "func | number | object | { __emotion_styles: any } | string | bool" ->
+            List.empty
 
         | ("grid" | "stack"), "direction", _ ->
             let cases =
@@ -1191,6 +1267,8 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               EnumPropOverload.create "md" "\"md\""
               EnumPropOverload.create "lg" "\"lg\""
               EnumPropOverload.create "xl" "\"xl\"" ]
+
+        | "select", "value", "'' | any" -> List.empty
 
         | "snackbar", "anchorOrigin", "{ horizontal: 'center' | 'left' | 'right', vertical: 'bottom' | 'top' }" ->
             [ EnumPropOverload.create "topLeft" "(createObj [ \"vertical\" ==> \"top\"; \"horizontal\" ==> \"left\" ])"
@@ -1254,48 +1332,23 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               EnumPropOverload.create
                   "bottomRight"
                   "(createObj [ \"vertical\" ==> \"bottom\"; \"horizontal\" ==> \"right\" ])" ]
-        | "imageList", "cellHeight", "number | oneOf(['auto'"
-        | ("dateTimePicker"
-          | "datePicker"
-          | "calendarPicker"
-          | "clockPicker"),
-          "views",
-          _ -> []
+
+        //| "imageList", "cellHeight", "number | oneOf(['auto'"
+        //| ("dateTimePicker"
+        //  | "datePicker"
+        //  | "calendarPicker"
+        //  | "clockPicker"),
+        //  "views",
+        //  _ -> []
 
         | _ ->
-            let enumValueExpressions =
-                propDocType.Split("|")
-                |> Array.toList
-                |> List.choose (fun s ->
-                    let value = s.Trim()
-
-                    if value.StartsWith "'" && value.EndsWith "'" then
-                        // String
-                        value.Replace("'", "\"") |> Some
-                    elif value = "number"
-                         || value = "bool"
-                         || value.Contains "{"
-                         || String.IsNullOrWhiteSpace value then
-                        None
-                    else
-                        // Probably literal, e.g. bool or int
-                        Some value)
-
-            let overloads =
-                enumValueExpressions
-                |> List.map (fun v ->
-                    let methodName =
-                        v.Trim('"')
-                        |> kebabCaseToCamelCase
-                        |> prefixUnderscoreToNumbers
-                        |> appendApostropheToReservedKeywords
-
-                    EnumPropOverload.create methodName v)
-
-            if overloads.IsEmpty then
-                failwithf "No enum overloads for %s.%s" componentMethodName propMethodName
-
-            overloads
+            //translateEnumPropNaive componentMethodName propMethodName propDocType
+            match translatedPropOverloads with
+            | Result.Error errorMsg ->
+                printfn "%s" errorMsg
+                []
+            | Result.Ok (_, enumPropOvs) ->
+                enumPropOvs
 
     let globalDocTransform (s: string) =
         s

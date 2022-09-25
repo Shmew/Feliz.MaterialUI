@@ -11,13 +11,38 @@ module Parsers =
 
     let tsIdentifier<'State> : Parser<string, 'State> = identifier (IdentifierOptions())
 
+    let stringLiteralIdentifier<'State> : Parser<string, 'State> =
+        let opts = IdentifierOptions(
+            isAsciiIdContinue = (fun c -> isAsciiLetter c || isDigit c || c = '_' || c = '-')
+        )
+        identifier (opts)
+
     let ws = unicodeSpaces
 
     let tsStringLiteral (stringLiteralParser: Parser<string, 'State>) =
         let tsStringSingleQuote = pchar '''
         let tsSTringDoubleQuote = pchar '"'
-        between tsStringSingleQuote tsStringSingleQuote stringLiteralParser
-        <|> between tsSTringDoubleQuote tsSTringDoubleQuote stringLiteralParser
+        choice [
+            pstring "''"
+            pstring "\"\""
+            between tsStringSingleQuote tsStringSingleQuote stringLiteralParser
+            between tsSTringDoubleQuote tsSTringDoubleQuote stringLiteralParser
+        ]
+
+    let intLiteral = pint32
+
+    let boolLiteral<'State> : Parser<bool, 'State> =
+        choice [
+            pstring "false" |>> bool.Parse
+            pstring "true" |>> bool.Parse
+        ]
+
+    let tsLiteralType: Parser<TsLiteralType> =
+        choice [
+            tsStringLiteral stringLiteralIdentifier |>> StringLiteral
+            intLiteral |>> IntLiteral
+            boolLiteral |>> BoolLiteral
+        ]
 
     let tsAtomicType: Parser<TsType> =
         choice [
@@ -28,10 +53,12 @@ module Parsers =
             stringReturn "func" Func
             stringReturn "object" TsAtomicType.Object
             stringReturn "elementType" ElementType
+            stringReturn "element type" ElementType
             stringReturn "element" Element
+            stringReturn "HTML element" HTMLElement
             stringReturn "node" Node
             stringReturn "any" Any
-            tsStringLiteral tsIdentifier |>> StringLiteral
+            tsLiteralType |>> Literal
             tsIdentifier |>> OtherType
         ] |>> TsType.Atomic
 
@@ -72,8 +99,8 @@ module Parsers =
 
     do tsTypeRef.Value <-
             choice [
-                tsObject
                 tsUnion
+                tsObject
                 tsArray
                 tsAtomicType
             ]
@@ -97,6 +124,22 @@ module Translators =
         TopLevelArray: TsType -> PropOverload list
     }
 
+    let enumPropOverloadOfLiteral (tsLiteral: TsLiteralType) =
+        match tsLiteral with
+        | StringLiteral s ->
+            EnumPropOverload.create (jsParamNameToFsParamName s) ("\"" + s + "\"")
+
+        | IntLiteral i ->
+            EnumPropOverload.create (i |> string |> jsParamNameToFsParamName) (string i)
+
+        | BoolLiteral b ->
+            let propName, propValue =
+                match b with
+                | true -> "true'", "true"
+                | false -> "false'", "false"
+
+            EnumPropOverload.create propName propValue
+
     let translateInnerTsAtomicType (tsAtomicType: TsAtomicType) =
         match tsAtomicType with
         | Any -> "'T"
@@ -108,7 +151,10 @@ module Translators =
         | TsAtomicType.Object -> "obj"
         | Element -> "ReactElement"
         | ElementType -> "ReactElementType"
-        | StringLiteral s -> "\"" + s + "\""
+        | HTMLElement -> "U2<#Element option, IRefValue<#Element option>>"
+        | Literal (StringLiteral s) -> "string" //"\"" + s + "\""
+        | Literal (IntLiteral i) -> "int" // "\"" + string i + "\""
+        | Literal (BoolLiteral b) -> "bool"
         | OtherType typeName -> typeName
         | Node -> "U6<ReactElement, seq<ReactElement>, string, seq<string>, int, float>"
 
@@ -126,9 +172,10 @@ module Translators =
     and translateNestedUnionTypeSign customize (unionCases: TsType list) =
         let translatedUnionCases =
             unionCases
-            |> List.map (function
-                | TsType.Atomic (TsAtomicType.StringLiteral _) -> "string"
-                | t -> t |> translateNestedTsTypeSign customize)
+            //|> List.map (function
+            //    | TsType.Atomic (TsAtomicType.Literal (StringLiteral _)) -> "string"
+            //    | t -> t |> translateNestedTsTypeSign customize)
+            |> List.map (translateNestedTsTypeSign customize)
             |> List.distinct
         let unionArity = translatedUnionCases.Length
 
@@ -177,6 +224,17 @@ module Translators =
               RegularPropOverload.create "(value: float)" "value" ]
             |> List.map PropOverload.Regular
 
+        | HTMLElement ->
+            [ RegularPropOverload.create "(value: #Element option)" "value"
+              RegularPropOverload.create "(getElement: unit -> #Element option)" "getElement"
+              RegularPropOverload.create "(ref: IRefValue<#Element option>)" "(fun () -> ref.current)" ]
+            |> List.map PropOverload.Regular
+
+        | Literal literal ->
+            enumPropOverloadOfLiteral literal
+            |> PropOverload.Enum
+            |> List.singleton
+
         | t ->
             let translators = translators customize
             let typeSign = translators.InnerAtomic t
@@ -211,10 +269,11 @@ module Translators =
     and translateTopLevelUnion customize (unionCases: TsType list) =
         unionCases
         |> List.collect (function
-            | TsType.Atomic (TsAtomicType.StringLiteral s) ->
-                EnumPropOverload.create (jsParamNameToFsParamName s) ("\"" + s + "\"")
+            | TsType.Atomic (Literal literal) ->
+                enumPropOverloadOfLiteral literal
                 |> PropOverload.Enum
                 |> List.singleton
+
             | t -> translateTopLevelTsType customize t)
         |> List.distinctBy (function
             | PropOverload.Regular p -> Choice1Of2 p.ParamsCode

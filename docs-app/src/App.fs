@@ -184,9 +184,11 @@ let Toolbar model dispatch =
     Mui.toolbar [
         Mui.typography [
             typography.variant.h6
-            typography.sx (fun t -> [ style.color "inherit" ])
+            typography.sx (fun t -> [
+                style.color "inherit"
+                style.flexGrow 1
+            ])
             typography.children "Feliz.MaterialUI"
-            typography.sx (fun t -> [ style.flexGrow 1 ])
         ]
 
         // Light/dark mode button
@@ -219,7 +221,7 @@ let Toolbar model dispatch =
                     prop.href "https://github.com/Shmew/Feliz.MaterialUI"
                     iconButton.component' "a"
                     iconButton.color.inherit'
-                    iconButton.children (Html.text "GH") //(gitHubIcon [])
+                    iconButton.children (MuiIcons.GitHubIcon [])
                 ]
             )
         ]

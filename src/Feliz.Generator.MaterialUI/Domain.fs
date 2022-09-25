@@ -53,6 +53,11 @@ type IsOptional = bool
 
 type FsTypeSignature = string
 
+type TsLiteralType =
+    | StringLiteral of string
+    | BoolLiteral of bool
+    | IntLiteral of int
+
 type TsAtomicType =
     | Any
     | String
@@ -63,8 +68,9 @@ type TsAtomicType =
     | Object
     | Element
     | ElementType
+    | HTMLElement
     | Node
-    | StringLiteral of string
+    | Literal of TsLiteralType
     | OtherType of typeName: string
 
 type TsType =

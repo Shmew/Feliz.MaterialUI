@@ -141,7 +141,11 @@ type accordion =
   /// *Inherited from `paper`*
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module accordion =
 
@@ -152,7 +156,6 @@ module accordion =
   type variant =
     static member inline elevation = Interop.mkAttr "variant" "elevation"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -339,6 +342,8 @@ type alert =
   ///
   /// For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
+  /// The color of the component. Unless provided, the value is taken from the `severity` prop. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the `severity` prop. Set to `false` to remove the `icon`.
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
   /// The component maps the `severity` prop to a range of different icons, for instance success to ``. If you wish to change this mapping, you can provide your own. Alternatively, you can use the `icon` prop to override the icon displayed.
@@ -367,6 +372,8 @@ type alert =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// *Inherited from `paper`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -378,7 +385,7 @@ type alert =
   /// *Inherited from `paper`*
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `paper`*
   ///
   /// If `true`, rounded corners are disabled.
@@ -393,7 +400,6 @@ module alert =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The severity of the alert. This defines the color and icon used.
   [<Erase>]
@@ -409,7 +415,6 @@ module alert =
     static member inline filled = Interop.mkAttr "variant" "filled"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -456,6 +461,8 @@ type appBar =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If true, the `color` prop is applied in dark mode.
   static member inline enableColorOnDark (value: bool) = Interop.mkAttr "enableColorOnDark" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -483,11 +490,15 @@ type appBar =
   /// *Inherited from `paper`*
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `paper`*
   ///
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module appBar =
 
@@ -499,7 +510,6 @@ module appBar =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline transparent = Interop.mkAttr "color" "transparent"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
   [<Erase>]
@@ -517,7 +527,6 @@ module appBar =
   type variant =
     static member inline elevation = Interop.mkAttr "variant" "elevation"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -657,7 +666,7 @@ type autocomplete =
   /// *value:* The value to test against.
   static member inline isOptionEqualToValue (tester: ('a -> 'a -> bool)) = Interop.mkAttr "isOptionEqualToValue" tester
   /// The maximum number of tags that will be visible when not focused. Set `-1` to disable the limit.
-  static member inline limitTags (limitTags: int) = Interop.mkAttr "limitTags" limitTags
+  static member inline limitTags (value: int) = Interop.mkAttr "limitTags" value
   /// The component used to render the listbox.
   static member inline ListboxComponent (value: ReactElementType) = Interop.mkAttr "ListboxComponent" value
   /// Props applied to the Listbox element.
@@ -890,6 +899,8 @@ type autocomplete =
   static member inline renderTags (render: 'option [] -> AutocompleteRenderValueState -> ReactElement) = Interop.mkAttr "renderTags" (Func<_,_,_> render)
   /// If `true`, the input's text is selected on focus. It helps the user clear the selected value.
   static member inline selectOnFocus (value: bool) = Interop.mkAttr "selectOnFocus" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -970,7 +981,6 @@ module autocomplete =
   type size =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -1015,6 +1025,8 @@ type avatar =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The shape of the avatar.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module avatar =
 
@@ -1024,7 +1036,6 @@ module avatar =
     static member inline circular = Interop.mkAttr "variant" "circular"
     static member inline rounded = Interop.mkAttr "variant" "rounded"
     static member inline square = Interop.mkAttr "variant" "square"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -1049,6 +1060,8 @@ type avatarGroup =
   static member inline componentsProps (?additionalAvatar: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if additionalAvatar.IsSome then x?``additionalAvatar`` <- additionalAvatar); x)
   /// Max avatars to show before +x.
   static member inline max (value: int) = Interop.mkAttr "max" value
+  /// Spacing between avatars.
+  static member inline spacing (value: float) = Interop.mkAttr "spacing" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1065,6 +1078,8 @@ type avatarGroup =
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// The total number of avatars. Used for calculating the number of extra avatars.
   static member inline total (value: int) = Interop.mkAttr "total" value
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module avatarGroup =
 
@@ -1080,7 +1095,6 @@ module avatarGroup =
     static member inline circular = Interop.mkAttr "variant" "circular"
     static member inline rounded = Interop.mkAttr "variant" "rounded"
     static member inline square = Interop.mkAttr "variant" "square"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -1104,9 +1118,7 @@ type backdrop =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Backdrop.
   static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   /// If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component.
@@ -1165,6 +1177,8 @@ type backdrop =
 
 [<Erase>]
 type badge =
+  /// The anchor of the badge.
+  static member inline anchorOrigin (horizontal: string, vertical: string) = Interop.mkAttr "anchorOrigin" (let x = createEmpty<obj> in x?``horizontal`` <- horizontal; x?``vertical`` <- vertical; x)
   /// The content rendered within the badge.
   static member inline badgeContent (value: ReactElement) = Interop.mkAttr "badgeContent" value
   /// The content rendered within the badge.
@@ -1189,14 +1203,14 @@ type badge =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The badge will be added relative to this node.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (? Badge: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (? Badge: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Badge.IsSome then x?`` Badge`` <-  Badge); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Badge: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Badge.IsSome then x?``Badge`` <- Badge); (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Badge.
   static member inline componentsProps (?badge: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge); (if root.IsSome then x?``root`` <- root); x)
   /// If `true`, the badge is invisible.
@@ -1219,6 +1233,8 @@ type badge =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module badge =
 
@@ -1240,7 +1256,6 @@ module badge =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// Wrapped shape the badge should overlap.
   [<Erase>]
@@ -1253,7 +1268,6 @@ module badge =
   type variant =
     static member inline dot = Interop.mkAttr "variant" "dot"
     static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -1311,7 +1325,7 @@ type bottomNavigation =
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// The value of the currently selected `BottomNavigationAction`.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
 
 
 [<Erase>]
@@ -1351,7 +1365,7 @@ type bottomNavigationAction =
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// You can provide your own value. Otherwise, we fallback to the child position index.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// *Inherited from `buttonBase`*
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -1467,11 +1481,11 @@ type breadcrumbs =
   /// For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
   static member inline expandText (value: string) = Interop.mkAttr "expandText" value
   /// If max items is exceeded, the number of items to show after the ellipsis.
-  static member inline itemsAfterCollapse (itemsAfterCollapse: int) = Interop.mkAttr "itemsAfterCollapse" itemsAfterCollapse
+  static member inline itemsAfterCollapse (value: int) = Interop.mkAttr "itemsAfterCollapse" value
   /// If max items is exceeded, the number of items to show before the ellipsis.
-  static member inline itemsBeforeCollapse (itemsBeforeCollapse: int) = Interop.mkAttr "itemsBeforeCollapse" itemsBeforeCollapse
+  static member inline itemsBeforeCollapse (value: int) = Interop.mkAttr "itemsBeforeCollapse" value
   /// Specifies the maximum number of breadcrumbs to display. When there are more than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse` will be shown, with an ellipsis in between.
-  static member inline maxItems (maxItems: int) = Interop.mkAttr "maxItems" maxItems
+  static member inline maxItems (value: int) = Interop.mkAttr "maxItems" value
   /// Custom separator node.
   static member inline separator (value: ReactElement) = Interop.mkAttr "separator" value
   /// Custom separator node.
@@ -1514,6 +1528,8 @@ type button =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -1534,6 +1550,8 @@ type button =
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
   /// The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node.
   static member inline href (value: string) = Interop.mkAttr "href" value
+  /// The size of the component. `small` is equivalent to the dense button styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// Element placed before the children.
   static member inline startIcon (element: ReactElement) = Interop.mkAttr "startIcon" element
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1550,6 +1568,8 @@ type button =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// *Inherited from `buttonBase`*
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -1603,7 +1623,6 @@ module button =
     static member inline error = Interop.mkAttr "color" "error"
     static member inline info = Interop.mkAttr "color" "info"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The size of the component. `small` is equivalent to the dense button styling.
   [<Erase>]
@@ -1611,7 +1630,6 @@ module button =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
@@ -1619,7 +1637,6 @@ module button =
     static member inline contained = Interop.mkAttr "variant" "contained"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline text = Interop.mkAttr "variant" "text"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -1700,6 +1717,8 @@ type buttonGroup =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -1714,6 +1733,8 @@ type buttonGroup =
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
   /// If `true`, the buttons will take up the full width of its container.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
+  /// The size of the component. `small` is equivalent to the dense button styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1728,6 +1749,8 @@ type buttonGroup =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module buttonGroup =
 
@@ -1741,7 +1764,6 @@ module buttonGroup =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The component orientation (layout flow direction).
   [<Erase>]
@@ -1755,7 +1777,6 @@ module buttonGroup =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
@@ -1763,7 +1784,6 @@ module buttonGroup =
     static member inline contained = Interop.mkAttr "variant" "contained"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline text = Interop.mkAttr "variant" "text"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -1807,11 +1827,15 @@ type card =
   /// *Inherited from `paper`*
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `paper`*
   ///
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module card =
 
@@ -1822,7 +1846,6 @@ module card =
   type variant =
     static member inline elevation = Interop.mkAttr "variant" "elevation"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -2105,6 +2128,8 @@ type checkbox =
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The icon to display when the component is checked.
   static member inline checkedIcon (element: ReactElement) = Interop.mkAttr "checkedIcon" element
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The default checked state. Use when the component is not controlled.
   static member inline defaultChecked (value: bool) = Interop.mkAttr "defaultChecked" value
   /// If `true`, the component is disabled.
@@ -2143,6 +2168,8 @@ type checkbox =
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// If `true`, the `input` element is required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// The size of the component. `small` is equivalent to the dense checkbox styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -2226,14 +2253,12 @@ module checkbox =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The size of the component. `small` is equivalent to the dense checkbox styling.
   [<Erase>]
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -2244,6 +2269,8 @@ type chip =
   static member inline children  = UnsupportedProp ()
   /// If `true`, the chip will appear clickable, and will raise when pressed, even if the onClick prop is not defined. If `false`, the chip will not appear clickable, even if onClick prop is defined. This can be used, for example, along with the component prop to indicate an anchor Chip is clickable. Note: this controls the UI and does not affect the onClick event.
   static member inline clickable (value: bool) = Interop.mkAttr "clickable" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -2268,6 +2295,8 @@ type chip =
   static member inline label (value: float) = Interop.mkAttr "label" value
   /// Callback fired when the delete icon is clicked. If set, the delete icon will be shown.
   static member inline onDelete (handler: Event -> unit) = Interop.mkAttr "onDelete" handler
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -2282,6 +2311,8 @@ type chip =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module chip =
 
@@ -2295,25 +2326,24 @@ module chip =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The size of the component.
   [<Erase>]
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
   type variant =
     static member inline filled = Interop.mkAttr "variant" "filled"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
 type circularProgress =
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`.
   static member inline disableShrink (value: bool) = Interop.mkAttr "disableShrink" value
   /// The size of the component. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g '3rem'.
@@ -2353,7 +2383,6 @@ module circularProgress =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The variant to use. Use indeterminate when there is no progress value.
   [<Erase>]
@@ -2453,6 +2482,8 @@ type container =
   static member inline disableGutters (value: bool) = Interop.mkAttr "disableGutters" value
   /// Set the max-width to match the min-width of the current breakpoint. This is useful if you'd prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport. It's fluid by default.
   static member inline fixed' (value: bool) = Interop.mkAttr "fixed" value
+  /// Determine the max-width of the container. The container width grows with the size of the screen. Set to `false` to disable `maxWidth`.
+  static member inline maxWidth (value: string) = Interop.mkAttr "maxWidth" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -2479,7 +2510,6 @@ module container =
     static member inline lg = Interop.mkAttr "maxWidth" "lg"
     static member inline xl = Interop.mkAttr "maxWidth" "xl"
     static member inline false' = Interop.mkAttr "maxWidth" false
-    static member inline string = Interop.mkAttr "maxWidth" string
 
 
 [<Erase>]
@@ -2536,6 +2566,8 @@ type dialog =
   ///
   /// Notice that the dialog width grow is limited by the default margin.
   static member inline fullWidth (value: bool) = Interop.mkAttr "fullWidth" value
+  /// Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`.
+  static member inline maxWidth (value: string) = Interop.mkAttr "maxWidth" value
   /// <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1cw4hi4" focusable="false" aria-hidden="true" viewbox="0 0 24 24" data-testid="ReportProblemOutlinedIcon"><br><br>      <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path><br><br>    </svg>
   ///
   ///     **Deprecated** -
@@ -2621,11 +2653,7 @@ type dialog =
   /// *Inherited from `modal`*
   ///
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// *Inherited from `modal`*
-  ///
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
@@ -2698,7 +2726,6 @@ module dialog =
     static member inline lg = Interop.mkAttr "maxWidth" "lg"
     static member inline xl = Interop.mkAttr "maxWidth" "xl"
     static member inline false' = Interop.mkAttr "maxWidth" false
-    static member inline string = Interop.mkAttr "maxWidth" string
 
   /// Determine the container for scrolling the dialog.
   [<Erase>]
@@ -2823,6 +2850,10 @@ type dialogContentText =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
+  /// Applies the theme typography styles.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
+  /// *Inherited from `typography`*
+  ///
   /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
@@ -2858,7 +2889,6 @@ module dialogContentText =
     static member inline overline = Interop.mkAttr "variant" "overline"
     static member inline subtitle1 = Interop.mkAttr "variant" "subtitle1"
     static member inline subtitle2 = Interop.mkAttr "variant" "subtitle2"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -2929,6 +2959,8 @@ type divider =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module divider =
 
@@ -2951,7 +2983,6 @@ module divider =
     static member inline fullWidth = Interop.mkAttr "variant" "fullWidth"
     static member inline inset = Interop.mkAttr "variant" "inset"
     static member inline middle = Interop.mkAttr "variant" "middle"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -2969,7 +3000,7 @@ type drawer =
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The elevation of the drawer.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// If `true`, the backdrop is not rendered.
   static member inline hideBackdrop (value: bool) = Interop.mkAttr "hideBackdrop" value
   /// Props applied to the
@@ -3045,6 +3076,8 @@ type fab =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -3057,6 +3090,8 @@ type fab =
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
   /// The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node.
   static member inline href (value: string) = Interop.mkAttr "href" value
+  /// The size of the component. `small` is equivalent to the dense button styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -3071,6 +3106,8 @@ type fab =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// *Inherited from `buttonBase`*
   ///
   /// A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -3125,7 +3162,6 @@ module fab =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The size of the component. `small` is equivalent to the dense button styling.
   [<Erase>]
@@ -3133,14 +3169,12 @@ module fab =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
   type variant =
     static member inline circular = Interop.mkAttr "variant" "circular"
     static member inline extended = Interop.mkAttr "variant" "extended"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -3173,14 +3207,14 @@ type filledInput =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Input.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the input will not have an underline.
@@ -3256,7 +3290,7 @@ type filledInput =
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
@@ -3269,6 +3303,10 @@ type filledInput =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
 
 module filledInput =
 
@@ -3277,7 +3315,6 @@ module filledInput =
   type color =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
   [<Erase>]
@@ -3292,7 +3329,6 @@ module filledInput =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -3301,6 +3337,8 @@ type formControl =
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
   static member inline children (elements: seq<ReactElement>) = prop.children elements
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -3317,6 +3355,8 @@ type formControl =
   static member inline hiddenLabel (value: bool) = Interop.mkAttr "hiddenLabel" value
   /// If `true`, the label will indicate that the `input` is required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -3343,7 +3383,6 @@ module formControl =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
@@ -3357,7 +3396,6 @@ module formControl =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
@@ -3426,7 +3464,7 @@ type formControlLabel =
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// The value of the component.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -3527,6 +3565,8 @@ type formHelperText =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module formHelperText =
 
@@ -3541,7 +3581,6 @@ module formHelperText =
     static member inline filled = Interop.mkAttr "variant" "filled"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline standard = Interop.mkAttr "variant" "standard"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -3558,6 +3597,8 @@ type formLabel =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -3598,13 +3639,12 @@ module formLabel =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
 
 [<Erase>]
 type globalStyles =
   /// The styles you want to apply globally.
-  static member inline styles (value: bool) = Interop.mkAttr "styles" value
+  static member inline styles (value: #seq<IStyleAttribute>) = Interop.mkAttr "styles" (createObj !!value)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -3686,6 +3726,14 @@ type grid =
   static member inline zeroMinWidth (value: bool) = Interop.mkAttr "zeroMinWidth" value
 
 module grid =
+
+  /// Defines the `flex-direction` style property. It is applied for all screen sizes.
+  [<Erase>]
+  type direction =
+    static member inline columnReverse = Interop.mkAttr "direction" "column-reverse"
+    static member inline column = Interop.mkAttr "direction" "column"
+    static member inline rowReverse = Interop.mkAttr "direction" "row-reverse"
+    static member inline row = Interop.mkAttr "direction" "row"
 
   /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `lg` breakpoint and wider screens if not overridden.
   [<Erase>]
@@ -3815,6 +3863,15 @@ module hidden =
     static member inline lg = Interop.mkAttr "initialWidth" "lg"
     static member inline xl = Interop.mkAttr "initialWidth" "xl"
 
+  /// Hide the given breakpoint(s).
+  [<Erase>]
+  type only =
+    static member inline xs = Interop.mkAttr "only" "xs"
+    static member inline sm = Interop.mkAttr "only" "sm"
+    static member inline md = Interop.mkAttr "only" "md"
+    static member inline lg = Interop.mkAttr "only" "lg"
+    static member inline xl = Interop.mkAttr "only" "xl"
+
 
 [<Erase>]
 type icon =
@@ -3832,10 +3889,14 @@ type icon =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The name of the icon font ligature.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+  static member inline fontSize (value: string) = Interop.mkAttr "fontSize" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -3865,7 +3926,6 @@ module icon =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
   [<Erase>]
@@ -3874,7 +3934,6 @@ module icon =
     static member inline large = Interop.mkAttr "fontSize" "large"
     static member inline medium = Interop.mkAttr "fontSize" "medium"
     static member inline small = Interop.mkAttr "fontSize" "small"
-    static member inline string = Interop.mkAttr "fontSize" string
 
 
 [<Erase>]
@@ -3891,6 +3950,8 @@ type iconButton =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The icon to display.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the keyboard focus ripple is disabled.
@@ -3899,6 +3960,8 @@ type iconButton =
   ///
   /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
+  /// The size of the component. `small` is equivalent to the dense button styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -3979,7 +4042,6 @@ module iconButton =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
   [<Erase>]
@@ -3994,7 +4056,6 @@ module iconButton =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -4012,13 +4073,15 @@ type imageList =
   /// The content of the component, normally `ImageListItem`s.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Number of columns.
-  static member inline cols (cols: int) = Interop.mkAttr "cols" cols
+  static member inline cols (value: int) = Interop.mkAttr "cols" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The gap between items in px.
   static member inline gap (value: int) = Interop.mkAttr "gap" value
+  /// The height of one row in px.
+  static member inline rowHeight (value: float) = Interop.mkAttr "rowHeight" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4033,6 +4096,8 @@ type imageList =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module imageList =
 
@@ -4048,7 +4113,6 @@ module imageList =
     static member inline quilted = Interop.mkAttr "variant" "quilted"
     static member inline standard = Interop.mkAttr "variant" "standard"
     static member inline woven = Interop.mkAttr "variant" "woven"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -4066,13 +4130,13 @@ type imageListItem =
   /// The content of the component, normally an ``.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// Width of the item in number of grid columns.
-  static member inline cols (cols: int) = Interop.mkAttr "cols" cols
+  static member inline cols (value: int) = Interop.mkAttr "cols" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Height of the item in number of grid rows.
-  static member inline rows (rows: int) = Interop.mkAttr "rows" rows
+  static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4156,14 +4220,14 @@ type input =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Input.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the `input` will not have an underline.
@@ -4237,7 +4301,7 @@ type input =
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
@@ -4250,6 +4314,10 @@ type input =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
 
 module input =
 
@@ -4258,7 +4326,6 @@ module input =
   type color =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
   [<Erase>]
@@ -4273,7 +4340,6 @@ module input =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -4335,14 +4401,14 @@ type inputBase =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Input.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application. This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
@@ -4401,6 +4467,8 @@ type inputBase =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4420,7 +4488,7 @@ type inputBase =
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -4435,7 +4503,6 @@ module inputBase =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
   [<Erase>]
@@ -4448,7 +4515,6 @@ module inputBase =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -4465,6 +4531,8 @@ type inputLabel =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If `true`, the transition animation is disabled.
   static member inline disableAnimation (value: bool) = Interop.mkAttr "disableAnimation" value
   /// If `true`, the component is disabled.
@@ -4515,7 +4583,6 @@ module inputLabel =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl.
   [<Erase>]
@@ -4538,6 +4605,8 @@ module inputLabel =
 
 [<Erase>]
 type linearProgress =
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4567,7 +4636,6 @@ module linearProgress =
     static member inline inherit' = Interop.mkAttr "color" "inherit"
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The variant to use. Use indeterminate or query when there is no progress value.
   [<Erase>]
@@ -4593,7 +4661,7 @@ type link =
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The color of the link.
-  static member inline color (value: 'a) = Interop.mkAttr "color" value
+  static member inline color (value: 'T) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://mui.com/material-ui/guides/composition/#caveat-with-refs).
@@ -4616,6 +4684,8 @@ type link =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// Applies the theme typography styles.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// *Inherited from `typography`*
   ///
   /// If `true`, the text will have a bottom margin.
@@ -4661,7 +4731,6 @@ module link =
     static member inline overline = Interop.mkAttr "variant" "overline"
     static member inline subtitle1 = Interop.mkAttr "variant" "subtitle1"
     static member inline subtitle2 = Interop.mkAttr "variant" "subtitle2"
-    static member inline string = Interop.mkAttr "variant" string
 
   /// *Inherited from `typography`*
   ///
@@ -4760,9 +4829,7 @@ type listItem =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Input.
   static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   /// <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1cw4hi4" focusable="false" aria-hidden="true" viewbox="0 0 24 24" data-testid="ReportProblemOutlinedIcon"><br><br>      <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path><br><br>    </svg>
@@ -5182,6 +5249,12 @@ type loadingButton =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
+  /// *Inherited from `button`*
+  ///
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// *Inherited from `button`*
   ///
   /// The component used for the root node. Either a string to use a HTML element or a component.
@@ -5216,6 +5289,10 @@ type loadingButton =
   ///
   /// The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node.
   static member inline href (value: string) = Interop.mkAttr "href" value
+  /// *Inherited from `button`*
+  ///
+  /// The size of the component. `small` is equivalent to the dense button styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// *Inherited from `button`*
   ///
   /// Element placed before the children.
@@ -5276,7 +5353,6 @@ module loadingButton =
     static member inline contained = Interop.mkAttr "variant" "contained"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline text = Interop.mkAttr "variant" "text"
-    static member inline string = Interop.mkAttr "variant" string
 
   /// *Inherited from `button`*
   ///
@@ -5290,7 +5366,6 @@ module loadingButton =
     static member inline error = Interop.mkAttr "color" "error"
     static member inline info = Interop.mkAttr "color" "info"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// *Inherited from `button`*
   ///
@@ -5300,7 +5375,6 @@ module loadingButton =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -5490,7 +5564,7 @@ type menu =
   /// *Inherited from `popover`*
   ///
   /// The elevation of the popover.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `popover`*
   ///
   /// Specifies how close to the edge of the window the popover can appear.
@@ -5566,11 +5640,7 @@ type menu =
   /// *Inherited from `modal`*
   ///
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// *Inherited from `modal`*
-  ///
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
@@ -5872,9 +5942,9 @@ module menuList =
 [<Erase>]
 type mobileStepper =
   /// The total steps.
-  static member inline steps (steps: int) = Interop.mkAttr "steps" steps
+  static member inline steps (value: int) = Interop.mkAttr "steps" value
   /// Set the active step (zero based index). Defines which dot is highlighted when the variant is 'dots'.
-  static member inline activeStep (activeStep: int) = Interop.mkAttr "activeStep" activeStep
+  static member inline activeStep (value: int) = Interop.mkAttr "activeStep" value
   /// A back button element. For instance, it can be a `Button` or an `IconButton`.
   static member inline backButton (value: ReactElement) = Interop.mkAttr "backButton" value
   /// A back button element. For instance, it can be a `Button` or an `IconButton`.
@@ -5928,7 +5998,7 @@ type mobileStepper =
   /// *Inherited from `paper`*
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `paper`*
   ///
   /// If `true`, rounded corners are disabled.
@@ -5984,9 +6054,7 @@ type modal =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Modal.
   static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
@@ -6131,12 +6199,12 @@ type nativeSelect =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// *Inherited from `input`*
   ///
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// *Inherited from `input`*
   ///
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
   /// *Inherited from `input`*
   ///
   /// The props used for each slot inside the Input.
@@ -6144,7 +6212,7 @@ type nativeSelect =
   /// *Inherited from `input`*
   ///
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// *Inherited from `input`*
   ///
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -6235,6 +6303,10 @@ type nativeSelect =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
 
 module nativeSelect =
 
@@ -6252,7 +6324,6 @@ module nativeSelect =
   type color =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// *Inherited from `input`*
   ///
@@ -6269,7 +6340,6 @@ module nativeSelect =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -6278,12 +6348,12 @@ type outlinedInput =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// End `InputAdornment` for this component.
@@ -6367,7 +6437,7 @@ type outlinedInput =
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
@@ -6384,6 +6454,10 @@ type outlinedInput =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
 
 module outlinedInput =
 
@@ -6392,7 +6466,6 @@ module outlinedInput =
   type color =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense`, will adjust vertical spacing. This is normally obtained via context from FormControl. The prop defaults to the value (`'none'`) inherited from the parent FormControl component.
   [<Erase>]
@@ -6407,17 +6480,18 @@ module outlinedInput =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
 type pagination =
   /// Number of always visible pages at the beginning and end.
-  static member inline boundaryCount (boundaryCount: int) = Interop.mkAttr "boundaryCount" boundaryCount
+  static member inline boundaryCount (value: int) = Interop.mkAttr "boundaryCount" value
+  /// The active color. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The total number of pages.
-  static member inline count (count: int) = Interop.mkAttr "count" count
+  static member inline count (value: int) = Interop.mkAttr "count" value
   /// The page selected by default when the component is uncontrolled.
-  static member inline defaultPage (defaultPage: int) = Interop.mkAttr "defaultPage" defaultPage
+  static member inline defaultPage (value: int) = Interop.mkAttr "defaultPage" value
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.
@@ -6459,7 +6533,7 @@ type pagination =
   /// *page:* The page selected.
   static member inline onChange (handler: int -> unit) = Interop.mkAttr "onChange" (Func<_,_> (fun _ p -> handler p))
   /// The current page.
-  static member inline page (page: int) = Interop.mkAttr "page" page
+  static member inline page (value: int) = Interop.mkAttr "page" value
   /// Render the item.
   ///
   /// **Signature:**
@@ -6473,7 +6547,9 @@ type pagination =
   /// If `true`, show the last-page button.
   static member inline showLastButton (value: bool) = Interop.mkAttr "showLastButton" value
   /// Number of always visible pages before and after the current page.
-  static member inline siblingCount (siblingCount: int) = Interop.mkAttr "siblingCount" siblingCount
+  static member inline siblingCount (value: int) = Interop.mkAttr "siblingCount" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6488,6 +6564,8 @@ type pagination =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -6499,7 +6577,6 @@ module pagination =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline standard = Interop.mkAttr "color" "standard"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The shape of the pagination items.
   [<Erase>]
@@ -6513,26 +6590,24 @@ module pagination =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
   type variant =
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline text = Interop.mkAttr "variant" "text"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
 type paginationItem =
+  /// The active color. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for first, last, next & previous item type
-  static member inline components (? first: string, ? last: string, ? next: string, ? previous: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  first.IsSome then x?`` first`` <-  first); (if  last.IsSome then x?`` last`` <-  last); (if  next.IsSome then x?`` next`` <-  next); (if  previous.IsSome then x?`` previous`` <-  previous); x)
-  /// The components used for first, last, next & previous item type
-  static member inline components (? first: ReactElementType, ? last: ReactElementType, ? next: ReactElementType, ? previous: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  first.IsSome then x?`` first`` <-  first); (if  last.IsSome then x?`` last`` <-  last); (if  next.IsSome then x?`` next`` <-  next); (if  previous.IsSome then x?`` previous`` <-  previous); x)
+  static member inline components (?first: ReactElementType, ?last: ReactElementType, ?next: ReactElementType, ?previous: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if first.IsSome then x?``first`` <- first); (if last.IsSome then x?``last`` <- last); (if next.IsSome then x?``next`` <- next); (if previous.IsSome then x?``previous`` <- previous); x)
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// The current page number.
@@ -6549,6 +6624,8 @@ type paginationItem =
   static member inline page (value: float) = Interop.mkAttr "page" value
   /// If `true` the pagination item is selected.
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6563,6 +6640,8 @@ type paginationItem =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -6574,7 +6653,6 @@ module paginationItem =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline standard = Interop.mkAttr "color" "standard"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The shape of the pagination item.
   [<Erase>]
@@ -6588,7 +6666,6 @@ module paginationItem =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The type of pagination item.
   [<Erase>]
@@ -6606,7 +6683,6 @@ module paginationItem =
   type variant =
     static member inline outlined = Interop.mkAttr "variant" "outlined"
     static member inline text = Interop.mkAttr "variant" "text"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -6628,7 +6704,7 @@ type paper =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6645,6 +6721,8 @@ type paper =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module paper =
 
@@ -6653,7 +6731,6 @@ module paper =
   type variant =
     static member inline elevation = Interop.mkAttr "variant" "elevation"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -6717,7 +6794,7 @@ type popover =
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
   static member inline container (getElement: unit -> ReactElement option) = Interop.mkAttr "container" getElement
   /// The elevation of the popover.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
   /// Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -6805,11 +6882,7 @@ type popover =
   /// *Inherited from `modal`*
   ///
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// *Inherited from `modal`*
-  ///
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (? Backdrop: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Backdrop.IsSome then x?`` Backdrop`` <-  Backdrop); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
@@ -6933,9 +7006,7 @@ type popper =
   /// Popper render function or node.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The components used for each slot inside the Popper. Either a string to use a HTML element or a component.
-  static member inline components (? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
-  /// The components used for each slot inside the Popper. Either a string to use a HTML element or a component.
-  static member inline components (? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root); x)
   /// The props used for each slot inside the Popper.
   static member inline componentsProps (?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
@@ -7021,6 +7092,8 @@ type radio =
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The icon to display when the component is checked.
   static member inline checkedIcon (element: ReactElement) = Interop.mkAttr "checkedIcon" element
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the ripple effect is disabled.
@@ -7047,6 +7120,8 @@ type radio =
   static member inline onChange (handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// If `true`, the `input` element is required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// The size of the component. `small` is equivalent to the dense radio styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -7130,14 +7205,12 @@ module radio =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The size of the component. `small` is equivalent to the dense radio styling.
   [<Erase>]
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -7354,6 +7427,8 @@ type rating =
   static member inline precision (value: float) = Interop.mkAttr "precision" value
   /// Removes all hover effects and pointer events.
   static member inline readOnly (value: bool) = Interop.mkAttr "readOnly" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -7383,7 +7458,6 @@ module rating =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -7453,7 +7527,7 @@ type select =
   /// If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined). You can only use it when the `native` prop is `false` (default).
   static member inline defaultOpen (value: bool) = Interop.mkAttr "defaultOpen" value
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, a value is displayed even if no items are selected.
   ///
   /// In order to display a meaningful value, a function can be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
@@ -7610,12 +7684,12 @@ type select =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// *Inherited from `outlinedInput`*
   ///
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Root: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// *Inherited from `outlinedInput`*
   ///
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Root.IsSome then x?`` Root`` <-  Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
   /// *Inherited from `outlinedInput`*
   ///
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -7702,6 +7776,10 @@ type select =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
 
 module select =
 
@@ -7719,7 +7797,6 @@ module select =
   type color =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// *Inherited from `outlinedInput`*
   ///
@@ -7736,7 +7813,6 @@ module select =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -7775,6 +7851,8 @@ type skeleton =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The type of content that will be rendered.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.
   static member inline width (value: int) = Interop.mkAttr "width" value
   /// Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own.
@@ -7796,7 +7874,6 @@ module skeleton =
     static member inline rectangular = Interop.mkAttr "variant" "rectangular"
     static member inline rounded = Interop.mkAttr "variant" "rounded"
     static member inline text = Interop.mkAttr "variant" "text"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -7849,10 +7926,10 @@ type slider =
   static member inline ariaLabelledby (value: string) = Interop.mkAttr "aria-labelledby" value
   /// A string value that provides a user-friendly name for the current value of the slider.
   static member inline ariaValuetext (value: string) = Interop.mkAttr "aria-valuetext" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
-  static member inline components (? Input: string, ? Mark: string, ? MarkLabel: string, ? Rail: string, ? Root: string, ? Thumb: string, ? Track: string, ? ValueLabel: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
-  /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
-  static member inline components (? Input: ReactElementType, ? Mark: ReactElementType, ? MarkLabel: ReactElementType, ? Rail: ReactElementType, ? Root: ReactElementType, ? Thumb: ReactElementType, ? Track: ReactElementType, ? ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Input.IsSome then x?`` Input`` <-  Input); (if  Mark.IsSome then x?`` Mark`` <-  Mark); (if  MarkLabel.IsSome then x?`` MarkLabel`` <-  MarkLabel); (if  Rail.IsSome then x?`` Rail`` <-  Rail); (if  Root.IsSome then x?`` Root`` <-  Root); (if  Thumb.IsSome then x?`` Thumb`` <-  Thumb); (if  Track.IsSome then x?`` Track`` <-  Track); (if  ValueLabel.IsSome then x?`` ValueLabel`` <-  ValueLabel); x)
+  static member inline components (?Input: ReactElementType, ?Mark: ReactElementType, ?MarkLabel: ReactElementType, ?Rail: ReactElementType, ?Root: ReactElementType, ?Thumb: ReactElementType, ?Track: ReactElementType, ?ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Mark.IsSome then x?``Mark`` <- Mark); (if MarkLabel.IsSome then x?``MarkLabel`` <- MarkLabel); (if Rail.IsSome then x?``Rail`` <- Rail); (if Root.IsSome then x?``Root`` <- Root); (if Thumb.IsSome then x?``Thumb`` <- Thumb); (if Track.IsSome then x?``Track`` <- Track); (if ValueLabel.IsSome then x?``ValueLabel`` <- ValueLabel); x)
   /// The props used for each slot inside the Slider.
   static member inline componentsProps (?input: U2<Func<obj, obj>, seq<IReactProperty>>, ?mark: U2<Func<obj, obj>, seq<IReactProperty>>, ?markLabel: U2<Func<obj, obj>, seq<IReactProperty>>, ?rail: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>, ?thumb: U2<Func<obj, obj>, seq<IReactProperty>>, ?track: U2<Func<obj, obj>, seq<IReactProperty>>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; components: {| Root: ReactElementType option |} option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if mark.IsSome then x?``mark`` <- mark); (if markLabel.IsSome then x?``markLabel`` <- markLabel); (if rail.IsSome then x?``rail`` <- rail); (if root.IsSome then x?``root`` <- root); (if thumb.IsSome then x?``thumb`` <- thumb); (if track.IsSome then x?``track`` <- track); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel); x)
   /// The default value. Use when the component is not controlled.
@@ -8085,6 +8162,8 @@ type slider =
   static member inline scale (transform: int -> int) = Interop.mkAttr "scale" transform
   /// A transformation function, to change the scale of the slider.
   static member inline scale (transform: float -> float) = Interop.mkAttr "scale" transform
+  /// The size of the slider.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
   ///
   /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
@@ -8158,7 +8237,6 @@ module slider =
   type color =
     static member inline primary = Interop.mkAttr "color" "primary"
     static member inline secondary = Interop.mkAttr "color" "secondary"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The component orientation.
   [<Erase>]
@@ -8171,7 +8249,6 @@ module slider =
   type size =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The track presentation:
   ///
@@ -8206,6 +8283,8 @@ type snackbar =
   static member inline action (value: int) = Interop.mkAttr "action" value
   /// The action to display. It renders after the message, at the end of the snackbar.
   static member inline action (value: float) = Interop.mkAttr "action" value
+  /// The anchor of the `Snackbar`. On smaller screens, the component grows to occupy all the available width, the horizontal alignment is ignored.
+  static member inline anchorOrigin (horizontal: string, vertical: string) = Interop.mkAttr "anchorOrigin" (let x = createEmpty<obj> in x?``horizontal`` <- horizontal; x?``vertical`` <- vertical; x)
   /// The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value.
   static member inline autoHideDuration (value: int) = Interop.mkAttr "autoHideDuration" value
   /// The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value.
@@ -8221,7 +8300,7 @@ type snackbar =
   /// If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
   static member inline disableWindowBlurListener (value: bool) = Interop.mkAttr "disableWindowBlurListener" value
   /// When displaying multiple consecutive Snackbars from a parent rendering a single <Snackbar/>, add the key prop to ensure independent treatment of each message. e.g. <snackbar key="{message}"></snackbar>, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled.
-  static member inline key (value: 'a) = Interop.mkAttr "key" value
+  static member inline key (value: 'T) = Interop.mkAttr "key" value
   /// The message to display.
   static member inline message (value: ReactElement) = Interop.mkAttr "message" value
   /// The message to display.
@@ -8351,11 +8430,15 @@ type snackbarContent =
   /// *Inherited from `paper`*
   ///
   /// Shadow depth, corresponds to `dp` in the spec. It accepts values between 0 and 24 inclusive.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `paper`*
   ///
   /// If `true`, rounded corners are disabled.
   static member inline square (value: bool) = Interop.mkAttr "square" value
+  /// *Inherited from `paper`*
+  ///
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module snackbarContent =
 
@@ -8366,7 +8449,6 @@ module snackbarContent =
   type variant =
     static member inline elevation = Interop.mkAttr "variant" "elevation"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -8548,11 +8630,7 @@ type speedDialAction =
   /// *Inherited from `tooltip`*
   ///
   /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (? Arrow: string, ? Popper: string, ? Tooltip: string, ? Transition: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Arrow.IsSome then x?`` Arrow`` <-  Arrow); (if  Popper.IsSome then x?`` Popper`` <-  Popper); (if  Tooltip.IsSome then x?`` Tooltip`` <-  Tooltip); (if  Transition.IsSome then x?`` Transition`` <-  Transition); x)
-  /// *Inherited from `tooltip`*
-  ///
-  /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (? Arrow: ReactElementType, ? Popper: ReactElementType, ? Tooltip: ReactElementType, ? Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Arrow.IsSome then x?`` Arrow`` <-  Arrow); (if  Popper.IsSome then x?`` Popper`` <-  Popper); (if  Tooltip.IsSome then x?`` Tooltip`` <-  Tooltip); (if  Transition.IsSome then x?`` Transition`` <-  Transition); x)
+  static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow); (if Popper.IsSome then x?``Popper`` <- Popper); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip); (if Transition.IsSome then x?``Transition`` <- Transition); x)
   /// *Inherited from `tooltip`*
   ///
   /// The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
@@ -8760,6 +8838,16 @@ type stack =
   /// The system prop, which allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
 
+module stack =
+
+  /// Defines the `flex-direction` style property. It is applied for all screen sizes.
+  [<Erase>]
+  type direction =
+    static member inline columnReverse = Interop.mkAttr "direction" "column-reverse"
+    static member inline column = Interop.mkAttr "direction" "column"
+    static member inline rowReverse = Interop.mkAttr "direction" "row-reverse"
+    static member inline row = Interop.mkAttr "direction" "row"
+
 
 [<Erase>]
 type step =
@@ -8788,7 +8876,7 @@ type step =
   /// Expand the step.
   static member inline expanded (value: bool) = Interop.mkAttr "expanded" value
   /// The position of the step. The prop defaults to the value inherited from the parent Stepper component.
-  static member inline index (index: int) = Interop.mkAttr "index" index
+  static member inline index (value: int) = Interop.mkAttr "index" value
   /// If `true`, the Step is displayed as rendered last. The prop defaults to the value inherited from the parent Stepper component.
   static member inline last (value: bool) = Interop.mkAttr "last" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -9073,7 +9161,7 @@ type stepLabel =
 [<Erase>]
 type stepper =
   /// Set the active step (zero based index). Set to -1 to disable all the steps.
-  static member inline activeStep (activeStep: int) = Interop.mkAttr "activeStep" activeStep
+  static member inline activeStep (value: int) = Interop.mkAttr "activeStep" value
   /// If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon.
   static member inline alternativeLabel (value: bool) = Interop.mkAttr "alternativeLabel" value
   /// Two or more `<Step />` components.
@@ -9124,10 +9212,14 @@ type svgIcon =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// Node passed into the SVG element.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+  static member inline fontSize (value: string) = Interop.mkAttr "fontSize" value
   /// Applies a color attribute to the SVG element.
   static member inline htmlColor (value: string) = Interop.mkAttr "htmlColor" value
   /// If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox` prop will be ignored. Useful when you want to reference a custom `component` and have `SvgIcon` pass that `component`'s viewBox to the root node.
@@ -9167,7 +9259,6 @@ module svgIcon =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
   [<Erase>]
@@ -9176,7 +9267,6 @@ module svgIcon =
     static member inline large = Interop.mkAttr "fontSize" "large"
     static member inline medium = Interop.mkAttr "fontSize" "medium"
     static member inline small = Interop.mkAttr "fontSize" "small"
-    static member inline string = Interop.mkAttr "fontSize" string
 
 
 [<Erase>]
@@ -9232,7 +9322,7 @@ type swipeableDrawer =
   /// *Inherited from `drawer`*
   ///
   /// The elevation of the drawer.
-  static member inline elevation (elevation: int) = Interop.mkAttr "elevation" elevation
+  static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// *Inherited from `drawer`*
   ///
   /// If `true`, the backdrop is not rendered.
@@ -9312,6 +9402,8 @@ type switch =
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The icon to display when the component is checked.
   static member inline checkedIcon (element: ReactElement) = Interop.mkAttr "checkedIcon" element
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The default checked state. Use when the component is not controlled.
   static member inline defaultChecked (value: bool) = Interop.mkAttr "defaultChecked" value
   /// If `true`, the component is disabled.
@@ -9346,6 +9438,8 @@ type switch =
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
   /// If `true`, the `input` element is required.
   static member inline required (value: bool) = Interop.mkAttr "required" value
+  /// The size of the component. `small` is equivalent to the dense switch styling.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -9433,7 +9527,6 @@ module switch =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).
   [<Erase>]
@@ -9447,7 +9540,6 @@ module switch =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -9463,9 +9555,9 @@ type tab =
   /// ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
   static member inline disableRipple (value: bool) = Interop.mkAttr "disableRipple" value
   /// The icon to display.
-  static member inline icon (value: string) = Interop.mkAttr "icon" value
-  /// The icon to display.
   static member inline icon (value: ReactElement) = Interop.mkAttr "icon" value
+  /// The icon to display.
+  static member inline icon (value: string) = Interop.mkAttr "icon" value
   /// The label element.
   static member inline label (value: ReactElement) = Interop.mkAttr "label" value
   /// The label element.
@@ -9493,7 +9585,7 @@ type tab =
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// You can provide your own value. Otherwise, we fallback to the child position index.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Tab labels appear in a single row. They can use a second line if needed.
   static member inline wrapped (value: bool) = Interop.mkAttr "wrapped" value
   /// *Inherited from `buttonBase`*
@@ -9596,6 +9688,8 @@ type table =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// Allows TableCells to inherit size of the Table.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// Set the header sticky.
   ///
   /// ⚠️ It doesn't work with IE11.
@@ -9629,7 +9723,6 @@ module table =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -9686,6 +9779,8 @@ type tableCell =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// Set scope attribute.
   static member inline scope (value: string) = Interop.mkAttr "scope" value
+  /// Specify the size of the cell. The prop defaults to the value (`'medium'`) inherited from the parent Table component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -9700,6 +9795,8 @@ type tableCell =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// Specify the cell type. The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module tableCell =
 
@@ -9726,7 +9823,6 @@ module tableCell =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
   /// Set aria-sort direction.
   [<Erase>]
@@ -9741,7 +9837,6 @@ module tableCell =
     static member inline body = Interop.mkAttr "variant" "body"
     static member inline footer = Interop.mkAttr "variant" "footer"
     static member inline head = Interop.mkAttr "variant" "head"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -9851,7 +9946,7 @@ type tablePagination =
   /// The total number of rows.
   ///
   /// To enable server side pagination for an unknown number of items, provide -1.
-  static member inline count (count: int) = Interop.mkAttr "count" count
+  static member inline count (value: int) = Interop.mkAttr "count" value
   /// Callback fired when the page is changed.
   ///
   /// **Signature:**
@@ -9863,11 +9958,11 @@ type tablePagination =
   /// *page:* The page selected.
   static member inline onPageChange (handler: Event -> unit) = Interop.mkAttr "onPageChange" handler
   /// The zero-based index of the current page.
-  static member inline page (page: int) = Interop.mkAttr "page" page
+  static member inline page (value: int) = Interop.mkAttr "page" value
   /// The number of rows per page.
   ///
   /// Set -1 to display all the rows.
-  static member inline rowsPerPage (rowsPerPage: int) = Interop.mkAttr "rowsPerPage" rowsPerPage
+  static member inline rowsPerPage (value: int) = Interop.mkAttr "rowsPerPage" value
   /// The component used for displaying the actions. Either a string to use a HTML element or a component.
   static member inline ActionsComponent (value: ReactElementType) = Interop.mkAttr "ActionsComponent" value
   /// Props applied to the back arrow
@@ -9960,6 +10055,14 @@ type tablePagination =
   ///
   /// Set scope attribute.
   static member inline scope (value: string) = Interop.mkAttr "scope" value
+  /// *Inherited from `tableCell`*
+  ///
+  /// Specify the size of the cell. The prop defaults to the value (`'medium'`) inherited from the parent Table component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
+  /// *Inherited from `tableCell`*
+  ///
+  /// Specify the cell type. The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module tablePagination =
 
@@ -9992,7 +10095,6 @@ module tablePagination =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
   /// *Inherited from `tableCell`*
   ///
@@ -10011,7 +10113,6 @@ module tablePagination =
     static member inline body = Interop.mkAttr "variant" "body"
     static member inline footer = Interop.mkAttr "variant" "footer"
     static member inline head = Interop.mkAttr "variant" "head"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -10198,6 +10299,10 @@ type tabList =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `tabs`*
   ///
+  /// Determines the color of the indicator.
+  static member inline indicatorColor (value: string) = Interop.mkAttr "indicatorColor" value
+  /// *Inherited from `tabs`*
+  ///
   /// Callback fired when the value changes.
   ///
   /// **Signature:**
@@ -10269,7 +10374,7 @@ type tabList =
   /// *Inherited from `tabs`*
   ///
   /// The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this prop to `false`.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// *Inherited from `tabs`*
   ///
   /// If `true`, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs.
@@ -10284,7 +10389,6 @@ module tabList =
   type indicatorColor =
     static member inline primary = Interop.mkAttr "indicatorColor" "primary"
     static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
-    static member inline string = Interop.mkAttr "indicatorColor" string
 
   /// *Inherited from `tabs`*
   ///
@@ -10390,6 +10494,8 @@ type tabs =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
+  /// Determines the color of the indicator.
+  static member inline indicatorColor (value: string) = Interop.mkAttr "indicatorColor" value
   /// Callback fired when the value changes.
   ///
   /// **Signature:**
@@ -10435,7 +10541,7 @@ type tabs =
   ///   [`TabScrollButton`](https://mui.com/material-ui/api/tab-scroll-button/) element.
   static member inline TabScrollButtonProps (props: IReactProperty list) = Interop.mkAttr "TabScrollButtonProps" (createObj !!props)
   /// The value of the currently selected `Tab`. If you don't want any selected `Tab`, you can set this prop to `false`.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// If `true`, the scrollbar is visible. It can be useful when displaying a long vertical list of tabs.
   static member inline visibleScrollbar (value: bool) = Interop.mkAttr "visibleScrollbar" value
 
@@ -10446,7 +10552,6 @@ module tabs =
   type indicatorColor =
     static member inline primary = Interop.mkAttr "indicatorColor" "primary"
     static member inline secondary = Interop.mkAttr "indicatorColor" "secondary"
-    static member inline string = Interop.mkAttr "indicatorColor" string
 
   /// The component orientation (layout flow direction).
   [<Erase>]
@@ -10534,8 +10639,10 @@ type textField =
   static member inline autoComplete (value: string) = Interop.mkAttr "autoComplete" value
   /// If `true`, the `input` element is focused during the first mount.
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
+  /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The default value. Use when the component is not controlled.
-  static member inline defaultValue (value: 'a) = Interop.mkAttr "defaultValue" value
+  static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the label is displayed in an error state.
@@ -10628,6 +10735,8 @@ type textField =
   ///
   ///   [`Select`](https://mui.com/material-ui/api/select/) element.
   static member inline SelectProps (props: IReactProperty list) = Interop.mkAttr "SelectProps" (createObj !!props)
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -10645,7 +10754,7 @@ type textField =
   /// Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// The value of the `input` element, required for a controlled component.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `formControl`*
@@ -10676,7 +10785,6 @@ module textField =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// If `dense` or `normal`, will adjust vertical spacing of this and contained components.
   [<Erase>]
@@ -10690,7 +10798,6 @@ module textField =
   type size =
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline small = Interop.mkAttr "size" "small"
-    static member inline string = Interop.mkAttr "size" string
 
   /// The variant to use.
   [<Erase>]
@@ -10823,6 +10930,10 @@ type timelineContent =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
+  /// Applies the theme typography styles.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
+  /// *Inherited from `typography`*
+  ///
   /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
@@ -10858,7 +10969,6 @@ module timelineContent =
     static member inline overline = Interop.mkAttr "variant" "overline"
     static member inline subtitle1 = Interop.mkAttr "variant" "subtitle1"
     static member inline subtitle2 = Interop.mkAttr "variant" "subtitle2"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -10875,6 +10985,8 @@ type timelineDot =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The dot can have a different colors.
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -10889,6 +11001,8 @@ type timelineDot =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The dot can appear filled or outlined.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module timelineDot =
 
@@ -10903,14 +11017,12 @@ module timelineDot =
     static member inline secondary = Interop.mkAttr "color" "secondary"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The dot can appear filled or outlined.
   [<Erase>]
   type variant =
     static member inline filled = Interop.mkAttr "variant" "filled"
     static member inline outlined = Interop.mkAttr "variant" "outlined"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -11003,6 +11115,10 @@ type timelineOppositeContent =
   static member inline paragraph (value: bool) = Interop.mkAttr "paragraph" value
   /// *Inherited from `typography`*
   ///
+  /// Applies the theme typography styles.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
+  /// *Inherited from `typography`*
+  ///
   /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
@@ -11038,7 +11154,6 @@ module timelineOppositeContent =
     static member inline overline = Interop.mkAttr "variant" "overline"
     static member inline subtitle1 = Interop.mkAttr "variant" "subtitle1"
     static member inline subtitle2 = Interop.mkAttr "variant" "subtitle2"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -11074,7 +11189,7 @@ type timelineSeparator =
 [<Erase>]
 type toggleButton =
   /// The value to associate with the button when selected in a ToggleButtonGroup.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -11087,6 +11202,8 @@ type toggleButton =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the button when it is in an active state. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the keyboard focus ripple is disabled.
@@ -11119,6 +11236,8 @@ type toggleButton =
   static member inline onClick (handler: Event -> unit) = Interop.mkAttr "onClick" handler
   /// If `true`, the button is rendered in an active state.
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
+  /// The size of the component. The prop defaults to the value inherited from the parent ToggleButtonGroup component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -11198,7 +11317,6 @@ module toggleButton =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The size of the component. The prop defaults to the value inherited from the parent ToggleButtonGroup component.
   [<Erase>]
@@ -11206,7 +11324,6 @@ module toggleButton =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -11223,6 +11340,8 @@ type toggleButtonGroup =
   static member inline children (value: int) = Interop.mkAttr "children" value
   /// The content of the component.
   static member inline children (value: float) = Interop.mkAttr "children" value
+  /// The color of the button when it is selected. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
+  static member inline color (value: string) = Interop.mkAttr "color" value
   /// If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, only allow one of the child ToggleButton values to be selected.
@@ -11249,6 +11368,8 @@ type toggleButtonGroup =
   ///
   /// *value:* of the selected buttons. When `exclusive` is true this is a single value; when false an array of selected values. If no value is selected and `exclusive` is true the value is null; when false an empty array.
   static member inline onChange (handler: 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun _ v -> handler v))
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -11284,7 +11405,6 @@ module toggleButtonGroup =
     static member inline info = Interop.mkAttr "color" "info"
     static member inline success = Interop.mkAttr "color" "success"
     static member inline warning = Interop.mkAttr "color" "warning"
-    static member inline string = Interop.mkAttr "color" string
 
   /// The component orientation (layout flow direction).
   [<Erase>]
@@ -11298,7 +11418,6 @@ module toggleButtonGroup =
     static member inline small = Interop.mkAttr "size" "small"
     static member inline medium = Interop.mkAttr "size" "medium"
     static member inline large = Interop.mkAttr "size" "large"
-    static member inline string = Interop.mkAttr "size" string
 
 
 [<Erase>]
@@ -11335,6 +11454,8 @@ type toolbar =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// The variant to use.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
 
 module toolbar =
 
@@ -11343,7 +11464,6 @@ module toolbar =
   type variant =
     static member inline dense = Interop.mkAttr "variant" "dense"
     static member inline regular = Interop.mkAttr "variant" "regular"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -11367,9 +11487,7 @@ type tooltip =
   /// If `true`, adds an arrow to the tooltip.
   static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (? Arrow: string, ? Popper: string, ? Tooltip: string, ? Transition: string) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Arrow.IsSome then x?`` Arrow`` <-  Arrow); (if  Popper.IsSome then x?`` Popper`` <-  Popper); (if  Tooltip.IsSome then x?`` Tooltip`` <-  Tooltip); (if  Transition.IsSome then x?`` Transition`` <-  Transition); x)
-  /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (? Arrow: ReactElementType, ? Popper: ReactElementType, ? Tooltip: ReactElementType, ? Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if  Arrow.IsSome then x?`` Arrow`` <-  Arrow); (if  Popper.IsSome then x?`` Popper`` <-  Popper); (if  Tooltip.IsSome then x?`` Tooltip`` <-  Tooltip); (if  Transition.IsSome then x?`` Transition`` <-  Transition); x)
+  static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow); (if Popper.IsSome then x?``Popper`` <- Popper); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip); (if Transition.IsSome then x?``Transition`` <- Transition); x)
   /// The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
   static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- arrow); (if popper.IsSome then x?``popper`` <- popper); (if tooltip.IsSome then x?``tooltip`` <- tooltip); (if transition.IsSome then x?``transition`` <- transition); x)
   /// Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child.
@@ -11666,6 +11784,8 @@ type typography =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// Applies the theme typography styles.
+  static member inline variant (value: string) = Interop.mkAttr "variant" value
   /// The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to ``. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `component` prop.
   static member inline variantMapping (?h1: string, ?h2: string, ?h3: string, ?h4: string, ?h5: string, ?h6: string, ?subtitle1: string, ?subtitle2: string, ?body1: string, ?body2: string) = Interop.mkAttr "variantMapping" (let x = createEmpty<obj> in (if h1.IsSome then x?``h1`` <- h1); (if h2.IsSome then x?``h2`` <- h2); (if h3.IsSome then x?``h3`` <- h3); (if h4.IsSome then x?``h4`` <- h4); (if h5.IsSome then x?``h5`` <- h5); (if h6.IsSome then x?``h6`` <- h6); (if subtitle1.IsSome then x?``subtitle1`` <- subtitle1); (if subtitle2.IsSome then x?``subtitle2`` <- subtitle2); (if body1.IsSome then x?``body1`` <- body1); (if body2.IsSome then x?``body2`` <- body2); x)
 
@@ -11697,7 +11817,6 @@ module typography =
     static member inline overline = Interop.mkAttr "variant" "overline"
     static member inline subtitle1 = Interop.mkAttr "variant" "subtitle1"
     static member inline subtitle2 = Interop.mkAttr "variant" "subtitle2"
-    static member inline string = Interop.mkAttr "variant" string
 
 
 [<Erase>]
@@ -11743,7 +11862,7 @@ type calendarPicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, the picker and text field are disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true` future days are disabled.
@@ -11761,9 +11880,9 @@ type calendarPicker =
   /// If `true` renders `LoadingComponent` in calendar instead of calendar view. Can be used to preload information and show it in calendar.
   static member inline loading (value: bool) = Interop.mkAttr "loading" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback firing on month change @DateIOType.
   ///
   /// **Signature:**
@@ -11899,7 +12018,7 @@ type calendarPickerSkeleton =
 [<Erase>]
 type clockPicker =
   /// Selected date @DateIOType.
-  static member inline date (value: 'a) = Interop.mkAttr "date" value
+  static member inline date (value: 'T) = Interop.mkAttr "date" value
   /// On change callback @DateIOType.
   static member inline onChange (handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// 12h/24h view for hour selection clock.
@@ -11973,9 +12092,9 @@ type clockPicker =
   /// Left arrow icon aria-label text.
   static member inline leftArrowButtonText (value: string) = Interop.mkAttr "leftArrowButtonText" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired on view change.
@@ -12073,7 +12192,7 @@ type datePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// CSS media query when `Mobile` mode will be changed to `Desktop`.
   static member inline desktopModeMediaQuery (value: string) = Interop.mkAttr "desktopModeMediaQuery" value
   /// Props applied to the
@@ -12111,9 +12230,9 @@ type datePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -12269,7 +12388,7 @@ type datePicker =
   /// Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DatePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -12344,7 +12463,7 @@ type dateRangePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// CSS media query when `Mobile` mode will be changed to `Desktop`.
   static member inline desktopModeMediaQuery (value: string) = Interop.mkAttr "desktopModeMediaQuery" value
   /// Props applied to the
@@ -12432,9 +12551,9 @@ type dateRangePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -12618,11 +12737,20 @@ type dateRangePicker =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
+module dateRangePicker =
+
+  /// The number of calendars that render on **desktop**.
+  [<Erase>]
+  type calendars =
+    static member inline _1 = Interop.mkAttr "calendars" 1
+    static member inline _2 = Interop.mkAttr "calendars" 2
+    static member inline _3 = Interop.mkAttr "calendars" 3
+
 
 [<Erase>]
 type dateRangePickerDay =
   /// The date to show.
-  static member inline day (value: 'a) = Interop.mkAttr "day" value
+  static member inline day (value: 'T) = Interop.mkAttr "day" value
   /// Set to `true` if the `day` is the end of a highlighted date range.
   static member inline isEndOfHighlighting (value: bool) = Interop.mkAttr "isEndOfHighlighting" value
   /// Set to `true` if the `day` is the start of a highlighted date range.
@@ -12716,7 +12844,7 @@ type dateTimePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// CSS media query when `Mobile` mode will be changed to `Desktop`.
   static member inline desktopModeMediaQuery (value: string) = Interop.mkAttr "desktopModeMediaQuery" value
   /// Props applied to the
@@ -12758,17 +12886,17 @@ type dateTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Maximal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
-  static member inline maxDateTime (value: 'a) = Interop.mkAttr "maxDateTime" value
+  static member inline maxDateTime (value: 'T) = Interop.mkAttr "maxDateTime" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
-  static member inline minDateTime (value: 'a) = Interop.mkAttr "minDateTime" value
+  static member inline minDateTime (value: 'T) = Interop.mkAttr "minDateTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -12940,7 +13068,7 @@ type dateTimePicker =
   /// Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DateTimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -13008,7 +13136,7 @@ type desktopDatePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, the picker and text field are disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true` future days are disabled.
@@ -13040,9 +13168,9 @@ type desktopDatePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -13198,7 +13326,7 @@ type desktopDatePicker =
   /// Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DatePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -13273,7 +13401,7 @@ type desktopDateRangePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
   static member inline disableAutoMonthSwitching (value: bool) = Interop.mkAttr "disableAutoMonthSwitching" value
   /// If `true`, the picker and text field are disabled.
@@ -13355,9 +13483,9 @@ type desktopDateRangePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -13541,6 +13669,15 @@ type desktopDateRangePicker =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
+module desktopDateRangePicker =
+
+  /// The number of calendars that render on **desktop**.
+  [<Erase>]
+  type calendars =
+    static member inline _1 = Interop.mkAttr "calendars" 1
+    static member inline _2 = Interop.mkAttr "calendars" 2
+    static member inline _3 = Interop.mkAttr "calendars" 3
+
 
 [<Erase>]
 type desktopDateTimePicker =
@@ -13591,7 +13728,7 @@ type desktopDateTimePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, the picker and text field are disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true` future days are disabled.
@@ -13627,17 +13764,17 @@ type desktopDateTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Maximal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
-  static member inline maxDateTime (value: 'a) = Interop.mkAttr "maxDateTime" value
+  static member inline maxDateTime (value: 'T) = Interop.mkAttr "maxDateTime" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
-  static member inline minDateTime (value: 'a) = Interop.mkAttr "minDateTime" value
+  static member inline minDateTime (value: 'T) = Interop.mkAttr "minDateTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -13809,7 +13946,7 @@ type desktopDateTimePicker =
   /// Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DateTimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -13889,9 +14026,9 @@ type desktopTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -13967,7 +14104,7 @@ type desktopTimePicker =
   /// Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: TimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -14060,7 +14197,7 @@ type mobileDatePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// Props applied to the
   ///
   ///   [`Dialog`](https://mui.com/material-ui/api/dialog/) element.
@@ -14096,9 +14233,9 @@ type mobileDatePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -14248,7 +14385,7 @@ type mobileDatePicker =
   /// Mobile picker title, displaying in the toolbar.
   static member inline toolbarTitle (value: float) = Interop.mkAttr "toolbarTitle" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DatePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -14323,7 +14460,7 @@ type mobileDateRangePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// Props applied to the
   ///
   ///   [`Dialog`](https://mui.com/material-ui/api/dialog/) element.
@@ -14409,9 +14546,9 @@ type mobileDateRangePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -14589,6 +14726,15 @@ type mobileDateRangePicker =
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
+module mobileDateRangePicker =
+
+  /// The number of calendars that render on **desktop**.
+  [<Erase>]
+  type calendars =
+    static member inline _1 = Interop.mkAttr "calendars" 1
+    static member inline _2 = Interop.mkAttr "calendars" 2
+    static member inline _3 = Interop.mkAttr "calendars" 3
+
 
 [<Erase>]
 type mobileDateTimePicker =
@@ -14639,7 +14785,7 @@ type mobileDateTimePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// Props applied to the
   ///
   ///   [`Dialog`](https://mui.com/material-ui/api/dialog/) element.
@@ -14679,17 +14825,17 @@ type mobileDateTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Maximal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
-  static member inline maxDateTime (value: 'a) = Interop.mkAttr "maxDateTime" value
+  static member inline maxDateTime (value: 'T) = Interop.mkAttr "maxDateTime" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
-  static member inline minDateTime (value: 'a) = Interop.mkAttr "minDateTime" value
+  static member inline minDateTime (value: 'T) = Interop.mkAttr "minDateTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -14855,7 +15001,7 @@ type mobileDateTimePicker =
   /// Mobile picker title, displaying in the toolbar.
   static member inline toolbarTitle (value: float) = Interop.mkAttr "toolbarTitle" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DateTimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -14939,9 +15085,9 @@ type mobileTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -15011,7 +15157,7 @@ type mobileTimePicker =
   /// Mobile picker title, displaying in the toolbar.
   static member inline toolbarTitle (value: float) = Interop.mkAttr "toolbarTitle" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: TimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -15036,7 +15182,7 @@ module mobileTimePicker =
 [<Erase>]
 type monthPicker =
   /// Date value for the MonthPicker
-  static member inline date (value: 'a) = Interop.mkAttr "date" value
+  static member inline date (value: 'T) = Interop.mkAttr "date" value
   /// Callback fired on date change.
   static member inline onChange (handler: Event -> unit) = Interop.mkAttr "onChange" handler
   /// className applied to the root element.
@@ -15050,9 +15196,9 @@ type monthPicker =
   /// If `true` past days are disabled.
   static member inline disablePast (value: bool) = Interop.mkAttr "disablePast" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// If `true` picker is readonly
   static member inline readOnly (value: bool) = Interop.mkAttr "readOnly" value
   /// Disable specific months dynamically. Works like `shouldDisableDate` but for month selection view @DateIOType.
@@ -15086,7 +15232,7 @@ type monthPicker =
 [<Erase>]
 type pickersDay =
   /// The date to show.
-  static member inline day (value: 'a) = Interop.mkAttr "day" value
+  static member inline day (value: 'T) = Interop.mkAttr "day" value
   /// If `true`, day is outside of month and will be hidden.
   static member inline outsideCurrentMonth (value: bool) = Interop.mkAttr "outsideCurrentMonth" value
   /// If `true`, renders as disabled.
@@ -15162,7 +15308,7 @@ type staticDatePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, the picker and text field are disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true` future days are disabled.
@@ -15194,9 +15340,9 @@ type staticDatePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -15340,7 +15486,7 @@ type staticDatePicker =
   /// Mobile picker title, displaying in the toolbar.
   static member inline toolbarTitle (value: float) = Interop.mkAttr "toolbarTitle" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DatePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -15421,7 +15567,7 @@ type staticDateRangePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
   static member inline disableAutoMonthSwitching (value: bool) = Interop.mkAttr "disableAutoMonthSwitching" value
   /// If `true`, the picker and text field are disabled.
@@ -15503,9 +15649,9 @@ type staticDateRangePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -15679,6 +15825,13 @@ type staticDateRangePicker =
 
 module staticDateRangePicker =
 
+  /// The number of calendars that render on **desktop**.
+  [<Erase>]
+  type calendars =
+    static member inline _1 = Interop.mkAttr "calendars" 1
+    static member inline _2 = Interop.mkAttr "calendars" 2
+    static member inline _3 = Interop.mkAttr "calendars" 3
+
   /// Force static wrapper inner components to be rendered in mobile or desktop mode.
   [<Erase>]
   type displayStaticWrapperAs =
@@ -15735,7 +15888,7 @@ type staticDateTimePicker =
   /// *returns* (string): The name to display.
   static member inline dayOfWeekFormatter (formatter: string -> string) = Interop.mkAttr "dayOfWeekFormatter" (Func<_, _> formatter)
   /// Default calendar month displayed when `value={null}`.
-  static member inline defaultCalendarMonth (value: 'a) = Interop.mkAttr "defaultCalendarMonth" value
+  static member inline defaultCalendarMonth (value: 'T) = Interop.mkAttr "defaultCalendarMonth" value
   /// If `true`, the picker and text field are disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true` future days are disabled.
@@ -15771,17 +15924,17 @@ type staticDateTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Maximal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
-  static member inline maxDateTime (value: 'a) = Interop.mkAttr "maxDateTime" value
+  static member inline maxDateTime (value: 'T) = Interop.mkAttr "maxDateTime" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
-  static member inline minDateTime (value: 'a) = Interop.mkAttr "minDateTime" value
+  static member inline minDateTime (value: 'T) = Interop.mkAttr "minDateTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -15941,7 +16094,7 @@ type staticDateTimePicker =
   /// Mobile picker title, displaying in the toolbar.
   static member inline toolbarTitle (value: float) = Interop.mkAttr "toolbarTitle" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: DateTimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -16027,9 +16180,9 @@ type staticTimePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -16093,7 +16246,7 @@ type staticTimePicker =
   /// Mobile picker title, displaying in the toolbar.
   static member inline toolbarTitle (value: float) = Interop.mkAttr "toolbarTitle" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: TimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -16182,9 +16335,9 @@ type timePicker =
   /// Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
   static member inline mask (value: string) = Interop.mkAttr "mask" value
   /// Max time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline maxTime (value: 'a) = Interop.mkAttr "maxTime" value
+  static member inline maxTime (value: 'T) = Interop.mkAttr "maxTime" value
   /// Min time acceptable time. For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
-  static member inline minTime (value: 'a) = Interop.mkAttr "minTime" value
+  static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
@@ -16260,7 +16413,7 @@ type timePicker =
   /// Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// The value of the picker.
-  static member inline value (value: 'a) = Interop.mkAttr "value" value
+  static member inline value (value: 'T) = Interop.mkAttr "value" value
   /// Array of views to show.
   static member inline views ([<ParamArray>] views: TimePickerView []) = Interop.mkAttr "views" views
   /// This component does not support children.
@@ -16291,9 +16444,9 @@ type yearPicker =
   /// If `true` past days are disabled.
   static member inline disablePast (value: bool) = Interop.mkAttr "disablePast" value
   /// Maximal selectable date. @DateIOType
-  static member inline maxDate (value: 'a) = Interop.mkAttr "maxDate" value
+  static member inline maxDate (value: 'T) = Interop.mkAttr "maxDate" value
   /// Minimal selectable date. @DateIOType
-  static member inline minDate (value: 'a) = Interop.mkAttr "minDate" value
+  static member inline minDate (value: 'T) = Interop.mkAttr "minDate" value
   /// Disable specific years dynamically. Works like `shouldDisableDate` but for year selection view @DateIOType.
   ///
   /// **Signature:**
