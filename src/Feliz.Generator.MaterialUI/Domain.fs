@@ -57,6 +57,7 @@ type TsAtomicType =
     | Any
     | String
     | Number
+    | Integer
     | Bool
     | Func
     | Object

@@ -23,6 +23,7 @@ module Parsers =
         choice [
             stringReturn "string" String
             stringReturn "number" Number
+            stringReturn "integer" Integer
             stringReturn "bool" Bool
             stringReturn "func" Func
             stringReturn "object" TsAtomicType.Object
@@ -101,6 +102,7 @@ module Translators =
         | Any -> "'T"
         | String -> "string"
         | Number -> "float"
+        | Integer -> "int"
         | Bool -> "bool"
         | Func -> "Func<obj, obj>"
         | TsAtomicType.Object -> "obj"
