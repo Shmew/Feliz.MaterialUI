@@ -98,7 +98,7 @@ module GetLines =
     let componentVariants stylesheetName = [
         indent 1 "/// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied."
         sprintf
-            "static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants(\"%s\", values)"
+            "static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants(\"%s\", !!values)"
             stylesheetName
         |> indent 1
     ]
@@ -146,7 +146,7 @@ module GetLines =
                 iconTitle
         ]
 
-let classesDocument (api: MuiComponentApi) =
+let classesDocument (additionalOpens: string list) (api: MuiComponentApi) =
     [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
       ""
       "(*////////////////////////////////"
@@ -156,6 +156,7 @@ let classesDocument (api: MuiComponentApi) =
       "open System.ComponentModel"
       "open Fable.Core"
       "open Feliz"
+      yield! additionalOpens
       ""
       "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
       "module classesProps ="
@@ -166,7 +167,7 @@ let classesDocument (api: MuiComponentApi) =
               |> List.map (indent 1) ]
     |> String.concat Environment.NewLine
 
-let themePropsDocument (api: MuiComponentApi) =
+let themePropsDocument (additionalOpens: string list) (api: MuiComponentApi) =
 
     let getStylesheetName =
         function
@@ -183,6 +184,7 @@ let themePropsDocument (api: MuiComponentApi) =
       "open Fable.Core"
       "open Fable.Core.JsInterop"
       "open Feliz"
+      yield! additionalOpens
       ""
       ""
       "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
@@ -199,7 +201,7 @@ let themePropsDocument (api: MuiComponentApi) =
       "" ]
     |> String.concat Environment.NewLine
 
-let themeOverridesDocument (api: MuiComponentApi) =
+let themeOverridesDocument (additionalOpens: string list) (api: MuiComponentApi) =
 
     let getCompAndStylesheetName =
         function
@@ -217,6 +219,7 @@ let themeOverridesDocument (api: MuiComponentApi) =
       "open Fable.Core"
       "open Fable.Core.JsInterop"
       "open Feliz"
+      yield! additionalOpens
       ""
       "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
       "module themeOverrides ="

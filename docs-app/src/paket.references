@@ -10,3 +10,4 @@ group DocsApp
     Fable.SimpleHttp
     Fable.React
     Zanaptak.TypedCssClasses
+    Fable.DateFunctions

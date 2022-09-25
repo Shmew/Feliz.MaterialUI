@@ -297,6 +297,70 @@ let (|AllDateRangePickers|_|) componentMethodName =
 
 let (|DateAndTimePickers|_|) (componentMethodName, propMethodName, propDocType) =
     match componentMethodName, propMethodName, propDocType with
+    | (AllDatePickers _ | AllDateTimePickers _ | AllTimePickers _),
+        "renderInput", "func" ->
+        Some [
+            RegularPropOverload.create "(renderer: #seq<IReactProperty> -> ReactElement)" "(Helpers.renderElementCallback renderer)"
+        ]
+
+    | (AllDateRangePickers _), "renderInput", "func" ->
+        Some [
+            RegularPropOverload.create "(renderer: #seq<IReactProperty> -> #seq<IReactProperty> -> ReactElement)" "(Helpers.renderElementCallback2 renderer)"
+        ]
+
+    | (AllDatePickers _ | AllDateTimePickers _ | AllTimePickers _ ), "onChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: 'TValue -> string -> unit)" "(Func<'TValue, string, unit> handler)"
+        ]
+
+    | (AllDateRangePickers _), "onChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: ('TDate option * 'TDate option) -> string -> unit)" "(Func<_, string, unit> handler)"
+        ]
+
+    | (AllDatePickers _ | AllDateTimePickers _| AllDateRangePickers _ | "calendarPicker"),
+        "onMonthChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: 'TDate -> unit)" "handler"
+            RegularPropOverload.create "(handler: 'TDate -> JS.Promise<unit>)" "handler"
+        ]
+
+    | (AllDatePickers _ | AllDateTimePickers _ | "calendarPicker"),
+        "onYearChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: 'TDate -> unit)" "handler"
+        ]
+
+    | (AllTimePickers _ | "clockPicker"),
+        "onViewChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: ClockPickerView -> unit)" "handler"
+        ]
+
+    | (AllDatePickers _ | AllDateRangePickers _ | "calendarPicker"),
+        "onViewChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: CalendarPickerView -> unit)" "handler"
+        ]
+
+    | (AllDateTimePickers _),
+        "onViewChange", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: CalendarOrClockPickerView -> unit)" "handler"
+        ]
+
+    | (AllDatePickers _ | AllDateTimePickers _ | AllTimePickers _ | AllDateRangePickers _),
+        "onAccept", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: 'TValue -> unit)" "handler"
+        ]
+
+    | (AllDatePickers _ | AllDateTimePickers _ | AllTimePickers _ | AllDateRangePickers _),
+        "onError", "func" ->
+        Some [
+            RegularPropOverload.create "(handler: 'TError -> 'TInputValue -> unit)" "(Func<_, _, _> handler)"
+        ]
+
     | (AllDatePickers _
         | "calendarPicker"),
         "views",
@@ -340,24 +404,25 @@ let (|DateAndTimePickers|_|) (componentMethodName, propMethodName, propDocType) 
         "func" ->
         Some [ RegularPropOverload.create "(shouldDisableMonth: int -> bool)" "(Func<_, _> shouldDisableMonth)" ]
 
-    | (AllDateTimePickers _
-        | AllDatePickers _),
-        "value",
-        "any | Date | number | string" ->
-        Some [
-            RegularPropOverload.create "(value: System.DateTime)" "value"
-            RegularPropOverload.create "(value: string)" "value"
-            RegularPropOverload.create "(value: int)" "value"
-        ]
+    //| (AllDateTimePickers _
+    //    | AllDatePickers _),
+    //    "value",
+    //    "any | Date | number | string" ->
+    //    Some [
+    //        RegularPropOverload.create "(value: System.DateTime)" "value"
+    //        RegularPropOverload.create "(value: string)" "value"
+    //        RegularPropOverload.create "(value: int)" "value"
+    //    ]
 
-    | (AllDateRangePickers _),
-        "value",
-        ("Array<any | Date | number | string>" | "Array<any>") ->
-        Some [
-            RegularPropOverload.create "(value: System.DateTime list)" "value"
-            RegularPropOverload.create "(value: string list)" "value"
-            RegularPropOverload.create "(value: int list)" "value"
-        ]
+    //| (AllDateRangePickers _),
+    //    "value",
+    //    ("Array<any | Date | number | string>" | "Array<any>") ->
+    //    Some [
+    //        RegularPropOverload.create "(value: 'T [])" "value"
+    //        RegularPropOverload.create "(value: System.DateTime [])" "value"
+    //        RegularPropOverload.create "(value: string [])" "value"
+    //        RegularPropOverload.create "(value: int [])" "value"
+    //    ]
 
     | (AllDateTimePickers _ | AllTimePickers _ | "clockPicker"),
         "getClockLabelText",
@@ -1381,210 +1446,223 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
     |> Prop.addRegularOverloads regularOverloads
     |> Prop.addEnumOverloads enumOverloads
 
-let parseComponent (htmlPathOrUrl: string) =
+let parseComponent
+    (importMatchFilter: string -> bool)
+    (handleImportMatchNotFound: unit -> MuiComponent option)
+    (htmlPathOrUrl: string) =
 
     Console.WriteLine(sprintf "Processing component %s" htmlPathOrUrl)
 
     let page = ComponentApiPage.Load(htmlPathOrUrl)
     let html = page.Html
 
-    let importDefaultMatches =
-        Regex.Match(html.CssSelect("pre").[0].InnerText(), "import ?(.+?) ?from ?'(.+?)'")
+    let importDefaultMatchesOpt =
+        Regex.Matches(html.CssSelect("pre").[0].InnerText(), "import ?({.+?}) ?from ?'(.+?)'")
+        |> Seq.tryFind (fun m -> m.Groups[2].Value |> importMatchFilter)
 
-    if importDefaultMatches.Length = 0 then
-        failwith "No import matches"
+    match importDefaultMatchesOpt with
+    | None ->
+        handleImportMatchNotFound ()
 
-    let compMethodName =
-        importDefaultMatches.Groups.[1].Value
-        |> String.lowerFirst
+    | Some m when m.Length = 0 ->
+        handleImportMatchNotFound ()
 
-    let importPath = importDefaultMatches.Groups.[2].Value
+    | Some importDefaultMatches ->
+        let compMethodName =
+            importDefaultMatches.Groups.[1].Value
+            |> String.lowerFirst
 
-    let compMethodName, importSelector =
-        let matches = Regex.Match(compMethodName, "{ ?(.+?)? ?}")
+        let importPath = importDefaultMatches.Groups.[2].Value
 
-        if matches.Length = 0 then
-            compMethodName, None
-        else
-            matches.Groups.[1].Value |> String.lowerFirst, Some matches.Groups.[1].Value
+        let compMethodName, importSelector =
+            let matches = Regex.Match(compMethodName, "{ ?(.+?)? ?}")
 
-    let noteNodes1 =
-        html.CssSelect(".markdown-body").[0].Elements()
-        |> List.skipWhile (fun n -> n.Name() <> "table")
-        |> List.trySkip 1
-        |> List.takeWhile (fun n -> n.Name() = "p")
-
-    let noteNodes2 =
-        html.CssSelect(".markdown-body").[0].Elements()
-        |> List.skipWhile (fun n -> n.Name() <> "h2" || n.InnerText() <> "Notes")
-        |> List.trySkip 1
-        |> List.takeWhile (fun n -> n.Name() = "p")
-
-    let markdownDocLines =
-        noteNodes1 @ noteNodes2
-        |> docElementsToMarkdownLines
-        |> fun ls ->
-            if importPath.StartsWith "@mui/lab" then
-                "**This is an experimental component from @mui/lab. Breaking changes may occur at any time.**"
-                :: "" :: ls
+            if matches.Length = 0 then
+                compMethodName, None
             else
-                ls
+                matches.Groups.[1].Value |> String.lowerFirst, Some matches.Groups.[1].Value
 
-    let additionalOverloads =
-        match compMethodName with
-        | "dialogContentText"
-        | "dialogTitle"
-        | "formHelperText"
-        | "formLabel"
-        | "inputLabel"
-        | "listSubheader"
-        | "stepLabel"
-        | "tableCell"
-        | "typography" -> [ ComponentOverload.create "(text: string)" "[ prop.children (Html.text text) ]" ]
-        | "icon" -> [ ComponentOverload.create "(name: string)" "[ prop.children (Html.text name) ]" ]
-        | "listItemText" -> [ ComponentOverload.create "(primary: string)" "[ listItemText.primary primary ]" ]
-        | _ -> []
+        let noteNodes1 =
+            html.CssSelect(".markdown-body").[0].Elements()
+            |> List.skipWhile (fun n -> n.Name() <> "table")
+            |> List.trySkip 1
+            |> List.takeWhile (fun n -> n.Name() = "p")
 
-    let props =
-        page.Tables.Props.Rows
-        |> Array.mapi (fun i r ->
-            let rowHtml = page.Tables.Props.Html.CssSelect("tbody > tr").[i]
-            parseProp compMethodName r rowHtml)
+        let noteNodes2 =
+            html.CssSelect(".markdown-body").[0].Elements()
+            |> List.skipWhile (fun n -> n.Name() <> "h2" || n.InnerText() <> "Notes")
+            |> List.trySkip 1
+            |> List.takeWhile (fun n -> n.Name() = "p")
 
-    let props =
-        // TODO: Remove when docs are fixed:
-        // https://github.com/mui-org/material-ui/issues/21711#issuecomment-657233933
-        match compMethodName with
-        | "box"
-        | "container"
-        | "localizationProvider" ->
-            let children =
-                Prop.create "children" "children"
-                |> Prop.addRegularOverloads [
-                    RegularPropOverload.createCustom
-                        "(element: ReactElement)"
-                        "prop.children element"
-                    RegularPropOverload.childrenElementsSeq()
-                    RegularPropOverload.create "(value: string)" "value"
-                    RegularPropOverload.create "(values: string seq)" "values"
-                    RegularPropOverload.create "(value: int)" "value"
-                    RegularPropOverload.create "(value: float)" "value"
-                ]
+        let markdownDocLines =
+            noteNodes1 @ noteNodes2
+            |> docElementsToMarkdownLines
+            |> fun ls ->
+                if importPath.StartsWith "@mui/lab" then
+                    "**This is an experimental component from @mui/lab. Breaking changes may occur at any time.**"
+                    :: "" :: ls
+                else
+                    ls
 
-            Array.append [| children |] props
+        let additionalOverloads =
+            match compMethodName with
+            | "dialogContentText"
+            | "dialogTitle"
+            | "formHelperText"
+            | "formLabel"
+            | "inputLabel"
+            | "listSubheader"
+            | "stepLabel"
+            | "tableCell"
+            | "typography" -> [ ComponentOverload.create "(text: string)" "[ prop.children (Html.text text) ]" ]
+            | "icon" -> [ ComponentOverload.create "(name: string)" "[ prop.children (Html.text name) ]" ]
+            | "listItemText" -> [ ComponentOverload.create "(primary: string)" "[ listItemText.primary primary ]" ]
+            | _ -> []
 
-        | _ -> props
+        let props =
+            page.Tables.Props.Rows
+            |> Array.mapi (fun i r ->
+                let rowHtml = page.Tables.Props.Html.CssSelect("tbody > tr").[i]
+                parseProp compMethodName r rowHtml)
 
-    let addChildrenOverloadIfSupported (comp: Component) =
-        let hasReactElementSeqChildren =
-            comp.Props
-            |> List.exists (fun p ->
-                p.MethodName = "children"
-                && p.RegularOverloads
-                   |> List.exists (fun o -> o.ParamsCode = "(elements: seq<ReactElement>)"))
+        let props =
+            // TODO: Remove when docs are fixed:
+            // https://github.com/mui-org/material-ui/issues/21711#issuecomment-657233933
+            match compMethodName with
+            | "box"
+            | "container"
+            | "localizationProvider" ->
+                let children =
+                    Prop.create "children" "children"
+                    |> Prop.addRegularOverloads [
+                        RegularPropOverload.createCustom
+                            "(element: ReactElement)"
+                            "prop.children element"
+                        RegularPropOverload.childrenElementsSeq()
+                        RegularPropOverload.create "(value: string)" "value"
+                        RegularPropOverload.create "(values: string seq)" "values"
+                        RegularPropOverload.create "(value: int)" "value"
+                        RegularPropOverload.create "(value: float)" "value"
+                    ]
 
-        if not hasReactElementSeqChildren then
-            comp
-        else
-            // Use #seq<ReactElement> to help overload resolution when using empty lists
-            let overload =
-                ComponentOverload.create
-                    "(children: #seq<ReactElement>)"
-                    (sprintf "[ Feliz.MaterialUI.%s.children (children :> seq<ReactElement>) ]" comp.MethodName)
+                Array.append [| children |] props
 
-            comp |> Component.addOverload overload
+            | _ -> props
 
-    let addUnsupportedChildrenProp (comp: Component) =
-        let hasChildren =
-            comp.Props
-            |> List.exists (fun p -> p.MethodName = "children")
+        let addChildrenOverloadIfSupported (comp: Component) =
+            let hasReactElementSeqChildren =
+                comp.Props
+                |> List.exists (fun p ->
+                    p.MethodName = "children"
+                    && p.RegularOverloads
+                       |> List.exists (fun o -> o.ParamsCode = "(elements: seq<ReactElement>)"))
 
-        if hasChildren then
-            comp
-        else
-            let prop =
-                Prop.create "children" "children"
-                |> Prop.setDocs [ "This component does not support children." ]
-                |> Prop.addRegularOverload (RegularPropOverload.createCustom "" "UnsupportedProp ()")
+            if not hasReactElementSeqChildren then
+                comp
+            else
+                // Use #seq<ReactElement> to help overload resolution when using empty lists
+                let overload =
+                    ComponentOverload.create
+                        "(children: #seq<ReactElement>)"
+                        (sprintf "[ %s.children (children :> seq<ReactElement>) ]" comp.MethodName)
 
-            comp |> Component.addProp prop
+                comp |> Component.addOverload overload
 
-    let componentName =
-        Regex
-            .Match(
-                page.Html.Body().ToString(),
-                "The \<code\>(.+?)\<\/code\> name can be used for"
-            )
-            .Groups.[1]
-            .Value
-        |> Some
-        |> Option.filter (not << String.IsNullOrEmpty)
-        |> Option.orElse (Some("Mui" + String.upperFirst compMethodName)) // TODO: Remove when resolved: https://github.com/mui-org/material-ui/issues/20556
+        let addUnsupportedChildrenProp (comp: Component) =
+            let hasChildren =
+                comp.Props
+                |> List.exists (fun p -> p.MethodName = "children")
 
-    let setInheritance =
-        let inheritFrom =
+            if hasChildren then
+                comp
+            else
+                let prop =
+                    Prop.create "children" "children"
+                    |> Prop.setDocs [ "This component does not support children." ]
+                    |> Prop.addRegularOverload (RegularPropOverload.createCustom "" "UnsupportedProp ()")
+
+                comp |> Component.addProp prop
+
+        let componentName =
             Regex
                 .Match(
-                    page.Html.Body().InnerText(),
-                    @"While not explicitly documented above, the props of the\s(.+?)\scomponent are also available on (.+?)\."
+                    page.Html.Body().ToString(),
+                    "The \<code\>(.+?)\<\/code\> name can be used for"
                 )
-                .Groups[1]
+                .Groups.[1]
                 .Value
-        //Regex.Match(page.Html.Body().InnerText(), "Any other props supplied will be provided to the root element \((.+?)\)")
-        //  .Groups.[1].Value
-        match compMethodName, inheritFrom with
-        | _,
-          (null
-          | "") -> id
-        | ("collapse"
-          | "fade"
-          | "grow"
-          | "slide"
-          | "zoom"),
-          "Transition" -> id // The Transition component is from an external library
-        | _,
-          ("native component"
-          | "native element") -> id // Native DOM inheritance not currently supported
+            |> Some
+            |> Option.filter (not << String.IsNullOrEmpty)
+            |> Option.orElse (Some("Mui" + String.upperFirst compMethodName)) // TODO: Remove when resolved: https://github.com/mui-org/material-ui/issues/20556
 
-        | _, baseComp when baseComp.EndsWith("Unstyled") -> id // *Unstyled components from @mui/base are not yet supported.
+        let setInheritance =
+            let inheritFrom =
+                Regex
+                    .Match(
+                        page.Html.Body().InnerText(),
+                        @"While not explicitly documented above, the props of the\s(.+?)\scomponent are also available on (.+?)\."
+                    )
+                    .Groups[1]
+                    .Value
+            //Regex.Match(page.Html.Body().InnerText(), "Any other props supplied will be provided to the root element \((.+?)\)")
+            //  .Groups.[1].Value
+            match compMethodName, inheritFrom with
+            | _,
+              (null
+              | "") -> id
+            | ("collapse"
+              | "fade"
+              | "grow"
+              | "slide"
+              | "zoom"),
+              "Transition" -> id // The Transition component is from an external library
+            | _,
+              ("native component"
+              | "native element") -> id // Native DOM inheritance not currently supported
 
-        | _, baseComp ->
-            baseComp
-            |> String.lowerFirst
-            |> Component.inheritsPropsFrom
+            | _, baseComp when baseComp.EndsWith("Unstyled") -> id // *Unstyled components from @mui/base are not yet supported.
 
-    { GeneratorComponent =
-        match importSelector with
-        | None -> Component.createImportDefault compMethodName importPath
-        | Some selector -> Component.createImportSelector compMethodName selector importPath
-        |> Component.setDocs markdownDocLines
-        |> Component.addOverloads additionalOverloads
-        |> Component.addProps props
-        |> addChildrenOverloadIfSupported
-        |> addUnsupportedChildrenProp
-        |> setInheritance
-      ClassRules =
-        let rowsAndHtml =
-            try
-                page.Tables.CSS.Rows
-                |> Array.mapi (fun i r -> r, page.Tables.CSS.Html.CssSelect("tbody > tr").[i])
-                |> Array.toList
-            with
-            | :? KeyNotFoundException -> []
+            | _, baseComp ->
+                baseComp
+                |> String.lowerFirst
+                |> Component.inheritsPropsFrom
 
-        rowsAndHtml
-        |> List.choose (fun (r, html) -> parseClassRule r html)
-      ComponentName = componentName }
+        { GeneratorComponent =
+            match importSelector with
+            | None -> Component.createImportDefault compMethodName importPath
+            | Some selector -> Component.createImportSelector compMethodName selector importPath
+            |> Component.setDocs markdownDocLines
+            |> Component.addOverloads additionalOverloads
+            |> Component.addProps props
+            |> addChildrenOverloadIfSupported
+            |> addUnsupportedChildrenProp
+            |> setInheritance
+          ClassRules =
+            let rowsAndHtml =
+                try
+                    page.Tables.CSS.Rows
+                    |> Array.mapi (fun i r -> r, page.Tables.CSS.Html.CssSelect("tbody > tr").[i])
+                    |> Array.toList
+                with
+                | :? KeyNotFoundException -> []
+
+            rowsAndHtml
+            |> List.choose (fun (r, html) -> parseClassRule r html)
+          ComponentName = componentName }
+        |> Some
 
 let parseApi () =
 
     let components =
         HtmlCache.getApiFiles ()
         // TODO: Support DataGrid and XGrid
-        |> Array.filter (fun path ->
-            not <| path.EndsWith "data-grid.html"
-            && not <| path.EndsWith "x-grid.html")
-        |> Array.Parallel.map parseComponent
+        //|> Array.filter (fun path ->
+        //    not <| path.EndsWith "data-grid.html"
+        //    && not <| path.EndsWith "x-grid.html")
+        |> Array.Parallel.choose (
+            parseComponent
+                (fun _ -> true)
+                (fun () -> failwith "No import matches"))
         |> Array.toList
 
     let themeProvider =
@@ -1681,6 +1759,58 @@ let parseApi () =
         |> ComponentApi.addComponent stylesProvider
         |> ComponentApi.addComponent styledEngineProvider
         |> ComponentApi.addComponent cacheProvider
+        |> ComponentApi.addComponents (
+            components
+            |> List.map (fun c -> c.GeneratorComponent)
+        )
+        |> ComponentApi.setParseProps "!!properties |> Object.fromFlatEntries"
+
+    { GeneratorComponentApi = api
+      MuiComponents = components }
+
+
+let parseDatePickersApi (isPro: bool) =
+    let components =
+        HtmlCache.getDatePickersApiFiles ()
+        |> Array.Parallel.choose
+            (parseComponent
+                (fun s ->
+                    if isPro then s.Contains "-pro"
+                    else not (s.Contains "-pro"))
+                (fun () ->
+                    printfn "Import match not found." 
+                    None))
+        |> Array.toList
+
+    let api =
+        ComponentApi.create "Feliz.MaterialUI.X" "MuiX"
+        |> ComponentApi.setPropsPrelude [
+            "open Feliz.MaterialUI"
+            ""
+            "[<Erase>]"
+            "type private Helpers ="
+            Render.indent 1 "static member inline themeStylesOverride (callback: Theme -> #seq<IStyleAttribute>): 't ="
+            Render.indent 2 "!!(Func<Theme, _> (fun theme -> let styleOverrides = callback theme in (createObj !!styleOverrides)))"
+            ""
+            Render.indent 1 "static member inline breakpointThemeStylesOverrides (overrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) ="
+            Render.indent 2 "overrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, Helpers.themeStylesOverride themeOverride) |> !!createObj"
+            ""
+            Render.indent 1 "static member inline themeBreakpointStylesOverrides (overrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) ="
+            Render.indent 2 "overrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> style.breakpoint bp styles) |> !!createObj)))"
+            ""
+            Render.indent 1 "static member inline renderElementCallback (renderer: #seq<IReactProperty> -> ReactElement): Func<'Props, ReactElement> ="
+            Render.indent 2   "let outputCallback (propsObj: 'Props)  ="
+            Render.indent 3     "let propsArray = JS.Constructors.Object.entries propsObj"
+            Render.indent 3     "renderer (!!propsArray)"
+            Render.indent 2   "Func<'Props, ReactElement> outputCallback"
+            ""
+            Render.indent 1 "static member inline renderElementCallback2 (renderer: #seq<IReactProperty> -> #seq<IReactProperty> -> ReactElement): Func<'Props, 'Props, ReactElement> ="
+            Render.indent 2   "let outputCallback (propsObj1: 'Props) (propsObj2: 'Props)  ="
+            Render.indent 3     "let propsArray1 = JS.Constructors.Object.entries propsObj1"
+            Render.indent 3     "let propsArray2 = JS.Constructors.Object.entries propsObj2"
+            Render.indent 3     "renderer (!!propsArray1) (!!propsArray2)"
+            Render.indent 2   "Func<_, _, _> outputCallback"
+        ]
         |> ComponentApi.addComponents (
             components
             |> List.map (fun c -> c.GeneratorComponent)

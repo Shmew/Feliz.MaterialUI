@@ -59,6 +59,9 @@ module Url =
     [<Literal>]
     let indexMd = "index.md"
 
+    [<Literal>]
+    let datePickers = "date-time-pickers"
+
 type ThemeMode =
     | Light
     | Dark
@@ -166,9 +169,6 @@ module Theme =
                 theme.styleOverrides.muiDrawer.paper [
                     style.backgroundColor defaultTheme.palette.grey.``900``
                 ]
-                    //variants = [|
-                    //    Styles.createComponentVariant()
-                    //|]
 
                 theme.defaultProps.muiAppBar [
                     appBar.color.default'
@@ -184,7 +184,7 @@ let Toolbar model dispatch =
     Mui.toolbar [
         Mui.typography [
             typography.variant.h6
-            typography.sx (fun t -> [
+            typography.sx ([
                 style.color "inherit"
                 style.flexGrow 1
             ])
@@ -309,7 +309,7 @@ let Drawer model dispatch =
                         [
                             menuItem true "Installation" [ Url.usage; Url.installation ]
                             menuItem true "Components/props" [ Url.usage; Url.components_props ]
-                            menuItem true "Classes" [ Url.usage; Url.classes ]
+                            menuItem true "Styling via the sx prop" [ Url.usage; Url.classes ]
                             menuItem true "Styling using makeStyles" [ Url.usage; Url.styling ]
                             menuItem true "Styling using themes" [ Url.usage; Url.themes ]
                             menuItem true "Localization" [ Url.usage; Url.localization ]
@@ -331,6 +331,7 @@ let Drawer model dispatch =
                         model.CurrentPath
                         [
                             menuItem true "Sign-in" [ Url.samples; Url.signIn ]
+                            menuItem true "Date Pickers" [Url.samples; Url.datePickers]
                         ]
                     )
                 ]

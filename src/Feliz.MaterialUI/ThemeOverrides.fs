@@ -20,7 +20,7 @@ module themeOverrides =
       [<Erase>]
       type muiAccordion =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordion", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordion", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAccordion.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `square={true}`.
@@ -37,7 +37,7 @@ module themeOverrides =
       [<Erase>]
       type muiAccordionActions =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordionActions", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordionActions", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAccordionActions.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `disableSpacing={true}`.
@@ -46,14 +46,14 @@ module themeOverrides =
       [<Erase>]
       type muiAccordionDetails =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordionDetails", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordionDetails", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAccordionDetails.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiAccordionSummary =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordionSummary", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAccordionSummary", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAccordionSummary.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
@@ -74,7 +74,7 @@ module themeOverrides =
       [<Erase>]
       type muiAlert =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAlert", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAlert", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAlert.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="filled"`.
@@ -117,14 +117,14 @@ module themeOverrides =
       [<Erase>]
       type muiAlertTitle =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAlertTitle", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAlertTitle", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAlertTitle.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiAppBar =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAppBar", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAppBar", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAppBar.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="fixed"`.
@@ -151,7 +151,7 @@ module themeOverrides =
       [<Erase>]
       type muiAutocomplete =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAutocomplete", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAutocomplete", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAutocomplete.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `fullWidth={true}`.
@@ -204,7 +204,7 @@ module themeOverrides =
       [<Erase>]
       type muiAvatar =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAvatar", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAvatar", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAvatar.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if not `src` or `srcSet`.
@@ -223,7 +223,7 @@ module themeOverrides =
       [<Erase>]
       type muiAvatarGroup =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAvatarGroup", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiAvatarGroup", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiAvatarGroup.styleOverrides.root", createObj !!styles)
         /// Styles applied to the avatar elements.
@@ -232,7 +232,7 @@ module themeOverrides =
       [<Erase>]
       type muiBackdrop =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBackdrop", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBackdrop", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiBackdrop.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `invisible={true}`.
@@ -241,7 +241,7 @@ module themeOverrides =
       [<Erase>]
       type muiBadge =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBadge", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBadge", !!values)
         /// Class name applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiBadge.styleOverrides.root", createObj !!styles)
         /// Class name applied to the badge `span` element.
@@ -296,14 +296,14 @@ module themeOverrides =
       [<Erase>]
       type muiBottomNavigation =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBottomNavigation", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBottomNavigation", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiBottomNavigation.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiBottomNavigationAction =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBottomNavigationAction", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBottomNavigationAction", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiBottomNavigationAction.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if selected.
@@ -316,7 +316,7 @@ module themeOverrides =
       [<Erase>]
       type muiBreadcrumbs =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBreadcrumbs", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiBreadcrumbs", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiBreadcrumbs.styleOverrides.root", createObj !!styles)
         /// Styles applied to the ol element.
@@ -329,7 +329,7 @@ module themeOverrides =
       [<Erase>]
       type muiButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiButton.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="text"`.
@@ -428,7 +428,7 @@ module themeOverrides =
       [<Erase>]
       type muiButtonBase =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiButtonBase", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiButtonBase", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiButtonBase.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `disabled={true}`.
@@ -439,7 +439,7 @@ module themeOverrides =
       [<Erase>]
       type muiButtonGroup =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiButtonGroup", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiButtonGroup", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiButtonGroup.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="contained"`.
@@ -496,14 +496,14 @@ module themeOverrides =
       [<Erase>]
       type muiCard =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCard", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCard", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCard.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiCardActionArea =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardActionArea", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardActionArea", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCardActionArea.styleOverrides.root", createObj !!styles)
         /// State class applied to the ButtonBase root element if the action area is keyboard focused.
@@ -514,7 +514,7 @@ module themeOverrides =
       [<Erase>]
       type muiCardActions =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardActions", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardActions", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCardActions.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `disableSpacing={true}`.
@@ -523,14 +523,14 @@ module themeOverrides =
       [<Erase>]
       type muiCardContent =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardContent", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardContent", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCardContent.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiCardHeader =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardHeader", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardHeader", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCardHeader.styleOverrides.root", createObj !!styles)
         /// Styles applied to the avatar element.
@@ -547,7 +547,7 @@ module themeOverrides =
       [<Erase>]
       type muiCardMedia =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardMedia", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCardMedia", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCardMedia.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
@@ -558,7 +558,7 @@ module themeOverrides =
       [<Erase>]
       type muiCheckbox =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCheckbox", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCheckbox", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCheckbox.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `checked={true}`.
@@ -575,7 +575,7 @@ module themeOverrides =
       [<Erase>]
       type muiChip =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiChip", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiChip", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `size="small"`.
@@ -662,7 +662,7 @@ module themeOverrides =
       [<Erase>]
       type muiCircularProgress =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCircularProgress", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCircularProgress", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCircularProgress.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="determinate"`.
@@ -687,7 +687,7 @@ module themeOverrides =
       [<Erase>]
       type muiCollapse =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCollapse", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCollapse", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCollapse.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `orientation="horizontal"`.
@@ -704,7 +704,7 @@ module themeOverrides =
       [<Erase>]
       type muiContainer =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiContainer", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiContainer", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiContainer.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `disableGutters={true}`.
@@ -725,7 +725,7 @@ module themeOverrides =
       [<Erase>]
       type muiDialog =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialog", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialog", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDialog.styleOverrides.root", createObj !!styles)
         /// Styles applied to the container element if `scroll="paper"`.
@@ -760,7 +760,7 @@ module themeOverrides =
       [<Erase>]
       type muiDialogActions =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogActions", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogActions", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDialogActions.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `disableSpacing={true}`.
@@ -769,7 +769,7 @@ module themeOverrides =
       [<Erase>]
       type muiDialogContent =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogContent", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogContent", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDialogContent.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `dividers={true}`.
@@ -778,21 +778,21 @@ module themeOverrides =
       [<Erase>]
       type muiDialogContentText =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogContentText", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogContentText", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDialogContentText.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiDialogTitle =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogTitle", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDialogTitle", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDialogTitle.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiDivider =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDivider", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDivider", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDivider.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `absolute={true}`.
@@ -825,7 +825,7 @@ module themeOverrides =
       [<Erase>]
       type muiDrawer =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDrawer", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDrawer", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDrawer.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="permanent or persistent"`.
@@ -854,7 +854,7 @@ module themeOverrides =
       [<Erase>]
       type muiFab =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFab", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFab", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFab.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `color="primary"`.
@@ -879,7 +879,7 @@ module themeOverrides =
       [<Erase>]
       type muiFilledInput =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFilledInput", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFilledInput", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFilledInput.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if color secondary.
@@ -918,7 +918,7 @@ module themeOverrides =
       [<Erase>]
       type muiFormControl =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormControl", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormControl", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFormControl.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `margin="normal"`.
@@ -931,7 +931,7 @@ module themeOverrides =
       [<Erase>]
       type muiFormControlLabel =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormControlLabel", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormControlLabel", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFormControlLabel.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `labelPlacement="start"`.
@@ -950,7 +950,7 @@ module themeOverrides =
       [<Erase>]
       type muiFormGroup =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormGroup", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormGroup", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFormGroup.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `row={true}`.
@@ -961,7 +961,7 @@ module themeOverrides =
       [<Erase>]
       type muiFormHelperText =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormHelperText", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormHelperText", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFormHelperText.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `error={true}`.
@@ -982,7 +982,7 @@ module themeOverrides =
       [<Erase>]
       type muiFormLabel =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormLabel", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiFormLabel", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiFormLabel.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if the color is secondary.
@@ -1003,7 +1003,7 @@ module themeOverrides =
       [<Erase>]
       type muiGrid =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiGrid", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiGrid", !!values)
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiGrid.styleOverrides.root", createObj !!styles)
         static member inline container(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiGrid.styleOverrides.container", createObj !!styles)
         static member inline item(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiGrid.styleOverrides.item", createObj !!styles)
@@ -1041,7 +1041,7 @@ module themeOverrides =
       [<Erase>]
       type muiIcon =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiIcon", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiIcon", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIcon.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `color="primary"`.
@@ -1064,7 +1064,7 @@ module themeOverrides =
       [<Erase>]
       type muiIconButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiIconButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiIconButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `edge="start"`.
@@ -1089,7 +1089,7 @@ module themeOverrides =
       [<Erase>]
       type muiImageList =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiImageList", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiImageList", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiImageList.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="masonry"`.
@@ -1104,7 +1104,7 @@ module themeOverrides =
       [<Erase>]
       type muiImageListItem =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiImageListItem", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiImageListItem", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiImageListItem.styleOverrides.root", createObj !!styles)
         /// Styles applied to an `img` element to ensure it covers the item.
@@ -1121,7 +1121,7 @@ module themeOverrides =
       [<Erase>]
       type muiImageListItemBar =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiImageListItemBar", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiImageListItemBar", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiImageListItemBar.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="bottom"`.
@@ -1150,7 +1150,7 @@ module themeOverrides =
       [<Erase>]
       type muiInput =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInput", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInput", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiInput.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if the component is a descendant of `FormControl`.
@@ -1183,7 +1183,7 @@ module themeOverrides =
       [<Erase>]
       type muiInputAdornment =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInputAdornment", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInputAdornment", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiInputAdornment.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="filled"`.
@@ -1206,7 +1206,7 @@ module themeOverrides =
       [<Erase>]
       type muiInputBase =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInputBase", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInputBase", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiInputBase.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if the component is a descendant of `FormControl`.
@@ -1251,7 +1251,7 @@ module themeOverrides =
       [<Erase>]
       type muiInputLabel =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInputLabel", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiInputLabel", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiInputLabel.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `focused={true}`.
@@ -1282,7 +1282,7 @@ module themeOverrides =
       [<Erase>]
       type muiLinearProgress =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiLinearProgress", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiLinearProgress", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiLinearProgress.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`.
@@ -1323,7 +1323,7 @@ module themeOverrides =
       [<Erase>]
       type muiLink =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiLink", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiLink", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiLink.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `underline="none"`.
@@ -1340,7 +1340,7 @@ module themeOverrides =
       [<Erase>]
       type muiList =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiList", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiList", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiList.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `disablePadding={true}`.
@@ -1353,7 +1353,7 @@ module themeOverrides =
       [<Erase>]
       type muiListItem =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItem", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItem", !!values)
         /// Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListItem.styleOverrides.root", createObj !!styles)
         /// Styles applied to the container element if `children` includes `ListItemSecondaryAction`.
@@ -1382,7 +1382,7 @@ module themeOverrides =
       [<Erase>]
       type muiListItemAvatar =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemAvatar", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemAvatar", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListItemAvatar.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
@@ -1391,7 +1391,7 @@ module themeOverrides =
       [<Erase>]
       type muiListItemButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListItemButton.styleOverrides.root", createObj !!styles)
         /// State class applied to the `component`'s `focusVisibleClassName` prop.
@@ -1412,7 +1412,7 @@ module themeOverrides =
       [<Erase>]
       type muiListItemIcon =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemIcon", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemIcon", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListItemIcon.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
@@ -1421,7 +1421,7 @@ module themeOverrides =
       [<Erase>]
       type muiListItemSecondaryAction =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemSecondaryAction", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemSecondaryAction", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListItemSecondaryAction.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element when the parent `ListItem` has `disableGutters={true}`.
@@ -1430,7 +1430,7 @@ module themeOverrides =
       [<Erase>]
       type muiListItemText =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemText", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListItemText", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListItemText.styleOverrides.root", createObj !!styles)
         /// Styles applied to the Typography component if primary and secondary are set.
@@ -1447,7 +1447,7 @@ module themeOverrides =
       [<Erase>]
       type muiListSubheader =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListSubheader", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiListSubheader", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiListSubheader.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `color="primary"`.
@@ -1464,7 +1464,7 @@ module themeOverrides =
       [<Erase>]
       type muiLoadingButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiLoadingButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiLoadingButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiLoadingButton.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="text"`.
@@ -1577,14 +1577,14 @@ module themeOverrides =
       [<Erase>]
       type muiMasonry =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMasonry", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMasonry", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMasonry.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiMenu =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMenu", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMenu", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenu.styleOverrides.root", createObj !!styles)
         /// Styles applied to the Paper component.
@@ -1595,7 +1595,7 @@ module themeOverrides =
       [<Erase>]
       type muiMenuItem =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMenuItem", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMenuItem", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenuItem.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if keyboard focused.
@@ -1614,7 +1614,7 @@ module themeOverrides =
       [<Erase>]
       type muiMobileStepper =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMobileStepper", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMobileStepper", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMobileStepper.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="bottom"`.
@@ -1635,7 +1635,7 @@ module themeOverrides =
       [<Erase>]
       type muiModal =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiModal", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiModal", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiModal.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if the `Modal` has exited.
@@ -1644,7 +1644,7 @@ module themeOverrides =
       [<Erase>]
       type muiNativeSelect =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiNativeSelect", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiNativeSelect", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiNativeSelect.styleOverrides.root", createObj !!styles)
         /// Styles applied to the select component `select` class.
@@ -1675,7 +1675,7 @@ module themeOverrides =
       [<Erase>]
       type muiOutlinedInput =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiOutlinedInput", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiOutlinedInput", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiOutlinedInput.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if the color is secondary.
@@ -1710,7 +1710,7 @@ module themeOverrides =
       [<Erase>]
       type muiPagination =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPagination", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPagination", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPagination.styleOverrides.root", createObj !!styles)
         /// Styles applied to the ul element.
@@ -1723,7 +1723,7 @@ module themeOverrides =
       [<Erase>]
       type muiPaginationItem =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPaginationItem", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPaginationItem", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPaginationItem.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `type="page"`.
@@ -1764,7 +1764,7 @@ module themeOverrides =
       [<Erase>]
       type muiPaper =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPaper", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPaper", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPaper.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `square={true}`.
@@ -1802,7 +1802,7 @@ module themeOverrides =
       [<Erase>]
       type muiPopover =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPopover", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPopover", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPopover.styleOverrides.root", createObj !!styles)
         /// Styles applied to the Paper component.
@@ -1811,7 +1811,7 @@ module themeOverrides =
       [<Erase>]
       type muiRadio =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiRadio", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiRadio", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiRadio.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `checked={true}`.
@@ -1826,7 +1826,7 @@ module themeOverrides =
       [<Erase>]
       type muiRating =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiRating", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiRating", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiRating.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `size="small"`.
@@ -1865,14 +1865,14 @@ module themeOverrides =
       [<Erase>]
       type muiScopedCssBaseline =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiScopedCssBaseline", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiScopedCssBaseline", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiScopedCssBaseline.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiSelect =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSelect", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSelect", !!values)
         /// Styles applied to the select component `select` class.
         static member inline select(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSelect.styleOverrides.select", createObj !!styles)
         /// Styles applied to the select component if `multiple={true}`.
@@ -1901,7 +1901,7 @@ module themeOverrides =
       [<Erase>]
       type muiSkeleton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSkeleton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSkeleton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSkeleton.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="text"`.
@@ -1926,7 +1926,7 @@ module themeOverrides =
       [<Erase>]
       type muiSlider =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSlider", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSlider", !!values)
         /// Class name applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.root", createObj !!styles)
         /// Class name applied to the root element if `marks` is provided with at least one label.
@@ -1983,7 +1983,7 @@ module themeOverrides =
       [<Erase>]
       type muiSnackbar =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSnackbar", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSnackbar", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSnackbar.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.
@@ -2002,7 +2002,7 @@ module themeOverrides =
       [<Erase>]
       type muiSnackbarContent =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSnackbarContent", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSnackbarContent", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSnackbarContent.styleOverrides.root", createObj !!styles)
         /// Styles applied to the message wrapper element.
@@ -2013,7 +2013,7 @@ module themeOverrides =
       [<Erase>]
       type muiSpeedDial =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSpeedDial", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSpeedDial", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSpeedDial.styleOverrides.root", createObj !!styles)
         /// Styles applied to the Fab component.
@@ -2034,7 +2034,7 @@ module themeOverrides =
       [<Erase>]
       type muiSpeedDialAction =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSpeedDialAction", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSpeedDialAction", !!values)
         /// Styles applied to the Fab component.
         static member inline fab(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSpeedDialAction.styleOverrides.fab", createObj !!styles)
         /// Styles applied to the Fab component if `open={false}`.
@@ -2053,7 +2053,7 @@ module themeOverrides =
       [<Erase>]
       type muiSpeedDialIcon =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSpeedDialIcon", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSpeedDialIcon", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSpeedDialIcon.styleOverrides.root", createObj !!styles)
         /// Styles applied to the icon component.
@@ -2070,7 +2070,7 @@ module themeOverrides =
       [<Erase>]
       type muiStep =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStep", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStep", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStep.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="horizontal"`.
@@ -2085,7 +2085,7 @@ module themeOverrides =
       [<Erase>]
       type muiStepButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStepButton.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="horizontal"`.
@@ -2098,7 +2098,7 @@ module themeOverrides =
       [<Erase>]
       type muiStepConnector =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepConnector", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepConnector", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStepConnector.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="horizontal"`.
@@ -2123,7 +2123,7 @@ module themeOverrides =
       [<Erase>]
       type muiStepContent =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepContent", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepContent", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStepContent.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `last={true}` (controlled by `Step`).
@@ -2134,7 +2134,7 @@ module themeOverrides =
       [<Erase>]
       type muiStepIcon =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepIcon", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepIcon", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStepIcon.styleOverrides.root", createObj !!styles)
         /// Styles applied to the SVG text element.
@@ -2149,7 +2149,7 @@ module themeOverrides =
       [<Erase>]
       type muiStepLabel =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepLabel", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepLabel", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStepLabel.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="horizontal"`.
@@ -2176,7 +2176,7 @@ module themeOverrides =
       [<Erase>]
       type muiStepper =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepper", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiStepper", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiStepper.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="horizontal"`.
@@ -2189,7 +2189,7 @@ module themeOverrides =
       [<Erase>]
       type muiSvgIcon =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSvgIcon", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSvgIcon", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSvgIcon.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `color="primary"`.
@@ -2212,7 +2212,7 @@ module themeOverrides =
       [<Erase>]
       type muiSwitch =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSwitch", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSwitch", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSwitch.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `edge="start"`.
@@ -2243,7 +2243,7 @@ module themeOverrides =
       [<Erase>]
       type muiTab =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTab", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTab", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTab.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if both `icon` and `label` are provided.
@@ -2268,7 +2268,7 @@ module themeOverrides =
       [<Erase>]
       type muiTable =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTable", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTable", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTable.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `stickyHeader={true}`.
@@ -2277,14 +2277,14 @@ module themeOverrides =
       [<Erase>]
       type muiTableBody =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableBody", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableBody", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableBody.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTableCell =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableCell", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableCell", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableCell.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="head"` or `context.table.head`.
@@ -2315,28 +2315,28 @@ module themeOverrides =
       [<Erase>]
       type muiTableContainer =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableContainer", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableContainer", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableContainer.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTableFooter =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableFooter", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableFooter", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableFooter.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTableHead =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableHead", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableHead", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableHead.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTablePagination =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTablePagination", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTablePagination", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTablePagination.styleOverrides.root", createObj !!styles)
         /// Styles applied to the Toolbar component.
@@ -2363,7 +2363,7 @@ module themeOverrides =
       [<Erase>]
       type muiTableRow =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableRow", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableRow", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableRow.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `selected={true}`.
@@ -2378,7 +2378,7 @@ module themeOverrides =
       [<Erase>]
       type muiTableSortLabel =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableSortLabel", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTableSortLabel", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableSortLabel.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `active={true}`.
@@ -2393,14 +2393,14 @@ module themeOverrides =
       [<Erase>]
       type muiTabPanel =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabPanel", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabPanel", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabPanel.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTabs =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabs", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabs", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabs.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="vertical"`.
@@ -2431,7 +2431,7 @@ module themeOverrides =
       [<Erase>]
       type muiTabScrollButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabScrollButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabScrollButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabScrollButton.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="vertical"`.
@@ -2442,14 +2442,14 @@ module themeOverrides =
       [<Erase>]
       type muiTextField =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTextField", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTextField", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTextField.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTimeline =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimeline", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimeline", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimeline.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="left"`.
@@ -2462,14 +2462,14 @@ module themeOverrides =
       [<Erase>]
       type muiTimelineConnector =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineConnector", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineConnector", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimelineConnector.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTimelineContent =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineContent", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineContent", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimelineContent.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="right"`.
@@ -2482,7 +2482,7 @@ module themeOverrides =
       [<Erase>]
       type muiTimelineDot =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineDot", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineDot", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimelineDot.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="filled"`.
@@ -2505,7 +2505,7 @@ module themeOverrides =
       [<Erase>]
       type muiTimelineItem =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineItem", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineItem", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimelineItem.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="left"`.
@@ -2520,7 +2520,7 @@ module themeOverrides =
       [<Erase>]
       type muiTimelineOppositeContent =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineOppositeContent", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineOppositeContent", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimelineOppositeContent.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `position="right"`.
@@ -2533,14 +2533,14 @@ module themeOverrides =
       [<Erase>]
       type muiTimelineSeparator =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineSeparator", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTimelineSeparator", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTimelineSeparator.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiToggleButton =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiToggleButton", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiToggleButton", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiToggleButton.styleOverrides.root", createObj !!styles)
         /// State class applied to the root element if `disabled={true}`.
@@ -2563,7 +2563,7 @@ module themeOverrides =
       [<Erase>]
       type muiToggleButtonGroup =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiToggleButtonGroup", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiToggleButtonGroup", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiToggleButtonGroup.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `orientation="vertical"`.
@@ -2580,7 +2580,7 @@ module themeOverrides =
       [<Erase>]
       type muiToolbar =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiToolbar", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiToolbar", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiToolbar.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element unless `disableGutters={true}`.
@@ -2593,7 +2593,7 @@ module themeOverrides =
       [<Erase>]
       type muiTooltip =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTooltip", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTooltip", !!values)
         /// Styles applied to the Popper component.
         static member inline popper(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTooltip.styleOverrides.popper", createObj !!styles)
         /// Styles applied to the Popper component unless `disableInteractive={true}`.
@@ -2622,7 +2622,7 @@ module themeOverrides =
       [<Erase>]
       type muiTreeItem =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTreeItem", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTreeItem", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTreeItem.styleOverrides.root", createObj !!styles)
         /// Styles applied to the transition component.
@@ -2645,14 +2645,14 @@ module themeOverrides =
       [<Erase>]
       type muiTreeView =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTreeView", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTreeView", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTreeView.styleOverrides.root", createObj !!styles)
 
       [<Erase>]
       type muiTypography =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTypography", values)
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTypography", !!values)
         /// Styles applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTypography.styleOverrides.root", createObj !!styles)
         /// Styles applied to the root element if `variant="body2"`.
@@ -2697,94 +2697,3 @@ module themeOverrides =
         static member inline gutterBottom(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTypography.styleOverrides.gutterBottom", createObj !!styles)
         /// Styles applied to the root element if `paragraph={true}`.
         static member inline paragraph(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTypography.styleOverrides.paragraph", createObj !!styles)
-
-      [<Erase>]
-      type muiCalendarPicker =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCalendarPicker", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCalendarPicker.styleOverrides.root", createObj !!styles)
-        /// Styles applied to the transition group element.
-        static member inline viewTransitionContainer(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCalendarPicker.styleOverrides.viewTransitionContainer", createObj !!styles)
-
-      [<Erase>]
-      type muiCalendarPickerSkeleton =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiCalendarPickerSkeleton", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCalendarPickerSkeleton.styleOverrides.root", createObj !!styles)
-        /// Styles applied to the week element.
-        static member inline week(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCalendarPickerSkeleton.styleOverrides.week", createObj !!styles)
-        /// Styles applied to the day element.
-        static member inline daySkeleton(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiCalendarPickerSkeleton.styleOverrides.daySkeleton", createObj !!styles)
-
-      [<Erase>]
-      type muiClockPicker =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiClockPicker", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiClockPicker.styleOverrides.root", createObj !!styles)
-        /// Styles applied to the arrowSwitcher element.
-        static member inline arrowSwitcher(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiClockPicker.styleOverrides.arrowSwitcher", createObj !!styles)
-
-      [<Erase>]
-      type muiDateRangePickerDay =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiDateRangePickerDay", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.root", createObj !!styles)
-        /// Styles applied to the root element if `isHighlighting=true` and `outsideCurrentMonth=false`.
-        static member inline rangeIntervalDayHighlight(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalDayHighlight", createObj !!styles)
-        /// Styles applied to the root element if `isStartOfHighlighting=true` or `day` is the start of the month.
-        static member inline rangeIntervalDayHighlightStart(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalDayHighlightStart", createObj !!styles)
-        /// Styles applied to the root element if `isEndOfHighlighting=true` or `day` is the end of the month.
-        static member inline rangeIntervalDayHighlightEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalDayHighlightEnd", createObj !!styles)
-        /// Styles applied to the preview element.
-        static member inline rangeIntervalPreview(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalPreview", createObj !!styles)
-        /// Styles applied to the root element if `isPreviewing=true` and `outsideCurrentMonth=false`.
-        static member inline rangeIntervalDayPreview(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalDayPreview", createObj !!styles)
-        /// Styles applied to the root element if `isStartOfPreviewing=true` or `day` is the start of the month.
-        static member inline rangeIntervalDayPreviewStart(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalDayPreviewStart", createObj !!styles)
-        /// Styles applied to the root element if `isEndOfPreviewing=true` or `day` is the end of the month.
-        static member inline rangeIntervalDayPreviewEnd(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.rangeIntervalDayPreviewEnd", createObj !!styles)
-        /// Styles applied to the day element.
-        static member inline day(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.day", createObj !!styles)
-        /// Styles applied to the day element if `isHighlighting=false`.
-        static member inline dayOutsideRangeInterval(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.dayOutsideRangeInterval", createObj !!styles)
-        /// Styles applied to the day element if `selected=false` and `isHighlighting=true`.
-        static member inline dayInsideRangeInterval(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.dayInsideRangeInterval", createObj !!styles)
-        /// Styles applied to the day element if `selected=false`.
-        static member inline notSelectedDate(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiDateRangePickerDay.styleOverrides.notSelectedDate", createObj !!styles)
-
-      [<Erase>]
-      type muiMonthPicker =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMonthPicker", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMonthPicker.styleOverrides.root", createObj !!styles)
-
-      [<Erase>]
-      type muiPickersDay =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiPickersDay", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.root", createObj !!styles)
-        /// Styles applied to the root element if `disableMargin=false`.
-        static member inline dayWithMargin(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.dayWithMargin", createObj !!styles)
-        /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=true`.
-        static member inline dayOutsideMonth(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.dayOutsideMonth", createObj !!styles)
-        /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=false`.
-        static member inline hiddenDaySpacingFiller(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.hiddenDaySpacingFiller", createObj !!styles)
-        /// Styles applied to the root element if `disableHighlightToday=false` and `today=true`.
-        static member inline today(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.today", createObj !!styles)
-        /// State class applied to the root element if `selected=true`.
-        static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.selected", createObj !!styles)
-        /// State class applied to the root element if `disabled=true`.
-        static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiPickersDay.styleOverrides.disabled", createObj !!styles)
-
-      [<Erase>]
-      type muiYearPicker =
-        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
-        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiYearPicker", values)
-        /// Styles applied to the root element.
-        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiYearPicker.styleOverrides.root", createObj !!styles)

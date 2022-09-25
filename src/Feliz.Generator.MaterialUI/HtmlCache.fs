@@ -78,13 +78,18 @@ let refresh =
 
 let getApiFiles () =
     let apiDirPath = Path.Combine(cacheFolder, "material-ui", "api")
+
+    Directory.GetFiles(apiDirPath, "*.html")
+    |> Array.sortBy (fun s -> s.Substring(0, s.LastIndexOf ".").Replace("-", ""))
+
+
+let getDatePickersApiFiles () =
     let datePickersApiDirPath = Path.Combine(cacheFolder, "x", "api", "date-pickers")
 
-    [| Directory.GetFiles(apiDirPath, "*.html")
-       Directory.GetFiles(datePickersApiDirPath, "*.html")
-       |> Array.filter (fun f -> Path.GetFileNameWithoutExtension(f) <> "index") |]
-    |> Array.concat
+    Directory.GetFiles(datePickersApiDirPath, "*.html")
+    |> Array.filter (fun f -> Path.GetFileNameWithoutExtension(f) <> "index")
     |> Array.sortBy (fun s -> s.Substring(0, s.LastIndexOf ".").Replace("-", ""))
+
 
 let localizationFile =
     Path.Combine(cacheFolder, "material-ui", "guides", "localization.html")

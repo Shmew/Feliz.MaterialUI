@@ -16,6 +16,7 @@ let samples =
         "Samples.Usage.Hooks.UseMediaQuery", Samples.Usage.Hooks.UseMediaQuery.UseMediaQuerySample
         "Samples.Components.Autocomplete.Autocomplete", Samples.Components.Autocomplete.Autocomplete.Autocomplete
         "Samples.Samples.SignIn.SignIn", Samples.Samples.SignIn.SignIn.SignIn
+        "Samples.Samples.DateTimePickers.DateTimePickers", Samples.Samples.DateTimePickers.DateTimePickers.DateTimePickersSample
     ]
 
 type Sample = ReactElement

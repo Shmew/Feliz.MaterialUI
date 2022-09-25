@@ -64,6 +64,7 @@ type TsAtomicType =
     | Number
     | Integer
     | Bool
+    | Date
     | Func
     | Object
     | Element

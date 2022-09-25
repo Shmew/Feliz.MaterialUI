@@ -50,6 +50,7 @@ module Parsers =
             stringReturn "number" Number
             stringReturn "integer" Integer
             stringReturn "bool" Bool
+            stringReturn "Date" Date
             stringReturn "func" Func
             stringReturn "object" TsAtomicType.Object
             stringReturn "elementType" ElementType
@@ -147,6 +148,7 @@ module Translators =
         | Number -> "float"
         | Integer -> "int"
         | Bool -> "bool"
+        | Date -> "System.DateTime"
         | Func -> "Func<obj, obj>"
         | TsAtomicType.Object -> "obj"
         | Element -> "ReactElement"

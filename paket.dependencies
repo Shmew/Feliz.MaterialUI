@@ -28,6 +28,7 @@ group DocsApp
     nuget Feliz.Router
     nuget Fable.SimpleHttp
     nuget Zanaptak.TypedCssClasses
+    nuget Fable.DateFunctions
 
 group FakeBuild
     source https://api.nuget.org/v3/index.json
