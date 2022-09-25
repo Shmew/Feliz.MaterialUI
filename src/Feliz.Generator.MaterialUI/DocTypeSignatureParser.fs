@@ -29,6 +29,7 @@ module Parsers =
             stringReturn "elementType" ElementType
             stringReturn "element" Element
             stringReturn "node" Node
+            stringReturn "any" Any
             tsStringLiteral tsIdentifier |>> StringLiteral
             tsIdentifier |>> OtherType
         ] |>> TsType.Atomic
@@ -97,6 +98,7 @@ module Translators =
 
     let translateInnerTsAtomicType (tsAtomicType: TsAtomicType) =
         match tsAtomicType with
+        | Any -> "'T"
         | String -> "string"
         | Number -> "float"
         | Bool -> "bool"

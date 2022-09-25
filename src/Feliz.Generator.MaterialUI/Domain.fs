@@ -54,6 +54,7 @@ type IsOptional = bool
 type FsTypeSignature = string
 
 type TsAtomicType =
+    | Any
     | String
     | Number
     | Bool
