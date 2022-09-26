@@ -236,10 +236,10 @@ let SignIn (key: string) =
                                     | _ -> dispatch SubmitInvalid)
                             ]
                             Mui.grid [
-                                grid.container true; grid.sx [style.justifyContent.spaceBetween]
+                                grid.container; grid.sx [style.justifyContent.spaceBetween]
                                 grid.children [
                                     Mui.grid [
-                                        grid.item true
+                                        grid.item
                                         grid.xs.auto
                                         grid.children [
                                             Mui.link [
@@ -251,7 +251,7 @@ let SignIn (key: string) =
                                         ]
                                     ]
                                     Mui.grid [
-                                        grid.item true
+                                        grid.item
                                         grid.children [
                                             Mui.link [
                                                 prop.href "#"

@@ -154,7 +154,7 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
         ]
 
         Mui.grid [
-            grid.container true
+            grid.container
             grid.sx [ style.justifyContent.flexEnd; style.flexDirection.row ]
             grid.children [
                 // GitHub button
