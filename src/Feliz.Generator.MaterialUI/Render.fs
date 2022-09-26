@@ -12,38 +12,43 @@ module GetLines =
     /// Gets the code lines for the implementation of a single class rule. Does not
     /// include docs.
     let singleClassRule (propName: string) (rule: ClassRule) =
-        //sprintf "static member inline %s(className: string) : IReactProperty = unbox (\"%s.%s\", className)"
-        //rule.MethodName
-        //propName
-        //rule.RealRuleName
+        sprintf "static member inline %s(className: string) : IReactProperty = unbox (\"%s.%s\", className)"
+            rule.MethodName
+            propName
+            rule.RealRuleName
+        |> List.singleton
+
+    /// Gets the code lines for the implementation of a single class global name. Does not
+    /// include docs.
+    let singleGlobalClassNameGetter (rule: ClassRule) =
         sprintf "static member inline %s : string = \"%s\"" rule.MethodName rule.GlobalClass
         |> List.singleton
+
+    let tryGetMatcinClassesPropAndRules (api: MuiComponentApi) (comp: MuiComponent) (p: Prop) =
+        if p.MethodName = "classes"
+            && not comp.ClassRules.IsEmpty then
+            Some(p, comp.ClassRules)
+        elif p.MethodName.EndsWith "Classes" then
+            let otherCompName =
+                p.MethodName.Substring(0, p.MethodName.Length - 7)
+                |> String.lowerFirst
+
+            let rules =
+                api.MuiComponents
+                |> List.find (fun c -> c.GeneratorComponent.MethodName = otherCompName)
+                |> fun c -> c.ClassRules
+
+            if not rules.IsEmpty then
+                Some(p, rules)
+            else
+                None
+        else
+            None
 
     let classRulesForComponent (api: MuiComponentApi) (comp: MuiComponent) =
         [ let propsAndClassRules =
               comp.GeneratorComponent.Props
-              |> List.choose (fun p ->
-                  if p.MethodName = "classes"
-                     && not comp.ClassRules.IsEmpty then
-                      Some(p, comp.ClassRules)
-                  elif p.MethodName.EndsWith "Classes" then
-                      let otherCompName =
-                          p.MethodName.Substring(0, p.MethodName.Length - 7)
-                          |> String.lowerFirst
-
-                      let rules =
-                          api.MuiComponents
-                          |> List.find (fun c -> c.GeneratorComponent.MethodName = otherCompName)
-                          |> fun c -> c.ClassRules
-
-                      if not rules.IsEmpty then
-                          Some(p, rules)
-                      else
-                          None
-                  else
-                      None
-
-              )
+              |> List.choose (tryGetMatcinClassesPropAndRules api comp)
 
           if not propsAndClassRules.IsEmpty then
               sprintf "module %s =" comp.GeneratorComponent.MethodName
@@ -69,6 +74,24 @@ module GetLines =
 
               ""
               "" ]
+
+    let classesGlobalNamesGettersForComponent (comp: MuiComponent) =
+        [
+            if not comp.ClassRules.IsEmpty then
+                sprintf "type [<Erase>] %s =" comp.GeneratorComponent.MethodName
+                ""
+
+                for rule in comp.ClassRules do
+                    yield!
+                        rule.DocLines
+                        |> List.map (String.prefix "/// " >> String.trim >> indent 1)
+
+                    yield!
+                        singleGlobalClassNameGetter rule
+                        |> List.map (indent 1)
+                ""
+                ""
+        ]
 
     let themeDefaultPropsForComponent stylesheetName =
         sprintf
@@ -146,7 +169,7 @@ module GetLines =
                 iconTitle
         ]
 
-let classesDocument (additionalOpens: string list) (api: MuiComponentApi) =
+let classesPropsDocument (additionalOpens: string list) (api: MuiComponentApi) =
     [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
       ""
       "(*////////////////////////////////"
@@ -166,6 +189,26 @@ let classesDocument (additionalOpens: string list) (api: MuiComponentApi) =
               GetLines.classRulesForComponent api comp
               |> List.map (indent 1) ]
     |> String.concat Environment.NewLine
+
+let classesGlobalNamesDocument (additionalOpens: string list) (api: MuiComponentApi) =
+    [ sprintf "module %s.MuiClasses" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Feliz"
+      yield! additionalOpens
+      ""
+      //"module MuiClasses ="
+      //""
+      for comp in api.MuiComponents do
+          yield!
+              GetLines.classesGlobalNamesGettersForComponent comp
+              //|> List.map (indent 1)
+    ] |> String.concat Environment.NewLine
 
 let themePropsDocument (additionalOpens: string list) (api: MuiComponentApi) =
 

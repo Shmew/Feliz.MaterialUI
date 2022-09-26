@@ -21,7 +21,8 @@
     <Compile Include="Theme.fs" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />
-    <Compile Include="Classes.fs" />
+    <Compile Include="ClassNames.fs" />
+    <Compile Include="ClassesProps.fs" />
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
   </ItemGroup>

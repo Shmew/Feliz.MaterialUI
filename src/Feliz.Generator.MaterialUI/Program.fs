@@ -11,7 +11,8 @@ let writeMuiComponentsApiFiles
     (api: Domain.MuiComponentApi) =
     File.WriteAllText(directoryPath </> "Mui.fs", Render.componentDocument additionalOpens api.GeneratorComponentApi)
     File.WriteAllText(directoryPath </> "Props.fs", Render.propsDocument api.GeneratorComponentApi)
-    File.WriteAllText(directoryPath </> "Classes.fs", Render.classesDocument additionalOpens api)
+    File.WriteAllText(directoryPath </> "ClassNames.fs", Render.classesGlobalNamesDocument additionalOpens api)
+    File.WriteAllText(directoryPath </> "ClassesProps.fs", Render.classesPropsDocument additionalOpens api)
     File.WriteAllText(directoryPath </> "ThemeProps.fs", Render.themePropsDocument additionalOpens api)
     File.WriteAllText(directoryPath </> "ThemeOverrides.fs", Render.themeOverridesDocument additionalOpens api)
 

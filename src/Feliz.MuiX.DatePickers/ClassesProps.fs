@@ -18,11 +18,11 @@ module classesProps =
     [<Erase>]
     type classes =
       /// Styles applied to the root element.
-      static member inline root : string = ".MuiCalendarPickerSkeleton-root"
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the week element.
-      static member inline week : string = ".MuiCalendarPickerSkeleton-week"
+      static member inline week(className: string) : IReactProperty = unbox ("classes.week", className)
       /// Styles applied to the day element.
-      static member inline daySkeleton : string = ".MuiCalendarPickerSkeleton-daySkeleton"
+      static member inline daySkeleton(className: string) : IReactProperty = unbox ("classes.daySkeleton", className)
   
   
   module clockPicker =
@@ -31,9 +31,9 @@ module classesProps =
     [<Erase>]
     type classes =
       /// Styles applied to the root element.
-      static member inline root : string = ".MuiClockPicker-root"
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the arrowSwitcher element.
-      static member inline arrowSwitcher : string = ".MuiClockPicker-arrowSwitcher"
+      static member inline arrowSwitcher(className: string) : IReactProperty = unbox ("classes.arrowSwitcher", className)
   
   
   module monthPicker =
@@ -42,7 +42,7 @@ module classesProps =
     [<Erase>]
     type classes =
       /// Styles applied to the root element.
-      static member inline root : string = ".MuiMonthPicker-root"
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
   
   
   module pickersDay =
@@ -51,18 +51,18 @@ module classesProps =
     [<Erase>]
     type classes =
       /// Styles applied to the root element.
-      static member inline root : string = ".MuiPickersDay-root"
+      static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
       /// Styles applied to the root element if `disableMargin=false`.
-      static member inline dayWithMargin : string = ".MuiPickersDay-dayWithMargin"
+      static member inline dayWithMargin(className: string) : IReactProperty = unbox ("classes.dayWithMargin", className)
       /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=true`.
-      static member inline dayOutsideMonth : string = ".MuiPickersDay-dayOutsideMonth"
+      static member inline dayOutsideMonth(className: string) : IReactProperty = unbox ("classes.dayOutsideMonth", className)
       /// Styles applied to the root element if `outsideCurrentMonth=true` and `showDaysOutsideCurrentMonth=false`.
-      static member inline hiddenDaySpacingFiller : string = ".MuiPickersDay-hiddenDaySpacingFiller"
+      static member inline hiddenDaySpacingFiller(className: string) : IReactProperty = unbox ("classes.hiddenDaySpacingFiller", className)
       /// Styles applied to the root element if `disableHighlightToday=false` and `today=true`.
-      static member inline today : string = ".MuiPickersDay-today"
+      static member inline today(className: string) : IReactProperty = unbox ("classes.today", className)
       /// State class applied to the root element if `selected=true`.
-      static member inline selected : string = ".Mui-selected"
+      static member inline selected(className: string) : IReactProperty = unbox ("classes.selected", className)
       /// State class applied to the root element if `disabled=true`.
-      static member inline disabled : string = ".Mui-disabled"
+      static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
   
   

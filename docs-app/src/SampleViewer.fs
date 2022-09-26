@@ -198,7 +198,7 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
             collapse.in' isExpanded
             collapse.sx [
                 style.display.block;
-                style.inner ("&" + collapse.classes.wrapperInner) [
+                style.inner ("&" + MuiClasses.collapse.wrapperInner) [
                     style.backgroundColor bgColor
                 ]
             ]

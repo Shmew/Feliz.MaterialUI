@@ -269,7 +269,7 @@ let Drawer model dispatch =
             prop.href fragment
             if isNested then
                 listItem.sx (fun t -> [
-                    style.inner ("&" + listItem.classes.root)
+                    style.inner ("&" + MuiClasses.listItem.root)
                         [style.paddingLeft (t.spacing 4)]
                 ])
             listItem.button true
@@ -286,7 +286,7 @@ let Drawer model dispatch =
         drawer.sx (
             xs = [
                 style.display.block
-                style.inner ("&" + drawer.classes.paper) [
+                style.inner ("&" + MuiClasses.drawer.paper) [
                     style.width (Constants.drawerWidth)
                     style.boxSizing.borderBox
                     //style.flexShrink 0 // TODO: Does this do anything?]
