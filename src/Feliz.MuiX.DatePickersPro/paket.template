@@ -1,9 +1,9 @@
-type project
+﻿type project
 licenseExpression MIT
 licenseUrl https://licenses.nuget.org/MIT
 projectUrl https://github.com/Shmew/Feliz.MaterialUI
 tags
-  f# fable bindings feliz react mui material-ui materialui
+  f# fable bindings feliz react mui material-ui materialui mui-x datepickers
 dependencies
   FSharp.Core >= LOCKEDVERSION
   Feliz >= LOCKEDVERSION

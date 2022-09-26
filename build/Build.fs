@@ -21,6 +21,8 @@ module NpmPackages =
     let [<Literal>] muiMaterial = "@mui/material"
     let [<Literal>] muiLab = "@mui/lab"
     let [<Literal>] muiIconsMaterial = "@mui/icons-material"
+    let [<Literal>] muiXDatePickers = "@mui/x-date-pickers"
+    let [<Literal>] muiXDatePickersPro = "@mui/x-date-pickers-pro"
 
 
 let root = __SOURCE_DIRECTORY__ </> ".."
@@ -42,6 +44,8 @@ let docsAppSrcDirPath = docsAppDirPath </> "src"
 
 let muiLibProjectPath = srcPath </> "Feliz.MaterialUI" </> "Feliz.MaterialUI.fsproj"
 let muiIconsLibProjectPath = srcPath </> "Feliz.MaterialUI.Icons" </> "Feliz.MaterialUI.Icons.fsproj"
+let muiXDatePickersProjPath = srcPath </> "Feliz.MuiX.DatePickers" </> "Feliz.MuiX.DatePickers.fsproj"
+let muiXDatePickersProProjPath = srcPath </> "Feliz.MuiX.DatePickersPro" </> "Feliz.MuiX.DatePickersPro.fsproj"
 
 
 let DotnetExecFromRoot command args =
@@ -149,12 +153,21 @@ Target.create "UpdateFemtoVersionMetadata" (fun _ ->
     let latestIconsStableVersion =
         NpmPackages.muiIconsMaterial |> getLatestNpmPackageStableVersion
 
-    let v = latestCoreStableVersion
+    let latestDatePickersStableVersion =
+        NpmPackages.muiXDatePickers |> getLatestNpmPackageStableVersion
+
+    let latestDatePickersProStableVersion =
+        NpmPackages.muiXDatePickersPro |> getLatestNpmPackageStableVersion
+
+    let muiV = latestCoreStableVersion
+    let iconsV = latestIconsStableVersion
+    let datepickersV = latestDatePickersStableVersion
+    let datepickersProV = latestDatePickersProStableVersion
 
     poke
         muiLibProjectPath
         $"//NpmPackage[@Name='{NpmPackages.muiMaterial}']/@Version"
-        (sprintf "gte %i.%i lt %i" v.Major v.Minor (v.Major + 1u))
+        (sprintf "gte %i.%i lt %i" muiV.Major muiV.Minor (muiV.Major + 1u))
 
     poke
         muiLibProjectPath
@@ -164,7 +177,17 @@ Target.create "UpdateFemtoVersionMetadata" (fun _ ->
     poke
         muiIconsLibProjectPath
         $"//NpmPackage[@Name='{NpmPackages.muiIconsMaterial}']/@Version"
-        (sprintf "gte %i.%i lt %i" v.Major v.Minor (v.Major + 1u))
+        (sprintf "gte %i.%i lt %i" iconsV.Major iconsV.Minor (iconsV.Major + 1u))
+
+    poke
+        muiXDatePickersProjPath
+        $"//NpmPackage[@Name='{NpmPackages.muiXDatePickers}']/@Version"
+        (sprintf "gte %i.%i lt %i" datepickersV.Major datepickersV.Minor (datepickersV.Major + 1u))
+
+    poke
+        muiXDatePickersProProjPath
+        $"//NpmPackage[@Name='{NpmPackages.muiXDatePickersPro}']/@Version"
+        (sprintf "gte %i.%i lt %i" datepickersProV.Major datepickersProV.Minor (datepickersProV.Major + 1u))
 )
 
 
