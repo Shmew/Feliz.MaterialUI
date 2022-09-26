@@ -237,6 +237,11 @@ module Translators =
             |> PropOverload.Enum
             |> List.singleton
 
+        | Number ->
+            [ RegularPropOverload.create "(value: int)" "value"
+              RegularPropOverload.create "(value: float)" "value" ]
+            |> List.map PropOverload.Regular
+
         | t ->
             let translators = translators customize
             let typeSign = translators.InnerAtomic t

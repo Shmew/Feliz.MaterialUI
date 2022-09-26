@@ -304,6 +304,8 @@ type clockPicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired on view change.
   ///
   /// **Signature:**
@@ -731,6 +733,8 @@ type dateTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -1298,6 +1302,8 @@ type desktopDateTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -1562,6 +1568,8 @@ type desktopTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -2050,6 +2058,8 @@ type mobileDateTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -2312,6 +2322,8 @@ type mobileTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -2844,6 +2856,8 @@ type staticDateTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -3102,6 +3116,8 @@ type staticTimePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**
@@ -3257,6 +3273,8 @@ type timePicker =
   static member inline minTime (value: 'T) = Interop.mkAttr "minTime" value
   /// Step over minutes.
   static member inline minutesStep (value: int) = Interop.mkAttr "minutesStep" value
+  /// Step over minutes.
+  static member inline minutesStep (value: float) = Interop.mkAttr "minutesStep" value
   /// Callback fired when date is accepted @DateIOType.
   ///
   /// **Signature:**

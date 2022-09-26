@@ -66,6 +66,8 @@ type cacheProvider =
   static member inline children (elements: seq<ReactElement>) = prop.children elements
 
 
+
+
 [<Erase>]
 type accordion =
   /// The content of the component.
@@ -1060,6 +1062,10 @@ type avatarGroup =
   static member inline componentsProps (?additionalAvatar: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if additionalAvatar.IsSome then x?``additionalAvatar`` <- additionalAvatar); x)
   /// Max avatars to show before +x.
   static member inline max (value: int) = Interop.mkAttr "max" value
+  /// Max avatars to show before +x.
+  static member inline max (value: float) = Interop.mkAttr "max" value
+  /// Spacing between avatars.
+  static member inline spacing (value: int) = Interop.mkAttr "spacing" value
   /// Spacing between avatars.
   static member inline spacing (value: float) = Interop.mkAttr "spacing" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1078,6 +1084,8 @@ type avatarGroup =
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// The total number of avatars. Used for calculating the number of extra avatars.
   static member inline total (value: int) = Interop.mkAttr "total" value
+  /// The total number of avatars. Used for calculating the number of extra avatars.
+  static member inline total (value: float) = Interop.mkAttr "total" value
   /// The variant to use.
   static member inline variant (value: string) = Interop.mkAttr "variant" value
 
@@ -1217,6 +1225,8 @@ type badge =
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   /// Max count to show.
   static member inline max (value: int) = Interop.mkAttr "max" value
+  /// Max count to show.
+  static member inline max (value: float) = Interop.mkAttr "max" value
   /// Controls whether the badge is hidden when `badgeContent` is zero.
   static member inline showZero (value: bool) = Interop.mkAttr "showZero" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -2366,8 +2376,12 @@ type circularProgress =
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// The thickness of the circle.
   static member inline thickness (value: int) = Interop.mkAttr "thickness" value
+  /// The thickness of the circle.
+  static member inline thickness (value: float) = Interop.mkAttr "thickness" value
   /// The value of the progress indicator for the determinate variant. Value between 0 and 100.
   static member inline value (value: int) = Interop.mkAttr "value" value
+  /// The value of the progress indicator for the determinate variant. Value between 0 and 100.
+  static member inline value (value: float) = Interop.mkAttr "value" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -3680,14 +3694,24 @@ type grid =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*.
-  static member inline container (value: bool) = Interop.mkAttr "container" value
+  static member inline container  = Interop.mkAttr "container" true
   /// Defines the `flex-direction` style property. It is applied for all screen sizes.
   static member inline direction (direction: FlexDirection) = Interop.mkAttr "direction" direction
   /// Defines the `flex-direction` style property. It is applied for all screen sizes.
   static member inline direction (?xs: FlexDirection, ?sm: FlexDirection, ?md: FlexDirection, ?lg: FlexDirection, ?xl: FlexDirection) = Interop.mkAttr "direction" (let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- xs); (if sm.IsSome then x?``sm`` <- sm); (if md.IsSome then x?``md`` <- md); (if lg.IsSome then x?``lg`` <- lg); (if xl.IsSome then x?``xl`` <- xl); x)
-  static member inline item (value: bool) = Interop.mkAttr "item" value
+  /// ⚠ Is removed from Grid v2 ⚠
+  /// If true, the component will have the flex item behavior. You should be wrapping items with a container.
+  static member inline item  = Interop.mkAttr "item" true
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `lg` breakpoint and wider screens if not overridden.
+  static member inline lg (value: int) = Interop.mkAttr "lg" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `lg` breakpoint and wider screens if not overridden.
+  static member inline lg (value: float) = Interop.mkAttr "lg" value
   /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `lg` breakpoint and wider screens if not overridden.
   static member inline lg (value: bool) = Interop.mkAttr "lg" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `md` breakpoint and wider screens if not overridden.
+  static member inline md (value: int) = Interop.mkAttr "md" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `md` breakpoint and wider screens if not overridden.
+  static member inline md (value: float) = Interop.mkAttr "md" value
   /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `md` breakpoint and wider screens if not overridden.
   static member inline md (value: bool) = Interop.mkAttr "md" value
   /// Defines the vertical space between the type `item` components. It overrides the value of the `spacing` prop.
@@ -3700,6 +3724,10 @@ type grid =
   static member inline rowSpacing (?xs: int, ?sm: int, ?md: int, ?lg: int, ?xl: int) = Interop.mkAttr "rowSpacing" (let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- xs); (if sm.IsSome then x?``sm`` <- sm); (if md.IsSome then x?``md`` <- md); (if lg.IsSome then x?``lg`` <- lg); (if xl.IsSome then x?``xl`` <- xl); x)
   /// Defines the vertical space between the type `item` components. It overrides the value of the `spacing` prop.
   static member inline rowSpacing (?xs: Styles.ICssUnit, ?sm: Styles.ICssUnit, ?md: Styles.ICssUnit, ?lg: Styles.ICssUnit, ?xl: Styles.ICssUnit) = Interop.mkAttr "rowSpacing" (let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- xs); (if sm.IsSome then x?``sm`` <- sm); (if md.IsSome then x?``md`` <- md); (if lg.IsSome then x?``lg`` <- lg); (if xl.IsSome then x?``xl`` <- xl); x)
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `sm` breakpoint and wider screens if not overridden.
+  static member inline sm (value: int) = Interop.mkAttr "sm" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `sm` breakpoint and wider screens if not overridden.
+  static member inline sm (value: float) = Interop.mkAttr "sm" value
   /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `sm` breakpoint and wider screens if not overridden.
   static member inline sm (value: bool) = Interop.mkAttr "sm" value
   /// Defines the space between the type `item` components. It can only be used on a type `container` component.
@@ -3720,9 +3748,19 @@ type grid =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `xl` breakpoint and wider screens if not overridden.
+  static member inline xl (value: int) = Interop.mkAttr "xl" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `xl` breakpoint and wider screens if not overridden.
+  static member inline xl (value: float) = Interop.mkAttr "xl" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for the `xl` breakpoint and wider screens if not overridden.
   static member inline xl (value: bool) = Interop.mkAttr "xl" value
   /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for all the screen sizes with the lowest priority.
+  static member inline xs (value: int) = Interop.mkAttr "xs" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for all the screen sizes with the lowest priority.
+  static member inline xs (value: float) = Interop.mkAttr "xs" value
+  /// If a number, it sets the number of columns the grid item uses. It can't be greater than the total number of columns of the container (12 by default). If 'auto', the grid item's width matches its content. If false, the prop is ignored. If true, the grid item's width grows to use the space available in the grid container. The value is applied for all the screen sizes with the lowest priority.
   static member inline xs (value: bool) = Interop.mkAttr "xs" value
+  /// ⚠ Is removed from Grid v2 ⚠
+  /// If true, it sets min-width: 0 on the item. Refer to the limitations section of the documentation to better understand the use case.
   static member inline zeroMinWidth (value: bool) = Interop.mkAttr "zeroMinWidth" value
 
 module grid =
@@ -4080,6 +4118,10 @@ type imageList =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The gap between items in px.
   static member inline gap (value: int) = Interop.mkAttr "gap" value
+  /// The gap between items in px.
+  static member inline gap (value: float) = Interop.mkAttr "gap" value
+  /// The height of one row in px.
+  static member inline rowHeight (value: int) = Interop.mkAttr "rowHeight" value
   /// The height of one row in px.
   static member inline rowHeight (value: float) = Interop.mkAttr "rowHeight" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4623,8 +4665,12 @@ type linearProgress =
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
   static member inline value (value: int) = Interop.mkAttr "value" value
+  /// The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.
+  static member inline value (value: float) = Interop.mkAttr "value" value
   /// The value for the buffer variant. Value between 0 and 100.
   static member inline valueBuffer (value: int) = Interop.mkAttr "valueBuffer" value
+  /// The value for the buffer variant. Value between 0 and 100.
+  static member inline valueBuffer (value: float) = Interop.mkAttr "valueBuffer" value
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 
@@ -5401,10 +5447,16 @@ type masonry =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The default number of columns of the component. This is provided for server-side rendering.
   static member inline defaultColumns (value: int) = Interop.mkAttr "defaultColumns" value
+  /// The default number of columns of the component. This is provided for server-side rendering.
+  static member inline defaultColumns (value: float) = Interop.mkAttr "defaultColumns" value
   /// The default height of the component in px. This is provided for server-side rendering.
   static member inline defaultHeight (value: int) = Interop.mkAttr "defaultHeight" value
+  /// The default height of the component in px. This is provided for server-side rendering.
+  static member inline defaultHeight (value: float) = Interop.mkAttr "defaultHeight" value
   /// The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
   static member inline defaultSpacing (value: int) = Interop.mkAttr "defaultSpacing" value
+  /// The default spacing of the component. Like `spacing`, it is a factor of the theme's spacing. This is provided for server-side rendering.
+  static member inline defaultSpacing (value: float) = Interop.mkAttr "defaultSpacing" value
   /// Defines the space between children. It is a factor of the theme's spacing.
   static member inline spacing (factor: float) = Interop.mkAttr "spacing" factor
   /// Defines the space between children. It is a factor of the theme's spacing.
@@ -5569,6 +5621,10 @@ type menu =
   ///
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
+  /// *Inherited from `popover`*
+  ///
+  /// Specifies how close to the edge of the window the popover can appear.
+  static member inline marginThreshold (value: float) = Interop.mkAttr "marginThreshold" value
   /// *Inherited from `popover`*
   ///
   /// Props applied to the
@@ -6797,6 +6853,8 @@ type popover =
   static member inline elevation (value: int) = Interop.mkAttr "elevation" value
   /// Specifies how close to the edge of the window the popover can appear.
   static member inline marginThreshold (value: int) = Interop.mkAttr "marginThreshold" value
+  /// Specifies how close to the edge of the window the popover can appear.
+  static member inline marginThreshold (value: float) = Interop.mkAttr "marginThreshold" value
   /// Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.
   static member inline onClose (handler: Event -> PopoverCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> handler)
   /// Callback fired when the component requests to be closed. The `reason` parameter can optionally be used to control the response to `onClose`.
@@ -7975,11 +8033,17 @@ type slider =
   /// Indicates whether the theme context has rtl direction. It is set automatically.
   static member inline isRtl (value: bool) = Interop.mkAttr "isRtl" value
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks are spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
+  static member inline marks ([<ParamArray>] values: {| label: U6<ReactElement, seq<ReactElement>, string, seq<string>, int, float> option; value: float |} []) = Interop.mkAttr "marks" values
+  /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks are spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
   static member inline marks (value: bool) = Interop.mkAttr "marks" value
   /// The maximum allowed value of the slider. Should not be equal to min.
   static member inline max (value: int) = Interop.mkAttr "max" value
+  /// The maximum allowed value of the slider. Should not be equal to min.
+  static member inline max (value: float) = Interop.mkAttr "max" value
   /// The minimum allowed value of the slider. Should not be equal to max.
   static member inline min (value: int) = Interop.mkAttr "min" value
+  /// The minimum allowed value of the slider. Should not be equal to max.
+  static member inline min (value: float) = Interop.mkAttr "min" value
   /// Name attribute of the hidden `input` element.
   static member inline name (value: string) = Interop.mkAttr "name" value
   /// Callback function that is fired when the slider's value changed.
@@ -8192,6 +8256,8 @@ type slider =
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// Tab index attribute of the hidden `input` element.
   static member inline tabIndex (value: int) = Interop.mkAttr "tabIndex" value
+  /// Tab index attribute of the hidden `input` element.
+  static member inline tabIndex (value: float) = Interop.mkAttr "tabIndex" value
   /// The value of the slider. For ranged sliders, provide an array with two values.
   static member inline value (value: int) = Interop.mkAttr "value" value
   /// The value of the slider. For ranged sliders, provide an array with two values.
@@ -8337,6 +8403,8 @@ type snackbar =
   static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms.
   static member inline resumeHideDuration (value: int) = Interop.mkAttr "resumeHideDuration" value
+  /// The number of milliseconds to wait before dismissing after user interaction. If `autoHideDuration` prop isn't specified, it does nothing. If `autoHideDuration` prop is specified but `resumeHideDuration` isn't, we default to `autoHideDuration / 2` ms.
+  static member inline resumeHideDuration (value: float) = Interop.mkAttr "resumeHideDuration" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -8559,6 +8627,8 @@ module speedDial =
 type speedDialAction =
   /// Adds a transition delay, to allow a series of SpeedDialActions to be animated.
   static member inline delay (value: int) = Interop.mkAttr "delay" value
+  /// Adds a transition delay, to allow a series of SpeedDialActions to be animated.
+  static member inline delay (value: float) = Interop.mkAttr "delay" value
   /// Props applied to the
   ///
   ///   [`Fab`](https://mui.com/material-ui/api/fab/) component.
@@ -8661,12 +8731,24 @@ type speedDialAction =
   static member inline enterDelay (value: int) = Interop.mkAttr "enterDelay" value
   /// *Inherited from `tooltip`*
   ///
+  /// The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`).
+  static member inline enterDelay (value: float) = Interop.mkAttr "enterDelay" value
+  /// *Inherited from `tooltip`*
+  ///
   /// The number of milliseconds to wait before showing the tooltip when one was already recently opened.
   static member inline enterNextDelay (value: int) = Interop.mkAttr "enterNextDelay" value
   /// *Inherited from `tooltip`*
   ///
+  /// The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+  static member inline enterNextDelay (value: float) = Interop.mkAttr "enterNextDelay" value
+  /// *Inherited from `tooltip`*
+  ///
   /// The number of milliseconds a user must touch the element before showing the tooltip.
   static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds a user must touch the element before showing the tooltip.
+  static member inline enterTouchDelay (value: float) = Interop.mkAttr "enterTouchDelay" value
   /// *Inherited from `tooltip`*
   ///
   /// If `true`, the tooltip follow the cursor over the wrapped element.
@@ -8677,8 +8759,16 @@ type speedDialAction =
   static member inline leaveDelay (value: int) = Interop.mkAttr "leaveDelay" value
   /// *Inherited from `tooltip`*
   ///
+  /// The number of milliseconds to wait before hiding the tooltip. This prop won't impact the leave touch delay (`leaveTouchDelay`).
+  static member inline leaveDelay (value: float) = Interop.mkAttr "leaveDelay" value
+  /// *Inherited from `tooltip`*
+  ///
   /// The number of milliseconds after the user stops touching an element before hiding the tooltip.
   static member inline leaveTouchDelay (value: int) = Interop.mkAttr "leaveTouchDelay" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// The number of milliseconds after the user stops touching an element before hiding the tooltip.
+  static member inline leaveTouchDelay (value: float) = Interop.mkAttr "leaveTouchDelay" value
   /// *Inherited from `tooltip`*
   ///
   /// Callback fired when the component requests to be closed.
@@ -9311,10 +9401,14 @@ type swipeableDrawer =
   static member inline hysteresis (value: float) = Interop.mkAttr "hysteresis" value
   /// Defines, from which (average) velocity on, the swipe is defined as complete although hysteresis isn't reached. Good threshold is between 250 - 1000 px/s
   static member inline minFlingVelocity (value: int) = Interop.mkAttr "minFlingVelocity" value
+  /// Defines, from which (average) velocity on, the swipe is defined as complete although hysteresis isn't reached. Good threshold is between 250 - 1000 px/s
+  static member inline minFlingVelocity (value: float) = Interop.mkAttr "minFlingVelocity" value
   /// The element is used to intercept the touch events on the edge.
   static member inline SwipeAreaProps (props: IReactProperty list) = Interop.mkAttr "SwipeAreaProps" (createObj !!props)
   /// The width of the left most (or right most) area in `px` that the drawer can be swiped open from.
   static member inline swipeAreaWidth (value: int) = Interop.mkAttr "swipeAreaWidth" value
+  /// The width of the left most (or right most) area in `px` that the drawer can be swiped open from.
+  static member inline swipeAreaWidth (value: float) = Interop.mkAttr "swipeAreaWidth" value
   /// The duration for the transition, in milliseconds.
   static member inline transitionDuration (value: int) = Interop.mkAttr "transitionDuration" value
   /// The duration for the transition, in milliseconds.
@@ -11502,18 +11596,28 @@ type tooltip =
   static member inline disableTouchListener (value: bool) = Interop.mkAttr "disableTouchListener" value
   /// The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`).
   static member inline enterDelay (value: int) = Interop.mkAttr "enterDelay" value
+  /// The number of milliseconds to wait before showing the tooltip. This prop won't impact the enter touch delay (`enterTouchDelay`).
+  static member inline enterDelay (value: float) = Interop.mkAttr "enterDelay" value
   /// The number of milliseconds to wait before showing the tooltip when one was already recently opened.
   static member inline enterNextDelay (value: int) = Interop.mkAttr "enterNextDelay" value
+  /// The number of milliseconds to wait before showing the tooltip when one was already recently opened.
+  static member inline enterNextDelay (value: float) = Interop.mkAttr "enterNextDelay" value
   /// The number of milliseconds a user must touch the element before showing the tooltip.
   static member inline enterTouchDelay (value: int) = Interop.mkAttr "enterTouchDelay" value
+  /// The number of milliseconds a user must touch the element before showing the tooltip.
+  static member inline enterTouchDelay (value: float) = Interop.mkAttr "enterTouchDelay" value
   /// If `true`, the tooltip follow the cursor over the wrapped element.
   static member inline followCursor (value: bool) = Interop.mkAttr "followCursor" value
   /// This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id.
   static member inline id (value: string) = Interop.mkAttr "id" value
   /// The number of milliseconds to wait before hiding the tooltip. This prop won't impact the leave touch delay (`leaveTouchDelay`).
   static member inline leaveDelay (value: int) = Interop.mkAttr "leaveDelay" value
+  /// The number of milliseconds to wait before hiding the tooltip. This prop won't impact the leave touch delay (`leaveTouchDelay`).
+  static member inline leaveDelay (value: float) = Interop.mkAttr "leaveDelay" value
   /// The number of milliseconds after the user stops touching an element before hiding the tooltip.
   static member inline leaveTouchDelay (value: int) = Interop.mkAttr "leaveTouchDelay" value
+  /// The number of milliseconds after the user stops touching an element before hiding the tooltip.
+  static member inline leaveTouchDelay (value: float) = Interop.mkAttr "leaveTouchDelay" value
   /// Callback fired when the component requests to be closed.
   ///
   /// **Signature:**

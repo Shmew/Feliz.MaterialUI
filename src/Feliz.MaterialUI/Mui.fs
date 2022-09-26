@@ -44,6 +44,10 @@ type Mui =
   /// In order for the injection order to still be correct, you need to add the prepend option.
   static member inline cacheProvider props = createElement (import "CacheProvider" "@emotion/react") props
 
+  /// The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.
+  /// Props from the `grid` component could be used, except the `item` and `zeroMinWidth`, which have been removed in Grid v2.
+  static member inline grid2 props = createElement (import "Grid2" "@mui/material/Unstable_Grid2") props
+
   static member inline accordion props = createElement (import "Accordion" "@mui/material") props
 
   static member inline accordion (children: #seq<ReactElement>) = createElement (import "Accordion" "@mui/material") [ accordion.children (children :> seq<ReactElement>) ]

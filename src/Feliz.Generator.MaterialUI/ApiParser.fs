@@ -664,6 +664,11 @@ let (|GridAndStack|_|) (componentMethodName, propMethodName, propDocType) =
             RegularPropOverload.createWithMuiBreakpoints "Styles.ICssUnit"
         ]
 
+    | "grid", ("container" | "item"), "bool" ->
+        Some [
+            RegularPropOverload.create "" "true"
+        ]
+
     | ("grid"
         | "stack"),
         "direction",
@@ -1184,18 +1189,18 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
         | _, pn, "object" when pn = "classes" || pn.EndsWith "Classes" -> []
 
-        | _, _, t when
-            t = "bool"
-            || t.Split('|')
-               |> Array.map String.trim
-               |> Array.contains "bool"
-            ->
-            [ RegularPropOverload.create "(value: bool)" "value" ]
+        //| _, _, t when
+        //    t = "bool"
+        //    || t.Split('|')
+        //       |> Array.map String.trim
+        //       |> Array.contains "bool"
+        //    ->
+        //    [ RegularPropOverload.create "(value: bool)" "value" ]
 
         //| _, _, "string" -> [ RegularPropOverload.create "(value: string)" "value" ]
 
-        | "gridList", "cellHeight", "number | 'auto'"
-        | _, _, "number" -> [ RegularPropOverload.create "(value: int)" "value" ]
+        //| "gridList", "cellHeight", "number | 'auto'"
+        //| _, _, "number" -> [ RegularPropOverload.create "(value: int)" "value" ]
 
         | _, pn, "func" when pn.StartsWith "on" -> [ RegularPropOverload.create "(handler: Event -> unit)" "handler" ]
 
@@ -1434,10 +1439,24 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
 
         | _ -> s
 
+    let addMissingDocLines () =
+        match componentMethodName, propMethodName with
+        | "grid", "item" ->
+            [ "⚠ Is removed from Grid v2 ⚠ "
+              "If true, the component will have the flex item behavior. You should be wrapping items with a container." ]
+
+        | "grid", "zeroMinWidth" ->
+            [ "⚠ Is removed from Grid v2 ⚠ "
+              "If true, it sets min-width: 0 on the item. Refer to the limitations section of the documentation to better understand the use case." ]
+        | _ -> []
+
     let transformedMarkdownDocLines =
         markdownDocLines
         |> List.map globalDocTransform
         |> List.map propSpecificDocTransform
+        |> function
+            | [] -> addMissingDocLines ()
+            | lines -> lines
         |> List.trimEmptyLines
 
     Prop.create realPropName propMethodName
@@ -1737,6 +1756,13 @@ let parseApi () =
         )
         |> Component.addChildrenProp
 
+    let unstableGridV2 =
+        Component.createImportSelector "grid2" "Grid2" "@mui/material/Unstable_Grid2"
+        |> Component.setDocs [
+            "The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts."
+            "Props from the `grid` component could be used, except the `item` and `zeroMinWidth`, which have been removed in Grid v2."
+        ]
+
     let api =
         ComponentApi.create "Feliz.MaterialUI" "Mui"
         |> ComponentApi.setComponentsPrelude [
@@ -1759,6 +1785,7 @@ let parseApi () =
         |> ComponentApi.addComponent stylesProvider
         |> ComponentApi.addComponent styledEngineProvider
         |> ComponentApi.addComponent cacheProvider
+        |> ComponentApi.addComponent unstableGridV2
         |> ComponentApi.addComponents (
             components
             |> List.map (fun c -> c.GeneratorComponent)
