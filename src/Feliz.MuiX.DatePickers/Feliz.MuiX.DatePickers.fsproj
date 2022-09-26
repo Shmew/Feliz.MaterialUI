@@ -3,10 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Version>5.0.0</Version>
+    <VersionSuffix>alpha.0</VersionSuffix>
   </PropertyGroup>
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@mui/x-date-pickers" Version="gte 5.10 lt 6" ResolutionStrategy="max" />
+      <NpmPackage Name="@mui/x-date-pickers" Version="gte 5 lt 6" ResolutionStrategy="max" />
     </NpmDependencies>
   </PropertyGroup>
   <ItemGroup>

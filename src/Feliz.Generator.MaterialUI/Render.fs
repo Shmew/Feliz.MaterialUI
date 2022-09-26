@@ -163,9 +163,10 @@ module GetLines =
 
 
     let materialIcon (iconTitle: string) =
+        let iconFsFuncName = (iconTitle |> jsParamNameToFsParamName |> String.lowerFirst) + "Icon"
         [
             sprintf "let inline %s (props: #seq<IReactProperty>) = ofImport \"default\" \"@mui/icons-material/%s\" (createObj !!props) []"
-                (jsParamNameToFsParamName iconTitle + "Icon")
+                iconFsFuncName
                 iconTitle
         ]
 

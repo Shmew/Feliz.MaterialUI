@@ -147,7 +147,7 @@ let SignIn (key: string) =
                         Mui.avatar [
                             //avatar.classes.root classes.avatar
                             avatar.children [
-                                LockOutlinedIcon []
+                                lockOutlinedIcon []
                             ]
                         ]
 

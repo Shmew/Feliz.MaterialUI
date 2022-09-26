@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 5.10.0-alpha.0 (2022-09-26)
+
+* Updated for MUI v5 with corresponding API design changes (to reflect JS/TS MUI v5 API better).
+* Added separate packages for icons (@mui/icons-material), MUI-X DatePickers Community and Pro (@mui/x-date-pickers and @mui/x-date-pickers-pro).
+* Added new doc type signatures parsing and translation mechanism based on FParsec.
+
 ### 1.3.0 (2022-01-22)
 
 * Updated for @material-ui/core 4.12 and @material-ui/lab 4.0.0-alpha.60

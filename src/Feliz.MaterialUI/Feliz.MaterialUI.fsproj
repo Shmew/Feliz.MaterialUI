@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Description>Feliz-style Fable bindings for Material-UI.</Description>
+    <Description>Feliz-style Fable bindings for MUI (aka Material-UI).</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.3.0</Version>
+    <Version>5.10.0</Version>
+    <VersionSuffix>alpha.0</VersionSuffix>
     <PackageReleaseNotes>https://github.com/Shmew/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>

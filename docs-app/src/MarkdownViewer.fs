@@ -101,7 +101,7 @@ let MarkdownLoaderView (state: State) dispatch =
                                 (String.concat "/" path)
                         )
                         iconButton.component' "a"
-                        iconButton.children (Feliz.MaterialUI.Icons.EditIcon [])
+                        iconButton.children (Feliz.MaterialUI.Icons.editIcon [])
                     ]
                 )
             ]

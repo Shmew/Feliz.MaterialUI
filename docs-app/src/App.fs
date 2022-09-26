@@ -205,9 +205,9 @@ let Toolbar model dispatch =
                     iconButton.color.inherit'
                     iconButton.children [
                         match model.CustomThemeMode with
-                        | None -> MuiIcons.BrightnessAutoIcon []
-                        | Some Light -> MuiIcons.Brightness7Icon []
-                        | Some Dark -> MuiIcons.Brightness4Icon []
+                        | None -> MuiIcons.brightnessAutoIcon []
+                        | Some Light -> MuiIcons.brightness7Icon []
+                        | Some Dark -> MuiIcons.brightness4Icon []
                     ]
                 ]
             )
@@ -221,7 +221,7 @@ let Toolbar model dispatch =
                     prop.href "https://github.com/Shmew/Feliz.MaterialUI"
                     iconButton.component' "a"
                     iconButton.color.inherit'
-                    iconButton.children (MuiIcons.GitHubIcon [])
+                    iconButton.children (MuiIcons.gitHubIcon [])
                 ]
             )
         ]
