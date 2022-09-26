@@ -12,7 +12,6 @@
     </NpmDependencies>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Feliz.MuiX.DatePickers.Shared\Models.fs" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />
     <Compile Include="ClassNames.fs" />

@@ -1,9 +1,6 @@
-namespace Feliz.MaterialUI.X
+﻿namespace Feliz.MaterialUI.X
 
-open System
 open Fable.Core
-open Fable.Core.JS
-
 
 type [<StringEnum>] [<RequireQualifiedAccess>] CalendarPickerView =
     | Year
@@ -17,3 +14,4 @@ type [<StringEnum>] [<RequireQualifiedAccess>] ClockPickerView =
 
 type CalendarOrClockPickerView =
     U2<CalendarPickerView, ClockPickerView>
+
