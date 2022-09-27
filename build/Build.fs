@@ -47,6 +47,12 @@ let muiIconsLibProjectPath = srcPath </> "Feliz.MaterialUI.Icons" </> "Feliz.Mat
 let muiXDatePickersProjPath = srcPath </> "Feliz.MuiX.DatePickers" </> "Feliz.MuiX.DatePickers.fsproj"
 let muiXDatePickersProProjPath = srcPath </> "Feliz.MuiX.DatePickersPro" </> "Feliz.MuiX.DatePickersPro.fsproj"
 
+let packagedProjectDirs = [
+    srcPath </> "Feliz.MaterialUI"
+    srcPath </> "Feliz.MaterialUI.Icons"
+    srcPath </> "Feliz.MuiX.DatePickers"
+    srcPath </> "Feliz.MuiX.DatePickersPro"
+]
 
 let DotnetExecFromRoot command args =
     DotNet.exec (fun c -> { c with WorkingDirectory = root }) command args
@@ -59,7 +65,22 @@ Target.create "Clean" (fun _ ->
     ++ $"{root}/**/deploy"
     ++ $"{root}/**/*.fable"
     -- $"{root}/**/node_modules/**"
+    -- $"{__SOURCE_DIRECTORY__}/**"
     |> Shell.cleanDirs)
+
+Target.create "CleanLibsOnly" (fun _ ->
+    packagedProjectDirs
+    |> List.iter (fun projDir ->
+        !! $"{root}/dist"
+        ++ $"{projDir}/bin"
+        ++ $"{projDir}/obj"
+        ++ $"{projDir}/dist"
+        ++ $"{projDir}/deploy"
+        ++ $"{projDir}/*.fable"
+        -- $"{projDir}/node_modules/**"
+        |> Shell.cleanDirs
+    )
+)
 
 Target.create "DotNetRestore" (fun _ -> DotNet.restore id slnPath)
 
@@ -199,7 +220,7 @@ Target.create "CiBuild" ignore
 open Fake.Core.TargetOperators
 
 let dependencies = [
-    "Clean" ==> "DotNetRestore" ==> "Build" ==> "Pack"
+    "CleanLibsOnly" ==> "DotNetRestore" ==> "Build" ==> "Pack"
 
     "Build" ==> "RegenerateFromLive"
 
