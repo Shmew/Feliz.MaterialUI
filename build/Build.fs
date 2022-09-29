@@ -255,7 +255,7 @@ let dependencies = [
 let main args =
     try
         match args with
-        | [| target |] -> Target.runOrDefault target
+        | [| "-t"; target |] -> Target.runOrDefault target
         | _ -> Target.runOrDefault "CiBuild"
         0
     with e ->

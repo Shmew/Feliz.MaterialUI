@@ -14,11 +14,11 @@ This project uses `fable`, `paket` and `femto` as .NET local tools. Therefore, `
 
 To run build targets using cmd or Powershell:
 ```cmd
-build.cmd -t TargetName`
+build.cmd -t TargetName
 ```
 or using bash:
 ```bash
-build.sh -t TargetName`
+build.sh -t TargetName
 ```
 
 ### Regular maintenance
