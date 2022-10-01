@@ -572,7 +572,7 @@ type autocomplete =
   /// For localization purposes, you can use the provided [translations](https://mui.com/material-ui/guides/localization/).
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
   /// The props used for each slot inside.
-  static member inline componentsProps (?clearIndicator: seq<IReactProperty>, ?paper: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?popupIndicator: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if clearIndicator.IsSome then x?``clearIndicator`` <- clearIndicator); (if paper.IsSome then x?``paper`` <- paper); (if popper.IsSome then x?``popper`` <- popper); (if popupIndicator.IsSome then x?``popupIndicator`` <- popupIndicator); x)
+  static member inline componentsProps (?clearIndicator: seq<IReactProperty>, ?paper: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?popupIndicator: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if clearIndicator.IsSome then x?``clearIndicator`` <- (createObj !! clearIndicator.Value)); (if paper.IsSome then x?``paper`` <- (createObj !! paper.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if popupIndicator.IsSome then x?``popupIndicator`` <- (createObj !! popupIndicator.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'option []) = Interop.mkAttr "defaultValue" (ResizeArray value)
   /// The default value. Use when the component is not controlled.
@@ -1059,7 +1059,7 @@ type avatarGroup =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The props used for each slot inside the AvatarGroup.
-  static member inline componentsProps (?additionalAvatar: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if additionalAvatar.IsSome then x?``additionalAvatar`` <- additionalAvatar); x)
+  static member inline componentsProps (?additionalAvatar: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if additionalAvatar.IsSome then x?``additionalAvatar`` <- (createObj !! additionalAvatar.Value)); x)
   /// Max avatars to show before +x.
   static member inline max (value: int) = Interop.mkAttr "max" value
   /// Max avatars to show before +x.
@@ -1126,9 +1126,9 @@ type backdrop =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
-  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Backdrop.
-  static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1218,9 +1218,9 @@ type badge =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
-  static member inline components (?Badge: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Badge.IsSome then x?``Badge`` <- Badge); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Badge: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Badge.IsSome then x?``Badge`` <- Badge.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Badge.
-  static member inline componentsProps (?badge: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?badge: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- (createObj !! badge.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// If `true`, the badge is invisible.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
   /// Max count to show.
@@ -2667,11 +2667,11 @@ type dialog =
   /// *Inherited from `modal`*
   ///
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `modal`*
   ///
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
@@ -3224,9 +3224,9 @@ type filledInput =
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -3426,7 +3426,7 @@ type formControlLabel =
   /// If `true`, the component appears selected.
   static member inline checked' (value: bool) = Interop.mkAttr "checked" value
   /// The props used for each slot inside.
-  static member inline componentsProps (?typography: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if typography.IsSome then x?``typography`` <- typography); x)
+  static member inline componentsProps (?typography: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if typography.IsSome then x?``typography`` <- (createObj !! typography.Value)); x)
   /// If `true`, the control is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// If `true`, the label is rendered as it is passed without an additional typography node.
@@ -4265,9 +4265,9 @@ type input =
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -4446,9 +4446,9 @@ type inputBase =
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -4875,9 +4875,9 @@ type listItem =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1cw4hi4" focusable="false" aria-hidden="true" viewbox="0 0 24 24" data-testid="ReportProblemOutlinedIcon"><br><br>      <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path><br><br>    </svg>
   ///
   ///     **Deprecated**
@@ -5696,11 +5696,11 @@ type menu =
   /// *Inherited from `modal`*
   ///
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `modal`*
   ///
   /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
@@ -6110,9 +6110,9 @@ type modal =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -6260,11 +6260,11 @@ type nativeSelect =
   /// *Inherited from `input`*
   ///
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `input`*
   ///
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `input`*
   ///
   /// The default value. Use when the component is not controlled.
@@ -6407,7 +6407,7 @@ type outlinedInput =
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -6499,7 +6499,7 @@ type outlinedInput =
   /// *Inherited from `inputBase`*
   ///
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `inputBase`*
   ///
   /// If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application. This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
@@ -6663,7 +6663,7 @@ type paginationItem =
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// The components used for first, last, next & previous item type
-  static member inline components (?first: ReactElementType, ?last: ReactElementType, ?next: ReactElementType, ?previous: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if first.IsSome then x?``first`` <- first); (if last.IsSome then x?``last`` <- last); (if next.IsSome then x?``next`` <- next); (if previous.IsSome then x?``previous`` <- previous); x)
+  static member inline components (?first: ReactElementType, ?last: ReactElementType, ?next: ReactElementType, ?previous: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if first.IsSome then x?``first`` <- first.Value); (if last.IsSome then x?``last`` <- last.Value); (if next.IsSome then x?``next`` <- next.Value); (if previous.IsSome then x?``previous`` <- previous.Value); x)
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
   /// The current page number.
@@ -6940,11 +6940,11 @@ type popover =
   /// *Inherited from `modal`*
   ///
   /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
-  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `modal`*
   ///
   /// The props used for each slot inside the Modal.
-  static member inline componentsProps (?backdrop: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `modal`*
   ///
   /// If `true`, the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the `disableAutoFocus` prop.
@@ -7064,9 +7064,9 @@ type popper =
   /// Popper render function or node.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The components used for each slot inside the Popper. Either a string to use a HTML element or a component.
-  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The props used for each slot inside the Popper.
-  static member inline componentsProps (?root: U2<Func<obj, obj>, seq<IReactProperty>>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
   /// By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time.
@@ -7747,7 +7747,7 @@ type select =
   /// *Inherited from `outlinedInput`*
   ///
   /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Root.IsSome then x?``Root`` <- Root); x)
+  static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `outlinedInput`*
   ///
   /// If `true`, the component is disabled. The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -7823,7 +7823,7 @@ type select =
   /// *Inherited from `inputBase`*
   ///
   /// The props used for each slot inside the Input.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if root.IsSome then x?``root`` <- root); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `inputBase`*
   ///
   /// If `true`, GlobalStyles for the auto-fill keyframes will not be injected/removed on mount/unmount. Make sure to inject them at the top of your application. This option is intended to help with boosting the initial rendering performance if you are loading a big amount of Input components at once.
@@ -7987,9 +7987,9 @@ type slider =
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
-  static member inline components (?Input: ReactElementType, ?Mark: ReactElementType, ?MarkLabel: ReactElementType, ?Rail: ReactElementType, ?Root: ReactElementType, ?Thumb: ReactElementType, ?Track: ReactElementType, ?ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input); (if Mark.IsSome then x?``Mark`` <- Mark); (if MarkLabel.IsSome then x?``MarkLabel`` <- MarkLabel); (if Rail.IsSome then x?``Rail`` <- Rail); (if Root.IsSome then x?``Root`` <- Root); (if Thumb.IsSome then x?``Thumb`` <- Thumb); (if Track.IsSome then x?``Track`` <- Track); (if ValueLabel.IsSome then x?``ValueLabel`` <- ValueLabel); x)
+  static member inline components (?Input: ReactElementType, ?Mark: ReactElementType, ?MarkLabel: ReactElementType, ?Rail: ReactElementType, ?Root: ReactElementType, ?Thumb: ReactElementType, ?Track: ReactElementType, ?ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Mark.IsSome then x?``Mark`` <- Mark.Value); (if MarkLabel.IsSome then x?``MarkLabel`` <- MarkLabel.Value); (if Rail.IsSome then x?``Rail`` <- Rail.Value); (if Root.IsSome then x?``Root`` <- Root.Value); (if Thumb.IsSome then x?``Thumb`` <- Thumb.Value); (if Track.IsSome then x?``Track`` <- Track.Value); (if ValueLabel.IsSome then x?``ValueLabel`` <- ValueLabel.Value); x)
   /// The props used for each slot inside the Slider.
-  static member inline componentsProps (?input: U2<Func<obj, obj>, seq<IReactProperty>>, ?mark: U2<Func<obj, obj>, seq<IReactProperty>>, ?markLabel: U2<Func<obj, obj>, seq<IReactProperty>>, ?rail: U2<Func<obj, obj>, seq<IReactProperty>>, ?root: U2<Func<obj, obj>, seq<IReactProperty>>, ?thumb: U2<Func<obj, obj>, seq<IReactProperty>>, ?track: U2<Func<obj, obj>, seq<IReactProperty>>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; components: {| Root: ReactElementType option |} option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input); (if mark.IsSome then x?``mark`` <- mark); (if markLabel.IsSome then x?``markLabel`` <- markLabel); (if rail.IsSome then x?``rail`` <- rail); (if root.IsSome then x?``root`` <- root); (if thumb.IsSome then x?``thumb`` <- thumb); (if track.IsSome then x?``track`` <- track); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel); x)
+  static member inline componentsProps (?input: seq<IReactProperty>, ?mark: seq<IReactProperty>, ?markLabel: seq<IReactProperty>, ?rail: seq<IReactProperty>, ?root: seq<IReactProperty>, ?thumb: seq<IReactProperty>, ?track: seq<IReactProperty>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; components: {| Root: ReactElementType option |} option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if mark.IsSome then x?``mark`` <- (createObj !! mark.Value)); (if markLabel.IsSome then x?``markLabel`` <- (createObj !! markLabel.Value)); (if rail.IsSome then x?``rail`` <- (createObj !! rail.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); (if thumb.IsSome then x?``thumb`` <- (createObj !! thumb.Value)); (if track.IsSome then x?``track`` <- (createObj !! track.Value)); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel.Value); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: int) = Interop.mkAttr "defaultValue" value
   /// The default value. Use when the component is not controlled.
@@ -8700,11 +8700,11 @@ type speedDialAction =
   /// *Inherited from `tooltip`*
   ///
   /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow); (if Popper.IsSome then x?``Popper`` <- Popper); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip); (if Transition.IsSome then x?``Transition`` <- Transition); x)
+  static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow.Value); (if Popper.IsSome then x?``Popper`` <- Popper.Value); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip.Value); (if Transition.IsSome then x?``Transition`` <- Transition.Value); x)
   /// *Inherited from `tooltip`*
   ///
   /// The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
-  static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- arrow); (if popper.IsSome then x?``popper`` <- popper); (if tooltip.IsSome then x?``tooltip`` <- tooltip); (if transition.IsSome then x?``transition`` <- transition); x)
+  static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- (createObj !! arrow.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if tooltip.IsSome then x?``tooltip`` <- (createObj !! tooltip.Value)); (if transition.IsSome then x?``transition`` <- (createObj !! transition.Value)); x)
   /// *Inherited from `tooltip`*
   ///
   /// Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child.
@@ -9207,7 +9207,7 @@ type stepLabel =
   /// In most cases will simply be a string containing a title for the label.
   static member inline children (value: float) = Interop.mkAttr "children" value
   /// The props used for each slot inside.
-  static member inline componentsProps (?label: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if label.IsSome then x?``label`` <- label); x)
+  static member inline componentsProps (?label: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if label.IsSome then x?``label`` <- (createObj !! label.Value)); x)
   /// If `true`, the step is marked as failed.
   static member inline error (value: bool) = Interop.mkAttr "error" value
   /// Override the default label of the step icon.
@@ -11581,9 +11581,9 @@ type tooltip =
   /// If `true`, adds an arrow to the tooltip.
   static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
-  static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow); (if Popper.IsSome then x?``Popper`` <- Popper); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip); (if Transition.IsSome then x?``Transition`` <- Transition); x)
+  static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow.Value); (if Popper.IsSome then x?``Popper`` <- Popper.Value); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip.Value); (if Transition.IsSome then x?``Transition`` <- Transition.Value); x)
   /// The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
-  static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- arrow); (if popper.IsSome then x?``popper`` <- popper); (if tooltip.IsSome then x?``tooltip`` <- tooltip); (if transition.IsSome then x?``transition`` <- transition); x)
+  static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- (createObj !! arrow.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if tooltip.IsSome then x?``tooltip`` <- (createObj !! tooltip.Value)); (if transition.IsSome then x?``transition`` <- (createObj !! transition.Value)); x)
   /// Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child.
   static member inline describeChild (value: bool) = Interop.mkAttr "describeChild" value
   /// Do not respond to focus-visible events.

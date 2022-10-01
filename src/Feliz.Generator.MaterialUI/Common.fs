@@ -117,12 +117,51 @@ let jsParamNameToFsParamName (paramName: JsParamName) =
 let jsObjectFromParamsCode (toSafeName) (objEntries: (ParamName * ParamTypeSignature * IsOptional) list) =
     objEntries
     |> List.map (fun (name, _, isOptional) ->
-            if isOptional then
-                sprintf "(if %s.IsSome then x?``%s`` <- %s)" (toSafeName name) name (toSafeName name)
-            else
-                sprintf "x?``%s`` <- %s" name (toSafeName name))
+        let fsParamName = toSafeName name
+        if isOptional then
+            sprintf "(if %s.IsSome then x?``%s`` <- %s)" fsParamName name fsParamName
+        else
+            sprintf "x?``%s`` <- %s" name fsParamName)
         |> String.concat "; "
         |> sprintf "(let x = createEmpty<obj> in %s; x)"
+
+let jsObjectFromParamsCodeWithCustomParamValueTransform
+    (toSafeName)
+    (paramValueTransformExpr: FsExprCode)
+    (objEntries: (ParamName * ParamTypeSignature * IsOptional) list)=
+    objEntries
+    |> List.map (fun (jsParamName, _, isOptional) ->
+        let paramValue pname = sprintf "(paramValue %s)" pname
+        let fsParamName = toSafeName jsParamName
+        if isOptional then
+            sprintf "(if %s.IsSome then x?``%s`` <- %s)" fsParamName jsParamName (paramValue (fsParamName + ".Value"))
+        else
+            sprintf "x?``%s`` <- %s" jsParamName (paramValue fsParamName)
+    )
+    |> String.concat "; "
+    |> sprintf "(let inline paramValue p = p |> %s in let x = createEmpty<obj> in %s; x)" paramValueTransformExpr
+
+
+let jsObjectFromParamsCodeWithCustomParamValueTransformByParamType
+    (toSafeName)
+    (customTransforms: (ParamTypeSignature * FsExprCode) list)
+    (objEntries: (ParamName * ParamTypeSignature * IsOptional) list)=
+    objEntries
+    |> List.map (fun (jsParamName, paramType, isOptional) ->
+        let paramValue pname =
+            customTransforms
+            |> List.tryPick (fun (t, exprCode) ->
+                if t = paramType then Some (sprintf "(%s %s)" exprCode pname)
+                else None)
+            |> Option.defaultValue pname
+        let fsParamName = toSafeName jsParamName
+        if isOptional then
+            sprintf "(if %s.IsSome then x?``%s`` <- %s)" fsParamName jsParamName (paramValue (fsParamName + ".Value"))
+        else
+            sprintf "x?``%s`` <- %s" jsParamName (paramValue fsParamName)
+    )
+    |> String.concat "; "
+    |> sprintf "(let x = createEmpty<obj> in %s; x)"
 
 
 /// <summary> Helps to create overloads for a prop that could take an object with optional fields.

@@ -265,7 +265,12 @@ module Translators =
             |> String.concat ", "
 
         let objCreationCode =
-            translatedParams |> jsObjectFromParamsCode jsParamNameToFsParamName
+            translatedParams
+            |> jsObjectFromParamsCodeWithCustomParamValueTransformByParamType
+                jsParamNameToFsParamName
+                [
+                    "seq<IReactProperty>", "createObj !!"
+                ]
 
         RegularPropOverload.create
             ("(" + paramsListStr + ")")
