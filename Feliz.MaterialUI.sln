@@ -16,8 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
-		build.fsx = build.fsx
 		build.cmd = build.cmd
+		build.fsx = build.fsx
 		build.sh = build.sh
 		README.md = README.md
 		RELEASE_NOTES.md = RELEASE_NOTES.md
@@ -53,6 +53,8 @@ EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.MuiX.DatePickers", "src\Feliz.MuiX.DatePickers\Feliz.MuiX.DatePickers.fsproj", "{72709572-F76F-423E-B4E7-50CA61958593}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Feliz.MuiX.DatePickersPro", "src\Feliz.MuiX.DatePickersPro\Feliz.MuiX.DatePickersPro.fsproj", "{F25A0212-58B0-4A03-885A-B1F7A1B286D8}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Feliz.MaterialUI.PopupState", "src\Feliz.MaterialUI.PopupState\Feliz.MaterialUI.PopupState.fsproj", "{68EECE8B-0219-40A9-A1DB-7B409724FCE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +102,10 @@ Global
 		{F25A0212-58B0-4A03-885A-B1F7A1B286D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F25A0212-58B0-4A03-885A-B1F7A1B286D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F25A0212-58B0-4A03-885A-B1F7A1B286D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68EECE8B-0219-40A9-A1DB-7B409724FCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68EECE8B-0219-40A9-A1DB-7B409724FCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68EECE8B-0219-40A9-A1DB-7B409724FCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68EECE8B-0219-40A9-A1DB-7B409724FCE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

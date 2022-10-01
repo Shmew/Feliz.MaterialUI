@@ -23,6 +23,7 @@ specifiers:
   file-loader: ^6.2.0
   gh-pages: ^4.0.0
   html-webpack-plugin: ^5.5.0
+  material-ui-popup-state: ~4.1.0
   mdi-material-ui: ^7.5.0
   mini-css-extract-plugin: ^2.6.1
   mocha: ^6.2.3
@@ -52,6 +53,7 @@ dependencies:
   '@mui/x-date-pickers': 5.0.3_jsvgna4xil4b3dvc5krt37wine
   date-fns: 2.29.3
   gh-pages: 4.0.0
+  material-ui-popup-state: 4.1.0_c6qugj3z5tv63b4vyg6k5kxs7y
   mdi-material-ui: 7.5.0_yg7dmldfgumok5mmrgykz4bd6i
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
@@ -2464,6 +2466,10 @@ packages:
     engines: {node: '>=6.0'}
     dev: true
 
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
+
   /clean-css/5.3.1:
     resolution: {integrity: sha512-lCr8OHhiWCTw4v8POJovCoh4T7I9U11yVsPjMWWnnMmp9ZowCxyad1Pathle/9HjaDp+fdQKjO9fQydE6RHTZg==}
     engines: {node: '>= 10.0'}
@@ -4064,6 +4070,23 @@ packages:
 
   /markdown-escapes/1.0.4:
     resolution: {integrity: sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==}
+    dev: false
+
+  /material-ui-popup-state/4.1.0_c6qugj3z5tv63b4vyg6k5kxs7y:
+    resolution: {integrity: sha512-YAxLT10XALsUuuo46sc81NKD6oKJzlkcKP3e+IqC0pKwzAhOAZIQ+RUHXT6Mz3bXHKoHCsM+NdIQxR4mOH/KEQ==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.19.0
+      '@mui/material': 5.10.6_c6qugj3z5tv63b4vyg6k5kxs7y
+      classnames: 2.3.2
+      prop-types: 15.8.1
+      react: 17.0.2
+    transitivePeerDependencies:
+      - '@emotion/react'
+      - '@emotion/styled'
+      - '@types/react'
+      - react-dom
     dev: false
 
   /mdast-add-list-metadata/1.0.1:
