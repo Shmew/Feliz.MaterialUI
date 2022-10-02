@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <VersionPrefix>5.0.0</VersionPrefix>
-    <VersionSuffix>alpha.0</VersionSuffix>
+    <VersionSuffix>alpha.1</VersionSuffix>
   </PropertyGroup>
   <PropertyGroup>
     <NpmDependencies>
@@ -16,6 +16,7 @@
     <Compile Include="ThemeProps.fs" />
     <Compile Include="ClassNames.fs" />
     <Compile Include="ClassesProps.fs" />
+    <Compile Include="MuiComponents.fs" />
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
   </ItemGroup>

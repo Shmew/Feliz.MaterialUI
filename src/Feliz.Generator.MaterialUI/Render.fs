@@ -93,6 +93,20 @@ module GetLines =
                 ""
         ]
 
+    let componentImport (comp: MuiComponent) =
+        let functionDeclaration (returnType: string) (funcBody: string) =
+            sprintf "static member inline %s : %s = %s" comp.GeneratorComponent.MethodName returnType funcBody
+
+        let returnType, funcBody =
+            match comp.GeneratorComponent.Source with
+            | ImportPath (path, None) -> "ReactElementType", sprintf "importDefault \"%s\"" path
+            | ImportPath (path, Some selector) -> "ReactElementType", sprintf "import \"%s\" \"%s\"" selector path
+            | Tag tag -> "string", sprintf "\"%s\"" tag
+        [
+            functionDeclaration returnType funcBody
+            ""
+        ]
+
     let themeDefaultPropsForComponent stylesheetName =
         sprintf
             """static member inline %s(props: IReactProperty list) : IThemeProp = unbox ("components.%s.defaultProps", createObj !!props)"""
@@ -282,6 +296,27 @@ let themeOverridesDocument (additionalOpens: string list) (api: MuiComponentApi)
 
               "" ]
     |> String.concat Environment.NewLine
+
+let componentImportsDocument (api: MuiComponentApi) =
+    [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      "open Fable.React"
+      ""
+      "[<Erase>]"
+      "type MuiComponents ="
+      //""
+      for comp in api.MuiComponents do
+          yield!
+              GetLines.componentImport comp
+              |> List.map (indent 1)
+    ] |> String.concat Environment.NewLine
 
 let localizationDocument (localization: Localization) =
 

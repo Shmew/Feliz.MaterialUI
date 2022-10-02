@@ -9,6 +9,7 @@ let writeMuiComponentsApiFiles
     (additionalOpens: string list)
     (directoryPath: string)
     (api: Domain.MuiComponentApi) =
+    File.WriteAllText(directoryPath </> "MuiComponents.fs", Render.componentImportsDocument api)
     File.WriteAllText(directoryPath </> "Mui.fs", Render.componentDocument additionalOpens api.GeneratorComponentApi)
     File.WriteAllText(directoryPath </> "Props.fs", Render.propsDocument api.GeneratorComponentApi)
     File.WriteAllText(directoryPath </> "ClassNames.fs", Render.classesGlobalNamesDocument additionalOpens api)
