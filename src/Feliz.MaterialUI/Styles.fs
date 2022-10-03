@@ -119,6 +119,11 @@ type style =
     static member inline inner (name: string) (styles: IStyleAttribute list) =
         Interop.mkStyle name (createObj !!styles)
 
+    /// Allows set styles for component's slot
+    /// (helper for CSS selector of kind `"& .slotClassName": { ... }`)
+    static member inline innerSlot (slotClass: string) (styles: IStyleAttribute list) =
+        style.inner ("& " + slotClass) styles
+
     static member inline breakpoint (breakpointKey: IBreakpointKey) (styles: #seq<IStyleAttribute>) =
         Interop.mkStyle (string breakpointKey) (createObj !!styles)
 
@@ -128,14 +133,14 @@ type style =
             ?md: seq<IStyleAttribute>,
             ?lg: seq<IStyleAttribute>,
             ?xl: seq<IStyleAttribute>
-        ) =
-        createObj !![
-            MuiBreakpointKey.Xs, createObj !! (defaultArg xs [])
-            MuiBreakpointKey.Sm, createObj !! (defaultArg sm [])
-            MuiBreakpointKey.Md, createObj !! (defaultArg md [])
-            MuiBreakpointKey.Lg, createObj !! (defaultArg lg [])
-            MuiBreakpointKey.Xl, createObj !! (defaultArg xl [])
-        ]
+        ) : IStyleAttribute [] =
+        [|
+            !! (MuiBreakpointKey.Xs, createObj !!(defaultArg xs []))
+            !! (MuiBreakpointKey.Sm, createObj !!(defaultArg sm []))
+            !! (MuiBreakpointKey.Md, createObj !!(defaultArg md []))
+            !! (MuiBreakpointKey.Lg, createObj !!(defaultArg lg []))
+            !! (MuiBreakpointKey.Xl, createObj !!(defaultArg xl []))
+        |]
 
     //static member inline themeStylesOverride (callback: Theme -> #seq<IStyleAttribute>): 't =
     //    !!(Func<Theme, _> (fun theme -> let styleOverrides = callback theme in (createObj !!styleOverrides)))

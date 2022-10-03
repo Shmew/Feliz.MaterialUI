@@ -16,13 +16,18 @@ open Feliz
 [<Erase>]
 type private Helpers =
   static member inline themeStylesOverride (callback: Theme -> #seq<IStyleAttribute>): 't =
-    !!(Func<Theme, _> (fun theme -> let styleOverrides = callback theme in (createObj !!styleOverrides)))
+    !!(Func<Theme, _> (stylesCallback !!callback))
 
   static member inline breakpointThemeStylesOverrides (overrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) =
-    overrides |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, Helpers.themeStylesOverride themeOverride) |> !!createObj
+    overrides
+    |> Array.map (fun (breakpoint, themeOverride) -> string breakpoint, Helpers.themeStylesOverride themeOverride)
+    |> !!createObj
 
   static member inline themeBreakpointStylesOverrides (overrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) =
-    overrides |> Array.map (fun themeBpOverride -> Func<Theme, _> (fun theme -> let bpStyles = themeBpOverride theme in (bpStyles |> List.map (fun (bp, styles) -> style.breakpoint bp styles) |> !!createObj)))
+    overrides |> Array.map (fun themeBpOverride ->
+      Func<Theme, _> (fun theme ->
+        let bpStyles = themeBpOverride theme |> List.map (fun (bp, styles) -> style.breakpoint bp styles)
+        createObj !!bpStyles))
 
 
 
