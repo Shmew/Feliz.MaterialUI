@@ -3,7 +3,6 @@ module Samples.Samples.DateTimePickers.DateTimePickers
 open System
 open Fable.Core
 open Fable.Core.JsInterop
-open Fable.DateFunctions
 open Feliz
 open Feliz.MaterialUI
 open Feliz.MaterialUI.X

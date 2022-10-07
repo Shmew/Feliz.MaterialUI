@@ -1,41 +1,14 @@
-# Sx-prop and CSS Classes
+# Styling via classes
 
-Material-UI allows you to override component styles using the [`sx` prop](https://mui.com/system/getting-started/the-sx-prop/).
+MUI allows you to [override styles for elements inside components](https://mui.com/material-ui/guides/api/#css-classes) using the `classes` prop, allowing you to “piggyback” on existing Material-UI class names by injecting custom class names alongside them. The Feliz.MaterialUI API flattens these props, meaning you use each overridable class as a normal prop:
 
 ```fsharp
-Mui.typography [
-    typography.sx ([
-        style.color "inherit"
-        style.flexGrow 1
-    ])
-    // other typography props
+Mui.appBar [
+  appBar.classes.positionFixed "myAppBarPositionFixed"
+  appBar.classes.positionAbsolute "myAppBarPositionAbsolute"
+  appBar.classes.colorDefault "myAppBarColorDefault"
+  // other appBar props
 ]
 ```
 
-It is also possible to override styles for the inner elements of the component via their CSS classes and also use parameters of the current theme:
-
-```fsharp
-Mui.listItem [
-    listItem.sx (fun (t: Theme) -> [
-        style.inner ("&" + listItem.classes.root)
-            [style.paddingLeft (t.spacing 4)]
-    ])
-  // other listItem props
-]
-```
-
-Feliz.MaterialUI provides different overloads for sx-prop, including the one for MUI breakpoints:
-```fsharp
-Mui.drawer [
-    drawer.sx (
-        xs = [
-            style.display.block
-            style.inner ("&" + drawer.classes.paper) [
-                style.width (Constants.drawerWidth)
-                style.boxSizing.borderBox
-            ]
-        ]
-    )
-    // other drawer props
-]
-```
+Note that for MUI components,  `componentName.classes.root` is the same as  just using `prop.className` from Feliz.

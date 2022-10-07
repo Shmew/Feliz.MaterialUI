@@ -729,15 +729,15 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
                     | "componentsProps" ->
                         { defaultTranslators with
                             InnerAtomic = function
-                                | TsAtomicType.Object -> "seq<IReactProperty>"
+                                | AtomicPropType.Object -> "seq<IReactProperty>"
                                 | at -> defaultTranslators.InnerAtomic at
                             InnerUnion = function
                                 // Some components could have two ways of settings slots props:
                                 // 1) Pass a regular props-object
                                 // 2) Pass a callback function: ((ownerState: OwnerState) => ExternalSlotProps)
                                 // Source: https://github.com/mui/material-ui/blob/139724acb3ff53e7f4c8a3a3be90d004f8b8309f/packages/mui-base/src/utils/useSlotProps.ts#L29
-                                | [Atomic Func; Atomic TsAtomicType.Object]
-                                | [Atomic TsAtomicType.Object; Atomic Func] ->
+                                | [Atomic Func; Atomic AtomicPropType.Object]
+                                | [Atomic AtomicPropType.Object; Atomic Func] ->
                                     "seq<IReactProperty>"
                                 | cases -> defaultTranslators.InnerUnion cases
                         }

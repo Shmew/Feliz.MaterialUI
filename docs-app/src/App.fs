@@ -62,6 +62,12 @@ module Url =
     [<Literal>]
     let datePickers = "date-time-pickers"
 
+    [<Literal>]
+    let componentsClassesAndImports = "components-classes-and-imports"
+
+    [<Literal>]
+    let sxProp = "sx-prop"
+
 type ThemeMode =
     | Light
     | Dark
@@ -95,7 +101,7 @@ let update (msg: Msg) (m: Model) =
         }
 
 module Constants =
-    let [<Literal>] drawerWidth = 240
+    let [<Literal>] drawerWidth = 300
 
 //let private useStyles =
 //    Styles.makeStyles (fun styles theme ->
@@ -267,32 +273,40 @@ let Drawer model dispatch =
         Mui.listItem [
             prop.key fragment
             prop.href fragment
-            if isNested then
-                listItem.sx (fun t -> [
-                    style.inner ("&" + MuiClasses.listItem.root)
-                        [style.paddingLeft (t.spacing 4)]
-                ])
+            listItem.sx [|
+                if isNested then
+                    (fun (t: Theme) -> [
+                        style.innerSlot MuiClasses.listItem.root
+                            [style.paddingLeft (t.spacing 4)]
+                    ])
+            |]
             listItem.button true
             listItem.component' "a"
             listItem.selected ((model.CurrentPath = path))
             listItem.children [
-                Mui.listItemText name
+                Mui.listItemText [
+                    listItemText.inset isNested
+                    listItemText.primary name
+                    listItemText.primaryTypographyProps [
+                        typography.noWrap false
+                    ]
+                ]
             ]
         ]
     
     Mui.drawer [
         //drawer.classes.root c.drawer
         //drawer.classes.paper c.drawerPaper
-        drawer.sx (
-            xs = [
-                style.display.block
-                style.inner ("&" + MuiClasses.drawer.paper) [
-                    style.width (Constants.drawerWidth)
-                    style.boxSizing.borderBox
-                    //style.flexShrink 0 // TODO: Does this do anything?]
-                ]
+        drawer.sx [
+            //style.display.block
+            style.width Constants.drawerWidth
+            style.flexShrink 0
+            style.innerSlot MuiClasses.drawer.paper [
+                style.width (Constants.drawerWidth)
+                style.boxSizing.borderBox
+                //style.flexShrink 0 // TODO: Does this do anything?]
             ]
-        )
+        ]
         drawer.variant.permanent; drawer.open' true
         drawer.children [
             //Html.div [ prop.className c.toolbar ]
@@ -309,9 +323,11 @@ let Drawer model dispatch =
                         [
                             menuItem true "Installation" [ Url.usage; Url.installation ]
                             menuItem true "Components/props" [ Url.usage; Url.components_props ]
-                            menuItem true "Styling via the sx prop" [ Url.usage; Url.classes ]
-                            menuItem true "Styling using makeStyles" [ Url.usage; Url.styling ]
-                            menuItem true "Styling using themes" [ Url.usage; Url.themes ]
+                            menuItem true "Components imports and global CSS classes" [ Url.usage; Url.componentsClassesAndImports]
+                            menuItem true "Styling" [ Url.usage; Url.styling ]
+                            menuItem true "Styling via the sx prop" [ Url.usage; Url.sxProp ]
+                            menuItem true "Styling via classes" [Url.usage; Url.classes]
+                            menuItem true "Theming" [ Url.usage; Url.themes ]
                             menuItem true "Localization" [ Url.usage; Url.localization ]
                             menuItem true "Other hooks" [ Url.usage; Url.hooks ]
                         ]

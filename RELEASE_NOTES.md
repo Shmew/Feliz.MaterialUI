@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 5.10.0-alpha.3 (2022-10-03)
+
+* Fixed `componentsProps` prop bindings.
+* Added `MuiComponents` module, containing raw imports for all the components (typed as `ReactElementType`).
+* Added `style.innerSlot` helper, corrected return type of `style.muiBreakpoints` helper.
+
 ### 5.10.0-alpha.0 (2022-09-26)
 
 * Updated for MUI v5 with corresponding API design changes (to reflect JS/TS MUI v5 API better).

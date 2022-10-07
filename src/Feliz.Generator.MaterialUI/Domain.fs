@@ -53,12 +53,12 @@ type IsOptional = bool
 
 type FsTypeSignature = string
 
-type TsLiteralType =
+type LiteralPropType =
     | StringLiteral of string
     | BoolLiteral of bool
     | IntLiteral of int
 
-type TsAtomicType =
+type AtomicPropType =
     | Any
     | String
     | Number
@@ -71,11 +71,11 @@ type TsAtomicType =
     | ElementType
     | HTMLElement
     | Node
-    | Literal of TsLiteralType
+    | Literal of LiteralPropType
     | OtherType of typeName: string
 
-type TsType =
-    | Atomic of TsAtomicType
-    | Union of cases: TsType list
-    | Object of entries: (string * TsType * bool) list
-    | Array of TsType
+type PropType =
+    | Atomic of AtomicPropType
+    | Union of cases: PropType list
+    | Object of entries: (string * PropType * bool) list
+    | Array of PropType

@@ -9,7 +9,7 @@ module Parsers =
 
     type Parser<'t> = Parser<'t, unit>
 
-    let tsIdentifier<'State> : Parser<string, 'State> = identifier (IdentifierOptions())
+    let jsIdentifier<'State> : Parser<string, 'State> = identifier (IdentifierOptions())
 
     let stringLiteralIdentifier<'State> : Parser<string, 'State> =
         let opts = IdentifierOptions(
@@ -19,7 +19,7 @@ module Parsers =
 
     let ws = unicodeSpaces
 
-    let tsStringLiteral (stringLiteralParser: Parser<string, 'State>) =
+    let jsStringLiteral (stringLiteralParser: Parser<string, 'State>) =
         let tsStringSingleQuote = pchar '''
         let tsSTringDoubleQuote = pchar '"'
         choice [
@@ -37,14 +37,14 @@ module Parsers =
             pstring "true" |>> bool.Parse
         ]
 
-    let tsLiteralType: Parser<TsLiteralType> =
+    let literalPropType: Parser<LiteralPropType> =
         choice [
-            tsStringLiteral stringLiteralIdentifier |>> StringLiteral
+            jsStringLiteral stringLiteralIdentifier |>> StringLiteral
             intLiteral |>> IntLiteral
             boolLiteral |>> BoolLiteral
         ]
 
-    let tsAtomicType: Parser<TsType> =
+    let atomicPropType: Parser<PropType> =
         choice [
             stringReturn "string" String
             stringReturn "number" Number
@@ -52,62 +52,62 @@ module Parsers =
             stringReturn "bool" Bool
             stringReturn "Date" Date
             stringReturn "func" Func
-            stringReturn "object" TsAtomicType.Object
+            stringReturn "object" AtomicPropType.Object
             stringReturn "elementType" ElementType
             stringReturn "element type" ElementType
             stringReturn "element" Element
             stringReturn "HTML element" HTMLElement
             stringReturn "node" Node
             stringReturn "any" Any
-            tsLiteralType |>> Literal
-            tsIdentifier |>> OtherType
-        ] |>> TsType.Atomic
+            literalPropType |>> Literal
+            jsIdentifier |>> OtherType
+        ] |>> PropType.Atomic
 
-    let tsType, tsTypeRef = createParserForwardedToRef<TsType, unit>()
+    let propType, propTypeRef = createParserForwardedToRef<PropType, unit>()
 
-    let tsObject: Parser<TsType> =
+    let propTypeObject: Parser<PropType> =
     
         let objectEntry =
             let objField =
-                tsIdentifier .>>. (opt (pchar '?'))
+                jsIdentifier .>>. (opt (pchar '?'))
                 |>> (fun (fieldName, isOptionalMarker) -> fieldName, isOptionalMarker.IsSome)
         
             tuple2
                 objField
-                (ws >>. pchar ':' .>> ws >>. tsType)
+                (ws >>. pchar ':' .>> ws >>. propType)
             |>> (fun ((fieldName, isOptional), fieldType) -> fieldName, fieldType, isOptional)
     
         let objectEntries = sepEndBy1 objectEntry (pchar ',' .>> ws)
     
         between (pchar '{') (pchar '}') (ws >>. objectEntries .>> ws)
-        |>> TsType.Object
+        |>> PropType.Object
 
-    let tsArray =
-        pstring "Array" >>. (between (pchar '<') (pchar '>') (ws >>. tsType .>> ws))
-        |>> TsType.Array
+    let propTypeArray =
+        pstring "Array" >>. (between (pchar '<') (pchar '>') (ws >>. propType .>> ws))
+        |>> PropType.Array
 
-    let tsNonUnionType =
-        choice [ tsObject; tsArray; tsAtomicType]
+    let propTypeNonUnion =
+        choice [ propTypeObject; propTypeArray; atomicPropType]
 
-    let tsPlainUnionCases (pElement: Parser<'t, _>) =
+    let propTypeUnionCases (pElement: Parser<'t, _>) =
         ws >>. (sepBy1 (pElement .>> ws) (pchar '|' .>> ws))
 
-    let tsUnion: Parser<TsType> =
-        tsPlainUnionCases tsNonUnionType
+    let propTypeUnion: Parser<PropType> =
+        propTypeUnionCases propTypeNonUnion
         |>> (function
                 | [t] -> t
                 | ts -> Union ts)
 
-    do tsTypeRef.Value <-
+    do propTypeRef.Value <-
             choice [
-                tsUnion
-                tsObject
-                tsArray
-                tsAtomicType
+                propTypeUnion
+                propTypeObject
+                propTypeArray
+                atomicPropType
             ]
 
-    let tsTypeSignature =
-        ws >>. tsType .>> ws .>> eof
+    let propTypeFinal =
+        ws >>. propType .>> ws .>> eof
 
 
 module Translators =
@@ -115,18 +115,18 @@ module Translators =
     type FsTypeSignature = string
 
     type Translators = {
-        InnerAtomic: TsAtomicType -> FsTypeSignature
-        InnerObject: (string * TsType * bool) list -> FsTypeSignature
-        InnerUnion: TsType list -> FsTypeSignature
-        InnerArray: TsType -> FsTypeSignature
-        TopLevelAtomic: TsAtomicType -> PropOverload list
-        TopLevelObject: (string * TsType * bool) list -> PropOverload list
-        TopLevelUnion: TsType list -> PropOverload list
-        TopLevelArray: TsType -> PropOverload list
+        InnerAtomic: AtomicPropType -> FsTypeSignature
+        InnerObject: (string * PropType * bool) list -> FsTypeSignature
+        InnerUnion: PropType list -> FsTypeSignature
+        InnerArray: PropType -> FsTypeSignature
+        TopLevelAtomic: AtomicPropType -> PropOverload list
+        TopLevelObject: (string * PropType * bool) list -> PropOverload list
+        TopLevelUnion: PropType list -> PropOverload list
+        TopLevelArray: PropType -> PropOverload list
     }
 
-    let enumPropOverloadOfLiteral (tsLiteral: TsLiteralType) =
-        match tsLiteral with
+    let enumPropOverloadOfLiteral (propTypeLiteral: LiteralPropType) =
+        match propTypeLiteral with
         | StringLiteral s ->
             EnumPropOverload.create (jsParamNameToFsParamName s) ("\"" + s + "\"")
 
@@ -141,8 +141,8 @@ module Translators =
 
             EnumPropOverload.create propName propValue
 
-    let translateInnerTsAtomicType (tsAtomicType: TsAtomicType) =
-        match tsAtomicType with
+    let translateInnerTsAtomicType (atomicType: AtomicPropType) =
+        match atomicType with
         | Any -> "'T"
         | String -> "string"
         | Number -> "float"
@@ -150,7 +150,7 @@ module Translators =
         | Bool -> "bool"
         | Date -> "System.DateTime"
         | Func -> "Func<obj, obj>"
-        | TsAtomicType.Object -> "obj"
+        | AtomicPropType.Object -> "obj"
         | Element -> "ReactElement"
         | ElementType -> "ReactElementType"
         | HTMLElement -> "U2<#Element option, IRefValue<#Element option>>"
@@ -160,24 +160,24 @@ module Translators =
         | OtherType typeName -> typeName
         | Node -> "U6<ReactElement, seq<ReactElement>, string, seq<string>, int, float>"
 
-    let rec translateNestedTsTypeSign customize (tsType: TsType) =
+    let rec translateInnerPropType customize (propType: PropType) =
         let translators = translators customize
-        match tsType with
+        match propType with
         | Atomic t -> translators.InnerAtomic t
         | Array elType -> translators.InnerArray elType
         | Union cases -> translators.InnerUnion cases
-        | TsType.Object objEntries -> translators.InnerObject objEntries
+        | PropType.Object objEntries -> translators.InnerObject objEntries
 
-    and translateNestedArrayTypeSign customize (elementType: TsType) =
-        translateNestedTsTypeSign customize elementType + " []"
+    and translateInnerPropTypeArray customize (elementType: PropType) =
+        translateInnerPropType customize elementType + " []"
 
-    and translateNestedUnionTypeSign customize (unionCases: TsType list) =
+    and translateInnerPropTypeUnion customize (unionCases: PropType list) =
         let translatedUnionCases =
             unionCases
             //|> List.map (function
             //    | TsType.Atomic (TsAtomicType.Literal (StringLiteral _)) -> "string"
             //    | t -> t |> translateNestedTsTypeSign customize)
-            |> List.map (translateNestedTsTypeSign customize)
+            |> List.map (translateInnerPropType customize)
             |> List.distinct
         let unionArity = translatedUnionCases.Length
 
@@ -194,20 +194,20 @@ module Translators =
             let unionTypeParamsList = cases |> String.concat ", "
             sprintf "U%i<%s>" unionArity unionTypeParamsList
 
-    and translateNestedObjectTypeSign customize (objEntries: (string * TsType * bool) list) =
+    and translateInnerPropTypeObject customize (objEntries: (string * PropType * bool) list) =
         let entries =
             objEntries
             |> List.map (fun (fieldName, fieldType, isOptional) ->
                 let fsFieldName = jsParamNameToFsParamName fieldName
                 let fsTypeSign =
-                    let rawTypeSign = translateNestedTsTypeSign customize fieldType
+                    let rawTypeSign = translateInnerPropType customize fieldType
                     if isOptional then rawTypeSign + " option"
                     else rawTypeSign
                 fsFieldName + ": " + fsTypeSign)
             |> String.concat "; "
         "{| " + entries + " |}"
 
-    and translateTopLevelTsType (customize: Translators -> Translators) (tsType: TsType) =
+    and translateTopLevelPropType (customize: Translators -> Translators) (tsType: PropType) =
         let translators = translators customize
         match tsType with
         | Atomic t -> translators.TopLevelAtomic t
@@ -215,7 +215,7 @@ module Translators =
         | Object objEntries -> translators.TopLevelObject objEntries
         | Array elType -> translators.TopLevelArray elType
 
-    and translateTopLevelTsAtomicType customize (tsAtomicType: TsAtomicType) =
+    and translateTopLevelPropTypeAtomic customize (tsAtomicType: AtomicPropType) =
         match tsAtomicType with
         | Node ->
             [ RegularPropOverload.create "(value: ReactElement)" "value"
@@ -249,11 +249,11 @@ module Translators =
             |> PropOverload.Regular
             |> List.singleton
 
-    and translateTopLevelObject customize (objEntries: (string * TsType * bool) list) =
+    and translateTopLevelPropTypeObject customize (objEntries: (string * PropType * bool) list) =
         let translatedParams =
             objEntries
             |> List.map (fun (fieldName, fieldType, isOptional) ->
-                fieldName, translateNestedTsTypeSign customize fieldType, isOptional)
+                fieldName, translateInnerPropType customize fieldType, isOptional)
 
         let paramsListStr =
             translatedParams
@@ -278,21 +278,21 @@ module Translators =
         |> PropOverload.Regular
         |> List.singleton
 
-    and translateTopLevelUnion customize (unionCases: TsType list) =
+    and translateTopLevelPropTypeUnion customize (unionCases: PropType list) =
         unionCases
         |> List.collect (function
-            | TsType.Atomic (Literal literal) ->
+            | PropType.Atomic (Literal literal) ->
                 enumPropOverloadOfLiteral literal
                 |> PropOverload.Enum
                 |> List.singleton
 
-            | t -> translateTopLevelTsType customize t)
+            | t -> translateTopLevelPropType customize t)
         |> List.distinctBy (function
             | PropOverload.Regular p -> Choice1Of2 p.ParamsCode
             | PropOverload.Enum p -> Choice2Of2 (p.MethodName, p.ParamsCode))
 
-    and translateTopLevelArray customize (elementType: TsType) =
-        let translatedTypeSign = translateNestedTsTypeSign customize elementType
+    and translateTopLevelPropTypeArray customize (elementType: PropType) =
+        let translatedTypeSign = translateInnerPropType customize elementType
         let methodParamsCode =
             sprintf "([<ParamArray>] values: %s [])" translatedTypeSign
         let methodBodyCode = "values"
@@ -304,13 +304,13 @@ module Translators =
     and translators (customize: Translators -> Translators): Translators =
         {
             InnerAtomic = translateInnerTsAtomicType
-            InnerObject = translateNestedObjectTypeSign customize
-            InnerUnion = translateNestedUnionTypeSign customize
-            InnerArray = translateNestedArrayTypeSign customize
-            TopLevelAtomic = translateTopLevelTsAtomicType customize
-            TopLevelObject = translateTopLevelObject customize
-            TopLevelUnion = translateTopLevelUnion customize
-            TopLevelArray = translateTopLevelArray customize
+            InnerObject = translateInnerPropTypeObject customize
+            InnerUnion = translateInnerPropTypeUnion customize
+            InnerArray = translateInnerPropTypeArray customize
+            TopLevelAtomic = translateTopLevelPropTypeAtomic customize
+            TopLevelObject = translateTopLevelPropTypeObject customize
+            TopLevelUnion = translateTopLevelPropTypeUnion customize
+            TopLevelArray = translateTopLevelPropTypeArray customize
         } |> customize
 
     type Translators with
@@ -320,18 +320,18 @@ type Translators = Translators.Translators
 
 let tryParseTypeSignatureString (str: string) =
     str
-    |> run Parsers.tsTypeSignature
+    |> run Parsers.propTypeFinal
     |> function
         | Success(t, _, _) -> Result.Ok t
         | Failure(errorMsg, _, _) -> Result.Error errorMsg
 
-let translateDefault (typeSignature: TsType) =
+let translateDefault (typeSignature: PropType) =
     typeSignature
-    |> Translators.translateTopLevelTsType id
+    |> Translators.translateTopLevelPropType id
 
 let translateCustom (customizeTranslators: Translators -> Translators) typeSignature =
     typeSignature
-    |> Translators.translateTopLevelTsType customizeTranslators
+    |> Translators.translateTopLevelPropType customizeTranslators
 
 let parseAndTranslateDefault (typeSignatureString: string) =
     typeSignatureString
