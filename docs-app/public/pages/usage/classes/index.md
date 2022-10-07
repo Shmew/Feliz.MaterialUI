@@ -4,9 +4,9 @@ MUI allows you to [override styles for elements inside components](https://mui.c
 
 ```fsharp
 Mui.appBar [
-    pBar.classes.positionFixed "myAppBarPositionFixed"
-    pBar.classes.positionAbsolute "myAppBarPositionAbsolute"
-    pBar.classes.colorDefault "myAppBarColorDefault"
+    apBar.classes.positionFixed "myAppBarPositionFixed"
+    apBar.classes.positionAbsolute "myAppBarPositionAbsolute"
+    apBar.classes.colorDefault "myAppBarColorDefault"
     // other appBar props
 ]
 ```
