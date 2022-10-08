@@ -96,9 +96,7 @@ let MarkdownLoaderView (state: State) dispatch =
                     Mui.iconButton [
                         prop.style [ style.floatStyle.right ]
                         prop.href (
-                            sprintf
-                                "https://github.com/Shmew/Feliz.MaterialUI/edit/master/docs-app/public/%s"
-                                (String.concat "/" path)
+                            Constants.SourceRepoDocsAppArticleDirEditUrl + (String.concat "/" path)
                         )
                         iconButton.component' "a"
                         iconButton.children (Feliz.MaterialUI.Icons.editIcon [])

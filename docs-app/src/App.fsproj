@@ -6,6 +6,7 @@
   
   <ItemGroup>
     <None Include="paket.references" />
+    <Compile Include="Common.fs" />
     <Compile Include="..\public\**\*.fs" />
     <None Include="..\public\**\*.md" />
     <Compile Include="Bindings.fs" />

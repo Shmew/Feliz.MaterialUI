@@ -22,7 +22,7 @@ Mui.radio [
 ]
 ```
 
-For convenience, when a “child” component forwards unknown props to a root/“parent” component, the props of the “parent” component are also available directly on the “child” component. For example, `appBar` forwards props to `paper`, so all of the `paper` props such as `elevation` are available directly on `appBar`:
+For convenience, when a "child" component forwards unknown props to a root/“parent” component, the props of the "parent" component are also available directly on the “child” component. For example, `appBar` forwards props to `paper`, so all of the `paper` props such as `elevation` are available directly on `appBar`:
 
 ```fsharp
 Mui.appBar [

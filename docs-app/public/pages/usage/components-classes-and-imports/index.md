@@ -1,6 +1,6 @@
 # Components imports
 
-`MuiComponents` module contains raw imports for all the components, returned as `ReactElementType`. This imports could be useful in cases, such as [`component` prop](https://mui.com/material-ui/guides/composition/#component-prop).
+`MuiComponents` module contains raw imports for all the components, returned as `ReactElementType`. These imports could be useful in cases, such as the [`component` prop](https://mui.com/material-ui/guides/composition/#component-prop).
 
 ```fsharp
 Mui.listItem [
@@ -12,7 +12,7 @@ Mui.listItem [
 
 # Components CSS global classes
 
-In components customization scenarios, such as overriding nested components styles via [`sx` prop](https://mui.com/material-ui/customization/how-to-customize/#the-sx-prop), need to know MUI-defined components class names. For that purpose Feliz.MaterialUI provides `MuiClasses` module, that contains all documented CSS global class names, e.g.:
+In component customization scenarios, such as overriding nested components styles via [`sx` prop](https://mui.com/material-ui/customization/how-to-customize/#the-sx-prop), it's necessary to know certain components class names. For that purpose Feliz.MaterialUI provides `MuiClasses` module, that contains all documented CSS global class names, e.g.:
 
 ```fsharp
 MuiClasses.accordion.rounded

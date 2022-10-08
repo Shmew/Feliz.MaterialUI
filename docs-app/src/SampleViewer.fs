@@ -180,9 +180,7 @@ let Demo (getSample: string -> Sample) (markdownCodeBlock: string) (path: string
                     tooltip.children (
                         Mui.iconButton [
                             prop.href (
-                                sprintf
-                                    "https://github.com/Shmew/Feliz.MaterialUI/tree/master/docs-app/public/%s"
-                                    (String.concat "/" path)
+                                Constants.SourceRepoDocsAppArticleDirEditUrl + (String.concat "/" path)
                             )
                             iconButton.component' "a"
                             iconButton.color.inherit'
