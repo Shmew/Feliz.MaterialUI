@@ -5,7 +5,7 @@
 Documentation
 --------------
 
-https://shmew.github.io/Feliz.MaterialUI/
+https://artemyb.github.io/Feliz.MaterialUI/
 
 Contributing
 ------------
@@ -14,11 +14,11 @@ This project uses `fable`, `paket` and `femto` as .NET local tools. Therefore, `
 
 To run build targets using cmd or Powershell:
 ```cmd
-build.cmd -t TargetName
+build.cmd TargetName
 ```
 or using bash:
 ```bash
-build.sh -t TargetName
+build.sh TargetName
 ```
 
 ### Regular maintenance
