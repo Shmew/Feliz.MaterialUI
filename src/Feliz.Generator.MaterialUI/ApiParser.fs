@@ -899,7 +899,11 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
               RegularPropOverload.createCustom "(elements: seq<ReactElement>)" "prop.children elements" ]
 
         | "globalStyles", "styles", "func | number | object | { __emotion_styles: any } | string | bool" ->
-            [ RegularPropOverload.create "(value: #seq<IStyleAttribute>)" "(createObj !!value)"]
+            [
+                RegularPropOverload.create
+                    "(stylesheet: seq<string * seq<IStyleAttribute>>)"
+                    "(createObj [ for (selector, styles) in styleSheet -> selector, createObj !!styles ])"
+            ]
 
         | "hidden", "only", "'xs' | 'sm' | 'md' | 'lg' | 'xl' | Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'>" ->
             [ RegularPropOverload.create "([<ParamArray>] values: IBreakpointKey [])" "values" ]
@@ -1327,7 +1331,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         //| _ when not isProbablyEnumProp -> []
 
         | "globalStyles", "styles", "func | number | object | { __emotion_styles: any } | string | bool" ->
-            List.empty
+            []
 
         | ("grid" | "stack"), "direction", _ ->
             let cases =
@@ -1694,38 +1698,13 @@ let parseApi () =
         |> Array.toList
 
     let themeProvider =
-        Component.createImportSelector "themeProvider" "ThemeProvider" "@mui/material/styles"
+        Component.createImportSelector "themeProvider" "ThemeProvider" "@mui/material"
         |> Component.addChildrenProp
         |> Component.addProp (
             Prop.create "theme" "theme"
             |> Prop.setDocs [ "A theme object. You can provide a function to extend the outer theme." ]
             |> Prop.addRegularOverload (RegularPropOverload.create "(theme: Theme)" "theme")
             |> Prop.addRegularOverload (RegularPropOverload.create "(extendTheme: Theme -> Theme)" "extendTheme")
-        )
-
-    // https://material-ui.com/styles/api/#stylesprovider
-    let stylesProvider =
-        Component.createImportSelector "stylesProvider" "StylesProvider" "@mui/styles"
-        |> Component.setDocs [
-            "This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context."
-            ""
-            "It should preferably be used at **the root of your component tree**."
-        ]
-        |> Component.addChildrenProp
-        |> Component.addProp (
-            Prop.create "disableGeneration" "disableGeneration"
-            |> Prop.setDocs [ "You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property." ]
-            |> Prop.addRegularOverload (RegularPropOverload.create "(value: bool)" "value")
-        )
-        |> Component.addProp (
-            Prop.create "injectFirst" "injectFirst"
-            |> Prop.setDocs [ "By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop." ]
-            |> Prop.addRegularOverload (RegularPropOverload.create "(value: bool)" "value")
-        )
-        |> Component.addProp (
-            Prop.create "jss" "jss"
-            |> Prop.setDocs [ "JSS's instance." ]
-            |> Prop.addRegularOverload (RegularPropOverload.create "(value: obj)" "value")
         )
 
     let styledEngineProvider =
@@ -1766,7 +1745,7 @@ let parseApi () =
         |> Component.addChildrenProp
 
     let unstableGridV2 =
-        Component.createImportSelector "grid2" "Grid2" "@mui/material/Unstable_Grid2"
+        Component.createImportSelector "grid2" "default" "@mui/material/Unstable_Grid2"
         |> Component.setDocs [
             "The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts."
             "Props from the `grid` component could be used, except the `item` and `zeroMinWidth`, which have been removed in Grid v2."
@@ -1796,7 +1775,6 @@ let parseApi () =
             ""
         ]
         |> ComponentApi.addComponent themeProvider
-        |> ComponentApi.addComponent stylesProvider
         |> ComponentApi.addComponent styledEngineProvider
         |> ComponentApi.addComponent cacheProvider
         |> ComponentApi.addComponent unstableGridV2
