@@ -1,6 +1,13 @@
 Changelog
 =========
 
+### 5.10.0-alpha.4 (2022-10-31)
+
+* Fixed Grid v2 component import.
+* Corrected ThemeProvider component import (to import it from "@mui/material" instead of from "@mui/material/styles").
+* Removed StylesProvider component (for being obsolete in MUI 5).
+* Couple of minor code fixes to make the library compile with Fable 4.0.0-theta-014.
+
 ### 5.10.0-alpha.3 (2022-10-03)
 
 * Fixed `componentsProps` prop bindings.

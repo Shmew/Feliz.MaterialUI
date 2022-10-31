@@ -901,7 +901,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
         | "globalStyles", "styles", "func | number | object | { __emotion_styles: any } | string | bool" ->
             [
                 RegularPropOverload.create
-                    "(stylesheet: seq<string * seq<IStyleAttribute>>)"
+                    "(styleSheet: seq<string * seq<IStyleAttribute>>)"
                     "(createObj [ for (selector, styles) in styleSheet -> selector, createObj !!styles ])"
             ]
 

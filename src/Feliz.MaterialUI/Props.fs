@@ -42,18 +42,6 @@ type themeProvider =
 
 
 [<Erase>]
-type stylesProvider =
-  /// Your component tree.
-  static member inline children (elements: seq<ReactElement>) = prop.children elements
-  /// You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property.
-  static member inline disableGeneration (value: bool) = Interop.mkAttr "disableGeneration" value
-  /// By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.
-  static member inline injectFirst (value: bool) = Interop.mkAttr "injectFirst" value
-  /// JSS's instance.
-  static member inline jss (value: obj) = Interop.mkAttr "jss" value
-
-
-[<Erase>]
 type styledEngineProvider =
   /// By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override MUI's styles, set this prop.
   static member inline injectFirst (value: bool) = Interop.mkAttr "injectFirst" value
@@ -3663,7 +3651,7 @@ module formLabel =
 [<Erase>]
 type globalStyles =
   /// The styles you want to apply globally.
-  static member inline styles (value: #seq<IStyleAttribute>) = Interop.mkAttr "styles" (createObj !!value)
+  static member inline styles (styleSheet: seq<string * seq<IStyleAttribute>>) = Interop.mkAttr "styles" (createObj [ for (selector, styles) in styleSheet -> selector, createObj !!styles ])
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
 

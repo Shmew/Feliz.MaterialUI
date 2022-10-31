@@ -29,12 +29,7 @@ module MuiHelpers =
 [<Erase>]
 type Mui =
 
-  static member inline themeProvider props = createElement (import "ThemeProvider" "@mui/material/styles") props
-
-  /// This component allows you to change the behavior of the styling solution. It makes the options available down the React tree thanks to the context.
-  ///
-  /// It should preferably be used at **the root of your component tree**.
-  static member inline stylesProvider props = createElement (import "StylesProvider" "@mui/styles") props
+  static member inline themeProvider props = createElement (import "ThemeProvider" "@mui/material") props
 
   /// This component allows you to change styes import precedence and thereby override default MUI styles.
   /// Documentation: https://mui.com/material-ui/guides/interoperability/#css-injection-order
@@ -46,7 +41,7 @@ type Mui =
 
   /// The responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts.
   /// Props from the `grid` component could be used, except the `item` and `zeroMinWidth`, which have been removed in Grid v2.
-  static member inline grid2 props = createElement (import "Grid2" "@mui/material/Unstable_Grid2") props
+  static member inline grid2 props = createElement (import "default" "@mui/material/Unstable_Grid2") props
 
   static member inline accordion props = createElement (import "Accordion" "@mui/material") props
 
