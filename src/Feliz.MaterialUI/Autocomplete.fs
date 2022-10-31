@@ -15,7 +15,7 @@ module AutocompleteHelpers =
 
 type Autocomplete =
 
-    static member createFilterOptions<'option>
+    static member inline createFilterOptions<'option>
         (
             ?ignoreAccents: bool,
             ?ignoreCase: bool,

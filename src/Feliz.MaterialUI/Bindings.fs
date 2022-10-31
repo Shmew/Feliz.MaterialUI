@@ -570,7 +570,7 @@ type CreateFilterOptionsOptions =
     abstract ignoreAccents: bool with get, set
     abstract ignoreCase: bool with get, set
     abstract matchFrom: AutocompleteMatchFrom with get, set
-    abstract stringify: ('option -> string) with get, set
+    abstract stringify<'option> : ('option -> string) with get, set
     abstract trim: bool with get, set
 
 type AutocompleteFilterOptionsState =
