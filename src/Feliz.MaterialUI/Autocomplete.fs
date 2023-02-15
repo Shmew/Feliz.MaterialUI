@@ -9,22 +9,22 @@ module AutocompleteHelpers =
 
     [<EditorBrowsable(EditorBrowsableState.Never)>]
     let createFilterOptions
-        (config: CreateFilterOptionsOptions)
-        : Func<'option [], AutocompleteFilterOptionsState, 'option []> =
+        (config: CreateFilterOptionsOptions<'Option>)
+        : Func<'Option [], AutocompleteFilterOptionsState, 'Option []> =
         import "createFilterOptions" "@mui/material/Autocomplete"
 
 type Autocomplete =
 
-    static member inline createFilterOptions<'option>
+    static member inline createFilterOptions<'Option>
         (
             ?ignoreAccents: bool,
             ?ignoreCase: bool,
             ?matchFrom: AutocompleteMatchFrom,
-            ?stringify: 'option -> string,
+            ?stringify: 'Option -> string,
             ?trim: bool
-        ) : 'option [] -> AutocompleteFilterOptionsState -> 'option [] =
+        ) : 'Option [] -> AutocompleteFilterOptionsState -> 'Option [] =
         let opts =
-            jsOptions<CreateFilterOptionsOptions> (fun o ->
+            jsOptions<CreateFilterOptionsOptions<'Option>> (fun o ->
                 if ignoreAccents.IsSome then
                     o.ignoreAccents <- ignoreAccents.Value
 
