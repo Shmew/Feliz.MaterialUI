@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### 5.10.0-alpha.6 (2023-02-15)
+* Add `anchorPosition` prop (of `Popover` and `Menu`) overload with `float` parameters.
+
+### 5.10.0-alpha.5 (2023-02-15)
+* Fix `CreateFilterOptionsOptions` type definition (used for `Autocomplete` MUI component) to address recent FCS updates that makes the old definition incompilable (e.g. by Fable v4.0.0-theta-018).
+
 ### 5.10.0-alpha.4 (2022-10-31)
 
 * Fixed Grid v2 component import.
