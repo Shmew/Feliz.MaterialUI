@@ -549,6 +549,11 @@ let (|Popover|_|) (componentMethodName, propMethodName, propDocType) =
               "top", "int", false ]
             |> paramListAndObjCreator
             ||> RegularPropOverload.create
+
+            [ "left", "float", false
+              "top", "float", false ]
+            |> paramListAndObjCreator
+            ||> RegularPropOverload.create
         ]
 
     | "popover", "onClose", "func" ->

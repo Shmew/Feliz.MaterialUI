@@ -5584,6 +5584,10 @@ type menu =
   static member inline anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
   /// *Inherited from `popover`*
   ///
+  /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
+  static member inline anchorPosition (left: float, top: float) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
+  /// *Inherited from `popover`*
+  ///
   /// An HTML element, component instance, or function that returns either. The `container` will passed to the Modal component.
   ///
   /// By default, it uses the body of the anchorEl's top-level document object, so it's simply `document.body` most of the time.
@@ -6814,6 +6818,8 @@ type popover =
   static member inline anchorOrigin (horizontal: int, vertical: int) = Interop.mkAttr "anchorOrigin" (createObj [ "horizontal" ==> horizontal; "vertical" ==> vertical ])
   /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
   static member inline anchorPosition (left: int, top: int) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
+  /// This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
+  static member inline anchorPosition (left: float, top: float) = Interop.mkAttr "anchorPosition" (let x = createEmpty<obj> in x?``left`` <- left; x?``top`` <- top; x)
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
