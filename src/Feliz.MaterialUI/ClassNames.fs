@@ -546,10 +546,18 @@ type [<Erase>] chip =
   static member inline sizeSmall : string = ".MuiChip-sizeSmall"
   /// Styles applied to the root element if `size="medium"`.
   static member inline sizeMedium : string = ".MuiChip-sizeMedium"
+  /// Styles applied to the root element if `color="error"`.
+  static member inline colorError : string = ".MuiChip-colorError"
+  /// Styles applied to the root element if `color="info"`.
+  static member inline colorInfo : string = ".MuiChip-colorInfo"
   /// Styles applied to the root element if `color="primary"`.
   static member inline colorPrimary : string = ".MuiChip-colorPrimary"
   /// Styles applied to the root element if `color="secondary"`.
   static member inline colorSecondary : string = ".MuiChip-colorSecondary"
+  /// Styles applied to the root element if `color="success"`.
+  static member inline colorSuccess : string = ".MuiChip-colorSuccess"
+  /// Styles applied to the root element if `color="warning"`.
+  static member inline colorWarning : string = ".MuiChip-colorWarning"
   /// State class applied to the root element if `disabled={true}`.
   static member inline disabled : string = ".Mui-disabled"
   /// Styles applied to the root element if `onClick` is defined or `clickable={true}`.
@@ -1021,6 +1029,14 @@ type [<Erase>] iconButton =
   static member inline colorPrimary : string = ".MuiIconButton-colorPrimary"
   /// Styles applied to the root element if `color="secondary"`.
   static member inline colorSecondary : string = ".MuiIconButton-colorSecondary"
+  /// Styles applied to the root element if `color="error"`.
+  static member inline colorError : string = ".MuiIconButton-colorError"
+  /// Styles applied to the root element if `color="info"`.
+  static member inline colorInfo : string = ".MuiIconButton-colorInfo"
+  /// Styles applied to the root element if `color="success"`.
+  static member inline colorSuccess : string = ".MuiIconButton-colorSuccess"
+  /// Styles applied to the root element if `color="warning"`.
+  static member inline colorWarning : string = ".MuiIconButton-colorWarning"
   /// State class applied to the root element if `disabled={true}`.
   static member inline disabled : string = ".Mui-disabled"
   /// Styles applied to the root element if `size="small"`.
@@ -1535,6 +1551,18 @@ type [<Erase>] menuItem =
   static member inline selected : string = ".Mui-selected"
 
 
+type [<Erase>] menuList =
+
+  /// Styles applied to the root element.
+  static member inline root : string = ".MuiMenuList-root"
+  /// Styles applied to the root element unless `disablePadding={true}`.
+  static member inline padding : string = ".MuiMenuList-padding"
+  /// Styles applied to the root element if dense.
+  static member inline dense : string = ".MuiMenuList-dense"
+  /// Styles applied to the root element if a `subheader` is provided.
+  static member inline subheader : string = ".MuiMenuList-subheader"
+
+
 type [<Erase>] mobileStepper =
 
   /// Styles applied to the root element.
@@ -1738,6 +1766,16 @@ type [<Erase>] radio =
   static member inline colorSecondary : string = ".MuiRadio-colorSecondary"
 
 
+type [<Erase>] radioGroup =
+
+  /// Styles applied to the root element.
+  static member inline root : string = ".MuiRadioGroup-root"
+  /// Styles applied to the root element if `row={true}`.
+  static member inline row : string = ".MuiRadioGroup-row"
+  /// State class applied to the root element if `error={true}`.
+  static member inline error : string = ".Mui-error"
+
+
 type [<Erase>] rating =
 
   /// Styles applied to the root element.
@@ -1838,6 +1876,10 @@ type [<Erase>] slider =
 
   /// Class name applied to the root element.
   static member inline root : string = ".MuiSlider-root"
+  /// Class name applied to the root element if `color="primary"`.
+  static member inline colorPrimary : string = ".MuiSlider-colorPrimary"
+  /// Class name applied to the root element if `color="secondary"`.
+  static member inline colorSecondary : string = ".MuiSlider-colorSecondary"
   /// Class name applied to the root element if `marks` is provided with at least one label.
   static member inline marked : string = ".MuiSlider-marked"
   /// Class name applied to the root element if `orientation="vertical"`.
@@ -1860,14 +1902,6 @@ type [<Erase>] slider =
   static member inline active : string = ".Mui-active"
   /// State class applied to the thumb element if keyboard focused.
   static member inline focusVisible : string = ".Mui-focusVisible"
-  /// Class name applied to the thumb label element.
-  static member inline valueLabel : string = ".MuiSlider-valueLabel"
-  /// Class name applied to the thumb label element if it's open.
-  static member inline valueLabelOpen : string = ".MuiSlider-valueLabelOpen"
-  /// Class name applied to the thumb label's circle element.
-  static member inline valueLabelCircle : string = ".MuiSlider-valueLabelCircle"
-  /// Class name applied to the thumb label's label element.
-  static member inline valueLabelLabel : string = ".MuiSlider-valueLabelLabel"
   /// Class name applied to the mark element.
   static member inline mark : string = ".MuiSlider-mark"
   /// Class name applied to the mark element if active (depending on the value).
@@ -1876,10 +1910,6 @@ type [<Erase>] slider =
   static member inline markLabel : string = ".MuiSlider-markLabel"
   /// Class name applied to the mark label element if active (depending on the value).
   static member inline markLabelActive : string = ".MuiSlider-markLabelActive"
-  /// Class name applied to the root element if `color="primary"`.
-  static member inline colorPrimary : string = ".MuiSlider-colorPrimary"
-  /// Class name applied to the root element if `color="secondary"`.
-  static member inline colorSecondary : string = ".MuiSlider-colorSecondary"
   /// Class name applied to the root element if `size="small"`.
   static member inline sizeSmall : string = ".MuiSlider-sizeSmall"
   /// Class name applied to the thumb element if `color="primary"`.
@@ -1888,6 +1918,14 @@ type [<Erase>] slider =
   static member inline thumbColorSecondary : string = ".MuiSlider-thumbColorSecondary"
   /// Class name applied to the thumb element if `size="small"`.
   static member inline thumbSizeSmall : string = ".MuiSlider-thumbSizeSmall"
+  /// Class name applied to the thumb label element.
+  static member inline valueLabel : string = ".MuiSlider-valueLabel"
+  /// Class name applied to the thumb label element if it's open.
+  static member inline valueLabelOpen : string = ".MuiSlider-valueLabelOpen"
+  /// Class name applied to the thumb label's circle element.
+  static member inline valueLabelCircle : string = ".MuiSlider-valueLabelCircle"
+  /// Class name applied to the thumb label's label element.
+  static member inline valueLabelLabel : string = ".MuiSlider-valueLabelLabel"
 
 
 type [<Erase>] snackbar =
@@ -2102,6 +2140,8 @@ type [<Erase>] svgIcon =
   static member inline fontSizeInherit : string = ".MuiSvgIcon-fontSizeInherit"
   /// Styles applied to the root element if `fontSize="small"`.
   static member inline fontSizeSmall : string = ".MuiSvgIcon-fontSizeSmall"
+  /// Styles applied to the root element if `fontSize="medium"`.
+  static member inline fontSizeMedium : string = ".MuiSvgIcon-fontSizeMedium"
   /// Styles applied to the root element if `fontSize="large"`.
   static member inline fontSizeLarge : string = ".MuiSvgIcon-fontSizeLarge"
 
@@ -2274,6 +2314,36 @@ type [<Erase>] tableSortLabel =
   static member inline iconDirectionDesc : string = ".MuiTableSortLabel-iconDirectionDesc"
   /// Styles applied to the icon component if `direction="asc"`.
   static member inline iconDirectionAsc : string = ".MuiTableSortLabel-iconDirectionAsc"
+
+
+type [<Erase>] tabList =
+
+  /// Styles applied to the root element.
+  static member inline root : string = ".MuiTabList-root"
+  /// Styles applied to the root element if `orientation="vertical"`.
+  static member inline vertical : string = ".MuiTabList-vertical"
+  /// Styles applied to the flex container element.
+  static member inline flexContainer : string = ".MuiTabList-flexContainer"
+  /// Styles applied to the flex container element if `orientation="vertical"`.
+  static member inline flexContainerVertical : string = ".MuiTabList-flexContainerVertical"
+  /// Styles applied to the flex container element if `centered={true}`&`!variant="scrollable"`.
+  static member inline centered : string = ".MuiTabList-centered"
+  /// Styles applied to the tablist element.
+  static member inline scroller : string = ".MuiTabList-scroller"
+  /// Styles applied to the tablist element if `!variant="scrollable"`.
+  static member inline fixed' : string = ".MuiTabList-fixed"
+  /// Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`.
+  static member inline scrollableX : string = ".MuiTabList-scrollableX"
+  /// Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`.
+  static member inline scrollableY : string = ".MuiTabList-scrollableY"
+  /// Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`.
+  static member inline hideScrollbar : string = ".MuiTabList-hideScrollbar"
+  /// Styles applied to the ScrollButtonComponent component.
+  static member inline scrollButtons : string = ".MuiTabList-scrollButtons"
+  /// Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`.
+  static member inline scrollButtonsHideMobile : string = ".MuiTabList-scrollButtonsHideMobile"
+  /// Styles applied to the TabIndicator component.
+  static member inline indicator : string = ".MuiTabList-indicator"
 
 
 type [<Erase>] tabPanel =

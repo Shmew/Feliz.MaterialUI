@@ -339,6 +339,14 @@ type alert =
   static member inline closeText (value: string) = Interop.mkAttr "closeText" value
   /// The color of the component. Unless provided, the value is taken from the `severity` prop. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
   static member inline color (value: string) = Interop.mkAttr "color" value
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
+  static member inline components (?CloseButton: ReactElementType, ?CloseIcon: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if CloseButton.IsSome then x?``CloseButton`` <- CloseButton.Value); (if CloseIcon.IsSome then x?``CloseIcon`` <- CloseIcon.Value); x)
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+  static member inline componentsProps (?closeButton: seq<IReactProperty>, ?closeIcon: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if closeButton.IsSome then x?``closeButton`` <- (createObj !! closeButton.Value)); (if closeIcon.IsSome then x?``closeIcon`` <- (createObj !! closeIcon.Value)); x)
   /// Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the `severity` prop. Set to `false` to remove the `icon`.
   static member inline icon (element: ReactElement) = Interop.mkAttr "icon" element
   /// The component maps the `severity` prop to a range of different icons, for instance success to ``. If you wish to change this mapping, you can provide your own. Alternatively, you can use the `icon` prop to override the icon displayed.
@@ -353,6 +361,14 @@ type alert =
   static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
   /// The ARIA role attribute of the element.
   static member inline role (value: string) = Interop.mkAttr "role" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?closeButton: seq<IReactProperty>, ?closeIcon: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if closeButton.IsSome then x?``closeButton`` <- (createObj !! closeButton.Value)); (if closeIcon.IsSome then x?``closeIcon`` <- (createObj !! closeIcon.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?closeButton: ReactElementType, ?closeIcon: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if closeButton.IsSome then x?``closeButton`` <- closeButton.Value); (if closeIcon.IsSome then x?``closeIcon`` <- closeIcon.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -896,6 +912,8 @@ type autocomplete =
   static member inline selectOnFocus (value: bool) = Interop.mkAttr "selectOnFocus" value
   /// The size of the component.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// The props used for each slot inside.
+  static member inline slotProps (?clearIndicator: seq<IReactProperty>, ?paper: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?popupIndicator: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if clearIndicator.IsSome then x?``clearIndicator`` <- (createObj !! clearIndicator.Value)); (if paper.IsSome then x?``paper`` <- (createObj !! paper.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if popupIndicator.IsSome then x?``popupIndicator`` <- (createObj !! popupIndicator.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1051,12 +1069,18 @@ type avatarGroup =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// The props used for each slot inside the AvatarGroup.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?additionalAvatar: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if additionalAvatar.IsSome then x?``additionalAvatar`` <- (createObj !! additionalAvatar.Value)); x)
   /// Max avatars to show before +x.
   static member inline max (value: int) = Interop.mkAttr "max" value
   /// Max avatars to show before +x.
   static member inline max (value: float) = Interop.mkAttr "max" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?additionalAvatar: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if additionalAvatar.IsSome then x?``additionalAvatar`` <- (createObj !! additionalAvatar.Value)); x)
   /// Spacing between avatars.
   static member inline spacing (value: int) = Interop.mkAttr "spacing" value
   /// Spacing between avatars.
@@ -1118,12 +1142,24 @@ type backdrop =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// The components used for each slot inside the Backdrop. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Backdrop.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -1210,9 +1246,13 @@ type badge =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Badge: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Badge.IsSome then x?``Badge`` <- Badge.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Badge.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?badge: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- (createObj !! badge.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// If `true`, the badge is invisible.
   static member inline invisible (value: bool) = Interop.mkAttr "invisible" value
@@ -1222,6 +1262,10 @@ type badge =
   static member inline max (value: float) = Interop.mkAttr "max" value
   /// Controls whether the badge is hidden when `badgeContent` is zero.
   static member inline showZero (value: bool) = Interop.mkAttr "showZero" value
+  /// The props used for each slot inside the Badge.
+  static member inline slotProps (?badge: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- (createObj !! badge.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside the Badge. Either a string to use a HTML element or a component.
+  static member inline slots (?badge: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if badge.IsSome then x?``badge`` <- badge.Value); (if root.IsSome then x?``root`` <- root.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -2300,6 +2344,8 @@ type chip =
   static member inline onDelete (handler: Event -> unit) = Interop.mkAttr "onDelete" handler
   /// The size of the component.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// If `true`, allows the disabled chip to escape focus. If `false`, allows the disabled chip to receive focus.
+  static member inline skipFocusWhenDisabled (value: bool) = Interop.mkAttr "skipFocusWhenDisabled" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -2549,7 +2595,7 @@ type dialog =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+  ///       Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
   ///
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
@@ -2639,7 +2685,7 @@ type dialog =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `componentsProps.backdrop` instead.
+  ///       Use `slotProps.backdrop` instead.
   ///
   ///   Props applied to the
   ///
@@ -2659,11 +2705,15 @@ type dialog =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `modal`*
   ///
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `modal`*
   ///
-  /// The props used for each slot inside the Modal.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `modal`*
   ///
@@ -2721,6 +2771,14 @@ type dialog =
   ///
   /// Always keep the children in the DOM. This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Modal.
   static member inline keepMounted (value: bool) = Interop.mkAttr "keepMounted" value
+  /// *Inherited from `modal`*
+  ///
+  /// The props used for each slot inside the Modal.
+  static member inline slotProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// *Inherited from `modal`*
+  ///
+  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  static member inline slots (?backdrop: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop.Value); (if root.IsSome then x?``root`` <- root.Value); x)
 
 module dialog =
 
@@ -3216,9 +3274,13 @@ type filledInput =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
@@ -3278,6 +3340,14 @@ type filledInput =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?input: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if root.IsSome then x?``root`` <- root.Value); x)
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -3310,6 +3380,10 @@ type filledInput =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// Callback fired when the `input` doesn't satisfy its constraints.
+  static member inline onInvalid (handler: Event -> unit) = Interop.mkAttr "onInvalid" handler
   /// *Inherited from `inputBase`*
   ///
   /// The size of the component.
@@ -3456,6 +3530,8 @@ type formControlLabel =
   ///
   /// *event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean).
   static member inline onChange (handler: bool -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Checked)
+  /// The props used for each slot inside.
+  static member inline slotProps (?typography: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if typography.IsSome then x?``typography`` <- (createObj !! typography.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4257,9 +4333,13 @@ type input =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
@@ -4317,6 +4397,14 @@ type input =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?input: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if root.IsSome then x?``root`` <- root.Value); x)
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4349,6 +4437,10 @@ type input =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// Callback fired when the `input` doesn't satisfy its constraints.
+  static member inline onInvalid (handler: Event -> unit) = Interop.mkAttr "onInvalid" handler
   /// *Inherited from `inputBase`*
   ///
   /// The size of the component.
@@ -4438,9 +4530,13 @@ type inputBase =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
@@ -4494,6 +4590,8 @@ type inputBase =
   ///
   /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (string).
   static member inline onChange (handler: string -> unit) = Interop.mkAttr "onChange" (fun (e: Event) -> handler e.Value)
+  /// Callback fired when the `input` doesn't satisfy its constraints.
+  static member inline onInvalid (handler: Event -> unit) = Interop.mkAttr "onInvalid" handler
   /// The short hint displayed in the `input` before the user enters a value.
   static member inline placeholder (value: string) = Interop.mkAttr "placeholder" value
   /// It prevents the user from changing the value of the field (not from interacting with the field).
@@ -4504,6 +4602,14 @@ type inputBase =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// The size of the component.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?input: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if root.IsSome then x?``root`` <- root.Value); x)
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4580,6 +4686,8 @@ type inputLabel =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// If `true`, the label is shrunk.
   static member inline shrink (value: bool) = Interop.mkAttr "shrink" value
+  /// The size of the component.
+  static member inline size (value: string) = Interop.mkAttr "size" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -4867,9 +4975,13 @@ type listItem =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1cw4hi4" focusable="false" aria-hidden="true" viewbox="0 0 24 24" data-testid="ReportProblemOutlinedIcon"><br><br>      <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path><br><br>    </svg>
   ///
@@ -4921,6 +5033,14 @@ type listItem =
   ///
   /// Use to apply selected styling.
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -5662,7 +5782,7 @@ type menu =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+  ///       Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
   ///
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
@@ -5672,7 +5792,7 @@ type menu =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `componentsProps.backdrop` instead.
+  ///       Use `slotProps.backdrop` instead.
   ///
   ///   Props applied to the
   ///
@@ -5692,11 +5812,15 @@ type menu =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `modal`*
   ///
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `modal`*
   ///
-  /// The props used for each slot inside the Modal.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `modal`*
   ///
@@ -5744,6 +5868,14 @@ type menu =
   ///
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
+  /// *Inherited from `modal`*
+  ///
+  /// The props used for each slot inside the Modal.
+  static member inline slotProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// *Inherited from `modal`*
+  ///
+  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  static member inline slots (?backdrop: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop.Value); (if root.IsSome then x?``root`` <- root.Value); x)
 
 module menu =
 
@@ -5830,6 +5962,8 @@ type menuItem =
   static member inline divider (value: bool) = Interop.mkAttr "divider" value
   /// This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed.
   static member inline focusVisibleClassName (value: string) = Interop.mkAttr "focusVisibleClassName" value
+  /// If `true`, the component is selected.
+  static member inline selected (value: bool) = Interop.mkAttr "selected" value
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6086,7 +6220,7 @@ type modal =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+  ///       Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
   ///
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
@@ -6094,7 +6228,7 @@ type modal =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `componentsProps.backdrop` instead.
+  ///       Use `slotProps.backdrop` instead.
   ///
   ///   Props applied to the
   ///
@@ -6106,9 +6240,13 @@ type modal =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
-  /// The props used for each slot inside the Modal.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// An HTML element or function that returns one. The `container` will have the portal children appended to it.
   ///
@@ -6174,6 +6312,10 @@ type modal =
   ///
   /// *reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`.
   static member inline onClose (handler: ModalCloseReason -> unit) = Interop.mkAttr "onClose" (Func<_,_,_> (fun _ v -> handler v))
+  /// The props used for each slot inside the Modal.
+  static member inline slotProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  static member inline slots (?backdrop: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop.Value); (if root.IsSome then x?``root`` <- root.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6256,11 +6398,15 @@ type nativeSelect =
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// *Inherited from `input`*
   ///
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `input`*
   ///
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `input`*
   ///
@@ -6340,6 +6486,18 @@ type nativeSelect =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// *Inherited from `input`*
   ///
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// *Inherited from `input`*
+  ///
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?input: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if root.IsSome then x?``root`` <- root.Value); x)
+  /// *Inherited from `input`*
+  ///
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// *Inherited from `input`*
@@ -6356,6 +6514,10 @@ type nativeSelect =
   ///
   /// Notice that the first argument (event) might be undefined.
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
+  /// *Inherited from `inputBase`*
+  ///
+  /// Callback fired when the `input` doesn't satisfy its constraints.
+  static member inline onInvalid (handler: Event -> unit) = Interop.mkAttr "onInvalid" handler
   /// *Inherited from `inputBase`*
   ///
   /// The size of the component.
@@ -6403,7 +6565,9 @@ type outlinedInput =
   static member inline autoFocus (value: bool) = Interop.mkAttr "autoFocus" value
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors). The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
   static member inline color (value: string) = Interop.mkAttr "color" value
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: 'T) = Interop.mkAttr "defaultValue" value
@@ -6471,6 +6635,10 @@ type outlinedInput =
   static member inline required (value: bool) = Interop.mkAttr "required" value
   /// Number of rows to display when multiline option is set to true.
   static member inline rows (value: int) = Interop.mkAttr "rows" value
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?input: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if root.IsSome then x?``root`` <- root.Value); x)
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6495,7 +6663,9 @@ type outlinedInput =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `inputBase`*
   ///
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `inputBase`*
   ///
@@ -6509,8 +6679,18 @@ type outlinedInput =
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
+  /// Callback fired when the `input` doesn't satisfy its constraints.
+  static member inline onInvalid (handler: Event -> unit) = Interop.mkAttr "onInvalid" handler
+  /// *Inherited from `inputBase`*
+  ///
   /// The size of the component.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
 
 module outlinedInput =
 
@@ -6659,7 +6839,9 @@ type paginationItem =
   static member inline component' (value: string) = Interop.mkAttr "component" value
   /// The component used for the root node. Either a string to use a HTML element or a component.
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
-  /// The components used for first, last, next & previous item type
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?first: ReactElementType, ?last: ReactElementType, ?next: ReactElementType, ?previous: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if first.IsSome then x?``first`` <- first.Value); (if last.IsSome then x?``last`` <- last.Value); (if next.IsSome then x?``next`` <- next.Value); (if previous.IsSome then x?``previous`` <- previous.Value); x)
   /// If `true`, the component is disabled.
   static member inline disabled (value: bool) = Interop.mkAttr "disabled" value
@@ -6679,6 +6861,10 @@ type paginationItem =
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
   /// The size of the component.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?first: ReactElementType, ?last: ReactElementType, ?next: ReactElementType, ?previous: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if first.IsSome then x?``first`` <- first.Value); (if last.IsSome then x?``last`` <- last.Value); (if next.IsSome then x?``next`` <- next.Value); (if previous.IsSome then x?``previous`` <- previous.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -6908,7 +7094,7 @@ type popover =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+  ///       Use `slots.backdrop` instead. While this prop currently works, it will be removed in the next major version.
   ///
   /// A backdrop component. This prop enables custom backdrop rendering.
   static member inline BackdropComponent (value: ReactElementType) = Interop.mkAttr "BackdropComponent" value
@@ -6918,7 +7104,7 @@ type popover =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use `componentsProps.backdrop` instead.
+  ///       Use `slotProps.backdrop` instead.
   ///
   ///   Props applied to the
   ///
@@ -6938,11 +7124,15 @@ type popover =
   static member inline component' (value: ReactElementType) = Interop.mkAttr "component" value
   /// *Inherited from `modal`*
   ///
-  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Backdrop: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Backdrop.IsSome then x?``Backdrop`` <- Backdrop.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `modal`*
   ///
-  /// The props used for each slot inside the Modal.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `modal`*
   ///
@@ -6990,6 +7180,14 @@ type popover =
   ///
   /// Callback fired when the backdrop is clicked.
   static member inline onBackdropClick (handler: Event -> unit) = Interop.mkAttr "onBackdropClick" handler
+  /// *Inherited from `modal`*
+  ///
+  /// The props used for each slot inside the Modal.
+  static member inline slotProps (?backdrop: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- (createObj !! backdrop.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// *Inherited from `modal`*
+  ///
+  /// The components used for each slot inside the Modal. Either a string to use a HTML element or a component.
+  static member inline slots (?backdrop: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if backdrop.IsSome then x?``backdrop`` <- backdrop.Value); (if root.IsSome then x?``root`` <- root.Value); x)
 
 module popover =
 
@@ -7098,6 +7296,10 @@ type popper =
   static member inline popperRef (ref: IRefValue<#Element option>) = Interop.mkAttr "popperRef" ref
   /// A ref that points to the used popper instance.
   static member inline popperRef (handler: #Element -> unit) = Interop.mkAttr "popperRef" handler
+  /// The props used for each slot inside the Popper.
+  static member inline slotProps (?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
+  /// The components used for each slot inside the Popper. Either a string to use a HTML element or a component.
+  static member inline slots (?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if root.IsSome then x?``root`` <- root.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -7116,12 +7318,6 @@ type popper =
   static member inline transition (value: bool) = Interop.mkAttr "transition" value
 
 module popper =
-
-  /// Direction of the text.
-  [<Erase>]
-  type direction =
-    static member inline ltr = Interop.mkAttr "direction" "ltr"
-    static member inline rtl = Interop.mkAttr "direction" "rtl"
 
   /// Popper placement.
   [<Erase>]
@@ -7627,7 +7823,7 @@ type select =
   ///
   /// `function(event: SelectChangeEvent, child?: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (any). **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (any). **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
   ///
   /// *child:* The react element that was selected when `native` is `false` (default).
   static member inline onChange (handler: Event -> ReactElement -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> handler)
@@ -7637,11 +7833,11 @@ type select =
   ///
   /// `function(event: SelectChangeEvent, child?: object) => void`
   ///
-  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (any). **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
+  /// *event:* The event source of the callback. You can pull out the new value by accessing `event.Value` (any). **Warning**: This is a generic event, not a change event, unless the change event is caused by browser autofill.
   ///
   /// *child:* The react element that was selected when `native` is `false` (default).
   static member inline onChange (handler: 'a -> unit) = Interop.mkAttr "onChange" (Func<_,_,_> (fun (e: Event) _ -> handler !!e.Value))
-  /// Callback fired when the component requests to be closed. Use in controlled mode (see open).
+  /// Callback fired when the component requests to be closed. Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select collapes).
   ///
   /// **Signature:**
   ///
@@ -7649,7 +7845,7 @@ type select =
   ///
   /// *event:* The event source of the callback.
   static member inline onClose (handler: Event -> unit) = Interop.mkAttr "onClose" handler
-  /// Callback fired when the component requests to be opened. Use in controlled mode (see open).
+  /// Callback fired when the component requests to be opened. Use it in either controlled (see the `open` prop), or uncontrolled mode (to detect when the Select expands).
   ///
   /// **Signature:**
   ///
@@ -7745,7 +7941,9 @@ type select =
   static member inline color (value: string) = Interop.mkAttr "color" value
   /// *Inherited from `outlinedInput`*
   ///
-  /// The components used for each slot inside the InputBase. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Root: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Root.IsSome then x?``Root`` <- Root.Value); x)
   /// *Inherited from `outlinedInput`*
   ///
@@ -7813,6 +8011,12 @@ type select =
   static member inline rows (value: int) = Interop.mkAttr "rows" value
   /// *Inherited from `outlinedInput`*
   ///
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?input: ReactElementType, ?root: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if root.IsSome then x?``root`` <- root.Value); x)
+  /// *Inherited from `outlinedInput`*
+  ///
   /// Start `InputAdornment` for this component.
   static member inline startAdornment (element: ReactElement) = Interop.mkAttr "startAdornment" element
   /// *Inherited from `outlinedInput`*
@@ -7821,7 +8025,9 @@ type select =
   static member inline type' (value: string) = Interop.mkAttr "type" value
   /// *Inherited from `inputBase`*
   ///
-  /// The props used for each slot inside the Input.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
   /// *Inherited from `inputBase`*
   ///
@@ -7835,8 +8041,18 @@ type select =
   static member inline onBlur (handler: Event option -> unit) = Interop.mkAttr "onBlur" handler
   /// *Inherited from `inputBase`*
   ///
+  /// Callback fired when the `input` doesn't satisfy its constraints.
+  static member inline onInvalid (handler: Event -> unit) = Interop.mkAttr "onInvalid" handler
+  /// *Inherited from `inputBase`*
+  ///
   /// The size of the component.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// *Inherited from `inputBase`*
+  ///
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?input: seq<IReactProperty>, ?root: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); x)
 
 module select =
 
@@ -7985,10 +8201,14 @@ type slider =
   static member inline ariaValuetext (value: string) = Interop.mkAttr "aria-valuetext" value
   /// The color of the component. It supports both default and custom theme colors, which can be added as shown in the [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
   static member inline color (value: string) = Interop.mkAttr "color" value
-  /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Input: ReactElementType, ?Mark: ReactElementType, ?MarkLabel: ReactElementType, ?Rail: ReactElementType, ?Root: ReactElementType, ?Thumb: ReactElementType, ?Track: ReactElementType, ?ValueLabel: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Input.IsSome then x?``Input`` <- Input.Value); (if Mark.IsSome then x?``Mark`` <- Mark.Value); (if MarkLabel.IsSome then x?``MarkLabel`` <- MarkLabel.Value); (if Rail.IsSome then x?``Rail`` <- Rail.Value); (if Root.IsSome then x?``Root`` <- Root.Value); (if Thumb.IsSome then x?``Thumb`` <- Thumb.Value); (if Track.IsSome then x?``Track`` <- Track.Value); (if ValueLabel.IsSome then x?``ValueLabel`` <- ValueLabel.Value); x)
-  /// The props used for each slot inside the Slider.
-  static member inline componentsProps (?input: seq<IReactProperty>, ?mark: seq<IReactProperty>, ?markLabel: seq<IReactProperty>, ?rail: seq<IReactProperty>, ?root: seq<IReactProperty>, ?thumb: seq<IReactProperty>, ?track: seq<IReactProperty>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; components: {| Root: ReactElementType option |} option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if mark.IsSome then x?``mark`` <- (createObj !! mark.Value)); (if markLabel.IsSome then x?``markLabel`` <- (createObj !! markLabel.Value)); (if rail.IsSome then x?``rail`` <- (createObj !! rail.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); (if thumb.IsSome then x?``thumb`` <- (createObj !! thumb.Value)); (if track.IsSome then x?``track`` <- (createObj !! track.Value)); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel.Value); x)
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
+  static member inline componentsProps (?input: seq<IReactProperty>, ?mark: seq<IReactProperty>, ?markLabel: seq<IReactProperty>, ?rail: seq<IReactProperty>, ?root: seq<IReactProperty>, ?thumb: seq<IReactProperty>, ?track: seq<IReactProperty>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if mark.IsSome then x?``mark`` <- (createObj !! mark.Value)); (if markLabel.IsSome then x?``markLabel`` <- (createObj !! markLabel.Value)); (if rail.IsSome then x?``rail`` <- (createObj !! rail.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); (if thumb.IsSome then x?``thumb`` <- (createObj !! thumb.Value)); (if track.IsSome then x?``track`` <- (createObj !! track.Value)); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel.Value); x)
   /// The default value. Use when the component is not controlled.
   static member inline defaultValue (value: int) = Interop.mkAttr "defaultValue" value
   /// The default value. Use when the component is not controlled.
@@ -8029,8 +8249,6 @@ type slider =
   ///
   /// *index:* The thumb label's index to format.
   static member inline getAriaValueText (getText: float -> int -> string) = Interop.mkAttr "getAriaValueText" getText
-  /// Indicates whether the theme context has rtl direction. It is set automatically.
-  static member inline isRtl (value: bool) = Interop.mkAttr "isRtl" value
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks are spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
   static member inline marks ([<ParamArray>] values: {| label: U6<ReactElement, seq<ReactElement>, string, seq<string>, int, float> option; value: float |} []) = Interop.mkAttr "marks" values
   /// Marks indicate predetermined values to which the user can move the slider. If `true` the marks are spaced according the value of the `step` prop. If an array, it should contain objects with `value` and an optional `label` keys.
@@ -8222,11 +8440,23 @@ type slider =
   /// *value:* The new value.
   static member inline onChangeCommitted (handler: float [] -> unit) = Interop.mkAttr "onChangeCommitted" (Func<_,_,_> (fun _ v -> handler v))
   /// A transformation function, to change the scale of the slider.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(x: any) => any`
   static member inline scale (transform: int -> int) = Interop.mkAttr "scale" transform
   /// A transformation function, to change the scale of the slider.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(x: any) => any`
   static member inline scale (transform: float -> float) = Interop.mkAttr "scale" transform
   /// The size of the slider.
   static member inline size (value: string) = Interop.mkAttr "size" value
+  /// The props used for each slot inside the Slider.
+  static member inline slotProps (?input: seq<IReactProperty>, ?mark: seq<IReactProperty>, ?markLabel: seq<IReactProperty>, ?rail: seq<IReactProperty>, ?root: seq<IReactProperty>, ?thumb: seq<IReactProperty>, ?track: seq<IReactProperty>, ?valueLabel: U2<Func<obj, obj>, {| children: ReactElement option; className: string option; open': bool option; style: seq<IReactProperty> option; value: float option; valueLabelDisplay: string option |}>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- (createObj !! input.Value)); (if mark.IsSome then x?``mark`` <- (createObj !! mark.Value)); (if markLabel.IsSome then x?``markLabel`` <- (createObj !! markLabel.Value)); (if rail.IsSome then x?``rail`` <- (createObj !! rail.Value)); (if root.IsSome then x?``root`` <- (createObj !! root.Value)); (if thumb.IsSome then x?``thumb`` <- (createObj !! thumb.Value)); (if track.IsSome then x?``track`` <- (createObj !! track.Value)); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel.Value); x)
+  /// The components used for each slot inside the Slider. Either a string to use a HTML element or a component.
+  static member inline slots (?input: ReactElementType, ?mark: ReactElementType, ?markLabel: ReactElementType, ?rail: ReactElementType, ?root: ReactElementType, ?thumb: ReactElementType, ?track: ReactElementType, ?valueLabel: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if input.IsSome then x?``input`` <- input.Value); (if mark.IsSome then x?``mark`` <- mark.Value); (if markLabel.IsSome then x?``markLabel`` <- markLabel.Value); (if rail.IsSome then x?``rail`` <- rail.Value); (if root.IsSome then x?``root`` <- root.Value); (if thumb.IsSome then x?``thumb`` <- thumb.Value); (if track.IsSome then x?``track`` <- track.Value); (if valueLabel.IsSome then x?``valueLabel`` <- valueLabel.Value); x)
   /// The granularity with which the slider can step through values. (A "discrete" slider.) The `min` prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.
   ///
   /// When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
@@ -8670,39 +8900,19 @@ type speedDialAction =
   static member inline children  = UnsupportedProp ()
   /// *Inherited from `tooltip`*
   ///
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: ReactElement) = Interop.mkAttr "title" value
-  /// *Inherited from `tooltip`*
-  ///
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (values: seq<ReactElement>) = Interop.mkAttr "title" values
-  /// *Inherited from `tooltip`*
-  ///
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: string) = Interop.mkAttr "title" value
-  /// *Inherited from `tooltip`*
-  ///
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (values: string seq) = Interop.mkAttr "title" values
-  /// *Inherited from `tooltip`*
-  ///
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: int) = Interop.mkAttr "title" value
-  /// *Inherited from `tooltip`*
-  ///
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: float) = Interop.mkAttr "title" value
-  /// *Inherited from `tooltip`*
-  ///
   /// If `true`, adds an arrow to the tooltip.
   static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
   /// *Inherited from `tooltip`*
   ///
-  /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow.Value); (if Popper.IsSome then x?``Popper`` <- Popper.Value); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip.Value); (if Transition.IsSome then x?``Transition`` <- Transition.Value); x)
   /// *Inherited from `tooltip`*
   ///
-  /// The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- (createObj !! arrow.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if tooltip.IsSome then x?``tooltip`` <- (createObj !! tooltip.Value)); (if transition.IsSome then x?``transition`` <- (createObj !! transition.Value)); x)
   /// *Inherited from `tooltip`*
   ///
@@ -8798,6 +9008,42 @@ type speedDialAction =
   ///
   ///   [`Popper`](https://mui.com/material-ui/api/popper/) element.
   static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
+  /// *Inherited from `tooltip`*
+  ///
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- (createObj !! arrow.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if tooltip.IsSome then x?``tooltip`` <- (createObj !! tooltip.Value)); (if transition.IsSome then x?``transition`` <- (createObj !! transition.Value)); x)
+  /// *Inherited from `tooltip`*
+  ///
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?arrow: ReactElementType, ?popper: ReactElementType, ?tooltip: ReactElementType, ?transition: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- arrow.Value); (if popper.IsSome then x?``popper`` <- popper.Value); (if tooltip.IsSome then x?``tooltip`` <- tooltip.Value); (if transition.IsSome then x?``transition`` <- transition.Value); x)
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: ReactElement) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (values: seq<ReactElement>) = Interop.mkAttr "title" values
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: string) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (values: string seq) = Interop.mkAttr "title" values
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: int) = Interop.mkAttr "title" value
+  /// *Inherited from `tooltip`*
+  ///
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: float) = Interop.mkAttr "title" value
   /// *Inherited from `tooltip`*
   ///
   /// The component used for the transition. [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
@@ -9223,6 +9469,8 @@ type stepLabel =
   static member inline optional (value: int) = Interop.mkAttr "optional" value
   /// The optional node to display.
   static member inline optional (value: float) = Interop.mkAttr "optional" value
+  /// The props used for each slot inside.
+  static member inline slotProps (?label: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if label.IsSome then x?``label`` <- (createObj !! label.Value)); x)
   /// The component to render in place of the
   ///
   ///   [`StepIcon`](https://mui.com/material-ui/api/step-icon/).
@@ -9376,8 +9624,10 @@ type swipeableDrawer =
   ///
   /// *event:* The event source of the callback.
   static member inline onOpen (handler: Event -> unit) = Interop.mkAttr "onOpen" handler
-  /// If `true`, the component is shown.
-  static member inline open' (value: bool) = Interop.mkAttr "open" value
+  /// If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children. This can be useful in scenarios where the drawer is partially visible. You can customize it further with a callback that determines which children the user can drag over to open the drawer (for example, to ignore other elements that handle touch move events, like sliders).
+  static member inline allowSwipeInChildren (value: bool) = Interop.mkAttr "allowSwipeInChildren" value
+  /// If set to true, the swipe event will open the drawer even if the user begins the swipe on one of the drawer's children. This can be useful in scenarios where the drawer is partially visible. You can customize it further with a callback that determines which children the user can drag over to open the drawer (for example, to ignore other elements that handle touch move events, like sliders).
+  static member inline allowSwipeInChildren (value: Func<obj, obj>) = Interop.mkAttr "allowSwipeInChildren" value
   /// The content of the component.
   static member inline children (element: ReactElement) = prop.children element
   /// The content of the component.
@@ -9402,6 +9652,8 @@ type swipeableDrawer =
   static member inline minFlingVelocity (value: int) = Interop.mkAttr "minFlingVelocity" value
   /// Defines, from which (average) velocity on, the swipe is defined as complete although hysteresis isn't reached. Good threshold is between 250 - 1000 px/s
   static member inline minFlingVelocity (value: float) = Interop.mkAttr "minFlingVelocity" value
+  /// If `true`, the component is shown.
+  static member inline open' (value: bool) = Interop.mkAttr "open" value
   /// The element is used to intercept the touch events on the edge.
   static member inline SwipeAreaProps (props: IReactProperty list) = Interop.mkAttr "SwipeAreaProps" (createObj !!props)
   /// The width of the left most (or right most) area in `px` that the drawer can be swiped open from.
@@ -11565,23 +11817,15 @@ type tooltip =
   ///
   /// ⚠️ [Needs to be able to hold a ref](https://mui.com/material-ui/guides/composition/#caveat-with-refs).
   static member inline children (value: ReactElement) = Interop.mkAttr "children" value
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: ReactElement) = Interop.mkAttr "title" value
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (values: seq<ReactElement>) = Interop.mkAttr "title" values
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: string) = Interop.mkAttr "title" value
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (values: string seq) = Interop.mkAttr "title" values
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: int) = Interop.mkAttr "title" value
-  /// Tooltip title. Zero-length titles string are never displayed.
-  static member inline title (value: float) = Interop.mkAttr "title" value
   /// If `true`, adds an arrow to the tooltip.
   static member inline arrow (value: bool) = Interop.mkAttr "arrow" value
-  /// The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `slots` prop. It's recommended to use the `slots` prop instead.
   static member inline components (?Arrow: ReactElementType, ?Popper: ReactElementType, ?Tooltip: ReactElementType, ?Transition: ReactElementType) = Interop.mkAttr "components" (let x = createEmpty<obj> in (if Arrow.IsSome then x?``Arrow`` <- Arrow.Value); (if Popper.IsSome then x?``Popper`` <- Popper.Value); (if Tooltip.IsSome then x?``Tooltip`` <- Tooltip.Value); (if Transition.IsSome then x?``Transition`` <- Transition.Value); x)
-  /// The props used for each slot inside the Tooltip. Note that `componentsProps.popper` prop values win over `PopperProps` and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `slotProps` prop. It's recommended to use the `slotProps` prop instead, as `componentsProps` will be deprecated in the future.
   static member inline componentsProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "componentsProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- (createObj !! arrow.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if tooltip.IsSome then x?``tooltip`` <- (createObj !! tooltip.Value)); (if transition.IsSome then x?``transition`` <- (createObj !! transition.Value)); x)
   /// Set to `true` if the `title` acts as an accessible description. By default the `title` acts as an accessible label for the child.
   static member inline describeChild (value: bool) = Interop.mkAttr "describeChild" value
@@ -11641,6 +11885,14 @@ type tooltip =
   ///
   ///   [`Popper`](https://mui.com/material-ui/api/popper/) element.
   static member inline PopperProps (props: IReactProperty list) = Interop.mkAttr "PopperProps" (createObj !!props)
+  /// The extra props for the slot components. You can override the existing props or add new ones.
+  ///
+  /// This prop is an alias for the `componentsProps` prop, which will be deprecated in the future.
+  static member inline slotProps (?arrow: seq<IReactProperty>, ?popper: seq<IReactProperty>, ?tooltip: seq<IReactProperty>, ?transition: seq<IReactProperty>) = Interop.mkAttr "slotProps" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- (createObj !! arrow.Value)); (if popper.IsSome then x?``popper`` <- (createObj !! popper.Value)); (if tooltip.IsSome then x?``tooltip`` <- (createObj !! tooltip.Value)); (if transition.IsSome then x?``transition`` <- (createObj !! transition.Value)); x)
+  /// The components used for each slot inside.
+  ///
+  /// This prop is an alias for the `components` prop, which will be deprecated in the future.
+  static member inline slots (?arrow: ReactElementType, ?popper: ReactElementType, ?tooltip: ReactElementType, ?transition: ReactElementType) = Interop.mkAttr "slots" (let x = createEmpty<obj> in (if arrow.IsSome then x?``arrow`` <- arrow.Value); (if popper.IsSome then x?``popper`` <- popper.Value); (if tooltip.IsSome then x?``tooltip`` <- tooltip.Value); (if transition.IsSome then x?``transition`` <- transition.Value); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
@@ -11655,6 +11907,18 @@ type tooltip =
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
   /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: ReactElement) = Interop.mkAttr "title" value
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (values: seq<ReactElement>) = Interop.mkAttr "title" values
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: string) = Interop.mkAttr "title" value
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (values: string seq) = Interop.mkAttr "title" values
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: int) = Interop.mkAttr "title" value
+  /// Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
+  static member inline title (value: float) = Interop.mkAttr "title" value
   /// The component used for the transition. [Follow this guide](https://mui.com/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
   static member inline TransitionComponent (value: ReactElementType) = Interop.mkAttr "TransitionComponent" value
   /// Props applied to the transition element. By default, the element is based on this

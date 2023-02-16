@@ -209,19 +209,19 @@ module calendarPicker =
 
 [<Erase>]
 type calendarPickerSkeleton =
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -251,7 +251,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   ///   Get clock number aria-text for hours.
   ///
@@ -267,7 +267,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   ///   Get clock number aria-text for minutes.
   ///
@@ -283,7 +283,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   ///   Get clock number aria-text for seconds.
   ///
@@ -299,7 +299,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Left arrow icon aria-label text.
   static member inline leftArrowButtonText (value: string) = Interop.mkAttr "leftArrowButtonText" value
@@ -325,7 +325,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Right arrow icon aria-label text.
   static member inline rightArrowButtonText (value: string) = Interop.mkAttr "rightArrowButtonText" value
@@ -708,7 +708,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: ReactElement) = Interop.mkAttr "endText" value
@@ -716,7 +716,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: seq<ReactElement>) = Interop.mkAttr "endText" values
@@ -724,7 +724,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: string) = Interop.mkAttr "endText" value
@@ -732,7 +732,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: string seq) = Interop.mkAttr "endText" values
@@ -740,7 +740,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: int) = Interop.mkAttr "endText" value
@@ -748,7 +748,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: float) = Interop.mkAttr "endText" value
@@ -904,7 +904,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: ReactElement) = Interop.mkAttr "startText" value
@@ -912,7 +912,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: seq<ReactElement>) = Interop.mkAttr "startText" values
@@ -920,7 +920,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: string) = Interop.mkAttr "startText" value
@@ -928,7 +928,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: string seq) = Interop.mkAttr "startText" values
@@ -936,7 +936,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: int) = Interop.mkAttr "startText" value
@@ -944,7 +944,7 @@ type dateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: float) = Interop.mkAttr "startText" value
@@ -1005,19 +1005,19 @@ type dateRangePickerDay =
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
   /// If `true`, days that have `outsideCurrentMonth={true}` are displayed.
   static member inline showDaysOutsideCurrentMonth (value: bool) = Interop.mkAttr "showDaysOutsideCurrentMonth" value
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// If `true`, renders as today date.
   static member inline today (value: bool) = Interop.mkAttr "today" value
@@ -1668,7 +1668,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: ReactElement) = Interop.mkAttr "endText" value
@@ -1676,7 +1676,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: seq<ReactElement>) = Interop.mkAttr "endText" values
@@ -1684,7 +1684,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: string) = Interop.mkAttr "endText" value
@@ -1692,7 +1692,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: string seq) = Interop.mkAttr "endText" values
@@ -1700,7 +1700,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: int) = Interop.mkAttr "endText" value
@@ -1708,7 +1708,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: float) = Interop.mkAttr "endText" value
@@ -1864,7 +1864,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: ReactElement) = Interop.mkAttr "startText" value
@@ -1872,7 +1872,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: seq<ReactElement>) = Interop.mkAttr "startText" values
@@ -1880,7 +1880,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: string) = Interop.mkAttr "startText" value
@@ -1888,7 +1888,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: string seq) = Interop.mkAttr "startText" values
@@ -1896,7 +1896,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: int) = Interop.mkAttr "startText" value
@@ -1904,7 +1904,7 @@ type desktopDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: float) = Interop.mkAttr "startText" value
@@ -2761,7 +2761,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: ReactElement) = Interop.mkAttr "endText" value
@@ -2769,7 +2769,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: seq<ReactElement>) = Interop.mkAttr "endText" values
@@ -2777,7 +2777,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: string) = Interop.mkAttr "endText" value
@@ -2785,7 +2785,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: string seq) = Interop.mkAttr "endText" values
@@ -2793,7 +2793,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: int) = Interop.mkAttr "endText" value
@@ -2801,7 +2801,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: float) = Interop.mkAttr "endText" value
@@ -2953,7 +2953,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: ReactElement) = Interop.mkAttr "startText" value
@@ -2961,7 +2961,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: seq<ReactElement>) = Interop.mkAttr "startText" values
@@ -2969,7 +2969,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: string) = Interop.mkAttr "startText" value
@@ -2977,7 +2977,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: string seq) = Interop.mkAttr "startText" values
@@ -2985,7 +2985,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: int) = Interop.mkAttr "startText" value
@@ -2993,7 +2993,7 @@ type mobileDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: float) = Interop.mkAttr "startText" value
@@ -3513,19 +3513,19 @@ type monthPicker =
   ///
   /// *returns* (boolean): If `true` the month will be disabled.
   static member inline shouldDisableMonth (shouldDisableMonth: int -> bool) = Interop.mkAttr "shouldDisableMonth" (Func<_, _> shouldDisableMonth)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -3547,19 +3547,19 @@ type pickersDay =
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
   /// If `true`, days that have `outsideCurrentMonth={true}` are displayed.
   static member inline showDaysOutsideCurrentMonth (value: bool) = Interop.mkAttr "showDaysOutsideCurrentMonth" value
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// If `true`, renders as today date.
   static member inline today (value: bool) = Interop.mkAttr "today" value
@@ -3894,7 +3894,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: ReactElement) = Interop.mkAttr "endText" value
@@ -3902,7 +3902,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: seq<ReactElement>) = Interop.mkAttr "endText" values
@@ -3910,7 +3910,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: string) = Interop.mkAttr "endText" value
@@ -3918,7 +3918,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (values: string seq) = Interop.mkAttr "endText" values
@@ -3926,7 +3926,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: int) = Interop.mkAttr "endText" value
@@ -3934,7 +3934,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for end input label and toolbar placeholder.
   static member inline endText (value: float) = Interop.mkAttr "endText" value
@@ -4080,7 +4080,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: ReactElement) = Interop.mkAttr "startText" value
@@ -4088,7 +4088,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: seq<ReactElement>) = Interop.mkAttr "startText" values
@@ -4096,7 +4096,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: string) = Interop.mkAttr "startText" value
@@ -4104,7 +4104,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (values: string seq) = Interop.mkAttr "startText" values
@@ -4112,7 +4112,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: int) = Interop.mkAttr "startText" value
@@ -4120,7 +4120,7 @@ type staticDateRangePicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Text for start input label and toolbar placeholder.
   static member inline startText (value: float) = Interop.mkAttr "startText" value

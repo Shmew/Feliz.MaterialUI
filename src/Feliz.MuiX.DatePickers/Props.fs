@@ -209,19 +209,19 @@ module calendarPicker =
 
 [<Erase>]
 type calendarPickerSkeleton =
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -251,7 +251,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   ///   Get clock number aria-text for hours.
   ///
@@ -267,7 +267,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   ///   Get clock number aria-text for minutes.
   ///
@@ -283,7 +283,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   ///   Get clock number aria-text for seconds.
   ///
@@ -299,7 +299,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Left arrow icon aria-label text.
   static member inline leftArrowButtonText (value: string) = Interop.mkAttr "leftArrowButtonText" value
@@ -325,7 +325,7 @@ type clockPicker =
   ///
   ///     **Deprecated** -
   ///
-  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization
+  ///       Use the `localeText` prop of `LocalizationProvider` instead, see https://mui.com/x/react-date-pickers/localization/.
   ///
   /// Right arrow icon aria-label text.
   static member inline rightArrowButtonText (value: string) = Interop.mkAttr "rightArrowButtonText" value
@@ -2450,19 +2450,19 @@ type monthPicker =
   ///
   /// *returns* (boolean): If `true` the month will be disabled.
   static member inline shouldDisableMonth (shouldDisableMonth: int -> bool) = Interop.mkAttr "shouldDisableMonth" (Func<_, _> shouldDisableMonth)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// This component does not support children.
   static member inline children  = UnsupportedProp ()
@@ -2484,19 +2484,19 @@ type pickersDay =
   static member inline selected (value: bool) = Interop.mkAttr "selected" value
   /// If `true`, days that have `outsideCurrentMonth={true}` are displayed.
   static member inline showDaysOutsideCurrentMonth (value: bool) = Interop.mkAttr "showDaysOutsideCurrentMonth" value
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (styleOverrides: #seq<IStyleAttribute>) = Interop.mkAttr "sx" (createObj !!styleOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (#seq<IStyleAttribute>), ?sm: (#seq<IStyleAttribute>), ?md: (#seq<IStyleAttribute>), ?lg: (#seq<IStyleAttribute>), ?xl: (#seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> !!createObj in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverride: Theme -> #seq<IStyleAttribute>) = Interop.mkAttr "sx" (Helpers.themeStylesOverride themeOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeOverrides: (Theme -> #seq<IStyleAttribute>) []) = Interop.mkAttr "sx" (themeOverrides |> Array.map Helpers.themeStylesOverride)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (breakpointThemeOverrides: (IBreakpointKey * (Theme -> #seq<IStyleAttribute>)) []) = Interop.mkAttr "sx" (Helpers.breakpointThemeStylesOverrides breakpointThemeOverrides)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (?xs: (Theme -> #seq<IStyleAttribute>), ?sm: (Theme -> #seq<IStyleAttribute>), ?md: (Theme -> #seq<IStyleAttribute>), ?lg: (Theme -> #seq<IStyleAttribute>), ?xl: (Theme -> #seq<IStyleAttribute>)) = Interop.mkAttr "sx" (let inline paramValue p = p |> Helpers.themeStylesOverride in let x = createEmpty<obj> in (if xs.IsSome then x?``xs`` <- (paramValue xs.Value)); (if sm.IsSome then x?``sm`` <- (paramValue sm.Value)); (if md.IsSome then x?``md`` <- (paramValue md.Value)); (if lg.IsSome then x?``lg`` <- (paramValue lg.Value)); (if xl.IsSome then x?``xl`` <- (paramValue xl.Value)); x)
-  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/the-sx-prop/) for more details.
+  /// The system prop that allows defining system overrides as well as additional CSS styles. See the [`sx` page](https://mui.com/system/getting-started/the-sx-prop/) for more details.
   static member inline sx (themeBreakpointOverrides: (Theme -> (IBreakpointKey * #seq<IStyleAttribute>) list) []) = Interop.mkAttr "sx" (Helpers.themeBreakpointStylesOverrides themeBreakpointOverrides)
   /// If `true`, renders as today date.
   static member inline today (value: bool) = Interop.mkAttr "today" value

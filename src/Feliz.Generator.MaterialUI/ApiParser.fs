@@ -731,6 +731,7 @@ let parseProp componentMethodName (row: ComponentApiPage.Props.Row) (rowHtml: Ht
                 docType
                 |> DocTypeSignatureParser.translateCustom (fun defaultTranslators ->
                     match propMethodName with
+                    | "slotProps"
                     | "componentsProps" ->
                         { defaultTranslators with
                             InnerAtomic = function

@@ -582,10 +582,18 @@ module themeOverrides =
         static member inline sizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.sizeSmall", createObj !!styles)
         /// Styles applied to the root element if `size="medium"`.
         static member inline sizeMedium(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.sizeMedium", createObj !!styles)
+        /// Styles applied to the root element if `color="error"`.
+        static member inline colorError(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.colorError", createObj !!styles)
+        /// Styles applied to the root element if `color="info"`.
+        static member inline colorInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.colorInfo", createObj !!styles)
         /// Styles applied to the root element if `color="primary"`.
         static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.colorPrimary", createObj !!styles)
         /// Styles applied to the root element if `color="secondary"`.
         static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.colorSecondary", createObj !!styles)
+        /// Styles applied to the root element if `color="success"`.
+        static member inline colorSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.colorSuccess", createObj !!styles)
+        /// Styles applied to the root element if `color="warning"`.
+        static member inline colorWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.colorWarning", createObj !!styles)
         /// State class applied to the root element if `disabled={true}`.
         static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiChip.styleOverrides.disabled", createObj !!styles)
         /// Styles applied to the root element if `onClick` is defined or `clickable={true}`.
@@ -1077,6 +1085,14 @@ module themeOverrides =
         static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.colorPrimary", createObj !!styles)
         /// Styles applied to the root element if `color="secondary"`.
         static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.colorSecondary", createObj !!styles)
+        /// Styles applied to the root element if `color="error"`.
+        static member inline colorError(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.colorError", createObj !!styles)
+        /// Styles applied to the root element if `color="info"`.
+        static member inline colorInfo(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.colorInfo", createObj !!styles)
+        /// Styles applied to the root element if `color="success"`.
+        static member inline colorSuccess(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.colorSuccess", createObj !!styles)
+        /// Styles applied to the root element if `color="warning"`.
+        static member inline colorWarning(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.colorWarning", createObj !!styles)
         /// State class applied to the root element if `disabled={true}`.
         static member inline disabled(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiIconButton.styleOverrides.disabled", createObj !!styles)
         /// Styles applied to the root element if `size="small"`.
@@ -1612,6 +1628,19 @@ module themeOverrides =
         static member inline selected(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenuItem.styleOverrides.selected", createObj !!styles)
 
       [<Erase>]
+      type muiMenuList =
+        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMenuList", !!values)
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenuList.styleOverrides.root", createObj !!styles)
+        /// Styles applied to the root element unless `disablePadding={true}`.
+        static member inline padding(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenuList.styleOverrides.padding", createObj !!styles)
+        /// Styles applied to the root element if dense.
+        static member inline dense(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenuList.styleOverrides.dense", createObj !!styles)
+        /// Styles applied to the root element if a `subheader` is provided.
+        static member inline subheader(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiMenuList.styleOverrides.subheader", createObj !!styles)
+
+      [<Erase>]
       type muiMobileStepper =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
         static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiMobileStepper", !!values)
@@ -1824,6 +1853,17 @@ module themeOverrides =
         static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiRadio.styleOverrides.colorSecondary", createObj !!styles)
 
       [<Erase>]
+      type muiRadioGroup =
+        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiRadioGroup", !!values)
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiRadioGroup.styleOverrides.root", createObj !!styles)
+        /// Styles applied to the root element if `row={true}`.
+        static member inline row(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiRadioGroup.styleOverrides.row", createObj !!styles)
+        /// State class applied to the root element if `error={true}`.
+        static member inline error(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiRadioGroup.styleOverrides.error", createObj !!styles)
+
+      [<Erase>]
       type muiRating =
         /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
         static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiRating", !!values)
@@ -1929,6 +1969,10 @@ module themeOverrides =
         static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiSlider", !!values)
         /// Class name applied to the root element.
         static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.root", createObj !!styles)
+        /// Class name applied to the root element if `color="primary"`.
+        static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.colorPrimary", createObj !!styles)
+        /// Class name applied to the root element if `color="secondary"`.
+        static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.colorSecondary", createObj !!styles)
         /// Class name applied to the root element if `marks` is provided with at least one label.
         static member inline marked(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.marked", createObj !!styles)
         /// Class name applied to the root element if `orientation="vertical"`.
@@ -1951,14 +1995,6 @@ module themeOverrides =
         static member inline active(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.active", createObj !!styles)
         /// State class applied to the thumb element if keyboard focused.
         static member inline focusVisible(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.focusVisible", createObj !!styles)
-        /// Class name applied to the thumb label element.
-        static member inline valueLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabel", createObj !!styles)
-        /// Class name applied to the thumb label element if it's open.
-        static member inline valueLabelOpen(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabelOpen", createObj !!styles)
-        /// Class name applied to the thumb label's circle element.
-        static member inline valueLabelCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabelCircle", createObj !!styles)
-        /// Class name applied to the thumb label's label element.
-        static member inline valueLabelLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabelLabel", createObj !!styles)
         /// Class name applied to the mark element.
         static member inline mark(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.mark", createObj !!styles)
         /// Class name applied to the mark element if active (depending on the value).
@@ -1967,10 +2003,6 @@ module themeOverrides =
         static member inline markLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.markLabel", createObj !!styles)
         /// Class name applied to the mark label element if active (depending on the value).
         static member inline markLabelActive(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.markLabelActive", createObj !!styles)
-        /// Class name applied to the root element if `color="primary"`.
-        static member inline colorPrimary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.colorPrimary", createObj !!styles)
-        /// Class name applied to the root element if `color="secondary"`.
-        static member inline colorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.colorSecondary", createObj !!styles)
         /// Class name applied to the root element if `size="small"`.
         static member inline sizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.sizeSmall", createObj !!styles)
         /// Class name applied to the thumb element if `color="primary"`.
@@ -1979,6 +2011,14 @@ module themeOverrides =
         static member inline thumbColorSecondary(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.thumbColorSecondary", createObj !!styles)
         /// Class name applied to the thumb element if `size="small"`.
         static member inline thumbSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.thumbSizeSmall", createObj !!styles)
+        /// Class name applied to the thumb label element.
+        static member inline valueLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabel", createObj !!styles)
+        /// Class name applied to the thumb label element if it's open.
+        static member inline valueLabelOpen(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabelOpen", createObj !!styles)
+        /// Class name applied to the thumb label's circle element.
+        static member inline valueLabelCircle(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabelCircle", createObj !!styles)
+        /// Class name applied to the thumb label's label element.
+        static member inline valueLabelLabel(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSlider.styleOverrides.valueLabelLabel", createObj !!styles)
 
       [<Erase>]
       type muiSnackbar =
@@ -2206,6 +2246,8 @@ module themeOverrides =
         static member inline fontSizeInherit(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSvgIcon.styleOverrides.fontSizeInherit", createObj !!styles)
         /// Styles applied to the root element if `fontSize="small"`.
         static member inline fontSizeSmall(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSvgIcon.styleOverrides.fontSizeSmall", createObj !!styles)
+        /// Styles applied to the root element if `fontSize="medium"`.
+        static member inline fontSizeMedium(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSvgIcon.styleOverrides.fontSizeMedium", createObj !!styles)
         /// Styles applied to the root element if `fontSize="large"`.
         static member inline fontSizeLarge(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiSvgIcon.styleOverrides.fontSizeLarge", createObj !!styles)
 
@@ -2389,6 +2431,37 @@ module themeOverrides =
         static member inline iconDirectionDesc(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableSortLabel.styleOverrides.iconDirectionDesc", createObj !!styles)
         /// Styles applied to the icon component if `direction="asc"`.
         static member inline iconDirectionAsc(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTableSortLabel.styleOverrides.iconDirectionAsc", createObj !!styles)
+
+      [<Erase>]
+      type muiTabList =
+        /// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied.
+        static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants("MuiTabList", !!values)
+        /// Styles applied to the root element.
+        static member inline root(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.root", createObj !!styles)
+        /// Styles applied to the root element if `orientation="vertical"`.
+        static member inline vertical(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.vertical", createObj !!styles)
+        /// Styles applied to the flex container element.
+        static member inline flexContainer(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.flexContainer", createObj !!styles)
+        /// Styles applied to the flex container element if `orientation="vertical"`.
+        static member inline flexContainerVertical(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.flexContainerVertical", createObj !!styles)
+        /// Styles applied to the flex container element if `centered={true}`&`!variant="scrollable"`.
+        static member inline centered(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.centered", createObj !!styles)
+        /// Styles applied to the tablist element.
+        static member inline scroller(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.scroller", createObj !!styles)
+        /// Styles applied to the tablist element if `!variant="scrollable"`.
+        static member inline fixed'(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.fixed", createObj !!styles)
+        /// Styles applied to the tablist element if `variant="scrollable"` and `orientation="horizontal"`.
+        static member inline scrollableX(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.scrollableX", createObj !!styles)
+        /// Styles applied to the tablist element if `variant="scrollable"` and `orientation="vertical"`.
+        static member inline scrollableY(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.scrollableY", createObj !!styles)
+        /// Styles applied to the tablist element if `variant="scrollable"` and `visibleScrollbar={false}`.
+        static member inline hideScrollbar(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.hideScrollbar", createObj !!styles)
+        /// Styles applied to the ScrollButtonComponent component.
+        static member inline scrollButtons(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.scrollButtons", createObj !!styles)
+        /// Styles applied to the ScrollButtonComponent component if `allowScrollButtonsMobile={true}`.
+        static member inline scrollButtonsHideMobile(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.scrollButtonsHideMobile", createObj !!styles)
+        /// Styles applied to the TabIndicator component.
+        static member inline indicator(styles: IStyleAttribute list) : IThemeProp = unbox ("components.MuiTabList.styleOverrides.indicator", createObj !!styles)
 
       [<Erase>]
       type muiTabPanel =

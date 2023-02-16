@@ -4,7 +4,7 @@ storage: none
 
 nuget FSharp.Core >= 4.7.2 lowest_matching: true
 nuget Fable.React >= 8 < 9
-nuget Feliz
+nuget Feliz >= 1 < 2
 nuget FSharp.Data
 nuget ReverseMarkdown
 nuget FParsec
@@ -15,17 +15,19 @@ group DocsApp
     framework: auto-detect
     storage: none
 
+    nuget Fable.Core 4.0.0-theta-007
     nuget Fable.Mocha
-    nuget Feliz
+    nuget Feliz 1.68
+    nuget Feliz.CompilerPlugins 2.0.0
     nuget Fable.React >= 8 < 9
     nuget FSharp.Core >= 6.0.5
     nuget Fable.Elmish 4.0.0-beta-3
     nuget Fable.Elmish.React 4.0.0-beta-1
     nuget Fable.Elmish.HMR 6.0.0-beta-002
     nuget Fable.Elmish.Debugger 4.0.0-beta-1 
-    nuget Feliz.UseElmish
+    nuget Feliz.UseElmish < 2
     nuget Feliz.Markdown
-    nuget Feliz.Router
+    nuget Feliz.Router 3.10.0
     nuget Fable.SimpleHttp
     nuget Zanaptak.TypedCssClasses
     nuget Fable.DateFunctions

@@ -13,6 +13,8 @@ type Locale =
   static member inline amET: Theme = import "amET" "@mui/material/locale"
   /// Arabic (Egypt)
   static member inline arEG: Theme = import "arEG" "@mui/material/locale"
+  /// Arabic (Saudi Arabia)
+  static member inline arSA: Theme = import "arSA" "@mui/material/locale"
   /// Arabic (Sudan)
   static member inline arSD: Theme = import "arSD" "@mui/material/locale"
   /// Armenian
@@ -68,7 +70,7 @@ type Locale =
   /// Khmer
   static member inline khKH: Theme = import "khKH" "@mui/material/locale"
   /// Kazakh
-  static member inline kzKZ: Theme = import "kzKZ" "@mui/material/locale"
+  static member inline kkKZ: Theme = import "kkKZ" "@mui/material/locale"
   /// Korean
   static member inline koKR: Theme = import "koKR" "@mui/material/locale"
   /// Macedonian
@@ -103,5 +105,7 @@ type Locale =
   static member inline trTR: Theme = import "trTR" "@mui/material/locale"
   /// Ukrainian
   static member inline ukUA: Theme = import "ukUA" "@mui/material/locale"
+  /// Urdu (Pakistan)
+  static member inline urPK: Theme = import "urPK" "@mui/material/locale"
   /// Vietnamese
   static member inline viVN: Theme = import "viVN" "@mui/material/locale"

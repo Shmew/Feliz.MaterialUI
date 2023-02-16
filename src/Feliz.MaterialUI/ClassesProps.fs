@@ -627,10 +627,18 @@ module classesProps =
       static member inline sizeSmall(className: string) : IReactProperty = unbox ("classes.sizeSmall", className)
       /// Styles applied to the root element if `size="medium"`.
       static member inline sizeMedium(className: string) : IReactProperty = unbox ("classes.sizeMedium", className)
+      /// Styles applied to the root element if `color="error"`.
+      static member inline colorError(className: string) : IReactProperty = unbox ("classes.colorError", className)
+      /// Styles applied to the root element if `color="info"`.
+      static member inline colorInfo(className: string) : IReactProperty = unbox ("classes.colorInfo", className)
       /// Styles applied to the root element if `color="primary"`.
       static member inline colorPrimary(className: string) : IReactProperty = unbox ("classes.colorPrimary", className)
       /// Styles applied to the root element if `color="secondary"`.
       static member inline colorSecondary(className: string) : IReactProperty = unbox ("classes.colorSecondary", className)
+      /// Styles applied to the root element if `color="success"`.
+      static member inline colorSuccess(className: string) : IReactProperty = unbox ("classes.colorSuccess", className)
+      /// Styles applied to the root element if `color="warning"`.
+      static member inline colorWarning(className: string) : IReactProperty = unbox ("classes.colorWarning", className)
       /// State class applied to the root element if `disabled={true}`.
       static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
       /// Styles applied to the root element if `onClick` is defined or `clickable={true}`.
@@ -1162,6 +1170,14 @@ module classesProps =
       static member inline colorPrimary(className: string) : IReactProperty = unbox ("classes.colorPrimary", className)
       /// Styles applied to the root element if `color="secondary"`.
       static member inline colorSecondary(className: string) : IReactProperty = unbox ("classes.colorSecondary", className)
+      /// Styles applied to the root element if `color="error"`.
+      static member inline colorError(className: string) : IReactProperty = unbox ("classes.colorError", className)
+      /// Styles applied to the root element if `color="info"`.
+      static member inline colorInfo(className: string) : IReactProperty = unbox ("classes.colorInfo", className)
+      /// Styles applied to the root element if `color="success"`.
+      static member inline colorSuccess(className: string) : IReactProperty = unbox ("classes.colorSuccess", className)
+      /// Styles applied to the root element if `color="warning"`.
+      static member inline colorWarning(className: string) : IReactProperty = unbox ("classes.colorWarning", className)
       /// State class applied to the root element if `disabled={true}`.
       static member inline disabled(className: string) : IReactProperty = unbox ("classes.disabled", className)
       /// Styles applied to the root element if `size="small"`.
@@ -2144,6 +2160,10 @@ module classesProps =
     type classes =
       /// Class name applied to the root element.
       static member inline root(className: string) : IReactProperty = unbox ("classes.root", className)
+      /// Class name applied to the root element if `color="primary"`.
+      static member inline colorPrimary(className: string) : IReactProperty = unbox ("classes.colorPrimary", className)
+      /// Class name applied to the root element if `color="secondary"`.
+      static member inline colorSecondary(className: string) : IReactProperty = unbox ("classes.colorSecondary", className)
       /// Class name applied to the root element if `marks` is provided with at least one label.
       static member inline marked(className: string) : IReactProperty = unbox ("classes.marked", className)
       /// Class name applied to the root element if `orientation="vertical"`.
@@ -2166,14 +2186,6 @@ module classesProps =
       static member inline active(className: string) : IReactProperty = unbox ("classes.active", className)
       /// State class applied to the thumb element if keyboard focused.
       static member inline focusVisible(className: string) : IReactProperty = unbox ("classes.focusVisible", className)
-      /// Class name applied to the thumb label element.
-      static member inline valueLabel(className: string) : IReactProperty = unbox ("classes.valueLabel", className)
-      /// Class name applied to the thumb label element if it's open.
-      static member inline valueLabelOpen(className: string) : IReactProperty = unbox ("classes.valueLabelOpen", className)
-      /// Class name applied to the thumb label's circle element.
-      static member inline valueLabelCircle(className: string) : IReactProperty = unbox ("classes.valueLabelCircle", className)
-      /// Class name applied to the thumb label's label element.
-      static member inline valueLabelLabel(className: string) : IReactProperty = unbox ("classes.valueLabelLabel", className)
       /// Class name applied to the mark element.
       static member inline mark(className: string) : IReactProperty = unbox ("classes.mark", className)
       /// Class name applied to the mark element if active (depending on the value).
@@ -2182,10 +2194,6 @@ module classesProps =
       static member inline markLabel(className: string) : IReactProperty = unbox ("classes.markLabel", className)
       /// Class name applied to the mark label element if active (depending on the value).
       static member inline markLabelActive(className: string) : IReactProperty = unbox ("classes.markLabelActive", className)
-      /// Class name applied to the root element if `color="primary"`.
-      static member inline colorPrimary(className: string) : IReactProperty = unbox ("classes.colorPrimary", className)
-      /// Class name applied to the root element if `color="secondary"`.
-      static member inline colorSecondary(className: string) : IReactProperty = unbox ("classes.colorSecondary", className)
       /// Class name applied to the root element if `size="small"`.
       static member inline sizeSmall(className: string) : IReactProperty = unbox ("classes.sizeSmall", className)
       /// Class name applied to the thumb element if `color="primary"`.
@@ -2194,6 +2202,14 @@ module classesProps =
       static member inline thumbColorSecondary(className: string) : IReactProperty = unbox ("classes.thumbColorSecondary", className)
       /// Class name applied to the thumb element if `size="small"`.
       static member inline thumbSizeSmall(className: string) : IReactProperty = unbox ("classes.thumbSizeSmall", className)
+      /// Class name applied to the thumb label element.
+      static member inline valueLabel(className: string) : IReactProperty = unbox ("classes.valueLabel", className)
+      /// Class name applied to the thumb label element if it's open.
+      static member inline valueLabelOpen(className: string) : IReactProperty = unbox ("classes.valueLabelOpen", className)
+      /// Class name applied to the thumb label's circle element.
+      static member inline valueLabelCircle(className: string) : IReactProperty = unbox ("classes.valueLabelCircle", className)
+      /// Class name applied to the thumb label's label element.
+      static member inline valueLabelLabel(className: string) : IReactProperty = unbox ("classes.valueLabelLabel", className)
   
   
   module snackbar =
@@ -2477,6 +2493,8 @@ module classesProps =
       static member inline fontSizeInherit(className: string) : IReactProperty = unbox ("classes.fontSizeInherit", className)
       /// Styles applied to the root element if `fontSize="small"`.
       static member inline fontSizeSmall(className: string) : IReactProperty = unbox ("classes.fontSizeSmall", className)
+      /// Styles applied to the root element if `fontSize="medium"`.
+      static member inline fontSizeMedium(className: string) : IReactProperty = unbox ("classes.fontSizeMedium", className)
       /// Styles applied to the root element if `fontSize="large"`.
       static member inline fontSizeLarge(className: string) : IReactProperty = unbox ("classes.fontSizeLarge", className)
   
