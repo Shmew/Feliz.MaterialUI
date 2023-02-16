@@ -1,5 +1,7 @@
 ﻿module SampleViewer
 
+#nowarn "44" // Supress "deprecated" warnings, caused by `Feliz.Markdown` package
+
 open System
 open Elmish
 open Fable.Core

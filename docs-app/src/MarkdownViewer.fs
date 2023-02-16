@@ -1,5 +1,7 @@
 ﻿module MarkdonViewer
 
+#nowarn "44" // Supress "deprecated" warnings, caused by `Feliz.Markdown` package
+
 open Elmish
 open Fable.Core.JsInterop
 open Fable.React
@@ -45,6 +47,26 @@ let update (msg: Msg) (state: State) =
         Loading, Cmd.OfAsync.perform loadMarkdown () LoadCompleted
 
     | LoadCompleted res -> Loaded res, Cmd.none
+
+
+let markdownHeadingLevelToMuiTypographyVariant (level: int) =
+    [
+        match level with
+        | 1 -> typography.variant.h1
+        | 2 -> typography.variant.h2
+        | 3 -> typography.variant.h3
+        | 4 -> typography.variant.h4
+        | 5 -> typography.variant.h5
+        | 6 -> typography.variant.h6
+        | _ -> ()
+    ]
+
+let MuiTypographyFromMarkdownHeader level (props: IHeadingProperties) =
+    Mui.typography [
+        yield! markdownHeadingLevelToMuiTypographyVariant level
+        typography.paragraph true
+        typography.children props.children
+    ]
 
 
 [<ReactMemoComponent>]
@@ -117,13 +139,9 @@ let MarkdownLoaderView (state: State) dispatch =
                             prop.href props.href
                             link.children props.children
                         ])
+
                     markdown.renderers.code markdownCodeRender
-                        //(fun props ->
-                        //if props.language = "sample" then
-                        //    let path = path.[0 .. path.Length - 2] @ [ props.value ]
-                        //    SampleViewer path
-                        //else
-                        //    CommonViews.Code props.language props.value)
+
                     markdown.renderers.heading (fun props ->
                         Mui.typography [
                             match props.level with
@@ -138,6 +156,14 @@ let MarkdownLoaderView (state: State) dispatch =
                             typography.children props.children
                         ])
                 ]
+                //markdown.components [
+                //    markdown.components.h1 (MuiTypographyFromMarkdownHeader 1)
+                //    markdown.components.h2 (MuiTypographyFromMarkdownHeader 2)
+                //    markdown.components.h3 (MuiTypographyFromMarkdownHeader 3)
+                //    markdown.components.h4 (MuiTypographyFromMarkdownHeader 4)
+                //    markdown.components.h5 (MuiTypographyFromMarkdownHeader 5)
+                //    markdown.components.h6 (MuiTypographyFromMarkdownHeader 6)
+                //]
             ]
         ]
     | Loaded (Error errorMsg) ->
