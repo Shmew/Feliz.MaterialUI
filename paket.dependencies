@@ -3,8 +3,8 @@ framework: auto-detect
 storage: none
 
 nuget FSharp.Core >= 4.7.2 lowest_matching: true
-nuget Fable.React >= 9
-nuget Feliz >= 2
+nuget Fable.React >= 9.1 lowest_matching: true
+nuget Feliz >= 2 lowest_matching: true
 nuget FSharp.Data
 nuget ReverseMarkdown
 nuget FParsec
@@ -15,9 +15,9 @@ group DocsApp
     framework: auto-detect
     storage: none
 
-    nuget Fable.Core >= 4.0.0-theta-007
+    nuget Fable.Core ~> 4 prerelease
     nuget Fable.Mocha
-    nuget Feliz >= 2
+    nuget Feliz >= 2.4
     nuget Fable.React >= 9
     nuget FSharp.Core >= 6.0.5
     nuget Fable.Elmish >= 4
