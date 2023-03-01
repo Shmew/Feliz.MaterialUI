@@ -4,3 +4,4 @@
     Fake.DotNet.Paket
     Fake.JavaScript.Npm
     System.Text.Json
+    MSBuild.StructuredLogger

@@ -41,3 +41,4 @@ group FakeBuild
     nuget Fake.DotNet.Paket
     nuget Fake.JavaScript.Npm
     nuget System.Text.Json
+    nuget MSBuild.StructuredLogger >= 2.1.758
