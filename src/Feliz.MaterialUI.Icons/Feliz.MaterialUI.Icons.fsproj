@@ -4,11 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <VersionPrefix>5.10.0</VersionPrefix>
-    <VersionSuffix>beta.1</VersionSuffix>
+    <VersionSuffix>beta.2</VersionSuffix>
   </PropertyGroup>
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@mui/icons-material" Version="gte 5.10 lt 6" ResolutionStrategy="max" />
+      <NpmPackage Name="@mui/icons-material" Version="gte 5 lt 6" ResolutionStrategy="max" />
     </NpmDependencies>
   </PropertyGroup>
   <ItemGroup>

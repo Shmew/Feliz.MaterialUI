@@ -5,7 +5,7 @@
     <Description>Feliz-style Fable bindings for MUI (aka Material-UI).</Description>
     <Authors>Christer van der Meeren</Authors>
     <VersionPrefix>5.11.0</VersionPrefix>
-    <VersionSuffix>beta.1</VersionSuffix>
+    <VersionSuffix>beta.2</VersionSuffix>
     <PackageReleaseNotes>https://github.com/ArtemyB/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
@@ -31,8 +31,8 @@
   </ItemGroup>
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@mui/material" Version="gte 5.10 lt 6" ResolutionStrategy="max" />
-      <NpmPackage Name="@mui/lab" Version="5.0.0-alpha.99" />
+      <NpmPackage Name="@mui/material" Version="gte 5 lt 6" ResolutionStrategy="max" />
+      <NpmPackage Name="@mui/lab" Version="5.0.0-alpha.120" />
     </NpmDependencies>
   </PropertyGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
