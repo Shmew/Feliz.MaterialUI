@@ -895,7 +895,19 @@ type autocomplete =
   /// *option:* The option to render.
   ///
   /// *state:* The state of the component.
-  static member inline renderOption (render: 'option -> AutocompleteRenderOptionState -> ReactElement) = Interop.mkAttr "renderOption" (Func<_,_,_> render)
+  static member inline renderOption (render: IReactProperty [] -> 'option -> AutocompleteRenderOptionState -> ReactElement) = let inline render propsObj opt state = render (!!JS.Constructors.Object.entries propsObj) opt state in Interop.mkAttr "renderOption" (Func<_,_,_,_> render)
+  /// Render the option, use `getOptionLabel` by default.
+  ///
+  /// **Signature:**
+  ///
+  /// `function(props: object, option: T, state: object) => ReactNode`
+  ///
+  /// *props:* The props to apply on the li element.
+  ///
+  /// *option:* The option to render.
+  ///
+  /// *state:* The state of the component.
+  static member inline renderOption (render: obj -> 'option -> AutocompleteRenderOptionState -> ReactElement) = Interop.mkAttr "renderOption" (Func<_,_,_,_> render)
   /// Render the selected value.
   ///
   /// **Signature:**

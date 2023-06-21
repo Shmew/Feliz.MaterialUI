@@ -244,9 +244,14 @@ let (|AutoComplelete|_|) (componentMethodName, propMethodName, propDocType) =
         Some [ RegularPropOverload.create "(render: AutocompleteRenderInputParams -> ReactElement)" "render" ]
 
     | "autocomplete", "renderOption", "func" ->
-        Some [ RegularPropOverload.create
-                    "(render: 'option -> AutocompleteRenderOptionState -> ReactElement)"
-                    "(Func<_,_,_> render)" ]
+        Some [
+            RegularPropOverload.createCustom
+                "(render: IReactProperty [] -> 'option -> AutocompleteRenderOptionState -> ReactElement)"
+                """let inline render propsObj opt state = render (!!JS.Constructors.Object.entries propsObj) opt state in Interop.mkAttr "renderOption" (Func<_,_,_,_> render)"""
+            RegularPropOverload.create
+                "(render: obj -> 'option -> AutocompleteRenderOptionState -> ReactElement)"
+                "(Func<_,_,_,_> render)"
+        ]
 
     | "autocomplete", "renderTags", "func" ->
         Some [ RegularPropOverload.create
