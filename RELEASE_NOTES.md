@@ -1,7 +1,7 @@
 Changelog
 =========
 ### 5.11.0-beta.3 (2023-06-21)
-* Fix issue #5.
+* Fix [issue #5](https://github.com/ArtemyB/Feliz.MaterialUI/issues/5).
 
 ### 5.11.0-beta.2 (2023-03-01)
 * Update to Feliz >= 2 (and Fable.React >= 9).
