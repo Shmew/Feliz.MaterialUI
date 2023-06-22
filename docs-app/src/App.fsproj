@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
     <None Include="paket.references" />
+    <Compile Include="Common.fs" />
     <Compile Include="..\public\**\*.fs" />
     <None Include="..\public\**\*.md" />
     <Compile Include="Bindings.fs" />
@@ -17,7 +18,13 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Include="index.html" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Feliz.MaterialUI.Icons\Feliz.MaterialUI.Icons.fsproj" />
     <ProjectReference Include="..\..\src\Feliz.MaterialUI\Feliz.MaterialUI.fsproj" />
+    <ProjectReference Include="..\..\src\Feliz.MuiX.DatePickers\Feliz.MuiX.DatePickers.fsproj" />
   </ItemGroup>
   
   <Import Project="..\..\.paket\Paket.Restore.targets" />

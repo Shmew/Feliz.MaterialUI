@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Mui Generator Refresh": {
+      "commandName": "Project",
+      "commandLineArgs": "--refresh"
+    },
+    "Mui Generator Cached": {
+      "commandName": "Project"
+    }
+  }
+}

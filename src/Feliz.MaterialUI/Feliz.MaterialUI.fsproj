@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <Description>Feliz-style Fable bindings for Material-UI.</Description>
+    <Description>Feliz-style Fable bindings for MUI (aka Material-UI).</Description>
     <Authors>Christer van der Meeren</Authors>
-    <Version>1.2.6</Version>
-    <PackageReleaseNotes>https://github.com/Shmew/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
+    <VersionPrefix>5.11.0</VersionPrefix>
+    <VersionSuffix>beta.3</VersionSuffix>
+    <PackageReleaseNotes>https://github.com/ArtemyB/Feliz.MaterialUI/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
   </PropertyGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -13,22 +14,25 @@
     <Compile Include="Flatten.fs" />
     <Compile Include="Misc.fs" />
     <Compile Include="Bindings.fs" />
+    <Compile Include="DatePickersModels.fs" />
     <Compile Include="Autocomplete.fs" />
     <Compile Include="Hooks.fs" />
     <Compile Include="Colors.fs" />
     <Compile Include="Localization.fs" />
     <Compile Include="Styles.fs" />
+    <Compile Include="Theme.fs" />
     <Compile Include="ThemeOverrides.fs" />
     <Compile Include="ThemeProps.fs" />
-    <Compile Include="Theme.fs" />
-    <Compile Include="Classes.fs" />
+    <Compile Include="ClassNames.fs" />
+    <Compile Include="ClassesProps.fs" />
+    <Compile Include="MuiComponents.fs" />
     <Compile Include="Props.fs" />
     <Compile Include="Mui.fs" />
   </ItemGroup>
   <PropertyGroup>
     <NpmDependencies>
-      <NpmPackage Name="@material-ui/core" Version="gte 4.11 lt 5" ResolutionStrategy="max" />
-      <NpmPackage Name="@material-ui/lab" Version="4.0.0-alpha.56" />
+      <NpmPackage Name="@mui/material" Version="gte 5 lt 6" ResolutionStrategy="max" />
+      <NpmPackage Name="@mui/lab" Version="5.0.0-alpha.120" />
     </NpmDependencies>
   </PropertyGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />

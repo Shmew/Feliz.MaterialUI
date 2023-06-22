@@ -2,29 +2,43 @@ source https://api.nuget.org/v3/index.json
 framework: auto-detect
 storage: none
 
-nuget FSharp.Core >= 4.7 lowest_matching: true
-nuget Fable.Elmish.Debugger
-nuget Fable.Elmish.HMR
-nuget Fable.Elmish.React
-nuget Fable.MaterialUI.Icons
-nuget Fable.MaterialUI.MaterialDesignIcons
-nuget Fable.Mocha
-nuget Fable.SimpleHttp
-nuget Feliz
-nuget Feliz.ElmishComponents
-nuget Feliz.Markdown
-nuget Feliz.Router
+nuget FSharp.Core >= 4.7.2 lowest_matching: true
+nuget Fable.React >= 9.1 lowest_matching: true
+nuget Feliz >= 2 lowest_matching: true
 nuget FSharp.Data
 nuget ReverseMarkdown
-nuget Zanaptak.TypedCssClasses
+nuget FParsec
+
+group DocsApp
+
+    source https://api.nuget.org/v3/index.json
+    framework: auto-detect
+    storage: none
+
+    nuget Fable.Core ~> 4 prerelease
+    nuget Fable.Mocha
+    nuget Feliz >= 2.4
+    nuget Fable.React >= 9
+    nuget FSharp.Core >= 6.0.5
+    nuget Fable.Elmish >= 4
+    nuget Fable.Elmish.React >= 4
+    nuget Fable.Elmish.HMR >= 7
+    nuget Fable.Elmish.Debugger >= 4 
+    nuget Feliz.UseElmish >= 2
+    nuget Feliz.Markdown 2.3.0 
+    nuget Feliz.Router >= 4
+    nuget Fable.SimpleHttp
+    nuget Zanaptak.TypedCssClasses
+    nuget Fable.DateFunctions
 
 group FakeBuild
-  source https://api.nuget.org/v3/index.json
-  framework: auto-detect
-  storage: none
+    source https://api.nuget.org/v3/index.json
+    framework: net6.0
+    storage: none
 
-  nuget Fake.Core.Target
-  nuget Fake.DotNet.Cli
-  nuget Fake.DotNet.Paket
-  nuget Fake.JavaScript.Npm
-  nuget System.Text.Json
+    nuget Fake.Core.Target
+    nuget Fake.DotNet.Cli
+    nuget Fake.DotNet.Paket
+    nuget Fake.JavaScript.Npm
+    nuget System.Text.Json
+    nuget MSBuild.StructuredLogger >= 2.1.758

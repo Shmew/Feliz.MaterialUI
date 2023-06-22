@@ -171,7 +171,7 @@ module GetLines =
 module Render =
 
 
-  let componentDocument (api: ComponentApi) =
+  let componentDocument (additionalOpens: string list) (api: ComponentApi) =
     [
       sprintf "namespace %s" api.Namespace
       ""
@@ -182,11 +182,13 @@ module Render =
       "open System.ComponentModel"
       "open Fable.Core"
       "open Fable.Core.JsInterop"
-      "open Fable.React"
       "open Feliz"
+      yield! additionalOpens
       ""
       "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
       sprintf "module %sHelpers =" api.ComponentContainerTypeName
+      ""
+      indent 1 "open Fable.React"
       ""
       "let reactElement (el: ReactElementType) (props: 'a) : ReactElement =" |> indent 1
       "import \"createElement\" \"react\"" |> indent 2

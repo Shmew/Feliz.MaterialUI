@@ -1,5 +1,43 @@
 Changelog
 =========
+### 5.11.0-beta.3 (2023-06-21)
+* Fix [issue #5](https://github.com/ArtemyB/Feliz.MaterialUI/issues/5).
+
+### 5.11.0-beta.2 (2023-03-01)
+* Update to Feliz >= 2 (and Fable.React >= 9).
+* Update `react` NPM-package to v18, add `use-sync-external-store` NPM-package (required by `Feliz.UseElmish v2+`).
+* Regenerate bindings for MUI v5.11.
+
+### 5.10.0-alpha.6 (2023-02-15)
+* Add `anchorPosition` prop (of `Popover` and `Menu`) overload with `float` parameters.
+
+### 5.10.0-alpha.5 (2023-02-15)
+* Fix `CreateFilterOptionsOptions` type definition (used for `Autocomplete` MUI component) to address recent FCS updates that makes the old definition incompilable (e.g. by Fable v4.0.0-theta-018).
+
+### 5.10.0-alpha.4 (2022-10-31)
+
+* Fixed Grid v2 component import.
+* Corrected ThemeProvider component import (to import it from "@mui/material" instead of from "@mui/material/styles").
+* Removed StylesProvider component (for being obsolete in MUI 5).
+* Couple of minor code fixes to make the library compile with Fable 4.0.0-theta-014.
+
+### 5.10.0-alpha.3 (2022-10-03)
+
+* Fixed `componentsProps` prop bindings.
+* Added `MuiComponents` module, containing raw imports for all the components (typed as `ReactElementType`).
+* Added `style.innerSlot` helper, corrected return type of `style.muiBreakpoints` helper.
+
+### 5.10.0-alpha.0 (2022-09-26)
+
+* Updated for MUI v5 with corresponding API design changes (to reflect JS/TS MUI v5 API better).
+* Added separate packages for icons (@mui/icons-material), MUI-X DatePickers Community and Pro (@mui/x-date-pickers and @mui/x-date-pickers-pro).
+* Added new doc type signatures parsing and translation mechanism based on FParsec.
+
+### 1.3.0 (2022-01-22)
+
+* Updated for @material-ui/core 4.12 and @material-ui/lab 4.0.0-alpha.60
+* Added special cases for `imageList`'s broken documentation
+* Fixed markdown to docs to look for the correct markdown
 
 ### 1.2.6 (2021-02-09)
 

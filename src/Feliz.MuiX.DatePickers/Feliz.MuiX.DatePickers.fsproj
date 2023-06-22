@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <VersionPrefix>5.0.0</VersionPrefix>
+    <VersionSuffix>beta.2</VersionSuffix>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NpmDependencies>
+      <NpmPackage Name="@mui/x-date-pickers" Version="gte 5 lt 6" ResolutionStrategy="max" />
+    </NpmDependencies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ThemeOverrides.fs" />
+    <Compile Include="ThemeProps.fs" />
+    <Compile Include="ClassNames.fs" />
+    <Compile Include="ClassesProps.fs" />
+    <Compile Include="MuiComponents.fs" />
+    <Compile Include="Props.fs" />
+    <Compile Include="Mui.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="paket.references" />
+    <None Include="paket.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Feliz.MaterialUI\Feliz.MaterialUI.fsproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

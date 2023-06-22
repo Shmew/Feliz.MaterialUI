@@ -1,7 +1,10 @@
-﻿namespace Feliz.MaterialUI
+namespace Feliz.MaterialUI
 
+open System
 open System.ComponentModel
 open Fable.Core
+open Fable.Core.JsInterop
+open Feliz
 open Feliz.Styles
 
 
@@ -10,6 +13,20 @@ type theme =
   static member inline spacing (px: int) : IThemeProp = unbox ("spacing", px)
   static member inline spacing (factorToSpacing: int -> ICssUnit) : IThemeProp = unbox ("spacing", factorToSpacing)
 
+  static member inline componentVariants(
+        componentStylesheetName: string,
+        [<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []
+    ) : IThemeProp =
+
+    let variants =
+        values |> Array.map (fun cv ->
+            {|
+                props = createObj !!cv.props
+                style = createObj !!cv.style
+            |})
+    let componentVariantsKey = sprintf "components.%s.variants" componentStylesheetName
+    unbox (componentVariantsKey, variants)
+  
 
 [<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]
 module themeStatic =
@@ -60,9 +77,9 @@ module themeStatic =
 
 
       [<Erase>]
-      type type' =
-        static member inline light : IThemeProp = unbox ("palette.type", "light")
-        static member inline dark : IThemeProp = unbox ("palette.type", "dark")
+      type mode =
+        static member inline light : IThemeProp = unbox ("palette.mode", "light")
+        static member inline dark : IThemeProp = unbox ("palette.mode", "dark")
 
       [<Erase>]
       type primary' =
