@@ -8,7 +8,7 @@ open Fable.Core.JsInterop
 module AutocompleteHelpers =
 
   [<EditorBrowsable(EditorBrowsableState.Never)>]
-  let createFilterOptions (config: CreateFilterOptionsOptions) : Func<'option [], AutocompleteFilterOptionsState, 'option []> =
+  let createFilterOptions (config: CreateFilterOptionsOptions<_>) : Func<'option [], AutocompleteFilterOptionsState, 'option []> =
     import "createFilterOptions" "@material-ui/lab/Autocomplete"
 
 type Autocomplete =
@@ -21,7 +21,7 @@ type Autocomplete =
         ?trim: bool
       ) : 'option [] -> AutocompleteFilterOptionsState -> 'option []
       =
-    let opts = jsOptions<CreateFilterOptionsOptions>(fun o ->
+    let opts = jsOptions<CreateFilterOptionsOptions<_>>(fun o ->
       if ignoreAccents.IsSome then o.ignoreAccents <- ignoreAccents.Value
       if ignoreCase.IsSome then o.ignoreCase <- ignoreCase.Value
       if matchFrom.IsSome then o.matchFrom <- matchFrom.Value

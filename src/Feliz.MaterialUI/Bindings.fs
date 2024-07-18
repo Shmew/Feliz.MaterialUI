@@ -455,7 +455,7 @@ type AutocompleteOnChangeReason =
   | Clear
 
 
-type CreateFilterOptionsOptions =
+type CreateFilterOptionsOptions<'option> =
   abstract ignoreAccents: bool with get, set
   abstract ignoreCase: bool with get, set
   abstract matchFrom: AutocompleteMatchFrom with get, set
