@@ -1,58 +1,9 @@
-# Styling using `makeStyles`
+# Styling
 
-The `makeStyles` hook allows simple and powerful styling. Here is an example of Feliz.MaterialUI usage:
+MUI v5 is using [emotion](https://emotion.sh) as styling engine by default. But Feliz.MaterialUI does not contain any bindings to it. Also there aren't any external publicly available Fable-packages for now. Luckily MUI does not impose any serious restrictions on applying different styling solutions. So, for example you can try using Fable-exclusives like [FSS.Feliz](https://bjorn-strom.github.io/FSS/#/page/feliz) or/and [Zanaptak.TypedCssClasses](https://github.com/zanaptak/TypedCssClasses). Or you can simply use plain CSS, [SASS](https://sass-lang.com/), etc.
 
-```f#
-// Note that useStyles is a function that accepts props and returns
-// the record you specify. The props are used for interpolated styles
-// (demonstrated below) and you can simply use unit if you don't need it.
-// If you don't (yet) use the defined useStyles function, you may need to
-// annotate it as below to keep the compiler happy.
-let useStyles : MyProps -> _ = Styles.makeStyles(fun styles theme ->
-  // You return an anonymous record where each member is a list of styles
-  {|
-    // You must wrap the list of styles in styles.create
-    drawer = styles.create [
-      style.width (length.px 240)
-      style.flexShrink 0
-    ]
-    
-    // styles.create also has an overload allowing interpolated styles
-    root = styles.create (fun myProps -> [
-      style.display.flex
-      style.userSelect.none
-      if myProps.Page = Home then style.color Colors.green.``300``
-    ])
-    
-    drawerPaper = styles.create [
-      style.width (length.px 240)
-      // You can use style.inner to create any nested style object.
-      // Here is an example using breakpoint media queries from the theme:
-      style.inner theme.breakpoints.downXs [
-        style.backgroundColor.red
-      ]
-    ]
-    
-    toolbar = styles.create [
-      // The toolbar mixin is used like this
-      yield! theme.mixins.toolbar
-    ]
-  |}
-)
+The official guide on MUI's styling libraries interoperability can be found [here](https://mui.com/material-ui/guides/interoperability/).
 
-let view props =
-  // Call useStyles with the correct props (e.g. just () if you don't
-  // use interpolated styles)
-  let c = useStyles props
-  Mui.drawer [
-    // Now you can use the props like normal (string) props
-    prop.className c.drawer
-    drawer.classes [
-      classes.drawer.paper c.drawerPaper
-    ]
-    drawer.children [
-      Html.div [ prop.className c.toolbar ]
-      Mui.list [ ... ]
-    ]
-  ]
-```
+## Styling using `makeStyles`
+
+Styling via `makeStyles` hook, that was one of the main means in Material UI v4, became deprecated in MUI v5. Despite being still present in Feliz.MaterialUI library, it hasn't been ported and tested. Techinally this styling method is supported by MUI v5, but with the changes that require proper adoption in Feliz.MaterialUI. The official notes regarding that case could be seen [here](https://mui.com/material-ui/guides/interoperability/#jss-tss).

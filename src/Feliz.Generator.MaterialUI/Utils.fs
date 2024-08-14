@@ -30,6 +30,14 @@ module String =
     let r = Regex("\p{Cc}", RegexOptions.Compiled)
     fun (s: string) -> r.Replace(s, "")
 
+  /// Tests if string starts with specified value and if so, returns the rest of the string.
+  let (|StartsWith|_|) (value: string) (str: string) =
+    if str.StartsWith(value) then
+      str.Substring(value.Length) |> Some
+    else None
+
+  let (|Contains|_|) (value: string) (str: string) =
+    if str.Contains(value) then Some str else None
 
 module List =
 
@@ -40,7 +48,7 @@ module List =
 
   let trimEmptyLines list =
     list
-    |> List.skipWhile ((=) "")
+    |> List.skipWhile System.String.IsNullOrWhiteSpace
     |> List.rev
-    |> List.skipWhile ((=) "")
+    |> List.skipWhile System.String.IsNullOrWhiteSpace
     |> List.rev

@@ -369,3 +369,6 @@ MigrationBackup/
 # End of https://www.gitignore.io/api/visualstudio,visualstudiocode
 
 .ionide/
+
+*.fs.js
+*.fs.js.map

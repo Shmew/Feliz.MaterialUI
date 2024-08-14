@@ -1,0 +1,14 @@
+﻿type project
+licenseExpression MIT
+licenseUrl https://licenses.nuget.org/MIT
+projectUrl https://github.com/ArtemyB/Feliz.MaterialUI
+repositoryType git
+repositoryUrl https://github.com/ArtemyB/Feliz.MaterialUI
+tags
+  f# fable bindings feliz react mui icons-material material-ui materialui icons
+dependencies
+  FSharp.Core >= LOCKEDVERSION
+  Feliz >= LOCKEDVERSION
+files
+  *.fsproj ==> fable
+  *.fs ==> fable

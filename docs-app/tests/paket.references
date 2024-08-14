@@ -1,2 +1,3 @@
-Fable.Mocha
-FSharp.Core
+group DocsApp
+    Fable.Mocha
+    FSharp.Core

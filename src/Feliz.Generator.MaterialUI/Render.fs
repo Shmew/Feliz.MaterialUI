@@ -5,195 +5,351 @@ open Feliz.Generator
 open Utils
 open Domain
 
-
 let indent numLevels = String.indent 2 numLevels
-
 
 module GetLines =
 
-  /// Gets the code lines for the implementation of a single class rule. Does not
-  /// include docs.
-  let singleClassRule (propName: string) (rule: ClassRule) =
-    sprintf "static member inline %s(className: string) : IReactProperty = unbox (\"%s.%s\", className)"
-      rule.MethodName
-      propName
-      rule.RealRuleName
-    |> List.singleton
+    /// Gets the code lines for the implementation of a single class rule. Does not
+    /// include docs.
+    let singleClassRule (propName: string) (rule: ClassRule) =
+        sprintf "static member inline %s(className: string) : IReactProperty = unbox (\"%s.%s\", className)"
+            rule.MethodName
+            propName
+            rule.RealRuleName
+        |> List.singleton
 
+    /// Gets the code lines for the implementation of a single class global name. Does not
+    /// include docs.
+    let singleGlobalClassNameGetter (rule: ClassRule) =
+        sprintf "static member inline %s : string = \"%s\"" rule.MethodName rule.GlobalClass
+        |> List.singleton
 
-  let classRulesForComponent (api: MuiComponentApi) (comp: MuiComponent) =
-    [
-      let propsAndClassRules =
-        comp.GeneratorComponent.Props
-        |> List.choose (fun p ->
-            if p.MethodName = "classes" && not comp.ClassRules.IsEmpty then
-              Some (p, comp.ClassRules)
-            elif p.MethodName.EndsWith "Classes" then
-              let otherCompName =
-                p.MethodName.Substring(0, p.MethodName.Length-7)
+    let tryGetMatcinClassesPropAndRules (api: MuiComponentApi) (comp: MuiComponent) (p: Prop) =
+        if p.MethodName = "classes"
+            && not comp.ClassRules.IsEmpty then
+            Some(p, comp.ClassRules)
+        elif p.MethodName.EndsWith "Classes" then
+            let otherCompName =
+                p.MethodName.Substring(0, p.MethodName.Length - 7)
                 |> String.lowerFirst
-              let rules =
+
+            let rules =
                 api.MuiComponents
                 |> List.find (fun c -> c.GeneratorComponent.MethodName = otherCompName)
                 |> fun c -> c.ClassRules
-              if not rules.IsEmpty then Some (p, rules) else None
-            else None
-              
-        )
 
-      if not propsAndClassRules.IsEmpty then
-        sprintf "module %s =" comp.GeneratorComponent.MethodName
-
-        for prop, classRules in propsAndClassRules do
-          ""
-          yield! prop.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 1)
-          "[<Erase>]" |> indent 1
-          sprintf "type %s =" prop.MethodName |> indent 1
-          for rule in classRules do
-            yield! rule.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 2)
-            yield! singleClassRule prop.MethodName rule |> List.map (indent 2)
-        ""
-        ""
-    ]
-
-  let themePropsForComponent stylesheetName =
-    sprintf """static member inline %s(props: IReactProperty list) : IThemeProp = unbox ("props.%s", createObj !!props)"""
-      (stylesheetName |> String.lowerFirst)
-      stylesheetName
-    |> List.singleton
-
-  /// Gets the code lines for the implementation of a single class rule. Does not
-  /// include docs.
-  let singleThemeOverrideRule stylesheetName (rule: ClassRule) =
-    sprintf "static member inline %s(styles: IStyleAttribute list) : IThemeProp = unbox (\"overrides.%s.%s\", createObj !!styles)"
-      rule.MethodName
-      stylesheetName
-      rule.RealRuleName
-    |> List.singleton
-
-  let themeOverridesForComponent (comp: MuiComponent) stylesheetName =
-    [
-      "[<Erase>]"
-      sprintf "type %s =" (stylesheetName |> String.lowerFirst)
-      for rule in comp.ClassRules do
-        yield! rule.DocLines |> List.map (String.prefix "/// " >> String.trim >> indent 1)
-        if comp.GeneratorComponent.MethodName = "cssBaseline" && rule.RealRuleName = "@global" then
-          "static member inline global'(htmlTagsWithStyles: (string * (IStyleAttribute list)) list) : IThemeProp = unbox (\"overrides.MuiCssBaseline.@global\", createObj !!(htmlTagsWithStyles |> List.map (fun (tag, styles) -> tag, createObj !!styles)))"
-          |> indent 1
+            if not rules.IsEmpty then
+                Some(p, rules)
+            else
+                None
         else
-          yield! singleThemeOverrideRule stylesheetName rule |> List.map (indent 1)
+            None
+
+    let classRulesForComponent (api: MuiComponentApi) (comp: MuiComponent) =
+        [ let propsAndClassRules =
+              comp.GeneratorComponent.Props
+              |> List.choose (tryGetMatcinClassesPropAndRules api comp)
+
+          if not propsAndClassRules.IsEmpty then
+              sprintf "module %s =" comp.GeneratorComponent.MethodName
+
+              for prop, classRules in propsAndClassRules do
+                  ""
+
+                  yield!
+                      prop.DocLines
+                      |> List.map (String.prefix "/// " >> String.trim >> indent 1)
+
+                  "[<Erase>]" |> indent 1
+                  sprintf "type %s =" prop.MethodName |> indent 1
+
+                  for rule in classRules do
+                      yield!
+                          rule.DocLines
+                          |> List.map (String.prefix "/// " >> String.trim >> indent 2)
+
+                      yield!
+                          singleClassRule prop.MethodName rule
+                          |> List.map (indent 2)
+
+              ""
+              "" ]
+
+    let classesGlobalNamesGettersForComponent (comp: MuiComponent) =
+        [
+            if not comp.ClassRules.IsEmpty then
+                sprintf "type [<Erase>] %s =" comp.GeneratorComponent.MethodName
+                ""
+
+                for rule in comp.ClassRules do
+                    yield!
+                        rule.DocLines
+                        |> List.map (String.prefix "/// " >> String.trim >> indent 1)
+
+                    yield!
+                        singleGlobalClassNameGetter rule
+                        |> List.map (indent 1)
+                ""
+                ""
+        ]
+
+    let componentImport (comp: MuiComponent) =
+        let functionDeclaration (returnType: string) (funcBody: string) =
+            sprintf "static member inline %s : %s = %s" comp.GeneratorComponent.MethodName returnType funcBody
+
+        let returnType, funcBody =
+            match comp.GeneratorComponent.Source with
+            | ImportPath (path, None) -> "ReactElementType", sprintf "importDefault \"%s\"" path
+            | ImportPath (path, Some selector) -> "ReactElementType", sprintf "import \"%s\" \"%s\"" selector path
+            | Tag tag -> "string", sprintf "\"%s\"" tag
+        [
+            functionDeclaration returnType funcBody
+            ""
+        ]
+
+    let themeDefaultPropsForComponent stylesheetName =
+        sprintf
+            """static member inline %s(props: IReactProperty list) : IThemeProp = unbox ("components.%s.defaultProps", createObj !!props)"""
+            (stylesheetName |> String.lowerFirst)
+            stylesheetName
+        |> List.singleton
+
+    /// Gets the code lines for the implementation of a single class rule. Does not
+    /// include docs.
+    let singleThemeOverrideRule stylesheetName (rule: ClassRule) =
+        sprintf
+            "static member inline %s(styles: IStyleAttribute list) : IThemeProp = unbox (\"overrides.%s.%s\", createObj !!styles)"
+            rule.MethodName
+            stylesheetName
+            rule.RealRuleName
+        |> List.singleton
+
+    let singleStyleOverrideRule stylesheetName (rule: ClassRule) =
+        sprintf
+            "static member inline %s(styles: IStyleAttribute list) : IThemeProp = unbox (\"components.%s.styleOverrides.%s\", createObj !!styles)"
+            rule.MethodName
+            stylesheetName
+            rule.RealRuleName
+        |> List.singleton
+
+    let componentVariants stylesheetName = [
+        indent 1 "/// Allows to create new variants for Material UI components. These new variants can specify what styles the component should have when that specific variant prop value is applied."
+        sprintf
+            "static member inline variants([<ParamArray>] values: {| props: #seq<IReactProperty>; style: #seq<IStyleAttribute> |} []) : IThemeProp = theme.componentVariants(\"%s\", !!values)"
+            stylesheetName
+        |> indent 1
     ]
 
-  let locale (loc: Locale) =
-    [
-      sprintf "/// %s" loc.Name
-      sprintf "static member inline %s: Theme = import \"%s\" \"@material-ui/core/locale\"" loc.ImportName loc.ImportName
-    ]
+    //let componentOverrideHelperCode (stylesheetName: string) = [
+    //    indent 1 "static member inline componentOverride(?styleOverrides: seq<IStyleOverride>, ?variants: IComponentVariant []): IComponentOverride ="
+    //    indent 2
+    //        (sprintf "Styles.createComponentOverride(\"%s\", ?styleOverrides = styleOverrides, ?variants = variants)" stylesheetName)
+    //    ""
+    //]
+
+    let themeOverridesForComponent (comp: MuiComponent) stylesheetName =
+        [ "[<Erase>]"
+          sprintf "type %s =" (stylesheetName |> String.lowerFirst)
+
+          //yield! componentOverrideHelperCode stylesheetName
+          yield! componentVariants stylesheetName
+
+          for rule in comp.ClassRules do
+              yield!
+                  rule.DocLines
+                  |> List.map (String.prefix "/// " >> String.trim >> indent 1)
+
+              if comp.GeneratorComponent.MethodName = "cssBaseline" then
+                 //&& rule.RealRuleName = "@global" then
+                  "static member inline global'(htmlTagsWithStyles: (string * (IStyleAttribute list)) list) : IThemeProp = unbox (\"styleOverrides.MuiCssBaseline.@global\", createObj !!(htmlTagsWithStyles |> List.map (fun (tag, styles) -> tag, createObj !!styles)))"
+                  |> indent 1
+              else
+                  yield!
+                      singleStyleOverrideRule stylesheetName rule
+                      |> List.map (indent 1) ]
+
+    let locale (loc: Locale) =
+        [ sprintf "/// %s" loc.Name
+          sprintf
+              "static member inline %s: Theme = import \"%s\" \"@mui/material/locale\""
+              loc.ImportName
+              loc.ImportName ]
 
 
-let classesDocument (api: MuiComponentApi) =
-  [
-    sprintf "namespace %s" api.GeneratorComponentApi.Namespace
-    ""
-    "(*////////////////////////////////"
-    "/// THIS FILE IS AUTO-GENERATED //"
-    "////////////////////////////////*)"
-    ""
-    "open System.ComponentModel"
-    "open Fable.Core"
-    "open Feliz"
-    ""
-    "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
-    "module classesProps ="
-    ""
-    for comp in api.MuiComponents do
-      yield! GetLines.classRulesForComponent api comp |> List.map (indent 1)
-  ]
-  |> String.concat Environment.NewLine
+    let materialIcon (iconTitle: string) =
+        let iconFsFuncName = (iconTitle |> jsParamNameToFsParamName |> String.lowerFirst) + "Icon"
+        [
+            sprintf "let inline %s (props: #seq<IReactProperty>) = ofImport \"default\" \"@mui/icons-material/%s\" (createObj !!props) []"
+                iconFsFuncName
+                iconTitle
+        ]
 
+let classesPropsDocument (additionalOpens: string list) (api: MuiComponentApi) =
+    [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Feliz"
+      yield! additionalOpens
+      ""
+      "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+      "module classesProps ="
+      ""
+      for comp in api.MuiComponents do
+          yield!
+              GetLines.classRulesForComponent api comp
+              |> List.map (indent 1) ]
+    |> String.concat Environment.NewLine
 
-let themePropsDocument (api: MuiComponentApi) =
+let classesGlobalNamesDocument (additionalOpens: string list) (api: MuiComponentApi) =
+    [ sprintf "module %s.MuiClasses" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Feliz"
+      yield! additionalOpens
+      ""
+      //"module MuiClasses ="
+      //""
+      for comp in api.MuiComponents do
+          yield!
+              GetLines.classesGlobalNamesGettersForComponent comp
+              //|> List.map (indent 1)
+    ] |> String.concat Environment.NewLine
 
-  let getStylesheetName = function
-    | { ComponentName = Some n } as c -> Some n
-    | _ -> None
+let themePropsDocument (additionalOpens: string list) (api: MuiComponentApi) =
 
-  [
-    sprintf "namespace %s" api.GeneratorComponentApi.Namespace
-    ""
-    "(*////////////////////////////////"
-    "/// THIS FILE IS AUTO-GENERATED //"
-    "////////////////////////////////*)"
-    ""
-    "open System.ComponentModel"
-    "open Fable.Core"
-    "open Fable.Core.JsInterop"
-    "open Feliz"
-    ""
-    ""
-    "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
-    "module themeProps ="
-    ""
-    "  module theme ="
-    ""
-    "    [<Erase>]"
-    "    type props ="
-    for stylesheetName in api.MuiComponents |> List.choose getStylesheetName do
-      yield! GetLines.themePropsForComponent stylesheetName |> List.map (indent 3)
-    ""
-  ]
-  |> String.concat Environment.NewLine
+    let getStylesheetName =
+        function
+        | { ComponentName = Some n } as c -> Some n
+        | _ -> None
 
+    [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      "open Feliz"
+      yield! additionalOpens
+      ""
+      ""
+      "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+      "module themeProps ="
+      ""
+      "  module theme ="
+      ""
+      "    [<Erase>]"
+      "    type defaultProps ="
+      for stylesheetName in api.MuiComponents |> List.choose getStylesheetName do
+          yield!
+              GetLines.themeDefaultPropsForComponent stylesheetName
+              |> List.map (indent 3)
+      "" ]
+    |> String.concat Environment.NewLine
 
-let themeOverridesDocument (api: MuiComponentApi) =
+let themeOverridesDocument (additionalOpens: string list) (api: MuiComponentApi) =
 
-  let getCompAndStylesheetName = function
-    | { ComponentName = Some n } as c -> Some (c, n)
-    | _ -> None
+    let getCompAndStylesheetName =
+        function
+        | { ComponentName = Some n } as c -> Some(c, n)
+        | _ -> None
 
-  [
-    sprintf "namespace %s" api.GeneratorComponentApi.Namespace
-    ""
-    "(*////////////////////////////////"
-    "/// THIS FILE IS AUTO-GENERATED //"
-    "////////////////////////////////*)"
-    ""
-    "open System.ComponentModel"
-    "open Fable.Core"
-    "open Fable.Core.JsInterop"
-    "open Feliz"
-    ""
-    "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
-    "module themeOverrides ="
-    ""
-    "  module theme ="
-    ""
-    "    module overrides ="
-    ""
-    for comp, stylesheetName in api.MuiComponents |> List.choose getCompAndStylesheetName do
-      if not comp.ClassRules.IsEmpty then
-        yield! GetLines.themeOverridesForComponent comp stylesheetName |> List.map (indent 3)
-        ""
-  ]
-  |> String.concat Environment.NewLine
+    [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System"
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      "open Feliz"
+      yield! additionalOpens
+      ""
+      "[<AutoOpen; EditorBrowsable(EditorBrowsableState.Never)>]"
+      "module themeOverrides ="
+      ""
+      "  module theme ="
+      ""
+      "    module styleOverrides ="
+      ""
+      for comp, stylesheetName in
+          api.MuiComponents
+          |> List.choose getCompAndStylesheetName do
+          if not comp.ClassRules.IsEmpty then
+              yield!
+                  GetLines.themeOverridesForComponent comp stylesheetName
+                  |> List.map (indent 3)
 
+              "" ]
+    |> String.concat Environment.NewLine
+
+let componentImportsDocument (api: MuiComponentApi) =
+    [ sprintf "namespace %s" api.GeneratorComponentApi.Namespace
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open System.ComponentModel"
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      "open Fable.React"
+      ""
+      "[<Erase>]"
+      "type MuiComponents ="
+      //""
+      for comp in api.MuiComponents do
+          yield!
+              GetLines.componentImport comp
+              |> List.map (indent 1)
+    ] |> String.concat Environment.NewLine
 
 let localizationDocument (localization: Localization) =
 
-  [
-    "namespace Feliz.MaterialUI"
-    ""
-    "(*////////////////////////////////"
-    "/// THIS FILE IS AUTO-GENERATED //"
-    "////////////////////////////////*)"
-    ""
-    "open Fable.Core"
-    "open Fable.Core.JsInterop"
-    ""
-    "[<Erase>]"
-    "type Locale ="
-    for loc in localization.Locales do
-      yield! GetLines.locale loc |> List.map (indent 1)
-    ""
-  ]
-  |> String.concat Environment.NewLine
+    [ "namespace Feliz.MaterialUI"
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      ""
+      "[<Erase>]"
+      "type Locale ="
+      for loc in localization.Locales do
+          yield! GetLines.locale loc |> List.map (indent 1)
+      "" ]
+    |> String.concat Environment.NewLine
+
+
+let materialIconsDocument (iconTitles: seq<string>) =
+    [ "module Feliz.MaterialUI.Icons"
+      ""
+      "(*////////////////////////////////"
+      "/// THIS FILE IS AUTO-GENERATED //"
+      "////////////////////////////////*)"
+      ""
+      "open Fable.Core"
+      "open Fable.Core.JsInterop"
+      "open Fable.React"
+      "open Feliz"
+      ""
+      for iconTitle in iconTitles do
+          yield! GetLines.materialIcon iconTitle //|> List.map (indent 1)
+      "" ]
+    |> String.concat Environment.NewLine

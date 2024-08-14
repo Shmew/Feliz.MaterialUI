@@ -2,18 +2,20 @@
   
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
     <None Include="paket.references" />
     <Compile Include="Utils.fs" />
     <Compile Include="Domain.fs" />
-    <Compile Include="Render.fs" />
     <Compile Include="Common.fs" />
+    <Compile Include="DocTypeSignatureParser.fs" />
+    <Compile Include="Render.fs" />
     <Compile Include="HtmlCache.fs" />
     <Compile Include="ApiParser.fs" />
     <Compile Include="LocalizationParser.fs" />
+    <Compile Include="MaterialIconsParser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   
